@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الاختبارات القانونية V2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1><i class="fas fa-balance-scale"></i> منصة الاختبارات القانونية</h1>
+        <p>النسخة الثانية - منصة اختبارات حديثة وسهلة الاستخدام</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Books Section -->
+        <section id="books-section">
+            <div id="books-container" class="books-grid"></div>
+        </section>
+
+        <!-- Chapters Section -->
+        <section id="chapters-container" class="chapters-container">
+            <div class="chapters-header">
+                <button id="back-btn" class="back-btn">← العودة للكتب</button>
+                <div>
+                    <h2 id="chapters-title"></h2>
+                    <p id="chapters-author" style="color: #94a3b8; margin-top: 5px;"></p>
+                </div>
+            </div>
+            <div id="chapters-grid" class="chapters-grid"></div>
+        </section>
+
+        <!-- Exam Section -->
+        <section id="exam-container" class="exam-container">
+            <!-- Exam Header -->
+            <div class="exam-header">
+                <div class="exam-title">
+                    <h3 id="exam-book-title"></h3>
+                    <p id="exam-chapter-title"></p>
+                </div>
+                <div class="exam-info">
+                    <div class="info-item">
+                        <div class="info-label">الدرجة</div>
+                        <div class="info-value"><span id="current-score">0</span>/<span id="total-questions">0</span></div>
+                    </div>
+                    <div class="timer" id="timer">00:00</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-text" id="progress-text">السؤال 1 من 0</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="question-card"></div>
+
+            <!-- Navigation Buttons -->
+            <div class="exam-navigation">
+                <button id="prev-btn" class="nav-btn prev" style="display: none;">← السؤال السابق</button>
+                <button id="next-btn" class="nav-btn next" style="display: none;">السؤال التالي →</button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-container" class="results-container">
+            <div class="results-card">
+                <div class="results-grade" id="results-grade"></div>
+                <div class="results-percentage" id="results-percentage">0%</div>
+                <div class="results-score" id="results-score"></div>
+                <div class="results-grade-text" id="results-grade-text"></div>
+                <div class="results-time" id="results-time"></div>
+
+                <div class="results-buttons">
+                    <button id="review-btn" class="result-btn primary">
+                        <i class="fas fa-redo"></i> مراجعة الأخطاء (<span id="wrong-count">0</span>)
+                    </button>
+                    <button id="restart-btn" class="result-btn secondary">
+                        <i class="fas fa-sync"></i> إعادة الاختبار
+                    </button>
+                    <button id="back-to-books-btn" class="result-btn secondary">
+                        <i class="fas fa-home"></i> العودة للكتب
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Review Section -->
+        <section id="review-container" class="review-container">
+            <div id="review-content"></div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="back-review-btn" class="result-btn primary" onclick="app.restartExam()">
+                    العودة للنتائج
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 منصة الاختبارات القانونية V2 | جميع الحقوق محفوظة</p>
+        <p style="font-size: 0.85rem; margin-top: 10px;">تم تطويره بواسطة Manus AI</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="engine/examEngine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
