@@ -63,6 +63,69 @@ header p {
 }
 
 /* ============================================
+   Search Bar
+   ============================================ */
+.search-container {
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(194, 157, 95, 0.2);
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.suggestion-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border);
+}
+
+.suggestion-item:hover {
+  background: rgba(194, 157, 95, 0.1);
+  color: var(--primary-light);
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 40px 20px;
+}
+
+/* ============================================
    Books Grid
    ============================================ */
 .books-grid {
@@ -70,6 +133,7 @@ header p {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   margin: 30px 0;
+  animation: fadeIn 0.5s ease;
 }
 
 .book-card {
@@ -663,6 +727,41 @@ footer {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -19,7 +19,15 @@
     <div class="container">
         <!-- Books Section -->
         <section id="books-section">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن كتاب..." onkeyup="app.filterBooks()">
+                <div class="search-suggestions" id="searchSuggestions" style="display: none;"></div>
+            </div>
             <div id="books-container" class="books-grid"></div>
+            <div id="no-results" class="no-results" style="display: none; text-align: center; color: #94a3b8; margin-top: 40px; font-size: 1.1rem;">
+                😕 لم نجد كتاباً يطابق بحثك. حاول بكلمات أخرى.
+            </div>
         </section>
 
         <!-- Chapters Section -->

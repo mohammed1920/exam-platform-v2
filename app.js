@@ -9,6 +9,7 @@ class ExamApp {
     this.currentBook = null;
     this.currentChapter = null;
     this.examActive = false;
+    this.randomizeQuestions = true;
     this.init();
   }
 
@@ -28,11 +29,21 @@ class ExamApp {
   /**
    * عرض الكتب
    */
-  renderBooks() {
+  renderBooks(booksToRender = null) {
     const booksContainer = document.getElementById('books-container');
+    const noResults = document.getElementById('no-results');
+    const booksArray = booksToRender || this.books;
+    
     booksContainer.innerHTML = '';
 
-    this.books.forEach(book => {
+    if (booksArray.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+    
+    noResults.style.display = 'none';
+
+    booksArray.forEach(book => {
       const bookCard = document.createElement('div');
       bookCard.className = 'book-card';
       bookCard.innerHTML = `
@@ -45,6 +56,27 @@ class ExamApp {
       bookCard.addEventListener('click', () => this.selectBook(book));
       booksContainer.appendChild(bookCard);
     });
+  }
+
+  /**
+   * البحث عن الكتب
+   */
+  filterBooks() {
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.toLowerCase().trim();
+    
+    if (query === '') {
+      this.renderBooks();
+      return;
+    }
+
+    const filtered = this.books.filter(book => 
+      book.title.toLowerCase().includes(query) ||
+      book.author.toLowerCase().includes(query) ||
+      book.description.toLowerCase().includes(query)
+    );
+
+    this.renderBooks(filtered);
   }
 
   /**
@@ -180,6 +212,11 @@ class ExamApp {
     // تحديث الدرجة
     document.getElementById('current-score').textContent = examEngine.score;
 
+    // تأثير احتفالي عند الإجابة الصحيحة
+    if (isCorrect) {
+      this.celebrateCorrectAnswer();
+    }
+
     // عرض الأزرار
     document.getElementById('prev-btn').style.display = 'block';
     if (examEngine.currentQuestionIndex < examEngine.totalQuestions - 1) {
@@ -189,6 +226,18 @@ class ExamApp {
       document.getElementById('next-btn').style.display = 'block';
       document.getElementById('next-btn').textContent = '🏆 إنهاء الاختبار';
     }
+  }
+
+  /**
+   * تأثير احتفالي عند الإجابة الصحيحة
+   */
+  celebrateCorrectAnswer() {
+    // إضافة تأثير بصري
+    const questionCard = document.getElementById('question-card');
+    questionCard.style.animation = 'none';
+    setTimeout(() => {
+      questionCard.style.animation = 'pulse 0.5s ease';
+    }, 10);
   }
 
   /**
@@ -248,6 +297,20 @@ class ExamApp {
     const wrongAnswers = examEngine.getWrongAnswers();
     const wrongCount = wrongAnswers.length;
     document.getElementById('wrong-count').textContent = wrongCount;
+
+    // تأثير احتفالي عند النجاح
+    if (results.percentage >= 70) {
+      this.celebrateSuccess();
+    }
+  }
+
+  /**
+   * تأثير احتفالي عند النجاح
+   */
+  celebrateSuccess() {
+    // إضافة تأثير بصري للاحتفال
+    const resultsCard = document.querySelector('.results-card');
+    resultsCard.style.animation = 'bounce 0.6s ease';
   }
 
   /**
@@ -293,6 +356,7 @@ class ExamApp {
   backToBooks() {
     document.getElementById('chapters-container').classList.remove('active');
     document.getElementById('books-container').parentElement.style.display = 'block';
+    document.getElementById('searchInput').value = '';
     examEngine.reset();
   }
 
