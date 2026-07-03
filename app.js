@@ -10,12 +10,48 @@ class ExamApp {
     this.currentChapter = null;
     this.examActive = false;
     this.randomizeQuestions = true;
+    this.navigationStack = ['books']; // تتبع سجل التنقل
     this.init();
   }
 
   async init() {
     await this.loadBooks();
     this.setupEventListeners();
+    this.setupHistoryListener();
+  }
+
+  /**
+   * إعداد مستمع أحداث التاريخ (Back Button)
+   */
+  setupHistoryListener() {
+    window.addEventListener('popstate', (event) => {
+      if (event.state) {
+        this.handleNavigation(event.state);
+      }
+    });
+  }
+
+  /**
+   * التعامل مع التنقل من خلال زر الرجوع
+   */
+  handleNavigation(state) {
+    if (state.page === 'books') {
+      this.backToBooks();
+    } else if (state.page === 'chapters') {
+      this.showChapters(state.book);
+    } else if (state.page === 'exam') {
+      // لا يمكن العودة من الاختبار مباشرة، لكن يمكن إنهاء الاختبار
+      this.finishExam();
+    }
+  }
+
+  /**
+   * دفع حالة جديدة للتاريخ
+   */
+  pushState(page, data = {}) {
+    const state = { page, ...data };
+    history.pushState(state, '', window.location.href);
+    this.navigationStack.push(page);
   }
 
   /**
@@ -84,6 +120,7 @@ class ExamApp {
    */
   selectBook(book) {
     this.currentBook = book;
+    this.pushState('chapters', { book });
     this.showChapters(book);
   }
 
@@ -125,6 +162,9 @@ class ExamApp {
 
     this.currentChapter = chapterNum;
     this.examActive = true;
+
+    // دفع حالة الاختبار للتاريخ
+    this.pushState('exam', { bookId, chapterNum });
 
     // إخفاء الواجهات الأخرى
     document.getElementById('chapters-container').classList.remove('active');
@@ -358,6 +398,9 @@ class ExamApp {
     document.getElementById('books-container').parentElement.style.display = 'block';
     document.getElementById('searchInput').value = '';
     examEngine.reset();
+    
+    // تحديث سجل التنقل
+    this.navigationStack = ['books'];
   }
 
   /**
