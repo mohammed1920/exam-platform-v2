@@ -6,7 +6,7 @@ Exam Platform V2 - Questions Update Tool
 هذا السكريبت يساعدك في:
 1. إضافة أسئلة جديدة من ملفات JSON
 2. تحديث فهرس الكتب تلقائياً
-3. التحقق من صحة البيانات
+3. التحقق من صحة البيانات وإصلاحها تلقائياً
 """
 
 import json
@@ -35,33 +35,59 @@ def print_info(msg):
 def print_warning(msg):
     print(f"{Colors.YELLOW}⚠ {msg}{Colors.END}")
 
-def validate_question(question):
-    """التحقق من صحة السؤال"""
+def validate_question(question, index):
+    """التحقق من صحة السؤال وإصلاحه إذا لزم الأمر"""
+    modified = False
+    
+    # إضافة ID إذا كان مفقوداً
+    if 'id' not in question:
+        question['id'] = index + 1
+        modified = True
+    
+    # إضافة تفسير افتراضي إذا كان مفقوداً
+    if 'explanation' not in question:
+        question['explanation'] = "لا يوجد تفسير متاح لهذا السؤال حالياً."
+        modified = True
+
     required_fields = ['id', 'q', 'options', 'correct', 'explanation']
     for field in required_fields:
         if field not in question:
-            return False, f"الحقل المفقود: {field}"
+            return False, f"الحقل المفقود: {field}", modified
     
     if not isinstance(question['options'], list) or len(question['options']) < 2:
-        return False, "يجب أن يكون هناك خيارين على الأقل"
+        return False, "يجب أن يكون هناك خيارين على الأقل", modified
     
     if question['correct'] >= len(question['options']):
-        return False, "رقم الإجابة الصحيحة غير صحيح"
+        return False, "رقم الإجابة الصحيحة غير صحيح", modified
     
-    return True, "صحيح"
+    return True, "صحيح", modified
 
-def validate_chapter(chapter):
-    """التحقق من صحة الفصل"""
+def validate_chapter(file_path):
+    """التحقق من صحة الفصل وإصلاحه"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            chapter = json.load(f)
+    except Exception as e:
+        return False, f"خطأ في قراءة الملف: {str(e)}"
+
     if 'questions' not in chapter:
         return False, "الفصل يجب أن يحتوي على حقل 'questions'"
     
     if not isinstance(chapter['questions'], list):
         return False, "'questions' يجب أن تكون قائمة"
     
+    chapter_modified = False
     for i, question in enumerate(chapter['questions']):
-        valid, msg = validate_question(question)
+        valid, msg, question_modified = validate_question(question, i)
+        if question_modified:
+            chapter_modified = True
         if not valid:
             return False, f"السؤال {i+1}: {msg}"
+    
+    if chapter_modified:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(chapter, f, ensure_ascii=False, indent=2)
+        print_info(f"تم إصلاح وتحديث: {os.path.basename(file_path)}")
     
     return True, "صحيح"
 
@@ -123,7 +149,7 @@ def update_books_index(data_dir='./data'):
 
 def validate_all_chapters(data_dir='./data'):
     """التحقق من صحة جميع الفصول"""
-    print_info("جاري فحص جميع الفصول...")
+    print_info("جاري فحص وإصلاح جميع الفصول...")
     
     errors = []
     total_questions = 0
@@ -134,20 +160,15 @@ def validate_all_chapters(data_dir='./data'):
             for file in os.listdir(book_path):
                 if file.endswith('.json'):
                     file_path = os.path.join(book_path, file)
-                    try:
+                    valid, msg = validate_chapter(file_path)
+                    if valid:
                         with open(file_path, 'r', encoding='utf-8') as f:
                             chapter = json.load(f)
-                        
-                        valid, msg = validate_chapter(chapter)
-                        if valid:
                             total_questions += len(chapter['questions'])
-                            print_success(f"{book_dir}/{file}: {len(chapter['questions'])} أسئلة")
-                        else:
-                            errors.append(f"{book_dir}/{file}: {msg}")
-                            print_error(f"{book_dir}/{file}: {msg}")
-                    except Exception as e:
-                        errors.append(f"{book_dir}/{file}: {str(e)}")
-                        print_error(f"{book_dir}/{file}: خطأ في القراءة")
+                        print_success(f"{book_dir}/{file}: {len(chapter['questions'])} أسئلة")
+                    else:
+                        errors.append(f"{book_dir}/{file}: {msg}")
+                        print_error(f"{book_dir}/{file}: {msg}")
     
     print_info(f"إجمالي الأسئلة: {total_questions}")
     
@@ -155,7 +176,7 @@ def validate_all_chapters(data_dir='./data'):
         print_warning(f"عدد الأخطاء: {len(errors)}")
         return False
     else:
-        print_success("جميع الفصول صحيحة ✓")
+        print_success("جميع الفصول صحيحة ومحدثة ✓")
         return True
 
 def main():
@@ -188,8 +209,8 @@ def main():
     
     else:
         print_info("الأوامر المتاحة:")
-        print("  python3 update_questions.py validate  - التحقق من صحة جميع الأسئلة")
-        print("  python3 update_questions.py update    - تحديث فهرس الكتب والتحقق")
+        print("  python3 update_questions.py validate  - التحقق من صحة جميع الأسئلة وإصلاحها")
+        print("  python3 update_questions.py update    - تحديث فهرس الكتب والتحقق والإصلاح")
         print()
 
 if __name__ == '__main__':
