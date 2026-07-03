@@ -21,7 +21,8 @@ class ExamEngine {
    */
   async loadBooks() {
     try {
-      const response = await fetch('./data/books.json');
+      const timestamp = new Date().getTime();
+      const response = await fetch(`./data/books.json?v=${timestamp}`);
       const books = await response.json();
       return books;
     } catch (error) {
@@ -35,7 +36,8 @@ class ExamEngine {
    */
   async loadChapter(bookId, chapterNum) {
     try {
-      const response = await fetch(`./data/${bookId}/chapter_${chapterNum}.json`);
+      const timestamp = new Date().getTime();
+      const response = await fetch(`./data/${bookId}/chapter_${chapterNum}.json?v=${timestamp}`);
       const chapter = await response.json();
       this.currentBook = bookId;
       this.currentChapter = chapterNum;
