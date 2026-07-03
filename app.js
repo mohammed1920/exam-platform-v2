@@ -299,7 +299,7 @@ class ExamApp {
       if (idx === question.answer) {
         btn.classList.add('correct');
       } else if (idx === optionIndex && !isCorrect) {
-        btn.classList.add('incorrect');
+        btn.classList.add('wrong');
       }
     });
 
