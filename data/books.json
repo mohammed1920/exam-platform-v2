@@ -12,7 +12,7 @@
     "title": "القانون الدستوري",
     "author": "د. حميد حنون خالد",
     "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
-    "chapters": 1,
+    "chapters": 9,
     "color": "#e74c3c"
   },
   {
@@ -25,7 +25,7 @@
   },
   {
     "id": "law_international",
-    "title": "International",
+    "title": "القانون الدولي",
     "author": "مستشار قانوني",
     "description": "دراسة شاملة واختبارات في law_international.",
     "chapters": 5,
