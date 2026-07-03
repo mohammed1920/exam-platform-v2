@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import shutil
 from datetime import datetime
+import subprocess
 
 app = FastAPI(title="Admin API - Exam Platform")
 
@@ -59,7 +60,7 @@ async def add_book(book: Book):
         books = load_books()
         
         # التحقق من عدم وجود كتاب بنفس المعرف
-        if any(b['id'] == book.id for b in books):
+        if any(b["id"] == book.id for b in books):
             raise HTTPException(status_code=400, detail="الكتاب موجود بالفعل")
         
         # إنشاء مجلد الكتاب
@@ -79,7 +80,7 @@ async def add_book(book: Book):
         
         # إنشاء ملف chapters.json فارغ
         chapters_file = book_dir / "chapters.json"
-        with open(chapters_file, 'w', encoding='utf-8') as f:
+        with open(chapters_file, "w", encoding="utf-8") as f:
             json.dump([], f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": f"تم إضافة الكتاب '{book.title}' بنجاح"}
@@ -100,7 +101,7 @@ async def delete_book(book_id: str):
     """حذف كتاب"""
     try:
         books = load_books()
-        books = [b for b in books if b['id'] != book_id]
+        books = [b for b in books if b["id"] != book_id]
         save_books(books)
         
         # حذف مجلد الكتاب
@@ -126,7 +127,7 @@ async def add_chapter(book_id: str, title: str):
         chapters_file = book_dir / "chapters.json"
         chapters = []
         if chapters_file.exists():
-            with open(chapters_file, 'r', encoding='utf-8') as f:
+            with open(chapters_file, "r", encoding="utf-8") as f:
                 chapters = json.load(f)
         
         # إضافة الفصل الجديد
@@ -141,19 +142,19 @@ async def add_chapter(book_id: str, title: str):
         chapters.append(new_chapter)
         
         # حفظ الفصول
-        with open(chapters_file, 'w', encoding='utf-8') as f:
+        with open(chapters_file, "w", encoding="utf-8") as f:
             json.dump(chapters, f, ensure_ascii=False, indent=2)
         
         # إنشاء ملف الفصل الفردي
         chapter_file = book_dir / f"chapter_{chapter_num}.json"
-        with open(chapter_file, 'w', encoding='utf-8') as f:
+        with open(chapter_file, "w", encoding="utf-8") as f:
             json.dump(new_chapter, f, ensure_ascii=False, indent=2)
         
         # تحديث الفهرس الرئيسي
         books = load_books()
         for book in books:
-            if book['id'] == book_id:
-                book['chapters'] = chapter_num
+            if book["id"] == book_id:
+                book["chapters"] = chapter_num
         save_books(books)
         
         return {"success": True, "message": f"تم إضافة الفصل '{title}' بنجاح"}
@@ -170,7 +171,7 @@ async def get_chapters(book_id: str):
         if not chapters_file.exists():
             return {"success": True, "chapters": []}
         
-        with open(chapters_file, 'r', encoding='utf-8') as f:
+        with open(chapters_file, "r", encoding="utf-8") as f:
             chapters = json.load(f)
         
         return {"success": True, "chapters": chapters}
@@ -184,24 +185,24 @@ async def update_chapter(book_id: str, chapter_id: int, title: str):
         book_dir = DATA_DIR / book_id
         chapters_file = book_dir / "chapters.json"
         
-        with open(chapters_file, 'r', encoding='utf-8') as f:
+        with open(chapters_file, "r", encoding="utf-8") as f:
             chapters = json.load(f)
         
         if chapter_id < 0 or chapter_id >= len(chapters):
             raise HTTPException(status_code=404, detail="الفصل غير موجود")
         
-        chapters[chapter_id]['title'] = title
+        chapters[chapter_id]["title"] = title
         
-        with open(chapters_file, 'w', encoding='utf-8') as f:
+        with open(chapters_file, "w", encoding="utf-8") as f:
             json.dump(chapters, f, ensure_ascii=False, indent=2)
         
         # تحديث ملف الفصل الفردي
         chapter_file = book_dir / f"chapter_{chapter_id + 1}.json"
         if chapter_file.exists():
-            with open(chapter_file, 'r', encoding='utf-8') as f:
+            with open(chapter_file, "r", encoding="utf-8") as f:
                 chapter_data = json.load(f)
-            chapter_data['title'] = title
-            with open(chapter_file, 'w', encoding='utf-8') as f:
+            chapter_data["title"] = title
+            with open(chapter_file, "w", encoding="utf-8") as f:
                 json.dump(chapter_data, f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": "تم تحديث الفصل بنجاح"}
@@ -215,7 +216,7 @@ async def delete_chapter(book_id: str, chapter_id: int):
         book_dir = DATA_DIR / book_id
         chapters_file = book_dir / "chapters.json"
         
-        with open(chapters_file, 'r', encoding='utf-8') as f:
+        with open(chapters_file, "r", encoding="utf-8") as f:
             chapters = json.load(f)
         
         if chapter_id < 0 or chapter_id >= len(chapters):
@@ -223,7 +224,7 @@ async def delete_chapter(book_id: str, chapter_id: int):
         
         chapters.pop(chapter_id)
         
-        with open(chapters_file, 'w', encoding='utf-8') as f:
+        with open(chapters_file, "w", encoding="utf-8") as f:
             json.dump(chapters, f, ensure_ascii=False, indent=2)
         
         # حذف ملف الفصل الفردي
@@ -247,7 +248,7 @@ async def add_question(book_id: str, chapter_id: int, question: Question):
         if not chapter_file.exists():
             raise HTTPException(status_code=404, detail="الفصل غير موجود")
         
-        with open(chapter_file, 'r', encoding='utf-8') as f:
+        with open(chapter_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
         
         # إضافة السؤال
@@ -257,10 +258,10 @@ async def add_question(book_id: str, chapter_id: int, question: Question):
             "ans": question.ans,
             "explanation": question.explanation or ""
         }
-        chapter_data['questions'].append(question_dict)
+        chapter_data["questions"].append(question_dict)
         
         # حفظ الفصل
-        with open(chapter_file, 'w', encoding='utf-8') as f:
+        with open(chapter_file, "w", encoding="utf-8") as f:
             json.dump(chapter_data, f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": "تم إضافة السؤال بنجاح"}
@@ -274,20 +275,23 @@ async def update_question(book_id: str, chapter_id: int, question_id: int, quest
         book_dir = DATA_DIR / book_id
         chapter_file = book_dir / f"chapter_{chapter_id + 1}.json"
         
-        with open(chapter_file, 'r', encoding='utf-8') as f:
+        if not chapter_file.exists():
+            raise HTTPException(status_code=404, detail="الفصل غير موجود")
+        
+        with open(chapter_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
         
-        if question_id < 0 or question_id >= len(chapter_data['questions']):
+        if question_id < 0 or question_id >= len(chapter_data["questions"]):
             raise HTTPException(status_code=404, detail="السؤال غير موجود")
         
-        chapter_data['questions'][question_id] = {
+        chapter_data["questions"][question_id] = {
             "q": question.q,
             "opts": question.opts,
             "ans": question.ans,
             "explanation": question.explanation or ""
         }
         
-        with open(chapter_file, 'w', encoding='utf-8') as f:
+        with open(chapter_file, "w", encoding="utf-8") as f:
             json.dump(chapter_data, f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": "تم تحديث السؤال بنجاح"}
@@ -301,15 +305,18 @@ async def delete_question(book_id: str, chapter_id: int, question_id: int):
         book_dir = DATA_DIR / book_id
         chapter_file = book_dir / f"chapter_{chapter_id + 1}.json"
         
-        with open(chapter_file, 'r', encoding='utf-8') as f:
+        if not chapter_file.exists():
+            raise HTTPException(status_code=404, detail="الفصل غير موجود")
+        
+        with open(chapter_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
         
-        if question_id < 0 or question_id >= len(chapter_data['questions']):
+        if question_id < 0 or question_id >= len(chapter_data["questions"]):
             raise HTTPException(status_code=404, detail="السؤال غير موجود")
         
-        chapter_data['questions'].pop(question_id)
+        chapter_data["questions"].pop(question_id)
         
-        with open(chapter_file, 'w', encoding='utf-8') as f:
+        with open(chapter_file, "w", encoding="utf-8") as f:
             json.dump(chapter_data, f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": "تم حذف السؤال بنجاح"}
@@ -321,14 +328,37 @@ async def delete_question(book_id: str, chapter_id: int, question_id: int):
 def load_books():
     """قراءة ملف الفهرس الرئيسي"""
     if BOOKS_FILE.exists():
-        with open(BOOKS_FILE, 'r', encoding='utf-8') as f:
+        with open(BOOKS_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     return []
 
 def save_books(books):
     """حفظ ملف الفهرس الرئيسي"""
-    with open(BOOKS_FILE, 'w', encoding='utf-8') as f:
+    with open(BOOKS_FILE, "w", encoding="utf-8") as f:
         json.dump(books, f, ensure_ascii=False, indent=2)
+
+@app.post("/api/sync-github")
+async def sync_github():
+    """مزامنة التغييرات مع GitHub"""
+    try:
+        # 1. إضافة جميع التغييرات
+        subprocess.run(["git", "add", "."], check=True, cwd=Path(__file__).parent)
+        
+        # 2. عمل commit
+        commit_message = f"تحديث تلقائي من لوحة التحكم: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"
+        subprocess.run(["git", "commit", "-m", commit_message], check=True, cwd=Path(__file__).parent)
+        
+        # 3. سحب التغييرات من GitHub (rebase) قبل الدفع
+        subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True, cwd=Path(__file__).parent)
+        
+        # 4. دفع التغييرات إلى GitHub
+        subprocess.run(["git", "push", "origin", "main"], check=True, cwd=Path(__file__).parent)
+        
+        return {"success": True, "message": "تمت المزامنة مع GitHub بنجاح!"}
+    except subprocess.CalledProcessError as e:
+        raise HTTPException(status_code=500, detail=f"خطأ في أمر Git: {e.stderr.decode()}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/health")
 async def health_check():
