@@ -16,6 +16,14 @@
     "color": "#c29d5f"
   },
   {
+    "id": "law_international",
+    "title": "International",
+    "author": "مستشار قانوني",
+    "description": "دراسة شاملة واختبارات في law_international.",
+    "chapters": 5,
+    "color": "#c29d5f"
+  },
+  {
     "id": "law_international_humanitarian",
     "title": "القانون الدولي الإنساني",
     "author": "مستشار قانوني",
