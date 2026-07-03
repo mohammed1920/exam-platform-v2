@@ -49,44 +49,50 @@ class ExamEngine {
    * تحميل فصل معين
    */
   async loadChapter(bookId, chapterNum) {
+    const timestamp = new Date().getTime();
+    
+    // محاولة 1: الملف الموحد
     try {
-      const timestamp = new Date().getTime();
-      const url = `${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${timestamp}`;
-      console.log('Loading chapter from:', url);
-      
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      
-      const chapter = await response.json();
-      this.currentBook = bookId;
-      this.currentChapter = chapterNum;
-      this.questions = chapter.questions;
-      this.totalQuestions = chapter.questions.length;
-      this.currentQuestionIndex = 0;
-      this.score = 0;
-      this.userAnswers = [];
-      this.startTime = new Date();
-      return chapter;
-    } catch (error) {
-      console.error('خطأ في تحميل الفصل:', error);
-      // محاولة بديلة بالمسار النسبي البسيط
-      try {
-        const url = `./data/${bookId}/chapter_${chapterNum}.json?v=${new Date().getTime()}`;
-        const response = await fetch(url);
-        const chapter = await response.json();
-        this.currentBook = bookId;
-        this.currentChapter = chapterNum;
-        this.questions = chapter.questions;
-        this.totalQuestions = chapter.questions.length;
-        this.currentQuestionIndex = 0;
-        this.score = 0;
-        this.userAnswers = [];
-        this.startTime = new Date();
-        return chapter;
-      } catch (e) {
-        return null;
+      const res = await fetch(`${this.basePath}/data/${bookId}/chapters.json?v=${timestamp}`);
+      if (res.ok) {
+        const chapters = await res.json();
+        const chapter = chapters[chapterNum - 1];
+        if (chapter) {
+          this.setChapterData(bookId, chapterNum, chapter);
+          return chapter;
+        }
       }
-    }
+    } catch (e) {}
+
+    // محاولة 2: الملف المنفصل
+    try {
+      const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${timestamp}`);
+      if (res.ok) {
+        const chapter = await res.json();
+        this.setChapterData(bookId, chapterNum, chapter);
+        return chapter;
+      }
+    } catch (e) {}
+
+    return null;
+  }
+
+  setChapterData(bookId, chapterNum, chapter) {
+    this.currentBook = bookId;
+    this.currentChapter = chapterNum;
+    const qs = chapter.questions || chapter;
+    this.questions = Array.isArray(qs) ? qs.map(q => ({
+      id: q.id || Math.random(),
+      q: q.q || q.question,
+      options: q.opts || q.options,
+      correct: q.ans !== undefined ? q.ans : q.correct,
+      explanation: q.explanation || "لا يوجد شرح متوفر حالياً."
+    })) : [];
+    this.totalQuestions = this.questions.length;
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.userAnswers = [];
+    this.startTime = new Date();
   }
 
   /**
