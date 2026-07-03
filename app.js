@@ -18,30 +18,63 @@ class ExamApp {
     await this.loadBooks();
     this.setupEventListeners();
     this.setupHistoryListener();
-    history.replaceState({ page: 'books' }, '', window.location.href);
+    
+    // فحص الرابط عند التحميل لأول مرة
+    this.handleInitialState();
+  }
+
+  handleInitialState() {
+    const params = new URLSearchParams(window.location.search);
+    const bookId = params.get('book');
+    const chapterNum = params.get('chapter');
+
+    if (bookId) {
+      const book = this.books.find(b => b.id === bookId);
+      if (book) {
+        if (chapterNum) {
+          this.startExam(bookId, parseInt(chapterNum), false);
+        } else {
+          this.selectBook(book, false);
+        }
+      }
+    } else {
+      history.replaceState({ page: 'books' }, '', window.location.pathname);
+    }
   }
 
   setupHistoryListener() {
     window.addEventListener('popstate', (event) => {
       if (event.state) {
         this.handleNavigation(event.state);
+      } else {
+        this.backToBooks(false);
       }
     });
   }
 
   handleNavigation(state) {
     if (!state || state.page === 'books') {
-      this.backToBooks();
+      this.backToBooks(false);
     } else if (state.page === 'chapters' && state.book) {
-      this.showChapters(state.book);
+      this.showChapters(state.book, false);
     } else if (state.page === 'exam') {
-      this.finishExam();
+      // إذا رجع المستخدم من النتيجة أو الامتحان
+      this.backToBooks(false);
     }
   }
 
-  pushState(page, data = {}) {
-    const state = { page, ...data };
-    history.pushState(state, '', window.location.href);
+  updateURL(page, params = {}) {
+    const url = new URL(window.location.href);
+    url.search = ''; // مسح المعاملات القديمة
+    
+    if (page === 'chapters' && params.bookId) {
+      url.searchParams.set('book', params.bookId);
+    } else if (page === 'exam' && params.bookId && params.chapter) {
+      url.searchParams.set('book', params.bookId);
+      url.searchParams.set('chapter', params.chapter);
+    }
+    
+    return url.toString();
   }
 
   async loadBooks() {
@@ -96,15 +129,21 @@ class ExamApp {
     this.renderBooks(filtered);
   }
 
-  selectBook(book) {
+  selectBook(book, pushHistory = true) {
     this.currentBook = book;
-    this.pushState('chapters', { book });
+    if (pushHistory) {
+      const newUrl = this.updateURL('chapters', { bookId: book.id });
+      history.pushState({ page: 'chapters', book }, '', newUrl);
+    }
     this.showChapters(book);
   }
 
   showChapters(book) {
     document.getElementById('books-section').style.display = 'none';
     document.getElementById('chapters-container').classList.add('active');
+    document.getElementById('exam-container').classList.remove('active');
+    document.getElementById('results-container').classList.remove('active');
+    
     document.getElementById('chapters-title').textContent = book.title;
     document.getElementById('chapters-author').textContent = `بقلم: ${book.author}`;
 
@@ -124,7 +163,7 @@ class ExamApp {
     }
   }
 
-  async startExam(bookId, chapterNum) {
+  async startExam(bookId, chapterNum, pushHistory = true) {
     const chapter = await examEngine.loadChapter(bookId, chapterNum);
     if (!chapter) return;
 
@@ -132,8 +171,15 @@ class ExamApp {
     this.examActive = true;
     document.body.classList.add('exam-mode');
 
+    if (pushHistory) {
+      const newUrl = this.updateURL('exam', { bookId, chapter: chapterNum });
+      history.pushState({ page: 'exam', bookId, chapterNum }, '', newUrl);
+    }
+
+    document.getElementById('books-section').style.display = 'none';
     document.getElementById('chapters-container').classList.remove('active');
     document.getElementById('exam-container').classList.add('active');
+    document.getElementById('results-container').classList.remove('active');
 
     this.startTimer();
     this.displayQuestion();
@@ -180,7 +226,7 @@ class ExamApp {
     feedback.classList.add('show', isCorrect ? 'correct' : 'wrong');
     feedback.innerHTML = `
       <strong>${isCorrect ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة'}</strong>
-      <div class="explanation">${question.explanation}</div>
+      <div class="explanation">${question.explanation || "لا يوجد شرح متوفر حالياً."}</div>
     `;
 
     document.getElementById('current-score').textContent = examEngine.score;
@@ -237,10 +283,15 @@ class ExamApp {
     }, 1000);
   }
 
-  backToBooks() {
+  backToBooks(pushHistory = true) {
     document.body.classList.remove('exam-mode');
     if (this.timerInterval) clearInterval(this.timerInterval);
-    ['chapters-container', 'exam-container', 'results-container', 'review-container'].forEach(id => {
+    
+    if (pushHistory) {
+      history.pushState({ page: 'books' }, '', window.location.pathname);
+    }
+
+    ['chapters-container', 'exam-container', 'results-container'].forEach(id => {
       document.getElementById(id).classList.remove('active');
     });
     document.getElementById('books-section').style.display = 'block';
@@ -252,6 +303,12 @@ class ExamApp {
     document.getElementById('back-btn').addEventListener('click', () => this.backToBooks());
     document.getElementById('restart-btn').addEventListener('click', () => this.backToBooks());
     document.getElementById('back-to-books-btn').addEventListener('click', () => this.backToBooks());
+    
+    // مستمع للبحث
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => this.filterBooks());
+    }
   }
 }
 
