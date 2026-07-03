@@ -44,36 +44,53 @@
 
         <!-- Exam Section -->
         <section id="exam-container" class="exam-container">
-            <!-- Exam Header -->
-            <div class="exam-header">
-                <div class="exam-title">
-                    <h3 id="exam-book-title"></h3>
-                    <p id="exam-chapter-title"></p>
+            <!-- Exam Header - Compact Stats Bar -->
+            <div class="exam-stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">الوقت</span>
+                    <span class="stat-value" id="timer">00:00</span>
                 </div>
-                <div class="exam-info">
-                    <div class="info-item">
-                        <div class="info-label">الدرجة</div>
-                        <div class="info-value"><span id="current-score">0</span>/<span id="total-questions">0</span></div>
-                    </div>
-                    <div class="timer" id="timer">00:00</div>
+                <div class="stat-item">
+                    <span class="stat-label">التقدم</span>
+                    <span class="stat-value" id="progress-text">1/0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">صحيح</span>
+                    <span class="stat-value correct-score" id="current-score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">خطأ</span>
+                    <span class="stat-value error-score" id="wrong-score">0</span>
                 </div>
             </div>
 
             <!-- Progress Bar -->
-            <div class="progress-container">
-                <div class="progress-text" id="progress-text">السؤال 1 من 0</div>
+            <div class="progress-bar-container">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>
                 </div>
             </div>
 
-            <!-- Question Card -->
-            <div id="question-card" class="question-card"></div>
+            <!-- Question Card - Main Content -->
+            <div class="exam-content">
+                <!-- Question -->
+                <div id="question-card" class="question-card">
+                    <div class="question-text-wrapper">
+                        <div class="question-text" id="question-text"></div>
+                    </div>
+                    
+                    <!-- Options Grid -->
+                    <div id="options-container" class="options-grid"></div>
+                    
+                    <!-- Feedback -->
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Navigation Buttons - Bottom -->
             <div class="exam-navigation">
-                <button id="prev-btn" class="nav-btn prev" style="display: none;">← السؤال السابق</button>
-                <button id="next-btn" class="nav-btn next" style="display: none;">السؤال التالي →</button>
+                <button id="prev-btn" class="nav-btn prev" style="display: none;">← السابق</button>
+                <button id="next-btn" class="nav-btn next" style="display: none;">التالي →</button>
             </div>
         </section>
 

@@ -203,18 +203,23 @@ class ExamApp {
     const questionCard = document.getElementById('question-card');
     const questionNum = examEngine.currentQuestionIndex + 1;
 
+    // بناء محتوى السؤال بالتصميم الجديد
     questionCard.innerHTML = `
-      <div class="question-number">السؤال ${questionNum} من ${examEngine.totalQuestions}</div>
-      <div class="question-text">${question.q}</div>
-      <div class="options-container" id="options-container"></div>
+      <div class="question-text-wrapper">
+        <div class="question-text" id="question-text">${question.q}</div>
+      </div>
+      <div class="options-grid" id="options-container"></div>
       <div class="feedback" id="feedback"></div>
     `;
 
-    // عرض الخيارات
+    // عرض الخيارات مع الحروف الأبجدية
     const optionsContainer = document.getElementById('options-container');
+    const letters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
+    
     question.options.forEach((option, index) => {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
+      btn.setAttribute('data-letter', letters[index] || String.fromCharCode(65 + index));
       btn.textContent = option;
       btn.addEventListener('click', () => this.selectAnswer(index));
       optionsContainer.appendChild(btn);
@@ -422,7 +427,11 @@ class ExamApp {
   updateProgress() {
     const progress = ((examEngine.currentQuestionIndex) / examEngine.totalQuestions) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
-    document.getElementById('progress-text').textContent = `السؤال ${examEngine.currentQuestionIndex + 1} من ${examEngine.totalQuestions}`;
+    document.getElementById('progress-text').textContent = `${examEngine.currentQuestionIndex + 1}/${examEngine.totalQuestions}`;
+    
+    // تحديث عدد الأخطاء
+    const wrongCount = examEngine.getWrongAnswers().length;
+    document.getElementById('wrong-score').textContent = wrongCount;
   }
 
   /**
