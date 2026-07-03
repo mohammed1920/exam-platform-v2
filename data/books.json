@@ -1,50 +1,65 @@
 [
   {
-    "id": "law_constitutional",
-    "title": "القانون الدستوري",
-    "author": "د. حميد حنون خالد",
-    "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
-    "chapters": 9,
-    "color": "#e74c3c"
-  },
-  {
-    "id": "law_administrative",
-    "title": "القضاء الإداري",
-    "author": "د. وسام صبار",
-    "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
-    "chapters": 10,
-    "color": "#8e44ad"
-  },
-  {
-    "id": "law_general_penalties",
-    "title": "قانون العقوبات العام",
+    "id": "law_organizations",
+    "repo": "Law-Organizations",
+    "title": "المنظمات الدولية",
     "author": "مستشار قانوني",
-    "description": "مجموعة اختبارات شاملة في قانون العقوبات العام والقواعد العامة للجريمة والعقاب.",
-    "chapters": 7,
-    "color": "#c29d5f"
-  },
-  {
-    "id": "law_special_sanctions",
-    "title": "قانون العقوبات الخاص",
-    "author": "مستشار قانوني",
-    "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
-    "chapters": 22,
-    "color": "#e67e22"
+    "description": "دراسة شاملة واختبارات في المنظمات الدولية.",
+    "chapters": 1,
+    "color": "#2980b9"
   },
   {
     "id": "law_international_humanitarian",
-    "title": "القانون الدولي الإنساني",
+    "repo": "Law-International-Humanitarian",
+    "title": "القانون الدولي الانساني",
     "author": "مستشار قانوني",
-    "description": "قواعد حماية ضحايا النزاعات المسلحة والحد من وسائل وأساليب القتال.",
+    "description": "دراسة شاملة واختبارات في القانون الدولي الانساني.",
     "chapters": 8,
     "color": "#27ae60"
   },
   {
-    "id": "law_organizations",
-    "title": "المنظمات الدولية",
+    "id": "law_special_sanctions",
+    "repo": "Law---Special---sanctions",
+    "title": "قانون العقوبات الخاص",
     "author": "مستشار قانوني",
-    "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
-    "chapters": 1,
-    "color": "#2980b9"
+    "description": "دراسة شاملة واختبارات في قانون العقوبات الخاص.",
+    "chapters": 22,
+    "color": "#e67e22"
+  },
+  {
+    "id": "law_general_penalties",
+    "repo": "Law-General-penalties",
+    "title": "قانون العقوبات العام",
+    "author": "مستشار قانوني",
+    "description": "دراسة شاملة واختبارات في قانون العقوبات العام.",
+    "chapters": 7,
+    "color": "#c29d5f"
+  },
+  {
+    "id": "law_international",
+    "repo": "Law---International",
+    "title": "القانون الدولي",
+    "author": "مستشار قانوني",
+    "description": "دراسة شاملة واختبارات في القانون الدولي.",
+    "chapters": 5,
+    "color": "#34495e"
+  },
+  {
+    "id": "law_administrative",
+    "repo": "law-administrative",
+    "title": "القضاء الإداري",
+    "author": "د. وسام صبار",
+    "description": "دراسة شاملة واختبارات في القضاء الإداري.",
+    "chapters": 10,
+    "color": "#8e44ad"
+  },
+  {
+    "id": "law_test",
+    "repo": "law-test",
+    "title": "القانون الدستوري",
+    "author": "د. حميد حنون خالد",
+    "description": "دراسة شاملة واختبارات في القانون الدستوري.",
+    "chapters": 9,
+    "color": "#c29d5f"
   }
 ]

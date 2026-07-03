@@ -1,217 +1,135 @@
-#!/usr/bin/env python3
-"""
-منصة الاختبارات القانونية V2 - أداة تحديث الأسئلة
-Exam Platform V2 - Questions Update Tool
-
-هذا السكريبت يساعدك في:
-1. إضافة أسئلة جديدة من ملفات JSON
-2. تحديث فهرس الكتب تلقائياً
-3. التحقق من صحة البيانات وإصلاحها تلقائياً
-"""
-
 import json
 import os
-import sys
-from pathlib import Path
-from datetime import datetime
+import re
+import requests
 
-# ألوان للطباعة
-class Colors:
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BLUE = '\033[94m'
-    END = '\033[0m'
+# الإعدادات
+USERNAME = "mohammed1920"
+DATA_DIR = "data"
+BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
 
-def print_success(msg):
-    print(f"{Colors.GREEN}✓ {msg}{Colors.END}")
-
-def print_error(msg):
-    print(f"{Colors.RED}✗ {msg}{Colors.END}")
-
-def print_info(msg):
-    print(f"{Colors.BLUE}ℹ {msg}{Colors.END}")
-
-def print_warning(msg):
-    print(f"{Colors.YELLOW}⚠ {msg}{Colors.END}")
-
-def validate_question(question, index):
-    """التحقق من صحة السؤال وإصلاحه إذا لزم الأمر"""
-    modified = False
-    
-    # إضافة ID إذا كان مفقوداً
-    if 'id' not in question:
-        question['id'] = index + 1
-        modified = True
-    
-    # إضافة تفسير افتراضي إذا كان مفقوداً
-    if 'explanation' not in question:
-        question['explanation'] = "لا يوجد تفسير متاح لهذا السؤال حالياً."
-        modified = True
-
-    required_fields = ['id', 'q', 'options', 'correct', 'explanation']
-    for field in required_fields:
-        if field not in question:
-            return False, f"الحقل المفقود: {field}", modified
-    
-    if not isinstance(question['options'], list) or len(question['options']) < 2:
-        return False, "يجب أن يكون هناك خيارين على الأقل", modified
-    
-    if question['correct'] >= len(question['options']):
-        return False, "رقم الإجابة الصحيحة غير صحيح", modified
-    
-    return True, "صحيح", modified
-
-def validate_chapter(file_path):
-    """التحقق من صحة الفصل وإصلاحه"""
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            chapter = json.load(f)
-    except Exception as e:
-        return False, f"خطأ في قراءة الملف: {str(e)}"
-
-    if 'questions' not in chapter:
-        return False, "الفصل يجب أن يحتوي على حقل 'questions'"
-    
-    if not isinstance(chapter['questions'], list):
-        return False, "'questions' يجب أن تكون قائمة"
-    
-    chapter_modified = False
-    for i, question in enumerate(chapter['questions']):
-        valid, msg, question_modified = validate_question(question, i)
-        if question_modified:
-            chapter_modified = True
-        if not valid:
-            return False, f"السؤال {i+1}: {msg}"
-    
-    if chapter_modified:
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(chapter, f, ensure_ascii=False, indent=2)
-        print_info(f"تم إصلاح وتحديث: {os.path.basename(file_path)}")
-    
-    return True, "صحيح"
-
-def get_chapter_count(book_dir):
-    """حساب عدد الفصول في الكتاب"""
-    if not os.path.exists(book_dir):
-        return 0
-    
-    count = 0
-    for file in os.listdir(book_dir):
-        if file.startswith('chapter_') and file.endswith('.json'):
-            count += 1
-    return count
-
-def update_books_index(data_dir='./data'):
-    """تحديث فهرس الكتب تلقائياً"""
-    print_info("جاري تحديث فهرس الكتب...")
-    
+def get_law_books_from_github():
+    """يجلب الكتب تلقائياً من مستودعات GitHub التي تبدأ بـ law-"""
     books = []
-    books_json_path = os.path.join(data_dir, 'books.json')
+    print(f"🔍 جاري البحث عن مستودعات قانونية لحساب {USERNAME}...")
     
-    # قراءة الكتب الموجودة
-    if os.path.exists(books_json_path):
-        with open(books_json_path, 'r', encoding='utf-8') as f:
-            try:
-                books = json.load(f)
-            except:
-                books = []
+    url = f"https://api.github.com/users/{USERNAME}/repos?sort=updated&per_page=100"
+    response = requests.get(url)
+    if response.status_code != 200:
+        print("❌ فشل في جلب المستودعات من GitHub")
+        return []
     
-    # فحص المجلدات الجديدة
-    for item in os.listdir(data_dir):
-        item_path = os.path.join(data_dir, item)
-        if os.path.isdir(item_path) and item.startswith('law_'):
-            chapter_count = get_chapter_count(item_path)
-            if chapter_count > 0:
-                # التحقق من وجود الكتاب
-                existing = next((b for b in books if b['id'] == item), None)
-                if existing:
-                    existing['chapters'] = chapter_count
-                    print_info(f"تم تحديث: {existing['title']} ({chapter_count} فصول)")
-                else:
-                    # إضافة كتاب جديد
-                    new_book = {
-                        'id': item,
-                        'title': item.replace('law_', '').replace('_', ' ').title(),
-                        'author': 'منصة الاختبارات القانونية',
-                        'description': 'كتاب قانوني متخصص',
-                        'chapters': chapter_count
-                    }
-                    books.append(new_book)
-                    print_success(f"تم إضافة كتاب جديد: {new_book['title']}")
+    repos = response.json()
+    # جلب المستودعات التي تبدأ بـ law- وتجنب المستودع الحالي والمكتبة
+    law_repos = [repo for repo in repos if repo['name'].lower().startswith('law') and repo['name'] != 'exam-platform-v2' and repo['name'] != 'Library']
     
-    # حفظ الفهرس المحدث
-    with open(books_json_path, 'w', encoding='utf-8') as f:
-        json.dump(books, f, ensure_ascii=False, indent=2)
-    
-    print_success(f"تم تحديث فهرس الكتب ({len(books)} كتاب)")
+    for repo in law_repos:
+        repo_name = repo['name']
+        description = repo.get('description') or "كتاب قانوني | مستشار قانوني"
+        
+        # تحليل العنوان والمؤلف من الوصف
+        if "|" in description:
+            parts = description.split("|")
+            title = parts[0].strip()
+            author = parts[1].strip()
+        else:
+            title = description.strip()
+            author = "مستشار قانوني"
+            
+        # تحديد معرف الكتاب (slug)
+        book_id = repo_name.lower().replace('-', '_').replace('___', '_')
+        
+        # حساب عدد الفصول
+        ch_count = 0
+        book_path = os.path.join(DATA_DIR, book_id)
+        
+        if os.path.exists(book_path):
+            # إذا كان الكتاب موجوداً محلياً كـ JSON
+            ch_count = sum(1 for f in os.listdir(book_path) if f.startswith('chapter_') and f.endswith('.json'))
+        else:
+            # إذا كان الكتاب لا يزال في مستودع خارجي (HTML)
+            contents_url = f"https://api.github.com/repos/{USERNAME}/{repo_name}/contents/"
+            contents_resp = requests.get(contents_url)
+            if contents_resp.status_code == 200:
+                files = contents_resp.json()
+                ch_count = sum(1 for f in files if f['name'].lower().startswith('ch') and f['name'].endswith('.html'))
+
+        if ch_count > 0:
+            books.append({
+                "id": book_id,
+                "repo": repo_name,
+                "title": title,
+                "author": author,
+                "description": f"دراسة شاملة واختبارات في {title}.",
+                "chapters": ch_count,
+                "color": get_color_for_book(book_id)
+            })
+            print(f"✅ تم اكتشاف كتاب: {title} ({ch_count} فصول)")
+
     return books
 
-def validate_all_chapters(data_dir='./data'):
-    """التحقق من صحة جميع الفصول"""
-    print_info("جاري فحص وإصلاح جميع الفصول...")
-    
-    errors = []
-    total_questions = 0
-    
-    for book_dir in os.listdir(data_dir):
-        book_path = os.path.join(data_dir, book_dir)
-        if os.path.isdir(book_path) and book_dir.startswith('law_'):
-            for file in os.listdir(book_path):
-                if file.endswith('.json'):
-                    file_path = os.path.join(book_path, file)
-                    valid, msg = validate_chapter(file_path)
-                    if valid:
-                        with open(file_path, 'r', encoding='utf-8') as f:
-                            chapter = json.load(f)
-                            total_questions += len(chapter['questions'])
-                        print_success(f"{book_dir}/{file}: {len(chapter['questions'])} أسئلة")
-                    else:
-                        errors.append(f"{book_dir}/{file}: {msg}")
-                        print_error(f"{book_dir}/{file}: {msg}")
-    
-    print_info(f"إجمالي الأسئلة: {total_questions}")
-    
-    if errors:
-        print_warning(f"عدد الأخطاء: {len(errors)}")
-        return False
-    else:
-        print_success("جميع الفصول صحيحة ومحدثة ✓")
-        return True
+def get_color_for_book(book_id):
+    colors = {
+        "law_constitutional": "#e74c3c",
+        "law_administrative": "#8e44ad",
+        "law_general_penalties": "#c29d5f",
+        "law_special_sanctions": "#e67e22",
+        "law_international_humanitarian": "#27ae60",
+        "law_organizations": "#2980b9",
+        "law_international": "#34495e"
+    }
+    return colors.get(book_id, "#c29d5f")
 
-def main():
-    print(f"\n{Colors.BLUE}{'='*50}")
-    print("منصة الاختبارات القانونية V2 - أداة التحديث")
-    print(f"{'='*50}{Colors.END}\n")
-    
-    if len(sys.argv) > 1:
-        command = sys.argv[1]
-        
-        if command == 'validate':
-            if validate_all_chapters():
-                sys.exit(0)
-            else:
-                sys.exit(1)
-        
-        elif command == 'update':
-            update_books_index()
-            if validate_all_chapters():
-                print_success("تم التحديث بنجاح!")
-                sys.exit(0)
-            else:
-                print_error("هناك أخطاء في البيانات")
-                sys.exit(1)
-        
-        else:
-            print_error(f"أمر غير معروف: {command}")
-            print_info("الأوامر المتاحة: validate, update")
-            sys.exit(1)
-    
-    else:
-        print_info("الأوامر المتاحة:")
-        print("  python3 update_questions.py validate  - التحقق من صحة جميع الأسئلة وإصلاحها")
-        print("  python3 update_questions.py update    - تحديث فهرس الكتب والتحقق والإصلاح")
-        print()
+def update_books_index():
+    """تحديث ملف books.json بالكامل بناءً على GitHub والملفات المحلية"""
+    books = get_law_books_from_github()
+    if not books:
+        print("⚠️ لم يتم العثور على كتب لتحديثها.")
+        return
 
-if __name__ == '__main__':
-    main()
+    # التأكد من وجود المجلد
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)
+
+    with open(BOOKS_FILE, "w", encoding="utf-8") as f:
+        json.dump(books, f, ensure_ascii=False, indent=2)
+    print(f"🚀 تم تحديث فهرس الكتب بنجاح! إجمالي الكتب: {len(books)}")
+
+def validate_data():
+    """فحص سلامة ملفات JSON وإصلاح المعرفات المفقودة"""
+    print("🛠️ جاري فحص وإصلاح ملفات البيانات...")
+    total_q = 0
+    for root, dirs, files in os.walk(DATA_DIR):
+        for file in files:
+            if file.startswith("chapter_") and file.endswith(".json"):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                    
+                    modified = False
+                    for i, q in enumerate(data.get('questions', [])):
+                        total_q += 1
+                        if 'id' not in q:
+                            q['id'] = f"{data['id']}_q{i+1}"
+                            modified = True
+                        if 'explanation' not in q or not q['explanation']:
+                            q['explanation'] = "لا يوجد شرح متوفر حالياً."
+                            modified = True
+                            
+                    if modified:
+                        with open(file_path, 'w', encoding='utf-8') as f:
+                            json.dump(data, f, ensure_ascii=False, indent=2)
+                except Exception as e:
+                    print(f"❌ خطأ في {file_path}: {e}")
+    print(f"✓ تم فحص {total_q} سؤال بنجاح.")
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "update":
+        update_books_index()
+    elif len(sys.argv) > 1 and sys.argv[1] == "validate":
+        validate_data()
+    else:
+        update_books_index()
+        validate_data()
