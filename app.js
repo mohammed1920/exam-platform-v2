@@ -372,10 +372,19 @@ class ExamApp {
       history.pushState({ page: 'books' }, '', window.location.pathname);
     }
 
+    // إخفاء وتفريغ جميع الحاويات
     ['chapters-container', 'exam-container', 'results-container', 'review-container'].forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.classList.remove('active');
+      if (el) {
+        el.classList.remove('active');
+        // تفريغ محتوى المراجعة تماماً
+        if (id === 'review-container') {
+          const reviewContent = document.getElementById('review-content');
+          if (reviewContent) reviewContent.innerHTML = '';
+        }
+      }
     });
+    
     document.getElementById('books-section').style.display = 'block';
     examEngine.reset();
   }
