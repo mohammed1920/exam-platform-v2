@@ -10,7 +10,7 @@ class ExamApp {
     this.currentChapter = null;
     this.examActive = false;
     this.randomizeQuestions = true;
-    this.navigationStack = ['books']; // تتبع سجل التنقل
+    this.navigationStack = ['books'];
     this.init();
   }
 
@@ -18,13 +18,9 @@ class ExamApp {
     await this.loadBooks();
     this.setupEventListeners();
     this.setupHistoryListener();
-    // تسجيل الحالة الابتدائية (قائمة الكتب)
     history.replaceState({ page: 'books' }, '', window.location.href);
   }
 
-  /**
-   * إعداد مستمع أحداث التاريخ (Back Button)
-   */
   setupHistoryListener() {
     window.addEventListener('popstate', (event) => {
       if (event.state) {
@@ -33,9 +29,6 @@ class ExamApp {
     });
   }
 
-  /**
-   * التعامل مع التنقل من خلال زر الرجوع
-   */
   handleNavigation(state) {
     if (!state) {
       this.backToBooks();
@@ -52,26 +45,17 @@ class ExamApp {
     }
   }
 
-  /**
-   * دفع حالة جديدة للتاريخ
-   */
   pushState(page, data = {}) {
-    const state = { page, ...data };
+    const state = { page, timestamp: Date.now(), ...data };
     history.pushState(state, '', window.location.href);
     this.navigationStack.push(page);
   }
 
-  /**
-   * تحميل الكتب
-   */
   async loadBooks() {
     this.books = await examEngine.loadBooks();
     this.renderBooks();
   }
 
-  /**
-   * عرض الكتب
-   */
   renderBooks(booksToRender = null) {
     const booksContainer = document.getElementById('books-container');
     const noResults = document.getElementById('no-results');
@@ -101,9 +85,6 @@ class ExamApp {
     });
   }
 
-  /**
-   * البحث عن الكتب
-   */
   filterBooks() {
     const searchInput = document.getElementById('searchInput');
     const query = searchInput.value.toLowerCase().trim();
@@ -122,18 +103,12 @@ class ExamApp {
     this.renderBooks(filtered);
   }
 
-  /**
-   * اختيار كتاب
-   */
   selectBook(book) {
     this.currentBook = book;
     this.pushState('chapters', { book });
     this.showChapters(book);
   }
 
-  /**
-   * عرض فصول الكتاب
-   */
   showChapters(book) {
     document.getElementById('books-container').parentElement.style.display = 'none';
     const chaptersContainer = document.getElementById('chapters-container');
@@ -157,9 +132,6 @@ class ExamApp {
     }
   }
 
-  /**
-   * بدء الاختبار
-   */
   async startExam(bookId, chapterNum) {
     const chapter = await examEngine.loadChapter(bookId, chapterNum);
     if (!chapter) {
@@ -170,50 +142,42 @@ class ExamApp {
     this.currentChapter = chapterNum;
     this.examActive = true;
 
-    // دفع حالة الاختبار للتاريخ
     this.pushState('exam', { bookId, chapterNum });
 
-    // إخفاء الواجهات الأخرى
     document.getElementById('chapters-container').classList.remove('active');
     document.getElementById('books-container').parentElement.style.display = 'none';
 
-    // عرض شاشة الاختبار
     const examContainer = document.getElementById('exam-container');
     examContainer.classList.add('active');
 
-    // تحديث رأس الاختبار
     document.getElementById('exam-book-title').textContent = this.currentBook.title;
     document.getElementById('exam-chapter-title').textContent = `الفصل ${chapterNum}`;
     document.getElementById('total-questions').textContent = examEngine.totalQuestions;
 
-    // بدء المؤقت
     this.startTimer();
-
-    // عرض السؤال الأول
     this.displayQuestion();
   }
 
-  /**
-   * عرض السؤال
-   */
   displayQuestion() {
     const question = examEngine.getCurrentQuestion();
     if (!question) return;
 
     const questionCard = document.getElementById('question-card');
-    const questionNum = examEngine.currentQuestionIndex + 1;
-
-    // بناء محتوى السؤال بالتصميم الجديد
-    questionCard.innerHTML = `
-      <div class="question-text-wrapper">
-        <div class="question-text" id="question-text">${question.q}</div>
-      </div>
-      <div class="options-grid" id="options-container"></div>
-      <div class="feedback" id="feedback"></div>
-    `;
-
-    // عرض الخيارات مع الحروف الأبجدية
-    const optionsContainer = document.getElementById('options-container');
+    
+    questionCard.innerHTML = '';
+    
+    const questionWrapper = document.createElement('div');
+    questionWrapper.className = 'question-text-wrapper';
+    const questionText = document.createElement('div');
+    questionText.className = 'question-text';
+    questionText.textContent = question.q;
+    questionWrapper.appendChild(questionText);
+    questionCard.appendChild(questionWrapper);
+    
+    const optionsGrid = document.createElement('div');
+    optionsGrid.className = 'options-grid';
+    optionsGrid.id = 'options-container';
+    
     const letters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
     
     question.options.forEach((option, index) => {
@@ -222,25 +186,26 @@ class ExamApp {
       btn.setAttribute('data-letter', letters[index] || String.fromCharCode(65 + index));
       btn.textContent = option;
       btn.addEventListener('click', () => this.selectAnswer(index));
-      optionsContainer.appendChild(btn);
+      optionsGrid.appendChild(btn);
     });
+    
+    questionCard.appendChild(optionsGrid);
+    
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback';
+    feedback.id = 'feedback';
+    questionCard.appendChild(feedback);
 
-    // تحديث شريط التقدم
     this.updateProgress();
 
-    // إخفاء الأزرار
     document.getElementById('next-btn').style.display = 'none';
     document.getElementById('prev-btn').style.display = 'none';
   }
 
-  /**
-   * اختيار إجابة
-   */
   selectAnswer(optionIndex) {
     const isCorrect = examEngine.submitAnswer(optionIndex);
     const question = examEngine.getCurrentQuestion();
 
-    // تعطيل جميع الأزرار
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach((btn, idx) => {
       btn.disabled = true;
@@ -252,7 +217,6 @@ class ExamApp {
       }
     });
 
-    // عرض الملاحظات
     const feedback = document.getElementById('feedback');
     feedback.classList.add('show');
     feedback.classList.add(isCorrect ? 'correct' : 'wrong');
@@ -261,15 +225,12 @@ class ExamApp {
       <div class="explanation"><strong>الشرح:</strong> ${question.explanation}</div>
     `;
 
-    // تحديث الدرجة
     document.getElementById('current-score').textContent = examEngine.score;
 
-    // تأثير احتفالي عند الإجابة الصحيحة
     if (isCorrect) {
       this.celebrateCorrectAnswer();
     }
 
-    // عرض الأزرار
     document.getElementById('prev-btn').style.display = 'block';
     if (examEngine.currentQuestionIndex < examEngine.totalQuestions - 1) {
       document.getElementById('next-btn').style.display = 'block';
@@ -280,11 +241,7 @@ class ExamApp {
     }
   }
 
-  /**
-   * تأثير احتفالي عند الإجابة الصحيحة
-   */
   celebrateCorrectAnswer() {
-    // إضافة تأثير بصري
     const questionCard = document.getElementById('question-card');
     questionCard.style.animation = 'none';
     setTimeout(() => {
@@ -292,9 +249,6 @@ class ExamApp {
     }, 10);
   }
 
-  /**
-   * السؤال التالي
-   */
   nextQuestion() {
     if (examEngine.nextQuestion()) {
       this.displayQuestion();
@@ -303,18 +257,12 @@ class ExamApp {
     }
   }
 
-  /**
-   * السؤال السابق
-   */
   previousQuestion() {
     if (examEngine.previousQuestion()) {
       this.displayQuestion();
     }
   }
 
-  /**
-   * إنهاء الاختبار
-   */
   finishExam() {
     this.examActive = false;
     clearInterval(this.timerInterval);
@@ -322,16 +270,11 @@ class ExamApp {
     const results = examEngine.finishExam();
     examEngine.saveResults(results);
 
-    // إخفاء شاشة الاختبار
     document.getElementById('exam-container').classList.remove('active');
 
-    // عرض النتائج
     this.showResults(results);
   }
 
-  /**
-   * عرض النتائج
-   */
   showResults(results) {
     const resultsContainer = document.getElementById('results-container');
     resultsContainer.classList.add('active');
@@ -345,29 +288,20 @@ class ExamApp {
     document.getElementById('results-grade-text').textContent = results.grade.grade;
     document.getElementById('results-time').textContent = `الوقت المستغرق: ${minutes} دقيقة و ${seconds} ثانية`;
 
-    // عرض الأسئلة الخاطئة
     const wrongAnswers = examEngine.getWrongAnswers();
     const wrongCount = wrongAnswers.length;
     document.getElementById('wrong-count').textContent = wrongCount;
 
-    // تأثير احتفالي عند النجاح
     if (results.percentage >= 70) {
       this.celebrateSuccess();
     }
   }
 
-  /**
-   * تأثير احتفالي عند النجاح
-   */
   celebrateSuccess() {
-    // إضافة تأثير بصري للاحتفال
     const resultsCard = document.querySelector('.results-card');
     resultsCard.style.animation = 'bounce 0.6s ease';
   }
 
-  /**
-   * مراجعة الأخطاء
-   */
   reviewWrongAnswers() {
     const wrongAnswers = examEngine.getWrongAnswers();
     const reviewContainer = document.getElementById('review-container');
@@ -388,13 +322,9 @@ class ExamApp {
       reviewContent.appendChild(reviewItem);
     });
 
-    // إخفاء النتائج
     document.getElementById('results-container').classList.remove('active');
   }
 
-  /**
-   * إعادة الاختبار
-   */
   restartExam() {
     examEngine.reset();
     document.getElementById('results-container').classList.remove('active');
@@ -402,41 +332,28 @@ class ExamApp {
     this.showChapters(this.currentBook);
   }
 
-  /**
-   * العودة للكتب
-   */
   backToBooks() {
-    // إخفاء جميع الحاويات
     document.getElementById('chapters-container').classList.remove('active');
     document.getElementById('exam-container').classList.remove('active');
     document.getElementById('results-container').classList.remove('active');
     document.getElementById('review-container').classList.remove('active');
     
-    // عرض قائمة الكتب
     document.getElementById('books-container').parentElement.style.display = 'block';
     document.getElementById('searchInput').value = '';
     examEngine.reset();
     
-    // تحديث سجل التنقل
     this.navigationStack = ['books'];
   }
 
-  /**
-   * تحديث شريط التقدم
-   */
   updateProgress() {
     const progress = ((examEngine.currentQuestionIndex) / examEngine.totalQuestions) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
     document.getElementById('progress-text').textContent = `${examEngine.currentQuestionIndex + 1}/${examEngine.totalQuestions}`;
     
-    // تحديث عدد الأخطاء
     const wrongCount = examEngine.getWrongAnswers().length;
     document.getElementById('wrong-score').textContent = wrongCount;
   }
 
-  /**
-   * بدء المؤقت
-   */
   startTimer() {
     let seconds = 0;
     const timerElement = document.getElementById('timer');
@@ -449,9 +366,6 @@ class ExamApp {
     }, 1000);
   }
 
-  /**
-   * إعداد مستمعي الأحداث
-   */
   setupEventListeners() {
     document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
     document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
@@ -462,7 +376,6 @@ class ExamApp {
   }
 }
 
-// تهيئة التطبيق عند تحميل الصفحة
 let app;
 document.addEventListener('DOMContentLoaded', () => {
   app = new ExamApp();

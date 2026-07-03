@@ -257,24 +257,44 @@ header p {
   display: none;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
   padding: 0;
   margin: 0;
   background: var(--dark-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
 }
 
 .exam-container.active {
   display: flex;
 }
 
+/* Hide header and footer during exam */
+.exam-container.active ~ header,
+.exam-container.active ~ footer {
+  display: none !important;
+}
+
+body:has(.exam-container.active) > header,
+body:has(.exam-container.active) > footer {
+  display: none !important;
+}
+
 /* Stats Bar - Compact Header */
 .exam-stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  padding: 15px 20px;
-  background: rgba(30, 41, 59, 0.8);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 15px;
+  background: rgba(30, 41, 59, 0.95);
   border-bottom: 2px solid var(--border);
-  border-radius: 0 0 12px 12px;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .stat-item {
@@ -286,16 +306,18 @@ header p {
 
 .stat-label {
   color: var(--text-secondary);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  white-space: nowrap;
 }
 
 .stat-value {
   color: var(--primary-light);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .stat-value.correct-score {
