@@ -18,58 +18,58 @@
             --text: #e2e8f0;
             --text-dim: #94a3b8;
         }
-        body {
-            font-family: "Cairo", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            padding: 20px;
-        }
+        body { font-family: "Cairo", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 15px; }
         .container { max-width: 1200px; margin: 0 auto; }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
-        h1 { font-size: 24px; color: var(--gold); }
-        .main-grid { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
-        .sidebar { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
-        .book-item { background: var(--bg); padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
+        h1 { font-size: 20px; color: var(--gold); }
+        .main-grid { display: grid; grid-template-columns: 280px 1fr; gap: 15px; }
+        .sidebar { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); height: fit-content; }
+        .book-item { background: var(--bg); padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
         .book-item.active { border-color: var(--gold); background: var(--border); }
-        .content-area { background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .tab-btn { background: none; border: none; color: var(--text-dim); padding: 10px 20px; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; }
+        .content-area { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); min-height: 500px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .tab-btn { background: none; border: none; color: var(--text-dim); padding: 8px 15px; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; font-family: 'Cairo'; }
         .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; font-family: 'Cairo'; }
+        .btn { padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; font-family: 'Cairo'; font-size: 14px; }
         .btn-primary { background: var(--gold); color: var(--bg); width: 100%; margin-top: 10px; }
         .btn-green { background: var(--green); color: white; }
         .btn-red { background: var(--red); color: white; }
         .btn-secondary { background: var(--border); color: var(--text); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: var(--gold); font-size: 14px; }
-        input, textarea, select { width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Cairo'; }
-        .item-card { background: var(--bg); padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; color: var(--gold); font-size: 13px; }
+        input, textarea, select { width: 100%; padding: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Cairo'; font-size: 14px; }
+        .item-card { background: var(--bg); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 15px; }
         .modal.active { display: flex; }
-        .modal-content { background: var(--card); padding: 30px; border-radius: 12px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
-        .alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 15px 30px; border-radius: 8px; z-index: 2000; font-weight: 700; }
+        .modal-content { background: var(--card); padding: 20px; border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+        .alert { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 6px; z-index: 2000; font-weight: 700; font-size: 14px; display: none; }
+        .alert.active { display: block; }
         .alert-success { background: var(--green); color: white; }
         .alert-error { background: var(--red); color: white; }
+        #debug-log { margin-top: 20px; padding: 10px; background: #000; color: #0f0; font-family: monospace; font-size: 10px; border-radius: 4px; display: none; max-height: 100px; overflow-y: auto; }
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>⚖️ لوحة التحكم</h1>
+            <h1>⚖️ لوحة التحكم V2</h1>
             <div>
                 <button class="btn btn-secondary" onclick="openSettings()">⚙️ الإعدادات</button>
                 <button class="btn btn-green" onclick="window.location.href='index.html'">👁️ عرض الموقع</button>
             </div>
         </header>
 
+        <div id="alert-box" class="alert"></div>
+
         <div class="main-grid">
             <div class="sidebar">
-                <h3 style="margin-bottom: 15px;">الكتب</h3>
-                <div id="books-list"></div>
+                <h3 style="margin-bottom: 10px; font-size: 16px;">الكتب</h3>
+                <div id="books-list">جاري التحميل...</div>
                 <button class="btn btn-primary" onclick="showModal('addBook')">+ إضافة كتاب</button>
+                <div id="debug-log"></div>
             </div>
 
             <div class="content-area">
@@ -80,31 +80,28 @@
                 </div>
 
                 <div id="overview" class="tab-content active">
-                    <h2 id="current-book-name">اختر كتاباً من القائمة</h2>
-                    <p id="current-book-info" style="color: var(--text-dim); margin-top: 10px;"></p>
+                    <h2 id="current-book-name">اختر كتاباً للبدء</h2>
+                    <div id="current-book-info" style="margin-top: 15px;"></div>
                 </div>
 
                 <div id="chapters" class="tab-content">
-                    <button class="btn btn-green" style="margin-bottom: 20px;" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
+                    <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
                     <div id="chapters-list"></div>
                 </div>
 
                 <div id="questions" class="tab-content">
                     <div class="form-group">
                         <label>اختر الفصل:</label>
-                        <select id="chapter-select" onchange="loadQuestions()"></select>
+                        <select id="chapter-select" onchange="renderQuestions()"></select>
                     </div>
-                    <button class="btn btn-green" style="margin-bottom: 20px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
+                    <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
                     <div id="questions-list"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modals -->
-    <div id="modal" class="modal">
-        <div class="modal-content" id="modal-body"></div>
-    </div>
+    <div id="modal" class="modal"><div class="modal-content" id="modal-body"></div></div>
 
     <script>
         let books = [];
@@ -116,6 +113,20 @@
             repo: localStorage.getItem('gh_repo') || 'exam-platform-v2'
         };
 
+        function log(msg) {
+            const el = document.getElementById('debug-log');
+            el.style.display = 'block';
+            el.innerHTML += `> ${msg}<br>`;
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function showAlert(msg, type = 'success') {
+            const box = document.getElementById('alert-box');
+            box.textContent = msg;
+            box.className = `alert active alert-${type}`;
+            setTimeout(() => box.className = 'alert', 3000);
+        }
+
         function decode(b64) {
             return new TextDecoder().decode(Uint8Array.from(atob(b64), c => c.charCodeAt(0)));
         }
@@ -124,21 +135,28 @@
         }
 
         async function ghRequest(path, method = 'GET', body = null) {
-            const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}`;
+            const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}?t=${Date.now()}`;
             const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' };
             const options = { method, headers };
             if (body) options.body = JSON.stringify(body);
+            log(`${method} ${path}`);
             const res = await fetch(url, options);
-            if (!res.ok) throw new Error(await res.text());
+            if (!res.ok) {
+                const err = await res.json();
+                log(`ERROR: ${err.message}`);
+                throw new Error(err.message);
+            }
             return res.json();
         }
 
         async function loadBooks() {
+            if (!config.token) return;
             try {
                 const data = await ghRequest('data/books.json');
                 books = JSON.parse(decode(data.content));
                 renderBooks();
-            } catch (e) { alert('خطأ في تحميل الكتب: ' + e.message); }
+                log('تم تحميل الكتب بنجاح');
+            } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
         }
 
         function renderBooks() {
@@ -146,7 +164,7 @@
             list.innerHTML = books.map(b => `
                 <div class="book-item ${currentBook?.id === b.id ? 'active' : ''}" onclick="selectBook('${b.id}')">
                     <strong>${b.title}</strong>
-                    <div style="font-size: 12px; color: var(--text-dim);">${b.chapters} فصول</div>
+                    <div style="font-size: 11px; color: var(--text-dim);">${b.chapters || 0} فصول</div>
                 </div>
             `).join('');
         }
@@ -154,19 +172,25 @@
         async function selectBook(id) {
             currentBook = books.find(b => b.id === id);
             document.getElementById('current-book-name').textContent = currentBook.title;
-            document.getElementById('current-book-info').textContent = `المؤلف: ${currentBook.author || 'غير معروف'}`;
             renderBooks();
             await loadChapters();
             switchTab('overview');
         }
 
         async function loadChapters() {
+            if (!currentBook) return;
             try {
                 const data = await ghRequest(`data/${currentBook.id}/chapters.json`);
                 currentChapters = JSON.parse(decode(data.content));
                 renderChapters();
                 updateChapterSelect();
-            } catch (e) { currentChapters = []; renderChapters(); }
+                log(`تم تحميل ${currentChapters.length} فصول`);
+            } catch (e) {
+                log('لا توجد فصول لهذا الكتاب');
+                currentChapters = [];
+                renderChapters();
+                updateChapterSelect();
+            }
         }
 
         function renderChapters() {
@@ -174,108 +198,128 @@
             list.innerHTML = currentChapters.map((c, i) => `
                 <div class="item-card">
                     <strong>${c.title}</strong>
-                    <p style="font-size: 12px; color: var(--text-dim);">${c.questions?.length || 0} سؤال</p>
-                    <div style="margin-top: 10px; display: flex; gap: 10px;">
-                        <button class="btn btn-secondary" style="padding: 5px 15px;" onclick="editChapter(${i})">تعديل</button>
-                        <button class="btn btn-red" style="padding: 5px 15px;" onclick="deleteChapter(${i})">حذف</button>
+                    <div style="margin-top: 8px; display: flex; gap: 8px;">
+                        <button class="btn btn-secondary" style="padding: 4px 10px;" onclick="editChapter(${i})">تعديل</button>
+                        <button class="btn btn-red" style="padding: 4px 10px;" onclick="deleteChapter(${i})">حذف</button>
                     </div>
                 </div>
-            `).join('') || 'لا توجد فصول';
+            `).join('') || '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
         }
 
         function updateChapterSelect() {
             const sel = document.getElementById('chapter-select');
             sel.innerHTML = currentChapters.map((c, i) => `<option value="${i}">${c.title}</option>`).join('');
-            loadQuestions();
+            renderQuestions();
         }
 
-        function loadQuestions() {
+        function renderQuestions() {
             const idx = document.getElementById('chapter-select').value;
             const list = document.getElementById('questions-list');
-            if (idx === "" || !currentChapters[idx]) { list.innerHTML = 'اختر فصلاً'; return; }
+            if (idx === "" || !currentChapters[idx]) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
             const qs = currentChapters[idx].questions || [];
             list.innerHTML = qs.map((q, i) => `
                 <div class="item-card">
                     <p><strong>س ${i+1}:</strong> ${q.q}</p>
-                    <div style="font-size: 13px; margin: 10px 0;">
+                    <div style="font-size: 12px; margin: 8px 0;">
                         ${q.opts.map((o, oi) => `<div style="${oi === q.ans ? 'color: var(--green); font-weight: 700;' : ''}">${oi+1}) ${o}</div>`).join('')}
                     </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-secondary" style="padding: 5px 15px;" onclick="editQuestion(${idx}, ${i})">تعديل</button>
-                        <button class="btn btn-red" style="padding: 5px 15px;" onclick="deleteQuestion(${idx}, ${i})">حذف</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary" style="padding: 4px 10px;" onclick="editQuestion(${idx}, ${i})">تعديل</button>
+                        <button class="btn btn-red" style="padding: 4px 10px;" onclick="deleteQuestion(${idx}, ${i})">حذف</button>
                     </div>
                 </div>
-            `).join('') || 'لا توجد أسئلة';
+            `).join('') || '<p style="color:var(--text-dim)">لا توجد أسئلة في هذا الفصل.</p>';
         }
 
         function switchTab(id) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            event.target.classList.add('active');
+            if (event) event.target.classList.add('active');
         }
 
-        function showModal(type, data = null) {
+        function openSettings() {
+            const t = prompt('أدخل GitHub Token:', config.token || '');
+            if (t) {
+                localStorage.setItem('gh_token', t);
+                config.token = t;
+                loadBooks();
+            }
+        }
+
+        function showModal(type) {
             const body = document.getElementById('modal-body');
             let html = '';
             if (type === 'addBook') {
-                html = `<h2>إضافة كتاب</h2>
-                    <div class="form-group"><label>اسم الكتاب</label><input id="m-title"></div>
-                    <div class="form-group"><label>المعرف (English)</label><input id="m-id"></div>
-                    <div class="form-group"><label>المؤلف</label><input id="m-author"></div>
-                    <button class="btn btn-primary" onclick="saveBook()">حفظ</button>`;
+                html = `<h3>إضافة كتاب جديد</h3>
+                    <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
+                    <div class="form-group"><label>المعرف (English - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
+                    <button class="btn btn-primary" onclick="saveBook()">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
-                html = `<h2>إضافة فصل</h2>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title"></div>
-                    <button class="btn btn-primary" onclick="saveChapter()">حفظ</button>`;
+                html = `<h3>إضافة فصل جديد</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول"></div>
+                    <button class="btn btn-primary" onclick="saveChapter()">إضافة الفصل</button>`;
             } else if (type === 'addQuestion') {
-                html = `<h2>إضافة سؤال</h2>
-                    <div class="form-group"><label>السؤال</label><textarea id="m-q"></textarea></div>
+                html = `<h3>إضافة سؤال جديد</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q"></textarea></div>
                     <div class="form-group"><label>خيار 1</label><input id="m-o1"></div>
                     <div class="form-group"><label>خيار 2</label><input id="m-o2"></div>
                     <div class="form-group"><label>خيار 3</label><input id="m-o3"></div>
                     <div class="form-group"><label>خيار 4</label><input id="m-o4"></div>
-                    <div class="form-group"><label>الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
-                    <button class="btn btn-primary" onclick="saveQuestion()">حفظ</button>`;
+                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
+                    <button class="btn btn-primary" onclick="saveQuestion()">إضافة السؤال</button>`;
             }
-            body.innerHTML = html + `<button class="btn btn-secondary" style="margin-top:10px" onclick="closeModal()">إلغاء</button>`;
+            body.innerHTML = html + `<button class="btn btn-secondary" style="margin-top:10px; width:100%" onclick="closeModal()">إلغاء</button>`;
             document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
         async function saveBook() {
-            const b = { id: document.getElementById('m-id').value, title: document.getElementById('m-title').value, author: document.getElementById('m-author').value, chapters: 0 };
-            books.push(b);
-            await ghRequest('data/books.json', 'PUT', { message: 'إضافة كتاب', content: encode(JSON.stringify(books, null, 2)), sha: (await ghRequest('data/books.json')).sha });
-            closeModal(); loadBooks();
+            const id = document.getElementById('m-id').value.trim();
+            const title = document.getElementById('m-title').value.trim();
+            if (!id || !title) return;
+            books.push({ id, title, chapters: 0 });
+            try {
+                const sha = (await ghRequest('data/books.json')).sha;
+                await ghRequest('data/books.json', 'PUT', { message: 'إضافة كتاب', content: encode(JSON.stringify(books, null, 2)), sha });
+                showAlert('تمت إضافة الكتاب بنجاح');
+                closeModal(); loadBooks();
+            } catch (e) { showAlert(e.message, 'error'); }
         }
 
         async function saveChapter() {
-            const title = document.getElementById('m-title').value;
-            currentChapters.push({ id: `${currentBook.id}_ch${currentChapters.length+1}`, title, questions: [] });
-            const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`).catch(() => ({sha:null}))).sha;
-            await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
-            currentBook.chapters = currentChapters.length;
-            await ghRequest('data/books.json', 'PUT', { message: 'تحديث فصول', content: encode(JSON.stringify(books, null, 2)), sha: (await ghRequest('data/books.json')).sha });
-            closeModal(); loadChapters();
+            const title = document.getElementById('m-title').value.trim();
+            if (!title || !currentBook) return;
+            currentChapters.push({ title, questions: [] });
+            try {
+                let sha = null;
+                try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                currentBook.chapters = currentChapters.length;
+                const bSha = (await ghRequest('data/books.json')).sha;
+                await ghRequest('data/books.json', 'PUT', { message: 'تحديث الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
+                showAlert('تمت إضافة الفصل بنجاح');
+                closeModal(); loadChapters();
+            } catch (e) { showAlert(e.message, 'error'); }
         }
 
         async function saveQuestion() {
             const idx = document.getElementById('chapter-select').value;
-            const q = { q: document.getElementById('m-q').value, opts: [document.getElementById('m-o1').value, document.getElementById('m-o2').value, document.getElementById('m-o3').value, document.getElementById('m-o4').value], ans: parseInt(document.getElementById('m-ans').value)-1 };
-            currentChapters[idx].questions.push(q);
-            const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
-            await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة سؤال', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
-            closeModal(); loadQuestions();
+            const q = document.getElementById('m-q').value.trim();
+            const opts = [document.getElementById('m-o1').value, document.getElementById('m-o2').value, document.getElementById('m-o3').value, document.getElementById('m-o4').value];
+            const ans = parseInt(document.getElementById('m-ans').value) - 1;
+            if (!q || isNaN(ans)) return;
+            currentChapters[idx].questions.push({ q, opts, ans });
+            try {
+                const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة سؤال', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                showAlert('تمت إضافة السؤال بنجاح');
+                closeModal(); renderQuestions();
+            } catch (e) { showAlert(e.message, 'error'); }
         }
 
-        function openSettings() {
-            const t = prompt('أدخل GitHub Token:', config.token || '');
-            if (t) { localStorage.setItem('gh_token', t); config.token = t; loadBooks(); }
-        }
-
-        if (config.token) loadBooks(); else openSettings();
+        window.onload = () => { if (config.token) loadBooks(); else openSettings(); };
     </script>
 </body>
 </html>
