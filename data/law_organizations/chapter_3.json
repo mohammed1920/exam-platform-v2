@@ -4,5 +4,26 @@
   "chapter": 3,
   "title": "الفصل الرابع - ١٠٠ سؤال",
   "description": "",
-  "questions": []
+  "questions": [
+    {
+      "question": "علي هو",
+      "options": [
+        "امام",
+        "نبي",
+        "وصي",
+        "رشول"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "هسم",
+      "options": [
+        "ت",
+        "ب",
+        "ج",
+        "خ"
+      ],
+      "answer": 0
+    }
+  ]
 }
