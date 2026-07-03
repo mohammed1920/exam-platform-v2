@@ -342,31 +342,69 @@
         }
 
         // دالة مركزية لتحديث books.json و index.html معاً
+        // دالة تحديث متعدد الملفات في commit واحد باستخدام GitHub Trees API
+        async function commitMultipleFiles(files, message) {
+            const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
+
+            // 1. جلب آخر commit
+            const refRes = await fetch(`${base}/git/ref/heads/main`, { headers });
+            const refData = await refRes.json();
+            const lastCommitSha = refData.object.sha;
+
+            // 2. جلب شجرة آخر commit
+            const commitRes = await fetch(`${base}/git/commits/${lastCommitSha}`, { headers });
+            const commitData = await commitRes.json();
+            const baseTreeSha = commitData.tree.sha;
+
+            // 3. إنشاء blobs لكل ملف
+            const treeItems = [];
+            for (const file of files) {
+                const blobRes = await fetch(`${base}/git/blobs`, {
+                    method: 'POST', headers,
+                    body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
+                });
+                const blob = await blobRes.json();
+                treeItems.push({ path: file.path, mode: '100644', type: 'blob', sha: blob.sha });
+            }
+
+            // 4. إنشاء tree جديد
+            const treeRes = await fetch(`${base}/git/trees`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
+            });
+            const newTree = await treeRes.json();
+
+            // 5. إنشاء commit جديد
+            const newCommitRes = await fetch(`${base}/git/commits`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ message, tree: newTree.sha, parents: [lastCommitSha] })
+            });
+            const newCommit = await newCommitRes.json();
+
+            // 6. تحديث المرجع
+            await fetch(`${base}/git/refs/heads/main`, {
+                method: 'PATCH', headers,
+                body: JSON.stringify({ sha: newCommit.sha })
+            });
+        }
+
         async function syncBooksToIndex() {
             try {
-                // 1. تحديث books.json
-                const bSha = (await ghRequest('data/books.json')).sha;
-                await ghRequest('data/books.json', 'PUT', {
-                    message: 'تحديث إحصائيات الكتب',
-                    content: encode(JSON.stringify(books, null, 2)),
-                    sha: bSha
-                });
-
-                // 2. تحديث index.html (حقن BOOKS مباشرة)
+                // جلب index.html الحالي
                 const idxData = await ghRequest('index.html');
-                let idxContent = new TextDecoder().decode(
-                    Uint8Array.from(atob(idxData.content.replace(/\n/g, '')), c => c.charCodeAt(0))
-                );
+                let idxContent = decode(idxData.content.replace(/\n/g, ''));
                 const booksJson = JSON.stringify(books, null, 4);
                 idxContent = idxContent.replace(
                     /const BOOKS = \[[\s\S]*?\];/,
                     `const BOOKS = ${booksJson};`
                 );
-                await ghRequest('index.html', 'PUT', {
-                    message: 'تحديث قائمة الكتب في الموقع',
-                    content: encode(idxContent),
-                    sha: idxData.sha
-                });
+
+                // تحديث الملفين في commit واحد
+                await commitMultipleFiles([
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: idxContent }
+                ], 'تحديث قائمة الكتب والموقع معاً');
             } catch(e) { console.error('خطأ في مزامنة index.html:', e); }
         }
 
@@ -379,11 +417,23 @@
                 } else {
                     currentChapters.push({ title, questions: [] });
                 }
-                let sha = null;
-                try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'تحديث الفصول', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
                 currentBook.chapters = currentChapters.length;
-                await syncBooksToIndex();
+
+                // جلب index.html لتحديث BOOKS
+                const idxData = await ghRequest('index.html');
+                let idxContent = decode(idxData.content.replace(/\n/g, ''));
+                idxContent = idxContent.replace(
+                    /const BOOKS = \[[\s\S]*?\];/,
+                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                );
+
+                // تحديث جميع الملفات في commit واحد
+                await commitMultipleFiles([
+                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) },
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: idxContent }
+                ], editingChapterIdx !== null ? `تعديل فصل: ${title}` : `إضافة فصل: ${title}`);
+
                 showAlert(editingChapterIdx !== null ? 'تم تعديل الفصل بنجاح' : 'تمت إضافة الفصل وسيظهر في الموقع خلال دقيقة');
                 closeModal(); loadChapters();
             } catch (e) { showAlert(e.message, 'error'); }
@@ -401,9 +451,10 @@
                 } else {
                     currentChapters[chIdx].questions.push({ q, opts, ans });
                 }
-                const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'تحديث الأسئلة', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
-                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال بنجاح');
+                await commitMultipleFiles([
+                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) }
+                ], editingQuestionIdx !== null ? `تعديل سؤال` : `إضافة سؤال`);
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال وسيظهر في الموقع خلال دقيقة');
                 closeModal(); renderQuestions();
             } catch (e) { showAlert(e.message, 'error'); }
         }
@@ -417,11 +468,21 @@
             if (!confirm('هل أنت متأكد من حذف هذا الفصل؟')) return;
             try {
                 currentChapters.splice(idx, 1);
-                let sha = null;
-                try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'حذف فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
                 currentBook.chapters = currentChapters.length;
-                await syncBooksToIndex();
+
+                // جلب index.html لتحديث BOOKS
+                const idxData = await ghRequest('index.html');
+                let idxContent = decode(idxData.content.replace(/\n/g, ''));
+                idxContent = idxContent.replace(
+                    /const BOOKS = \[[\s\S]*?\];/,
+                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                );
+
+                await commitMultipleFiles([
+                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) },
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: idxContent }
+                ], 'حذف فصل');
                 showAlert('تم حذف الفصل بنجاح');
                 loadChapters();
             } catch (e) { showAlert(e.message, 'error'); }
