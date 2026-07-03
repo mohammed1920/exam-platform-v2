@@ -368,16 +368,22 @@ body:has(.exam-container.active) > footer {
   background: var(--card-bg);
   border: 2px solid var(--border);
   border-radius: 12px;
-  padding: 30px;
+  padding: 25px;
   border-left: 4px solid var(--primary);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .question-text {
   color: var(--text-primary);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   font-weight: 500;
   text-align: right;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 /* Options Grid - 2 Columns */

@@ -11,10 +11,12 @@ class ExamApp {
     this.examActive = false;
     this.randomizeQuestions = true;
     this.navigationStack = ['books'];
+    this.timerInterval = null;
     this.init();
   }
 
   async init() {
+    console.log('Initializing Exam App...');
     await this.loadBooks();
     this.setupEventListeners();
     this.setupHistoryListener();
@@ -52,8 +54,13 @@ class ExamApp {
   }
 
   async loadBooks() {
-    this.books = await examEngine.loadBooks();
-    this.renderBooks();
+    try {
+      this.books = await examEngine.loadBooks();
+      console.log('Books loaded:', this.books.length);
+      this.renderBooks();
+    } catch (error) {
+      console.error('Error loading books:', error);
+    }
   }
 
   renderBooks(booksToRender = null) {
@@ -61,14 +68,19 @@ class ExamApp {
     const noResults = document.getElementById('no-results');
     const booksArray = booksToRender || this.books;
     
-    booksContainer.innerHTML = '';
-
-    if (booksArray.length === 0) {
-      noResults.style.display = 'block';
+    if (!booksContainer) {
+      console.error('books-container not found');
       return;
     }
     
-    noResults.style.display = 'none';
+    booksContainer.innerHTML = '';
+
+    if (booksArray.length === 0) {
+      if (noResults) noResults.style.display = 'block';
+      return;
+    }
+    
+    if (noResults) noResults.style.display = 'none';
 
     booksArray.forEach(book => {
       const bookCard = document.createElement('div');
@@ -110,14 +122,24 @@ class ExamApp {
   }
 
   showChapters(book) {
-    document.getElementById('books-container').parentElement.style.display = 'none';
+    const booksSection = document.getElementById('books-section');
     const chaptersContainer = document.getElementById('chapters-container');
-    chaptersContainer.classList.add('active');
+    
+    if (booksSection) booksSection.style.display = 'none';
+    if (chaptersContainer) chaptersContainer.classList.add('active');
 
-    document.getElementById('chapters-title').textContent = book.title;
-    document.getElementById('chapters-author').textContent = `بقلم: ${book.author}`;
+    const chaptersTitle = document.getElementById('chapters-title');
+    const chaptersAuthor = document.getElementById('chapters-author');
+    
+    if (chaptersTitle) chaptersTitle.textContent = book.title;
+    if (chaptersAuthor) chaptersAuthor.textContent = `بقلم: ${book.author}`;
 
     const chaptersGrid = document.getElementById('chapters-grid');
+    if (!chaptersGrid) {
+      console.error('chapters-grid not found');
+      return;
+    }
+    
     chaptersGrid.innerHTML = '';
 
     for (let i = 1; i <= book.chapters; i++) {
@@ -126,33 +148,39 @@ class ExamApp {
       chapterCard.innerHTML = `
         <h4>الفصل ${i}</h4>
         <p>اختبر معلوماتك في الفصل ${i}</p>
-        <button class="start-exam-btn" onclick="app.startExam('${book.id}', ${i})">ابدأ الاختبار</button>
+        <button class="start-exam-btn">ابدأ الاختبار</button>
       `;
+      
+      const btn = chapterCard.querySelector('.start-exam-btn');
+      btn.addEventListener('click', () => this.startExam(book.id, i));
+      
       chaptersGrid.appendChild(chapterCard);
     }
   }
 
   async startExam(bookId, chapterNum) {
+    console.log(`Starting exam for book: ${bookId}, chapter: ${chapterNum}`);
+    
     const chapter = await examEngine.loadChapter(bookId, chapterNum);
     if (!chapter) {
       alert('خطأ في تحميل الفصل');
       return;
     }
 
+    console.log('Chapter loaded with questions:', chapter.questions.length);
+
     this.currentChapter = chapterNum;
     this.examActive = true;
 
     this.pushState('exam', { bookId, chapterNum });
 
-    document.getElementById('chapters-container').classList.remove('active');
-    document.getElementById('books-container').parentElement.style.display = 'none';
-
+    const booksSection = document.getElementById('books-section');
+    const chaptersContainer = document.getElementById('chapters-container');
     const examContainer = document.getElementById('exam-container');
-    examContainer.classList.add('active');
-
-    document.getElementById('exam-book-title').textContent = this.currentBook.title;
-    document.getElementById('exam-chapter-title').textContent = `الفصل ${chapterNum}`;
-    document.getElementById('total-questions').textContent = examEngine.totalQuestions;
+    
+    if (booksSection) booksSection.style.display = 'none';
+    if (chaptersContainer) chaptersContainer.classList.remove('active');
+    if (examContainer) examContainer.classList.add('active');
 
     this.startTimer();
     this.displayQuestion();
@@ -160,12 +188,23 @@ class ExamApp {
 
   displayQuestion() {
     const question = examEngine.getCurrentQuestion();
-    if (!question) return;
+    if (!question) {
+      console.error('No question found');
+      return;
+    }
+
+    console.log('Displaying question:', question.q.substring(0, 50));
 
     const questionCard = document.getElementById('question-card');
+    if (!questionCard) {
+      console.error('question-card not found');
+      return;
+    }
     
+    // Clear previous content
     questionCard.innerHTML = '';
     
+    // Create question text wrapper
     const questionWrapper = document.createElement('div');
     questionWrapper.className = 'question-text-wrapper';
     const questionText = document.createElement('div');
@@ -174,6 +213,7 @@ class ExamApp {
     questionWrapper.appendChild(questionText);
     questionCard.appendChild(questionWrapper);
     
+    // Create options grid
     const optionsGrid = document.createElement('div');
     optionsGrid.className = 'options-grid';
     optionsGrid.id = 'options-container';
@@ -191,6 +231,7 @@ class ExamApp {
     
     questionCard.appendChild(optionsGrid);
     
+    // Create feedback element
     const feedback = document.createElement('div');
     feedback.className = 'feedback';
     feedback.id = 'feedback';
@@ -198,8 +239,10 @@ class ExamApp {
 
     this.updateProgress();
 
-    document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('prev-btn').style.display = 'none';
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (prevBtn) prevBtn.style.display = 'none';
   }
 
   selectAnswer(optionIndex) {
@@ -218,35 +261,44 @@ class ExamApp {
     });
 
     const feedback = document.getElementById('feedback');
-    feedback.classList.add('show');
-    feedback.classList.add(isCorrect ? 'correct' : 'wrong');
-    feedback.innerHTML = `
-      ${isCorrect ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة'}
-      <div class="explanation"><strong>الشرح:</strong> ${question.explanation}</div>
-    `;
+    if (feedback) {
+      feedback.classList.add('show');
+      feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+      feedback.innerHTML = `
+        ${isCorrect ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة'}
+        <div class="explanation"><strong>الشرح:</strong> ${question.explanation}</div>
+      `;
+    }
 
-    document.getElementById('current-score').textContent = examEngine.score;
+    const currentScore = document.getElementById('current-score');
+    if (currentScore) currentScore.textContent = examEngine.score;
 
     if (isCorrect) {
       this.celebrateCorrectAnswer();
     }
 
-    document.getElementById('prev-btn').style.display = 'block';
-    if (examEngine.currentQuestionIndex < examEngine.totalQuestions - 1) {
-      document.getElementById('next-btn').style.display = 'block';
-      document.getElementById('next-btn').textContent = 'السؤال التالي ←';
-    } else {
-      document.getElementById('next-btn').style.display = 'block';
-      document.getElementById('next-btn').textContent = '🏆 إنهاء الاختبار';
+    const prevBtn = document.getElementById('prev-btn');
+    if (prevBtn) prevBtn.style.display = 'block';
+    
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) {
+      nextBtn.style.display = 'block';
+      if (examEngine.currentQuestionIndex < examEngine.totalQuestions - 1) {
+        nextBtn.textContent = 'السؤال التالي ←';
+      } else {
+        nextBtn.textContent = '🏆 إنهاء الاختبار';
+      }
     }
   }
 
   celebrateCorrectAnswer() {
     const questionCard = document.getElementById('question-card');
-    questionCard.style.animation = 'none';
-    setTimeout(() => {
-      questionCard.style.animation = 'pulse 0.5s ease';
-    }, 10);
+    if (questionCard) {
+      questionCard.style.animation = 'none';
+      setTimeout(() => {
+        questionCard.style.animation = 'pulse 0.5s ease';
+      }, 10);
+    }
   }
 
   nextQuestion() {
@@ -265,32 +317,41 @@ class ExamApp {
 
   finishExam() {
     this.examActive = false;
-    clearInterval(this.timerInterval);
+    if (this.timerInterval) clearInterval(this.timerInterval);
 
     const results = examEngine.finishExam();
     examEngine.saveResults(results);
 
-    document.getElementById('exam-container').classList.remove('active');
+    const examContainer = document.getElementById('exam-container');
+    if (examContainer) examContainer.classList.remove('active');
 
     this.showResults(results);
   }
 
   showResults(results) {
     const resultsContainer = document.getElementById('results-container');
-    resultsContainer.classList.add('active');
+    if (resultsContainer) resultsContainer.classList.add('active');
 
     const minutes = Math.floor(results.duration / 60);
     const seconds = results.duration % 60;
 
-    document.getElementById('results-grade').textContent = results.grade.emoji;
-    document.getElementById('results-percentage').textContent = `${results.percentage}%`;
-    document.getElementById('results-score').textContent = `حصلت على ${results.score} من ${results.totalQuestions} أسئلة`;
-    document.getElementById('results-grade-text').textContent = results.grade.grade;
-    document.getElementById('results-time').textContent = `الوقت المستغرق: ${minutes} دقيقة و ${seconds} ثانية`;
+    const elements = {
+      'results-grade': results.grade.emoji,
+      'results-percentage': `${results.percentage}%`,
+      'results-score': `حصلت على ${results.score} من ${results.totalQuestions} أسئلة`,
+      'results-grade-text': results.grade.grade,
+      'results-time': `الوقت المستغرق: ${minutes} دقيقة و ${seconds} ثانية`
+    };
+
+    Object.entries(elements).forEach(([id, content]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = content;
+    });
 
     const wrongAnswers = examEngine.getWrongAnswers();
     const wrongCount = wrongAnswers.length;
-    document.getElementById('wrong-count').textContent = wrongCount;
+    const wrongCountEl = document.getElementById('wrong-count');
+    if (wrongCountEl) wrongCountEl.textContent = wrongCount;
 
     if (results.percentage >= 70) {
       this.celebrateSuccess();
@@ -299,15 +360,22 @@ class ExamApp {
 
   celebrateSuccess() {
     const resultsCard = document.querySelector('.results-card');
-    resultsCard.style.animation = 'bounce 0.6s ease';
+    if (resultsCard) {
+      resultsCard.style.animation = 'bounce 0.6s ease';
+    }
   }
 
   reviewWrongAnswers() {
     const wrongAnswers = examEngine.getWrongAnswers();
     const reviewContainer = document.getElementById('review-container');
-    reviewContainer.classList.add('active');
+    if (reviewContainer) reviewContainer.classList.add('active');
+
+    const resultsContainer = document.getElementById('results-container');
+    if (resultsContainer) resultsContainer.classList.remove('active');
 
     const reviewContent = document.getElementById('review-content');
+    if (!reviewContent) return;
+    
     reviewContent.innerHTML = '<h3 class="review-header">الأسئلة التي أخطأت فيها</h3>';
 
     wrongAnswers.forEach((answer, index) => {
@@ -321,42 +389,60 @@ class ExamApp {
       `;
       reviewContent.appendChild(reviewItem);
     });
-
-    document.getElementById('results-container').classList.remove('active');
   }
 
   restartExam() {
     examEngine.reset();
-    document.getElementById('results-container').classList.remove('active');
-    document.getElementById('review-container').classList.remove('active');
+    const resultsContainer = document.getElementById('results-container');
+    const reviewContainer = document.getElementById('review-container');
+    if (resultsContainer) resultsContainer.classList.remove('active');
+    if (reviewContainer) reviewContainer.classList.remove('active');
     this.showChapters(this.currentBook);
   }
 
   backToBooks() {
-    document.getElementById('chapters-container').classList.remove('active');
-    document.getElementById('exam-container').classList.remove('active');
-    document.getElementById('results-container').classList.remove('active');
-    document.getElementById('review-container').classList.remove('active');
+    if (this.timerInterval) clearInterval(this.timerInterval);
     
-    document.getElementById('books-container').parentElement.style.display = 'block';
-    document.getElementById('searchInput').value = '';
+    const chaptersContainer = document.getElementById('chapters-container');
+    const examContainer = document.getElementById('exam-container');
+    const resultsContainer = document.getElementById('results-container');
+    const reviewContainer = document.getElementById('review-container');
+    const booksSection = document.getElementById('books-section');
+    
+    if (chaptersContainer) chaptersContainer.classList.remove('active');
+    if (examContainer) examContainer.classList.remove('active');
+    if (resultsContainer) resultsContainer.classList.remove('active');
+    if (reviewContainer) reviewContainer.classList.remove('active');
+    if (booksSection) booksSection.style.display = 'block';
+    
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    
     examEngine.reset();
-    
     this.navigationStack = ['books'];
   }
 
   updateProgress() {
     const progress = ((examEngine.currentQuestionIndex) / examEngine.totalQuestions) * 100;
-    document.getElementById('progress-fill').style.width = `${progress}%`;
-    document.getElementById('progress-text').textContent = `${examEngine.currentQuestionIndex + 1}/${examEngine.totalQuestions}`;
+    const progressFill = document.getElementById('progress-fill');
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    
+    const progressText = document.getElementById('progress-text');
+    if (progressText) progressText.textContent = `${examEngine.currentQuestionIndex + 1}/${examEngine.totalQuestions}`;
     
     const wrongCount = examEngine.getWrongAnswers().length;
-    document.getElementById('wrong-score').textContent = wrongCount;
+    const wrongScore = document.getElementById('wrong-score');
+    if (wrongScore) wrongScore.textContent = wrongCount;
   }
 
   startTimer() {
     let seconds = 0;
     const timerElement = document.getElementById('timer');
+    
+    if (!timerElement) {
+      console.error('Timer element not found');
+      return;
+    }
     
     this.timerInterval = setInterval(() => {
       seconds++;
@@ -367,16 +453,24 @@ class ExamApp {
   }
 
   setupEventListeners() {
-    document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
-    document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
-    document.getElementById('back-btn').addEventListener('click', () => this.backToBooks());
-    document.getElementById('restart-btn').addEventListener('click', () => this.restartExam());
-    document.getElementById('review-btn').addEventListener('click', () => this.reviewWrongAnswers());
-    document.getElementById('back-to-books-btn').addEventListener('click', () => this.backToBooks());
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const backBtn = document.getElementById('back-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const reviewBtn = document.getElementById('review-btn');
+    const backToBooksBtn = document.getElementById('back-to-books-btn');
+    
+    if (nextBtn) nextBtn.addEventListener('click', () => this.nextQuestion());
+    if (prevBtn) prevBtn.addEventListener('click', () => this.previousQuestion());
+    if (backBtn) backBtn.addEventListener('click', () => this.backToBooks());
+    if (restartBtn) restartBtn.addEventListener('click', () => this.restartExam());
+    if (reviewBtn) reviewBtn.addEventListener('click', () => this.reviewWrongAnswers());
+    if (backToBooksBtn) backToBooksBtn.addEventListener('click', () => this.backToBooks());
   }
 }
 
 let app;
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM Content Loaded');
   app = new ExamApp();
 });
