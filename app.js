@@ -78,16 +78,36 @@ class ExamApp {
   }
 
   async loadBooks() {
-    try {
-      // استخدام المصفوفة المدمجة (نظام Library) إذا كانت متوفرة، وإلا جلبها من الملف
-      if (typeof BOOKS !== 'undefined' && BOOKS.length > 0) {
-        this.books = BOOKS;
-      } else {
-        this.books = await examEngine.loadBooks();
-      }
+    // 1. محاولة التحميل من LocalStorage أولاً (سرعة فائقة)
+    const cachedBooks = localStorage.getItem('exam_books_cache');
+    if (cachedBooks) {
+      this.books = JSON.parse(cachedBooks);
       this.renderBooks();
-    } catch (error) {
-      console.error('Error loading books:', error);
+    } else if (typeof BOOKS !== 'undefined' && BOOKS.length > 0) {
+      this.books = BOOKS;
+      this.renderBooks();
+    }
+
+    // 2. تحديث البيانات في الخلفية (Background Fetch) لتجنب قيود GitHub
+    this.syncBooksInBackground();
+  }
+
+  async syncBooksInBackground() {
+    try {
+      const timestamp = new Date().getTime();
+      const res = await fetch(`${examEngine.basePath}/data/books.json?t=${timestamp}`);
+      if (res.ok) {
+        const freshBooks = await res.json();
+        // تحديث الكاش فقط إذا كانت هناك تغييرات
+        if (JSON.stringify(freshBooks) !== JSON.stringify(this.books)) {
+          this.books = freshBooks;
+          localStorage.setItem('exam_books_cache', JSON.stringify(freshBooks));
+          this.renderBooks();
+          console.log('Books cache updated in background.');
+        }
+      }
+    } catch (e) {
+      console.warn('Background sync failed, using cached data.');
     }
   }
 
@@ -151,34 +171,57 @@ class ExamApp {
     document.getElementById('chapters-title').textContent = book.title;
     document.getElementById('chapters-author').textContent = `بقلم: ${book.author}`;
     const chaptersGrid = document.getElementById('chapters-grid');
-    chaptersGrid.innerHTML = '<p style="text-align:center;color:#94a3b8">جاري تحميل الفصول...</p>';
 
-    // جلب قائمة ملفات الفصول من GitHub API
-    let chapterFiles = [];
+    // 1. محاولة التحميل من الكاش المحلي للفصول
+    const cacheKey = `chapters_cache_${book.id}`;
+    const cachedChapters = localStorage.getItem(cacheKey);
+    if (cachedChapters) {
+      this.renderChaptersGrid(book, JSON.parse(cachedChapters));
+    } else {
+      chaptersGrid.innerHTML = '<p style="text-align:center;color:#94a3b8">جاري تحميل الفصول...</p>';
+    }
+
+    // 2. التحديث في الخلفية (Background Sync)
+    this.syncChaptersInBackground(book, cacheKey);
+  }
+
+  async syncChaptersInBackground(book, cacheKey) {
     try {
-      const res = await fetch(`https://api.github.com/repos/mohammed1920/exam-platform-v2/contents/data/${book.id}?t=${Date.now()}`);
+      const timestamp = new Date().getTime();
+      // جلب قائمة الملفات من GitHub API
+      const res = await fetch(`https://api.github.com/repos/mohammed1920/exam-platform-v2/contents/data/${book.id}?t=${timestamp}`);
       if (res.ok) {
         const files = await res.json();
+        let chapterFiles = [];
         for (const file of files) {
           const m = file.name.match(/^chapter_(\d+)\.json$/);
-          if (m) chapterFiles.push({ num: parseInt(m[1]), path: file.download_url });
+          if (m) chapterFiles.push({ num: parseInt(m[1]) });
         }
         chapterFiles.sort((a, b) => a.num - b.num);
+
+        // جلب العناوين
+        const chapterData = await Promise.all(chapterFiles.map(async (ch) => {
+          try {
+            const r = await fetch(`${examEngine.basePath}/data/${book.id}/chapter_${ch.num}.json?t=${timestamp}`);
+            if (r.ok) {
+              const data = await r.json();
+              return { num: ch.num, title: data.title || `الفصل ${ch.num}` };
+            }
+          } catch(e) {}
+          return { num: ch.num, title: `الفصل ${ch.num}` };
+        }));
+
+        // تحديث الكاش إذا تغيرت البيانات
+        localStorage.setItem(cacheKey, JSON.stringify(chapterData));
+        this.renderChaptersGrid(book, chapterData);
       }
-    } catch(e) {}
+    } catch (e) {
+      console.warn('Chapters background sync failed.');
+    }
+  }
 
-    // جلب عناوين الفصول بشكل متوازٍ
-    const chapterData = await Promise.all(chapterFiles.map(async (ch) => {
-      try {
-        const r = await fetch(`${examEngine.basePath}/data/${book.id}/chapter_${ch.num}.json?v=${examEngine.sessionTimestamp}`);
-        if (r.ok) {
-          const data = await r.json();
-          return { num: ch.num, title: data.title || `الفصل ${ch.num}` };
-        }
-      } catch(e) {}
-      return { num: ch.num, title: `الفصل ${ch.num}` };
-    }));
-
+  renderChaptersGrid(book, chapterData) {
+    const chaptersGrid = document.getElementById('chapters-grid');
     chaptersGrid.innerHTML = '';
     if (chapterData.length === 0) {
       chaptersGrid.innerHTML = '<p style="text-align:center;color:#94a3b8">لا توجد فصول متاحة.</p>';
