@@ -79,7 +79,12 @@ class ExamApp {
 
   async loadBooks() {
     try {
-      this.books = await examEngine.loadBooks();
+      // استخدام المصفوفة المدمجة (نظام Library) إذا كانت متوفرة، وإلا جلبها من الملف
+      if (typeof BOOKS !== 'undefined' && BOOKS.length > 0) {
+        this.books = BOOKS;
+      } else {
+        this.books = await examEngine.loadBooks();
+      }
       this.renderBooks();
     } catch (error) {
       console.error('Error loading books:', error);
