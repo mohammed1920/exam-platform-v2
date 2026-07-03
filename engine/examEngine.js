@@ -1,5 +1,6 @@
 /**
  * Exam Engine V2 - يقرأ من ملفات chapter_X.json المنفصلة
+ * تم التوحيد: استخدام المفاتيح الموحدة (question, answer, options, explanation).
  */
 class ExamEngine {
   constructor() {
@@ -42,13 +43,16 @@ class ExamEngine {
     this.currentBook = bookId;
     this.currentChapter = chapterNum;
     const qs = data.questions || (Array.isArray(data) ? data : []);
+    
+    // توحيد بنية الأسئلة عند التحميل لضمان المرونة
     this.questions = qs.map(q => ({
-      id: q.id || Math.random(),
-      q: q.q || q.question,
-      options: q.opts || q.options,
-      correct: q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer),
+      id: q.id || Math.random().toString(36).substr(2, 9),
+      question: q.question || q.q || "",
+      options: q.options || q.opts || [],
+      answer: q.answer !== undefined ? q.answer : (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : 0)),
       explanation: q.explanation || "لا يوجد شرح متوفر حالياً."
     }));
+    
     this.totalQuestions = this.questions.length;
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -64,11 +68,11 @@ class ExamEngine {
   submitAnswer(optionIndex) {
     const q = this.getCurrentQuestion();
     if (!q) return false;
-    const isCorrect = optionIndex === q.correct;
+    const isCorrect = optionIndex === q.answer;
     this.userAnswers.push({
-      questionText: q.q,
+      questionText: q.question,
       userAnswer: q.options[optionIndex],
-      correctAnswer: q.options[q.correct],
+      correctAnswer: q.options[q.answer],
       isCorrect: isCorrect,
       explanation: q.explanation
     });

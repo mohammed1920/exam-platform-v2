@@ -5,13 +5,14 @@ from pathlib import Path
 import re
 
 def clean_question(q):
-    new_q = {}
-    new_q['q'] = q.get('q') or q.get('question') or ""
-    new_q['opts'] = q.get('opts') or q.get('options') or []
-    ans = q.get('ans')
-    if ans is None: ans = q.get('correct')
-    new_q['ans'] = int(ans) if ans is not None else 0
-    return new_q
+    """توحيد بنية السؤال لتطابق المعايير المطلوبة"""
+    return {
+        'id': q.get('id', str(hash(str(q.get('question', q.get('q', '')))) % 1000000)),
+        'question': q.get('question', q.get('q', '')),
+        'options': q.get('options', q.get('opts', [])),
+        'answer': int(q.get('answer', q.get('ans', 0))),
+        'explanation': q.get('explanation', '')
+    }
 
 def sync_all():
     base_path = Path('data')
@@ -41,18 +42,39 @@ def sync_all():
                 try:
                     with open(cf, 'r', encoding='utf-8') as f:
                         data = json.load(f)
+                    
+                    # إذا كان الملف يحتوي على أسئلة، نقوم بتنظيفها وتوحيدها
+                    if isinstance(data, dict):
+                        questions = data.get('questions', [])
+                        chapter_title = data.get('title') or f"الفصل {get_num(cf)}"
+                    else:
+                        questions = data
+                        chapter_title = f"الفصل {get_num(cf)}"
+                        
                     chapter_obj = {
-                        'title': (data.get('title') if isinstance(data, dict) else None) or f"الفصل {get_num(cf)}",
-                        'questions': [clean_question(q) for q in (data.get('questions') if isinstance(data, dict) else data)]
+                        'title': chapter_title,
+                        'questions': [clean_question(q) for q in questions]
                     }
                     all_chapters.append(chapter_obj)
-                except: continue
+                    
+                    # تحديث ملف الفصل نفسه بالبنية الموحدة
+                    if isinstance(data, dict):
+                        data['questions'] = chapter_obj['questions']
+                        with open(cf, 'w', encoding='utf-8') as f:
+                            json.dump(data, f, ensure_ascii=False, indent=2)
+                            
+                except Exception as e:
+                    print(f"Error processing {cf}: {e}")
+                    continue
         else:
             c_file = book_dir / 'chapters.json'
             if c_file.exists():
                 try:
                     with open(c_file, 'r', encoding='utf-8') as f:
                         all_chapters = json.load(f)
+                    # توحيد الأسئلة داخل chapters.json أيضاً
+                    for ch in all_chapters:
+                        ch['questions'] = [clean_question(q) for q in ch.get('questions', [])]
                 except: pass
 
         if all_chapters:
@@ -66,10 +88,10 @@ def sync_all():
     with open(books_file, 'w', encoding='utf-8') as f:
         json.dump(updated_books, f, ensure_ascii=False, indent=2)
 
-    # 2. حقن البيانات في index.html (مثل نظام Library)
+    # 2. حقن البيانات في index.html
     inject_data('index.html', 'const BOOKS =', updated_books)
     
-    print("✅ Sync & Injection Complete!")
+    print("✅ Sync & Injection Complete with Unified Structure!")
 
 def inject_data(filename, marker, data):
     path = Path(filename)

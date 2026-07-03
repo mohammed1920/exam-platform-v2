@@ -1,6 +1,7 @@
 /**
  * Exam Platform V2 - Main Application
  * تطبيق منصة الاختبارات الرئيسي
+ * تم التوحيد: استخدام المفاتيح الموحدة (question, answer, options, explanation).
  */
 
 class ExamApp {
@@ -269,7 +270,7 @@ class ExamApp {
     const optionsContainer = document.getElementById('options-container');
     const feedback = document.getElementById('feedback');
 
-    questionText.textContent = question.q;
+    questionText.textContent = question.question;
     optionsContainer.innerHTML = '';
     feedback.classList.remove('show', 'correct', 'wrong');
 
@@ -295,7 +296,7 @@ class ExamApp {
     buttons.forEach((btn, idx) => {
       btn.disabled = true;
       if (idx === optionIndex) btn.classList.add(isCorrect ? 'correct' : 'wrong');
-      if (idx === question.correct && !isCorrect) btn.classList.add('correct');
+      if (idx === question.answer && !isCorrect) btn.classList.add('correct');
     });
 
     const feedback = document.getElementById('feedback');
@@ -422,5 +423,4 @@ class ExamApp {
   }
 }
 
-let app;
-document.addEventListener('DOMContentLoaded', () => { app = new ExamApp(); });
+const app = new ExamApp();
