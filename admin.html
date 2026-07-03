@@ -8,14 +8,8 @@
         @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap");
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --border: #334155;
-            --gold: #c29d5f;
-            --green: #10b981;
-            --red: #ef4444;
-            --text: #e2e8f0;
-            --text-dim: #94a3b8;
+            --bg: #0f172a; --card: #1e293b; --border: #334155;
+            --gold: #c29d5f; --green: #10b981; --red: #ef4444; --text: #e2e8f0; --text-dim: #94a3b8;
         }
         body { font-family: "Cairo", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 15px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -44,7 +38,7 @@
         .item-card { background: var(--bg); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border); }
         .item-card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
         .item-card-title { font-weight: 700; color: var(--gold); }
-        .item-card-actions { display: flex; gap: 6px; }
+        .item-card-actions { display: flex; gap: 6px; flex-shrink: 0; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 15px; }
         .modal.active { display: flex; }
         .modal-content { background: var(--card); padding: 20px; border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
@@ -56,6 +50,7 @@
         .question-options { font-size: 12px; margin: 8px 0; }
         .question-option { padding: 4px 0; }
         .question-option.correct { color: var(--green); font-weight: 700; }
+        .loading { text-align: center; color: var(--text-dim); padding: 20px; }
         @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -63,7 +58,7 @@
     <div class="container">
         <header>
             <h1>⚖️ لوحة التحكم V2</h1>
-            <div>
+            <div style="display:flex;gap:8px;">
                 <button class="btn btn-secondary" onclick="openSettings()">⚙️ الإعدادات</button>
                 <button class="btn btn-green" onclick="window.location.href='index.html'">👁️ عرض الموقع</button>
             </div>
@@ -80,9 +75,9 @@
 
             <div class="content-area">
                 <div class="tabs">
-                    <button class="tab-btn active" onclick="switchTab('overview')">نظرة عامة</button>
-                    <button class="tab-btn" onclick="switchTab('chapters')">الفصول</button>
-                    <button class="tab-btn" onclick="switchTab('questions')">الأسئلة</button>
+                    <button class="tab-btn active" onclick="switchTab('overview', event)">نظرة عامة</button>
+                    <button class="tab-btn" onclick="switchTab('chapters', event)">الفصول</button>
+                    <button class="tab-btn" onclick="switchTab('questions', event)">الأسئلة</button>
                 </div>
 
                 <div id="overview" class="tab-content active">
@@ -98,7 +93,7 @@
                 <div id="questions" class="tab-content">
                     <div class="form-group">
                         <label>اختر الفصل:</label>
-                        <select id="chapter-select" onchange="renderQuestions()"></select>
+                        <select id="chapter-select" onchange="loadChapterQuestions()"></select>
                     </div>
                     <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
                     <div id="questions-list"></div>
@@ -110,45 +105,107 @@
     <div id="modal" class="modal"><div class="modal-content" id="modal-body"></div></div>
 
     <script>
+        // ===== المتغيرات العامة =====
         let books = [];
         let currentBook = null;
-        let currentChapters = [];
-        let editingChapterIdx = null;
+        let bookChapterFiles = []; // قائمة ملفات الفصول [{num, title, file}]
+        let currentChapterNum = null; // رقم الفصل المحدد حالياً
+        let currentChapterData = null; // بيانات الفصل المحدد
+        let editingChapterNum = null;
         let editingQuestionIdx = null;
-        let editingChapterForQuestion = null;
         let config = {
             token: localStorage.getItem('gh_token'),
             user: localStorage.getItem('gh_user') || 'mohammed1920',
             repo: localStorage.getItem('gh_repo') || 'exam-platform-v2'
         };
 
+        // ===== دوال مساعدة =====
         function showAlert(msg, type = 'success') {
             const box = document.getElementById('alert-box');
             box.textContent = msg;
             box.className = `alert active alert-${type}`;
-            setTimeout(() => box.className = 'alert', 3000);
+            setTimeout(() => box.className = 'alert', 4000);
         }
 
         function decode(b64) {
-            return new TextDecoder().decode(Uint8Array.from(atob(b64), c => c.charCodeAt(0)));
+            return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0)));
         }
+
         function encode(str) {
             return btoa(Array.from(new TextEncoder().encode(str), b => String.fromCharCode(b)).join(''));
         }
 
         async function ghRequest(path, method = 'GET', body = null) {
             const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}?t=${Date.now()}`;
-            const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' };
+            const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
             const options = { method, headers };
             if (body) options.body = JSON.stringify(body);
             const res = await fetch(url, options);
             if (!res.ok) {
                 const err = await res.json();
-                throw new Error(err.message);
+                throw new Error(err.message || `HTTP ${res.status}`);
             }
             return res.json();
         }
 
+        // GitHub Trees API - لرفع ملفات متعددة في commit واحد
+        async function commitFiles(files, message) {
+            const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
+
+            const refRes = await fetch(`${base}/git/ref/heads/main`, { headers });
+            const refData = await refRes.json();
+            const lastCommitSha = refData.object.sha;
+
+            const commitRes = await fetch(`${base}/git/commits/${lastCommitSha}`, { headers });
+            const commitData = await commitRes.json();
+            const baseTreeSha = commitData.tree.sha;
+
+            const treeItems = [];
+            for (const file of files) {
+                const blobRes = await fetch(`${base}/git/blobs`, {
+                    method: 'POST', headers,
+                    body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
+                });
+                const blob = await blobRes.json();
+                treeItems.push({ path: file.path, mode: '100644', type: 'blob', sha: blob.sha });
+            }
+
+            const treeRes = await fetch(`${base}/git/trees`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
+            });
+            const newTree = await treeRes.json();
+
+            const newCommitRes = await fetch(`${base}/git/commits`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ message, tree: newTree.sha, parents: [lastCommitSha] })
+            });
+            const newCommit = await newCommitRes.json();
+
+            await fetch(`${base}/git/refs/heads/main`, {
+                method: 'PATCH', headers,
+                body: JSON.stringify({ sha: newCommit.sha })
+            });
+        }
+
+        // ===== تحديث index.html وbooks.json معاً =====
+        async function updateIndexAndBooks() {
+            try {
+                const idxData = await ghRequest('index.html');
+                let idxContent = decode(idxData.content);
+                idxContent = idxContent.replace(
+                    /const BOOKS = \[[\s\S]*?\];/,
+                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                );
+                await commitFiles([
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: idxContent }
+                ], 'تحديث قائمة الكتب والموقع');
+            } catch(e) { console.error('خطأ في تحديث index.html:', e); }
+        }
+
+        // ===== الكتب =====
         async function loadBooks() {
             if (!config.token) return;
             try {
@@ -170,62 +227,112 @@
 
         async function selectBook(id) {
             currentBook = books.find(b => b.id === id);
+            currentChapterNum = null;
+            currentChapterData = null;
             document.getElementById('current-book-name').textContent = currentBook.title;
             document.getElementById('current-book-info').innerHTML = `
                 <p><strong>المؤلف:</strong> ${currentBook.author || 'غير محدد'}</p>
                 <p><strong>الوصف:</strong> ${currentBook.description || 'بدون وصف'}</p>
-                <p><strong>عدد الفصول:</strong> ${currentBook.chapters || 0}</p>
+                <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
             `;
             renderBooks();
-            await loadChapters();
-            switchTab('overview');
+            await loadBookChapters();
+            switchTab('overview', null);
         }
 
-        async function loadChapters() {
+        // ===== الفصول - قراءة قائمة الملفات من GitHub =====
+        async function loadBookChapters() {
             if (!currentBook) return;
+            document.getElementById('chapters-list').innerHTML = '<div class="loading">جاري تحميل الفصول...</div>';
             try {
-                const data = await ghRequest(`data/${currentBook.id}/chapters.json`);
-                currentChapters = JSON.parse(decode(data.content));
+                // جلب قائمة الملفات من مجلد الكتاب
+                const files = await ghRequest(`data/${currentBook.id}`);
+                bookChapterFiles = [];
+
+                for (const file of files) {
+                    const m = file.name.match(/^chapter_(\d+)\.json$/);
+                    if (m) {
+                        bookChapterFiles.push({ num: parseInt(m[1]), name: file.name, path: file.path });
+                    }
+                }
+
+                // ترتيب الفصول رقمياً
+                bookChapterFiles.sort((a, b) => a.num - b.num);
+
+                // جلب عناوين الفصول
+                await loadChapterTitles();
                 renderChapters();
                 updateChapterSelect();
             } catch (e) {
-                currentChapters = [];
-                renderChapters();
-                updateChapterSelect();
+                bookChapterFiles = [];
+                document.getElementById('chapters-list').innerHTML = '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
             }
+        }
+
+        async function loadChapterTitles() {
+            // جلب عنوان كل فصل بشكل متوازٍ
+            const promises = bookChapterFiles.map(async (ch) => {
+                try {
+                    const data = await ghRequest(ch.path);
+                    const content = JSON.parse(decode(data.content));
+                    ch.title = content.title || `الفصل ${ch.num}`;
+                    ch.questionCount = (content.questions || []).length;
+                } catch(e) {
+                    ch.title = `الفصل ${ch.num}`;
+                    ch.questionCount = 0;
+                }
+            });
+            await Promise.all(promises);
         }
 
         function renderChapters() {
             const list = document.getElementById('chapters-list');
-            if (currentChapters.length === 0) {
+            if (bookChapterFiles.length === 0) {
                 list.innerHTML = '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
                 return;
             }
-            list.innerHTML = currentChapters.map((c, i) => `
+            list.innerHTML = bookChapterFiles.map((ch) => `
                 <div class="item-card">
                     <div class="item-card-header">
-                        <div class="item-card-title">${c.title}</div>
+                        <div class="item-card-title">${ch.title}</div>
                         <div class="item-card-actions">
-                            <button class="btn btn-secondary btn-sm" onclick="editChapter(${i})">تعديل</button>
-                            <button class="btn btn-red btn-sm" onclick="deleteChapter(${i})">حذف</button>
+                            <button class="btn btn-secondary btn-sm" onclick="editChapter(${ch.num})">تعديل</button>
+                            <button class="btn btn-red btn-sm" onclick="deleteChapter(${ch.num})">حذف</button>
                         </div>
                     </div>
-                    <div style="font-size: 12px; color: var(--text-dim);">${(c.questions || []).length} أسئلة</div>
+                    <div style="font-size: 12px; color: var(--text-dim);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
                 </div>
             `).join('');
         }
 
         function updateChapterSelect() {
             const sel = document.getElementById('chapter-select');
-            sel.innerHTML = currentChapters.map((c, i) => `<option value="${i}">${c.title}</option>`).join('');
-            if (currentChapters.length > 0) renderQuestions();
+            sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${ch.title}</option>`).join('');
+            if (bookChapterFiles.length > 0) {
+                currentChapterNum = bookChapterFiles[0].num;
+                loadChapterQuestions();
+            }
+        }
+
+        // ===== تحميل أسئلة فصل معين =====
+        async function loadChapterQuestions() {
+            const sel = document.getElementById('chapter-select');
+            currentChapterNum = parseInt(sel.value);
+            document.getElementById('questions-list').innerHTML = '<div class="loading">جاري تحميل الأسئلة...</div>';
+            try {
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${currentChapterNum}.json`);
+                currentChapterData = JSON.parse(decode(data.content));
+                renderQuestions();
+            } catch(e) {
+                currentChapterData = null;
+                document.getElementById('questions-list').innerHTML = '<p style="color:var(--text-dim)">تعذر تحميل الأسئلة.</p>';
+            }
         }
 
         function renderQuestions() {
-            const idx = document.getElementById('chapter-select').value;
             const list = document.getElementById('questions-list');
-            if (idx === "" || !currentChapters[idx]) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
-            const qs = currentChapters[idx].questions || [];
+            if (!currentChapterData) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
+            const qs = currentChapterData.questions || [];
             if (qs.length === 0) {
                 list.innerHTML = '<p style="color:var(--text-dim)">لا توجد أسئلة في هذا الفصل.</p>';
                 return;
@@ -233,14 +340,14 @@
             list.innerHTML = qs.map((q, i) => {
                 const qText = q.q || q.question || '';
                 const opts = q.opts || q.options || [];
-                const ans = q.ans !== undefined ? q.ans : q.correct;
+                const ans = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
                 return `
                     <div class="item-card">
                         <div class="item-card-header">
                             <div class="item-card-title">س ${i+1}</div>
                             <div class="item-card-actions">
-                                <button class="btn btn-secondary btn-sm" onclick="editQuestion(${idx}, ${i})">تعديل</button>
-                                <button class="btn btn-red btn-sm" onclick="deleteQuestion(${idx}, ${i})">حذف</button>
+                                <button class="btn btn-secondary btn-sm" onclick="editQuestion(${i})">تعديل</button>
+                                <button class="btn btn-red btn-sm" onclick="deleteQuestion(${i})">حذف</button>
                             </div>
                         </div>
                         <div class="question-text">${qText}</div>
@@ -256,63 +363,69 @@
             }).join('');
         }
 
-        function switchTab(id) {
+        // ===== التبويبات =====
+        function switchTab(id, e) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if (event) event.target.classList.add('active');
+            if (e && e.target) e.target.classList.add('active');
         }
 
+        // ===== الإعدادات =====
         function openSettings() {
             const t = prompt('أدخل GitHub Token:', config.token || '');
-            if (t) {
-                localStorage.setItem('gh_token', t);
-                config.token = t;
+            if (t !== null && t.trim()) {
+                localStorage.setItem('gh_token', t.trim());
+                config.token = t.trim();
                 loadBooks();
             }
         }
 
+        // ===== النوافذ المنبثقة =====
         function showModal(type) {
             if (type !== 'editChapter' && type !== 'editQuestion') {
-                editingChapterIdx = null;
+                editingChapterNum = null;
                 editingQuestionIdx = null;
-                editingChapterForQuestion = null;
             }
             const body = document.getElementById('modal-body');
             let html = '';
+
             if (type === 'addBook') {
-                html = `<h3>إضافة كتاب جديد</h3>
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة كتاب جديد</h3>
                     <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
-                    <div class="form-group"><label>المعرف (English - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
+                    <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
                     <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
-                    <div class="form-group"><label>الوصف</label><textarea id="m-desc" placeholder="وصف الكتاب"></textarea></div>
+                    <div class="form-group"><label>الوصف</label><textarea id="m-desc" rows="3" placeholder="وصف الكتاب"></textarea></div>
                     <button class="btn btn-primary" onclick="saveBook()">إضافة الكتاب</button>`;
+
             } else if (type === 'addChapter') {
-                html = `<h3>إضافة فصل جديد</h3>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول"></div>
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول - المبادئ الأساسية"></div>
                     <button class="btn btn-primary" onclick="saveChapter()">إضافة الفصل</button>`;
+
             } else if (type === 'editChapter') {
-                const ch = currentChapters[editingChapterIdx];
-                html = `<h3>تعديل الفصل</h3>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${ch.title}"></div>
+                const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${ch ? ch.title : ''}"></div>
                     <button class="btn btn-primary" onclick="saveChapter()">حفظ التعديلات</button>`;
+
             } else if (type === 'addQuestion') {
-                html = `<h3>إضافة سؤال جديد</h3>
-                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q"></textarea></div>
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3"></textarea></div>
                     <div class="form-group"><label>خيار 1</label><input id="m-o1"></div>
                     <div class="form-group"><label>خيار 2</label><input id="m-o2"></div>
                     <div class="form-group"><label>خيار 3</label><input id="m-o3"></div>
                     <div class="form-group"><label>خيار 4</label><input id="m-o4"></div>
                     <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
                     <button class="btn btn-primary" onclick="saveQuestion()">إضافة السؤال</button>`;
+
             } else if (type === 'editQuestion') {
-                const chIdx = document.getElementById('chapter-select').value;
-                const q = currentChapters[chIdx].questions[editingQuestionIdx];
+                const q = currentChapterData.questions[editingQuestionIdx];
                 const qText = q.q || q.question || '';
                 const opts = q.opts || q.options || [];
-                const ans = (q.ans !== undefined ? q.ans : q.correct) + 1;
-                html = `<h3>تعديل السؤال</h3>
-                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q">${qText}</textarea></div>
+                const ans = (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer)) + 1;
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل السؤال</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${qText}</textarea></div>
                     <div class="form-group"><label>خيار 1</label><input id="m-o1" value="${opts[0] || ''}"></div>
                     <div class="form-group"><label>خيار 2</label><input id="m-o2" value="${opts[1] || ''}"></div>
                     <div class="form-group"><label>خيار 3</label><input id="m-o3" value="${opts[2] || ''}"></div>
@@ -320,193 +433,182 @@
                     <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4" value="${ans}"></div>
                     <button class="btn btn-primary" onclick="saveQuestion()">حفظ التعديلات</button>`;
             }
+
             body.innerHTML = html + `<button class="btn btn-secondary" style="margin-top:10px; width:100%" onclick="closeModal()">إلغاء</button>`;
             document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
+        // ===== حفظ كتاب جديد =====
         async function saveBook() {
-            const id = document.getElementById('m-id').value.trim();
+            const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_');
             const title = document.getElementById('m-title').value.trim();
             const author = document.getElementById('m-author').value.trim();
             const desc = document.getElementById('m-desc').value.trim();
-            if (!id || !title) return;
+            if (!id || !title) { showAlert('يرجى إدخال اسم الكتاب والمعرف', 'error'); return; }
             books.push({ id, title, author, description: desc, chapters: 0 });
             try {
-                const sha = (await ghRequest('data/books.json')).sha;
-                await ghRequest('data/books.json', 'PUT', { message: 'إضافة كتاب', content: encode(JSON.stringify(books, null, 2)), sha });
+                await updateIndexAndBooks();
                 showAlert('تمت إضافة الكتاب بنجاح');
                 closeModal(); loadBooks();
             } catch (e) { showAlert(e.message, 'error'); }
         }
 
-        // دالة مركزية لتحديث books.json و index.html معاً
-        // دالة تحديث متعدد الملفات في commit واحد باستخدام GitHub Trees API
-        async function commitMultipleFiles(files, message) {
-            const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
-            const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
-
-            // 1. جلب آخر commit
-            const refRes = await fetch(`${base}/git/ref/heads/main`, { headers });
-            const refData = await refRes.json();
-            const lastCommitSha = refData.object.sha;
-
-            // 2. جلب شجرة آخر commit
-            const commitRes = await fetch(`${base}/git/commits/${lastCommitSha}`, { headers });
-            const commitData = await commitRes.json();
-            const baseTreeSha = commitData.tree.sha;
-
-            // 3. إنشاء blobs لكل ملف
-            const treeItems = [];
-            for (const file of files) {
-                const blobRes = await fetch(`${base}/git/blobs`, {
-                    method: 'POST', headers,
-                    body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
-                });
-                const blob = await blobRes.json();
-                treeItems.push({ path: file.path, mode: '100644', type: 'blob', sha: blob.sha });
-            }
-
-            // 4. إنشاء tree جديد
-            const treeRes = await fetch(`${base}/git/trees`, {
-                method: 'POST', headers,
-                body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
-            });
-            const newTree = await treeRes.json();
-
-            // 5. إنشاء commit جديد
-            const newCommitRes = await fetch(`${base}/git/commits`, {
-                method: 'POST', headers,
-                body: JSON.stringify({ message, tree: newTree.sha, parents: [lastCommitSha] })
-            });
-            const newCommit = await newCommitRes.json();
-
-            // 6. تحديث المرجع
-            await fetch(`${base}/git/refs/heads/main`, {
-                method: 'PATCH', headers,
-                body: JSON.stringify({ sha: newCommit.sha })
-            });
-        }
-
-        async function syncBooksToIndex() {
-            try {
-                // جلب index.html الحالي
-                const idxData = await ghRequest('index.html');
-                let idxContent = decode(idxData.content.replace(/\n/g, ''));
-                const booksJson = JSON.stringify(books, null, 4);
-                idxContent = idxContent.replace(
-                    /const BOOKS = \[[\s\S]*?\];/,
-                    `const BOOKS = ${booksJson};`
-                );
-
-                // تحديث الملفين في commit واحد
-                await commitMultipleFiles([
-                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                    { path: 'index.html', content: idxContent }
-                ], 'تحديث قائمة الكتب والموقع معاً');
-            } catch(e) { console.error('خطأ في مزامنة index.html:', e); }
-        }
-
+        // ===== حفظ فصل (إضافة أو تعديل) =====
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
-            if (!title || !currentBook) return;
+            if (!title || !currentBook) { showAlert('يرجى إدخال اسم الفصل', 'error'); return; }
+
             try {
-                if (editingChapterIdx !== null) {
-                    currentChapters[editingChapterIdx].title = title;
+                if (editingChapterNum !== null) {
+                    // تعديل فصل موجود - تحديث ملفه فقط
+                    const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
+                    const chContent = JSON.parse(decode(data.content));
+                    chContent.title = title;
+
+                    await commitFiles([
+                        { path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }
+                    ], `تعديل عنوان الفصل: ${title}`);
+
+                    // تحديث القائمة المحلية
+                    const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                    if (ch) ch.title = title;
+
+                    showAlert('تم تعديل الفصل بنجاح');
                 } else {
-                    currentChapters.push({ title, questions: [] });
+                    // إضافة فصل جديد - إيجاد أعلى رقم وإضافة 1
+                    const maxNum = bookChapterFiles.length > 0 ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
+                    const newNum = maxNum + 1;
+                    const newChapter = {
+                        id: `chapter_${newNum}`,
+                        book_id: currentBook.id,
+                        chapter: newNum,
+                        title: title,
+                        description: '',
+                        questions: []
+                    };
+
+                    // تحديث عدد الفصول في books
+                    currentBook.chapters = newNum;
+                    const bookInList = books.find(b => b.id === currentBook.id);
+                    if (bookInList) bookInList.chapters = newNum;
+
+                    // جلب index.html لتحديث BOOKS
+                    const idxData = await ghRequest('index.html');
+                    let idxContent = decode(idxData.content);
+                    idxContent = idxContent.replace(
+                        /const BOOKS = \[[\s\S]*?\];/,
+                        `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                    );
+
+                    // رفع الفصل الجديد + تحديث books.json + index.html في commit واحد
+                    await commitFiles([
+                        { path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) },
+                        { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                        { path: 'index.html', content: idxContent }
+                    ], `إضافة فصل جديد: ${title}`);
+
+                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json)`);
                 }
-                currentBook.chapters = currentChapters.length;
 
-                // جلب index.html لتحديث BOOKS
-                const idxData = await ghRequest('index.html');
-                let idxContent = decode(idxData.content.replace(/\n/g, ''));
-                idxContent = idxContent.replace(
-                    /const BOOKS = \[[\s\S]*?\];/,
-                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
-                );
-
-                // تحديث جميع الملفات في commit واحد
-                await commitMultipleFiles([
-                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) },
-                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                    { path: 'index.html', content: idxContent }
-                ], editingChapterIdx !== null ? `تعديل فصل: ${title}` : `إضافة فصل: ${title}`);
-
-                showAlert(editingChapterIdx !== null ? 'تم تعديل الفصل بنجاح' : 'تمت إضافة الفصل وسيظهر في الموقع خلال دقيقة');
-                closeModal(); loadChapters();
-            } catch (e) { showAlert(e.message, 'error'); }
+                closeModal();
+                await loadBookChapters();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        async function saveQuestion() {
-            const chIdx = editingChapterForQuestion !== null ? editingChapterForQuestion : parseInt(document.getElementById('chapter-select').value);
-            const q = document.getElementById('m-q').value.trim();
-            const opts = [document.getElementById('m-o1').value, document.getElementById('m-o2').value, document.getElementById('m-o3').value, document.getElementById('m-o4').value];
-            const ans = parseInt(document.getElementById('m-ans').value) - 1;
-            if (!q || isNaN(ans)) return;
+        // ===== حذف فصل =====
+        async function deleteChapter(chNum) {
+            if (!confirm(`هل أنت متأكد من حذف هذا الفصل؟`)) return;
             try {
-                if (editingQuestionIdx !== null) {
-                    currentChapters[chIdx].questions[editingQuestionIdx] = { q, opts, ans };
-                } else {
-                    currentChapters[chIdx].questions.push({ q, opts, ans });
-                }
-                await commitMultipleFiles([
-                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) }
-                ], editingQuestionIdx !== null ? `تعديل سؤال` : `إضافة سؤال`);
-                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال وسيظهر في الموقع خلال دقيقة');
-                closeModal(); renderQuestions();
-            } catch (e) { showAlert(e.message, 'error'); }
+                // حذف الملف من GitHub
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${chNum}.json`);
+                await fetch(`https://api.github.com/repos/${config.user}/${config.repo}/contents/data/${currentBook.id}/chapter_${chNum}.json`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `حذف الفصل ${chNum}`, sha: data.sha })
+                });
+
+                // تحديث عدد الفصول
+                bookChapterFiles = bookChapterFiles.filter(c => c.num !== chNum);
+                const newCount = bookChapterFiles.length;
+                currentBook.chapters = newCount;
+                const bookInList = books.find(b => b.id === currentBook.id);
+                if (bookInList) bookInList.chapters = newCount;
+
+                await updateIndexAndBooks();
+                showAlert('تم حذف الفصل بنجاح');
+                renderChapters();
+                updateChapterSelect();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        function editChapter(idx) {
-            editingChapterIdx = idx;
+        // ===== تعديل فصل =====
+        function editChapter(chNum) {
+            editingChapterNum = chNum;
             showModal('editChapter');
         }
 
-        async function deleteChapter(idx) {
-            if (!confirm('هل أنت متأكد من حذف هذا الفصل؟')) return;
+        // ===== حفظ سؤال (إضافة أو تعديل) =====
+        async function saveQuestion() {
+            if (!currentChapterData || currentChapterNum === null) {
+                showAlert('يرجى اختيار فصل أولاً', 'error'); return;
+            }
+            const q = document.getElementById('m-q').value.trim();
+            const opts = [
+                document.getElementById('m-o1').value.trim(),
+                document.getElementById('m-o2').value.trim(),
+                document.getElementById('m-o3').value.trim(),
+                document.getElementById('m-o4').value.trim()
+            ];
+            const ans = parseInt(document.getElementById('m-ans').value) - 1;
+            if (!q || isNaN(ans) || ans < 0 || ans > 3) {
+                showAlert('يرجى إدخال السؤال ورقم الإجابة الصحيحة (1-4)', 'error'); return;
+            }
+
+            const questionObj = { question: q, options: opts, answer: ans };
+
+            if (editingQuestionIdx !== null) {
+                currentChapterData.questions[editingQuestionIdx] = questionObj;
+            } else {
+                currentChapterData.questions.push(questionObj);
+            }
+
             try {
-                currentChapters.splice(idx, 1);
-                currentBook.chapters = currentChapters.length;
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
 
-                // جلب index.html لتحديث BOOKS
-                const idxData = await ghRequest('index.html');
-                let idxContent = decode(idxData.content.replace(/\n/g, ''));
-                idxContent = idxContent.replace(
-                    /const BOOKS = \[[\s\S]*?\];/,
-                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
-                );
-
-                await commitMultipleFiles([
-                    { path: `data/${currentBook.id}/chapters.json`, content: JSON.stringify(currentChapters, null, 2) },
-                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                    { path: 'index.html', content: idxContent }
-                ], 'حذف فصل');
-                showAlert('تم حذف الفصل بنجاح');
-                loadChapters();
-            } catch (e) { showAlert(e.message, 'error'); }
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال بنجاح');
+                closeModal();
+                renderQuestions();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        function editQuestion(chIdx, qIdx) {
-            editingChapterForQuestion = chIdx;
+        // ===== تعديل سؤال =====
+        function editQuestion(qIdx) {
             editingQuestionIdx = qIdx;
-            document.getElementById('chapter-select').value = chIdx;
             showModal('editQuestion');
         }
 
-        async function deleteQuestion(chIdx, qIdx) {
+        // ===== حذف سؤال =====
+        async function deleteQuestion(qIdx) {
             if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+            currentChapterData.questions.splice(qIdx, 1);
             try {
-                currentChapters[chIdx].questions.splice(qIdx, 1);
-                const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'حذف سؤال', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], `حذف سؤال من الفصل ${currentChapterNum}`);
                 showAlert('تم حذف السؤال بنجاح');
                 renderQuestions();
-            } catch (e) { showAlert(e.message, 'error'); }
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        window.onload = () => { if (config.token) loadBooks(); else openSettings(); };
+        // ===== التهيئة =====
+        window.onload = () => {
+            if (config.token) loadBooks();
+            else openSettings();
+        };
     </script>
 </body>
 </html>

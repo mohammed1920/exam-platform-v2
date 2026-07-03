@@ -1,5 +1,5 @@
 /**
- * Exam Engine V2 - Smart & Efficient
+ * Exam Engine V2 - يقرأ من ملفات chapter_X.json المنفصلة
  */
 class ExamEngine {
   constructor() {
@@ -12,7 +12,7 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-    // بصمة زمنية واحدة عند تحميل الصفحة لمنع الكاش دون تكرار الطلبات
+    // بصمة زمنية واحدة عند تحميل الصفحة لمنع الكاش
     this.sessionTimestamp = Date.now();
   }
 
@@ -27,17 +27,7 @@ class ExamEngine {
   }
 
   async loadChapter(bookId, chapterNum) {
-    // محاولة القراءة من الملف الموحد أولاً
-    try {
-      const res = await fetch(`${this.basePath}/data/${bookId}/chapters.json?v=${this.sessionTimestamp}`);
-      if (res.ok) {
-        const chapters = await res.json();
-        const chapter = chapters[chapterNum - 1];
-        if (chapter) return this.initChapter(bookId, chapterNum, chapter);
-      }
-    } catch (e) {}
-
-    // محاولة القراءة من الملف المنفصل (للتوافق)
+    // القراءة من الملف المنفصل chapter_X.json مباشرة
     try {
       const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`);
       if (res.ok) {
@@ -56,7 +46,7 @@ class ExamEngine {
       id: q.id || Math.random(),
       q: q.q || q.question,
       options: q.opts || q.options,
-      correct: q.ans !== undefined ? q.ans : q.correct,
+      correct: q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer),
       explanation: q.explanation || "لا يوجد شرح متوفر حالياً."
     }));
     this.totalQuestions = this.questions.length;

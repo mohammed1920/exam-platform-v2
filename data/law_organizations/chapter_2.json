@@ -1,0 +1,19 @@
+{
+  "id": "chapter_2",
+  "book_id": "law_organizations",
+  "chapter": 2,
+  "title": "الفصل 2",
+  "description": "",
+  "questions": [
+    {
+      "question": "محمد",
+      "options": [
+        "م",
+        "ن",
+        "ز",
+        "ظ"
+      ],
+      "answer": 0
+    }
+  ]
+}

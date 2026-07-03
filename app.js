@@ -143,7 +143,7 @@ class ExamApp {
     this.showChapters(book);
   }
 
-    async showChapters(book) {
+  async showChapters(book) {
     document.getElementById('books-section').style.display = 'none';
     document.getElementById('chapters-container').classList.add('active');
     document.getElementById('exam-container').classList.remove('active');
@@ -153,29 +153,47 @@ class ExamApp {
     const chaptersGrid = document.getElementById('chapters-grid');
     chaptersGrid.innerHTML = '<p style="text-align:center;color:#94a3b8">جاري تحميل الفصول...</p>';
 
-    // جلب أسماء الفصول الحقيقية من chapters.json
-    let chapterTitles = [];
+    // جلب قائمة ملفات الفصول من GitHub API
+    let chapterFiles = [];
     try {
-      const res = await fetch(`${examEngine.basePath}/data/${book.id}/chapters.json?v=${Date.now()}`);
+      const res = await fetch(`https://api.github.com/repos/mohammed1920/exam-platform-v2/contents/data/${book.id}?t=${Date.now()}`);
       if (res.ok) {
-        const chapters = await res.json();
-        chapterTitles = chapters.map((c, i) => c.title || `الفصل ${i + 1}`);
+        const files = await res.json();
+        for (const file of files) {
+          const m = file.name.match(/^chapter_(\d+)\.json$/);
+          if (m) chapterFiles.push({ num: parseInt(m[1]), path: file.download_url });
+        }
+        chapterFiles.sort((a, b) => a.num - b.num);
       }
     } catch(e) {}
 
+    // جلب عناوين الفصول بشكل متوازٍ
+    const chapterData = await Promise.all(chapterFiles.map(async (ch) => {
+      try {
+        const r = await fetch(`${examEngine.basePath}/data/${book.id}/chapter_${ch.num}.json?v=${examEngine.sessionTimestamp}`);
+        if (r.ok) {
+          const data = await r.json();
+          return { num: ch.num, title: data.title || `الفصل ${ch.num}` };
+        }
+      } catch(e) {}
+      return { num: ch.num, title: `الفصل ${ch.num}` };
+    }));
+
     chaptersGrid.innerHTML = '';
-    const total = chapterTitles.length > 0 ? chapterTitles.length : book.chapters;
-    for (let i = 1; i <= total; i++) {
-      const title = chapterTitles[i - 1] || `الفصل ${i}`;
+    if (chapterData.length === 0) {
+      chaptersGrid.innerHTML = '<p style="text-align:center;color:#94a3b8">لا توجد فصول متاحة.</p>';
+      return;
+    }
+    chapterData.forEach(ch => {
       const chapterCard = document.createElement('div');
       chapterCard.className = 'chapter-card';
       chapterCard.innerHTML = `
-        <h4>${title}</h4>
+        <h4>${ch.title}</h4>
         <button class="start-exam-btn">ابدأ الاختبار</button>
       `;
-      chapterCard.querySelector('.start-exam-btn').addEventListener('click', () => this.startExam(book.id, i));
+      chapterCard.querySelector('.start-exam-btn').addEventListener('click', () => this.startExam(book.id, ch.num));
       chaptersGrid.appendChild(chapterCard);
-    }
+    });
   }
 
   async startExam(bookId, chapterNum, pushHistory = true) {
