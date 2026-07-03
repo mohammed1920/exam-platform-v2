@@ -367,8 +367,9 @@ class ExamApp {
       history.pushState({ page: 'books' }, '', window.location.pathname);
     }
 
-    ['chapters-container', 'exam-container', 'results-container'].forEach(id => {
-      document.getElementById(id).classList.remove('active');
+    ['chapters-container', 'exam-container', 'results-container', 'review-container'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
     });
     document.getElementById('books-section').style.display = 'block';
     examEngine.reset();
@@ -380,11 +381,44 @@ class ExamApp {
     document.getElementById('restart-btn').addEventListener('click', () => this.backToBooks());
     document.getElementById('back-to-books-btn').addEventListener('click', () => this.backToBooks());
     
+    const reviewBtn = document.getElementById('review-btn');
+    if (reviewBtn) {
+      reviewBtn.addEventListener('click', () => this.showReview());
+    }
+
+    const backReviewBtn = document.getElementById('back-review-btn');
+    if (backReviewBtn) {
+      backReviewBtn.addEventListener('click', () => this.backToBooks());
+    }
+
     // مستمع للبحث
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
       searchInput.addEventListener('input', () => this.filterBooks());
     }
+  }
+
+  showReview() {
+    const wrongAnswers = examEngine.getWrongAnswers();
+    if (wrongAnswers.length === 0) return;
+
+    document.getElementById('results-container').classList.remove('active');
+    document.getElementById('review-container').classList.add('active');
+    
+    const reviewContent = document.getElementById('review-content');
+    reviewContent.innerHTML = '';
+
+    wrongAnswers.forEach((ans, index) => {
+      const item = document.createElement('div');
+      item.className = 'review-item';
+      item.innerHTML = `
+        <div class="review-q"><strong>س${index + 1}:</strong> ${ans.questionText}</div>
+        <div class="review-ans wrong">إجابتك: ${ans.userAnswer}</div>
+        <div class="review-ans correct">الإجابة الصحيحة: ${ans.correctAnswer}</div>
+        <div class="review-explanation"><strong>الشرح:</strong> ${ans.explanation || "لا يوجد شرح متوفر."}</div>
+      `;
+      reviewContent.appendChild(item);
+    });
   }
 }
 
