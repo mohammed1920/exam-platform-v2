@@ -341,6 +341,35 @@
             } catch (e) { showAlert(e.message, 'error'); }
         }
 
+        // دالة مركزية لتحديث books.json و index.html معاً
+        async function syncBooksToIndex() {
+            try {
+                // 1. تحديث books.json
+                const bSha = (await ghRequest('data/books.json')).sha;
+                await ghRequest('data/books.json', 'PUT', {
+                    message: 'تحديث إحصائيات الكتب',
+                    content: encode(JSON.stringify(books, null, 2)),
+                    sha: bSha
+                });
+
+                // 2. تحديث index.html (حقن BOOKS مباشرة)
+                const idxData = await ghRequest('index.html');
+                let idxContent = new TextDecoder().decode(
+                    Uint8Array.from(atob(idxData.content.replace(/\n/g, '')), c => c.charCodeAt(0))
+                );
+                const booksJson = JSON.stringify(books, null, 4);
+                idxContent = idxContent.replace(
+                    /const BOOKS = \[[\s\S]*?\];/,
+                    `const BOOKS = ${booksJson};`
+                );
+                await ghRequest('index.html', 'PUT', {
+                    message: 'تحديث قائمة الكتب في الموقع',
+                    content: encode(idxContent),
+                    sha: idxData.sha
+                });
+            } catch(e) { console.error('خطأ في مزامنة index.html:', e); }
+        }
+
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
             if (!title || !currentBook) return;
@@ -354,9 +383,8 @@
                 try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
                 await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'تحديث الفصول', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
                 currentBook.chapters = currentChapters.length;
-                const bSha = (await ghRequest('data/books.json')).sha;
-                await ghRequest('data/books.json', 'PUT', { message: 'تحديث عدد الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
-                showAlert(editingChapterIdx !== null ? 'تم تعديل الفصل بنجاح' : 'تمت إضافة الفصل بنجاح');
+                await syncBooksToIndex();
+                showAlert(editingChapterIdx !== null ? 'تم تعديل الفصل بنجاح' : 'تمت إضافة الفصل وسيظهر في الموقع خلال دقيقة');
                 closeModal(); loadChapters();
             } catch (e) { showAlert(e.message, 'error'); }
         }
@@ -393,8 +421,7 @@
                 try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
                 await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'حذف فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
                 currentBook.chapters = currentChapters.length;
-                const bSha = (await ghRequest('data/books.json')).sha;
-                await ghRequest('data/books.json', 'PUT', { message: 'تحديث عدد الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
+                await syncBooksToIndex();
                 showAlert('تم حذف الفصل بنجاح');
                 loadChapters();
             } catch (e) { showAlert(e.message, 'error'); }
