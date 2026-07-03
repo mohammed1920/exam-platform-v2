@@ -295,8 +295,12 @@ class ExamApp {
 
     buttons.forEach((btn, idx) => {
       btn.disabled = true;
-      if (idx === optionIndex) btn.classList.add(isCorrect ? 'correct' : 'wrong');
-      if (idx === question.answer && !isCorrect) btn.classList.add('correct');
+      btn.classList.add('disabled');
+      if (idx === question.answer) {
+        btn.classList.add('correct');
+      } else if (idx === optionIndex && !isCorrect) {
+        btn.classList.add('incorrect');
+      }
     });
 
     const feedback = document.getElementById('feedback');
@@ -413,10 +417,10 @@ class ExamApp {
       const item = document.createElement('div');
       item.className = 'review-item';
       item.innerHTML = `
-        <div class="review-q"><strong>س${index + 1}:</strong> ${ans.questionText}</div>
-        <div class="review-ans wrong">إجابتك: ${ans.userAnswer}</div>
-        <div class="review-ans correct">الإجابة الصحيحة: ${ans.correctAnswer}</div>
-        <div class="review-explanation"><strong>الشرح:</strong> ${ans.explanation || "لا يوجد شرح متوفر."}</div>
+        <div class="review-question"><strong>س${index + 1}:</strong> ${ans.questionText}</div>
+        <div class="review-answer incorrect">❌ إجابتك: ${ans.userAnswer}</div>
+        <div class="review-answer correct">✔ الإجابة الصحيحة: ${ans.correctAnswer}</div>
+        ${ans.explanation ? `<div class="review-explanation"><strong>📚 الشرح:</strong> ${ans.explanation}</div>` : ''}
       `;
       reviewContent.appendChild(item);
     });
