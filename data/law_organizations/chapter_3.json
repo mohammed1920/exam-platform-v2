@@ -6,6 +6,7 @@
   "description": "",
   "questions": [
     {
+      "id": "791186",
       "question": "علي هو",
       "options": [
         "امام",
@@ -13,9 +14,11 @@
         "وصي",
         "رشول"
       ],
-      "answer": 0
+      "answer": 0,
+      "explanation": ""
     },
     {
+      "id": "413904",
       "question": "هسم",
       "options": [
         "ت",
@@ -23,7 +26,8 @@
         "ج",
         "خ"
       ],
-      "answer": 0
+      "answer": 0,
+      "explanation": ""
     }
   ]
 }
