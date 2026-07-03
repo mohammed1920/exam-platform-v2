@@ -1,5 +1,21 @@
 [
   {
+    "id": "law_constitutional",
+    "title": "القانون الدستوري",
+    "author": "د. حميد حنون خالد",
+    "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
+    "chapters": 9,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "law_administrative",
+    "title": "القضاء الإداري",
+    "author": "د. وسام صبار",
+    "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
+    "chapters": 10,
+    "color": "#8e44ad"
+  },
+  {
     "id": "law_general_penalties",
     "title": "قانون العقوبات العام",
     "author": "مستشار قانوني",
@@ -8,7 +24,7 @@
     "color": "#c29d5f"
   },
   {
-    "id": "law___special___sanctions",
+    "id": "law_special_sanctions",
     "title": "قانون العقوبات الخاص",
     "author": "مستشار قانوني",
     "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
@@ -30,49 +46,5 @@
     "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
     "chapters": 1,
     "color": "#2980b9"
-  },
-  {
-    "id": "law_administrative",
-    "title": "القضاء الإداري",
-    "author": "د. وسام صبار",
-    "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
-    "chapters": 10,
-    "color": "#8e44ad"
-  },
-  {
-    "id": "law___international",
-    "title": "القانون الدولي",
-    "author": "مستشار قانوني",
-    "description": "المبادئ العامة للقانون الدولي العام والعلاقات الدولية.",
-    "chapters": 5,
-    "color": "#34495e"
-  },
-  {
-    "id": "law_penal",
-    "title": "Penal",
-    "author": "منصة الاختبارات القانونية",
-    "description": "كتاب قانوني متخصص",
-    "chapters": 2
-  },
-  {
-    "id": "law_admin",
-    "title": "Admin",
-    "author": "منصة الاختبارات القانونية",
-    "description": "كتاب قانوني متخصص",
-    "chapters": 1
-  },
-  {
-    "id": "law_international",
-    "title": "القانون الدولي",
-    "author": "منصة الاختبارات القانونية",
-    "description": "كتاب قانوني متخصص",
-    "chapters": 5
-  },
-  {
-    "id": "law_special_sanctions",
-    "title": "قانون العقوبات الخاص",
-    "author": "منصة الاختبارات القانونية",
-    "description": "كتاب قانوني متخصص",
-    "chapters": 22
   }
 ]
