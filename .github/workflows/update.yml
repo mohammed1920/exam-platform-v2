@@ -12,7 +12,7 @@ permissions:
   id-token: write
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
@@ -26,15 +26,19 @@ jobs:
           python-version: '3.x'
       - name: تحديث الأسئلة
         run: |
-          python3 update_questions.py update
+          python3 update_questions.py
       - name: رفع التغييرات
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/books.json
           git diff --staged --quiet || (git commit -m "تحديث تلقائي للفهرس [skip ci]" && git push)
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: إعداد الصفحات
+        uses: actions/configure-pages@v5
+      - name: رفع الملفات كأثر (Artifact)
+        uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-      - uses: actions/deploy-pages@v4
+      - name: النشر على GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
