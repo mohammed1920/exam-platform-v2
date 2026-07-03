@@ -1,107 +1,84 @@
 #!/usr/bin/env python3
-"""
-سكريبت ذكي لمزامنة البيانات تلقائياً
-يفحص جميع مجلدات الكتب ويجمع البيانات تلقائياً
-"""
-
 import json
 import os
 from pathlib import Path
-import sys
+import re
 
-def get_all_books():
-    """جلب قائمة جميع الكتب من books.json"""
-    books_file = Path('data/books.json')
-    if not books_file.exists():
-        print("❌ ملف books.json غير موجود")
-        return []
+def clean_question(q):
+    """توحيد تنسيق السؤال"""
+    new_q = {}
+    new_q['q'] = q.get('q') or q.get('question') or ""
+    new_q['opts'] = q.get('opts') or q.get('options') or []
+    ans = q.get('ans')
+    if ans is None: ans = q.get('correct')
+    new_q['ans'] = int(ans) if ans is not None else 0
+    if 'id' in q: new_q['id'] = q['id']
+    if 'explanation' in q: new_q['explanation'] = q['explanation']
+    return new_q
+
+def sync_all():
+    base_path = Path('data')
+    books_file = base_path / 'books.json'
     
+    if not books_file.exists(): return
+
     with open(books_file, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        books = json.load(f)
 
-def sync_book_data(book_id, book_title):
-    """مزامنة بيانات كتاب واحد"""
-    book_path = Path('data') / book_id
-    
-    if not book_path.exists():
-        print(f"⚠️  مجلد {book_id} غير موجود - تخطي")
-        return False
-    
-    # جمع جميع ملفات الفصول
-    chapters = []
-    chapter_files = sorted(
-        [f for f in book_path.glob('chapter_*.json')],
-        key=lambda x: int(x.stem.split('_')[1]) if x.stem.split('_')[1].isdigit() else 0
-    )
-    
-    if not chapter_files:
-        # إذا لم توجد ملفات chapter_*.json، تحقق من chapters.json
-        chapters_file = book_path / 'chapters.json'
-        if chapters_file.exists():
-            with open(chapters_file, 'r', encoding='utf-8') as f:
-                chapters = json.load(f)
-            print(f"✅ {book_id}: قُرئ من chapters.json ({len(chapters)} فصول)")
-            return True
-        else:
-            print(f"⚠️  {book_id}: لا توجد ملفات بيانات")
-            return False
-    
-    # معالجة ملفات الفصول
-    for chapter_file in chapter_files:
-        try:
-            with open(chapter_file, 'r', encoding='utf-8') as f:
-                chapter_data = json.load(f)
-            
-            # التعامل مع تنسيقات مختلفة
-            if isinstance(chapter_data, dict):
-                # تنسيق: {title, questions}
-                chapters.append({
-                    'title': chapter_data.get('title', f'الفصل {len(chapters)+1}'),
-                    'questions': chapter_data.get('questions', [])
-                })
-            elif isinstance(chapter_data, list):
-                # تنسيق: قائمة أسئلة مباشرة
-                chapters.append({
-                    'title': f'الفصل {len(chapters)+1}',
-                    'questions': chapter_data
-                })
-        except Exception as e:
-            print(f"❌ خطأ في قراءة {chapter_file}: {e}")
-            continue
-    
-    # كتابة chapters.json
-    output_file = book_path / 'chapters.json'
-    try:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(chapters, f, ensure_ascii=False, indent=2)
-        print(f"✅ {book_id}: تم إنشاء chapters.json مع {len(chapters)} فصول")
-        return True
-    except Exception as e:
-        print(f"❌ خطأ في كتابة chapters.json لـ {book_id}: {e}")
-        return False
-
-def main():
-    """الدالة الرئيسية"""
-    print("🔄 جاري مزامنة البيانات تلقائياً...\n")
-    
-    books = get_all_books()
-    if not books:
-        print("❌ لا توجد كتب في books.json")
-        sys.exit(1)
-    
-    success_count = 0
+    updated_books = []
     for book in books:
-        if sync_book_data(book['id'], book['title']):
-            success_count += 1
-    
-    print(f"\n✨ تمت المزامنة: {success_count}/{len(books)} كتب")
-    
-    if success_count == len(books):
-        print("✅ جميع البيانات محدثة بنجاح!")
-        sys.exit(0)
-    else:
-        print("⚠️  بعض الكتب لم تتم مزامنتها")
-        sys.exit(1)
+        book_id = book['id']
+        book_dir = base_path / book_id
+        if not book_dir.exists():
+            updated_books.append(book)
+            continue
 
-if __name__ == '__main__':
-    main()
+        # جلب ملفات chapter_*.json وترتيبها رقمياً بشكل صحيح (1, 2, 10...)
+        def get_num(p):
+            n = re.findall(r'\d+', p.name)
+            return int(n[0]) if n else 999
+            
+        chapter_files = sorted(list(book_dir.glob('chapter_*.json')), key=get_num)
+        
+        all_chapters = []
+        # إذا وجدت ملفات منفصلة، نعتمدها
+        if chapter_files:
+            for cf in chapter_files:
+                try:
+                    with open(cf, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                    
+                    chapter_obj = {}
+                    if isinstance(data, dict):
+                        chapter_obj['title'] = data.get('title') or f"الفصل {get_num(cf)}"
+                        qs = data.get('questions') or []
+                        chapter_obj['questions'] = [clean_question(q) for q in qs]
+                    elif isinstance(data, list):
+                        chapter_obj['title'] = f"الفصل {get_num(cf)}"
+                        chapter_obj['questions'] = [clean_question(q) for q in data]
+                    all_chapters.append(chapter_obj)
+                except: continue
+        else:
+            # إذا لم توجد ملفات منفصلة، نقرأ من chapters.json الموحد
+            c_file = book_dir / 'chapters.json'
+            if c_file.exists():
+                try:
+                    with open(c_file, 'r', encoding='utf-8') as f:
+                        all_chapters = json.load(f)
+                except: pass
+
+        # حفظ الملف الموحد
+        if all_chapters:
+            with open(book_dir / 'chapters.json', 'w', encoding='utf-8') as f:
+                json.dump(all_chapters, f, ensure_ascii=False, indent=2)
+        
+        book['chapters'] = len(all_chapters)
+        updated_books.append(book)
+
+    # حفظ قائمة الكتب
+    with open(books_file, 'w', encoding='utf-8') as f:
+        json.dump(updated_books, f, ensure_ascii=False, indent=2)
+    print("✅ Sync Complete!")
+
+if __name__ == "__main__":
+    sync_all()
