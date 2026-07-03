@@ -60,5 +60,19 @@
     "author": "منصة الاختبارات القانونية",
     "description": "كتاب قانوني متخصص",
     "chapters": 1
+  },
+  {
+    "id": "law_international",
+    "title": "International",
+    "author": "منصة الاختبارات القانونية",
+    "description": "كتاب قانوني متخصص",
+    "chapters": 5
+  },
+  {
+    "id": "law_special_sanctions",
+    "title": "Special Sanctions",
+    "author": "منصة الاختبارات القانونية",
+    "description": "كتاب قانوني متخصص",
+    "chapters": 22
   }
 ]
