@@ -18,6 +18,8 @@ class ExamApp {
     await this.loadBooks();
     this.setupEventListeners();
     this.setupHistoryListener();
+    // تسجيل الحالة الابتدائية (قائمة الكتب)
+    history.replaceState({ page: 'books' }, '', window.location.href);
   }
 
   /**
@@ -35,12 +37,17 @@ class ExamApp {
    * التعامل مع التنقل من خلال زر الرجوع
    */
   handleNavigation(state) {
+    if (!state) {
+      this.backToBooks();
+      return;
+    }
+    
     if (state.page === 'books') {
       this.backToBooks();
-    } else if (state.page === 'chapters') {
+    } else if (state.page === 'chapters' && state.book) {
+      this.currentBook = state.book;
       this.showChapters(state.book);
     } else if (state.page === 'exam') {
-      // لا يمكن العودة من الاختبار مباشرة، لكن يمكن إنهاء الاختبار
       this.finishExam();
     }
   }
@@ -394,7 +401,13 @@ class ExamApp {
    * العودة للكتب
    */
   backToBooks() {
+    // إخفاء جميع الحاويات
     document.getElementById('chapters-container').classList.remove('active');
+    document.getElementById('exam-container').classList.remove('active');
+    document.getElementById('results-container').classList.remove('active');
+    document.getElementById('review-container').classList.remove('active');
+    
+    // عرض قائمة الكتب
     document.getElementById('books-container').parentElement.style.display = 'block';
     document.getElementById('searchInput').value = '';
     examEngine.reset();
