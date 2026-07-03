@@ -86,12 +86,39 @@ class ExamEngine {
 
   finishExam() {
     const percentage = Math.round((this.score / this.totalQuestions) * 100);
+    const grade = this.getGrade(percentage);
+    const duration = Math.round((new Date() - this.startTime) / 1000);
     return {
       score: this.score,
       totalQuestions: this.totalQuestions,
       percentage: percentage,
+      grade: grade,
+      duration: duration,
       answers: this.userAnswers
     };
+  }
+
+  getGrade(percentage) {
+    if (percentage >= 90) return { grade: 'ممتاز', emoji: '🏆' };
+    if (percentage >= 80) return { grade: 'جيد جداً', emoji: '🥇' };
+    if (percentage >= 70) return { grade: 'جيد', emoji: '🥈' };
+    if (percentage >= 60) return { grade: 'مقبول', emoji: '🥉' };
+    return { grade: 'راسب', emoji: '❌' };
+  }
+
+  getWrongAnswers() {
+    return this.userAnswers.filter(a => !a.isCorrect);
+  }
+
+  reset() {
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.totalQuestions = 0;
+    this.userAnswers = [];
+    this.questions = [];
+    this.startTime = null;
+    this.currentBook = null;
+    this.currentChapter = null;
   }
 }
 
