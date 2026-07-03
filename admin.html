@@ -12,7 +12,6 @@
             --card: #1e293b;
             --border: #334155;
             --gold: #c29d5f;
-            --gold-dim: #9a7a47;
             --green: #10b981;
             --red: #ef4444;
             --text: #e2e8f0;
@@ -23,24 +22,29 @@
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
         h1 { font-size: 20px; color: var(--gold); }
         .main-grid { display: grid; grid-template-columns: 280px 1fr; gap: 15px; }
-        .sidebar { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); height: fit-content; }
+        .sidebar { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); height: fit-content; max-height: 80vh; overflow-y: auto; }
         .book-item { background: var(--bg); padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
         .book-item.active { border-color: var(--gold); background: var(--border); }
-        .content-area { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); min-height: 500px; }
+        .book-item:hover { border-color: var(--gold); }
+        .content-area { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
         .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
         .tab-btn { background: none; border: none; color: var(--text-dim); padding: 8px 15px; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; font-family: 'Cairo'; }
         .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-        .tab-content { display: none; }
+        .tab-content { display: none; max-height: 70vh; overflow-y: auto; }
         .tab-content.active { display: block; }
         .btn { padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; font-family: 'Cairo'; font-size: 14px; }
         .btn-primary { background: var(--gold); color: var(--bg); width: 100%; margin-top: 10px; }
         .btn-green { background: var(--green); color: white; }
         .btn-red { background: var(--red); color: white; }
         .btn-secondary { background: var(--border); color: var(--text); }
+        .btn-sm { padding: 4px 10px; font-size: 12px; }
         .form-group { margin-bottom: 12px; }
         label { display: block; margin-bottom: 5px; color: var(--gold); font-size: 13px; }
         input, textarea, select { width: 100%; padding: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Cairo'; font-size: 14px; }
         .item-card { background: var(--bg); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .item-card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+        .item-card-title { font-weight: 700; color: var(--gold); }
+        .item-card-actions { display: flex; gap: 6px; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 15px; }
         .modal.active { display: flex; }
         .modal-content { background: var(--card); padding: 20px; border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
@@ -48,7 +52,10 @@
         .alert.active { display: block; }
         .alert-success { background: var(--green); color: white; }
         .alert-error { background: var(--red); color: white; }
-        #debug-log { margin-top: 20px; padding: 10px; background: #000; color: #0f0; font-family: monospace; font-size: 10px; border-radius: 4px; display: none; max-height: 100px; overflow-y: auto; }
+        .question-text { font-size: 13px; line-height: 1.4; margin: 8px 0; }
+        .question-options { font-size: 12px; margin: 8px 0; }
+        .question-option { padding: 4px 0; }
+        .question-option.correct { color: var(--green); font-weight: 700; }
         @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -69,7 +76,6 @@
                 <h3 style="margin-bottom: 10px; font-size: 16px;">الكتب</h3>
                 <div id="books-list">جاري التحميل...</div>
                 <button class="btn btn-primary" onclick="showModal('addBook')">+ إضافة كتاب</button>
-                <div id="debug-log"></div>
             </div>
 
             <div class="content-area">
@@ -107,18 +113,13 @@
         let books = [];
         let currentBook = null;
         let currentChapters = [];
+        let editingChapterIdx = null;
+        let editingQuestionIdx = null;
         let config = {
             token: localStorage.getItem('gh_token'),
             user: localStorage.getItem('gh_user') || 'mohammed1920',
             repo: localStorage.getItem('gh_repo') || 'exam-platform-v2'
         };
-
-        function log(msg) {
-            const el = document.getElementById('debug-log');
-            el.style.display = 'block';
-            el.innerHTML += `> ${msg}<br>`;
-            el.scrollTop = el.scrollHeight;
-        }
 
         function showAlert(msg, type = 'success') {
             const box = document.getElementById('alert-box');
@@ -139,11 +140,9 @@
             const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' };
             const options = { method, headers };
             if (body) options.body = JSON.stringify(body);
-            log(`${method} ${path}`);
             const res = await fetch(url, options);
             if (!res.ok) {
                 const err = await res.json();
-                log(`ERROR: ${err.message}`);
                 throw new Error(err.message);
             }
             return res.json();
@@ -155,7 +154,6 @@
                 const data = await ghRequest('data/books.json');
                 books = JSON.parse(decode(data.content));
                 renderBooks();
-                log('تم تحميل الكتب بنجاح');
             } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
         }
 
@@ -172,6 +170,11 @@
         async function selectBook(id) {
             currentBook = books.find(b => b.id === id);
             document.getElementById('current-book-name').textContent = currentBook.title;
+            document.getElementById('current-book-info').innerHTML = `
+                <p><strong>المؤلف:</strong> ${currentBook.author || 'غير محدد'}</p>
+                <p><strong>الوصف:</strong> ${currentBook.description || 'بدون وصف'}</p>
+                <p><strong>عدد الفصول:</strong> ${currentBook.chapters || 0}</p>
+            `;
             renderBooks();
             await loadChapters();
             switchTab('overview');
@@ -184,9 +187,7 @@
                 currentChapters = JSON.parse(decode(data.content));
                 renderChapters();
                 updateChapterSelect();
-                log(`تم تحميل ${currentChapters.length} فصول`);
             } catch (e) {
-                log('لا توجد فصول لهذا الكتاب');
                 currentChapters = [];
                 renderChapters();
                 updateChapterSelect();
@@ -195,21 +196,28 @@
 
         function renderChapters() {
             const list = document.getElementById('chapters-list');
+            if (currentChapters.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
+                return;
+            }
             list.innerHTML = currentChapters.map((c, i) => `
                 <div class="item-card">
-                    <strong>${c.title}</strong>
-                    <div style="margin-top: 8px; display: flex; gap: 8px;">
-                        <button class="btn btn-secondary" style="padding: 4px 10px;" onclick="editChapter(${i})">تعديل</button>
-                        <button class="btn btn-red" style="padding: 4px 10px;" onclick="deleteChapter(${i})">حذف</button>
+                    <div class="item-card-header">
+                        <div class="item-card-title">${c.title}</div>
+                        <div class="item-card-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="editChapter(${i})">تعديل</button>
+                            <button class="btn btn-red btn-sm" onclick="deleteChapter(${i})">حذف</button>
+                        </div>
                     </div>
+                    <div style="font-size: 12px; color: var(--text-dim);">${(c.questions || []).length} أسئلة</div>
                 </div>
-            `).join('') || '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
+            `).join('');
         }
 
         function updateChapterSelect() {
             const sel = document.getElementById('chapter-select');
             sel.innerHTML = currentChapters.map((c, i) => `<option value="${i}">${c.title}</option>`).join('');
-            renderQuestions();
+            if (currentChapters.length > 0) renderQuestions();
         }
 
         function renderQuestions() {
@@ -217,18 +225,34 @@
             const list = document.getElementById('questions-list');
             if (idx === "" || !currentChapters[idx]) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
             const qs = currentChapters[idx].questions || [];
-            list.innerHTML = qs.map((q, i) => `
-                <div class="item-card">
-                    <p><strong>س ${i+1}:</strong> ${q.q}</p>
-                    <div style="font-size: 12px; margin: 8px 0;">
-                        ${q.opts.map((o, oi) => `<div style="${oi === q.ans ? 'color: var(--green); font-weight: 700;' : ''}">${oi+1}) ${o}</div>`).join('')}
+            if (qs.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-dim)">لا توجد أسئلة في هذا الفصل.</p>';
+                return;
+            }
+            list.innerHTML = qs.map((q, i) => {
+                const qText = q.q || q.question || '';
+                const opts = q.opts || q.options || [];
+                const ans = q.ans !== undefined ? q.ans : q.correct;
+                return `
+                    <div class="item-card">
+                        <div class="item-card-header">
+                            <div class="item-card-title">س ${i+1}</div>
+                            <div class="item-card-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="editQuestion(${idx}, ${i})">تعديل</button>
+                                <button class="btn btn-red btn-sm" onclick="deleteQuestion(${idx}, ${i})">حذف</button>
+                            </div>
+                        </div>
+                        <div class="question-text">${qText}</div>
+                        <div class="question-options">
+                            ${opts.map((o, oi) => `
+                                <div class="question-option ${oi === ans ? 'correct' : ''}">
+                                    ${oi+1}) ${o}
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 8px;">
-                        <button class="btn btn-secondary" style="padding: 4px 10px;" onclick="editQuestion(${idx}, ${i})">تعديل</button>
-                        <button class="btn btn-red" style="padding: 4px 10px;" onclick="deleteQuestion(${idx}, ${i})">حذف</button>
-                    </div>
-                </div>
-            `).join('') || '<p style="color:var(--text-dim)">لا توجد أسئلة في هذا الفصل.</p>';
+                `;
+            }).join('');
         }
 
         function switchTab(id) {
@@ -248,17 +272,26 @@
         }
 
         function showModal(type) {
+            editingChapterIdx = null;
+            editingQuestionIdx = null;
             const body = document.getElementById('modal-body');
             let html = '';
             if (type === 'addBook') {
                 html = `<h3>إضافة كتاب جديد</h3>
                     <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
                     <div class="form-group"><label>المعرف (English - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
+                    <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
+                    <div class="form-group"><label>الوصف</label><textarea id="m-desc" placeholder="وصف الكتاب"></textarea></div>
                     <button class="btn btn-primary" onclick="saveBook()">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
                 html = `<h3>إضافة فصل جديد</h3>
                     <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول"></div>
                     <button class="btn btn-primary" onclick="saveChapter()">إضافة الفصل</button>`;
+            } else if (type === 'editChapter') {
+                const ch = currentChapters[editingChapterIdx];
+                html = `<h3>تعديل الفصل</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${ch.title}"></div>
+                    <button class="btn btn-primary" onclick="saveChapter()">حفظ التعديلات</button>`;
             } else if (type === 'addQuestion') {
                 html = `<h3>إضافة سؤال جديد</h3>
                     <div class="form-group"><label>نص السؤال</label><textarea id="m-q"></textarea></div>
@@ -268,6 +301,20 @@
                     <div class="form-group"><label>خيار 4</label><input id="m-o4"></div>
                     <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
                     <button class="btn btn-primary" onclick="saveQuestion()">إضافة السؤال</button>`;
+            } else if (type === 'editQuestion') {
+                const chIdx = document.getElementById('chapter-select').value;
+                const q = currentChapters[chIdx].questions[editingQuestionIdx];
+                const qText = q.q || q.question || '';
+                const opts = q.opts || q.options || [];
+                const ans = (q.ans !== undefined ? q.ans : q.correct) + 1;
+                html = `<h3>تعديل السؤال</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q">${qText}</textarea></div>
+                    <div class="form-group"><label>خيار 1</label><input id="m-o1" value="${opts[0] || ''}"></div>
+                    <div class="form-group"><label>خيار 2</label><input id="m-o2" value="${opts[1] || ''}"></div>
+                    <div class="form-group"><label>خيار 3</label><input id="m-o3" value="${opts[2] || ''}"></div>
+                    <div class="form-group"><label>خيار 4</label><input id="m-o4" value="${opts[3] || ''}"></div>
+                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4" value="${ans}"></div>
+                    <button class="btn btn-primary" onclick="saveQuestion()">حفظ التعديلات</button>`;
             }
             body.innerHTML = html + `<button class="btn btn-secondary" style="margin-top:10px; width:100%" onclick="closeModal()">إلغاء</button>`;
             document.getElementById('modal').classList.add('active');
@@ -278,8 +325,10 @@
         async function saveBook() {
             const id = document.getElementById('m-id').value.trim();
             const title = document.getElementById('m-title').value.trim();
+            const author = document.getElementById('m-author').value.trim();
+            const desc = document.getElementById('m-desc').value.trim();
             if (!id || !title) return;
-            books.push({ id, title, chapters: 0 });
+            books.push({ id, title, author, description: desc, chapters: 0 });
             try {
                 const sha = (await ghRequest('data/books.json')).sha;
                 await ghRequest('data/books.json', 'PUT', { message: 'إضافة كتاب', content: encode(JSON.stringify(books, null, 2)), sha });
@@ -291,31 +340,76 @@
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
             if (!title || !currentBook) return;
-            currentChapters.push({ title, questions: [] });
             try {
+                if (editingChapterIdx !== null) {
+                    currentChapters[editingChapterIdx].title = title;
+                } else {
+                    currentChapters.push({ title, questions: [] });
+                }
                 let sha = null;
                 try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'تحديث الفصول', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
                 currentBook.chapters = currentChapters.length;
                 const bSha = (await ghRequest('data/books.json')).sha;
-                await ghRequest('data/books.json', 'PUT', { message: 'تحديث الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
-                showAlert('تمت إضافة الفصل بنجاح');
+                await ghRequest('data/books.json', 'PUT', { message: 'تحديث عدد الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
+                showAlert(editingChapterIdx !== null ? 'تم تعديل الفصل بنجاح' : 'تمت إضافة الفصل بنجاح');
                 closeModal(); loadChapters();
             } catch (e) { showAlert(e.message, 'error'); }
         }
 
         async function saveQuestion() {
-            const idx = document.getElementById('chapter-select').value;
+            const chIdx = document.getElementById('chapter-select').value;
             const q = document.getElementById('m-q').value.trim();
             const opts = [document.getElementById('m-o1').value, document.getElementById('m-o2').value, document.getElementById('m-o3').value, document.getElementById('m-o4').value];
             const ans = parseInt(document.getElementById('m-ans').value) - 1;
             if (!q || isNaN(ans)) return;
-            currentChapters[idx].questions.push({ q, opts, ans });
             try {
+                if (editingQuestionIdx !== null) {
+                    currentChapters[chIdx].questions[editingQuestionIdx] = { q, opts, ans };
+                } else {
+                    currentChapters[chIdx].questions.push({ q, opts, ans });
+                }
                 const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
-                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'إضافة سؤال', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
-                showAlert('تمت إضافة السؤال بنجاح');
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'تحديث الأسئلة', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال بنجاح');
                 closeModal(); renderQuestions();
+            } catch (e) { showAlert(e.message, 'error'); }
+        }
+
+        function editChapter(idx) {
+            editingChapterIdx = idx;
+            showModal('editChapter');
+        }
+
+        async function deleteChapter(idx) {
+            if (!confirm('هل أنت متأكد من حذف هذا الفصل؟')) return;
+            try {
+                currentChapters.splice(idx, 1);
+                let sha = null;
+                try { sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha; } catch(e){}
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'حذف فصل', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                currentBook.chapters = currentChapters.length;
+                const bSha = (await ghRequest('data/books.json')).sha;
+                await ghRequest('data/books.json', 'PUT', { message: 'تحديث عدد الفصول', content: encode(JSON.stringify(books, null, 2)), sha: bSha });
+                showAlert('تم حذف الفصل بنجاح');
+                loadChapters();
+            } catch (e) { showAlert(e.message, 'error'); }
+        }
+
+        function editQuestion(chIdx, qIdx) {
+            editingQuestionIdx = qIdx;
+            document.getElementById('chapter-select').value = chIdx;
+            showModal('editQuestion');
+        }
+
+        async function deleteQuestion(chIdx, qIdx) {
+            if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+            try {
+                currentChapters[chIdx].questions.splice(qIdx, 1);
+                const sha = (await ghRequest(`data/${currentBook.id}/chapters.json`)).sha;
+                await ghRequest(`data/${currentBook.id}/chapters.json`, 'PUT', { message: 'حذف سؤال', content: encode(JSON.stringify(currentChapters, null, 2)), sha });
+                showAlert('تم حذف السؤال بنجاح');
+                renderQuestions();
             } catch (e) { showAlert(e.message, 'error'); }
         }
 
