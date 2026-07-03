@@ -1,0 +1,32 @@
+name: تحديث المنصة التلقائي
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: تحديث الأسئلة
+        run: |
+          python3 update_questions.py update
+          python3 update_questions.py validate
+      - name: رفع التغييرات
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/books.json
+          git diff --staged --quiet || (git commit -m "تحديث تلقائي للفهرس [skip ci]" && git push)
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
