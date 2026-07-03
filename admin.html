@@ -115,6 +115,7 @@
         let currentChapters = [];
         let editingChapterIdx = null;
         let editingQuestionIdx = null;
+        let editingChapterForQuestion = null;
         let config = {
             token: localStorage.getItem('gh_token'),
             user: localStorage.getItem('gh_user') || 'mohammed1920',
@@ -272,8 +273,11 @@
         }
 
         function showModal(type) {
-            editingChapterIdx = null;
-            editingQuestionIdx = null;
+            if (type !== 'editChapter' && type !== 'editQuestion') {
+                editingChapterIdx = null;
+                editingQuestionIdx = null;
+                editingChapterForQuestion = null;
+            }
             const body = document.getElementById('modal-body');
             let html = '';
             if (type === 'addBook') {
@@ -358,7 +362,7 @@
         }
 
         async function saveQuestion() {
-            const chIdx = document.getElementById('chapter-select').value;
+            const chIdx = editingChapterForQuestion !== null ? editingChapterForQuestion : parseInt(document.getElementById('chapter-select').value);
             const q = document.getElementById('m-q').value.trim();
             const opts = [document.getElementById('m-o1').value, document.getElementById('m-o2').value, document.getElementById('m-o3').value, document.getElementById('m-o4').value];
             const ans = parseInt(document.getElementById('m-ans').value) - 1;
@@ -397,6 +401,7 @@
         }
 
         function editQuestion(chIdx, qIdx) {
+            editingChapterForQuestion = chIdx;
             editingQuestionIdx = qIdx;
             document.getElementById('chapter-select').value = chIdx;
             showModal('editQuestion');
