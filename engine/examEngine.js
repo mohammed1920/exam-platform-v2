@@ -14,6 +14,11 @@ class ExamEngine {
     this.endTime = null;
     this.currentBook = null;
     this.currentChapter = null;
+    
+    // تحديد المسار الأساسي للموقع (خاصة لـ GitHub Pages)
+    this.basePath = window.location.pathname.includes('/exam-platform-v2') 
+      ? '/exam-platform-v2' 
+      : '';
   }
 
   /**
@@ -22,12 +27,21 @@ class ExamEngine {
   async loadBooks() {
     try {
       const timestamp = new Date().getTime();
-      const response = await fetch(`./data/books.json?v=${timestamp}`);
+      const url = `${this.basePath}/data/books.json?v=${timestamp}`;
+      console.log('Loading books from:', url);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const books = await response.json();
       return books;
     } catch (error) {
       console.error('خطأ في تحميل الكتب:', error);
-      return [];
+      // محاولة بديلة بالمسار النسبي البسيط
+      try {
+        const response = await fetch(`./data/books.json?v=${new Date().getTime()}`);
+        return await response.json();
+      } catch (e) {
+        return [];
+      }
     }
   }
 
@@ -37,7 +51,12 @@ class ExamEngine {
   async loadChapter(bookId, chapterNum) {
     try {
       const timestamp = new Date().getTime();
-      const response = await fetch(`./data/${bookId}/chapter_${chapterNum}.json?v=${timestamp}`);
+      const url = `${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${timestamp}`;
+      console.log('Loading chapter from:', url);
+      
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
       const chapter = await response.json();
       this.currentBook = bookId;
       this.currentChapter = chapterNum;
@@ -50,7 +69,23 @@ class ExamEngine {
       return chapter;
     } catch (error) {
       console.error('خطأ في تحميل الفصل:', error);
-      return null;
+      // محاولة بديلة بالمسار النسبي البسيط
+      try {
+        const url = `./data/${bookId}/chapter_${chapterNum}.json?v=${new Date().getTime()}`;
+        const response = await fetch(url);
+        const chapter = await response.json();
+        this.currentBook = bookId;
+        this.currentChapter = chapterNum;
+        this.questions = chapter.questions;
+        this.totalQuestions = chapter.questions.length;
+        this.currentQuestionIndex = 0;
+        this.score = 0;
+        this.userAnswers = [];
+        this.startTime = new Date();
+        return chapter;
+      } catch (e) {
+        return null;
+      }
     }
   }
 
@@ -79,7 +114,7 @@ class ExamEngine {
       userAnswer: question.options[optionIndex],
       correctAnswer: question.options[question.correct],
       isCorrect: isCorrect,
-      explanation: question.explanation
+      explanation: question.explanation || "لا يوجد شرح متوفر حالياً."
     });
 
     if (isCorrect) {
@@ -181,9 +216,13 @@ class ExamEngine {
     const history = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key.startsWith('exam_')) {
-        const data = JSON.parse(localStorage.getItem(key));
-        history.push({ key, ...data });
+      if (key && key.startsWith('exam_')) {
+        try {
+          const data = JSON.parse(localStorage.getItem(key));
+          history.push({ key, ...data });
+        } catch (e) {
+          console.error('Error parsing history item:', key);
+        }
       }
     }
     return history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
