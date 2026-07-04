@@ -3,7 +3,6 @@
   "book_id": "law_organizations",
   "chapter": 3,
   "title": "الفصل الرابع - ١٠٠ سؤال",
-  "description": "",
   "questions": [
     {
       "id": "791186",
@@ -14,9 +13,8 @@
         "وصي",
         "رشول"
       ],
-      "answer": 0,
-      "explanation": "",
-      "ans": 1
+      "answer": 1,
+      "explanation": ""
     },
     {
       "id": "413904",
@@ -28,8 +26,7 @@
         "خ"
       ],
       "answer": 0,
-      "explanation": "",
-      "ans": 1
+      "explanation": ""
     }
   ]
 }
