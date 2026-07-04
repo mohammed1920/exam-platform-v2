@@ -1,7 +1,7 @@
 /**
  * Exam Platform V2 - Main Application
  * تطبيق منصة الاختبارات الرئيسي المحدث بالكامل
- * عشوائية كاملة للخيارات مع تطابق التصحيح والفوتر الديناميكي الفاخر
+ * تم إيقاف الانتقال التلقائي وإصلاح زر الرجوع للهاتف بنجاح
  */
 
 class ExamApp {
@@ -22,34 +22,31 @@ class ExamApp {
       await this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
-      this.handleInitialState();
+      
+      // حفظ الحالة الأولية في تاريخ المتصفح
+      history.replaceState({ view: 'books' }, '');
+      this.navigateTo('books', {}, false);
     } catch (error) {
       console.error('Initialization error:', error);
     }
   }
 
-  // دالة نسخة عميقة وخلط الخيارات مع ترحيل مؤشر الإجابة الصحيحة ديناميكياً
   prepareChapterQuestions(originalQuestions) {
     if (!originalQuestions || !Array.isArray(originalQuestions)) return [];
     
-    // أخذ نسخة عميقة لمنع التداخل مع كاش المتصفح أو الملف الأصلي
     const questionsCopy = JSON.parse(JSON.stringify(originalQuestions));
 
     return questionsCopy.map(q => {
       if (!q.options || q.options.length === 0) return q;
 
-      // 1. حفظ النص الفعلي للإجابة الصحيحة المحددة من الآدمن
       const correctText = q.options[q.answer];
 
-      // 2. بعثرة الخيارات عشوائياً للطالب (Fisher-Yates Shuffle)
       for (let i = q.options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
       }
 
-      // 3. تحديث مؤشر الإجابة ليكون هو مكان النص الجديد بدقة 100%
       q.answer = q.options.indexOf(correctText);
-
       return q;
     });
   }
@@ -174,7 +171,6 @@ class ExamApp {
       return;
     }
 
-    // خلط الأسئلة وحفظ النسخة المخلّطة داخل متغير مستقل في الذاكرة لضمان ثباتها
     this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
     examEngine.questions = this.currentQuestions;
     
@@ -198,7 +194,6 @@ class ExamApp {
     title.innerText = `${this.currentBook.title} - الفصل ${this.currentChapter} (${qIdx + 1} من ${total})`;
     fill.style.width = `${((qIdx + 1) / total) * 100}%`;
 
-    // استرجاع ما إذا كان الطالب قد أجاب على هذا السؤال مسبقاً لمنع التكرار البصري
     const pastAns = examEngine.userAnswers.find(a => a.questionText === q.question);
 
     container.innerHTML = `
@@ -232,11 +227,7 @@ class ExamApp {
       btnEl.classList.add('incorrect');
       allButtons[q.answer].classList.add('correct');
     }
-
-    // الانتقال التلقائي الخفيف بعد ثانية واحدة لراحة المستخدم
-    setTimeout(() => {
-      this.nextQuestion();
-    }, 1200);
+    // تم حذف الـ setTimeout نهائياً لمنع الانتقال التلقائي بناءً على طلبك
   }
 
   nextQuestion() {
@@ -322,17 +313,29 @@ class ExamApp {
     }, 1000);
   }
 
-  navigateTo(viewId, params = {}) {
+  // دالة الملاحة المحسنة لدعم أزرار الرجوع للهواتف بدون الخروج من الموقع
+  navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const section = document.getElementById(`${viewId}-section`);
     if (section) section.classList.add('active');
+    
+    if (pushState) {
+      history.pushState({ view: viewId, bookId: this.currentBook ? this.currentBook.id : null, chapter: this.currentChapter }, '');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   setupEventListeners() {
     document.getElementById('back-to-books').onclick = () => this.backToBooks();
     document.getElementById('back-books-btn').onclick = () => this.backToBooks();
-    document.getElementById('back-from-review').onclick = () => this.backToBooks();
+    document.getElementById('back-from-review').onclick = () => {
+      if (this.currentBook) {
+        this.navigateTo('chapters');
+        this.renderChapters();
+      } else {
+        this.backToBooks();
+      }
+    };
     document.getElementById('prev-btn').onclick = () => this.prevQuestion();
     document.getElementById('next-btn').onclick = () => this.nextQuestion();
     document.getElementById('restart-exam-btn').onclick = () => this.restartExam();
@@ -340,13 +343,40 @@ class ExamApp {
     document.getElementById('search-input').oninput = () => this.filterBooks();
   }
 
+  // مستمع أحداث زر الرجوع الفيزيائي للهاتف
   setupHistoryListener() {
-    window.onpopstate = () => this.handleInitialState();
-  }
+    window.onpopstate = (event) => {
+      if (event.state && event.state.view) {
+        const view = event.state.view;
+        
+        // إيقاف مؤقت الفحص إذا خرج من الاختبار النشط
+        if (view !== 'exam' && this.timerInterval) {
+          clearInterval(this.timerInterval);
+          this.examActive = false;
+          document.body.classList.remove('exam-mode');
+        }
 
-  handleInitialState() {
-    this.navigateTo('books');
+        if (view === 'books') {
+          this.currentBook = null;
+          this.currentChapter = null;
+          this.navigateTo('books', {}, false);
+          this.renderBooks(this.books);
+        } else if (view === 'chapters') {
+          this.currentChapter = null;
+          this.navigateTo('chapters', {}, false);
+          this.renderChapters();
+        } else if (view === 'exam') {
+          this.navigateTo('exam', {}, false);
+          this.renderQuestion();
+        } else {
+          this.navigateTo(view, {}, false);
+        }
+      } else {
+        this.navigateTo('books', {}, false);
+      }
+    };
   }
 }
 
 window.app = new ExamApp();
+
