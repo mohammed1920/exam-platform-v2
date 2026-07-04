@@ -15,7 +15,8 @@
         "رشول"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "ans": 1
     },
     {
       "id": "413904",
@@ -27,7 +28,8 @@
         "خ"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "ans": 1
     }
   ]
 }
