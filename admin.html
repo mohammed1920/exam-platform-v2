@@ -696,9 +696,11 @@
                 
                 // رفع التحديثات إلى GitHub
                 await commitFiles([
-                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                    { path: 'index.html', content: document.documentElement.outerHTML }
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) }
                 ], `تحديث مسميات ووصف كتاب: ${newTitle}`);
+                
+                // تحديث index.html بشكل آمن (فقط مصفوفة الكتب)
+                await updateIndexAndBooks();
                 
                 // تحديث الواجهة
                 document.getElementById('current-book-name').textContent = newTitle;
