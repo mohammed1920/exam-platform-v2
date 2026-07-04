@@ -142,44 +142,28 @@ header p {
   font-weight: 600;
 }
 
-/* Start Exam Button */
-.book-card::after {
-  content: 'دخول الاختبار';
-  display: block;
-  width: calc(100% + 40px);
-  margin: 15px -20px -20px -20px;
-  padding: 12px 20px;
-  background: var(--primary);
-  color: var(--bg-dark);
-  font-weight: 700;
-  border-radius: 0 0 16px 16px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.book-card:hover::after {
-  background: var(--primary-hover);
-}
-
-/* زر دخول الاختبار الموحد */
+/* زر دخول الاختبار الموحد - شريط ذهبي فاخر */
 .book-start-btn {
   display: block;
   width: calc(100% + 40px);
-  margin: 15px -20px -20px -20px;
-  padding: 12px 20px;
+  margin: 20px -20px -20px -20px;
+  padding: 15px 20px;
   background: var(--primary);
   color: var(--bg-dark);
-  font-weight: 700;
+  font-weight: 900;
   border: none;
   border-radius: 0 0 16px 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'Cairo', sans-serif;
+  text-align: center;
 }
 
 .book-start-btn:hover {
   background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* التنسيق الشامل لأي زر داخل بطاقة الكتاب */
