@@ -9,6 +9,7 @@ class ExamApp {
     this.books = [];
     this.currentBook = null;
     this.currentChapter = null;
+    this.currentQuestions = []; // مصفوفة الأسئلة المحضرة والمخلوطة
     this.examActive = false;
     this.timerInterval = null;
     this.init();
@@ -25,26 +26,28 @@ class ExamApp {
     this.handleInitialState();
   }
 
-  // ===== دالة خلط خيارات السؤال وتحديث الإجابة الصحيحة ديناميكياً =====
-  shuffleQuestionOptions(questionObj) {
-    // 1. استخراج وحفظ النص الفعلي للإجابة الصحيحة قبل الخلط
-    const correctOptionText = questionObj.options[questionObj.answer];
+  // ===== دالة تجهيز أسئلة الفصل بنسخة عميقة وخلط الخيارات مع ضمان دقة التصحيح =====
+  prepareChapterQuestions(originalQuestions) {
+    // أخذ نسخة عميقة ونظيفة (Deep Copy) لمنع التداخل مع أي بيانات ثابتة
+    const questionsCopy = JSON.parse(JSON.stringify(originalQuestions));
 
-    // 2. خلط مصفوفة الخيارات باستخدام خوارزمية Fisher-Yates
-    for (let i = questionObj.options.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [questionObj.options[i], questionObj.options[j]] = [questionObj.options[j], questionObj.options[i]];
-    }
+    return questionsCopy.map(q => {
+      if (!q.options || q.options.length === 0) return q;
 
-    // 3. البحث عن الموقع الجديد للإجابة الصحيحة وتحديث حقل answer
-    questionObj.answer = questionObj.options.indexOf(correctOptionText);
-    
-    return questionObj;
-  }
+      // 1. حفظ النص الفعلي للإجابة الصحيحة الأصلية قبل البعثرة
+      const correctText = q.options[q.answer];
 
-  // ===== دالة خلط جميع أسئلة الفصل =====
-  shuffleAllQuestions(questions) {
-    return questions.map(q => this.shuffleQuestionOptions(q));
+      // 2. خلط الخيارات عشوائياً باستخدام Fisher-Yates
+      for (let i = q.options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
+      }
+
+      // 3. تحديث الاندكس (رقم الإجابة) ليكون هو المكان الجديد للنص الصحيح بدقة
+      q.answer = q.options.indexOf(correctText);
+
+      return q;
+    });
   }
 
   async loadContactInfo() {
@@ -70,16 +73,15 @@ class ExamApp {
         contactHtml += `<a href="tel:${data.phone}"><i class="fas fa-phone"></i> ${data.phone}</a>`;
       }
       if (data.email) {
-        if (contactHtml) contactHtml += '<div class="separator"></div>';
-        contactHtml += `<a href="mailto:${data.email}"><i class="fas fa-envelope"></i> ${data.email}</a>`;
+        contactHtml += ` | <a href="mailto:${data.email}"><i class="fas fa-envelope"></i> ${data.email}</a>`;
       }
       footerContact.innerHTML = contactHtml;
     }
     
-    if (footerLinks && data.social_links) {
-      footerLinks.innerHTML = data.social_links.map(link => `
-        <a href="${link.url}" target="_blank" class="footer-btn">${link.label}</a>
-      `).join('');
+    if (footerLinks && data.social_links && data.social_links.length > 0) {
+      footerLinks.innerHTML = data.social_links.map(link => 
+        `<a href="${link.url}" target="_blank" class="footer-link-btn">${link.label}</a>`
+      ).join('');
     }
   }
 
@@ -88,38 +90,12 @@ class ExamApp {
     const bookId = params.get('book');
     const chapterNum = params.get('chapter');
 
-    if (bookId) {
+    if (bookId && chapterNum) {
       const book = this.books.find(b => b.id === bookId);
       if (book) {
-        if (chapterNum) {
-          this.startExam(bookId, parseInt(chapterNum), false);
-        } else {
-          this.selectBook(book, false);
-        }
+        this.selectBook(book);
+        setTimeout(() => this.startExam(bookId, parseInt(chapterNum), false), 500);
       }
-    } else {
-      history.replaceState({ page: 'books' }, '', window.location.pathname);
-    }
-  }
-
-  setupHistoryListener() {
-    window.addEventListener('popstate', (event) => {
-      if (event.state) {
-        this.handleNavigation(event.state);
-      } else {
-        this.backToBooks(false);
-      }
-    });
-  }
-
-  handleNavigation(state) {
-    if (!state || state.page === 'books') {
-      this.backToBooks(false);
-    } else if (state.page === 'chapters' && state.book) {
-      this.showChapters(state.book, false);
-    } else if (state.page === 'exam') {
-      // إذا رجع المستخدم من النتيجة أو الامتحان
-      this.backToBooks(false);
     }
   }
 
@@ -171,15 +147,13 @@ class ExamApp {
     }
   }
 
-  renderBooks(booksToRender = null) {
-    const booksContainer = document.getElementById('books-container');
+  renderBooks(booksArray = this.books) {
+    const booksContainer = document.getElementById('books-grid');
     const noResults = document.getElementById('no-results');
-    const booksArray = booksToRender || this.books;
     
-    if (!booksContainer) return;
     booksContainer.innerHTML = '';
-
-    if (booksArray.length === 0) {
+    
+    if (!booksArray || booksArray.length === 0) {
       if (noResults) noResults.style.display = 'block';
       return;
     }
@@ -218,19 +192,20 @@ class ExamApp {
       this.renderBooks();
       return;
     }
-    const filtered = this.books.filter(book => 
+
+    const filtered = this.books.filter(book =>
       book.title.toLowerCase().includes(query) ||
+      book.author.toLowerCase().includes(query) ||
       book.description.toLowerCase().includes(query)
     );
+
     this.renderBooks(filtered);
   }
 
-  selectBook(book, pushHistory = true) {
+  selectBook(book) {
     this.currentBook = book;
-    if (pushHistory) {
-      const newUrl = this.updateURL('chapters', { bookId: book.id });
-      history.pushState({ page: 'chapters', book }, '', newUrl);
-    }
+    const newUrl = this.updateURL('chapters', { bookId: book.id });
+    history.pushState({ page: 'chapters', bookId: book.id }, '', newUrl);
     this.showChapters(book);
   }
 
@@ -314,10 +289,13 @@ class ExamApp {
     const chapter = await examEngine.loadChapter(bookId, chapterNum);
     if (!chapter) return;
 
-    // خلط خيارات الأسئلة بمجرد تحميل الفصل
-    if (chapter.questions && chapter.questions.length > 0) {
-      this.shuffleAllQuestions(chapter.questions);
-    }
+    // تجهيز أسئلة الفصل بنسخة عميقة وخلط الخيارات
+    this.currentQuestions = this.prepareChapterQuestions(chapter.questions);
+    
+    // تحديث محرك الاختبارات بالأسئلة المحضرة
+    examEngine.questions = this.currentQuestions;
+    examEngine.totalQuestions = this.currentQuestions.length;
+    examEngine.currentQuestionIndex = 0;
 
     this.currentChapter = chapterNum;
     this.examActive = true;
@@ -355,27 +333,28 @@ class ExamApp {
       btn.className = 'option-btn';
       btn.setAttribute('data-letter', letters[index] || '');
       btn.textContent = option;
-      btn.addEventListener('click', () => this.selectAnswer(index));
+      btn.addEventListener('click', () => this.checkAnswer(index));
       optionsContainer.appendChild(btn);
     });
 
     this.updateProgress();
-    document.getElementById('next-btn').style.display = 'none';
   }
 
-  selectAnswer(optionIndex) {
-    const isCorrect = examEngine.submitAnswer(optionIndex);
+  checkAnswer(selectedIndex) {
     const question = examEngine.getCurrentQuestion();
-    const buttons = document.querySelectorAll('.option-btn');
+    if (!question) return;
 
+    const isCorrect = selectedIndex === question.answer;
+    examEngine.recordAnswer(selectedIndex, isCorrect);
+
+    const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach((btn, idx) => {
-      btn.disabled = true;
-      btn.classList.add('disabled');
       if (idx === question.answer) {
         btn.classList.add('correct');
-      } else if (idx === optionIndex && !isCorrect) {
+      } else if (idx === selectedIndex && !isCorrect) {
         btn.classList.add('wrong');
       }
+      btn.disabled = true;
     });
 
     const feedback = document.getElementById('feedback');
@@ -472,8 +451,12 @@ class ExamApp {
     examEngine.startTime = new Date(); // إعادة ضبط وقت البدء
 
     // إعادة خلط الخيارات عند إعادة الاختبار لتجربة جديدة
-    if (examEngine.questions && examEngine.questions.length > 0) {
-      this.shuffleAllQuestions(examEngine.questions);
+    if (this.currentQuestions && this.currentQuestions.length > 0) {
+      this.currentQuestions = this.prepareChapterQuestions(this.currentQuestions.map(q => {
+        // استعادة الأسئلة الأصلية من examEngine قبل الخلط
+        return examEngine.questions.find(eq => eq.id === q.id) || q;
+      }));
+      examEngine.questions = this.currentQuestions;
     }
     
     this.examActive = true;
