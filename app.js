@@ -1,7 +1,7 @@
 /**
  * Exam Platform V2 - Main Application
- * تطبيق منصة الاختبارات الرئيسي المطور
- * تم التوحيد: استخدام المفاتيح الموحدة لضمان الأمان واستقرار الواجهة.
+ * تطبيق منصة الاختبارات الرئيسي المحدث بالكامل
+ * تم إيقاف الانتقال التلقائي وإصلاح زر الرجوع للهاتف بنجاح
  */
 
 class ExamApp {
@@ -9,7 +9,7 @@ class ExamApp {
     this.books = [];
     this.currentBook = null;
     this.currentChapter = null;
-    this.currentQuestions = []; // مصفوفة الأسئلة المحضرة والمخلوطة
+    this.currentQuestions = [];
     this.examActive = false;
     this.timerInterval = null;
     this.init();
@@ -18,103 +18,106 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     try {
-      // التحقق الآمن من تحميل محرك الاختبارات لتفادي خطأ توقف جلب الكتب
-      if (typeof ExamEngine !== 'undefined') {
-        window.examEngine = new ExamEngine();
-      } else {
-        console.warn('ExamEngine is not defined yet. Retrying in 300ms...');
-        setTimeout(() => this.init(), 300);
-        return;
-      }
-
       await this.loadBooks();
-      await this.loadContactInfo(); // تحميل أزرار ومعلومات التواصل في الفوتر
+      await this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
       
-      // فحص الرابط عند التحميل لأول مرة لتحديد الواجهة المناسبة
-      this.handleInitialState();
+      // حفظ الحالة الأولية في تاريخ المتصفح
+      history.replaceState({ view: 'books' }, '');
+      this.navigateTo('books', {}, false);
     } catch (error) {
       console.error('Initialization error:', error);
     }
   }
 
-  // ===== دالة تجهيز أسئلة الفصل بنسخة عميقة وخلط الخيارات =====
   prepareChapterQuestions(originalQuestions) {
     if (!originalQuestions || !Array.isArray(originalQuestions)) return [];
     
-    // أخذ نسخة عميقة ونظيفة (Deep Copy) لمنع التداخل مع أي بيانات ثابتة أثناء التنقل
     const questionsCopy = JSON.parse(JSON.stringify(originalQuestions));
 
     return questionsCopy.map(q => {
       if (!q.options || q.options.length === 0) return q;
 
-      // 1. حفظ النص الفعلي للإجابة الصحيحة الأصلية قبل البعثرة
       const correctText = q.options[q.answer];
 
-      // 2. خلط الخيارات عشوائياً باستخدام خوارزمية Fisher-Yates
-      const shuffledOptions = [...q.options];
-      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+      for (let i = q.options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+        [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
       }
 
-      // 3. العثور على الفهرس الجديد للنص الصحيح داخل المصفوفة المبعثرة
-      const newAnswerIndex = shuffledOptions.indexOf(correctText);
-
-      // 4. إرجاع كائن السؤال المحدث بالخيارات الجديدة وفهرس الإجابة الصحيح
-      return {
-        ...q,
-        options: shuffledOptions,
-        answer: newAnswerIndex !== -1 ? newAnswerIndex : q.answer
-      };
+      q.answer = q.options.indexOf(correctText);
+      return q;
     });
   }
 
   async loadBooks() {
-    if (window.examEngine) {
-      // جلب البيانات من المحرك الرئيسي مباشرة
-      this.books = await window.examEngine.loadBooks();
-      this.renderBooks(this.books);
-    } else {
-      console.error('ExamEngine instance not available.');
-    }
+    window.examEngine = new ExamEngine();
+    this.books = await examEngine.loadBooks();
+    this.renderBooks(this.books);
   }
 
   async loadContactInfo() {
-    // دالة افتراضية مخصصة لتحديث روابط التواصل الاجتماعي أو الدعم بالفوتر عند الحاجة
-    console.log('Contact info loaded.');
+    try {
+      const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+      const res = await fetch(`${basePath}/data/contact.json?v=${Date.now()}`);
+      if (res.ok) {
+        const data = await res.json();
+        this.renderContactInfo(data);
+      }
+    } catch (e) {
+      console.error('Contact loading failed:', e);
+    }
+  }
+
+  renderContactInfo(data) {
+    if (!data) return;
+    const footerContact = document.getElementById('footerContactDetails');
+    const footerLinks = document.getElementById('footerSocialButtons');
+    
+    if (footerContact) {
+      let contactHtml = '';
+      if (data.phone) {
+        contactHtml += `<a href="tel:${data.phone}"><i class="fas fa-phone"></i> ${data.phone}</a>`;
+      }
+      if (data.email) {
+        contactHtml += ` | <a href="mailto:${data.email}"><i class="fas fa-envelope"></i> ${data.email}</a>`;
+      }
+      footerContact.innerHTML = contactHtml;
+    }
+    
+    if (footerLinks && data.social_links && data.social_links.length > 0) {
+      footerLinks.innerHTML = data.social_links.map(link => 
+        `<a href="${link.url}" target="_blank" class="footer-link-btn"><i class="fab fa-telegram-plane"></i> ${link.label}</a>`
+      ).join('');
+    }
   }
 
   renderBooks(booksList) {
-    const container = document.getElementById('books-grid');
+    const container = document.getElementById('books-container');
     if (!container) return;
-
     container.innerHTML = '';
-    
-    if (!booksList || booksList.length === 0) {
-      container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 40px;">جاري تحميل الكتب أو لا توجد كتب متاحة حالياً...</div>';
+
+    if (booksList.length === 0) {
+      container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-secondary);">لا توجد كتب مطابقة للبحث</p>';
       return;
     }
 
     booksList.forEach(book => {
       const card = document.createElement('div');
       card.className = 'book-card';
-      // تطبيق اللون المخصص للكتاب إن وجد في ملف التعريف
-      if (book.color) {
-        card.style.borderTop = `4px solid ${book.color}`;
-      }
-      
       card.innerHTML = `
-        <div class="book-icon"><i class="fas fa-book-scale"></i></div>
         <div>
+          <div class="book-icon"><i class="fas fa-gavel"></i></div>
           <div class="book-title">${book.title}</div>
           <div class="book-author">${book.author || 'مستشار قانوني'}</div>
-          <div class="book-desc">${book.description || 'لا يوجد وصف متوفر حالياً لهذا الكتاب القانوني.'}</div>
+          <div class="book-desc">${book.description || ''}</div>
         </div>
-        <div class="book-meta">
-          <span class="chapters-badge">${book.chapters || 0} فصول</span>
-          <button style="margin-top: 10px;" onclick="window.examApp.selectBook('${book.id}')">عرض الفصول</button>
+        <div>
+          <div class="book-meta">
+            <span class="chapters-badge">⏳ ${book.chapters || 0} فصل</span>
+          </div>
+          <button onclick="app.selectBook('${book.id}')">دخول الاختبار</button>
         </div>
       `;
       container.appendChild(card);
@@ -122,11 +125,7 @@ class ExamApp {
   }
 
   filterBooks() {
-    const query = document.getElementById('search-input')?.value.trim().toLowerCase() || '';
-    if (!query) {
-      this.renderBooks(this.books);
-      return;
-    }
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
     const filtered = this.books.filter(b => 
       b.title.toLowerCase().includes(query) || 
       (b.description && b.description.toLowerCase().includes(query))
@@ -134,324 +133,250 @@ class ExamApp {
     this.renderBooks(filtered);
   }
 
-  async selectBook(bookId) {
-    this.currentBook = this.books.find(b => b.id === bookId);
-    if (!this.currentBook) return;
-
-    this.navigateTo('chapters', { bookId });
-    this.renderChaptersView();
+  selectBook(bookId) {
+    const book = this.books.find(b => b.id === bookId);
+    if (!book) return;
+    this.currentBook = book;
+    this.navigateTo('chapters', { book: bookId });
+    this.renderChapters();
   }
 
-  renderChaptersView() {
-    const titleElem = document.getElementById('book-view-title');
-    const descElem = document.getElementById('book-view-desc');
-    const listContainer = document.getElementById('chapters-list');
+  renderChapters() {
+    const header = document.getElementById('chapters-header');
+    const container = document.getElementById('chapters-container');
+    if (!header || !container) return;
 
-    if (titleElem) titleElem.textContent = this.currentBook.title;
-    if (descElem) descElem.textContent = this.currentBook.description || '';
-    if (listContainer) {
-      listContainer.innerHTML = '';
-      
-      const totalChapters = this.currentBook.chapters || 0;
-      if (totalChapters === 0) {
-        listContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-secondary);">لا توجد فصول متوفرة لهذا الكتاب حالياً.</div>';
-        return;
-      }
+    header.innerHTML = `<h2>${this.currentBook.title}</h2><p>اختر الفصل الذي تريد بدء امتحانه:</p>`;
+    container.innerHTML = '';
 
-      for (let i = 1; i <= totalChapters; i++) {
-        const item = document.createElement('div');
-        item.className = 'chapter-item';
-        item.innerHTML = `
-          <div class="chapter-info">
-            <h3>الفصل ${i}</h3>
-            <p>مجموعة اختبارات مخصصة لأسئلة المادة</p>
-          </div>
-          <button class="footer-link-btn" onclick="window.examApp.startChapterExam('${this.currentBook.id}', ${i})">ابدأ الاختبار</button>
-        `;
-        listContainer.appendChild(item);
-      }
+    for (let i = 1; i <= this.currentBook.chapters; i++) {
+      const item = document.createElement('div');
+      item.className = 'chapter-item';
+      item.innerHTML = `
+        <div class="chapter-info">
+          <h3>الفصل ${i}</h3>
+          <p>اسئلة مخصصة لـ الفصل ${i}</p>
+        </div>
+        <button class="exam-btn next" onclick="app.startExam(${i})" style="width:auto; border-radius:8px !important;">ابدأ 🚀</button>
+      `;
+      container.appendChild(item);
     }
   }
 
-  async startChapterExam(bookId, chapterNum) {
-    if (!window.examEngine) return;
-    
-    // إظهار واجهة التحميل المؤقتة
-    document.body.classList.add('exam-mode');
-    
-    const chapterData = await window.examEngine.loadChapter(bookId, chapterNum);
-    if (!chapterData || !chapterData.questions || chapterData.questions.length === 0) {
-      alert('نعتذر، لم يتم العثور على أسئلة لهذا الفصل أو الملف غير متوفر حالياً.');
-      document.body.classList.remove('exam-mode');
+  async startExam(chapterNum) {
+    this.currentChapter = chapterNum;
+    const success = await examEngine.loadChapter(this.currentBook.id, chapterNum);
+    if (!success) {
+      alert('عذراً، لم يتم العثور على أسئلة لهذا الفصل بعد.');
       return;
     }
 
-    this.currentBook = this.books.find(b => b.id === bookId);
-    this.currentChapter = chapterNum;
+    this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
+    examEngine.questions = this.currentQuestions;
     
-    // بعثرة الأسئلة والخيارات محلياً بالدالة النظيفة مع الحفاظ على سلامة محرك التصحيح
-    this.currentQuestions = this.prepareChapterQuestions(chapterData.questions);
-    
-    // إعادة تعيين بيانات المحرك للبدء الفعلي بأسئلة الامتحان الجديدة المخلّطة
-    window.examEngine.questions = this.currentQuestions;
-    window.examEngine.totalQuestions = this.currentQuestions.length;
-    window.examEngine.currentQuestionIndex = 0;
-    window.examEngine.score = 0;
-    window.examEngine.userAnswers = [];
-    window.examEngine.startTime = new Date();
-
     this.examActive = true;
-    this.navigateTo('exam', { bookId, chapter: chapterNum });
+    document.body.classList.add('exam-mode');
+    this.navigateTo('exam', { book: this.currentBook.id, chapter: chapterNum });
+    this.startTimer();
     this.renderQuestion();
   }
 
   renderQuestion() {
-    if (!window.examEngine) return;
-    const engine = window.examEngine;
-    const q = engine.questions[engine.currentQuestionIndex];
-    if (!q) return;
+    const container = document.getElementById('question-container');
+    const title = document.getElementById('exam-book-chapter');
+    const fill = document.getElementById('progress-fill');
+    if (!container || !title || !fill) return;
 
-    // تحديث البار العلوي والمؤشرات الرقمية للامتحان
-    const currentQElem = document.getElementById('current-question-num');
-    const totalQElem = document.getElementById('total-questions-num');
-    const progressBar = document.getElementById('exam-progress-bar');
-    const qTextElem = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
+    const qIdx = examEngine.currentQuestionIndex;
+    const total = examEngine.questions.length;
+    const q = examEngine.questions[qIdx];
 
-    if (currentQElem) currentQElem.textContent = engine.currentQuestionIndex + 1;
-    if (totalQElem) totalQElem.textContent = engine.totalQuestions;
-    
-    if (progressBar) {
-      const pct = ((engine.currentQuestionIndex) / engine.totalQuestions) * 100;
-      progressBar.style.width = `${pct}%`;
-    }
+    title.innerText = `${this.currentBook.title} - الفصل ${this.currentChapter} (${qIdx + 1} من ${total})`;
+    fill.style.width = `${((qIdx + 1) / total) * 100}%`;
 
-    if (qTextElem) qTextElem.textContent = q.question;
-    
-    if (optionsContainer) {
-      optionsContainer.innerHTML = '';
-      q.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = option;
-        
-        // التحقق مما إذا كان المستخدم قد أجاب مسبقاً على هذا السؤال (في حالة التنقل للخلف)
-        const existingAns = engine.userAnswers.find(a => a.questionIndex === engine.currentQuestionIndex);
-        if (existingAns) {
-          btn.classList.add('disabled');
-          btn.disabled = true;
-          if (index === q.answer) {
-            btn.classList.add('correct');
-          } else if (index === q.options.indexOf(existingAns.userAnswer)) {
-            btn.classList.add('incorrect');
+    const pastAns = examEngine.userAnswers.find(a => a.questionText === q.question);
+
+    container.innerHTML = `
+      <div class="question-text">${q.question}</div>
+      <div class="options-list">
+        ${q.options.map((opt, i) => {
+          let extraClass = '';
+          if (pastAns) {
+            if (opt === pastAns.userAnswer && !pastAns.isCorrect) extraClass = 'incorrect';
+            if (opt === pastAns.correctAnswer) extraClass = 'correct';
           }
-        } else {
-          btn.onclick = () => this.handleAnswerSelect(index);
-        }
-        optionsContainer.appendChild(btn);
-      });
-    }
+          return `<button class="option-btn ${extraClass}" ${pastAns ? 'disabled class="disabled"' : ''} onclick="app.handleAnswer(${i}, this)">${opt}</button>`;
+        }).join('')}
+      </div>
+    `;
 
-    // إدارة ظهور زر السابق
-    const prevBtn = document.getElementById('prev-question-btn');
-    if (prevBtn) {
-      prevBtn.style.display = engine.currentQuestionIndex > 0 ? 'block' : 'none';
-    }
+    document.getElementById('prev-btn').style.visibility = qIdx === 0 ? 'hidden' : 'visible';
+    document.getElementById('next-btn').innerText = qIdx === total - 1 ? 'إنهاء الاختبار 🏁' : 'السؤال التالي';
   }
 
-  handleAnswerSelect(optionIndex) {
-    if (!window.examEngine) return;
-    const engine = window.examEngine;
+  handleAnswer(optIdx, btnEl) {
+    const isCorrect = examEngine.submitAnswer(optIdx);
+    const q = examEngine.questions[examEngine.currentQuestionIndex];
     
-    // تسجيل الإجابة داخل المحرك الأصلي والتصحيح الفوري
-    engine.answerQuestion(optionIndex);
-    
-    // إعادة تلوين واجهة الخيارات فوراً لإظهار الإجابة الصحيحة والخاطئة للمستخدم
-    const optionsContainer = document.getElementById('options-container');
-    if (optionsContainer) {
-      const buttons = optionsContainer.getElementsByClassName('option-btn');
-      const currentQ = engine.questions[engine.currentQuestionIndex];
-      
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.add('disabled');
-        buttons[i].disabled = true;
-        if (i === currentQ.answer) {
-          buttons[i].classList.add('correct');
-        } else if (i === optionIndex) {
-          buttons[i].classList.add('incorrect');
-        }
-      }
-    }
+    const allButtons = btnEl.parentElement.querySelectorAll('.option-btn');
+    allButtons.forEach(b => b.disabled = true);
 
-    // الانتقال التلقائي للسؤال التالي بعد ثانية واحدة لإعطاء المستخدم فرصة لرؤية الجواب
-    setTimeout(() => {
-      if (engine.currentQuestionIndex < engine.questions.length - 1) {
-        engine.nextQuestion();
-        this.renderQuestion();
-      } else {
-        this.showResults();
-      }
-    }, 1100);
+    if (isCorrect) {
+      btnEl.classList.add('correct');
+    } else {
+      btnEl.classList.add('incorrect');
+      allButtons[q.answer].classList.add('correct');
+    }
+    // تم حذف الـ setTimeout نهائياً لمنع الانتقال التلقائي بناءً على طلبك
+  }
+
+  nextQuestion() {
+    const hasNext = examEngine.nextQuestion();
+    if (hasNext) {
+      this.renderQuestion();
+    } else {
+      this.endExam();
+    }
   }
 
   prevQuestion() {
-    if (window.examEngine && window.examEngine.currentQuestionIndex > 0) {
-      window.examEngine.currentQuestionIndex--;
+    if (examEngine.currentQuestionIndex > 0) {
+      examEngine.currentQuestionIndex--;
       this.renderQuestion();
     }
   }
 
-  exitExam() {
-    if (confirm('هل أنت متأكد من رغبتك في إنهاء الاختبار والعودة للقائمة الرئيسية؟ لن يتم حفظ تقدمك.')) {
-      this.backToBooks();
-    }
-  }
-
-  showResults() {
+  endExam() {
+    clearInterval(this.timerInterval);
     this.examActive = false;
     document.body.classList.remove('exam-mode');
+    const res = examEngine.finishExam();
+
+    this.navigateTo('results', { book: this.currentBook.id, chapter: this.currentChapter, status: 'done' });
     
-    if (!window.examEngine) return;
-    const summary = window.examEngine.finishExam();
-
-    this.navigateTo('results', { bookId: this.currentBook.id, chapter: this.currentChapter });
-
-    const gradeElem = document.getElementById('res-grade');
-    const percentElem = document.getElementById('res-percent');
-    const scoreElem = document.getElementById('res-score');
-    const reviewBtn = document.getElementById('review-errors-btn');
-
-    if (gradeElem) gradeElem.innerHTML = `${summary.grade.emoji} ${summary.grade.grade}`;
-    if (percentElem) percentElem.textContent = `${summary.percentage}%`;
-    if (scoreElem) scoreElem.textContent = `لقد أجبت بشكل صحيح على ${summary.score} من أصل ${summary.totalQuestions} سؤال.`;
+    document.getElementById('result-grade').innerText = `${res.grade.emoji} ${res.grade.grade}`;
+    document.getElementById('result-score').innerText = `النتيجة: ${res.score} / ${res.totalQuestions}`;
+    document.getElementById('result-percent').innerText = `${res.percentage}%`;
     
-    // التحكم بظهور زر مراجعة الأخطاء بناء على وجود أخطاء فعليّة أم علامة كاملة
-    if (reviewBtn) {
-      const wrongCount = window.examEngine.getWrongAnswers().length;
-      reviewBtn.style.display = wrongCount > 0 ? 'block' : 'none';
-    }
+    const mins = Math.floor(res.duration / 60);
+    const secs = res.duration % 60;
+    document.getElementById('result-time').innerText = mins > 0 ? `${mins} دقيقة و ${secs} ثانية` : `${secs} ثانية`;
   }
 
   showReview() {
-    if (!window.examEngine) return;
-    const wrongAnswers = window.examEngine.getWrongAnswers();
-    if (wrongAnswers.length === 0) return;
+    const wrong = examEngine.getWrongAnswers();
+    if (wrong.length === 0) {
+      alert('تهانينا! لا توجد لديك أي إجابات خاطئة لمراجعتها.');
+      return;
+    }
+    this.navigateTo('review', { book: this.currentBook.id, chapter: this.currentChapter, view: 'review' });
+    const content = document.getElementById('review-content');
+    content.innerHTML = '';
 
-    this.navigateTo('review', { bookId: this.currentBook.id, chapter: this.currentChapter });
-    
-    const reviewContent = document.getElementById('review-content');
-    if (!reviewContent) return;
-    reviewContent.innerHTML = '';
-
-    wrongAnswers.forEach((ans, index) => {
+    wrong.forEach((ans, idx) => {
       const item = document.createElement('div');
       item.className = 'review-item';
       item.innerHTML = `
-        <div class="review-question"><strong>س${index + 1}:</strong> ${ans.questionText}</div>
+        <div class="review-question"><strong>س${idx + 1}:</strong> ${ans.questionText}</div>
         <div class="review-answer incorrect">❌ إجابتك: ${ans.userAnswer}</div>
         <div class="review-answer correct">✔ الإجابة الصحيحة: ${ans.correctAnswer}</div>
-        ${ans.explanation ? `<div class="review-explanation"><strong>📚 الشرح القانوني:</strong> ${ans.explanation}</div>` : ''}
+        ${ans.explanation ? `<div class="review-explanation"><strong>📚 الشرح:</strong> ${ans.explanation}</div>` : ''}
       `;
-      reviewContent.appendChild(item);
+      content.appendChild(item);
     });
   }
 
   restartExam() {
-    if (this.currentBook && this.currentChapter) {
-      this.startChapterExam(this.currentBook.id, this.currentChapter);
-    }
+    this.startExam(this.currentChapter);
   }
 
   backToBooks() {
+    clearInterval(this.timerInterval);
     this.examActive = false;
+    document.body.classList.remove('exam-mode');
     this.currentBook = null;
     this.currentChapter = null;
-    this.currentQuestions = [];
-    document.body.classList.remove('exam-mode');
-    
-    const searchInp = document.getElementById('search-input');
-    if (searchInp) searchInp.value = '';
-    
-    this.loadBooks();
     this.navigateTo('books');
+    this.renderBooks(this.books);
   }
 
-  // ===== إدارة التنقل البرمجي الآمن وحالة المتصفح التاريخية (History URL Setup) =====
+  startTimer() {
+    clearInterval(this.timerInterval);
+    const el = document.getElementById('exam-timer');
+    let sec = 0;
+    el.innerText = '00:00';
+    this.timerInterval = setInterval(() => {
+      sec++;
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      el.innerText = `${m}:${s}`;
+    }, 1000);
+  }
+
+  // دالة الملاحة المحسنة لدعم أزرار الرجوع للهواتف بدون الخروج من الموقع
   navigateTo(viewId, params = {}, pushState = true) {
-    const views = ['books-view', 'chapters-view', 'exam-view', 'results-container', 'review-container'];
-    views.forEach(v => {
-      const elem = document.getElementById(v);
-      if (elem) elem.classList.remove('active');
-    });
-
-    let targetView = 'books-view';
-    if (viewId === 'chapters') targetView = 'chapters-view';
-    if (viewId === 'exam') targetView = 'exam-view';
-    if (viewId === 'results') targetView = 'results-container';
-    if (viewId === 'review') targetView = 'review-container';
-
-    const targetElem = document.getElementById(targetView);
-    if (targetElem) targetElem.classList.add('active');
-
-    // إظهار أو إخفاء محرك البحث العلوي حسب الصفحة
-    const searchBar = document.getElementById('main-search-bar');
-    if (searchBar) {
-      searchBar.style.display = viewId === 'books' ? 'block' : 'none';
-    }
-
+    document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    const section = document.getElementById(`${viewId}-section`);
+    if (section) section.classList.add('active');
+    
     if (pushState) {
-      history.pushState({ view: viewId, ...params }, '');
+      history.pushState({ view: viewId, bookId: this.currentBook ? this.currentBook.id : null, chapter: this.currentChapter }, '');
     }
-  }
-
-  setupHistoryListener() {
-    window.onpopstate = (event) => {
-      if (!event.state) {
-        this.backToBooks();
-        return;
-      }
-      const state = event.state;
-      if (state.view === 'books') {
-        this.backToBooks();
-      } else if (state.view === 'chapters' && state.bookId) {
-        this.selectBook(state.bookId);
-      } else if (state.view === 'exam') {
-        // حماية الامتحان من الإغلاق غير المتوقع عند الضغط على زر الرجوع في الهاتف
-        if (this.examActive) {
-          history.pushState(state, ''); 
-          if (confirm('هل تود الخروج من قاعة الامتحان والعودة للرئيسية؟')) {
-            this.backToBooks();
-          }
-        }
-      }
-    };
-  }
-
-  handleInitialState() {
-    // العودة للرئيسية كحالة أمان عند بدء تشغيل وتحديث المتصفح
-    this.navigateTo('books', {}, false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   setupEventListeners() {
-    const prevBtn = document.getElementById('prev-question-btn');
-    const exitBtn = document.getElementById('exit-exam-btn');
-    const restartBtn = document.getElementById('restart-exam-btn');
-    const backToBooksBtn = document.getElementById('back-to-books-btn');
-    const reviewBtn = document.getElementById('review-errors-btn');
-    const backReviewBtn = document.getElementById('back-from-review-btn');
-    const searchInput = document.getElementById('search-input');
+    document.getElementById('back-to-books').onclick = () => this.backToBooks();
+    document.getElementById('back-books-btn').onclick = () => this.backToBooks();
+    document.getElementById('back-from-review').onclick = () => {
+      if (this.currentBook) {
+        this.navigateTo('chapters');
+        this.renderChapters();
+      } else {
+        this.backToBooks();
+      }
+    };
+    document.getElementById('prev-btn').onclick = () => this.prevQuestion();
+    document.getElementById('next-btn').onclick = () => this.nextQuestion();
+    document.getElementById('restart-exam-btn').onclick = () => this.restartExam();
+    document.getElementById('review-exam-btn').onclick = () => this.showReview();
+    document.getElementById('search-input').oninput = () => this.filterBooks();
+  }
 
-    if (prevBtn) prevBtn.onclick = () => this.prevQuestion();
-    if (exitBtn) exitBtn.onclick = () => this.exitExam();
-    if (restartBtn) restartBtn.onclick = () => this.restartExam();
-    if (backToBooksBtn) backToBooksBtn.onclick = () => this.backToBooks();
-    if (reviewBtn) reviewBtn.onclick = () => this.showReview();
-    if (backReviewBtn) backReviewBtn.onclick = () => this.backToBooks();
-    if (searchInput) searchInput.oninput = () => this.filterBooks();
+  // مستمع أحداث زر الرجوع الفيزيائي للهاتف
+  setupHistoryListener() {
+    window.onpopstate = (event) => {
+      if (event.state && event.state.view) {
+        const view = event.state.view;
+        
+        // إيقاف مؤقت الفحص إذا خرج من الاختبار النشط
+        if (view !== 'exam' && this.timerInterval) {
+          clearInterval(this.timerInterval);
+          this.examActive = false;
+          document.body.classList.remove('exam-mode');
+        }
+
+        if (view === 'books') {
+          this.currentBook = null;
+          this.currentChapter = null;
+          this.navigateTo('books', {}, false);
+          this.renderBooks(this.books);
+        } else if (view === 'chapters') {
+          this.currentChapter = null;
+          this.navigateTo('chapters', {}, false);
+          this.renderChapters();
+        } else if (view === 'exam') {
+          this.navigateTo('exam', {}, false);
+          this.renderQuestion();
+        } else {
+          this.navigateTo(view, {}, false);
+        }
+      } else {
+        this.navigateTo('books', {}, false);
+      }
+    };
   }
 }
 
-// تشغيل وربط التطبيق بالنافذة العامة فور تحميل المستند لضمان استجابة أزرار الـ HTML
-document.addEventListener('DOMContentLoaded', () => {
-  window.examApp = new ExamApp();
-});
+window.app = new ExamApp();
+
