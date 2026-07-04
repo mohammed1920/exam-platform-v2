@@ -84,6 +84,7 @@
             <div style="display:flex;gap:8px;">
                 <button class="btn btn-secondary" onclick="openSettings()">⚙️ الإعدادات</button>
                 <button class="btn btn-green" onclick="window.location.href='index.html'">👁️ عرض الموقع</button>
+                <button class="btn btn-secondary" onclick="logout()" style="background-color: #ef4444; color: white; border: none;">🚪 تسجيل خروج</button>
             </div>
         </header>
 
@@ -195,6 +196,14 @@
                 throw new Error(err.message || `HTTP ${res.status}`);
             }
             return res.json();
+        }
+
+        // ===== تسجيل الخروج =====
+        function logout() {
+            localStorage.removeItem('gh_token');
+            localStorage.removeItem('gh_user');
+            localStorage.removeItem('gh_repo');
+            window.location.href = 'index.html';
         }
 
         // GitHub Trees API - لرفع ملفات متعددة في commit واحد
