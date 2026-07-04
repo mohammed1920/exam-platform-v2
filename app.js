@@ -389,7 +389,7 @@ class ExamApp {
     if (!question) return;
 
     const isCorrect = selectedIndex === question.answer;
-    examEngine.recordAnswer(selectedIndex, isCorrect);
+    examEngine.submitAnswer(selectedIndex);
 
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach((btn, idx) => {
