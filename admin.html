@@ -377,7 +377,8 @@
             list.innerHTML = qs.map((q, i) => {
                 const qText = q.q || q.question || '';
                 const opts = q.opts || q.options || [];
-                const ans = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
+                // استخدام الحقل answer حصراً - تجاهل ans تماماً
+                const ans = q.answer !== undefined ? q.answer : (q.correct !== undefined ? q.correct : q.ans);
                 const isPending = modifiedQuestionsIndices.includes(i);
                 return `
                     <div class="item-card ${isPending ? 'pending' : ''}">
@@ -390,12 +391,15 @@
                         </div>
                         <div class="question-text">${qText}</div>
                         <div class="question-options">
-                            ${opts.map((o, oi) => `
-                                <label class="question-option-radio ${oi === ans ? 'selected' : ''}">
-                                    <input type="radio" name="q_${i}_ans" value="${oi}" ${oi === ans ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
+                            ${opts.map((o, oi) => {
+                                const isCorrect = (q.answer === oi);
+                                return `
+                                <label class="question-option-radio ${isCorrect ? 'selected' : ''}">
+                                    <input type="radio" name="q_${i}_ans" value="${oi}" ${isCorrect ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
                                     <span>${oi+1}) ${o}</span>
                                 </label>
-                            `).join('')}
+                            `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
@@ -406,8 +410,13 @@
         function stageAnswerChange(qIdx, newAnswerIdx) {
             if (!currentChapterData || !currentChapterData.questions[qIdx]) return;
             
-            // تحديث الإجابة في البيانات المحلية
-            currentChapterData.questions[qIdx].ans = newAnswerIdx;
+            // تحديث الإجابة في البيانات المحلية - استخدام الحقل answer حصراً
+            currentChapterData.questions[qIdx].answer = newAnswerIdx;
+            
+            // حذف الحقل ans إن وجد لمنع التكرار
+            if (currentChapterData.questions[qIdx].ans !== undefined) {
+                delete currentChapterData.questions[qIdx].ans;
+            }
             
             // إضافة رقم السؤال لمصفوفة التعديلات إذا لم يكن موجوداً
             if (!modifiedQuestionsIndices.includes(qIdx)) {
@@ -449,27 +458,58 @@
             }
             
             try {
+                // التأكد من عدم وجود حقل ans مكرر وتنظيف البيانات
+                const cleanedQuestions = currentChapterData.questions.map(q => {
+                    const cleaned = {
+                        id: q.id,
+                        question: q.question || q.q,
+                        options: q.options || q.opts,
+                        answer: q.answer !== undefined ? q.answer : q.ans,
+                        explanation: q.explanation || ''
+                    };
+                    // حذف أي حقول زائدة مثل ans أو q أو opts
+                    delete cleaned.ans;
+                    delete cleaned.q;
+                    delete cleaned.opts;
+                    delete cleaned.correct;
+                    return cleaned;
+                });
+                
+                // بناء بيانات الفصل النظيفة
+                const cleanChapterData = {
+                    id: currentChapterData.id,
+                    book_id: currentChapterData.book_id,
+                    chapter: currentChapterData.chapter,
+                    title: currentChapterData.title,
+                    questions: cleanedQuestions
+                };
+                
                 // إنشاء رسالة commit توضح عدد التعديلات
                 const commitMsg = `تحديث ${modifiedQuestionsIndices.length} إجابة في الفصل ${currentChapterNum}`;
                 
-                // رفع ملف الفصل كاملاً بالتحديثات الجديدة في commit واحد
+                // رفع ملف الفصل النظيف بالتحديثات الجديدة في commit واحد
                 await commitFiles([
-                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(cleanChapterData, null, 2) }
                 ], commitMsg);
                 
+                // تحديث البيانات المحلية بالبيانات النظيفة
+                currentChapterData = cleanChapterData;
+                
                 // تصفير مصفوفة التعديلات
+                const savedCount = modifiedQuestionsIndices.length;
                 modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
                 
                 // إعادة عرض الأسئلة
                 renderQuestions();
                 
-                showAlert(`✅ تم حفظ ${modifiedQuestionsIndices.length + 1} تعديلات بنجاح!`);
+                showAlert(`✅ تم حفظ ${savedCount} تعديلات بنجاح!`);
             } catch (e) {
                 showAlert('خطأ في الحفظ: ' + e.message, 'error');
             }
         }
 
+        // ===== 
         // ===== التبويبات =====
         function switchTab(id, e) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));

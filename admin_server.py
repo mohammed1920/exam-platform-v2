@@ -32,13 +32,14 @@ BOOKS_FILE = DATA_DIR / "books.json"
 
 # نماذج البيانات
 class Question(BaseModel):
-    q: str
-    opts: List[str]
-    ans: int
+    question: str
+    options: List[str]
+    answer: int
     explanation: Optional[str] = None
-    question: Optional[str] = None
-    options: Optional[List[str]] = None
-    answer: Optional[int] = None
+    # حقول إضافية لدعم التوافق المؤقت أثناء الاستلام
+    q: Optional[str] = None
+    opts: Optional[List[str]] = None
+    ans: Optional[int] = None
 
 class Chapter(BaseModel):
     id: str
@@ -256,9 +257,9 @@ async def add_question(book_id: str, chapter_id: int, question: Question):
         
         # إضافة السؤال
         question_dict = {
-            "q": question.q,
-            "opts": question.opts,
-            "ans": question.ans,
+            "question": question.question or question.q,
+            "options": question.options or question.opts,
+            "answer": question.answer if question.answer is not None else question.ans,
             "explanation": question.explanation or ""
         }
         chapter_data["questions"].append(question_dict)
@@ -287,15 +288,15 @@ async def update_question(book_id: str, chapter_id: int, question_id: int, quest
         if question_id < 0 or question_id >= len(chapter_data["questions"]):
             raise HTTPException(status_code=404, detail="السؤال غير موجود")
         
-        # دعم الحقول المختلفة لضمان التوافق
-        q_text = question.q or question.question
-        opts = question.opts or question.options
-        ans = question.ans if question.ans is not None else question.answer
+        # دعم الحقول المختلفة لضمان التوافق مع استخدام الحقل المعتمد فقط
+        q_text = question.question or question.q
+        opts = question.options or question.opts
+        ans = question.answer if question.answer is not None else question.ans
         
         chapter_data["questions"][question_id] = {
-            "q": q_text,
-            "opts": opts,
-            "ans": ans,
+            "question": q_text,
+            "options": opts,
+            "answer": ans,
             "explanation": question.explanation or ""
         }
         
@@ -313,13 +314,13 @@ async def update_chapter_full(book_id: str, chapter_num: int, chapter_data: Chap
         book_dir = DATA_DIR / book_id
         chapter_file = book_dir / f"chapter_{chapter_num}.json"
         
-        # تحويل البيانات إلى قاموس مع التأكد من صيغة الأسئلة
+        # تحويل البيانات إلى قاموس مع التأكد من صيغة الأسئلة (استخدام الحقل answer حصراً)
         final_questions = []
         for q in chapter_data.questions:
             final_questions.append({
-                "q": q.q or q.question,
-                "opts": q.opts or q.options,
-                "ans": q.ans if q.ans is not None else q.answer,
+                "question": q.question or q.q,
+                "options": q.options or q.opts,
+                "answer": q.answer if q.answer is not None else q.ans,
                 "explanation": q.explanation or ""
             })
         
