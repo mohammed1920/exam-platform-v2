@@ -5,20 +5,31 @@
   --text-secondary: #a3b1c6;
   --accent-gold: #cda45e;
   --correct-green: #2a9d8f;
-  --incorrect-red: #e63946;
+  --incorrect-red: #e63646;
 }
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
   background-color: var(--bg-main);
   color: var(--text-primary);
-  font-family: 'Cairo', sans-serif;
+  line-height: 1.4;
+  overflow-x: hidden;
   direction: rtl;
 }
 
-/* تنسيق الهيدر الرئيسي */
+/* إخفاء الهيدر والفوتر أثناء الامتحان للتركيز */
+body.exam-mode .main-header,
+body.exam-mode .main-footer {
+  display: none;
+}
+
+/* تنسيق الهيدر الرئيسي الملكي */
 .main-header {
   text-align: center;
   padding: 25px 15px 15px 15px;
@@ -51,7 +62,7 @@ body {
   margin: 0;
 }
 
-/* شريط البحث المودرن والدائري بالكامل مع الأيقونة بالداخل */
+/* شريط البحث المودرن والدائري بالكامل */
 .search-container {
   max-width: 500px;
   margin: 20px auto;
@@ -89,25 +100,32 @@ body {
   box-shadow: 0 0 8px rgba(205, 164, 94, 0.2);
 }
 
-/* تصميم الجريد للكروت المضغوطة والمصغرة للموبايل */
+/* حاوية الجريد المحدثة لضمان المسافات وظهور الكتب */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-  gap: 12px;
-  padding: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  row-gap: 16px;
+  column-gap: 16px;
+  padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* الكارت المصغر الفخم مع حواف وظل آمن */
 .book-card {
   background-color: var(--bg-card);
   border-radius: 12px;
-  padding: 12px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .book-icon {
@@ -131,7 +149,7 @@ body {
   margin-bottom: 6px;
 }
 
-/* جعل الوصف يظهر بسطرين كحد أقصى تلافياً للمساحات الضائعة */
+/* تحديد الوصف بسطرين كحد أقصى تلافياً للفراغات */
 .book-desc {
   font-size: 12px;
   color: var(--text-secondary);
@@ -160,7 +178,7 @@ body {
 .book-card button {
   width: 100%;
   background-color: var(--accent-gold);
-  color: #000;
+  color: #000000;
   border: none;
   padding: 8px 0;
   border-radius: 6px;
@@ -184,7 +202,7 @@ body {
   display: block;
 }
 
-/* بقية التنسيقات الضرورية للتشغيل */
+/* تنسيق النوافذ وصناديق الاختبار */
 .container-box, .exam-container {
   max-width: 600px;
   margin: 20px auto;
@@ -193,72 +211,292 @@ body {
   border-radius: 12px;
 }
 
-.nav-header { margin-bottom: 15px; }
+.nav-header { 
+  margin-bottom: 15px; 
+}
+
 .back-btn {
-  background: none; border: none; color: var(--text-secondary);
-  font-family: 'Cairo', sans-serif; font-size: 14px; cursor: pointer;
+  background: none; 
+  border: none; 
+  color: var(--text-secondary);
+  font-family: 'Cairo', sans-serif; 
+  font-size: 14px; 
+  cursor: pointer;
 }
 
-.section-title h2 { color: var(--accent-gold); margin: 0 0 5px 0; font-size: 20px;}
-.chapters-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.section-title h2 { 
+  color: var(--accent-gold); 
+  margin: 0 0 5px 0; 
+  font-size: 20px;
+}
+
+.chapters-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  margin-top: 15px; 
+}
+
 .chapter-item {
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  background: rgba(255,255,255,0.03); 
+  padding: 12px; 
+  border-radius: 8px;
 }
-.chapter-info h3 { margin: 0; font-size: 15px; }
-.chapter-info p { margin: 3px 0 0 0; font-size: 12px; color: var(--text-secondary); }
 
-.exam-header-bar { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
-.progress-container { background: rgba(255,255,255,0.1); border-radius: 10px; height: 6px; margin-bottom: 20px; overflow: hidden; }
-.progress-bar { background: var(--accent-gold); width: 0%; height: 100%; transition: width 0.3s; }
-.question-text { font-size: 16px; font-weight: bold; margin-bottom: 15px; line-height: 1.5; }
-.options-list { display: flex; flex-direction: column; gap: 10px; }
+.chapter-info h3 { 
+  margin: 0; 
+  font-size: 15px; 
+}
+
+.chapter-info p { 
+  margin: 3px 0 0 0; 
+  font-size: 12px; 
+  color: var(--text-secondary); 
+}
+
+.exam-header-bar { 
+  display: flex; 
+  justify-content: space-between; 
+  font-size: 13px; 
+  color: var(--text-secondary); 
+  margin-bottom: 10px; 
+}
+
+.progress-container { 
+  background: rgba(255,255,255,0.1); 
+  border-radius: 10px; 
+  height: 6px; 
+  margin-bottom: 20px; 
+  overflow: hidden; 
+}
+
+.progress-bar { 
+  background: var(--accent-gold); 
+  width: 0%; 
+  height: 100%; 
+  transition: width 0.3s; 
+}
+
+.question-text { 
+  font-size: 16px; 
+  font-weight: bold; 
+  margin-bottom: 15px; 
+  line-height: 1.5; 
+}
+
+.options-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
 
 .option-btn {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  color: var(--text-primary); padding: 12px; border-radius: 8px; text-align: right;
-  font-family: 'Cairo', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  background: rgba(255,255,255,0.05); 
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-primary); 
+  padding: 12px; 
+  border-radius: 8px; 
+  text-align: right;
+  font-family: 'Cairo', sans-serif; 
+  font-size: 14px; 
+  cursor: pointer; 
+  transition: all 0.2s;
 }
 
-.option-btn.correct { background-color: var(--correct-green) !important; color: white; border-color: var(--correct-green); }
-.option-btn.incorrect { background-color: var(--incorrect-red) !important; color: white; border-color: var(--incorrect-red); }
-.option-btn.disabled { opacity: 0.8; cursor: not-allowed; }
+.option-btn.correct { 
+  background-color: var(--correct-green) !important; 
+  color: white; 
+  border-color: var(--correct-green); 
+}
 
-.exam-actions { display: flex; justify-content: space-between; margin-top: 20px; gap: 10px; }
+.option-btn.incorrect { 
+  background-color: var(--incorrect-red) !important; 
+  color: white; 
+  border-color: var(--incorrect-red); 
+}
+
+.option-btn.disabled { 
+  opacity: 0.8; 
+  cursor: not-allowed; 
+}
+
+.exam-actions { 
+  display: flex; 
+  justify-content: space-between; 
+  margin-top: 20px; 
+  gap: 10px; 
+}
+
 .exam-btn {
-  flex: 1; padding: 10px; border-radius: 8px; font-family: 'Cairo', sans-serif;
-  font-weight: bold; font-size: 14px; border: none; cursor: pointer;
+  flex: 1; 
+  padding: 10px; 
+  border-radius: 8px; 
+  font-family: 'Cairo', sans-serif;
+  font-weight: bold; 
+  font-size: 14px; 
+  border: none; 
+  cursor: pointer;
 }
-.exam-btn.prev { background: #334155; color: white; }
-.exam-btn.next { background: var(--accent-gold); color: black; }
-.exit-exam-btn { background: none; border: none; color: var(--incorrect-red); font-family: 'Cairo', sans-serif; cursor: pointer; font-size: 13px;}
 
-/* كرت النتائج والمراجعة */
-.result-card { text-align: center; padding: 30px 15px; background: var(--bg-card); max-width: 450px; margin: 40px auto; border-radius: 16px; }
-.result-icon { font-size: 40px; }
-.result-grade { font-size: 22px; font-weight: bold; color: var(--accent-gold); margin: 10px 0; }
-.result-score { font-size: 18px; }
-.result-percent { font-size: 32px; font-weight: bold; color: var(--correct-green); margin: 5px 0; }
-.result-meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
-.result-buttons { display: flex; gap: 10px; }
-.res-btn { flex:1; padding: 10px; border: none; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: bold; cursor: pointer; font-size: 13px;}
-.res-btn.restart { background: var(--accent-gold); color: black; }
-.res-btn.review { background: #334155; color: white; }
+.exam-btn.prev { 
+  background: #334155; 
+  color: white; 
+}
 
-.review-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-.review-item { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border-right: 4px solid var(--incorrect-red); }
-.review-question { font-weight: bold; font-size: 14px; margin-bottom: 8px; }
-.review-answer { font-size: 13px; margin: 4px 0; }
-.review-answer.correct { color: var(--correct-green); }
-.review-answer.incorrect { color: var(--incorrect-red); }
-.review-explanation { font-size: 12px; color: var(--text-secondary); background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; margin-top: 6px; }
+.exam-btn.next { 
+  background: var(--accent-gold); 
+  color: black; 
+}
+
+.exit-exam-btn { 
+  background: none; 
+  border: none; 
+  color: var(--incorrect-red); 
+  font-family: 'Cairo', sans-serif; 
+  cursor: pointer; 
+  font-size: 13px;
+}
+
+/* كرت النتائج ومراجعة الأخطاء */
+.result-card { 
+  text-align: center; 
+  padding: 30px 15px; 
+  background: var(--bg-card); 
+  max-width: 450px; 
+  margin: 40px auto; 
+  border-radius: 16px; 
+}
+
+.result-icon { 
+  font-size: 40px; 
+}
+
+.result-grade { 
+  font-size: 22px; 
+  font-weight: bold; 
+  color: var(--accent-gold); 
+  margin: 10px 0; 
+}
+
+.result-score { 
+  font-size: 18px; 
+}
+
+.result-percent { 
+  font-size: 32px; 
+  font-weight: bold; 
+  color: var(--correct-green); 
+  margin: 5px 0; 
+}
+
+.result-meta { 
+  font-size: 13px; 
+  color: var(--text-secondary); 
+  margin-bottom: 20px; 
+}
+
+.result-buttons { 
+  display: flex; 
+  gap: 10px; 
+}
+
+.res-btn { 
+  flex:1; 
+  padding: 10px; 
+  border: none; 
+  border-radius: 8px; 
+  font-family: 'Cairo', sans-serif; 
+  font-weight: bold; 
+  cursor: pointer; 
+  font-size: 13px;
+}
+
+.res-btn.restart { 
+  background: var(--accent-gold); 
+  color: black; 
+}
+
+.res-btn.review { 
+  background: #334155; 
+  color: white; 
+}
+
+.review-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+  margin-top: 20px; 
+}
+
+.review-item { 
+  background: rgba(255,255,255,0.02); 
+  padding: 15px; 
+  border-radius: 8px; 
+  border-right: 4px solid var(--incorrect-red); 
+}
+
+.review-question { 
+  font-weight: bold; 
+  font-size: 14px; 
+  margin-bottom: 8px; 
+}
+
+.review-answer { 
+  font-size: 13px; 
+  margin: 4px 0; 
+}
+
+.review-answer.correct { 
+  color: var(--correct-green); 
+}
+
+.review-answer.incorrect { 
+  color: var(--incorrect-red); 
+}
+
+.review-explanation { 
+  font-size: 12px; 
+  color: var(--text-secondary); 
+  background: rgba(0,0,0,0.2); 
+  padding: 8px; 
+  border-radius: 4px; 
+  margin-top: 6px; 
+}
 
 /* الفوتر */
-.main-footer { text-align: center; padding: 30px 15px; font-size: 12px; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
-.footer-contact { margin: 8px 0; }
-.footer-contact a { color: var(--accent-gold); text-decoration: none; }
-.footer-social { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
-.footer-link-btn { background: #17203a; color: white; padding: 6px 12px; border-radius: 20px; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); }
+.main-footer { 
+  text-align: center; 
+  padding: 30px 15px; 
+  font-size: 12px; 
+  color: var(--text-secondary); 
+  border-top: 1px solid rgba(255,255,255,0.05); 
+  margin-top: 40px; 
+}
 
-/* إخفاء الهيدر أثناء الامتحان للتركيز */
-body.exam-mode .main-header { display: none; }
+.footer-contact { 
+  margin: 8px 0; 
+}
+
+.footer-contact a { 
+  color: var(--accent-gold); 
+  text-decoration: none; 
+}
+
+.footer-social { 
+  display: flex; 
+  justify-content: center; 
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+.footer-link-btn { 
+  background: #17203a; 
+  color: white; 
+  padding: 6px 12px; 
+  border-radius: 20px; 
+  text-decoration: none; 
+  border: 1px solid rgba(255,255,255,0.05); 
+}
