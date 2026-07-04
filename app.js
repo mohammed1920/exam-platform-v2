@@ -1,7 +1,7 @@
 /**
- * Exam Platform V2 - Main Application
- * تطبيق منصة الاختبارات الرئيسي المحدث بالكامل
- * تم إيقاف الانتقال التلقائي وإصلاح زر الرجوع للهاتف بنجاح
+ * Exam Platform - Main Application
+ * تطبيق منصة الاختبارات القانونية الرئيسي المحدث بالكامل
+ * تم إيقاف الانتقال التلقائي وإصلاح زر الرجوع للهاتف بنجاح بدون v2
  */
 
 class ExamApp {
@@ -59,7 +59,8 @@ class ExamApp {
 
   async loadContactInfo() {
     try {
-      const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+      // تعديل المسار ليتوافق مع اسم الموقع الحالي بدون v2
+      const basePath = window.location.pathname.includes('/exam-platform') ? '/exam-platform' : '';
       const res = await fetch(`${basePath}/data/contact.json?v=${Date.now()}`);
       if (res.ok) {
         const data = await res.json();
@@ -227,7 +228,7 @@ class ExamApp {
       btnEl.classList.add('incorrect');
       allButtons[q.answer].classList.add('correct');
     }
-    // تم حذف الـ setTimeout نهائياً لمنع الانتقال التلقائي بناءً على طلبك
+    // لا يوجد setTimeout للانتقال التلقائي بناءً على رغبتك، الضغط يدوي بالكامل
   }
 
   nextQuestion() {
@@ -313,7 +314,6 @@ class ExamApp {
     }, 1000);
   }
 
-  // دالة الملاحة المحسنة لدعم أزرار الرجوع للهواتف بدون الخروج من الموقع
   navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const section = document.getElementById(`${viewId}-section`);
@@ -343,13 +343,11 @@ class ExamApp {
     document.getElementById('search-input').oninput = () => this.filterBooks();
   }
 
-  // مستمع أحداث زر الرجوع الفيزيائي للهاتف
   setupHistoryListener() {
     window.onpopstate = (event) => {
       if (event.state && event.state.view) {
         const view = event.state.view;
         
-        // إيقاف مؤقت الفحص إذا خرج من الاختبار النشط
         if (view !== 'exam' && this.timerInterval) {
           clearInterval(this.timerInterval);
           this.examActive = false;
@@ -379,4 +377,3 @@ class ExamApp {
 }
 
 window.app = new ExamApp();
-
