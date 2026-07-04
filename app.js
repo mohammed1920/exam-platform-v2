@@ -389,10 +389,35 @@ class ExamApp {
     examEngine.reset();
   }
 
+  restartExam() {
+    // تصفير الإحصائيات مع الحفاظ على نفس الكتاب والفصل الحالي بالذاكرة
+    examEngine.currentQuestionIndex = 0;
+    examEngine.score = 0;
+    examEngine.userAnswers = [];
+    examEngine.startTime = new Date(); // إعادة ضبط وقت البدء
+    
+    this.examActive = true;
+    document.body.classList.add('exam-mode');
+
+    // تحديث الواجهة: إخفاء واجهة النتائج وإظهار واجهة الأسئلة
+    document.getElementById('results-container').classList.remove('active');
+    document.getElementById('exam-container').classList.add('active');
+    
+    // تصفير واجهة الدرجات
+    document.getElementById('current-score').textContent = '0';
+    document.getElementById('wrong-score').textContent = '0';
+
+    // إعادة تشغيل المؤقت
+    this.startTimer();
+    
+    // إعادة عرض السؤال الأول فوراً
+    this.displayQuestion();
+  }
+
   setupEventListeners() {
     document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
     document.getElementById('back-btn').addEventListener('click', () => this.backToBooks());
-    document.getElementById('restart-btn').addEventListener('click', () => this.backToBooks());
+    document.getElementById('restart-btn').addEventListener('click', () => this.restartExam());
     document.getElementById('back-to-books-btn').addEventListener('click', () => this.backToBooks());
     
     const reviewBtn = document.getElementById('review-btn');
