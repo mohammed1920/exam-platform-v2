@@ -1,291 +1,123 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الاختبارات القانونية V2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=1.3">
-    <style>
-        /* تأثيرات الخيارات */
-        .option-btn {
-            transition: all 0.3s ease;
-            border: 2px solid #334155;
-        }
-        .option-btn:hover:not(.disabled) {
-            border-color: #c29d5f;
-            transform: translateY(-2px);
-        }
-        .option-btn.correct {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border-color: #10b981;
-            color: white;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-        }
-        .option-btn.incorrect,
-        .option-btn.wrong {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            border-color: #ef4444;
-            color: white;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-        }
-        .option-btn.disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        .option-btn.correct::after {
-            content: ' ✓';
-            font-weight: bold;
-        }
-        .option-btn.incorrect::after {
-            content: ' ✗';
-            font-weight: bold;
-        }
-        /* واجهة المراجعة */
-        .review-item {
-            background: #1e293b;
-            border: 2px solid #334155;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 5px solid #c29d5f;
-        }
-        .review-question {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #e2e8f0;
-        }
-        .review-answer {
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        .review-answer.correct {
-            background: #064e3b;
-            color: #10b981;
-            border-left: 4px solid #10b981;
-        }
-        .review-answer.incorrect {
-            background: #7f1d1d;
-            color: #fca5a5;
-            border-left: 4px solid #ef4444;
-        }
-        .review-explanation {
-            background: #0f172a;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            border-right: 3px solid #c29d5f;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة الاختبارات القانونية V2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=1.3">
+  <style>
+    .option-btn {
+      transition: all 0.3s ease;
+      border: 2px solid #334155;
+    }
+    .option-btn:hover:not(.disabled) {
+      border-color: #c29d5f;
+      transform: translateY(-2px);
+    }
+    .option-btn.correct {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-color: #10b981;
+      color: white;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+    .option-btn.incorrect {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border-color: #ef4444;
+      color: white;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1><i class="fas fa-balance-scale"></i> منصة الاختبارات القانونية</h1>
-        <p>النسخة الثانية - منصة اختبارات حديثة وسهلة الاستخدام</p>
-    </header>
 
-    <!-- Main Container -->
+  <header>
+    <h1>منصة الاختبارات القانونية V2</h1>
+    <p>أداة ذكية لاختبار وتطوير معلوماتك القانونية بأسلوب حديث</p>
+  </header>
+
+  <main class="container">
+    <section id="books-section" class="view-section active">
+      <div class="search-container">
+        <div class="search-wrapper">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-input" placeholder="ابحث عن كتاب قانوني...">
+        </div>
+      </div>
+      <div class="books-grid" id="books-container">
+        </div>
+    </section>
+
+    <section id="chapters-section" class="view-section">
+      <button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button>
+      <div id="chapters-header" style="margin-bottom: 25px;"></div>
+      <div class="chapters-list" id="chapters-container">
+        </div>
+    </section>
+
+    <section id="exam-section" class="view-section">
+      <div class="exam-box">
+        <div class="exam-header">
+          <div class="exam-title" id="exam-book-chapter">اسم الكتاب - الفصل</div>
+          <div class="exam-timer" id="exam-timer">00:00</div>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="question-container" id="question-container">
+          </div>
+        <div class="exam-footer">
+          <button class="exam-btn prev" id="prev-btn">السؤال السابق</button>
+          <button class="exam-btn next" id="next-btn">التالي</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results-section" class="view-section">
+      <div class="results-box">
+        <div class="result-emoji" id="result-emoji">🏆</div>
+        <div class="result-grade" id="result-grade">ممتاز</div>
+        <div class="result-score" id="result-score">النتيجة: 0 / 0</div>
+        <div class="result-details">
+          <div class="detail-item">
+            <span class="detail-label">نسبة النجاح:</span>
+            <span class="detail-value" id="result-percent">0%</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">الوقت المستغرق:</span>
+            <span class="detail-value" id="result-time">0 ثانية</span>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button class="start-exam-btn" id="restart-exam-btn" style="background: var(--primary); color: var(--bg-dark);">إعادة الاختبار</button>
+          <button class="back-btn" id="back-books-btn" style="margin-bottom:0;">الرئيسية</button>
+        </div>
+        <button class="back-btn" id="review-exam-btn" style="margin-top:15px; width:100%;">📄 مراجعة الأخطاء</button>
+      </div>
+    </section>
+
+    <section id="review-section" class="view-section">
+      <button class="back-btn" id="back-from-review"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+      <h2 style="margin-bottom: 20px;">📄 مراجعة الإجابات الخاطئة</h2>
+      <div id="review-content">
+        </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="container">
-        <!-- Books Section -->
-        <section id="books-section">
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن كتاب..." onkeyup="app.filterBooks()">
-                <div class="search-suggestions" id="searchSuggestions" style="display: none;"></div>
-            </div>
-            <div id="books-container" class="books-grid"></div>
-            <div id="no-results" class="no-results" style="display: none; text-align: center; color: #94a3b8; margin-top: 40px; font-size: 1.1rem;">
-                😕 لم نجد كتاباً يطابق بحثك. حاول بكلمات أخرى.
-            </div>
-        </section>
-
-        <!-- Chapters Section -->
-        <section id="chapters-container" class="chapters-container">
-            <div class="chapters-header">
-                <button id="back-btn" class="back-btn">← العودة للكتب</button>
-                <div>
-                    <h2 id="chapters-title"></h2>
-                    <p id="chapters-author" style="color: #94a3b8; margin-top: 5px;"></p>
-                </div>
-            </div>
-            <div id="chapters-grid" class="chapters-grid"></div>
-        </section>
-
-        <!-- Exam Section -->
-        <section id="exam-container" class="exam-container">
-            <!-- Exam Header - Compact Stats Bar -->
-            <div class="exam-stats-bar">
-                <div class="stat-item">
-                    <span class="stat-label">الوقت</span>
-                    <span class="stat-value" id="timer">00:00</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">التقدم</span>
-                    <span class="stat-value" id="progress-text">1/0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">صحيح</span>
-                    <span class="stat-value correct-score" id="current-score">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">خطأ</span>
-                    <span class="stat-value error-score" id="wrong-score">0</span>
-                </div>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="progress-bar-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-            </div>
-
-            <!-- Question Card - Main Content -->
-            <div class="exam-content">
-                <!-- Question -->
-                <div id="question-card" class="question-card">
-                    <div class="question-text-wrapper">
-                        <div class="question-text" id="question-text"></div>
-                    </div>
-                    
-                    <!-- Options Grid -->
-                    <div id="options-container" class="options-grid"></div>
-                    
-                    <!-- Feedback -->
-                    <div class="feedback" id="feedback"></div>
-                </div>
-            </div>
-
-            <!-- Navigation Buttons - Bottom -->
-            <div class="exam-navigation">
-                <button id="prev-btn" class="nav-btn prev" style="display: none;">← السابق</button>
-                <button id="next-btn" class="nav-btn next" style="display: none;">التالي →</button>
-            </div>
-        </section>
-
-        <!-- Results Section -->
-        <section id="results-container" class="results-container">
-            <div class="results-card">
-                <div class="results-grade" id="results-grade"></div>
-                <div class="results-percentage" id="results-percentage">0%</div>
-                <div class="results-score" id="results-score"></div>
-                <div class="results-grade-text" id="results-grade-text"></div>
-                <div class="results-time" id="results-time"></div>
-
-                <div class="results-buttons">
-                    <button id="review-btn" class="result-btn primary">
-                        <i class="fas fa-redo"></i> مراجعة الأخطاء (<span id="wrong-count">0</span>)
-                    </button>
-                    <button id="restart-btn" class="result-btn secondary">
-                        <i class="fas fa-sync"></i> إعادة الاختبار
-                    </button>
-                    <button id="back-to-books-btn" class="result-btn secondary">
-                        <i class="fas fa-home"></i> العودة للكتب
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Review Section -->
-        <section id="review-container" class="review-container">
-            <div id="review-content"></div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button id="back-review-btn" class="result-btn primary" onclick="app.restartExam()">
-                    العودة للنتائج
-                </button>
-            </div>
-        </section>
+      <div class="footer-links" id="footerSocialButtons">
+        </div>
+      <div class="footer-bottom">
+        <p class="footer-contact-info" id="footerContactDetails">
+          </p>
+        <p>© 2026 منصة الاختبارات القانونية V2. جميع الحقوق محفوظة.</p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div id="footerContactDetails" class="footer-contact"></div>
-            <div id="footerSocialButtons" class="footer-links"></div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 منصة الاختبارات القانونية V2 | جميع الحقوق محفوظة</p>
-            <p style="font-size: 0.8rem; margin-top: 5px; opacity: 0.6;">تم تطويره بواسطة Manus AI</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        // سيقوم النظام الآلي بتحديث هذه المصفوفة تلقائياً (نظام Library)
-        var BOOKS = [
-    {
-        "id": "law_administrative",
-        "title": "القضاء الإداري",
-        "author": "د. وسام صبار",
-        "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
-        "chapters": 20,
-        "color": "#8e44ad"
-    },
-    {
-        "id": "law_constitutional",
-        "title": "القانون الدستوري",
-        "author": "د. حميد حنون خالد",
-        "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
-        "chapters": 18,
-        "color": "#e74c3c"
-    },
-    {
-        "id": "law_general_penalties",
-        "title": "قانون العقوبات العام",
-        "author": "مستشار قانوني",
-        "description": "مجموعة اختبارات شاملة في قانون العقوبات العام والقواعد العامة للجريمة والعقاب.",
-        "chapters": 14,
-        "color": "#c29d5f"
-    },
-    {
-        "id": "law_international",
-        "title": "القانون الدولي العام",
-        "author": "مستشار قانوني",
-        "description": "دراسة شاملة واختبارات في law_international.",
-        "chapters": 10,
-        "color": "#c29d5f"
-    },
-    {
-        "id": "law_international_humanitarian",
-        "title": "القانون الدولي الإنساني",
-        "author": "مستشار قانوني",
-        "description": "قواعد حماية ضحايا النزاعات المسلحة والحد من وسائل وأساليب القتال.",
-        "chapters": 16,
-        "color": "#27ae60"
-    },
-    {
-        "id": "law_organizations",
-        "title": "المنظمات الدولية",
-        "author": "مستشار قانوني",
-        "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
-        "chapters": 3,
-        "color": "#2980b9"
-    },
-    {
-        "id": "law_special_sanctions",
-        "title": "قانون العقوبات الخاص",
-        "author": "مستشار قانوني",
-        "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
-        "chapters": 23,
-        "color": "#e67e22"
-    },
-    {
-        "id": "Law-gh",
-        "title": "الجغرافية",
-        "author": "احمد محمد",
-        "description": "تجربة اضافة كتاب",
-        "chapters": 1
-    }
-];
-    </script>
-    <script src="engine/examEngine.js?v=1.3"></script>
-    <script src="app.js?v=1.3"></script>
+  <script src="engine/examEngine.js"></script>
+  <script src="app.js?v=1.3"></script>
 </body>
 </html>
