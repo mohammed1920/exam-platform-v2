@@ -167,12 +167,24 @@ class ExamApp {
     booksArray.forEach(book => {
       const bookCard = document.createElement('div');
       bookCard.className = 'book-card';
+      
+      // إنشاء الزر بشكل منفصل لضمان التصميم الموحد
+      const startBtn = document.createElement('button');
+      startBtn.className = 'book-start-btn';
+      startBtn.textContent = 'دخول الاختبار';
+      startBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.selectBook(book);
+      });
+      
       bookCard.innerHTML = `
         <div class="book-icon"><i class="fas fa-book-open"></i></div>
         <h3>${book.title}</h3>
         <span class="author">${book.author}</span>
         <div class="chapters-count">⏳ ${book.chapters} فصل</div>
       `;
+      
+      bookCard.appendChild(startBtn);
       bookCard.addEventListener('click', () => this.selectBook(book));
       booksContainer.appendChild(bookCard);
     });
