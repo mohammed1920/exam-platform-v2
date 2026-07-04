@@ -1,9 +1,3 @@
-/**
- * Exam Platform - Main Application
- * تطبيق منصة الاختبارات القانونية الرئيسي المحدث بالكامل
- * تم إيقاف الانتقال التلقائي وإصلاح زر الرجوع للهاتف بنجاح بدون v2
- */
-
 class ExamApp {
   constructor() {
     this.books = [];
@@ -23,7 +17,6 @@ class ExamApp {
       this.setupEventListeners();
       this.setupHistoryListener();
       
-      // حفظ الحالة الأولية في تاريخ المتصفح
       history.replaceState({ view: 'books' }, '');
       this.navigateTo('books', {}, false);
     } catch (error) {
@@ -59,7 +52,6 @@ class ExamApp {
 
   async loadContactInfo() {
     try {
-      // تعديل المسار ليتوافق مع اسم الموقع الحالي بدون v2
       const basePath = window.location.pathname.includes('/exam-platform') ? '/exam-platform' : '';
       const res = await fetch(`${basePath}/data/contact.json?v=${Date.now()}`);
       if (res.ok) {
@@ -228,7 +220,6 @@ class ExamApp {
       btnEl.classList.add('incorrect');
       allButtons[q.answer].classList.add('correct');
     }
-    // لا يوجد setTimeout للانتقال التلقائي بناءً على رغبتك، الضغط يدوي بالكامل
   }
 
   nextQuestion() {
@@ -377,3 +368,4 @@ class ExamApp {
 }
 
 window.app = new ExamApp();
+
