@@ -171,7 +171,7 @@ class ExamApp {
   }
 
   renderBooks(booksArray = this.books) {
-    const booksContainer = document.getElementById('books-grid');
+    const booksContainer = document.getElementById('books-container');
     const noResults = document.getElementById('no-results');
     
     if (!booksContainer) return;
