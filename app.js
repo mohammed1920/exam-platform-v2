@@ -38,21 +38,25 @@ class ExamApp {
   }
 
   renderContactInfo(data) {
-    const infoContainer = document.getElementById('contact-info');
-    const linksContainer = document.getElementById('social-links');
+    // حقن معلومات التواصل في Footer
+    const footerContact = document.getElementById('footerContactDetails');
+    const footerLinks = document.getElementById('footerSocialButtons');
     
-    if (infoContainer) {
-      let html = '';
-      if (data.phone) html += `<span>📞 ${data.phone}</span>`;
-      if (data.email) html += `${html ? ' | ' : ''}<span>✉️ ${data.email}</span>`;
-      infoContainer.innerHTML = html;
+    if (footerContact) {
+      let contactHtml = '';
+      if (data.phone) {
+        contactHtml += `<a href="tel:${data.phone}"><i class="fas fa-phone"></i> ${data.phone}</a>`;
+      }
+      if (data.email) {
+        if (contactHtml) contactHtml += '<div class="separator"></div>';
+        contactHtml += `<a href="mailto:${data.email}"><i class="fas fa-envelope"></i> ${data.email}</a>`;
+      }
+      footerContact.innerHTML = contactHtml;
     }
     
-    if (linksContainer && data.social_links) {
-      linksContainer.innerHTML = data.social_links.map(link => `
-        <a href="${link.url}" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.85rem; transition: 0.3s;">
-          ${link.label}
-        </a>
+    if (footerLinks && data.social_links) {
+      footerLinks.innerHTML = data.social_links.map(link => `
+        <a href="${link.url}" target="_blank" class="footer-btn">${link.label}</a>
       `).join('');
     }
   }
