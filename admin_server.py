@@ -36,6 +36,9 @@ class Question(BaseModel):
     opts: List[str]
     ans: int
     explanation: Optional[str] = None
+    question: Optional[str] = None
+    options: Optional[List[str]] = None
+    answer: Optional[int] = None
 
 class Chapter(BaseModel):
     id: str
@@ -284,10 +287,15 @@ async def update_question(book_id: str, chapter_id: int, question_id: int, quest
         if question_id < 0 or question_id >= len(chapter_data["questions"]):
             raise HTTPException(status_code=404, detail="السؤال غير موجود")
         
+        # دعم الحقول المختلفة لضمان التوافق
+        q_text = question.q or question.question
+        opts = question.opts or question.options
+        ans = question.ans if question.ans is not None else question.answer
+        
         chapter_data["questions"][question_id] = {
-            "q": question.q,
-            "opts": question.opts,
-            "ans": question.ans,
+            "q": q_text,
+            "opts": opts,
+            "ans": ans,
             "explanation": question.explanation or ""
         }
         
@@ -295,6 +303,38 @@ async def update_question(book_id: str, chapter_id: int, question_id: int, quest
             json.dump(chapter_data, f, ensure_ascii=False, indent=2)
         
         return {"success": True, "message": "تم تحديث السؤال بنجاح"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.put("/api/chapters/update_full/{book_id}/{chapter_num}")
+async def update_chapter_full(book_id: str, chapter_num: int, chapter_data: Chapter):
+    """تحديث الفصل كاملاً (يستخدم للحفظ الجماعي)"""
+    try:
+        book_dir = DATA_DIR / book_id
+        chapter_file = book_dir / f"chapter_{chapter_num}.json"
+        
+        # تحويل البيانات إلى قاموس مع التأكد من صيغة الأسئلة
+        final_questions = []
+        for q in chapter_data.questions:
+            final_questions.append({
+                "q": q.q or q.question,
+                "opts": q.opts or q.options,
+                "ans": q.ans if q.ans is not None else q.answer,
+                "explanation": q.explanation or ""
+            })
+        
+        full_data = {
+            "id": chapter_data.id,
+            "book_id": chapter_data.book_id,
+            "chapter": chapter_data.chapter,
+            "title": chapter_data.title,
+            "questions": final_questions
+        }
+        
+        with open(chapter_file, "w", encoding="utf-8") as f:
+            json.dump(full_data, f, ensure_ascii=False, indent=2)
+            
+        return {"success": True, "message": "تم تحديث الفصل كاملاً بنجاح"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

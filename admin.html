@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #0f172a; --card: #1e293b; --border: #334155;
-            --gold: #c29d5f; --green: #10b981; --red: #ef4444; --text: #e2e8f0; --text-dim: #94a3b8;
+            --gold: #c29d5f; --green: #10b981; --red: #ef4444; --text: #e2e8f0; --text-dim: #94a3b8; --warning: #f59e0b;
         }
         body { font-family: "Cairo", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 15px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -51,7 +51,30 @@
         .question-option { padding: 4px 0; }
         .question-option.correct { color: var(--green); font-weight: 700; }
         .loading { text-align: center; color: var(--text-dim); padding: 20px; }
-        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+        
+        /* ===== أنماط الحفظ الجماعي ===== */
+        .question-option-radio { display: flex; align-items: center; padding: 10px 8px; margin: 6px 0; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .question-option-radio input[type="radio"] { margin-left: 10px; cursor: pointer; width: 18px; height: 18px; accent-color: var(--gold); }
+        .question-option-radio:hover { background: rgba(194, 157, 95, 0.1); }
+        .question-option-radio.selected { background: rgba(194, 157, 95, 0.2); border-left: 3px solid var(--gold); }
+        
+        .item-card.pending { border: 2px solid var(--warning); background: rgba(245, 158, 11, 0.05); }
+        .item-card.pending .item-card-title::after { content: ' ⏳ تعديل معلق'; color: var(--warning); font-size: 11px; margin-right: 8px; }
+        
+        .batch-save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, var(--warning), var(--gold)); padding: 15px 20px; display: none; align-items: center; justify-content: space-between; box-shadow: 0 -4px 12px rgba(0,0,0,0.5); z-index: 999; gap: 15px; }
+        .batch-save-bar.active { display: flex; }
+        .batch-save-bar-text { color: var(--bg); font-weight: 700; font-size: 14px; flex: 1; }
+        .batch-save-bar .btn { margin: 0; padding: 10px 20px; font-size: 13px; }
+        .batch-save-bar .btn-primary { background: var(--bg); color: var(--gold); }
+        .batch-save-bar .btn-secondary { background: rgba(0,0,0,0.2); color: var(--bg); }
+        
+        body.batch-active { padding-bottom: 70px; }
+        
+        @media (max-width: 768px) { 
+            .main-grid { grid-template-columns: 1fr; }
+            .batch-save-bar { flex-direction: column; gap: 10px; }
+            .batch-save-bar .btn { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -98,6 +121,13 @@
                     <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
                     <div id="questions-list"></div>
                 </div>
+                
+                <!-- شريط الحفظ الجماعي العائم -->
+                <div id="batch-save-bar" class="batch-save-bar">
+                    <span class="batch-save-bar-text">⚠️ لديك <span id="batch-save-count">0</span> تعديلات معلقة على إجابات هذا الفصل.</span>
+                    <button class="btn btn-primary" onclick="saveAllStagedAnswers()">🚀 حفظ ودفع جميع التعديلات دفعة واحدة</button>
+                    <button class="btn btn-secondary" onclick="cancelBatchChanges()">✕ إلغاء</button>
+                </div>
             </div>
         </div>
     </div>
@@ -113,6 +143,7 @@
         let currentChapterData = null; // بيانات الفصل المحدد
         let editingChapterNum = null;
         let editingQuestionIdx = null;
+        let modifiedQuestionsIndices = []; // مصفوفة تتبع أرقام الأسئلة المعدلة
         let config = {
             token: localStorage.getItem('gh_token'),
             user: localStorage.getItem('gh_user') || 'mohammed1920',
@@ -229,6 +260,8 @@
             currentBook = books.find(b => b.id === id);
             currentChapterNum = null;
             currentChapterData = null;
+            modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الكتاب
+            updateBatchSaveBar();
             document.getElementById('current-book-name').textContent = currentBook.title;
             document.getElementById('current-book-info').innerHTML = `
                 <p><strong>المؤلف:</strong> ${currentBook.author || 'غير محدد'}</p>
@@ -310,6 +343,8 @@
             sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${ch.title}</option>`).join('');
             if (bookChapterFiles.length > 0) {
                 currentChapterNum = bookChapterFiles[0].num;
+                modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الفصل
+                updateBatchSaveBar();
                 loadChapterQuestions();
             }
         }
@@ -322,6 +357,8 @@
             try {
                 const data = await ghRequest(`data/${currentBook.id}/chapter_${currentChapterNum}.json`);
                 currentChapterData = JSON.parse(decode(data.content));
+                modifiedQuestionsIndices = []; // تصفير التعديلات عند تحميل فصل جديد
+                updateBatchSaveBar();
                 renderQuestions();
             } catch(e) {
                 currentChapterData = null;
@@ -341,8 +378,9 @@
                 const qText = q.q || q.question || '';
                 const opts = q.opts || q.options || [];
                 const ans = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
+                const isPending = modifiedQuestionsIndices.includes(i);
                 return `
-                    <div class="item-card">
+                    <div class="item-card ${isPending ? 'pending' : ''}">
                         <div class="item-card-header">
                             <div class="item-card-title">س ${i+1}</div>
                             <div class="item-card-actions">
@@ -353,14 +391,83 @@
                         <div class="question-text">${qText}</div>
                         <div class="question-options">
                             ${opts.map((o, oi) => `
-                                <div class="question-option ${oi === ans ? 'correct' : ''}">
-                                    ${oi+1}) ${o}
-                                </div>
+                                <label class="question-option-radio ${oi === ans ? 'selected' : ''}">
+                                    <input type="radio" name="q_${i}_ans" value="${oi}" ${oi === ans ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
+                                    <span>${oi+1}) ${o}</span>
+                                </label>
                             `).join('')}
                         </div>
                     </div>
                 `;
             }).join('');
+        }
+        
+        // ===== دالة معالجة التغيير المعلق =====
+        function stageAnswerChange(qIdx, newAnswerIdx) {
+            if (!currentChapterData || !currentChapterData.questions[qIdx]) return;
+            
+            // تحديث الإجابة في البيانات المحلية
+            currentChapterData.questions[qIdx].ans = newAnswerIdx;
+            
+            // إضافة رقم السؤال لمصفوفة التعديلات إذا لم يكن موجوداً
+            if (!modifiedQuestionsIndices.includes(qIdx)) {
+                modifiedQuestionsIndices.push(qIdx);
+            }
+            
+            // تحديث الشريط السفلي
+            updateBatchSaveBar();
+            
+            // تحديث واجهة السؤال المعدل
+            renderQuestions();
+        }
+        
+        // ===== تحديث شريط الحفظ الجماعي =====
+        function updateBatchSaveBar() {
+            const bar = document.getElementById('batch-save-bar');
+            const count = modifiedQuestionsIndices.length;
+            
+            if (count > 0) {
+                document.getElementById('batch-save-count').textContent = count;
+                bar.classList.add('active');
+                document.body.classList.add('batch-active');
+            } else {
+                bar.classList.remove('active');
+                document.body.classList.remove('batch-active');
+            }
+        }
+        
+        // ===== حفظ جميع التعديلات المعلقة دفعة واحدة =====
+        async function saveAllStagedAnswers() {
+            if (modifiedQuestionsIndices.length === 0) {
+                showAlert('لا توجد تعديلات معلقة للحفظ', 'error');
+                return;
+            }
+            
+            if (!currentChapterData || currentChapterNum === null) {
+                showAlert('يرجى اختيار فصل أولاً', 'error');
+                return;
+            }
+            
+            try {
+                // إنشاء رسالة commit توضح عدد التعديلات
+                const commitMsg = `تحديث ${modifiedQuestionsIndices.length} إجابة في الفصل ${currentChapterNum}`;
+                
+                // رفع ملف الفصل كاملاً بالتحديثات الجديدة في commit واحد
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], commitMsg);
+                
+                // تصفير مصفوفة التعديلات
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                
+                // إعادة عرض الأسئلة
+                renderQuestions();
+                
+                showAlert(`✅ تم حفظ ${modifiedQuestionsIndices.length + 1} تعديلات بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في الحفظ: ' + e.message, 'error');
+            }
         }
 
         // ===== التبويبات =====
@@ -600,8 +707,20 @@
                     { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
                 ], `حذف سؤال من الفصل ${currentChapterNum}`);
                 showAlert('تم حذف السؤال بنجاح');
+                modifiedQuestionsIndices = []; // تصفير التعديلات بعد الحذف
+                updateBatchSaveBar();
                 renderQuestions();
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+        
+        // ===== إلغاء التعديلات المعلقة =====
+        function cancelBatchChanges() {
+            if (confirm('هل أنت متأكد من إلغاء جميع التعديلات المعلقة؟')) {
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                loadChapterQuestions(); // إعادة تحميل البيانات الأصلية
+                showAlert('تم إلغاء جميع التعديلات المعلقة');
+            }
         }
 
         // ===== التهيئة =====
