@@ -164,11 +164,10 @@ class ExamApp {
       const bookCard = document.createElement('div');
       bookCard.className = 'book-card';
       bookCard.innerHTML = `
-        <div class="book-icon">📚</div>
+        <div class="book-icon"><i class="fas fa-book-open"></i></div>
         <h3>${book.title}</h3>
         <span class="author">${book.author}</span>
-        <p class="description">${book.description}</p>
-        <span class="chapters-count">📖 ${book.chapters} فصول</span>
+        <div class="chapters-count">⏳ ${book.chapters} فصل</div>
       `;
       bookCard.addEventListener('click', () => this.selectBook(book));
       booksContainer.appendChild(bookCard);
