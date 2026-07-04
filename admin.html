@@ -106,6 +106,24 @@
                 <div id="overview" class="tab-content active">
                     <h2 id="current-book-name">اختر كتاباً للبدء</h2>
                     <div id="current-book-info" style="margin-top: 15px;"></div>
+                    
+                    <!-- قسم تعديل بيانات الكتاب -->
+                    <div id="book-edit-section" style="display: none; margin-top: 30px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
+                        <h3 style="color: var(--gold); margin-bottom: 15px;">✍️ تعديل بيانات الكتاب</h3>
+                        <div class="form-group">
+                            <label>اسم الكتاب</label>
+                            <input type="text" id="bookTitleInput" placeholder="ادخل اسم الكتاب">
+                        </div>
+                        <div class="form-group">
+                            <label>وصف الكتاب</label>
+                            <textarea id="bookDescriptionInput" rows="3" placeholder="ادخل وصف الكتاب"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>المؤلف</label>
+                            <input type="text" id="bookAuthorInput" placeholder="ادخل اسم المؤلف">
+                        </div>
+                        <button class="btn btn-primary" onclick="updateBookDetails()">💾 حفظ مسميات الكتاب</button>
+                    </div>
                 </div>
 
                 <div id="chapters" class="tab-content">
@@ -268,6 +286,14 @@
                 <p><strong>الوصف:</strong> ${currentBook.description || 'بدون وصف'}</p>
                 <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
             `;
+            
+            // عرض قسم تعديل بيانات الكتاب وتعبئة الحقول
+            const bookEditSection = document.getElementById('book-edit-section');
+            bookEditSection.style.display = 'block';
+            document.getElementById('bookTitleInput').value = currentBook.title || '';
+            document.getElementById('bookDescriptionInput').value = currentBook.description || '';
+            document.getElementById('bookAuthorInput').value = currentBook.author || '';
+            
             renderBooks();
             await loadBookChapters();
             switchTab('overview', null);
@@ -528,7 +554,56 @@
             }
         }
 
-        // ===== النوافذ المنبثقة =====
+        // ===== تحديث بيانات الكتاب =====
+        async function updateBookDetails() {
+            if (!currentBook) {
+                showAlert('يرجى اختيار كتاباً أولاً', 'error');
+                return;
+            }
+            
+            const newTitle = document.getElementById('bookTitleInput').value.trim();
+            const newDescription = document.getElementById('bookDescriptionInput').value.trim();
+            const newAuthor = document.getElementById('bookAuthorInput').value.trim();
+            
+            if (!newTitle) {
+                showAlert('يرجى إدخال اسم الكتاب', 'error');
+                return;
+            }
+            
+            try {
+                // تحديث البيانات المحلية
+                currentBook.title = newTitle;
+                currentBook.description = newDescription;
+                currentBook.author = newAuthor;
+                
+                // تحديث الكتاب في مصفوفة الكتب
+                const bookIndex = books.findIndex(b => b.id === currentBook.id);
+                if (bookIndex !== -1) {
+                    books[bookIndex] = currentBook;
+                }
+                
+                // رفع التحديثات إلى GitHub
+                await commitFiles([
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: document.documentElement.outerHTML }
+                ], `تحديث مسميات ووصف كتاب: ${newTitle}`);
+                
+                // تحديث الواجهة
+                document.getElementById('current-book-name').textContent = newTitle;
+                document.getElementById('current-book-info').innerHTML = `
+                    <p><strong>المؤلف:</strong> ${newAuthor || 'غير محدد'}</p>
+                    <p><strong>الوصف:</strong> ${newDescription || 'بدون وصف'}</p>
+                    <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
+                `;
+                
+                renderBooks();
+                showAlert(`✅ تم تحديث بيانات الكتاب "${newTitle}" بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
+        }
+
+                // ===== النوافذ المنبثقة =====
         function showModal(type) {
             if (type !== 'editChapter' && type !== 'editQuestion') {
                 editingChapterNum = null;

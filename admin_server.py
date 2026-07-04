@@ -52,7 +52,8 @@ class Book(BaseModel):
     id: str
     title: str
     author: Optional[str] = None
-    chapters: int
+    description: Optional[str] = None
+    chapters: Optional[int] = 0
 
 # ============ عمليات الكتب ============
 
@@ -114,6 +115,28 @@ async def delete_book(book_id: str):
             shutil.rmtree(book_dir)
         
         return {"success": True, "message": "تم حذف الكتاب بنجاح"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.put("/api/books/{book_id}")
+async def update_book(book_id: str, book_data: Book):
+    """تحديث بيانات كتاب (الاسم، الوصف، المؤلف)"""
+    try:
+        books = load_books()
+        book_found = False
+        for i, b in enumerate(books):
+            if b["id"] == book_id:
+                books[i]["title"] = book_data.title
+                books[i]["author"] = book_data.author or ""
+                books[i]["description"] = book_data.description or ""
+                book_found = True
+                break
+        
+        if not book_found:
+            raise HTTPException(status_code=404, detail="الكتاب غير موجود")
+            
+        save_books(books)
+        return {"success": True, "message": "تم تحديث بيانات الكتاب بنجاح"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
