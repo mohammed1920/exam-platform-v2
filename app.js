@@ -17,11 +17,44 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     await this.loadBooks();
+    await this.loadContactInfo(); // تحميل معلومات التواصل
     this.setupEventListeners();
     this.setupHistoryListener();
     
     // فحص الرابط عند التحميل لأول مرة
     this.handleInitialState();
+  }
+
+  async loadContactInfo() {
+    try {
+      const res = await fetch(`${examEngine.basePath}/data/contact.json?t=${new Date().getTime()}`);
+      if (res.ok) {
+        const data = await res.json();
+        this.renderContactInfo(data);
+      }
+    } catch (e) {
+      console.log('Contact info not found or error loading.');
+    }
+  }
+
+  renderContactInfo(data) {
+    const infoContainer = document.getElementById('contact-info');
+    const linksContainer = document.getElementById('social-links');
+    
+    if (infoContainer) {
+      let html = '';
+      if (data.phone) html += `<span>📞 ${data.phone}</span>`;
+      if (data.email) html += `${html ? ' | ' : ''}<span>✉️ ${data.email}</span>`;
+      infoContainer.innerHTML = html;
+    }
+    
+    if (linksContainer && data.social_links) {
+      linksContainer.innerHTML = data.social_links.map(link => `
+        <a href="${link.url}" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.85rem; transition: 0.3s;">
+          ${link.label}
+        </a>
+      `).join('');
+    }
   }
 
   handleInitialState() {

@@ -125,6 +125,25 @@
                         </div>
                         <button class="btn btn-primary" onclick="updateBookDetails()">💾 حفظ مسميات الكتاب</button>
                     </div>
+                    
+                    <!-- قسم إدارة معلومات التواصل -->
+                    <div style="margin-top: 40px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
+                        <h3 style="color: var(--gold); margin-bottom: 15px;">📄 إدارة معلومات التواصل</h3>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="text" id="contactPhone" placeholder="مثال: 07700000000">
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" id="contactEmail" placeholder="مثال: info@example.com">
+                        </div>
+                        
+                        <h4 style="color: var(--gold); margin-top: 20px; margin-bottom: 10px;">🔗 الروابط الاجتماعية</h4>
+                        <div id="contactLinksContainer" style="margin-bottom: 15px;"></div>
+                        <button class="btn btn-green" onclick="addContactLink()" style="margin-bottom: 15px; width: 100%;">➕ إضافة رابط جديد</button>
+                        
+                        <button class="btn btn-primary" onclick="saveContactData()">💾 حفظ معلومات التواصل</button>
+                    </div>
                 </div>
 
                 <div id="chapters" class="tab-content">
@@ -270,6 +289,7 @@
                 const data = await ghRequest('data/books.json');
                 books = JSON.parse(decode(data.content));
                 renderBooks();
+                loadContactData(); // تحميل بيانات التواصل
             } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
         }
 
@@ -551,6 +571,89 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             if (e && e.target) e.target.classList.add('active');
+        }
+
+        // ===== إدارة معلومات التواصل =====
+        let contactData = { phone: '', email: '', social_links: [] };
+        
+        async function loadContactData() {
+            try {
+                const response = await fetch('data/contact.json');
+                if (response.ok) {
+                    contactData = await response.json();
+                    renderContactForm();
+                }
+            } catch (e) {
+                console.log('لم يتم العثور على ملف التواصل، سيتم إنشاء واحد جديد');
+                renderContactForm();
+            }
+        }
+        
+        function renderContactForm() {
+            const phone = document.getElementById('contactPhone');
+            const email = document.getElementById('contactEmail');
+            const linksContainer = document.getElementById('contactLinksContainer');
+            
+            if (phone) phone.value = contactData.phone || '';
+            if (email) email.value = contactData.email || '';
+            
+            if (linksContainer) {
+                linksContainer.innerHTML = '';
+                (contactData.social_links || []).forEach((link, idx) => {
+                    const linkDiv = document.createElement('div');
+                    linkDiv.className = 'item-card';
+                    linkDiv.innerHTML = `
+                        <div class="item-card-header">
+                            <div>
+                                <input type="text" placeholder="اسم الرابط" value="${link.label}" class="link-label-${idx}" style="width: 200px; margin-bottom: 5px;">
+                                <input type="text" placeholder="رابط URL" value="${link.url}" class="link-url-${idx}" style="width: 100%; margin-top: 5px;">
+                            </div>
+                            <button class="btn btn-red btn-sm" onclick="deleteContactLink(${idx})">❌ حذف</button>
+                        </div>
+                    `;
+                    linksContainer.appendChild(linkDiv);
+                });
+            }
+        }
+        
+        function addContactLink() {
+            contactData.social_links.push({ label: '', url: '' });
+            renderContactForm();
+        }
+        
+        function deleteContactLink(idx) {
+            if (confirm('هل أنت متأكد من حذف هذا الرابط؟')) {
+                contactData.social_links.splice(idx, 1);
+                renderContactForm();
+            }
+        }
+        
+        async function saveContactData() {
+            const phone = document.getElementById('contactPhone')?.value.trim() || '';
+            const email = document.getElementById('contactEmail')?.value.trim() || '';
+            
+            // جمع الروابط من الحقول
+            const socialLinks = [];
+            document.querySelectorAll('[class^="link-label-"]').forEach((el, idx) => {
+                const label = el.value.trim();
+                const url = document.querySelector(`.link-url-${idx}`)?.value.trim() || '';
+                if (label && url) {
+                    socialLinks.push({ label, url });
+                }
+            });
+            
+            const newContactData = { phone, email, social_links: socialLinks };
+            
+            try {
+                await commitFiles([
+                    { path: 'data/contact.json', content: JSON.stringify(newContactData, null, 2) }
+                ], 'تحديث معلومات التواصل والروابط من لوحة التحكم');
+                
+                contactData = newContactData;
+                showAlert('✅ تم حفظ معلومات التواصل بنجاح!');
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
         }
 
         // ===== الإعدادات =====

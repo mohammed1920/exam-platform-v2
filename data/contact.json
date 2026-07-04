@@ -1,0 +1,14 @@
+{
+  "phone": "07700000000",
+  "email": "info@example.com",
+  "social_links": [
+    {
+      "label": "قناة التليغرام الرئيسية",
+      "url": "https://t.me/example1"
+    },
+    {
+      "label": "مجموعة المناقشة",
+      "url": "https://t.me/example2"
+    }
+  ]
+}
