@@ -25,6 +25,28 @@ class ExamApp {
     this.handleInitialState();
   }
 
+  // ===== دالة خلط خيارات السؤال وتحديث الإجابة الصحيحة ديناميكياً =====
+  shuffleQuestionOptions(questionObj) {
+    // 1. استخراج وحفظ النص الفعلي للإجابة الصحيحة قبل الخلط
+    const correctOptionText = questionObj.options[questionObj.answer];
+
+    // 2. خلط مصفوفة الخيارات باستخدام خوارزمية Fisher-Yates
+    for (let i = questionObj.options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questionObj.options[i], questionObj.options[j]] = [questionObj.options[j], questionObj.options[i]];
+    }
+
+    // 3. البحث عن الموقع الجديد للإجابة الصحيحة وتحديث حقل answer
+    questionObj.answer = questionObj.options.indexOf(correctOptionText);
+    
+    return questionObj;
+  }
+
+  // ===== دالة خلط جميع أسئلة الفصل =====
+  shuffleAllQuestions(questions) {
+    return questions.map(q => this.shuffleQuestionOptions(q));
+  }
+
   async loadContactInfo() {
     try {
       const res = await fetch(`${examEngine.basePath}/data/contact.json?t=${new Date().getTime()}`);
@@ -292,6 +314,11 @@ class ExamApp {
     const chapter = await examEngine.loadChapter(bookId, chapterNum);
     if (!chapter) return;
 
+    // خلط خيارات الأسئلة بمجرد تحميل الفصل
+    if (chapter.questions && chapter.questions.length > 0) {
+      this.shuffleAllQuestions(chapter.questions);
+    }
+
     this.currentChapter = chapterNum;
     this.examActive = true;
     document.body.classList.add('exam-mode');
@@ -443,6 +470,11 @@ class ExamApp {
     examEngine.score = 0;
     examEngine.userAnswers = [];
     examEngine.startTime = new Date(); // إعادة ضبط وقت البدء
+
+    // إعادة خلط الخيارات عند إعادة الاختبار لتجربة جديدة
+    if (examEngine.questions && examEngine.questions.length > 0) {
+      this.shuffleAllQuestions(examEngine.questions);
+    }
     
     this.examActive = true;
     document.body.classList.add('exam-mode');
