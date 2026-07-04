@@ -1,180 +1,181 @@
 :root {
-  --primary: #c29d5f;
-  --primary-hover: #b08d4f;
-  --bg-dark: #0f172a;
-  --card-bg: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --border: #334155;
-  --success: #10b981;
-  --error: #ef4444;
-  --header-bg: rgba(30, 41, 59, 0.8);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Cairo', sans-serif;
+  --bg-main: #0b132b;
+  --bg-card: #1c2541;
+  --text-primary: #ffffff;
+  --text-secondary: #a3b1c6;
+  --accent-gold: #cda45e;
+  --correct-green: #2a9d8f;
+  --incorrect-red: #e63946;
 }
 
 body {
-  background-color: var(--bg-dark);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
   color: var(--text-primary);
-  line-height: 1.4;
-  overflow-x: hidden;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
 }
 
-body.exam-mode header,
-body.exam-mode footer {
-  display: none;
-}
-
-header {
-  background: var(--header-bg);
-  padding: 30px 20px;
+/* تنسيق الهيدر الرئيسي */
+.main-header {
   text-align: center;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(10px);
+  padding: 25px 15px 15px 15px;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid rgba(205, 164, 94, 0.15);
 }
 
-header h1 {
-  color: var(--primary);
-  font-size: 1.8rem;
-  margin-bottom: 5px;
-  font-weight: 900;
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
-header p {
+.app-title {
+  color: var(--accent-gold);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo-icon {
+  color: var(--accent-gold);
+  font-size: 24px;
+}
+
+.app-subtitle {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 13px;
+  margin: 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
+/* شريط البحث المودرن والدائري بالكامل مع الأيقونة بالداخل */
 .search-container {
-  margin-bottom: 30px;
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
 .search-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.search-wrapper i {
+.search-icon {
   position: absolute;
   right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
   color: var(--text-secondary);
+  font-size: 16px;
 }
 
 #search-input {
   width: 100%;
   padding: 12px 45px 12px 15px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
   border-radius: 50px;
+  border: 1px solid rgba(163, 177, 198, 0.3);
+  background-color: var(--bg-card);
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  outline: none;
   transition: all 0.3s ease;
 }
 
 #search-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 10px rgba(194, 157, 95, 0.2);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(205, 164, 94, 0.2);
 }
 
-.books-grid {
+/* تصميم الجريد للكروت المضغوطة والمصغرة للموبايل */
+.grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 12px;
+  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .book-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background-color: var(--bg-card);
   border-radius: 12px;
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.3s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .book-icon {
-  font-size: 1.8rem;
-  color: var(--primary);
-  margin-bottom: 10px;
+  color: var(--accent-gold);
+  font-size: 18px;
+  margin-bottom: 4px;
+  text-align: right;
 }
 
 .book-title {
-  font-size: 1.1rem;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 4px;
   color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.4;
 }
 
 .book-author {
-  font-size: 0.8rem;
+  font-size: 11px;
   color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* جعل الوصف يظهر بسطرين كحد أقصى تلافياً للمساحات الضائعة */
+.book-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 8px;
 }
 
-.book-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-  flex-grow: 1;
-}
-
 .book-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .chapters-badge {
-  background: rgba(194, 157, 95, 0.1);
-  color: var(--primary);
-  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
   border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: inline-block;
 }
 
-/* توحيد وإجبار أزرار الكتب على الحواف الدائرية الفاخرة */
-.book-card button, .card button, .start-exam-btn {
+.book-card button {
   width: 100%;
-  padding: 10px 20px;
-  background: var(--primary);
-  color: var(--bg-dark);
-  border: none !important;
-  border-radius: 12px !important;
-  font-weight: 700;
+  background-color: var(--accent-gold);
+  color: #000;
+  border: none;
+  padding: 8px 0;
+  border-radius: 6px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s;
 }
 
-.book-card button:hover, .start-exam-btn:hover {
-  background: var(--primary-hover);
+.book-card button:active {
+  background-color: #b38f50;
 }
 
+/* التحكم بظهور الواجهات */
 .view-section {
   display: none;
 }
@@ -183,341 +184,81 @@ header p {
   display: block;
 }
 
-.back-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-}
-
-.back-btn:hover {
-  background: var(--card-bg);
-  border-color: var(--text-secondary);
-}
-
-.chapters-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chapter-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+/* بقية التنسيقات الضرورية للتشغيل */
+.container-box, .exam-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: var(--bg-card);
   border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
 }
 
-.chapter-item:hover {
-  border-color: var(--primary);
+.nav-header { margin-bottom: 15px; }
+.back-btn {
+  background: none; border: none; color: var(--text-secondary);
+  font-family: 'Cairo', sans-serif; font-size: 14px; cursor: pointer;
 }
 
-.chapter-info h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 2px;
+.section-title h2 { color: var(--accent-gold); margin: 0 0 5px 0; font-size: 20px;}
+.chapters-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.chapter-item {
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px;
 }
+.chapter-info h3 { margin: 0; font-size: 15px; }
+.chapter-info p { margin: 3px 0 0 0; font-size: 12px; color: var(--text-secondary); }
 
-.chapter-info p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.exam-box {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.exam-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
-}
-
-.exam-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.exam-timer {
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1.1rem;
-}
-
-.progress-bar-container {
-  background: var(--bg-dark);
-  height: 6px;
-  border-radius: 3px;
-  margin-bottom: 25px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  background: var(--primary);
-  height: 100%;
-  width: 0%;
-  transition: width 0.3s ease;
-}
-
-.question-container {
-  margin-bottom: 25px;
-}
-
-.question-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.options-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.exam-header-bar { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+.progress-container { background: rgba(255,255,255,0.1); border-radius: 10px; height: 6px; margin-bottom: 20px; overflow: hidden; }
+.progress-bar { background: var(--accent-gold); width: 0%; height: 100%; transition: width 0.3s; }
+.question-text { font-size: 16px; font-weight: bold; margin-bottom: 15px; line-height: 1.5; }
+.options-list { display: flex; flex-direction: column; gap: 10px; }
 
 .option-btn {
-  width: 100%;
-  text-align: right;
-  padding: 14px 20px;
-  background: var(--bg-dark);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--text-primary);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-primary); padding: 12px; border-radius: 8px; text-align: right;
+  font-family: 'Cairo', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s;
 }
 
-.option-btn:hover:not(:disabled) {
-  border-color: var(--primary);
-  background: rgba(194, 157, 95, 0.05);
-}
+.option-btn.correct { background-color: var(--correct-green) !important; color: white; border-color: var(--correct-green); }
+.option-btn.incorrect { background-color: var(--incorrect-red) !important; color: white; border-color: var(--incorrect-red); }
+.option-btn.disabled { opacity: 0.8; cursor: not-allowed; }
 
-.option-btn:disabled {
-  cursor: not-allowed;
-}
-
-.exam-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
+.exam-actions { display: flex; justify-content: space-between; margin-top: 20px; gap: 10px; }
 .exam-btn {
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
+  flex: 1; padding: 10px; border-radius: 8px; font-family: 'Cairo', sans-serif;
+  font-weight: bold; font-size: 14px; border: none; cursor: pointer;
 }
+.exam-btn.prev { background: #334155; color: white; }
+.exam-btn.next { background: var(--accent-gold); color: black; }
+.exit-exam-btn { background: none; border: none; color: var(--incorrect-red); font-family: 'Cairo', sans-serif; cursor: pointer; font-size: 13px;}
 
-.exam-btn.prev {
-  background: var(--border);
-  color: var(--text-primary);
-}
+/* كرت النتائج والمراجعة */
+.result-card { text-align: center; padding: 30px 15px; background: var(--bg-card); max-width: 450px; margin: 40px auto; border-radius: 16px; }
+.result-icon { font-size: 40px; }
+.result-grade { font-size: 22px; font-weight: bold; color: var(--accent-gold); margin: 10px 0; }
+.result-score { font-size: 18px; }
+.result-percent { font-size: 32px; font-weight: bold; color: var(--correct-green); margin: 5px 0; }
+.result-meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+.result-buttons { display: flex; gap: 10px; }
+.res-btn { flex:1; padding: 10px; border: none; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: bold; cursor: pointer; font-size: 13px;}
+.res-btn.restart { background: var(--accent-gold); color: black; }
+.res-btn.review { background: #334155; color: white; }
 
-.exam-btn.next {
-  background: var(--primary);
-  color: var(--bg-dark);
-}
+.review-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.review-item { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border-right: 4px solid var(--incorrect-red); }
+.review-question { font-weight: bold; font-size: 14px; margin-bottom: 8px; }
+.review-answer { font-size: 13px; margin: 4px 0; }
+.review-answer.correct { color: var(--correct-green); }
+.review-answer.incorrect { color: var(--incorrect-red); }
+.review-explanation { font-size: 12px; color: var(--text-secondary); background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; margin-top: 6px; }
 
-.results-box {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 30px;
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
+/* الفوتر */
+.main-footer { text-align: center; padding: 30px 15px; font-size: 12px; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+.footer-contact { margin: 8px 0; }
+.footer-contact a { color: var(--accent-gold); text-decoration: none; }
+.footer-social { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+.footer-link-btn { background: #17203a; color: white; padding: 6px 12px; border-radius: 20px; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); }
 
-.result-emoji {
-  font-size: 4rem;
-  margin-bottom: 15px;
-}
-
-.result-grade {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 5px;
-}
-
-.result-score {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.result-details {
-  background: var(--bg-dark);
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.detail-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-}
-
-.detail-label {
-  color: var(--text-secondary);
-}
-
-.detail-value {
-  font-weight: 700;
-}
-
-.results-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.results-actions button {
-  flex: 1;
-}
-
-.review-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 15px;
-  text-align: right;
-}
-
-.review-question {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.review-answer {
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.review-answer.incorrect {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--error);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.review-answer.correct {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.review-explanation {
-  background: var(--bg-dark);
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  border-right: 3px solid var(--primary);
-  margin-top: 10px;
-}
-
-footer {
-  background: var(--card-bg);
-  padding: 30px 20px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-  margin-top: 50px;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.footer-btn, .footer-link-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background: rgba(194, 157, 95, 0.1);
-  border: 1.5px solid var(--primary);
-  border-radius: 25px;
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.footer-btn:hover, .footer-link-btn:hover {
-  background: var(--primary);
-  color: var(--bg-dark);
-  box-shadow: 0 4px 12px rgba(194, 157, 95, 0.3);
-  transform: translateY(-2px);
-}
-
-.footer-bottom {
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-}
-
-.footer-contact-info a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-  margin: 0 8px;
-}
-
-.footer-contact-info a:hover {
-  color: var(--primary);
-}
-
-.footer-bottom p {
-  margin: 6px 0;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-@media (max-width: 600px) {
-  .question-text {
-    font-size: 1.1rem;
-  }
-  .books-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .book-title {
-    font-size: 1rem;
-  }
-  .exam-box, .results-box {
-    padding: 16px;
-  }
-}
+/* إخفاء الهيدر أثناء الامتحان للتركيز */
+body.exam-mode .main-header { display: none; }
