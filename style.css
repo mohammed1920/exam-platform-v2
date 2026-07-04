@@ -193,13 +193,13 @@ body.exam-mode .main-footer {
   background-color: #b38f50;
 }
 
-/* التحكم بظهور الواجهات */
+/* التحكم بظهور الواجهات وإصلاح الإغلاق البرمجي */
 .view-section {
-  display: none;
+  display: none !important;
 }
 
 .view-section.active {
-  display: block;
+  display: block !important;
 }
 
 /* تنسيق النوافذ وصناديق الاختبار */
