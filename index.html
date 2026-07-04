@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>منصة الاختبارات القانونية</title>
-  <!-- خط كابرو لجمالية النصوص القانونية -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- مكتبة الأيقونات الشهيرة FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- الهيدر العلوي الملكي والشعار الفخم -->
   <header class="main-header">
     <div class="logo-container">
       <span class="app-title">منصة الاختبارات القانونية</span>
@@ -21,7 +18,6 @@
     <p class="app-subtitle">المكتبة الرقمية للتشريعات العراقية</p>
   </header>
 
-  <!-- واجهة الكتب الرئيسية -->
   <main id="books-section" class="view-section active">
     <div class="search-container">
       <div class="search-wrapper">
@@ -30,11 +26,9 @@
       </div>
     </div>
     <div id="books-container" class="grid-container">
-      <!-- يتم توليد كروت الكتب برمجياً هنا -->
-    </div>
+      </div>
   </main>
 
-  <!-- واجهة فصول الكتاب المختار -->
   <main id="chapters-section" class="view-section">
     <div class="container-box">
       <div class="nav-header">
@@ -42,12 +36,10 @@
       </div>
       <div id="chapters-header" class="section-title"></div>
       <div id="chapters-container" class="chapters-list">
-        <!-- يتم توليد الفصول هنا -->
-      </div>
+        </div>
     </div>
   </main>
 
-  <!-- واجهة الامتحان الفعلي -->
   <main id="exam-section" class="view-section">
     <div class="exam-container">
       <div class="exam-header-bar">
@@ -62,8 +54,7 @@
       </div>
 
       <div id="question-container">
-        <!-- يتم توليد السؤال والخيارات هنا -->
-      </div>
+        </div>
 
       <div class="exam-actions">
         <button id="prev-btn" class="exam-btn prev">السؤال السابق</button>
@@ -75,7 +66,6 @@
     </div>
   </main>
 
-  <!-- واجهة النتيجة النهائية -->
   <main id="results-section" class="view-section">
     <div class="result-card">
       <div class="result-icon">🏁</div>
@@ -93,7 +83,6 @@
     </div>
   </main>
 
-  <!-- واجهة مراجعة الإجابات الخاطئة -->
   <main id="review-section" class="view-section">
     <div class="container-box">
       <div class="nav-header">
@@ -101,19 +90,16 @@
       </div>
       <h2 class="section-title">مراجعة الإجابات غير الصحيحة</h2>
       <div id="review-content" class="review-list">
-        <!-- الإجابات الخاطئة تظهر هنا -->
-      </div>
+        </div>
     </div>
   </main>
 
-  <!-- تذييل الصفحة -->
   <footer class="main-footer">
     <p>© 2026 جميع الحقوق محفوظة لـ منصة الاختبارات القانونية</p>
     <div id="footerContactDetails" class="footer-contact"></div>
     <div id="footerSocialButtons" class="footer-social"></div>
   </footer>
 
-  <!-- ملفات الجافاسكريبت المحركة للموقع -->
   <script src="data/engine.js"></script>
   <script src="app.js"></script>
 </body>
