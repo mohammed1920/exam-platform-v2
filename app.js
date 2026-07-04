@@ -30,7 +30,31 @@ class ExamApp {
     }
   }
 
+  // ===== دالة تجهيز أسئلة الفصل بنسخة عميقة وخلط الخيارات مع ضمان دقة التصحيح =====
+  prepareChapterQuestions(originalQuestions) {
+    if (!originalQuestions || !Array.isArray(originalQuestions)) return [];
+    
+    // أخذ نسخة عميقة ونظيفة (Deep Copy) لمنع التداخل مع أي بيانات ثابتة
+    const questionsCopy = JSON.parse(JSON.stringify(originalQuestions));
 
+    return questionsCopy.map(q => {
+      if (!q.options || q.options.length === 0) return q;
+
+      // 1. حفظ النص الفعلي للإجابة الصحيحة الأصلية قبل البعثرة
+      const correctText = q.options[q.answer];
+
+      // 2. خلط الخيارات عشوائياً باستخدام Fisher-Yates
+      for (let i = q.options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
+      }
+
+      // 3. تحديث الاندكس (رقم الإجابة) ليكون هو المكان الجديد للنص الصحيح بدقة
+      q.answer = q.options.indexOf(correctText);
+
+      return q;
+    });
+  }
 
   async loadContactInfo() {
     try {
@@ -297,7 +321,8 @@ class ExamApp {
       const chapter = await examEngine.loadChapter(bookId, chapterNum);
       if (!chapter) return;
 
-      this.currentQuestions = chapter.questions;
+      // تجهيز أسئلة الفصل بنسخة عميقة وخلط الخيارات
+      this.currentQuestions = this.prepareChapterQuestions(chapter.questions);
       
       // تحديث محرك الاختبارات بالأسئلة المحضرة
       examEngine.questions = this.currentQuestions;
