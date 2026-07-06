@@ -3,7 +3,6 @@
   "book_id": "law_international_humanitarian",
   "chapter": 1,
   "title": "الفصل 1",
-  "description": "أسئلة الفصل 1 من القانون الدولي الإنساني",
   "questions": [
     {
       "id": 1,
@@ -40,7 +39,7 @@
         "قانون اللاجئين",
         "قانون السلم والحرب"
       ],
-      "answer": 0,
+      "answer": 4,
       "explanation": "لا يوجد شرح متوفر حالياً."
     },
     {
