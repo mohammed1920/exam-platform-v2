@@ -94,9 +94,9 @@ def parse_questions_from_html(html_text):
 
     raw_array = match.group(1)
 
-    # 0) إزالة تعليقات JS: كتلة (/* ... */) ثم سطر واحد (//...)
+    # 0) إزالة تعليقات JS: كتلة (/* ... */)، ثم أي تعليق // (سواء بسطر مستقل أو بنهاية سطر كود)
     raw_array = re.sub(r'/\*.*?\*/', '', raw_array, flags=re.DOTALL)
-    raw_array = re.sub(r'^\s*//.*$', '', raw_array, flags=re.MULTILINE)
+    raw_array = re.sub(r'//[^\n]*', '', raw_array)
 
     # 1) وضع علامات اقتباس حول أي من المفاتيح المحتملة بالصيغتين
     json_text = re.sub(r'\b(q|options|opts|correct|ans)\s*:', r'"\1":', raw_array)
