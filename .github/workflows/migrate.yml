@@ -1,0 +1,48 @@
+name: Migrate Questions From Old Repos
+
+# يشتغل يدويًا فقط، لما تضغط زر "Run workflow" من تبويب Actions
+on:
+  workflow_dispatch:
+    inputs:
+      only_books:
+        description: >
+          (اختياري) اكتب معرفات كتب محددة مفصولة بمسافة لترحيلها فقط،
+          مثال: law_general_penalties law_special_sanctions
+          اتركه فاضي لترحيل كل الكتب السبعة دفعة وحدة.
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run migration script
+        run: |
+          if [ -n "${{ github.event.inputs.only_books }}" ]; then
+            python3 migrate_books.py --repo-root . --only ${{ github.event.inputs.only_books }}
+          else
+            python3 migrate_books.py --repo-root .
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "لا يوجد تغييرات لترحيلها."
+          else
+            git commit -m "ترحيل نظيف لبيانات الأسئلة من المستودعات القديمة"
+            git push
+          fi
