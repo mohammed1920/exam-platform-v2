@@ -79,24 +79,23 @@ def fetch_raw(repo, filename):
 
 def parse_questions_from_html(html_text):
     """
-    يستخرج مصفوفة الأسئلة من نص HTML القديم (const questions = [...];)
+    يستخرج مصفوفة الأسئلة من نص HTML القديم (const questions/allQuestions = [...];)
     ويحوّلها من صيغة JS (مفاتيح بلا علامات اقتباس) إلى JSON صالح.
 
-    ملاحظة: المستودعات القديمة تستخدم صيغتين مختلفتين حسب متى أُنشئ الملف:
-      - الصيغة الأقدم:  {q, options, correct}   (الإجابة الصحيحة دائمًا index 0)
-      - صيغة القالب الأحدث: {q, opts, ans}      (الإجابة index حقيقي متغيّر،
-        لأن الخلط يصير وقت التشغيل بالمتصفح لا داخل الملف)
-    الدالة تتعرف تلقائيًا على أي الصيغتين مستخدمة وتوحّدها.
+    ملاحظة: المستودعات القديمة تستخدم عدة اختلافات حسب متى أُنشئ الملف:
+      - اسم المتغير: questions أو allQuestions (أو أي اسم ينتهي بـ Questions)
+      - المفاتيح: {q, options, correct}  أو  {q, opts, ans}
+      - تعليقات JS داخل المصفوفة: سطرية (// ...) أو كتلة (/* ... */)
+    الدالة تتعرف تلقائيًا على كل هذي الاختلافات وتوحّدها.
     """
-    match = re.search(r'const\s+questions\s*=\s*(\[.*?\])\s*;', html_text, re.DOTALL)
+    match = re.search(r'const\s+\w*[Qq]uestions\s*=\s*(\[.*?\])\s*;', html_text, re.DOTALL)
     if not match:
-        raise ValueError("لم يتم العثور على 'const questions = [...]' بالملف")
+        raise ValueError("لم يتم العثور على مصفوفة الأسئلة (const ...questions = [...]) بالملف")
 
     raw_array = match.group(1)
 
-    # 0) إزالة تعليقات JS من نوع سطر واحد (// ...) الشائعة كعناوين مباحث
-    #    بحرص: لا نحذف "//" لو كانت داخل نص عربي بين علامتي اقتباس (نادر لكن نتجنبه
-    #    بالتأكد أن التعليق يبدأ بعد فاصلة أو قوس فتح سطر جديد فقط)
+    # 0) إزالة تعليقات JS: كتلة (/* ... */) ثم سطر واحد (//...)
+    raw_array = re.sub(r'/\*.*?\*/', '', raw_array, flags=re.DOTALL)
     raw_array = re.sub(r'^\s*//.*$', '', raw_array, flags=re.MULTILINE)
 
     # 1) وضع علامات اقتباس حول أي من المفاتيح المحتملة بالصيغتين
