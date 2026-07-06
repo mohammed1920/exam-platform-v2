@@ -1,9 +1,9 @@
 {
-  "id": "law___special___sanctions_ch10",
-  "book_id": "law___special___sanctions",
+  "id": "law_special_sanctions_ch10",
+  "book_id": "law_special_sanctions",
   "chapter": 10,
   "title": "الفصل 10",
-  "description": "أسئلة الفصل 10 من Special   sanctions",
+  "description": "أسئلة الفصل 10 من قانون العقوبات الخاص",
   "questions": [
     {
       "id": 1,
@@ -423,7 +423,7 @@
     },
     {
       "id": 33,
-      "question": "ما الحد الأدنى للعمر الذي ُيعتبر فيه الشخص \\",
+      "question": "ما الحد الأدنى للعمر الذي ُيعتبر فيه الشخص \"حدثًا\" وفق قانون رعاية الأحداث؟",
       "options": [
         "9سنوات",
         "7سنوات",

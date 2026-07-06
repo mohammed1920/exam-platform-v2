@@ -1,9 +1,9 @@
 {
-  "id": "law___special___sanctions_ch16",
-  "book_id": "law___special___sanctions",
+  "id": "law_special_sanctions_ch16",
+  "book_id": "law_special_sanctions",
   "chapter": 16,
   "title": "الفصل 16",
-  "description": "أسئلة الفصل 16 من Special   sanctions",
+  "description": "أسئلة الفصل 16 من قانون العقوبات الخاص",
   "questions": [
     {
       "id": 1,
@@ -150,7 +150,7 @@
     },
     {
       "id": 12,
-      "question": "أي مما يلي يندرج ضمن مفهوم \\",
+      "question": "أي مما يلي يندرج ضمن مفهوم \"وسيلة النقل\" وفق نصوص التشديد؟",
       "options": [
         "جميع ما سبق",
         "السيارات الخاصة المملوكة لأفراد",

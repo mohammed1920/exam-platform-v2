@@ -1,9 +1,9 @@
 {
-  "id": "law___special___sanctions_ch20",
-  "book_id": "law___special___sanctions",
+  "id": "law_special_sanctions_ch20",
+  "book_id": "law_special_sanctions",
   "chapter": 20,
   "title": "الفصل 20",
-  "description": "أسئلة الفصل 20 من Special   sanctions",
+  "description": "أسئلة الفصل 20 من قانون العقوبات الخاص",
   "questions": [
     {
       "id": 1,
@@ -1267,7 +1267,7 @@
     },
     {
       "id": 98,
-      "question": "عبارة \\",
+      "question": "عبارة \"بسوء نية\" في م  459ق.ع تعني:",
       "options": [
         "القصد الجرمي",
         "نية الإضرار فقط",
