@@ -1,0 +1,42 @@
+name: Auto Update Chapter Counts
+
+# يشتغل تلقائيًا بكل مرة يتغيّر فيها أي ملف بمجلد data/
+# (سواء رفعته يدويًا من GitHub، أو عبر لوحة الأدمن، أو أي طريقة ثانية)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - '!data/books.json'   # نستثني تغييرات books.json نفسها لمنع حلقة تشغيل لا نهائية
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run update_questions.py
+        run: python3 update_questions.py
+
+      - name: Commit and push changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/books.json
+          if git diff --cached --quiet; then
+            echo "لا يوجد تغيير بعدد الفصول، ما فيه شي نرفعه."
+          else
+            git commit -m "تحديث تلقائي: عدد الفصول بـ books.json"
+            git fetch origin main
+            git merge origin/main --no-edit -X ours
+            git push
+          fi
