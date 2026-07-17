@@ -25,9 +25,9 @@
   },
   {
     "id": "law_international",
-    "title": "القانون الدولي العام",
+    "title": "International",
     "author": "مستشار قانوني",
-    "description": "",
+    "description": "دراسة شاملة واختبارات في law_international.",
     "chapters": 5,
     "color": "#c29d5f"
   },
@@ -44,7 +44,7 @@
     "title": "المنظمات الدولية",
     "author": "مستشار قانوني",
     "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
-    "chapters": 1,
+    "chapters": 18,
     "color": "#2980b9"
   },
   {
@@ -54,12 +54,5 @@
     "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
     "chapters": 22,
     "color": "#e67e22"
-  },
-  {
-    "id": "Law-gh",
-    "title": "المالية العامة",
-    "author": "تجريبي",
-    "description": "تجربة اضافة كتاب",
-    "chapters": 3
   }
 ]
