@@ -22,12 +22,60 @@ class ExamApp {
       await this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
-      
-      // حفظ الحالة الأولية في تاريخ المتصفح
-      history.replaceState({ view: 'books' }, '');
-      this.navigateTo('books', {}, false);
+
+      // نتحقق هل فيه حالة محفوظة بمتصفح قبل الريفرش (كان الطالب بمنتصف اختبار مثلاً)
+      // بدل ما نرجعه دايمًا لقائمة الكتب تلقائيًا
+      const savedState = history.state;
+      let restored = false;
+      if (savedState && savedState.view && savedState.view !== 'books' && savedState.bookId) {
+        restored = await this.restoreState(savedState);
+      }
+
+      if (!restored) {
+        // ما فيه حالة محفوظة صالحة: نبدأ من قائمة الكتب كالمعتاد
+        history.replaceState({ view: 'books' }, '');
+        this.navigateTo('books', {}, false);
+      }
     } catch (error) {
       console.error('Initialization error:', error);
+    }
+  }
+
+  async restoreState(state) {
+    const book = this.books.find(b => b.id === state.bookId);
+    if (!book) return false;
+    this.currentBook = book;
+
+    try {
+      if (state.view === 'exam' && state.chapter) {
+        this.currentChapter = state.chapter;
+        const success = await examEngine.loadChapter(book.id, state.chapter);
+        if (!success) return false;
+
+        this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
+        examEngine.questions = this.currentQuestions;
+
+        this.examActive = true;
+        document.body.classList.add('exam-mode');
+        this.navigateTo('exam', {}, false); // false: لا ننشئ سجل تاريخ جديد، الحالة أصلاً موجودة
+        this.startTimer();
+        this.renderQuestion();
+        return true;
+      }
+
+      if (state.view === 'chapters') {
+        this.navigateTo('chapters', {}, false);
+        this.renderChapters();
+        return true;
+      }
+
+      // حالات ثانية (نتائج/مراجعة): أسلم رجعة لقائمة فصول نفس الكتاب بدل قائمة الكتب بالكامل
+      this.navigateTo('chapters', {}, false);
+      this.renderChapters();
+      return true;
+    } catch (err) {
+      console.warn('فشل استرجاع الحالة بعد التحديث:', err);
+      return false;
     }
   }
 
