@@ -159,7 +159,6 @@ class ExamApp {
           <div class="book-icon"><i class="fas fa-gavel"></i></div>
           <div class="book-title">${book.title}</div>
           <div class="book-author">${book.author || 'مستشار قانوني'}</div>
-          <div class="book-desc">${book.description || ''}</div>
         </div>
         <div>
           <div class="book-meta">
@@ -239,8 +238,18 @@ class ExamApp {
     const total = examEngine.questions.length;
     const q = examEngine.questions[qIdx];
 
-    title.innerText = `${this.currentBook.title} - الفصل ${this.currentChapter} (${qIdx + 1} من ${total})`;
+    title.innerText = `${this.currentBook.title} - الفصل ${this.currentChapter}`;
     fill.style.width = `${((qIdx + 1) / total) * 100}%`;
+
+    // تحديث شريط الإحصائيات (خطأ / صح / التقدم)
+    const correctCount = examEngine.userAnswers.filter(a => a.isCorrect).length;
+    const wrongCount = examEngine.userAnswers.filter(a => !a.isCorrect).length;
+    const statWrong = document.getElementById('stat-wrong');
+    const statCorrect = document.getElementById('stat-correct');
+    const statProgress = document.getElementById('stat-progress');
+    if (statWrong) statWrong.innerText = wrongCount;
+    if (statCorrect) statCorrect.innerText = correctCount;
+    if (statProgress) statProgress.innerText = `${qIdx + 1}/${total}`;
 
     const pastAns = examEngine.userAnswers.find(a => a.questionText === q.question);
 
@@ -275,6 +284,14 @@ class ExamApp {
       btnEl.classList.add('incorrect');
       allButtons[q.answer].classList.add('correct');
     }
+
+    // تحديث فوري لعدّاد الصح/الخطأ بشريط الإحصائيات فور الإجابة
+    const correctCount = examEngine.userAnswers.filter(a => a.isCorrect).length;
+    const wrongCount = examEngine.userAnswers.filter(a => !a.isCorrect).length;
+    const statWrong = document.getElementById('stat-wrong');
+    const statCorrect = document.getElementById('stat-correct');
+    if (statWrong) statWrong.innerText = wrongCount;
+    if (statCorrect) statCorrect.innerText = correctCount;
     // تم حذف الـ setTimeout نهائياً لمنع الانتقال التلقائي بناءً على طلبك
   }
 
