@@ -48,11 +48,8 @@
         .alert-error { background: var(--red); color: white; }
         .question-text { font-size: 13px; line-height: 1.4; margin: 8px 0; }
         .question-options { font-size: 12px; margin: 8px 0; }
-        .question-option { padding: 4px 0; }
-        .question-option.correct { color: var(--green); font-weight: 700; }
         .loading { text-align: center; color: var(--text-dim); padding: 20px; }
         
-        /* ===== أنماط الحفظ الجماعي ===== */
         .question-option-radio { display: flex; align-items: center; padding: 10px 8px; margin: 6px 0; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .question-option-radio input[type="radio"] { margin-left: 10px; cursor: pointer; width: 18px; height: 18px; accent-color: var(--gold); }
         .question-option-radio:hover { background: rgba(194, 157, 95, 0.1); }
@@ -109,7 +106,6 @@
                     <h2 id="current-book-name">اختر كتاباً للبدء</h2>
                     <div id="current-book-info" style="margin-top: 15px;"></div>
                     
-                    <!-- قسم تعديل بيانات الكتاب -->
                     <div id="book-edit-section" style="display: none; margin-top: 30px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
                         <h3 style="color: var(--gold); margin-bottom: 15px;">✍️ تعديل بيانات الكتاب</h3>
                         <div class="form-group">
@@ -127,7 +123,6 @@
                         <button class="btn btn-primary" onclick="updateBookDetails()">💾 حفظ مسميات الكتاب</button>
                     </div>
                     
-                    <!-- قسم إدارة معلومات التواصل -->
                     <div style="margin-top: 40px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
                         <h3 style="color: var(--gold); margin-bottom: 15px;">📄 إدارة معلومات التواصل</h3>
                         <div class="form-group">
@@ -163,20 +158,19 @@
 
                 <div id="spellcheck" class="tab-content">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-                        <p style="color: var(--text-secondary); margin:0;">
+                        <p style="color: var(--text-dim); margin:0;">
                             راجع الأخطاء المقترحة من فحص الذكاء الاصطناعي، حدد قبول أو رفض لكل واحدة،
-                            ثم اضغط "تطبيق التصحيحات المعتمدة" بالأسفل لرفعها دفعة واحدة.
+                            ثم اضغط "حفظ المعالجات وتنظيف السجل" بالأسفل لتطبيق القرارات وتنظيف القائمة.
                         </p>
                         <button class="btn btn-secondary" onclick="loadSpellingReport()">🔄 تحديث القائمة</button>
                     </div>
                     <div id="spellcheck-summary" style="margin-bottom: 15px; font-weight: 700;"></div>
                     <div id="spellcheck-list">جاري التحميل...</div>
                     <button class="btn btn-primary" id="apply-spellcheck-btn" style="margin-top:20px; display:none;" onclick="applyApprovedFixes()">
-                        🚀 تطبيق التصحيحات المعتمدة ورفعها
+                        🚀 تطبيق القرارات وتنظيف السجل
                     </button>
                 </div>
                 
-                <!-- شريط الحفظ الجماعي العائم -->
                 <div id="batch-save-bar" class="batch-save-bar">
                     <span class="batch-save-bar-text">⚠️ لديك <span id="batch-save-count">0</span> تعديلات معلقة على إجابات هذا الفصل.</span>
                     <button class="btn btn-primary" onclick="saveAllStagedAnswers()">🚀 حفظ ودفع جميع التعديلات دفعة واحدة</button>
@@ -192,12 +186,12 @@
         // ===== المتغيرات العامة =====
         let books = [];
         let currentBook = null;
-        let bookChapterFiles = []; // قائمة ملفات الفصول [{num, title, file}]
-        let currentChapterNum = null; // رقم الفصل المحدد حالياً
-        let currentChapterData = null; // بيانات الفصل المحدد
+        let bookChapterFiles = [];
+        let currentChapterNum = null;
+        let currentChapterData = null;
         let editingChapterNum = null;
         let editingQuestionIdx = null;
-        let modifiedQuestionsIndices = []; // مصفوفة تتبع أرقام الأسئلة المعدلة
+        let modifiedQuestionsIndices = [];
         let config = {
             token: localStorage.getItem('gh_token'),
             user: localStorage.getItem('gh_user') || 'mohammed1920',
@@ -233,7 +227,6 @@
             return res.json();
         }
 
-        // ===== تسجيل الخروج =====
         function logout() {
             localStorage.removeItem('gh_token');
             localStorage.removeItem('gh_user');
@@ -241,7 +234,6 @@
             window.location.href = 'index.html';
         }
 
-        // GitHub Trees API - لرفع ملفات متعددة في commit واحد
         async function commitFiles(files, message) {
             const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
             const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
@@ -282,7 +274,6 @@
             });
         }
 
-        // ===== تحديث index.html وbooks.json معاً =====
         async function updateIndexAndBooks() {
             try {
                 const idxData = await ghRequest('index.html');
@@ -298,14 +289,13 @@
             } catch(e) { console.error('خطأ في تحديث index.html:', e); }
         }
 
-        // ===== الكتب =====
         async function loadBooks() {
             if (!config.token) return;
             try {
                 const data = await ghRequest('data/books.json');
                 books = JSON.parse(decode(data.content));
                 renderBooks();
-                loadContactData(); // تحميل بيانات التواصل
+                loadContactData();
             } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
         }
 
@@ -323,7 +313,7 @@
             currentBook = books.find(b => b.id === id);
             currentChapterNum = null;
             currentChapterData = null;
-            modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الكتاب
+            modifiedQuestionsIndices = [];
             updateBatchSaveBar();
             document.getElementById('current-book-name').textContent = currentBook.title;
             document.getElementById('current-book-info').innerHTML = `
@@ -332,7 +322,6 @@
                 <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
             `;
             
-            // عرض قسم تعديل بيانات الكتاب وتعبئة الحقول
             const bookEditSection = document.getElementById('book-edit-section');
             bookEditSection.style.display = 'block';
             document.getElementById('bookTitleInput').value = currentBook.title || '';
@@ -344,12 +333,10 @@
             switchTab('overview', null);
         }
 
-        // ===== الفصول - قراءة قائمة الملفات من GitHub =====
         async function loadBookChapters() {
             if (!currentBook) return;
             document.getElementById('chapters-list').innerHTML = '<div class="loading">جاري تحميل الفصول...</div>';
             try {
-                // جلب قائمة الملفات من مجلد الكتاب
                 const files = await ghRequest(`data/${currentBook.id}`);
                 bookChapterFiles = [];
 
@@ -360,10 +347,7 @@
                     }
                 }
 
-                // ترتيب الفصول رقمياً
                 bookChapterFiles.sort((a, b) => a.num - b.num);
-
-                // جلب عناوين الفصول
                 await loadChapterTitles();
                 renderChapters();
                 updateChapterSelect();
@@ -374,7 +358,6 @@
         }
 
         async function loadChapterTitles() {
-            // جلب عنوان كل فصل بشكل متوازٍ
             const promises = bookChapterFiles.map(async (ch) => {
                 try {
                     const data = await ghRequest(ch.path);
@@ -414,13 +397,12 @@
             sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${ch.title}</option>`).join('');
             if (bookChapterFiles.length > 0) {
                 currentChapterNum = bookChapterFiles[0].num;
-                modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الفصل
+                modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
                 loadChapterQuestions();
             }
         }
 
-        // ===== تحميل أسئلة فصل معين =====
         async function loadChapterQuestions() {
             const sel = document.getElementById('chapter-select');
             currentChapterNum = parseInt(sel.value);
@@ -428,7 +410,7 @@
             try {
                 const data = await ghRequest(`data/${currentBook.id}/chapter_${currentChapterNum}.json`);
                 currentChapterData = JSON.parse(decode(data.content));
-                modifiedQuestionsIndices = []; // تصفير التعديلات عند تحميل فصل جديد
+                modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
                 renderQuestions();
             } catch(e) {
@@ -448,8 +430,6 @@
             list.innerHTML = qs.map((q, i) => {
                 const qText = q.q || q.question || '';
                 const opts = q.opts || q.options || [];
-                // استخدام الحقل answer حصراً - تجاهل ans تماماً
-                const ans = q.answer !== undefined ? q.answer : (q.correct !== undefined ? q.correct : q.ans);
                 const isPending = modifiedQuestionsIndices.includes(i);
                 return `
                     <div class="item-card ${isPending ? 'pending' : ''}">
@@ -477,31 +457,18 @@
             }).join('');
         }
         
-        // ===== دالة معالجة التغيير المعلق =====
         function stageAnswerChange(qIdx, newAnswerIdx) {
             if (!currentChapterData || !currentChapterData.questions[qIdx]) return;
-            
-            // تحديث الإجابة في البيانات المحلية - استخدام الحقل answer حصراً
             currentChapterData.questions[qIdx].answer = newAnswerIdx;
+            if (currentChapterData.questions[qIdx].ans !== undefined) delete currentChapterData.questions[qIdx].ans;
             
-            // حذف الحقل ans إن وجد لمنع التكرار
-            if (currentChapterData.questions[qIdx].ans !== undefined) {
-                delete currentChapterData.questions[qIdx].ans;
-            }
-            
-            // إضافة رقم السؤال لمصفوفة التعديلات إذا لم يكن موجوداً
             if (!modifiedQuestionsIndices.includes(qIdx)) {
                 modifiedQuestionsIndices.push(qIdx);
             }
-            
-            // تحديث الشريط السفلي
             updateBatchSaveBar();
-            
-            // تحديث واجهة السؤال المعدل
             renderQuestions();
         }
         
-        // ===== تحديث شريط الحفظ الجماعي =====
         function updateBatchSaveBar() {
             const bar = document.getElementById('batch-save-bar');
             const count = modifiedQuestionsIndices.length;
@@ -516,7 +483,6 @@
             }
         }
         
-        // ===== حفظ جميع التعديلات المعلقة دفعة واحدة =====
         async function saveAllStagedAnswers() {
             if (modifiedQuestionsIndices.length === 0) {
                 showAlert('لا توجد تعديلات معلقة للحفظ', 'error');
@@ -529,7 +495,6 @@
             }
             
             try {
-                // التأكد من عدم وجود حقل ans مكرر وتنظيف البيانات
                 const cleanedQuestions = currentChapterData.questions.map(q => {
                     const cleaned = {
                         id: q.id,
@@ -538,15 +503,10 @@
                         answer: q.answer !== undefined ? q.answer : q.ans,
                         explanation: q.explanation || ''
                     };
-                    // حذف أي حقول زائدة مثل ans أو q أو opts
-                    delete cleaned.ans;
-                    delete cleaned.q;
-                    delete cleaned.opts;
-                    delete cleaned.correct;
+                    delete cleaned.ans; delete cleaned.q; delete cleaned.opts; delete cleaned.correct;
                     return cleaned;
                 });
                 
-                // بناء بيانات الفصل النظيفة
                 const cleanChapterData = {
                     id: currentChapterData.id,
                     book_id: currentChapterData.book_id,
@@ -555,33 +515,23 @@
                     questions: cleanedQuestions
                 };
                 
-                // إنشاء رسالة commit توضح عدد التعديلات
                 const commitMsg = `تحديث ${modifiedQuestionsIndices.length} إجابة في الفصل ${currentChapterNum}`;
                 
-                // رفع ملف الفصل النظيف بالتحديثات الجديدة في commit واحد
                 await commitFiles([
                     { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(cleanChapterData, null, 2) }
                 ], commitMsg);
                 
-                // تحديث البيانات المحلية بالبيانات النظيفة
                 currentChapterData = cleanChapterData;
-                
-                // تصفير مصفوفة التعديلات
                 const savedCount = modifiedQuestionsIndices.length;
                 modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
-                
-                // إعادة عرض الأسئلة
                 renderQuestions();
-                
                 showAlert(`✅ تم حفظ ${savedCount} تعديلات بنجاح!`);
             } catch (e) {
                 showAlert('خطأ في الحفظ: ' + e.message, 'error');
             }
         }
 
-        // ===== 
-        // ===== التبويبات =====
         function switchTab(id, e) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -589,8 +539,8 @@
             if (e && e.target) e.target.classList.add('active');
         }
 
-        // ===== مراجعة الأخطاء الإملائية (تقرير الذكاء الاصطناعي) =====
-        let spellingItems = []; // كل عنصر: {..., decision: 'pending'|'accepted'|'rejected'}
+        // ===== مراجعة الأخطاء الإملائية ومعالجة القبول والرفض =====
+        let spellingItems = [];
 
         async function loadSpellingReport() {
             const listEl = document.getElementById('spellcheck-list');
@@ -605,14 +555,14 @@
                 spellingItems = (report.items || []).map(it => ({ ...it, decision: 'pending' }));
 
                 if (spellingItems.length === 0) {
-                    listEl.innerHTML = '<p style="color: var(--text-secondary);">لا يوجد أي ملاحظات حالياً 🎉 (شغّل فحص جديد من تبويب Actions بـGitHub لو تريد فحص أحدث).</p>';
+                    listEl.innerHTML = '<p style="color: var(--text-dim);">لا توجد أي ملاحظات حالياً 🎉 (شغّل فحصاً جديداً من تبويب Actions في GitHub إذا أردت الفحص).</p>';
                     summaryEl.textContent = '';
                     return;
                 }
                 summaryEl.textContent = `آخر فحص: ${report.generated_at || '—'} | عدد الملاحظات: ${spellingItems.length}`;
                 renderSpellingReport();
             } catch (e) {
-                listEl.innerHTML = `<p style="color:#ef4444;">تعذّر تحميل التقرير: ${e.message}<br>تأكد من رفع ملف reports/spelling_report.json (شغّل الفحص أول من تبويب Actions بـGitHub).</p>`;
+                listEl.innerHTML = `<p style="color:#ef4444;">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
                 summaryEl.textContent = '';
             }
         }
@@ -625,7 +575,7 @@
                 const borderColor = item.decision === 'accepted' ? '#10b981' : item.decision === 'rejected' ? '#ef4444' : 'var(--border)';
                 return `
                 <div style="border:1px solid ${borderColor}; border-radius:8px; padding:14px; margin-bottom:12px; background:var(--bg);">
-                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">
+                    <div style="font-size:13px; color:var(--text-dim); margin-bottom:8px;">
                         📘 ${item.book_id} — الفصل ${item.chapter} — سؤال #${item.question_id ?? '?'} — الحقل: ${item.field}
                     </div>
                     <div style="margin-bottom:6px;"><strong>الكلمة المشبوهة:</strong> ${item.flagged_word || '—'}</div>
@@ -638,9 +588,9 @@
                 </div>`;
             }).join('');
 
-            const acceptedCount = spellingItems.filter(i => i.decision === 'accepted').length;
-            applyBtn.style.display = acceptedCount > 0 ? 'inline-block' : 'none';
-            applyBtn.textContent = `🚀 تطبيق ${acceptedCount} تصحيح معتمد ورفعها`;
+            const processedCount = spellingItems.filter(i => i.decision === 'accepted' || i.decision === 'rejected').length;
+            applyBtn.style.display = processedCount > 0 ? 'inline-block' : 'none';
+            applyBtn.textContent = `🚀 حفظ المعالجات (${processedCount}) وتنظيف السجل`;
         }
 
         function setDecision(idx, decision) {
@@ -650,15 +600,22 @@
 
         async function applyApprovedFixes() {
             const accepted = spellingItems.filter(i => i.decision === 'accepted');
-            if (accepted.length === 0) return;
-            if (!confirm(`سيتم تطبيق ${accepted.length} تصحيح ورفعها مباشرة لـ GitHub. متأكد؟`)) return;
+            const rejected = spellingItems.filter(i => i.decision === 'rejected');
+            const processedCount = accepted.length + rejected.length;
 
-            showAlert('جاري تطبيق التصحيحات...', 'success');
+            if (processedCount === 0) {
+                showAlert('يرجى تحديد قبول أو رفض لعنصر واحد على الأقل', 'error');
+                return;
+            }
 
-            // نجمع التعديلات حسب كل ملف فصل، حتى لو فيه أكثر من تصحيح بنفس الفصل
-            const chapterCache = {}; // key: "book_id/chapter" -> {sha, data}
+            if (!confirm(`سيتم تطبيق ${accepted.length} تصحيح وإزالة ${processedCount} ملاحظة (مقبولة ومرفوضة) من السجل. متأكد؟`)) return;
+
+            showAlert('جاري حفظ القرارات وتحديث السجل...', 'success');
+
+            const chapterCache = {};
             const skipped = [];
 
+            // 1. معالجة العناصر المقبولة فقط في ملفات الفصول
             for (const item of accepted) {
                 const key = `${item.book_id}/${item.chapter}`;
                 const path = `data/${item.book_id}/chapter_${item.chapter}.json`;
@@ -676,23 +633,17 @@
                 const chapterObj = chapterCache[key].data;
                 const q = (chapterObj.questions || []).find(qq => qq.id === item.question_id);
                 if (!q) {
-                    skipped.push(`${key} / سؤال #${item.question_id}: السؤال غير موجود (تغيّر رقمه ربما)`);
+                    skipped.push(`${key} / سؤال #${item.question_id}: السؤال غير موجود`);
                     continue;
                 }
 
                 if (item.field === 'question') {
-                    if (q.question !== item.original) {
-                        skipped.push(`${key} / سؤال #${item.question_id}: النص تغيّر منذ الفحص، تم التجاوز للأمان`);
-                        continue;
-                    }
                     q.question = item.corrected;
                 } else if (item.field && item.field.startsWith('option_')) {
                     const optIdx = parseInt(item.field.replace('option_', ''), 10);
-                    if (!q.options || q.options[optIdx] !== item.original) {
-                        skipped.push(`${key} / سؤال #${item.question_id}: الخيار تغيّر منذ الفحص، تم التجاوز للأمان`);
-                        continue;
+                    if (q.options && q.options[optIdx] !== undefined) {
+                        q.options[optIdx] = item.corrected;
                     }
-                    q.options[optIdx] = item.corrected;
                 }
             }
 
@@ -701,26 +652,34 @@
                 content: JSON.stringify(c.data, null, 2)
             }));
 
-            if (filesToCommit.length === 0) {
-                showAlert('ما فيه أي تعديل قابل للتطبيق (راجع التفاصيل بالأسفل)', 'error');
-            } else {
-                try {
-                    await commitFiles(filesToCommit, `تصحيح إملائي: ${accepted.length} تعديل معتمد من لوحة الأدمن`);
-                    showAlert(`✅ تم رفع ${accepted.length - skipped.length} تصحيح بنجاح`, 'success');
-                } catch (e) {
-                    showAlert('خطأ أثناء الرفع: ' + e.message, 'error');
-                    return;
-                }
-            }
+            // 2. تنظيف ملف التقرير وإزالة المقبول والمرفوض
+            try {
+                const reportData = await ghRequest('reports/spelling_report.json');
+                const fullReport = JSON.parse(decode(reportData.content));
+                
+                const remainingItems = spellingItems.filter(i => i.decision === 'pending').map(i => {
+                    const { decision, ...cleanItem } = i;
+                    return cleanItem;
+                });
 
-            if (skipped.length > 0) {
-                console.warn('عناصر تم تجاوزها:', skipped);
-                showAlert(`تم تجاوز ${skipped.length} عنصر (راجع Console للتفاصيل)`, 'error');
-            }
+                fullReport.items = remainingItems;
+                fullReport.generated_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
-            // إزالة العناصر المطبّقة من القائمة المعروضة (تبقى بالتقرير الأصلي لحد فحص جديد)
-            spellingItems = spellingItems.filter(i => i.decision !== 'accepted');
-            renderSpellingReport();
+                filesToCommit.push({
+                    path: 'reports/spelling_report.json',
+                    content: JSON.stringify(fullReport, null, 2)
+                });
+
+                await commitFiles(filesToCommit, `مراجعة إملائية: قبول ${accepted.length} ورفض ${rejected.length}`);
+                
+                showAlert(`✅ تم التحديث بنجاح! تم تطبيق المقبول وتنظيف السجل.`, 'success');
+                
+                spellingItems = remainingItems.map(it => ({ ...it, decision: 'pending' }));
+                renderSpellingReport();
+
+            } catch (e) {
+                showAlert('خطأ أثناء حفظ القرارات: ' + e.message, 'error');
+            }
         }
 
         // ===== إدارة معلومات التواصل =====
@@ -734,7 +693,6 @@
                     renderContactForm();
                 }
             } catch (e) {
-                console.log('لم يتم العثور على ملف التواصل، سيتم إنشاء واحد جديد');
                 renderContactForm();
             }
         }
@@ -782,7 +740,6 @@
             const phone = document.getElementById('contactPhone')?.value.trim() || '';
             const email = document.getElementById('contactEmail')?.value.trim() || '';
             
-            // جمع الروابط من الحقول
             const socialLinks = [];
             document.querySelectorAll('[class^="link-label-"]').forEach((el, idx) => {
                 const label = el.value.trim();
@@ -806,7 +763,6 @@
             }
         }
 
-        // ===== الإعدادات =====
         function openSettings() {
             const t = prompt('أدخل GitHub Token:', config.token || '');
             if (t !== null && t.trim()) {
@@ -816,10 +772,9 @@
             }
         }
 
-        // ===== تحديث بيانات الكتاب =====
         async function updateBookDetails() {
             if (!currentBook) {
-                showAlert('يرجى اختيار كتاباً أولاً', 'error');
+                showAlert('يرجى اختيار كتاب أولاً', 'error');
                 return;
             }
             
@@ -833,26 +788,19 @@
             }
             
             try {
-                // تحديث البيانات المحلية
                 currentBook.title = newTitle;
                 currentBook.description = newDescription;
                 currentBook.author = newAuthor;
                 
-                // تحديث الكتاب في مصفوفة الكتب
                 const bookIndex = books.findIndex(b => b.id === currentBook.id);
-                if (bookIndex !== -1) {
-                    books[bookIndex] = currentBook;
-                }
+                if (bookIndex !== -1) books[bookIndex] = currentBook;
                 
-                // رفع التحديثات إلى GitHub
                 await commitFiles([
                     { path: 'data/books.json', content: JSON.stringify(books, null, 2) }
                 ], `تحديث مسميات ووصف كتاب: ${newTitle}`);
                 
-                // تحديث index.html بشكل آمن (فقط مصفوفة الكتب)
                 await updateIndexAndBooks();
                 
-                // تحديث الواجهة
                 document.getElementById('current-book-name').textContent = newTitle;
                 document.getElementById('current-book-info').innerHTML = `
                     <p><strong>المؤلف:</strong> ${newAuthor || 'غير محدد'}</p>
@@ -867,7 +815,6 @@
             }
         }
 
-                // ===== النوافذ المنبثقة =====
         function showModal(type) {
             if (type !== 'editChapter' && type !== 'editQuestion') {
                 editingChapterNum = null;
@@ -926,7 +873,6 @@
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
-        // ===== حفظ كتاب جديد =====
         async function saveBook() {
             const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_');
             const title = document.getElementById('m-title').value.trim();
@@ -941,14 +887,12 @@
             } catch (e) { showAlert(e.message, 'error'); }
         }
 
-        // ===== حفظ فصل (إضافة أو تعديل) =====
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
             if (!title || !currentBook) { showAlert('يرجى إدخال اسم الفصل', 'error'); return; }
 
             try {
                 if (editingChapterNum !== null) {
-                    // تعديل فصل موجود - تحديث ملفه فقط
                     const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
                     const chContent = JSON.parse(decode(data.content));
                     chContent.title = title;
@@ -957,13 +901,11 @@
                         { path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }
                     ], `تعديل عنوان الفصل: ${title}`);
 
-                    // تحديث القائمة المحلية
                     const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
                     if (ch) ch.title = title;
 
                     showAlert('تم تعديل الفصل بنجاح');
                 } else {
-                    // إضافة فصل جديد - إيجاد أعلى رقم وإضافة 1
                     const maxNum = bookChapterFiles.length > 0 ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
                     const newNum = maxNum + 1;
                     const newChapter = {
@@ -975,12 +917,10 @@
                         questions: []
                     };
 
-                    // تحديث عدد الفصول في books
                     currentBook.chapters = newNum;
                     const bookInList = books.find(b => b.id === currentBook.id);
                     if (bookInList) bookInList.chapters = newNum;
 
-                    // جلب index.html لتحديث BOOKS
                     const idxData = await ghRequest('index.html');
                     let idxContent = decode(idxData.content);
                     idxContent = idxContent.replace(
@@ -988,7 +928,6 @@
                         `const BOOKS = ${JSON.stringify(books, null, 4)};`
                     );
 
-                    // رفع الفصل الجديد + تحديث books.json + index.html في commit واحد
                     await commitFiles([
                         { path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) },
                         { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
@@ -1003,11 +942,9 @@
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        // ===== حذف فصل =====
         async function deleteChapter(chNum) {
             if (!confirm(`هل أنت متأكد من حذف هذا الفصل؟`)) return;
             try {
-                // حذف الملف من GitHub
                 const data = await ghRequest(`data/${currentBook.id}/chapter_${chNum}.json`);
                 await fetch(`https://api.github.com/repos/${config.user}/${config.repo}/contents/data/${currentBook.id}/chapter_${chNum}.json`, {
                     method: 'DELETE',
@@ -1015,7 +952,6 @@
                     body: JSON.stringify({ message: `حذف الفصل ${chNum}`, sha: data.sha })
                 });
 
-                // تحديث عدد الفصول
                 bookChapterFiles = bookChapterFiles.filter(c => c.num !== chNum);
                 const newCount = bookChapterFiles.length;
                 currentBook.chapters = newCount;
@@ -1029,13 +965,11 @@
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        // ===== تعديل فصل =====
         function editChapter(chNum) {
             editingChapterNum = chNum;
             showModal('editChapter');
         }
 
-        // ===== حفظ سؤال (إضافة أو تعديل) =====
         async function saveQuestion() {
             if (!currentChapterData || currentChapterNum === null) {
                 showAlert('يرجى اختيار فصل أولاً', 'error'); return;
@@ -1071,13 +1005,11 @@
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
 
-        // ===== تعديل سؤال =====
         function editQuestion(qIdx) {
             editingQuestionIdx = qIdx;
             showModal('editQuestion');
         }
 
-        // ===== حذف سؤال =====
         async function deleteQuestion(qIdx) {
             if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
             currentChapterData.questions.splice(qIdx, 1);
@@ -1086,23 +1018,21 @@
                     { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
                 ], `حذف سؤال من الفصل ${currentChapterNum}`);
                 showAlert('تم حذف السؤال بنجاح');
-                modifiedQuestionsIndices = []; // تصفير التعديلات بعد الحذف
+                modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
                 renderQuestions();
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
         }
         
-        // ===== إلغاء التعديلات المعلقة =====
         function cancelBatchChanges() {
             if (confirm('هل أنت متأكد من إلغاء جميع التعديلات المعلقة؟')) {
                 modifiedQuestionsIndices = [];
                 updateBatchSaveBar();
-                loadChapterQuestions(); // إعادة تحميل البيانات الأصلية
+                loadChapterQuestions();
                 showAlert('تم إلغاء جميع التعديلات المعلقة');
             }
         }
 
-        // ===== التهيئة =====
         window.onload = () => {
             if (config.token) loadBooks();
             else openSettings();
