@@ -1,267 +1,161 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import argparse
-import json
 import os
-import sys
+import json
 import time
-import re
-from pathlib import Path
+import google.generativeai as genai
+from groq import Groq
 
-try:
-    from google import genai
-    from google.genai import types
-except ImportError:
-    print("❌ مكتبة google-genai غير مثبتة.", flush=True)
-    sys.exit(1)
+# ----------------------------------------------------
+# 1. إعداد المتغيرات والمفاتيح
+# ----------------------------------------------------
+GEMINI_KEY = os.getenv("GEMINI_API_KEY")
+GROQ_KEY = os.getenv("GROQ_API_KEY")
 
-BATCH_SIZE = 10
+DATA_DIR = "data"
+BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
+STATE_FILE = "scan_state.json"
+REPORT_FILE = "report.json"
 
-SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
-مهمتك: فحص الأسئلة والخيارات واكتشاف الأخطاء الإملائية والطباعية الحقيقية فقط.
+BATCH_SIZE = 5  # عدد الأسئلة المقروءة في الطلب الواحد
 
-يجب أن ترجع النتيجة بصيغة JSON حصرية بالهيكل التالي:
-{
-  "issues": [
-    {
-      "question_index": 0,
-      "field": "question",
-      "original": "النص الكلي أو الكلمة الخطأ",
-      "corrected": "التصحيح المقترح",
-      "flagged_word": "الكلمة الخاطئة"
-    }
-  ]
-}
-
-إذا لم تجد أي أخطاء، أرجع: {"issues": []}
-"""
-
-def clean_json_response(text):
-    text = text.strip()
-    match = re.search(r'\{.*\}', text, re.DOTALL)
-    if match:
-        return match.group(0)
-    return text
-
-def check_batch_guaranteed(client, questions_batch):
-    numbered = []
-    for i, q in enumerate(questions_batch):
-        q_text = q.get("question") or q.get("text") or ""
-        q_opts = q.get("options") or q.get("choices") or []
-        numbered.append({
-            "question_index": i,
-            "question": q_text,
-            "options": q_opts,
-        })
-
-    user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
-    max_429_retries = 2
-
-    for attempt in range(max_429_retries):
+# ----------------------------------------------------
+# 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
+# ----------------------------------------------------
+def analyze_with_ai(prompt):
+    # المحاولة الأولى: Gemini
+    if GEMINI_KEY:
         try:
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=user_content,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    response_mime_type="application/json"
-                )
-            )
-            cleaned = clean_json_response(response.text)
-            result = json.loads(cleaned)
-            return result.get("issues", [])
-        
+            genai.configure(api_key=GEMINI_KEY)
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(prompt)
+            if response and response.text:
+                return response.text
         except Exception as e:
-            err_str = str(e)
-            if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                print(f"⏳ تم اكتشاف نفاذ الحصة (429) - محاولة ({attempt + 1}/{max_429_retries})...", flush=True)
-                if attempt < max_429_retries - 1:
-                    time.sleep(15)
-                else:
-                    print("⚠️ الحصة مستنفدة بالكامل حالياً لدى Google.", flush=True)
-                    print("🛑 إيقاف الجلسة بسلام بعد حفظ كافة الدفعات المنجزة، وسيكمل السكربت من الدفعة التالية في الجدولة القادمة.", flush=True)
-                    return None  # إشارة توقف للانسحاب الآمن
-            else:
-                print(f"⚠️ خطأ غير متوقع: {e}، إعادة المحاولة بعد 5 ثوانٍ...", flush=True)
-                time.sleep(5)
+            print(f"⚠️ فشل/استنفاد Gemini: {e}. يتم التحويل إلى Groq...", flush=True)
+
+    # المحاولة الثانية: Groq (إذا فشل Gemini)
+    if GROQ_KEY:
+        try:
+            client = Groq(api_key=GROQ_KEY)
+            completion = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2
+            )
+            return completion.choices[0].message.content
+        except Exception as e:
+            print(f"❌ فشل Groq أيضاً: {e}", flush=True)
 
     return None
 
-def save_progress(out_path, state_file, new_items, chapter_index, batch_index, total_batches, target_info):
-    """دالة حفظ فورية للتقدم دفعة بدفعة"""
-    existing_report = {"generated_at": "", "items": []}
-    if out_path.exists():
+# ----------------------------------------------------
+# 3. إدارة حالة الفحص والتقرير
+# ----------------------------------------------------
+def load_json(filepath, default):
+    if os.path.exists(filepath):
         try:
-            with open(out_path, "r", encoding="utf-8") as f:
-                existing_report = json.load(f)
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return json.load(f)
         except Exception:
-            pass
+            return default
+    return default
 
-    items_dict = {item["id"]: item for item in existing_report.get("items", [])}
-    for item in new_items:
-        items_dict[item["id"]] = item
+def save_json(filepath, data):
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-    final_report = {
-        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "items": list(items_dict.values())
-    }
+def get_all_chapters():
+    """تجميع كافة الفصول من جميع الكتب بالتسلسل الصحيح"""
+    chapters_list = []
+    books_data = load_json(BOOKS_FILE, [])
+    
+    for book in books_data:
+        book_id = book.get("id")
+        chapters = book.get("chapters", [])
+        for ch in chapters:
+            ch_file = ch.get("file")
+            full_path = os.path.join(DATA_DIR, ch_file)
+            if os.path.exists(full_path):
+                chapters_list.append({
+                    "book_id": book_id,
+                    "chapter_file": ch_file,
+                    "full_path": full_path
+                })
+    return chapters_list
 
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(final_report, f, ensure_ascii=False, indent=2)
+# ----------------------------------------------------
+# 4. المحرك الرئيسي للتدقيق
+# ----------------------------------------------------
+def run_checker():
+    all_chapters = get_all_chapters()
+    if not all_chapters:
+        print("❌ لم يتم العثور على أي فصول أو كتب للتدقيق.")
+        return
 
-    # إذا اكتملت كافة الدفعات، ننتقل للفصل التالي، وإلا نثبت عند الدفعة الحالية
-    is_completed = (batch_index + 1 >= total_batches)
-    next_chapter_index = chapter_index + 1 if is_completed else chapter_index
-    next_batch_index = 0 if is_completed else batch_index + 1
+    # جلب حالة التقدم القائمة
+    state = load_json(STATE_FILE, {"chapter_index": 0, "start_batch": 0})
+    ch_index = state.get("chapter_index", 0)
+    start_batch = state.get("start_batch", 0)
 
-    with open(state_file, "w", encoding="utf-8") as f:
-        json.dump({
-            "last_index": chapter_index if not is_completed else next_chapter_index - 1,
-            "next_index": next_chapter_index,
-            "last_batch": batch_index,
-            "next_batch": next_batch_index,
-            "completed": is_completed,
-            "last_book": target_info['book_id'],
-            "last_chapter": target_info['chapter_num'],
-            "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
-        }, f, ensure_ascii=False, indent=2)
-
-def get_all_chapters(data_dir, books):
-    all_chapters = []
-    for book in books:
-        book_id = book["id"]
-        book_dir = data_dir / book_id
-        if not book_dir.is_dir():
-            continue
-        
-        chapter_files = sorted(
-            book_dir.glob("chapter_*.json"),
-            key=lambda f: int(f.stem.split("_")[1]) if "_" in f.stem and f.stem.split("_")[1].isdigit() else 0
-        )
-        
-        for cf in chapter_files:
-            try:
-                ch_num = int(cf.stem.split("_")[1])
-            except (IndexError, ValueError):
-                ch_num = 1
-            
-            all_chapters.append({
-                "book_id": book_id,
-                "book_title": book.get("title", book_id),
-                "chapter_num": ch_num,
-                "file_path": cf
-            })
-    return all_chapters
-
-def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي ذكي ومحصن ضد حلقات التكرار")
-    parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
-    args = parser.parse_args()
-
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        print("❌ GEMINI_API_KEY غير موجود.", flush=True)
-        sys.exit(1)
-
-    client = genai.Client(api_key=api_key)
-
-    repo_root = Path(args.repo_root).resolve()
-    data_dir = repo_root / "data"
-    reports_dir = repo_root / "reports"
-    reports_dir.mkdir(exist_ok=True)
-
-    books_file = data_dir / "books.json"
-    state_file = reports_dir / "scan_state.json"
-    out_path = reports_dir / "spelling_report.json"
-
-    if not books_file.exists():
-        print(f"❌ لم يتم العثور على ملف الكتب: {books_file}", flush=True)
-        sys.exit(1)
-
-    with open(books_file, "r", encoding="utf-8") as f:
-        books = json.load(f)
-
-    chapters_list = get_all_chapters(data_dir, books)
-    if not chapters_list:
-        print("❌ لا توجد فصول للفحص.", flush=True)
-        sys.exit(0)
-
-    current_index = 0
-    start_batch = 0
-
-    if state_file.exists():
-        try:
-            with open(state_file, "r", encoding="utf-8") as f:
-                state = json.load(f)
-                if state.get("completed", True):
-                    current_index = state.get("next_index", 0)
-                    start_batch = 0
-                else:
-                    current_index = state.get("last_index", 0)
-                    start_batch = state.get("next_batch", 0)
-        except Exception:
-            current_index = 0
-            start_batch = 0
-
-    if current_index >= len(chapters_list):
-        print("🔄 تم فحص كافة الفصول بالكامل! إعادة الدورة من الفصل الأول...", flush=True)
-        current_index = 0
+    # التحقق مما إذا اكتملت جميع الكتب بالكامل والبدء بدورة جديدة
+    if ch_index >= len(all_chapters):
+        print("🔄 تم فحص كافة الكتب والفصول بالكامل! إعادة الدورة من الفصل الأول...")
+        ch_index = 0
         start_batch = 0
 
-    target = chapters_list[current_index]
-    print(f"🎯 [فحص الدورة المجدولة] الفصل ({current_index + 1}/{len(chapters_list)}):", flush=True)
-    print(f"📘 الكتاب: {target['book_title']} ({target['book_id']}) | 📑 الفصل: {target['chapter_num']}", flush=True)
+    current_ch = all_chapters[ch_index]
+    print(f"📖 جاري فحص الكتاب/الفصل: {current_ch['chapter_file']} (الفصل {ch_index + 1} من {len(all_chapters)})", flush=True)
 
-    with open(target['file_path'], "r", encoding="utf-8") as f:
-        data = json.load(f)
+    questions = load_json(current_ch["full_path"], [])
+    total_q = len(questions)
 
-    questions = data.get("questions", [])
+    if start_batch >= total_q:
+        # الانتقال للفصل التالي إذا انتهى هذا الفصل
+        state["chapter_index"] = ch_index + 1
+        state["start_batch"] = 0
+        save_json(STATE_FILE, state)
+        print(f"✅ اكتمل هذا الفصل، سيتم الانتقال للفصل التالي في التشغيل القادم.")
+        return
 
-    if questions:
-        total_batches = (len(questions) + BATCH_SIZE - 1) // BATCH_SIZE
-        print(f"📊 إجمالي الدفعات في هذا الفصل: {total_batches} دفعة (بداية من الدفعة {start_batch + 1})...", flush=True)
+    end_batch = min(start_batch + BATCH_SIZE, total_q)
+    batch_questions = questions[start_batch:end_batch]
 
-        for idx in range(start_batch, total_batches):
-            start = idx * BATCH_SIZE
-            batch = questions[start:start + BATCH_SIZE]
-            print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...", flush=True)
-            
-            issues = check_batch_guaranteed(client, batch)
+    prompt = f"""
+أنت مدقق لغوي متمكن في النصوص والأسئلة الأكاديمية القانونية.
+قم بتدقيق الأسئلة التالية إملائياً ولغوياً فقط.
+إذا وجدت أخطاء، اذكر رقم السؤال والخطأ مع التصحيح.
+إذا لم تكن هناك أخطاء، اكتب: "لا توجد أخطاء".
 
-            # إذا استنفدت الحصة، يخرج بسلام مع الاحتفاظ بالدفعات السابقة
-            if issues is None:
-                sys.exit(0)
+الأسئلة:
+{json.dumps(batch_questions, ensure_ascii=False, indent=2)}
+"""
 
-            batch_new_items = []
-            for issue in issues:
-                q_idx = issue.get("question_index")
-                if q_idx is None or q_idx >= len(batch):
-                    continue
-                real_q = batch[q_idx]
+    result = analyze_with_ai(prompt)
 
-                batch_new_items.append({
-                    "id": f"{target['book_id']}_ch{target['chapter_num']}_q{real_q.get('id', start + q_idx + 1)}",
-                    "book_id": target['book_id'],
-                    "chapter": target['chapter_num'],
-                    "question_id": real_q.get("id"),
-                    "field": issue.get("field", "question"),
-                    "flagged_word": issue.get("flagged_word", ""),
-                    "original": issue.get("original", ""),
-                    "corrected": issue.get("corrected", ""),
-                    "status": "pending",
-                })
+    if result:
+        print("\n--- 📝 نتيجة الفحص ---")
+        print(result)
+        print("----------------------\n")
 
-            # حفظ التقرير والحالة بعد كل دفعة تكتمل فوراً!
-            save_progress(out_path, state_file, batch_new_items, current_index, idx, total_batches, target)
+        # حفظ النتيجة بالتقرير
+        report = load_json(REPORT_FILE, [])
+        report.append({
+            "chapter": current_ch["chapter_file"],
+            "batch": f"{start_batch + 1}-{end_batch}",
+            "result": result
+        })
+        save_json(REPORT_FILE, report)
 
-            if batch_new_items:
-                print(f"  ✨ تم اكتشاف {len(batch_new_items)} أخطاء في هذه الدفعة وحفظها فوراً.", flush=True)
+        # تحديث المؤشر لليوم/التشغيل التالي
+        if end_batch >= total_q:
+            state["chapter_index"] = ch_index + 1
+            state["start_batch"] = 0
+        else:
+            state["start_batch"] = end_batch
 
-            if idx + 1 < total_batches:
-                time.sleep(6.0)
-
-    print(f"✅ تم اكتمال فحص الفصل {target['chapter_num']} بالكامل!", flush=True)
+        save_json(STATE_FILE, state)
+        print("💾 تم حفظ التقدم بنجاح.")
+    else:
+        print("❌ فشل الاتصال بكلا الخدمتين، سيتم إعادة المحاولة في التشغيل القادم.")
 
 if __name__ == "__main__":
-    main()
+    run_checker()
