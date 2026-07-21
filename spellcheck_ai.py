@@ -45,7 +45,6 @@ def clean_json_response(text):
     return text
 
 def check_batch_guaranteed(client, questions_batch):
-    """فحص الدفعة معانسحاب آمن عند استنفاد الحصة تجنباً لضغط الـ API واستهلاك دقائق GitHub"""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -57,7 +56,7 @@ def check_batch_guaranteed(client, questions_batch):
         })
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
-    max_429_retries = 2  # محاولتان فقط ثم الانسحاب الأنيق
+    max_429_retries = 2
 
     for attempt in range(max_429_retries):
         try:
@@ -76,18 +75,57 @@ def check_batch_guaranteed(client, questions_batch):
         except Exception as e:
             err_str = str(e)
             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                print(f"⏳ تم اكتشاف نفاذ الحصة (429) - المحاولة ({attempt + 1}/{max_429_retries})...", flush=True)
+                print(f"⏳ تم اكتشاف نفاذ الحصة (429) - محاولة ({attempt + 1}/{max_429_retries})...", flush=True)
                 if attempt < max_429_retries - 1:
                     time.sleep(15)
                 else:
                     print("⚠️ الحصة مستنفدة بالكامل حالياً لدى Google.", flush=True)
-                    print("🛑 إيقاف التشغيل الحالي بسلام دون تغيير ملف الحالة، وسيعاود السكربت الفحص من نفس النقطة في الجدولة القادمة.", flush=True)
-                    sys.exit(0)  # الخروج بسلام (Success status) دون إخفاق الـ Workflow
+                    print("🛑 إيقاف الجلسة بسلام بعد حفظ كافة الدفعات المنجزة، وسيكمل السكربت من الدفعة التالية في الجدولة القادمة.", flush=True)
+                    return None  # إشارة توقف للانسحاب الآمن
             else:
                 print(f"⚠️ خطأ غير متوقع: {e}، إعادة المحاولة بعد 5 ثوانٍ...", flush=True)
                 time.sleep(5)
 
-    return []
+    return None
+
+def save_progress(out_path, state_file, new_items, chapter_index, batch_index, total_batches, target_info):
+    """دالة حفظ فورية للتقدم دفعة بدفعة"""
+    existing_report = {"generated_at": "", "items": []}
+    if out_path.exists():
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                existing_report = json.load(f)
+        except Exception:
+            pass
+
+    items_dict = {item["id"]: item for item in existing_report.get("items", [])}
+    for item in new_items:
+        items_dict[item["id"]] = item
+
+    final_report = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "items": list(items_dict.values())
+    }
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(final_report, f, ensure_ascii=False, indent=2)
+
+    # إذا اكتملت كافة الدفعات، ننتقل للفصل التالي، وإلا نثبت عند الدفعة الحالية
+    is_completed = (batch_index + 1 >= total_batches)
+    next_chapter_index = chapter_index + 1 if is_completed else chapter_index
+    next_batch_index = 0 if is_completed else batch_index + 1
+
+    with open(state_file, "w", encoding="utf-8") as f:
+        json.dump({
+            "last_index": chapter_index if not is_completed else next_chapter_index - 1,
+            "next_index": next_chapter_index,
+            "last_batch": batch_index,
+            "next_batch": next_batch_index,
+            "completed": is_completed,
+            "last_book": target_info['book_id'],
+            "last_chapter": target_info['chapter_num'],
+            "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
+        }, f, ensure_ascii=False, indent=2)
 
 def get_all_chapters(data_dir, books):
     all_chapters = []
@@ -117,7 +155,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي متزن وحذر")
+    parser = argparse.ArgumentParser(description="فحص إملائي ذكي ومحصن ضد حلقات التكرار")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -150,44 +188,59 @@ def main():
         sys.exit(0)
 
     current_index = 0
+    start_batch = 0
+
     if state_file.exists():
         try:
             with open(state_file, "r", encoding="utf-8") as f:
                 state = json.load(f)
-                current_index = state.get("last_index", -1) + 1
+                if state.get("completed", True):
+                    current_index = state.get("next_index", 0)
+                    start_batch = 0
+                else:
+                    current_index = state.get("last_index", 0)
+                    start_batch = state.get("next_batch", 0)
         except Exception:
             current_index = 0
+            start_batch = 0
 
     if current_index >= len(chapters_list):
         print("🔄 تم فحص كافة الفصول بالكامل! إعادة الدورة من الفصل الأول...", flush=True)
         current_index = 0
+        start_batch = 0
 
     target = chapters_list[current_index]
-    print(f"🎯 [فحص الدورة المجدولة] ({current_index + 1}/{len(chapters_list)}):", flush=True)
-    print(f"📘 الكتاب: {target['book_title']} ({target['book_id']})", flush=True)
-    print(f"📑 الفصل: {target['chapter_num']}", flush=True)
+    print(f"🎯 [فحص الدورة المجدولة] الفصل ({current_index + 1}/{len(chapters_list)}):", flush=True)
+    print(f"📘 الكتاب: {target['book_title']} ({target['book_id']}) | 📑 الفصل: {target['chapter_num']}", flush=True)
 
     with open(target['file_path'], "r", encoding="utf-8") as f:
         data = json.load(f)
 
     questions = data.get("questions", [])
-    new_items = []
 
     if questions:
         total_batches = (len(questions) + BATCH_SIZE - 1) // BATCH_SIZE
-        for idx, start in enumerate(range(0, len(questions), BATCH_SIZE)):
+        print(f"📊 إجمالي الدفعات في هذا الفصل: {total_batches} دفعة (بداية من الدفعة {start_batch + 1})...", flush=True)
+
+        for idx in range(start_batch, total_batches):
+            start = idx * BATCH_SIZE
             batch = questions[start:start + BATCH_SIZE]
             print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...", flush=True)
             
             issues = check_batch_guaranteed(client, batch)
 
+            # إذا استنفدت الحصة، يخرج بسلام مع الاحتفاظ بالدفعات السابقة
+            if issues is None:
+                sys.exit(0)
+
+            batch_new_items = []
             for issue in issues:
                 q_idx = issue.get("question_index")
                 if q_idx is None or q_idx >= len(batch):
                     continue
                 real_q = batch[q_idx]
 
-                new_items.append({
+                batch_new_items.append({
                     "id": f"{target['book_id']}_ch{target['chapter_num']}_q{real_q.get('id', start + q_idx + 1)}",
                     "book_id": target['book_id'],
                     "chapter": target['chapter_num'],
@@ -198,50 +251,17 @@ def main():
                     "corrected": issue.get("corrected", ""),
                     "status": "pending",
                 })
-            
+
+            # حفظ التقرير والحالة بعد كل دفعة تكتمل فوراً!
+            save_progress(out_path, state_file, batch_new_items, current_index, idx, total_batches, target)
+
+            if batch_new_items:
+                print(f"  ✨ تم اكتشاف {len(batch_new_items)} أخطاء في هذه الدفعة وحفظها فوراً.", flush=True)
+
             if idx + 1 < total_batches:
                 time.sleep(6.0)
 
-    # لن نصل إلى سطر حفظ التقدم إلا إذا اكتملت جميع دفعات الفصل بنجاح
-    existing_report = {"generated_at": "", "items": []}
-    if out_path.exists():
-        try:
-            with open(out_path, "r", encoding="utf-8") as f:
-                existing_report = json.load(f)
-        except Exception:
-            pass
-
-    items_dict = {item["id"]: item for item in existing_report.get("items", [])}
-    for item in new_items:
-        items_dict[item["id"]] = item
-
-    final_report = {
-        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "items": list(items_dict.values())
-    }
-
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(final_report, f, ensure_ascii=False, indent=2)
-
-    with open(state_file, "w", encoding="utf-8") as f:
-        json.dump({
-            "last_index": current_index,
-            "last_book": target['book_id'],
-            "last_chapter": target['chapter_num'],
-            "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
-        }, f, ensure_ascii=False, indent=2)
-
-    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات جديدة!", flush=True)
-    
-    if new_items:
-        print("📝 الملاحظات المكتشفة في هذا الفصل:", flush=True)
-        for item in new_items:
-            print(f"  📌 الكلمة: [{item.get('flagged_word')}] | الأصل: ({item.get('original')}) ⬅️ التصحيح: ({item.get('corrected')})", flush=True)
-    else:
-        print("✨ الفصل سليم إملائياً ولا توجد فيه أي أخطاء.", flush=True)
-
-    print(f"📊 إجمالي الملاحظات المسجلة في المنصة: {len(final_report['items'])}", flush=True)
+    print(f"✅ تم اكتمال فحص الفصل {target['chapter_num']} بالكامل!", flush=True)
 
 if __name__ == "__main__":
     main()
-
