@@ -45,7 +45,7 @@ def clean_json_response(text):
     return text
 
 def check_batch_guaranteed(client, questions_batch):
-    """دالة تدقيق تضمن عدم تجاوز أي دفعة حتى تنجح بالكامل"""
+    """فحص الدفعة معانسحاب آمن عند استنفاد الحصة تجنباً لضغط الـ API واستهلاك دقائق GitHub"""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -57,8 +57,9 @@ def check_batch_guaranteed(client, questions_batch):
         })
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
+    max_429_retries = 2  # محاولتان فقط ثم الانسحاب الأنيق
 
-    while True:
+    for attempt in range(max_429_retries):
         try:
             response = client.models.generate_content(
                 model="gemini-2.0-flash",
@@ -75,11 +76,18 @@ def check_batch_guaranteed(client, questions_batch):
         except Exception as e:
             err_str = str(e)
             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                print("⏳ تجاوز حد الطلبات (429)، سيتم الانتظار 15 ثانية وإعادة المحاولة بنفس الدفعة...", flush=True)
-                time.sleep(15)
+                print(f"⏳ تم اكتشاف نفاذ الحصة (429) - المحاولة ({attempt + 1}/{max_429_retries})...", flush=True)
+                if attempt < max_429_retries - 1:
+                    time.sleep(15)
+                else:
+                    print("⚠️ الحصة مستنفدة بالكامل حالياً لدى Google.", flush=True)
+                    print("🛑 إيقاف التشغيل الحالي بسلام دون تغيير ملف الحالة، وسيعاود السكربت الفحص من نفس النقطة في الجدولة القادمة.", flush=True)
+                    sys.exit(0)  # الخروج بسلام (Success status) دون إخفاق الـ Workflow
             else:
                 print(f"⚠️ خطأ غير متوقع: {e}، إعادة المحاولة بعد 5 ثوانٍ...", flush=True)
                 time.sleep(5)
+
+    return []
 
 def get_all_chapters(data_dir, books):
     all_chapters = []
@@ -109,7 +117,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي دقيق")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي متزن وحذر")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -171,7 +179,6 @@ def main():
             batch = questions[start:start + BATCH_SIZE]
             print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...", flush=True)
             
-            # فحص الدفعة مع الضمان التام بعدم تجاوزها حتى تنجح
             issues = check_batch_guaranteed(client, batch)
 
             for issue in issues:
@@ -192,10 +199,10 @@ def main():
                     "status": "pending",
                 })
             
-            # انتظار 6 ثوان بين الدفعات للحفاظ على الحصة
             if idx + 1 < total_batches:
                 time.sleep(6.0)
 
+    # لن نصل إلى سطر حفظ التقدم إلا إذا اكتملت جميع دفعات الفصل بنجاح
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
         try:
