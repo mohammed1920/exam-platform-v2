@@ -12,8 +12,8 @@ GROQ_KEY = os.getenv("GROQ_API_KEY")
 
 DATA_DIR = "data"
 BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
-STATE_FILE = "scan_state.json"
-REPORT_FILE = "report.json"
+STATE_FILE = os.path.join("reports", "scan_state.json")
+REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
 BATCH_SIZE = 5  # عدد الأسئلة المقروءة في الطلب الواحد
 
@@ -60,26 +60,50 @@ def load_json(filepath, default):
     return default
 
 def save_json(filepath, data):
+    # التأكد من وجود المجلد
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def get_all_chapters():
-    """تجميع كافة الفصول من جميع الكتب بالتسلسل الصحيح"""
+    """تجميع كافة الفصول من جميع الكتب بالتسلسل الصحيح مع معالجة حذرة لكافة أنماط البيانات"""
     chapters_list = []
     books_data = load_json(BOOKS_FILE, [])
     
-    for book in books_data:
-        book_id = book.get("id")
-        chapters = book.get("chapters", [])
-        for ch in chapters:
-            ch_file = ch.get("file")
-            full_path = os.path.join(DATA_DIR, ch_file)
-            if os.path.exists(full_path):
-                chapters_list.append({
-                    "book_id": book_id,
-                    "chapter_file": ch_file,
-                    "full_path": full_path
-                })
+    if isinstance(books_data, list):
+        for book in books_data:
+            if isinstance(book, dict):
+                book_id = book.get("id")
+                chapters = book.get("chapters", [])
+                
+                # إذا كانت الفصول مصفوفة عناصر
+                if isinstance(chapters, list):
+                    for ch in chapters:
+                        if isinstance(ch, dict):
+                            ch_file = ch.get("file")
+                        else:
+                            ch_file = str(ch)
+                        
+                        if ch_file:
+                            full_path = os.path.join(DATA_DIR, ch_file)
+                            if os.path.exists(full_path):
+                                chapters_list.append({
+                                    "book_id": book_id,
+                                    "chapter_file": ch_file,
+                                    "full_path": full_path
+                                })
+                # إذا كان القيمة عبارة عن عدد الفصول فقط كـ integer
+                elif isinstance(chapters, int):
+                    for i in range(1, chapters + 1):
+                        ch_file = f"chapter_{i}.json"
+                        full_path = os.path.join(DATA_DIR, ch_file)
+                        if os.path.exists(full_path):
+                            chapters_list.append({
+                                "book_id": book_id,
+                                "chapter_file": ch_file,
+                                "full_path": full_path
+                            })
+
     return chapters_list
 
 # ----------------------------------------------------
