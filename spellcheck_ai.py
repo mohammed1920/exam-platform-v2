@@ -136,49 +136,55 @@ def run_checker():
     end_batch = min(start_batch + BATCH_SIZE, total_q)
     batch_questions = questions[start_batch:end_batch]
 
-    # إعادة صياغة الأسئلة لتوضيح الخيارات مفككة ومسمّاة للذكاء الاصطناعي
-    formatted_batch = []
+    # تفكيك النصوص لجعل كل خيار وسؤال عنصراً مستقلاً بدقة
+    texts_to_check = []
     for q in batch_questions:
         q_id = q.get("id", "?")
         q_text = q.get("question") or q.get("q", "")
         options = q.get("options") or q.get("opts", [])
         
-        item_data = {
-            "question_id": q_id,
-            "question": q_text
-        }
-        
-        for idx, opt in enumerate(options):
-            item_data[f"option_{idx}"] = opt
+        if q_text:
+            texts_to_check.append({
+                "question_id": q_id,
+                "field": "question",
+                "text": q_text
+            })
             
-        formatted_batch.append(item_data)
+        for idx, opt in enumerate(options):
+            if opt:
+                texts_to_check.append({
+                    "question_id": q_id,
+                    "field": f"option_{idx}",
+                    "text": opt
+                })
 
     prompt = f"""
-أنت مدقق لغوي خبير في النصوص والأسئلة القانونية.
-مهمتك: تدقيق كل النص (السؤال وكذلك جميع الخيارات المرفقة معه) إملائياً ولغوياً (مثل همزات القطع والوصل، الألف الممدودة، الياء المكسورة والمهملة).
+أنت مدقق لغوي متمكن في النصوص والأحكام القانونية.
+أمامك قائمة من النصوص المستقلة (بعضها نصوص أسئلة وبعضها خيارات إجابة).
 
-يرجى فحص حقل "question" وفحص كافة حقول الخيارات ("option_0", "option_1", "option_2", "option_3") بشكل مستقل ودقيق جداً.
+المطلوب: قم بفحص كل عنصر في القائمة إملائياً ولغوياً (همزات الوصل والقطع، الألف الممدودة، الياءات، إلخ).
+إذا وجدت خطأ إملائياً في أي نص، قم بإرجاع تصحيحه.
 
-يجب أن ترجع النتيجة حصراً بصيغة JSON Array بدون أي شرح أو كلام إضافي:
+⚠️ تنبيه صارم: لا تعتمد على كلمة "السؤال" أو البادئات، وقم بتدقيق النص كاملاً من بدايته لنهايته.
+
+صيغة الرد المطلوبة حصراً هي JSON Array بدون أي مقدمات أو شرح:
 [
   {{
     "question_id": 1,
     "field": "question", 
     "flagged_word": "الكلمة الخاطئة",
-    "original": "النص الكامل الاصلي للحقل قبل التعديل",
-    "corrected": "النص الكامل الصحيح للحقل بعد التعديل"
+    "original": "النص الكامل كما هو في القائمة بدون تعديل",
+    "corrected": "النص الكامل بعد تصحيح الكلمة الخاطئة"
   }}
 ]
 
-قواعد مهمة جداً:
-1. إذا كان الخطأ في السؤال، اجعل "field": "question".
-2. إذا كان الخطأ في الخيار الأول، اجعل "field": "option_0". وفي الخيار الثاني "option_1"، وهكذا.
-3. حقل "original" يجب أن يحتوي على كامل النص الأصلي الموجود في ذلك الحقل الممتلئ بالخطأ.
-4. حقل "corrected" يجب أن يحتوي على نفس النص كاملاً بعد تصحيح الكلمة.
-5. إذا لم توجد أي أخطاء في الأسئلة أو الخيارات، أرجع مصفوفة فارغة فقط: []
+ملاحظات:
+1. حافظ على نفس الـ "question_id" والـ "field" المستلمة في القائمة لكل عنصر.
+2. إذا كان النص سليماً 100%، لا ترجعه في النتيجة.
+3. إذا كانت كل النصوص سليمة، أرجع مصفوفة فارغة: []
 
-البيانات المراد تدقيقها:
-{json.dumps(formatted_batch, ensure_ascii=False, indent=2)}
+القائمة للتدقيق:
+{json.dumps(texts_to_check, ensure_ascii=False, indent=2)}
 """
 
     raw_result = analyze_with_ai(prompt)
@@ -224,10 +230,9 @@ def run_checker():
             state["start_batch"] = end_batch
 
         save_json(STATE_FILE, state)
-        print("💾 تم حفظ التقرير بالصيغة المطلوبة للوحة الأدمن بنجاح.")
+        print("💾 تم حفظ التقرير بنجاح.")
     else:
         print("❌ فشل الاتصال بخدمات الذكاء الاصطناعي.")
 
 if __name__ == "__main__":
     run_checker()
-
