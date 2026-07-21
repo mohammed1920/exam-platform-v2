@@ -18,7 +18,7 @@ except ImportError:
 
 BATCH_SIZE = 10
 
-# النموذج المستقر والمنصح به
+# الاعتماد على gemini-2.0-flash لحصته الكبيرة وسرعته
 ALL_AVAILABLE_MODELS = [
     "gemini-2.0-flash"
 ]
@@ -118,7 +118,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي سريعة ومباشر")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي سريع ومباشر")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -200,7 +200,6 @@ def main():
                     "status": "pending",
                 })
             
-            # تقليل وقت الانتظار إلى 4 ثوانٍ فقط لمنع التعليق
             if idx + 1 < total_batches:
                 time.sleep(4.0)
 
@@ -232,9 +231,16 @@ def main():
             "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
         }, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات!", flush=True)
+    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات جديدة!", flush=True)
+    
+    if new_items:
+        print("📝 الملاحظات المكتشفة في هذا الفصل:", flush=True)
+        for item in new_items:
+            print(f"  📌 الكلمة: [{item.get('flagged_word')}] | الأصل: ({item.get('original')}) ⬅️ التصحيح: ({item.get('corrected')})", flush=True)
+    else:
+        print("✨ الفصل سليم إملائياً ولا توجد فيه أي أخطاء.", flush=True)
+
     print(f"📊 إجمالي الملاحظات المسجلة في المنصة: {len(final_report['items'])}", flush=True)
 
 if __name__ == "__main__":
     main()
-
