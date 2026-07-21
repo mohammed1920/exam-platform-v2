@@ -27,7 +27,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install google-generativeai --break-system-packages
+        run: pip install google-genai --break-system-packages
 
       - name: Run AI spellcheck
         env:
