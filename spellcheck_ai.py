@@ -15,7 +15,7 @@ DATA_DIR = "data"
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
-BATCH_SIZE = 15
+BATCH_SIZE = 5
 
 # ----------------------------------------------------
 # 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
@@ -85,7 +85,6 @@ def get_all_chapters():
                 if file.endswith(".json") and file not in ["books.json", "books_info.json", "contact.json"]:
                     folder_name = os.path.basename(root)
                     if folder_name != DATA_DIR:
-                        # استخراج رقم الفصل مجرداً
                         ch_num = file.replace("chapter_", "").replace(".json", "")
                         chapters_list.append({
                             "book_id": folder_name,
@@ -137,29 +136,49 @@ def run_checker():
     end_batch = min(start_batch + BATCH_SIZE, total_q)
     batch_questions = questions[start_batch:end_batch]
 
-    prompt = f"""
-أنت مدقق لغوي متمكن في النصوص والأسئلة القانونية الأكاديمية.
-قم بتدقيق الأسئلة التالية إملائياً ولغوياً (بما في ذلك همزات الوصل والقطع والألف الممدودة والياءات).
+    # إعادة صياغة الأسئلة لتوضيح الخيارات مفككة ومسمّاة للذكاء الاصطناعي
+    formatted_batch = []
+    for q in batch_questions:
+        q_id = q.get("id", "?")
+        q_text = q.get("question") or q.get("q", "")
+        options = q.get("options") or q.get("opts", [])
+        
+        item_data = {
+            "question_id": q_id,
+            "question": q_text
+        }
+        
+        for idx, opt in enumerate(options):
+            item_data[f"option_{idx}"] = opt
+            
+        formatted_batch.append(item_data)
 
-يجب أن ترجع النتيجة حصراً بصيغة JSON Array يحتوي على كائنات بنفس هذه الهيكلية الدقيقة بدون أي كلام إضافي:
+    prompt = f"""
+أنت مدقق لغوي خبير في النصوص والأسئلة القانونية.
+مهمتك: تدقيق كل النص (السؤال وكذلك جميع الخيارات المرفقة معه) إملائياً ولغوياً (مثل همزات القطع والوصل، الألف الممدودة، الياء المكسورة والمهملة).
+
+يرجى فحص حقل "question" وفحص كافة حقول الخيارات ("option_0", "option_1", "option_2", "option_3") بشكل مستقل ودقيق جداً.
+
+يجب أن ترجع النتيجة حصراً بصيغة JSON Array بدون أي شرح أو كلام إضافي:
 [
   {{
     "question_id": 1,
     "field": "question", 
     "flagged_word": "الكلمة الخاطئة",
-    "original": "النص الكامل الاصلي قبل التعديل",
-    "corrected": "النص الكامل الصحيح بعد التعديل"
+    "original": "النص الكامل الاصلي للحقل قبل التعديل",
+    "corrected": "النص الكامل الصحيح للحقل بعد التعديل"
   }}
 ]
 
-تنبيهات مهمة للهيكلية:
-1. "field": اكتب "question" إذا كان الخطأ في السؤال، أما إذا كان في أحد الخيارات فاكتب "option_0" للخيار الأول، "option_1" للثاني، وهكذا.
-2. "original": اكتب الجملة كاملة كما هي في السؤال الخاطئ لكي يستبدلها النظام بأمان.
-3. "corrected": اكتب الجملة كاملة بعد تصحيح الكلمة.
-4. إذا لم تكن هناك أي أخطاء، أرجع مصفوفة فارغة فقط: []
+قواعد مهمة جداً:
+1. إذا كان الخطأ في السؤال، اجعل "field": "question".
+2. إذا كان الخطأ في الخيار الأول، اجعل "field": "option_0". وفي الخيار الثاني "option_1"، وهكذا.
+3. حقل "original" يجب أن يحتوي على كامل النص الأصلي الموجود في ذلك الحقل الممتلئ بالخطأ.
+4. حقل "corrected" يجب أن يحتوي على نفس النص كاملاً بعد تصحيح الكلمة.
+5. إذا لم توجد أي أخطاء في الأسئلة أو الخيارات، أرجع مصفوفة فارغة فقط: []
 
-الأسئلة للتدقيق:
-{json.dumps(batch_questions, ensure_ascii=False, indent=2)}
+البيانات المراد تدقيقها:
+{json.dumps(formatted_batch, ensure_ascii=False, indent=2)}
 """
 
     raw_result = analyze_with_ai(prompt)
@@ -176,7 +195,6 @@ def run_checker():
             parsed = json.loads(cleaned_res)
             if isinstance(parsed, list):
                 for item in parsed:
-                    # إضافة الحقول الثابتة الخاصة بالكتاب والفصل
                     item["book_id"] = current_ch["book_id"]
                     item["chapter"] = current_ch["chapter_num"]
                     parsed_items.append(item)
@@ -187,7 +205,6 @@ def run_checker():
         print(json.dumps(parsed_items, ensure_ascii=False, indent=2))
         print("----------------------\n")
 
-        # تحميل التقرير وتضمين العناصر داخل الهيكلية المتوافقة مع admin.html
         report = load_json(REPORT_FILE, {"generated_at": "", "items": []})
         if not isinstance(report, dict):
             report = {"generated_at": "", "items": []}
@@ -195,7 +212,6 @@ def run_checker():
         if "items" not in report or not isinstance(report["items"], list):
             report["items"] = []
 
-        # إضافة الملاحظات الجديدة
         report["items"].extend(parsed_items)
         report["generated_at"] = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
@@ -214,3 +230,4 @@ def run_checker():
 
 if __name__ == "__main__":
     run_checker()
+
