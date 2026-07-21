@@ -2,8 +2,8 @@ name: AI Spelling Check
 
 on:
   schedule:
-    # يعمل تلقائياً رأس كل ساعة (Cron Job)
-    - cron: '0 * * * *'
+    # يعمل مرة واحدة يومياً كل 24 ساعة (الساعة 12 منتصف الليل بتوقيت UTC)
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
           git config user.email "github-actions[bot]"
           git add reports/spelling_report.json reports/scan_state.json
           if git diff --cached --quiet; then
-            echo "لا يوجد تغييرات جديدة لرفعها."
+            echo "لا يوجد تغييرات جديدة لرفعتها"
           else
             git commit -m "تحديث تقرير الفحص الإملائي للفصل الحالي"
             git fetch origin main
