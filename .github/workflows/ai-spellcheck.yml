@@ -1,0 +1,54 @@
+name: AI Spelling Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      only_books:
+        description: >
+          (اختياري) معرفات كتب محددة مفصولة بمسافة للفحص فقط، مثال:
+          law_general_penalties law_constitutional
+          اتركه فاضي لفحص كل الكتب (يأخذ وقت أطول وتكلفة أعلى قليلاً).
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install google-generativeai --break-system-packages
+
+      - name: Run AI spellcheck
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.only_books }}" ]; then
+            python3 spellcheck_ai.py --repo-root . --only ${{ github.event.inputs.only_books }}
+          else
+            python3 spellcheck_ai.py --repo-root .
+          fi
+
+      - name: Commit and push report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/spelling_report.json
+          if git diff --cached --quiet; then
+            echo "لا يوجد تقرير جديد لرفعه."
+          else
+            git commit -m "تقرير فحص إملائي جديد بالذكاء الاصطناعي"
+            git fetch origin main
+            git merge origin/main --no-edit -X ours
+            git push
+          fi
