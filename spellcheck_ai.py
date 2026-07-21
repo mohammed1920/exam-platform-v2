@@ -16,8 +16,6 @@ except ImportError:
     print("❌ مكتبة google-genai غير مثبتة.")
     sys.exit(1)
 
-# النموذج الأوفر والأكثر استقراراً للخطط المجانية
-MODEL = "gemini-1.5-flash"
 BATCH_SIZE = 10
 
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
@@ -46,7 +44,33 @@ def clean_json_response(text):
         return match.group(0)
     return text
 
-def check_batch(client, questions_batch):
+def get_available_model(client):
+    """جلب الموديل المتاح تلقائياً من الحساب لتجنب أخطاء 404."""
+    try:
+        models = list(client.models.list())
+        # البحث عن موديل يدعم generateContent ويكون من عائلة flash
+        for m in models:
+            m_name = getattr(m, 'name', '') or getattr(m, 'model', '')
+            if 'flash' in m_name.lower() and 'generateContent' in getattr(m, 'supported_generation_methods', ['generateContent']):
+                # تنظيف الاسم من كلمة models/ إذا كانت موجودة
+                clean_name = m_name.replace('models/', '')
+                print(f"🤖 تم اختيار الموديل المتاح تلقائياً: {clean_name}")
+                return clean_name
+        
+        # إذا لم يجد flash يأخذ أول موديل يدعم التوليد
+        for m in models:
+            m_name = getattr(m, 'name', '') or getattr(m, 'model', '')
+            if 'generateContent' in getattr(m, 'supported_generation_methods', ['generateContent']):
+                clean_name = m_name.replace('models/', '')
+                print(f"🤖 تم اختيار الموديل البديل: {clean_name}")
+                return clean_name
+    except Exception as e:
+        print(f"⚠️ تعذر جلب قائمة الموديلات تلقائياً: {e}")
+    
+    # خيار احتياطي أخير
+    return "gemini-1.5-flash"
+
+def check_batch(client, model_name, questions_batch):
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -59,12 +83,11 @@ def check_batch(client, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    # محاولة إرسال الطلب مع إعادة المحاولة تلقائياً عند تجاوز الحد (Rate Limit)
     max_retries = 3
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model=MODEL,
+                model=model_name,
                 contents=user_content,
                 config=types.GenerateContentConfig(
                     system_instruction=SYSTEM_PROMPT,
@@ -76,8 +99,8 @@ def check_batch(client, questions_batch):
             return result.get("issues", [])
         except Exception as e:
             if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                wait_time = (attempt + 1) * 5
-                print(f"⏳ تجاوز حد الطلبات، انتظار {wait_time} ثوانٍ قبل إعادة المحاولة...")
+                wait_time = (attempt + 1) * 6
+                print(f"⏳ تجاوز حد الطلبات، انتظار {wait_time} ثوانٍ...")
                 time.sleep(wait_time)
             else:
                 print(f"⚠️ خطأ أثناء استجابة Gemini: {e}")
@@ -122,6 +145,9 @@ def main():
         sys.exit(1)
 
     client = genai.Client(api_key=api_key)
+    
+    # اختيار الموديل تلقائياً حسب الحساب
+    active_model = get_available_model(client)
 
     repo_root = Path(args.repo_root).resolve()
     data_dir = repo_root / "data"
@@ -171,7 +197,7 @@ def main():
     if questions:
         for start in range(0, len(questions), BATCH_SIZE):
             batch = questions[start:start + BATCH_SIZE]
-            issues = check_batch(client, batch)
+            issues = check_batch(client, active_model, batch)
 
             for issue in issues:
                 q_idx = issue.get("question_index")
@@ -190,7 +216,6 @@ def main():
                     "corrected": issue.get("corrected", ""),
                     "status": "pending",
                 })
-            # تأخير 3 ثوانٍ بين الدفعات للحفاظ على الاستقرار
             time.sleep(3.0)
 
     existing_report = {"generated_at": "", "items": []}
