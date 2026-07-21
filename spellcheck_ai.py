@@ -15,7 +15,7 @@ DATA_DIR = "data"
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
-BATCH_SIZE = 5
+BATCH_SIZE = 15
 
 # ----------------------------------------------------
 # 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
