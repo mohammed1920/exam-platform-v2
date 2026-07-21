@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - منصة الامتحانات القانونية</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap");
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0f172a; --card: #1e293b; --border: #334155;
+            --gold: #c29d5f; --green: #10b981; --red: #ef4444; --text: #e2e8f0; --text-dim: #94a3b8; --warning: #f59e0b;
+        }
+        body { font-family: "Cairo", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 15px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
+        h1 { font-size: 20px; color: var(--gold); }
+        .main-grid { display: grid; grid-template-columns: 280px 1fr; gap: 15px; }
+        .sidebar { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); height: fit-content; max-height: 80vh; overflow-y: auto; }
+        .book-item { background: var(--bg); padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; }
+        .book-item.active { border-color: var(--gold); background: var(--border); }
+        .book-item:hover { border-color: var(--gold); }
+        .content-area { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .tab-btn { background: none; border: none; color: var(--text-dim); padding: 8px 15px; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; font-family: 'Cairo'; }
+        .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .tab-content { display: none; max-height: 70vh; overflow-y: auto; }
+        .tab-content.active { display: block; }
+        .btn { padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; font-family: 'Cairo'; font-size: 14px; }
+        .btn-primary { background: var(--gold); color: var(--bg); width: 100%; margin-top: 10px; }
+        .btn-green { background: var(--green); color: white; }
+        .btn-red { background: var(--red); color: white; }
+        .btn-secondary { background: var(--border); color: var(--text); }
+        .btn-sm { padding: 4px 10px; font-size: 12px; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; color: var(--gold); font-size: 13px; }
+        input, textarea, select { width: 100%; padding: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Cairo'; font-size: 14px; }
+        .item-card { background: var(--bg); padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .item-card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+        .item-card-title { font-weight: 700; color: var(--gold); }
+        .item-card-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 15px; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--card); padding: 20px; border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+        .alert { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 6px; z-index: 2000; font-weight: 700; font-size: 14px; display: none; }
+        .alert.active { display: block; }
+        .alert-success { background: var(--green); color: white; }
+        .alert-error { background: var(--red); color: white; }
+        .question-text { font-size: 13px; line-height: 1.4; margin: 8px 0; }
+        .question-options { font-size: 12px; margin: 8px 0; }
+        .question-option { padding: 4px 0; }
+        .question-option.correct { color: var(--green); font-weight: 700; }
+        .loading { text-align: center; color: var(--text-dim); padding: 20px; }
+        
+        /* ===== أنماط الحفظ الجماعي ===== */
+        .question-option-radio { display: flex; align-items: center; padding: 10px 8px; margin: 6px 0; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .question-option-radio input[type="radio"] { margin-left: 10px; cursor: pointer; width: 18px; height: 18px; accent-color: var(--gold); }
+        .question-option-radio:hover { background: rgba(194, 157, 95, 0.1); }
+        .question-option-radio.selected { background: rgba(194, 157, 95, 0.2); border-left: 3px solid var(--gold); }
+        
+        .item-card.pending { border: 2px solid var(--warning); background: rgba(245, 158, 11, 0.05); }
+        .item-card.pending .item-card-title::after { content: ' ⏳ تعديل معلق'; color: var(--warning); font-size: 11px; margin-right: 8px; }
+        
+        .batch-save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, var(--warning), var(--gold)); padding: 15px 20px; display: none; align-items: center; justify-content: space-between; box-shadow: 0 -4px 12px rgba(0,0,0,0.5); z-index: 999; gap: 15px; }
+        .batch-save-bar.active { display: flex; }
+        .batch-save-bar-text { color: var(--bg); font-weight: 700; font-size: 14px; flex: 1; }
+        .batch-save-bar .btn { margin: 0; padding: 10px 20px; font-size: 13px; }
+        .batch-save-bar .btn-primary { background: var(--bg); color: var(--gold); }
+        .batch-save-bar .btn-secondary { background: rgba(0,0,0,0.2); color: var(--bg); }
+        
+        body.batch-active { padding-bottom: 70px; }
+        
+        @media (max-width: 768px) { 
+            .main-grid { grid-template-columns: 1fr; }
+            .batch-save-bar { flex-direction: column; gap: 10px; }
+            .batch-save-bar .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚖️ لوحة التحكم V2</h1>
+            <div style="display:flex;gap:8px;">
+                <button class="btn btn-secondary" onclick="openSettings()">⚙️ الإعدادات</button>
+                <button class="btn btn-green" onclick="window.location.href='index.html'">👁️ عرض الموقع</button>
+                <button class="btn btn-secondary" onclick="logout()" style="background-color: #ef4444; color: white; border: none;">🚪 تسجيل خروج</button>
+            </div>
+        </header>
+
+        <div id="alert-box" class="alert"></div>
+
+        <div class="main-grid">
+            <div class="sidebar">
+                <h3 style="margin-bottom: 10px; font-size: 16px;">الكتب</h3>
+                <div id="books-list">جاري التحميل...</div>
+                <button class="btn btn-primary" onclick="showModal('addBook')">+ إضافة كتاب</button>
+            </div>
+
+            <div class="content-area">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('overview', event)">نظرة عامة</button>
+                    <button class="tab-btn" onclick="switchTab('chapters', event)">الفصول</button>
+                    <button class="tab-btn" onclick="switchTab('questions', event)">الأسئلة</button>
+                    <button class="tab-btn" onclick="switchTab('spellcheck', event); loadSpellingReport();">🔤 مراجعة الإملاء</button>
+                </div>
+
+                <div id="overview" class="tab-content active">
+                    <h2 id="current-book-name">اختر كتاباً للبدء</h2>
+                    <div id="current-book-info" style="margin-top: 15px;"></div>
+                    
+                    <!-- قسم تعديل بيانات الكتاب -->
+                    <div id="book-edit-section" style="display: none; margin-top: 30px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
+                        <h3 style="color: var(--gold); margin-bottom: 15px;">✍️ تعديل بيانات الكتاب</h3>
+                        <div class="form-group">
+                            <label>اسم الكتاب</label>
+                            <input type="text" id="bookTitleInput" placeholder="ادخل اسم الكتاب">
+                        </div>
+                        <div class="form-group">
+                            <label>وصف الكتاب</label>
+                            <textarea id="bookDescriptionInput" rows="3" placeholder="ادخل وصف الكتاب"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>المؤلف</label>
+                            <input type="text" id="bookAuthorInput" placeholder="ادخل اسم المؤلف">
+                        </div>
+                        <button class="btn btn-primary" onclick="updateBookDetails()">💾 حفظ مسميات الكتاب</button>
+                    </div>
+                    
+                    <!-- قسم إدارة معلومات التواصل -->
+                    <div style="margin-top: 40px; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;">
+                        <h3 style="color: var(--gold); margin-bottom: 15px;">📄 إدارة معلومات التواصل</h3>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="text" id="contactPhone" placeholder="مثال: 07700000000">
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" id="contactEmail" placeholder="مثال: info@example.com">
+                        </div>
+                        
+                        <h4 style="color: var(--gold); margin-top: 20px; margin-bottom: 10px;">🔗 الروابط الاجتماعية</h4>
+                        <div id="contactLinksContainer" style="margin-bottom: 15px;"></div>
+                        <button class="btn btn-green" onclick="addContactLink()" style="margin-bottom: 15px; width: 100%;">➕ إضافة رابط جديد</button>
+                        
+                        <button class="btn btn-primary" onclick="saveContactData()">💾 حفظ معلومات التواصل</button>
+                    </div>
+                </div>
+
+                <div id="chapters" class="tab-content">
+                    <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
+                    <div id="chapters-list"></div>
+                </div>
+
+                <div id="questions" class="tab-content">
+                    <div class="form-group">
+                        <label>اختر الفصل:</label>
+                        <select id="chapter-select" onchange="loadChapterQuestions()"></select>
+                    </div>
+                    <button class="btn btn-green" style="margin-bottom: 15px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
+                    <div id="questions-list"></div>
+                </div>
+
+                <div id="spellcheck" class="tab-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                        <p style="color: var(--text-secondary); margin:0;">
+                            راجع الأخطاء المقترحة من فحص الذكاء الاصطناعي، حدد قبول أو رفض لكل واحدة،
+                            ثم اضغط "تطبيق التصحيحات المعتمدة" بالأسفل لرفعها دفعة واحدة.
+                        </p>
+                        <button class="btn btn-secondary" onclick="loadSpellingReport()">🔄 تحديث القائمة</button>
+                    </div>
+                    <div id="spellcheck-summary" style="margin-bottom: 15px; font-weight: 700;"></div>
+                    <div id="spellcheck-list">جاري التحميل...</div>
+                    <button class="btn btn-primary" id="apply-spellcheck-btn" style="margin-top:20px; display:none;" onclick="applyApprovedFixes()">
+                        🚀 تطبيق التصحيحات المعتمدة ورفعها
+                    </button>
+                </div>
+                
+                <!-- شريط الحفظ الجماعي العائم -->
+                <div id="batch-save-bar" class="batch-save-bar">
+                    <span class="batch-save-bar-text">⚠️ لديك <span id="batch-save-count">0</span> تعديلات معلقة على إجابات هذا الفصل.</span>
+                    <button class="btn btn-primary" onclick="saveAllStagedAnswers()">🚀 حفظ ودفع جميع التعديلات دفعة واحدة</button>
+                    <button class="btn btn-secondary" onclick="cancelBatchChanges()">✕ إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal"><div class="modal-content" id="modal-body"></div></div>
+
+    <script>
+        // ===== المتغيرات العامة =====
+        let books = [];
+        let currentBook = null;
+        let bookChapterFiles = []; // قائمة ملفات الفصول [{num, title, file}]
+        let currentChapterNum = null; // رقم الفصل المحدد حالياً
+        let currentChapterData = null; // بيانات الفصل المحدد
+        let editingChapterNum = null;
+        let editingQuestionIdx = null;
+        let modifiedQuestionsIndices = []; // مصفوفة تتبع أرقام الأسئلة المعدلة
+        let config = {
+            token: localStorage.getItem('gh_token'),
+            user: localStorage.getItem('gh_user') || 'mohammed1920',
+            repo: localStorage.getItem('gh_repo') || 'exam-platform-v2'
+        };
+
+        // ===== دوال مساعدة =====
+        function showAlert(msg, type = 'success') {
+            const box = document.getElementById('alert-box');
+            box.textContent = msg;
+            box.className = `alert active alert-${type}`;
+            setTimeout(() => box.className = 'alert', 4000);
+        }
+
+        function decode(b64) {
+            return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0)));
+        }
+
+        function encode(str) {
+            return btoa(Array.from(new TextEncoder().encode(str), b => String.fromCharCode(b)).join(''));
+        }
+
+        async function ghRequest(path, method = 'GET', body = null) {
+            const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}?t=${Date.now()}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+            const options = { method, headers };
+            if (body) options.body = JSON.stringify(body);
+            const res = await fetch(url, options);
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message || `HTTP ${res.status}`);
+            }
+            return res.json();
+        }
+
+        // ===== تسجيل الخروج =====
+        function logout() {
+            localStorage.removeItem('gh_token');
+            localStorage.removeItem('gh_user');
+            localStorage.removeItem('gh_repo');
+            window.location.href = 'index.html';
+        }
+
+        // GitHub Trees API - لرفع ملفات متعددة في commit واحد
+        async function commitFiles(files, message) {
+            const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
+
+            const refRes = await fetch(`${base}/git/ref/heads/main`, { headers });
+            const refData = await refRes.json();
+            const lastCommitSha = refData.object.sha;
+
+            const commitRes = await fetch(`${base}/git/commits/${lastCommitSha}`, { headers });
+            const commitData = await commitRes.json();
+            const baseTreeSha = commitData.tree.sha;
+
+            const treeItems = [];
+            for (const file of files) {
+                const blobRes = await fetch(`${base}/git/blobs`, {
+                    method: 'POST', headers,
+                    body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
+                });
+                const blob = await blobRes.json();
+                treeItems.push({ path: file.path, mode: '100644', type: 'blob', sha: blob.sha });
+            }
+
+            const treeRes = await fetch(`${base}/git/trees`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
+            });
+            const newTree = await treeRes.json();
+
+            const newCommitRes = await fetch(`${base}/git/commits`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ message, tree: newTree.sha, parents: [lastCommitSha] })
+            });
+            const newCommit = await newCommitRes.json();
+
+            await fetch(`${base}/git/refs/heads/main`, {
+                method: 'PATCH', headers,
+                body: JSON.stringify({ sha: newCommit.sha })
+            });
+        }
+
+        // ===== تحديث index.html وbooks.json معاً =====
+        async function updateIndexAndBooks() {
+            try {
+                const idxData = await ghRequest('index.html');
+                let idxContent = decode(idxData.content);
+                idxContent = idxContent.replace(
+                    /const BOOKS = \[[\s\S]*?\];/,
+                    `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                );
+                await commitFiles([
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                    { path: 'index.html', content: idxContent }
+                ], 'تحديث قائمة الكتب والموقع');
+            } catch(e) { console.error('خطأ في تحديث index.html:', e); }
+        }
+
+        // ===== الكتب =====
+        async function loadBooks() {
+            if (!config.token) return;
+            try {
+                const data = await ghRequest('data/books.json');
+                books = JSON.parse(decode(data.content));
+                renderBooks();
+                loadContactData(); // تحميل بيانات التواصل
+            } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
+        }
+
+        function renderBooks() {
+            const list = document.getElementById('books-list');
+            list.innerHTML = books.map(b => `
+                <div class="book-item ${currentBook?.id === b.id ? 'active' : ''}" onclick="selectBook('${b.id}')">
+                    <strong>${b.title}</strong>
+                    <div style="font-size: 11px; color: var(--text-dim);">${b.chapters || 0} فصول</div>
+                </div>
+            `).join('');
+        }
+
+        async function selectBook(id) {
+            currentBook = books.find(b => b.id === id);
+            currentChapterNum = null;
+            currentChapterData = null;
+            modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الكتاب
+            updateBatchSaveBar();
+            document.getElementById('current-book-name').textContent = currentBook.title;
+            document.getElementById('current-book-info').innerHTML = `
+                <p><strong>المؤلف:</strong> ${currentBook.author || 'غير محدد'}</p>
+                <p><strong>الوصف:</strong> ${currentBook.description || 'بدون وصف'}</p>
+                <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
+            `;
+            
+            // عرض قسم تعديل بيانات الكتاب وتعبئة الحقول
+            const bookEditSection = document.getElementById('book-edit-section');
+            bookEditSection.style.display = 'block';
+            document.getElementById('bookTitleInput').value = currentBook.title || '';
+            document.getElementById('bookDescriptionInput').value = currentBook.description || '';
+            document.getElementById('bookAuthorInput').value = currentBook.author || '';
+            
+            renderBooks();
+            await loadBookChapters();
+            switchTab('overview', null);
+        }
+
+        // ===== الفصول - قراءة قائمة الملفات من GitHub =====
+        async function loadBookChapters() {
+            if (!currentBook) return;
+            document.getElementById('chapters-list').innerHTML = '<div class="loading">جاري تحميل الفصول...</div>';
+            try {
+                // جلب قائمة الملفات من مجلد الكتاب
+                const files = await ghRequest(`data/${currentBook.id}`);
+                bookChapterFiles = [];
+
+                for (const file of files) {
+                    const m = file.name.match(/^chapter_(\d+)\.json$/);
+                    if (m) {
+                        bookChapterFiles.push({ num: parseInt(m[1]), name: file.name, path: file.path });
+                    }
+                }
+
+                // ترتيب الفصول رقمياً
+                bookChapterFiles.sort((a, b) => a.num - b.num);
+
+                // جلب عناوين الفصول
+                await loadChapterTitles();
+                renderChapters();
+                updateChapterSelect();
+            } catch (e) {
+                bookChapterFiles = [];
+                document.getElementById('chapters-list').innerHTML = '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
+            }
+        }
+
+        async function loadChapterTitles() {
+            // جلب عنوان كل فصل بشكل متوازٍ
+            const promises = bookChapterFiles.map(async (ch) => {
+                try {
+                    const data = await ghRequest(ch.path);
+                    const content = JSON.parse(decode(data.content));
+                    ch.title = content.title || `الفصل ${ch.num}`;
+                    ch.questionCount = (content.questions || []).length;
+                } catch(e) {
+                    ch.title = `الفصل ${ch.num}`;
+                    ch.questionCount = 0;
+                }
+            });
+            await Promise.all(promises);
+        }
+
+        function renderChapters() {
+            const list = document.getElementById('chapters-list');
+            if (bookChapterFiles.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-dim)">لا توجد فصول مضافة بعد.</p>';
+                return;
+            }
+            list.innerHTML = bookChapterFiles.map((ch) => `
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <div class="item-card-title">${ch.title}</div>
+                        <div class="item-card-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="editChapter(${ch.num})">تعديل</button>
+                            <button class="btn btn-red btn-sm" onclick="deleteChapter(${ch.num})">حذف</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
+                </div>
+            `).join('');
+        }
+
+        function updateChapterSelect() {
+            const sel = document.getElementById('chapter-select');
+            sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${ch.title}</option>`).join('');
+            if (bookChapterFiles.length > 0) {
+                currentChapterNum = bookChapterFiles[0].num;
+                modifiedQuestionsIndices = []; // تصفير التعديلات عند تبديل الفصل
+                updateBatchSaveBar();
+                loadChapterQuestions();
+            }
+        }
+
+        // ===== تحميل أسئلة فصل معين =====
+        async function loadChapterQuestions() {
+            const sel = document.getElementById('chapter-select');
+            currentChapterNum = parseInt(sel.value);
+            document.getElementById('questions-list').innerHTML = '<div class="loading">جاري تحميل الأسئلة...</div>';
+            try {
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${currentChapterNum}.json`);
+                currentChapterData = JSON.parse(decode(data.content));
+                modifiedQuestionsIndices = []; // تصفير التعديلات عند تحميل فصل جديد
+                updateBatchSaveBar();
+                renderQuestions();
+            } catch(e) {
+                currentChapterData = null;
+                document.getElementById('questions-list').innerHTML = '<p style="color:var(--text-dim)">تعذر تحميل الأسئلة.</p>';
+            }
+        }
+
+        function renderQuestions() {
+            const list = document.getElementById('questions-list');
+            if (!currentChapterData) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
+            const qs = currentChapterData.questions || [];
+            if (qs.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-dim)">لا توجد أسئلة في هذا الفصل.</p>';
+                return;
+            }
+            list.innerHTML = qs.map((q, i) => {
+                const qText = q.q || q.question || '';
+                const opts = q.opts || q.options || [];
+                // استخدام الحقل answer حصراً - تجاهل ans تماماً
+                const ans = q.answer !== undefined ? q.answer : (q.correct !== undefined ? q.correct : q.ans);
+                const isPending = modifiedQuestionsIndices.includes(i);
+                return `
+                    <div class="item-card ${isPending ? 'pending' : ''}">
+                        <div class="item-card-header">
+                            <div class="item-card-title">س ${i+1}</div>
+                            <div class="item-card-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="editQuestion(${i})">تعديل</button>
+                                <button class="btn btn-red btn-sm" onclick="deleteQuestion(${i})">حذف</button>
+                            </div>
+                        </div>
+                        <div class="question-text">${qText}</div>
+                        <div class="question-options">
+                            ${opts.map((o, oi) => {
+                                const isCorrect = (q.answer === oi);
+                                return `
+                                <label class="question-option-radio ${isCorrect ? 'selected' : ''}">
+                                    <input type="radio" name="q_${i}_ans" value="${oi}" ${isCorrect ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
+                                    <span>${oi+1}) ${o}</span>
+                                </label>
+                            `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // ===== دالة معالجة التغيير المعلق =====
+        function stageAnswerChange(qIdx, newAnswerIdx) {
+            if (!currentChapterData || !currentChapterData.questions[qIdx]) return;
+            
+            // تحديث الإجابة في البيانات المحلية - استخدام الحقل answer حصراً
+            currentChapterData.questions[qIdx].answer = newAnswerIdx;
+            
+            // حذف الحقل ans إن وجد لمنع التكرار
+            if (currentChapterData.questions[qIdx].ans !== undefined) {
+                delete currentChapterData.questions[qIdx].ans;
+            }
+            
+            // إضافة رقم السؤال لمصفوفة التعديلات إذا لم يكن موجوداً
+            if (!modifiedQuestionsIndices.includes(qIdx)) {
+                modifiedQuestionsIndices.push(qIdx);
+            }
+            
+            // تحديث الشريط السفلي
+            updateBatchSaveBar();
+            
+            // تحديث واجهة السؤال المعدل
+            renderQuestions();
+        }
+        
+        // ===== تحديث شريط الحفظ الجماعي =====
+        function updateBatchSaveBar() {
+            const bar = document.getElementById('batch-save-bar');
+            const count = modifiedQuestionsIndices.length;
+            
+            if (count > 0) {
+                document.getElementById('batch-save-count').textContent = count;
+                bar.classList.add('active');
+                document.body.classList.add('batch-active');
+            } else {
+                bar.classList.remove('active');
+                document.body.classList.remove('batch-active');
+            }
+        }
+        
+        // ===== حفظ جميع التعديلات المعلقة دفعة واحدة =====
+        async function saveAllStagedAnswers() {
+            if (modifiedQuestionsIndices.length === 0) {
+                showAlert('لا توجد تعديلات معلقة للحفظ', 'error');
+                return;
+            }
+            
+            if (!currentChapterData || currentChapterNum === null) {
+                showAlert('يرجى اختيار فصل أولاً', 'error');
+                return;
+            }
+            
+            try {
+                // التأكد من عدم وجود حقل ans مكرر وتنظيف البيانات
+                const cleanedQuestions = currentChapterData.questions.map(q => {
+                    const cleaned = {
+                        id: q.id,
+                        question: q.question || q.q,
+                        options: q.options || q.opts,
+                        answer: q.answer !== undefined ? q.answer : q.ans,
+                        explanation: q.explanation || ''
+                    };
+                    // حذف أي حقول زائدة مثل ans أو q أو opts
+                    delete cleaned.ans;
+                    delete cleaned.q;
+                    delete cleaned.opts;
+                    delete cleaned.correct;
+                    return cleaned;
+                });
+                
+                // بناء بيانات الفصل النظيفة
+                const cleanChapterData = {
+                    id: currentChapterData.id,
+                    book_id: currentChapterData.book_id,
+                    chapter: currentChapterData.chapter,
+                    title: currentChapterData.title,
+                    questions: cleanedQuestions
+                };
+                
+                // إنشاء رسالة commit توضح عدد التعديلات
+                const commitMsg = `تحديث ${modifiedQuestionsIndices.length} إجابة في الفصل ${currentChapterNum}`;
+                
+                // رفع ملف الفصل النظيف بالتحديثات الجديدة في commit واحد
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(cleanChapterData, null, 2) }
+                ], commitMsg);
+                
+                // تحديث البيانات المحلية بالبيانات النظيفة
+                currentChapterData = cleanChapterData;
+                
+                // تصفير مصفوفة التعديلات
+                const savedCount = modifiedQuestionsIndices.length;
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                
+                // إعادة عرض الأسئلة
+                renderQuestions();
+                
+                showAlert(`✅ تم حفظ ${savedCount} تعديلات بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في الحفظ: ' + e.message, 'error');
+            }
+        }
+
+        // ===== 
+        // ===== التبويبات =====
+        function switchTab(id, e) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (e && e.target) e.target.classList.add('active');
+        }
+
+        // ===== مراجعة الأخطاء الإملائية (تقرير الذكاء الاصطناعي) =====
+        let spellingItems = []; // كل عنصر: {..., decision: 'pending'|'accepted'|'rejected'}
+
+        async function loadSpellingReport() {
+            const listEl = document.getElementById('spellcheck-list');
+            const summaryEl = document.getElementById('spellcheck-summary');
+            const applyBtn = document.getElementById('apply-spellcheck-btn');
+            listEl.innerHTML = 'جاري التحميل...';
+            applyBtn.style.display = 'none';
+
+            try {
+                const data = await ghRequest('reports/spelling_report.json');
+                const report = JSON.parse(decode(data.content));
+                spellingItems = (report.items || []).map(it => ({ ...it, decision: 'pending' }));
+
+                if (spellingItems.length === 0) {
+                    listEl.innerHTML = '<p style="color: var(--text-secondary);">لا يوجد أي ملاحظات حالياً 🎉 (شغّل فحص جديد من تبويب Actions بـGitHub لو تريد فحص أحدث).</p>';
+                    summaryEl.textContent = '';
+                    return;
+                }
+                summaryEl.textContent = `آخر فحص: ${report.generated_at || '—'} | عدد الملاحظات: ${spellingItems.length}`;
+                renderSpellingReport();
+            } catch (e) {
+                listEl.innerHTML = `<p style="color:#ef4444;">تعذّر تحميل التقرير: ${e.message}<br>تأكد من رفع ملف reports/spelling_report.json (شغّل الفحص أول من تبويب Actions بـGitHub).</p>`;
+                summaryEl.textContent = '';
+            }
+        }
+
+        function renderSpellingReport() {
+            const listEl = document.getElementById('spellcheck-list');
+            const applyBtn = document.getElementById('apply-spellcheck-btn');
+
+            listEl.innerHTML = spellingItems.map((item, idx) => {
+                const borderColor = item.decision === 'accepted' ? '#10b981' : item.decision === 'rejected' ? '#ef4444' : 'var(--border)';
+                return `
+                <div style="border:1px solid ${borderColor}; border-radius:8px; padding:14px; margin-bottom:12px; background:var(--bg);">
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">
+                        📘 ${item.book_id} — الفصل ${item.chapter} — سؤال #${item.question_id ?? '?'} — الحقل: ${item.field}
+                    </div>
+                    <div style="margin-bottom:6px;"><strong>الكلمة المشبوهة:</strong> ${item.flagged_word || '—'}</div>
+                    <div style="margin-bottom:6px; color:#ef4444;"><strong>الحالي:</strong> ${item.original}</div>
+                    <div style="margin-bottom:10px; color:#10b981;"><strong>المقترح:</strong> ${item.corrected}</div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn ${item.decision === 'accepted' ? 'btn-green' : 'btn-secondary'} btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
+                        <button class="btn ${item.decision === 'rejected' ? 'btn-red' : 'btn-secondary'} btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            const acceptedCount = spellingItems.filter(i => i.decision === 'accepted').length;
+            applyBtn.style.display = acceptedCount > 0 ? 'inline-block' : 'none';
+            applyBtn.textContent = `🚀 تطبيق ${acceptedCount} تصحيح معتمد ورفعها`;
+        }
+
+        function setDecision(idx, decision) {
+            spellingItems[idx].decision = spellingItems[idx].decision === decision ? 'pending' : decision;
+            renderSpellingReport();
+        }
+
+        async function applyApprovedFixes() {
+            const accepted = spellingItems.filter(i => i.decision === 'accepted');
+            if (accepted.length === 0) return;
+            if (!confirm(`سيتم تطبيق ${accepted.length} تصحيح ورفعها مباشرة لـ GitHub. متأكد؟`)) return;
+
+            showAlert('جاري تطبيق التصحيحات...', 'success');
+
+            // نجمع التعديلات حسب كل ملف فصل، حتى لو فيه أكثر من تصحيح بنفس الفصل
+            const chapterCache = {}; // key: "book_id/chapter" -> {sha, data}
+            const skipped = [];
+
+            for (const item of accepted) {
+                const key = `${item.book_id}/${item.chapter}`;
+                const path = `data/${item.book_id}/chapter_${item.chapter}.json`;
+
+                if (!chapterCache[key]) {
+                    try {
+                        const fileData = await ghRequest(path);
+                        chapterCache[key] = { data: JSON.parse(decode(fileData.content)), path };
+                    } catch (e) {
+                        skipped.push(`${key}: تعذّر جلب الملف (${e.message})`);
+                        continue;
+                    }
+                }
+
+                const chapterObj = chapterCache[key].data;
+                const q = (chapterObj.questions || []).find(qq => qq.id === item.question_id);
+                if (!q) {
+                    skipped.push(`${key} / سؤال #${item.question_id}: السؤال غير موجود (تغيّر رقمه ربما)`);
+                    continue;
+                }
+
+                if (item.field === 'question') {
+                    if (q.question !== item.original) {
+                        skipped.push(`${key} / سؤال #${item.question_id}: النص تغيّر منذ الفحص، تم التجاوز للأمان`);
+                        continue;
+                    }
+                    q.question = item.corrected;
+                } else if (item.field && item.field.startsWith('option_')) {
+                    const optIdx = parseInt(item.field.replace('option_', ''), 10);
+                    if (!q.options || q.options[optIdx] !== item.original) {
+                        skipped.push(`${key} / سؤال #${item.question_id}: الخيار تغيّر منذ الفحص، تم التجاوز للأمان`);
+                        continue;
+                    }
+                    q.options[optIdx] = item.corrected;
+                }
+            }
+
+            const filesToCommit = Object.values(chapterCache).map(c => ({
+                path: c.path,
+                content: JSON.stringify(c.data, null, 2)
+            }));
+
+            if (filesToCommit.length === 0) {
+                showAlert('ما فيه أي تعديل قابل للتطبيق (راجع التفاصيل بالأسفل)', 'error');
+            } else {
+                try {
+                    await commitFiles(filesToCommit, `تصحيح إملائي: ${accepted.length} تعديل معتمد من لوحة الأدمن`);
+                    showAlert(`✅ تم رفع ${accepted.length - skipped.length} تصحيح بنجاح`, 'success');
+                } catch (e) {
+                    showAlert('خطأ أثناء الرفع: ' + e.message, 'error');
+                    return;
+                }
+            }
+
+            if (skipped.length > 0) {
+                console.warn('عناصر تم تجاوزها:', skipped);
+                showAlert(`تم تجاوز ${skipped.length} عنصر (راجع Console للتفاصيل)`, 'error');
+            }
+
+            // إزالة العناصر المطبّقة من القائمة المعروضة (تبقى بالتقرير الأصلي لحد فحص جديد)
+            spellingItems = spellingItems.filter(i => i.decision !== 'accepted');
+            renderSpellingReport();
+        }
+
+        // ===== إدارة معلومات التواصل =====
+        let contactData = { phone: '', email: '', social_links: [] };
+        
+        async function loadContactData() {
+            try {
+                const response = await fetch('data/contact.json');
+                if (response.ok) {
+                    contactData = await response.json();
+                    renderContactForm();
+                }
+            } catch (e) {
+                console.log('لم يتم العثور على ملف التواصل، سيتم إنشاء واحد جديد');
+                renderContactForm();
+            }
+        }
+        
+        function renderContactForm() {
+            const phone = document.getElementById('contactPhone');
+            const email = document.getElementById('contactEmail');
+            const linksContainer = document.getElementById('contactLinksContainer');
+            
+            if (phone) phone.value = contactData.phone || '';
+            if (email) email.value = contactData.email || '';
+            
+            if (linksContainer) {
+                linksContainer.innerHTML = '';
+                (contactData.social_links || []).forEach((link, idx) => {
+                    const linkDiv = document.createElement('div');
+                    linkDiv.className = 'item-card';
+                    linkDiv.innerHTML = `
+                        <div class="item-card-header">
+                            <div>
+                                <input type="text" placeholder="اسم الرابط" value="${link.label}" class="link-label-${idx}" style="width: 200px; margin-bottom: 5px;">
+                                <input type="text" placeholder="رابط URL" value="${link.url}" class="link-url-${idx}" style="width: 100%; margin-top: 5px;">
+                            </div>
+                            <button class="btn btn-red btn-sm" onclick="deleteContactLink(${idx})">❌ حذف</button>
+                        </div>
+                    `;
+                    linksContainer.appendChild(linkDiv);
+                });
+            }
+        }
+        
+        function addContactLink() {
+            contactData.social_links.push({ label: '', url: '' });
+            renderContactForm();
+        }
+        
+        function deleteContactLink(idx) {
+            if (confirm('هل أنت متأكد من حذف هذا الرابط؟')) {
+                contactData.social_links.splice(idx, 1);
+                renderContactForm();
+            }
+        }
+        
+        async function saveContactData() {
+            const phone = document.getElementById('contactPhone')?.value.trim() || '';
+            const email = document.getElementById('contactEmail')?.value.trim() || '';
+            
+            // جمع الروابط من الحقول
+            const socialLinks = [];
+            document.querySelectorAll('[class^="link-label-"]').forEach((el, idx) => {
+                const label = el.value.trim();
+                const url = document.querySelector(`.link-url-${idx}`)?.value.trim() || '';
+                if (label && url) {
+                    socialLinks.push({ label, url });
+                }
+            });
+            
+            const newContactData = { phone, email, social_links: socialLinks };
+            
+            try {
+                await commitFiles([
+                    { path: 'data/contact.json', content: JSON.stringify(newContactData, null, 2) }
+                ], 'تحديث معلومات التواصل والروابط من لوحة التحكم');
+                
+                contactData = newContactData;
+                showAlert('✅ تم حفظ معلومات التواصل بنجاح!');
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
+        }
+
+        // ===== الإعدادات =====
+        function openSettings() {
+            const t = prompt('أدخل GitHub Token:', config.token || '');
+            if (t !== null && t.trim()) {
+                localStorage.setItem('gh_token', t.trim());
+                config.token = t.trim();
+                loadBooks();
+            }
+        }
+
+        // ===== تحديث بيانات الكتاب =====
+        async function updateBookDetails() {
+            if (!currentBook) {
+                showAlert('يرجى اختيار كتاباً أولاً', 'error');
+                return;
+            }
+            
+            const newTitle = document.getElementById('bookTitleInput').value.trim();
+            const newDescription = document.getElementById('bookDescriptionInput').value.trim();
+            const newAuthor = document.getElementById('bookAuthorInput').value.trim();
+            
+            if (!newTitle) {
+                showAlert('يرجى إدخال اسم الكتاب', 'error');
+                return;
+            }
+            
+            try {
+                // تحديث البيانات المحلية
+                currentBook.title = newTitle;
+                currentBook.description = newDescription;
+                currentBook.author = newAuthor;
+                
+                // تحديث الكتاب في مصفوفة الكتب
+                const bookIndex = books.findIndex(b => b.id === currentBook.id);
+                if (bookIndex !== -1) {
+                    books[bookIndex] = currentBook;
+                }
+                
+                // رفع التحديثات إلى GitHub
+                await commitFiles([
+                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) }
+                ], `تحديث مسميات ووصف كتاب: ${newTitle}`);
+                
+                // تحديث index.html بشكل آمن (فقط مصفوفة الكتب)
+                await updateIndexAndBooks();
+                
+                // تحديث الواجهة
+                document.getElementById('current-book-name').textContent = newTitle;
+                document.getElementById('current-book-info').innerHTML = `
+                    <p><strong>المؤلف:</strong> ${newAuthor || 'غير محدد'}</p>
+                    <p><strong>الوصف:</strong> ${newDescription || 'بدون وصف'}</p>
+                    <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
+                `;
+                
+                renderBooks();
+                showAlert(`✅ تم تحديث بيانات الكتاب "${newTitle}" بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
+        }
+
+                // ===== النوافذ المنبثقة =====
+        function showModal(type) {
+            if (type !== 'editChapter' && type !== 'editQuestion') {
+                editingChapterNum = null;
+                editingQuestionIdx = null;
+            }
+            const body = document.getElementById('modal-body');
+            let html = '';
+
+            if (type === 'addBook') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة كتاب جديد</h3>
+                    <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
+                    <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
+                    <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
+                    <div class="form-group"><label>الوصف</label><textarea id="m-desc" rows="3" placeholder="وصف الكتاب"></textarea></div>
+                    <button class="btn btn-primary" onclick="saveBook()">إضافة الكتاب</button>`;
+
+            } else if (type === 'addChapter') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول - المبادئ الأساسية"></div>
+                    <button class="btn btn-primary" onclick="saveChapter()">إضافة الفصل</button>`;
+
+            } else if (type === 'editChapter') {
+                const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${ch ? ch.title : ''}"></div>
+                    <button class="btn btn-primary" onclick="saveChapter()">حفظ التعديلات</button>`;
+
+            } else if (type === 'addQuestion') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3"></textarea></div>
+                    <div class="form-group"><label>خيار 1</label><input id="m-o1"></div>
+                    <div class="form-group"><label>خيار 2</label><input id="m-o2"></div>
+                    <div class="form-group"><label>خيار 3</label><input id="m-o3"></div>
+                    <div class="form-group"><label>خيار 4</label><input id="m-o4"></div>
+                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
+                    <button class="btn btn-primary" onclick="saveQuestion()">إضافة السؤال</button>`;
+
+            } else if (type === 'editQuestion') {
+                const q = currentChapterData.questions[editingQuestionIdx];
+                const qText = q.q || q.question || '';
+                const opts = q.opts || q.options || [];
+                const ans = (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer)) + 1;
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل السؤال</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${qText}</textarea></div>
+                    <div class="form-group"><label>خيار 1</label><input id="m-o1" value="${opts[0] || ''}"></div>
+                    <div class="form-group"><label>خيار 2</label><input id="m-o2" value="${opts[1] || ''}"></div>
+                    <div class="form-group"><label>خيار 3</label><input id="m-o3" value="${opts[2] || ''}"></div>
+                    <div class="form-group"><label>خيار 4</label><input id="m-o4" value="${opts[3] || ''}"></div>
+                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4" value="${ans}"></div>
+                    <button class="btn btn-primary" onclick="saveQuestion()">حفظ التعديلات</button>`;
+            }
+
+            body.innerHTML = html + `<button class="btn btn-secondary" style="margin-top:10px; width:100%" onclick="closeModal()">إلغاء</button>`;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+        // ===== حفظ كتاب جديد =====
+        async function saveBook() {
+            const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_');
+            const title = document.getElementById('m-title').value.trim();
+            const author = document.getElementById('m-author').value.trim();
+            const desc = document.getElementById('m-desc').value.trim();
+            if (!id || !title) { showAlert('يرجى إدخال اسم الكتاب والمعرف', 'error'); return; }
+            books.push({ id, title, author, description: desc, chapters: 0 });
+            try {
+                await updateIndexAndBooks();
+                showAlert('تمت إضافة الكتاب بنجاح');
+                closeModal(); loadBooks();
+            } catch (e) { showAlert(e.message, 'error'); }
+        }
+
+        // ===== حفظ فصل (إضافة أو تعديل) =====
+        async function saveChapter() {
+            const title = document.getElementById('m-title').value.trim();
+            if (!title || !currentBook) { showAlert('يرجى إدخال اسم الفصل', 'error'); return; }
+
+            try {
+                if (editingChapterNum !== null) {
+                    // تعديل فصل موجود - تحديث ملفه فقط
+                    const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
+                    const chContent = JSON.parse(decode(data.content));
+                    chContent.title = title;
+
+                    await commitFiles([
+                        { path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }
+                    ], `تعديل عنوان الفصل: ${title}`);
+
+                    // تحديث القائمة المحلية
+                    const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                    if (ch) ch.title = title;
+
+                    showAlert('تم تعديل الفصل بنجاح');
+                } else {
+                    // إضافة فصل جديد - إيجاد أعلى رقم وإضافة 1
+                    const maxNum = bookChapterFiles.length > 0 ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
+                    const newNum = maxNum + 1;
+                    const newChapter = {
+                        id: `chapter_${newNum}`,
+                        book_id: currentBook.id,
+                        chapter: newNum,
+                        title: title,
+                        description: '',
+                        questions: []
+                    };
+
+                    // تحديث عدد الفصول في books
+                    currentBook.chapters = newNum;
+                    const bookInList = books.find(b => b.id === currentBook.id);
+                    if (bookInList) bookInList.chapters = newNum;
+
+                    // جلب index.html لتحديث BOOKS
+                    const idxData = await ghRequest('index.html');
+                    let idxContent = decode(idxData.content);
+                    idxContent = idxContent.replace(
+                        /const BOOKS = \[[\s\S]*?\];/,
+                        `const BOOKS = ${JSON.stringify(books, null, 4)};`
+                    );
+
+                    // رفع الفصل الجديد + تحديث books.json + index.html في commit واحد
+                    await commitFiles([
+                        { path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) },
+                        { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
+                        { path: 'index.html', content: idxContent }
+                    ], `إضافة فصل جديد: ${title}`);
+
+                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json)`);
+                }
+
+                closeModal();
+                await loadBookChapters();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+
+        // ===== حذف فصل =====
+        async function deleteChapter(chNum) {
+            if (!confirm(`هل أنت متأكد من حذف هذا الفصل؟`)) return;
+            try {
+                // حذف الملف من GitHub
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${chNum}.json`);
+                await fetch(`https://api.github.com/repos/${config.user}/${config.repo}/contents/data/${currentBook.id}/chapter_${chNum}.json`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `حذف الفصل ${chNum}`, sha: data.sha })
+                });
+
+                // تحديث عدد الفصول
+                bookChapterFiles = bookChapterFiles.filter(c => c.num !== chNum);
+                const newCount = bookChapterFiles.length;
+                currentBook.chapters = newCount;
+                const bookInList = books.find(b => b.id === currentBook.id);
+                if (bookInList) bookInList.chapters = newCount;
+
+                await updateIndexAndBooks();
+                showAlert('تم حذف الفصل بنجاح');
+                renderChapters();
+                updateChapterSelect();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+
+        // ===== تعديل فصل =====
+        function editChapter(chNum) {
+            editingChapterNum = chNum;
+            showModal('editChapter');
+        }
+
+        // ===== حفظ سؤال (إضافة أو تعديل) =====
+        async function saveQuestion() {
+            if (!currentChapterData || currentChapterNum === null) {
+                showAlert('يرجى اختيار فصل أولاً', 'error'); return;
+            }
+            const q = document.getElementById('m-q').value.trim();
+            const opts = [
+                document.getElementById('m-o1').value.trim(),
+                document.getElementById('m-o2').value.trim(),
+                document.getElementById('m-o3').value.trim(),
+                document.getElementById('m-o4').value.trim()
+            ];
+            const ans = parseInt(document.getElementById('m-ans').value) - 1;
+            if (!q || isNaN(ans) || ans < 0 || ans > 3) {
+                showAlert('يرجى إدخال السؤال ورقم الإجابة الصحيحة (1-4)', 'error'); return;
+            }
+
+            const questionObj = { question: q, options: opts, answer: ans };
+
+            if (editingQuestionIdx !== null) {
+                currentChapterData.questions[editingQuestionIdx] = questionObj;
+            } else {
+                currentChapterData.questions.push(questionObj);
+            }
+
+            try {
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
+
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال بنجاح');
+                closeModal();
+                renderQuestions();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+
+        // ===== تعديل سؤال =====
+        function editQuestion(qIdx) {
+            editingQuestionIdx = qIdx;
+            showModal('editQuestion');
+        }
+
+        // ===== حذف سؤال =====
+        async function deleteQuestion(qIdx) {
+            if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+            currentChapterData.questions.splice(qIdx, 1);
+            try {
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], `حذف سؤال من الفصل ${currentChapterNum}`);
+                showAlert('تم حذف السؤال بنجاح');
+                modifiedQuestionsIndices = []; // تصفير التعديلات بعد الحذف
+                updateBatchSaveBar();
+                renderQuestions();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+        
+        // ===== إلغاء التعديلات المعلقة =====
+        function cancelBatchChanges() {
+            if (confirm('هل أنت متأكد من إلغاء جميع التعديلات المعلقة؟')) {
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                loadChapterQuestions(); // إعادة تحميل البيانات الأصلية
+                showAlert('تم إلغاء جميع التعديلات المعلقة');
+            }
+        }
+
+        // ===== التهيئة =====
+        window.onload = () => {
+            if (config.token) loadBooks();
+            else openSettings();
+        };
+    </script>
+</body>
+</html>
