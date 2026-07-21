@@ -16,7 +16,8 @@ except ImportError:
     print("❌ مكتبة google-genai غير مثبتة.")
     sys.exit(1)
 
-MODEL = "gemini-1.5-flash"
+# استخدام الموديل المستقر المعتمد في المكتبة الجديدة
+MODEL = "gemini-2.0-flash"
 BATCH_SIZE = 10
 
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
@@ -221,4 +222,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
