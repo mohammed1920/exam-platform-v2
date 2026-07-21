@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 import google.generativeai as genai
 from groq import Groq
 
@@ -9,12 +10,12 @@ from groq import Groq
 GEMINI_KEY = os.getenv("GEMINI_API_KEY")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
-BOOKS_FILE = "books.json"  # يقع في الجذر مباشرة
+BOOKS_FILE = "books.json"
 DATA_DIR = "data"
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
-BATCH_SIZE = 5  # عدد الأسئلة المقروءة في الطلب الواحد
+BATCH_SIZE = 5
 
 # ----------------------------------------------------
 # 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
@@ -24,14 +25,14 @@ def analyze_with_ai(prompt):
     if GEMINI_KEY:
         try:
             genai.configure(api_key=GEMINI_KEY)
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            model = genai.GenerativeModel('gemini-1.5-flash-latest')
             response = model.generate_content(prompt)
             if response and response.text:
                 return response.text
         except Exception as e:
             print(f"⚠️ فشل/استنفاد Gemini: {e}. يتم التحويل إلى Groq...", flush=True)
 
-    # المحاولة الثانية: Groq (إذا فشل Gemini)
+    # المحاولة الثانية: Groq (عند فشل Gemini)
     if GROQ_KEY:
         try:
             client = Groq(api_key=GROQ_KEY)
@@ -64,16 +65,13 @@ def save_json(filepath, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def extract_questions_from_file(filepath):
-    """استخراج مصفوفة الأسئلة بغض النظر عن طريقة تنظيم الملف"""
     raw_data = load_json(filepath, None)
     if raw_data is None:
         return []
 
-    # إذا كانت الأسئلة مصفوفة مباشرة [{}, {}]
     if isinstance(raw_data, list):
         return raw_data
 
-    # إذا كان كائناً يحتوي على مفتاح "questions"
     if isinstance(raw_data, dict):
         questions = raw_data.get("questions", [])
         if isinstance(questions, list):
@@ -82,10 +80,7 @@ def extract_questions_from_file(filepath):
     return []
 
 def get_all_chapters():
-    """البحث المباشر عن كل ملفات الفصول داخل مجلدات data الفرعية"""
     chapters_list = []
-    
-    # 1. القراءة اعتماداً على ملف books.json
     books_data = load_json(BOOKS_FILE, load_json(os.path.join(DATA_DIR, "books.json"), []))
     
     if isinstance(books_data, list) and len(books_data) > 0:
@@ -110,7 +105,6 @@ def get_all_chapters():
                                 })
                                 break
 
-    # 2. المسح المباشر المكمل لمجلد data
     if not chapters_list and os.path.exists(DATA_DIR):
         for root, dirs, files in os.walk(DATA_DIR):
             for file in sorted(files):
@@ -144,7 +138,6 @@ def run_checker():
     current_ch = all_chapters[ch_index]
     print(f"📖 جاري فحص: {current_ch['book_id']} / {current_ch['chapter_file']} (الفصل {ch_index + 1} من {len(all_chapters)})", flush=True)
 
-    # استخراج الأسئلة بالدالة الذكية المعدلة
     questions = extract_questions_from_file(current_ch["full_path"])
     if not questions:
         state["chapter_index"] = ch_index + 1
@@ -182,15 +175,34 @@ def run_checker():
         print(result)
         print("----------------------\n")
 
-        report = load_json(REPORT_FILE, [])
-        report.append({
-            "book": current_ch["book_id"],
-            "chapter": current_ch["chapter_file"],
+        # 1. تحميل التقرير ككائن Object/Dict
+        report = load_json(REPORT_FILE, {})
+        if not isinstance(report, dict):
+            report = {}
+
+        book_id = current_ch["book_id"]
+        ch_file = current_ch["chapter_file"]
+
+        # إعداد هيكلية الكائن
+        if "reports" not in report:
+            report["reports"] = {}
+        if book_id not in report["reports"]:
+            report["reports"][book_id] = {}
+        if ch_file not in report["reports"][book_id]:
+            report["reports"][book_id][ch_file] = []
+
+        # إضافة النتيجة إلى كائن التقرير
+        report["reports"][book_id][ch_file].append({
             "batch": f"{start_batch + 1}-{end_batch}",
-            "result": result
+            "result": result,
+            "status": "pending",
+            "timestamp": str(datetime.datetime.now())
         })
+        report["last_updated"] = str(datetime.date.today())
+
         save_json(REPORT_FILE, report)
 
+        # 2. تحديث مؤشر التقدم
         if end_batch >= total_q:
             state["chapter_index"] = ch_index + 1
             state["start_batch"] = 0
@@ -198,7 +210,7 @@ def run_checker():
             state["start_batch"] = end_batch
 
         save_json(STATE_FILE, state)
-        print("💾 تم حفظ التقرير وحالة التقدم بنجاح.")
+        print("💾 تم حفظ التقرير بداخل كائن (Object) بنجاح لراحة لوحة الأدمن.")
     else:
         print("❌ فشل الاتصال بخدمات الذكاء الاصطناعي، سيعاد التجرِبة في التشغيل القادم.")
 
