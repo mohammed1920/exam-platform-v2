@@ -18,6 +18,14 @@ except ImportError:
 
 BATCH_SIZE = 10
 
+# قائمة بالنماذج المتاحة في الخطة المجانية مرنّبة حسب الأفضلية والاستقرار
+PREFERRED_MODELS = [
+    "gemini-1.5-flash",
+    "gemini-2.0-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-1.5-flash-8b"
+]
+
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
 مهمتك: فحص الأسئلة والخيارات واكتشاف الأخطاء الإملائية والطباعية الحقيقية فقط.
 
@@ -44,33 +52,26 @@ def clean_json_response(text):
         return match.group(0)
     return text
 
-def get_available_model(client):
-    """جلب الموديل المتاح تلقائياً من الحساب لتجنب أخطاء 404."""
+def get_available_models_list(client):
+    """جلب وتصفية النماذج المتاحة فعلياً ومقارنتها بقائمة المفضلات."""
     try:
         models = list(client.models.list())
-        # البحث عن موديل يدعم generateContent ويكون من عائلة flash
-        for m in models:
-            m_name = getattr(m, 'name', '') or getattr(m, 'model', '')
-            if 'flash' in m_name.lower() and 'generateContent' in getattr(m, 'supported_generation_methods', ['generateContent']):
-                # تنظيف الاسم من كلمة models/ إذا كانت موجودة
-                clean_name = m_name.replace('models/', '')
-                print(f"🤖 تم اختيار الموديل المتاح تلقائياً: {clean_name}")
-                return clean_name
+        available_names = [
+            getattr(m, 'name', '').replace('models/', '') 
+            for m in models if getattr(m, 'name', '')
+        ]
         
-        # إذا لم يجد flash يأخذ أول موديل يدعم التوليد
-        for m in models:
-            m_name = getattr(m, 'name', '') or getattr(m, 'model', '')
-            if 'generateContent' in getattr(m, 'supported_generation_methods', ['generateContent']):
-                clean_name = m_name.replace('models/', '')
-                print(f"🤖 تم اختيار الموديل البديل: {clean_name}")
-                return clean_name
+        # تصفية النماذج وتحديث القائمة بناء على ما هو متوفر في API
+        filtered = [m for m in PREFERRED_MODELS if m in available_names]
+        if filtered:
+            return filtered
     except Exception as e:
-        print(f"⚠️ تعذر جلب قائمة الموديلات تلقائياً: {e}")
+        print(f"⚠️ تعذر جلب قائمة الموديلات من API تلقائياً: {e}")
     
-    # خيار احتياطي أخير
-    return "gemini-1.5-flash"
+    return PREFERRED_MODELS
 
-def check_batch(client, model_name, questions_batch):
+def check_batch_with_fallback(client, model_list, questions_batch):
+    """فحص الدفعة مع تجربة النماذج المتاحة بالتتابع في حال فشل أحدهم."""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -83,28 +84,37 @@ def check_batch(client, model_name, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=user_content,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    response_mime_type="application/json"
+    # التجربة عبر النماذج المتاحة
+    for current_model in model_list:
+        max_retries = 2
+        for attempt in range(max_retries):
+            try:
+                response = client.models.generate_content(
+                    model=current_model,
+                    contents=user_content,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        response_mime_type="application/json"
+                    )
                 )
-            )
-            cleaned = clean_json_response(response.text)
-            result = json.loads(cleaned)
-            return result.get("issues", [])
-        except Exception as e:
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                wait_time = (attempt + 1) * 6
-                print(f"⏳ تجاوز حد الطلبات، انتظار {wait_time} ثوانٍ...")
-                time.sleep(wait_time)
-            else:
-                print(f"⚠️ خطأ أثناء استجابة Gemini: {e}")
-                return []
+                cleaned = clean_json_response(response.text)
+                result = json.loads(cleaned)
+                return result.get("issues", [])
+            
+            except Exception as e:
+                err_str = str(e)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                    wait_time = (attempt + 1) * 5
+                    print(f"⏳ تجاوز حد الطلبات على الموديل ({current_model})، انتظار {wait_time} ثوانٍ...")
+                    time.sleep(wait_time)
+                elif "404" in err_str or "NOT_FOUND" in err_str:
+                    print(f"⚠️ الموديل ({current_model}) غير متوفر (404)، جاري التبديل إلى نموذج آخر...")
+                    break  # الخروج من محاولات هذا النموذج والانتقال للنموذج التالي في القائمة
+                else:
+                    print(f"⚠️ خطأ أثناء استجابة الموديل ({current_model}): {e}")
+                    break
+                    
+    print("❌ فشل فحص الدفعة الحالية باستخدام جميع النماذج المتاحة.")
     return []
 
 def get_all_chapters(data_dir, books):
@@ -135,7 +145,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع التبديل التلقائي للموديلات")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -146,8 +156,9 @@ def main():
 
     client = genai.Client(api_key=api_key)
     
-    # اختيار الموديل تلقائياً حسب الحساب
-    active_model = get_available_model(client)
+    # جلب قائمة النماذج الجاهزة للعمل
+    available_models = get_available_models_list(client)
+    print(f"🤖 قائمة الموديلات المجهزة للعمل حسب الأولوية: {available_models}")
 
     repo_root = Path(args.repo_root).resolve()
     data_dir = repo_root / "data"
@@ -197,7 +208,7 @@ def main():
     if questions:
         for start in range(0, len(questions), BATCH_SIZE):
             batch = questions[start:start + BATCH_SIZE]
-            issues = check_batch(client, active_model, batch)
+            issues = check_batch_with_fallback(client, available_models, batch)
 
             for issue in issues:
                 q_idx = issue.get("question_index")
@@ -216,7 +227,7 @@ def main():
                     "corrected": issue.get("corrected", ""),
                     "status": "pending",
                 })
-            time.sleep(3.0)
+            time.sleep(2.0)
 
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
@@ -251,3 +262,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
