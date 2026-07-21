@@ -2,8 +2,8 @@ name: AI Spelling Check
 
 on:
   schedule:
-    # يعمل مرة واحدة يومياً كل 24 ساعة (الساعة 12 منتصف الليل بتوقيت UTC)
-    - cron: '0 0 * * *'
+    # الفحص الدوري اليومي الساعة 12 ظهراً بتوقيت بغداد (09:00 UTC)
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 permissions:
@@ -22,11 +22,14 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install google-genai --break-system-packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run AI spellcheck
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python3 spellcheck_ai.py --repo-root .
 
       - name: Commit and push report
@@ -35,9 +38,9 @@ jobs:
           git config user.email "github-actions[bot]"
           git add reports/spelling_report.json reports/scan_state.json
           if git diff --cached --quiet; then
-            echo "لا يوجد تغييرات جديدة لرفعتها"
+            echo "لا يوجد أخطاء جديدة للحفظ"
           else
-            git commit -m "تحديث تقرير الفحص الإملائي للفصل الحالي"
+            git commit -m "تحديث تقرير الفحص الإملائي وحالة الفحص"
             git fetch origin main
             git merge origin/main --no-edit -X ours
             git push
