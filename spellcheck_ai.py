@@ -18,11 +18,6 @@ except ImportError:
 
 BATCH_SIZE = 10
 
-# الاعتماد على gemini-2.0-flash لحصته الكبيرة وسرعته
-ALL_AVAILABLE_MODELS = [
-    "gemini-2.0-flash"
-]
-
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
 مهمتك: فحص الأسئلة والخيارات واكتشاف الأخطاء الإملائية والطباعية الحقيقية فقط.
 
@@ -49,7 +44,8 @@ def clean_json_response(text):
         return match.group(0)
     return text
 
-def check_batch_with_all_models(client, questions_batch):
+def check_batch_guaranteed(client, questions_batch):
+    """دالة تدقيق تضمن عدم تجاوز أي دفعة حتى تنجح بالكامل"""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -62,33 +58,28 @@ def check_batch_with_all_models(client, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    for current_model in ALL_AVAILABLE_MODELS:
-        max_retries = 2
-        for attempt in range(max_retries):
-            try:
-                response = client.models.generate_content(
-                    model=current_model,
-                    contents=user_content,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
-                        response_mime_type="application/json"
-                    )
+    while True:
+        try:
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=user_content,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    response_mime_type="application/json"
                 )
-                cleaned = clean_json_response(response.text)
-                result = json.loads(cleaned)
-                return result.get("issues", [])
-            
-            except Exception as e:
-                err_str = str(e)
-                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                    wait_time = 10
-                    print(f"⏳ حد الطلبات، انتظار {wait_time} ثوانٍ...", flush=True)
-                    time.sleep(wait_time)
-                else:
-                    print(f"⚠️ خطأ أثناء الاستجابة ({current_model}): {e}", flush=True)
-                    break
-
-    return []
+            )
+            cleaned = clean_json_response(response.text)
+            result = json.loads(cleaned)
+            return result.get("issues", [])
+        
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                print("⏳ تجاوز حد الطلبات (429)، سيتم الانتظار 15 ثانية وإعادة المحاولة بنفس الدفعة...", flush=True)
+                time.sleep(15)
+            else:
+                print(f"⚠️ خطأ غير متوقع: {e}، إعادة المحاولة بعد 5 ثوانٍ...", flush=True)
+                time.sleep(5)
 
 def get_all_chapters(data_dir, books):
     all_chapters = []
@@ -118,7 +109,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي سريع ومباشر")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي دقيق")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -180,7 +171,8 @@ def main():
             batch = questions[start:start + BATCH_SIZE]
             print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...", flush=True)
             
-            issues = check_batch_with_all_models(client, batch)
+            # فحص الدفعة مع الضمان التام بعدم تجاوزها حتى تنجح
+            issues = check_batch_guaranteed(client, batch)
 
             for issue in issues:
                 q_idx = issue.get("question_index")
@@ -200,8 +192,9 @@ def main():
                     "status": "pending",
                 })
             
+            # انتظار 6 ثوان بين الدفعات للحفاظ على الحصة
             if idx + 1 < total_batches:
-                time.sleep(4.0)
+                time.sleep(6.0)
 
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
@@ -244,3 +237,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
