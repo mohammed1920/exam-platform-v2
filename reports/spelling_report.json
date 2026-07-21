@@ -1,4 +1,17 @@
 {
   "generated_at": "2026-07-21 14:19:14",
-  "items": []
+  "items": [],
+  "reports": {
+    "law_general_penalties": {
+      "chapter_3.json": [
+        {
+          "batch": "1-5",
+          "result": "لا توجد أخطاء.",
+          "status": "pending",
+          "timestamp": "2026-07-21 17:25:50.957248"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-07-21"
 }
