@@ -18,8 +18,8 @@ except ImportError:
 
 BATCH_SIZE = 10
 
-# قائمة بالنماذج المتاحة في الخطة المجانية مرنّبة حسب الأفضلية والاستقرار
-PREFERRED_MODELS = [
+# قائمة بكل النماذج المتاحة والحديثة للتدقيق مرتبة حسب الأفضلية
+ALL_AVAILABLE_MODELS = [
     "gemini-1.5-flash",
     "gemini-2.0-flash",
     "gemini-2.5-flash-lite",
@@ -52,26 +52,8 @@ def clean_json_response(text):
         return match.group(0)
     return text
 
-def get_available_models_list(client):
-    """جلب وتصفية النماذج المتاحة فعلياً ومقارنتها بقائمة المفضلات."""
-    try:
-        models = list(client.models.list())
-        available_names = [
-            getattr(m, 'name', '').replace('models/', '') 
-            for m in models if getattr(m, 'name', '')
-        ]
-        
-        # تصفية النماذج وتحديث القائمة بناء على ما هو متوفر في API
-        filtered = [m for m in PREFERRED_MODELS if m in available_names]
-        if filtered:
-            return filtered
-    except Exception as e:
-        print(f"⚠️ تعذر جلب قائمة الموديلات من API تلقائياً: {e}")
-    
-    return PREFERRED_MODELS
-
-def check_batch_with_fallback(client, model_list, questions_batch):
-    """فحص الدفعة مع تجربة النماذج المتاحة بالتتابع في حال فشل أحدهم."""
+def check_batch_with_all_models(client, questions_batch):
+    """فحص الدفعة والتنقل بين كافة النماذج المتاحة في حال فشل أي منها."""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -84,11 +66,12 @@ def check_batch_with_fallback(client, model_list, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    # التجربة عبر النماذج المتاحة
-    for current_model in model_list:
-        max_retries = 2
+    # المحاولة على جميع النماذج المتاحة بالترتيب
+    for current_model in ALL_AVAILABLE_MODELS:
+        max_retries = 3
         for attempt in range(max_retries):
             try:
+                print(f"🤖 جاري المحاولة باستخدام النموذج: {current_model}")
                 response = client.models.generate_content(
                     model=current_model,
                     contents=user_content,
@@ -104,17 +87,17 @@ def check_batch_with_fallback(client, model_list, questions_batch):
             except Exception as e:
                 err_str = str(e)
                 if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                    wait_time = (attempt + 1) * 5
-                    print(f"⏳ تجاوز حد الطلبات على الموديل ({current_model})، انتظار {wait_time} ثوانٍ...")
+                    wait_time = (attempt + 1) * 30
+                    print(f"⏳ تجاوز حد الطلبات على ({current_model})، انتظار {wait_time} ثانية...")
                     time.sleep(wait_time)
                 elif "404" in err_str or "NOT_FOUND" in err_str:
-                    print(f"⚠️ الموديل ({current_model}) غير متوفر (404)، جاري التبديل إلى نموذج آخر...")
-                    break  # الخروج من محاولات هذا النموذج والانتقال للنموذج التالي في القائمة
+                    print(f"⚠️ الموديل ({current_model}) غير متاح (404)، التبديل للنموذج التالي...")
+                    break  # الانتقال للنموذج التالي في القائمة
                 else:
                     print(f"⚠️ خطأ أثناء استجابة الموديل ({current_model}): {e}")
                     break
-                    
-    print("❌ فشل فحص الدفعة الحالية باستخدام جميع النماذج المتاحة.")
+
+    print("❌ تعذر فحص هذه الدفعة بعد تجربة كل النماذج المتاحة.")
     return []
 
 def get_all_chapters(data_dir, books):
@@ -145,7 +128,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع التبديل التلقائي للموديلات")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع تغطية كافة نماذج AI المتاحة")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -155,10 +138,6 @@ def main():
         sys.exit(1)
 
     client = genai.Client(api_key=api_key)
-    
-    # جلب قائمة النماذج الجاهزة للعمل
-    available_models = get_available_models_list(client)
-    print(f"🤖 قائمة الموديلات المجهزة للعمل حسب الأولوية: {available_models}")
 
     repo_root = Path(args.repo_root).resolve()
     data_dir = repo_root / "data"
@@ -206,9 +185,12 @@ def main():
     new_items = []
 
     if questions:
-        for start in range(0, len(questions), BATCH_SIZE):
+        total_batches = (len(questions) + BATCH_SIZE - 1) // BATCH_SIZE
+        for idx, start in enumerate(range(0, len(questions), BATCH_SIZE)):
             batch = questions[start:start + BATCH_SIZE]
-            issues = check_batch_with_fallback(client, available_models, batch)
+            print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...")
+            
+            issues = check_batch_with_all_models(client, batch)
 
             for issue in issues:
                 q_idx = issue.get("question_index")
@@ -227,7 +209,11 @@ def main():
                     "corrected": issue.get("corrected", ""),
                     "status": "pending",
                 })
-            time.sleep(2.0)
+            
+            # فاصل أمان دقيقة بين كل دفعة لضمان أفضل أداء واستقرار الخطة المجانية
+            if idx + 1 < total_batches:
+                print("☕ إيقاف مؤقت لمدة 60 ثانية للسلامة وتجنب حدود API...")
+                time.sleep(60.0)
 
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
