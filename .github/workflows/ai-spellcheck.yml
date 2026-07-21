@@ -1,15 +1,10 @@
 name: AI Spelling Check
 
 on:
+  schedule:
+    # يعمل تلقائياً رأس كل ساعة (Cron Job)
+    - cron: '0 * * * *'
   workflow_dispatch:
-    inputs:
-      only_books:
-        description: >
-          (اختياري) معرفات كتب محددة مفصولة بمسافة للفحص فقط، مثال:
-          law_general_penalties law_constitutional
-          اتركه فاضي لفحص كل الكتب (يأخذ وقت أطول وتكلفة أعلى قليلاً).
-        required: false
-        default: ""
 
 permissions:
   contents: write
@@ -32,22 +27,17 @@ jobs:
       - name: Run AI spellcheck
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          if [ -n "${{ github.event.inputs.only_books }}" ]; then
-            python3 spellcheck_ai.py --repo-root . --only ${{ github.event.inputs.only_books }}
-          else
-            python3 spellcheck_ai.py --repo-root .
-          fi
+        run: python3 spellcheck_ai.py --repo-root .
 
       - name: Commit and push report
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/spelling_report.json
+          git config user.email "github-actions[bot]"
+          git add reports/spelling_report.json reports/scan_state.json
           if git diff --cached --quiet; then
-            echo "لا يوجد تقرير جديد لرفعه."
+            echo "لا يوجد تغييرات جديدة لرفعها."
           else
-            git commit -m "تقرير فحص إملائي جديد بالذكاء الاصطناعي"
+            git commit -m "تحديث تقرير الفحص الإملائي للفصل الحالي"
             git fetch origin main
             git merge origin/main --no-edit -X ours
             git push
