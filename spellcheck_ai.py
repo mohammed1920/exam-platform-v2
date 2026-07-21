@@ -15,7 +15,7 @@ DATA_DIR = "data"
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
-BATCH_SIZE = 5
+BATCH_SIZE = 5  # عدد الأسئلة المقروءة في الطلب الواحد
 
 # ----------------------------------------------------
 # 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
@@ -25,7 +25,7 @@ def analyze_with_ai(prompt):
     if GEMINI_KEY:
         try:
             genai.configure(api_key=GEMINI_KEY)
-            model = genai.GenerativeModel('gemini-1.5-flash-latest')
+            model = genai.GenerativeModel('gemini-2.0-flash')
             response = model.generate_content(prompt)
             if response and response.text:
                 return response.text
@@ -65,6 +65,7 @@ def save_json(filepath, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def extract_questions_from_file(filepath):
+    """استخراج الأسئلة سواء كان الملف Array مباشرة أو Object يحتوي على المفتاح questions"""
     raw_data = load_json(filepath, None)
     if raw_data is None:
         return []
@@ -80,6 +81,7 @@ def extract_questions_from_file(filepath):
     return []
 
 def get_all_chapters():
+    """تجميع كافة الفصول من المجلدات الفرعية داخل data"""
     chapters_list = []
     books_data = load_json(BOOKS_FILE, load_json(os.path.join(DATA_DIR, "books.json"), []))
     
@@ -159,12 +161,18 @@ def run_checker():
     batch_questions = questions[start_batch:end_batch]
 
     prompt = f"""
-أنت مدقق لغوي متمكن في النصوص والأسئلة الأكاديمية القانونية.
-قم بتدقيق الأسئلة التالية إملائياً ولغوياً فقط.
-إذا وجدت أخطاء، اذكر رقم السؤال والخطأ مع التصحيح.
-إذا لم تكن هناك أخطاء، اكتب: "لا توجد أخطاء".
+أنت مدقق لغوي متمكن ومتخصص جداً في النصوص والأسئلة القانونية الأكاديمية.
+قم بتدقيق الأسئلة والخيارات التالية تدقيقاً صارماً ودقيقاً يشمل:
+1. تصحيح همزات الوصل والقطع (مثال: "إقترف" تصحح إلى "اقترف"، "الإعتبارية" تصحح إلى "الاعتبارية"، "إرتكب" تصحح إلى "ارتكب").
+2. تصحيح الهمزات المتوسطة والألف الممدودة (مثال: "أخر" تصحح إلى "آخر").
+3. تصحيح الأخطاء النحوية والإملائية والأحرف والياءات والأسماء المنقوصة (مثال: "متعدي" تصحح إلى "متعدٍ").
 
-الأسئلة:
+إذا وجدت أي أخطاء (حتى لو كانت مجرد همزة وصل أو قطع خفيفة)، قم بإدراج الخطأ بدقة بالشكل التالي:
+- رقم السؤال / الكلمة الخاطئة / الكلمة الصحيحة / سبب التصحيح.
+
+إذا كانت الأسئلة خالية تماماً حتى من أخطاء الهمزات، اكتب فقط: "لا توجد أخطاء".
+
+الأسئلة للتدقيق:
 {json.dumps(batch_questions, ensure_ascii=False, indent=2)}
 """
 
@@ -175,7 +183,7 @@ def run_checker():
         print(result)
         print("----------------------\n")
 
-        # 1. تحميل التقرير ككائن Object/Dict
+        # 1. تحميل التقرير ككائن Object
         report = load_json(REPORT_FILE, {})
         if not isinstance(report, dict):
             report = {}
@@ -183,7 +191,6 @@ def run_checker():
         book_id = current_ch["book_id"]
         ch_file = current_ch["chapter_file"]
 
-        # إعداد هيكلية الكائن
         if "reports" not in report:
             report["reports"] = {}
         if book_id not in report["reports"]:
@@ -191,7 +198,7 @@ def run_checker():
         if ch_file not in report["reports"][book_id]:
             report["reports"][book_id][ch_file] = []
 
-        # إضافة النتيجة إلى كائن التقرير
+        # إضافة التقرير بداخل الهيكلية
         report["reports"][book_id][ch_file].append({
             "batch": f"{start_batch + 1}-{end_batch}",
             "result": result,
@@ -202,7 +209,7 @@ def run_checker():
 
         save_json(REPORT_FILE, report)
 
-        # 2. تحديث مؤشر التقدم
+        # 2. تحديث حالة التقدم
         if end_batch >= total_q:
             state["chapter_index"] = ch_index + 1
             state["start_batch"] = 0
@@ -216,3 +223,4 @@ def run_checker():
 
 if __name__ == "__main__":
     run_checker()
+
