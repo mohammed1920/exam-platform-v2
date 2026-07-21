@@ -1,6 +1,5 @@
 import os
 import json
-import time
 import google.generativeai as genai
 from groq import Groq
 
@@ -10,8 +9,8 @@ from groq import Groq
 GEMINI_KEY = os.getenv("GEMINI_API_KEY")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
+BOOKS_FILE = "books.json"  # يقع في الجذر مباشرة
 DATA_DIR = "data"
-BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
@@ -48,7 +47,7 @@ def analyze_with_ai(prompt):
     return None
 
 # ----------------------------------------------------
-# 3. إدارة حالة الفحص والتقرير
+# 3. إدارة الملفات والدوال المساعدة
 # ----------------------------------------------------
 def load_json(filepath, default):
     if os.path.exists(filepath):
@@ -60,49 +59,51 @@ def load_json(filepath, default):
     return default
 
 def save_json(filepath, data):
-    # التأكد من وجود المجلد
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def get_all_chapters():
-    """تجميع كافة الفصول من جميع الكتب بالتسلسل الصحيح مع معالجة حذرة لكافة أنماط البيانات"""
+    """البحث المباشر عن كل ملفات الفصول داخل مجلدات data الفرعية"""
     chapters_list = []
-    books_data = load_json(BOOKS_FILE, [])
     
-    if isinstance(books_data, list):
+    # 1. القراءة اعتماداً على ملف books.json إذا كان موجوداً
+    books_data = load_json(BOOKS_FILE, load_json(os.path.join(DATA_DIR, "books.json"), []))
+    
+    if isinstance(books_data, list) and len(books_data) > 0:
         for book in books_data:
             if isinstance(book, dict):
-                book_id = book.get("id")
+                book_id = book.get("id", "")
                 chapters = book.get("chapters", [])
                 
-                # إذا كانت الفصول مصفوفة عناصر
+                # إذا كانت الفصول مصفوفة أسماء ملفات أو كائنات
                 if isinstance(chapters, list):
                     for ch in chapters:
-                        if isinstance(ch, dict):
-                            ch_file = ch.get("file")
-                        else:
-                            ch_file = str(ch)
-                        
-                        if ch_file:
-                            full_path = os.path.join(DATA_DIR, ch_file)
-                            if os.path.exists(full_path):
+                        ch_file = ch.get("file") if isinstance(ch, dict) else str(ch)
+                        # البحث في جذر data وفي المجلد الفرعي الخاص بالقانون
+                        possible_paths = [
+                            os.path.join(DATA_DIR, book_id, ch_file),
+                            os.path.join(DATA_DIR, ch_file)
+                        ]
+                        for path in possible_paths:
+                            if os.path.exists(path):
                                 chapters_list.append({
                                     "book_id": book_id,
                                     "chapter_file": ch_file,
-                                    "full_path": full_path
+                                    "full_path": path
                                 })
-                # إذا كان القيمة عبارة عن عدد الفصول فقط كـ integer
-                elif isinstance(chapters, int):
-                    for i in range(1, chapters + 1):
-                        ch_file = f"chapter_{i}.json"
-                        full_path = os.path.join(DATA_DIR, ch_file)
-                        if os.path.exists(full_path):
-                            chapters_list.append({
-                                "book_id": book_id,
-                                "chapter_file": ch_file,
-                                "full_path": full_path
-                            })
+                                break
+
+    # 2. خطة احتياطية: المسح المباشر لمجلد data إذا لم تظهر نتائج من books.json
+    if not chapters_list and os.path.exists(DATA_DIR):
+        for root, dirs, files in os.walk(DATA_DIR):
+            for file in sorted(files):
+                if file.endswith(".json") and file not in ["books.json", "books_info.json", "contact.json"]:
+                    chapters_list.append({
+                        "book_id": os.path.basename(root),
+                        "chapter_file": file,
+                        "full_path": os.path.join(root, file)
+                    })
 
     return chapters_list
 
@@ -112,7 +113,7 @@ def get_all_chapters():
 def run_checker():
     all_chapters = get_all_chapters()
     if not all_chapters:
-        print("❌ لم يتم العثور على أي فصول أو كتب للتدقيق.")
+        print("❌ لم يتم العثور على أي فصول أو أسئلة داخل مجلدات data.")
         return
 
     # جلب حالة التقدم القائمة
@@ -120,20 +121,27 @@ def run_checker():
     ch_index = state.get("chapter_index", 0)
     start_batch = state.get("start_batch", 0)
 
-    # التحقق مما إذا اكتملت جميع الكتب بالكامل والبدء بدورة جديدة
+    # إعادة الدورة من البداية عند اكتمال كافة الفصول
     if ch_index >= len(all_chapters):
         print("🔄 تم فحص كافة الكتب والفصول بالكامل! إعادة الدورة من الفصل الأول...")
         ch_index = 0
         start_batch = 0
 
     current_ch = all_chapters[ch_index]
-    print(f"📖 جاري فحص الكتاب/الفصل: {current_ch['chapter_file']} (الفصل {ch_index + 1} من {len(all_chapters)})", flush=True)
+    print(f"📖 جاري فحص: {current_ch['book_id']} / {current_ch['chapter_file']} (الفصل {ch_index + 1} من {len(all_chapters)})", flush=True)
 
     questions = load_json(current_ch["full_path"], [])
+    if not isinstance(questions, list) or len(questions) == 0:
+        # إذا كان الملف فارغاً الانتقال للفصل التالي
+        state["chapter_index"] = ch_index + 1
+        state["start_batch"] = 0
+        save_json(STATE_FILE, state)
+        print(f"⚠️ الملف فارغ، تم التخطي إلى الفصل التالي.")
+        return
+
     total_q = len(questions)
 
     if start_batch >= total_q:
-        # الانتقال للفصل التالي إذا انتهى هذا الفصل
         state["chapter_index"] = ch_index + 1
         state["start_batch"] = 0
         save_json(STATE_FILE, state)
@@ -160,16 +168,15 @@ def run_checker():
         print(result)
         print("----------------------\n")
 
-        # حفظ النتيجة بالتقرير
         report = load_json(REPORT_FILE, [])
         report.append({
+            "book": current_ch["book_id"],
             "chapter": current_ch["chapter_file"],
             "batch": f"{start_batch + 1}-{end_batch}",
             "result": result
         })
         save_json(REPORT_FILE, report)
 
-        # تحديث المؤشر لليوم/التشغيل التالي
         if end_batch >= total_q:
             state["chapter_index"] = ch_index + 1
             state["start_batch"] = 0
@@ -177,9 +184,9 @@ def run_checker():
             state["start_batch"] = end_batch
 
         save_json(STATE_FILE, state)
-        print("💾 تم حفظ التقدم بنجاح.")
+        print("💾 تم حفظ التقرير وحالة التقدم بنجاح.")
     else:
-        print("❌ فشل الاتصال بكلا الخدمتين، سيتم إعادة المحاولة في التشغيل القادم.")
+        print("❌ فشل الاتصال بخدمات الذكاء الاصطناعي، سيعاد التجرِبة في التشغيل القادم.")
 
 if __name__ == "__main__":
     run_checker()
