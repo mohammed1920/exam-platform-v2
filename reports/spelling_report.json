@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-07-21 14:19:14",
-  "items": [],
+  "generated_at": "2026-07-21 17:44:00",
+  "items": [
+    {
+      "question_id": 18,
+      "field": "question",
+      "flagged_word": "الإختيار",
+      "original": "السؤال 218 – تنتفي الإرادة أو الإختيار بـ:",
+      "corrected": "السؤال 218 – تنتفي الإرادة أو الاختيار بـ:",
+      "book_id": "law_general_penalties",
+      "chapter": 3
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
