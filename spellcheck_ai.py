@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import argp..///arse
+import argparse
 import json
 import os
 import sys
@@ -18,12 +18,9 @@ except ImportError:
 
 BATCH_SIZE = 10
 
-# قائمة بكل النماذج المتاحة والحديثة للتدقيق مرتبة حسب الأفضلية
+# الاعتماد على gemini-2.0-flash لحصته اليومية الكبيرة (1,500 طلب/يوم)
 ALL_AVAILABLE_MODELS = [
-    "gemini-1.5-flash",
-    "gemini-2.0-flash",
-    "gemini-2.5-flash-lite",
-    "gemini-1.5-flash-8b"
+    "gemini-2.0-flash"
 ]
 
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
@@ -53,7 +50,7 @@ def clean_json_response(text):
     return text
 
 def check_batch_with_all_models(client, questions_batch):
-    """فحص الدفعة والتنقل بين كافة النماذج المتاحة في حال فشل أي منها."""
+    """فحص الدفعة مع إدارة أمان متقدمة لاستقرار الخدمة ومنع تجاوز Rate Limit."""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -66,12 +63,10 @@ def check_batch_with_all_models(client, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    # المحاولة على جميع النماذج المتاحة بالترتيب
     for current_model in ALL_AVAILABLE_MODELS:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                print(f"🤖 جاري المحاولة باستخدام النموذج: {current_model}")
                 response = client.models.generate_content(
                     model=current_model,
                     contents=user_content,
@@ -87,17 +82,17 @@ def check_batch_with_all_models(client, questions_batch):
             except Exception as e:
                 err_str = str(e)
                 if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                    wait_time = (attempt + 1) * 30
-                    print(f"⏳ تجاوز حد الطلبات على ({current_model})، انتظار {wait_time} ثانية...")
+                    wait_time = (attempt + 1) * 20  # انتظار تصاعدي لتهدئة API
+                    print(f"⏳ تجاوز مؤقت للحد على الموديل ({current_model})، انتظار {wait_time} ثانية للسلامة...")
                     time.sleep(wait_time)
                 elif "404" in err_str or "NOT_FOUND" in err_str:
-                    print(f"⚠️ الموديل ({current_model}) غير متاح (404)، التبديل للنموذج التالي...")
-                    break  # الانتقال للنموذج التالي في القائمة
+                    print(f"⚠️ الموديل ({current_model}) غير متاح (404)...")
+                    break
                 else:
                     print(f"⚠️ خطأ أثناء استجابة الموديل ({current_model}): {e}")
                     break
 
-    print("❌ تعذر فحص هذه الدفعة بعد تجربة كل النماذج المتاحة.")
+    print("❌ تعذر فحص هذه الدفعة بعد محاولات الأمان.")
     return []
 
 def get_all_chapters(data_dir, books):
@@ -128,7 +123,7 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع تغطية كافة نماذج AI المتاحة")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع تطبيق معايير الأمان الموصى بها")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
@@ -210,10 +205,10 @@ def main():
                     "status": "pending",
                 })
             
-            # فاصل أمان دقيقة بين كل دفعة لضمان أفضل أداء واستقرار الخطة المجانية
+            # فاصل أمان (12 ثانية) بين كل دفعة لعدم تجاوز حد الـ 15 طلب/دقيقة (RPM)
             if idx + 1 < total_batches:
-                print("☕ إيقاف مؤقت لمدة 60 ثانية للسلامة وتجنب حدود API...")
-                time.sleep(60.0)
+                print("☕ انتظار 12 ثانية للامتثال لحدود Rate Limit المجانية...")
+                time.sleep(12.0)
 
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
