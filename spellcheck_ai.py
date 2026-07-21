@@ -15,13 +15,12 @@ DATA_DIR = "data"
 STATE_FILE = os.path.join("reports", "scan_state.json")
 REPORT_FILE = os.path.join("reports", "spelling_report.json")
 
-BATCH_SIZE = 5  # عدد الأسئلة المقروءة في الطلب الواحد
+BATCH_SIZE = 5
 
 # ----------------------------------------------------
 # 2. دالة الذكاء الاصطناعي المشتركة (Gemini -> Groq)
 # ----------------------------------------------------
 def analyze_with_ai(prompt):
-    # المحاولة الأولى: Gemini
     if GEMINI_KEY:
         try:
             genai.configure(api_key=GEMINI_KEY)
@@ -32,14 +31,13 @@ def analyze_with_ai(prompt):
         except Exception as e:
             print(f"⚠️ فشل/استنفاد Gemini: {e}. يتم التحويل إلى Groq...", flush=True)
 
-    # المحاولة الثانية: Groq (عند فشل Gemini)
     if GROQ_KEY:
         try:
             client = Groq(api_key=GROQ_KEY)
             completion = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2
+                temperature=0.1
             )
             return completion.choices[0].message.content
         except Exception as e:
@@ -65,7 +63,6 @@ def save_json(filepath, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def extract_questions_from_file(filepath):
-    """استخراج الأسئلة سواء كان الملف Array مباشرة أو Object يحتوي على المفتاح questions"""
     raw_data = load_json(filepath, None)
     if raw_data is None:
         return []
@@ -81,41 +78,21 @@ def extract_questions_from_file(filepath):
     return []
 
 def get_all_chapters():
-    """تجميع كافة الفصول من المجلدات الفرعية داخل data"""
     chapters_list = []
-    books_data = load_json(BOOKS_FILE, load_json(os.path.join(DATA_DIR, "books.json"), []))
-    
-    if isinstance(books_data, list) and len(books_data) > 0:
-        for book in books_data:
-            if isinstance(book, dict):
-                book_id = book.get("id", "")
-                chapters = book.get("chapters", [])
-                
-                if isinstance(chapters, list):
-                    for ch in chapters:
-                        ch_file = ch.get("file") if isinstance(ch, dict) else str(ch)
-                        possible_paths = [
-                            os.path.join(DATA_DIR, book_id, ch_file),
-                            os.path.join(DATA_DIR, ch_file)
-                        ]
-                        for path in possible_paths:
-                            if os.path.exists(path):
-                                chapters_list.append({
-                                    "book_id": book_id,
-                                    "chapter_file": ch_file,
-                                    "full_path": path
-                                })
-                                break
-
-    if not chapters_list and os.path.exists(DATA_DIR):
+    if os.path.exists(DATA_DIR):
         for root, dirs, files in os.walk(DATA_DIR):
             for file in sorted(files):
                 if file.endswith(".json") and file not in ["books.json", "books_info.json", "contact.json"]:
-                    chapters_list.append({
-                        "book_id": os.path.basename(root),
-                        "chapter_file": file,
-                        "full_path": os.path.join(root, file)
-                    })
+                    folder_name = os.path.basename(root)
+                    if folder_name != DATA_DIR:
+                        # استخراج رقم الفصل مجرداً
+                        ch_num = file.replace("chapter_", "").replace(".json", "")
+                        chapters_list.append({
+                            "book_id": folder_name,
+                            "chapter_file": file,
+                            "chapter_num": int(ch_num) if ch_num.isdigit() else ch_num,
+                            "full_path": os.path.join(root, file)
+                        })
 
     return chapters_list
 
@@ -161,55 +138,69 @@ def run_checker():
     batch_questions = questions[start_batch:end_batch]
 
     prompt = f"""
-أنت مدقق لغوي متمكن ومتخصص جداً في النصوص والأسئلة القانونية الأكاديمية.
-قم بتدقيق الأسئلة والخيارات التالية تدقيقاً صارماً ودقيقاً يشمل:
-1. تصحيح همزات الوصل والقطع (مثال: "إقترف" تصحح إلى "اقترف"، "الإعتبارية" تصحح إلى "الاعتبارية"، "إرتكب" تصحح إلى "ارتكب").
-2. تصحيح الهمزات المتوسطة والألف الممدودة (مثال: "أخر" تصحح إلى "آخر").
-3. تصحيح الأخطاء النحوية والإملائية والأحرف والياءات والأسماء المنقوصة (مثال: "متعدي" تصحح إلى "متعدٍ").
+أنت مدقق لغوي متمكن في النصوص والأسئلة القانونية الأكاديمية.
+قم بتدقيق الأسئلة التالية إملائياً ولغوياً (بما في ذلك همزات الوصل والقطع والألف الممدودة والياءات).
 
-إذا وجدت أي أخطاء (حتى لو كانت مجرد همزة وصل أو قطع خفيفة)، قم بإدراج الخطأ بدقة بالشكل التالي:
-- رقم السؤال / الكلمة الخاطئة / الكلمة الصحيحة / سبب التصحيح.
+يجب أن ترجع النتيجة حصراً بصيغة JSON Array يحتوي على كائنات بنفس هذه الهيكلية الدقيقة بدون أي كلام إضافي:
+[
+  {{
+    "question_id": 1,
+    "field": "question", 
+    "flagged_word": "الكلمة الخاطئة",
+    "original": "النص الكامل الاصلي قبل التعديل",
+    "corrected": "النص الكامل الصحيح بعد التعديل"
+  }}
+]
 
-إذا كانت الأسئلة خالية تماماً حتى من أخطاء الهمزات، اكتب فقط: "لا توجد أخطاء".
+تنبيهات مهمة للهيكلية:
+1. "field": اكتب "question" إذا كان الخطأ في السؤال، أما إذا كان في أحد الخيارات فاكتب "option_0" للخيار الأول، "option_1" للثاني، وهكذا.
+2. "original": اكتب الجملة كاملة كما هي في السؤال الخاطئ لكي يستبدلها النظام بأمان.
+3. "corrected": اكتب الجملة كاملة بعد تصحيح الكلمة.
+4. إذا لم تكن هناك أي أخطاء، أرجع مصفوفة فارغة فقط: []
 
 الأسئلة للتدقيق:
 {json.dumps(batch_questions, ensure_ascii=False, indent=2)}
 """
 
-    result = analyze_with_ai(prompt)
+    raw_result = analyze_with_ai(prompt)
 
-    if result:
+    if raw_result:
+        parsed_items = []
+        try:
+            cleaned_res = raw_result.strip()
+            if cleaned_res.startswith("```json"):
+                cleaned_res = cleaned_res.split("```json")[1].split("```")[0].strip()
+            elif cleaned_res.startswith("```"):
+                cleaned_res = cleaned_res.split("```")[1].split("```")[0].strip()
+            
+            parsed = json.loads(cleaned_res)
+            if isinstance(parsed, list):
+                for item in parsed:
+                    # إضافة الحقول الثابتة الخاصة بالكتاب والفصل
+                    item["book_id"] = current_ch["book_id"]
+                    item["chapter"] = current_ch["chapter_num"]
+                    parsed_items.append(item)
+        except Exception as e:
+            print(f"⚠️ تعذر تحليل استجابة الذكاء الاصطناعي كـ JSON: {e}")
+
         print("\n--- 📝 نتيجة الفحص ---")
-        print(result)
+        print(json.dumps(parsed_items, ensure_ascii=False, indent=2))
         print("----------------------\n")
 
-        # 1. تحميل التقرير ككائن Object
-        report = load_json(REPORT_FILE, {})
+        # تحميل التقرير وتضمين العناصر داخل الهيكلية المتوافقة مع admin.html
+        report = load_json(REPORT_FILE, {"generated_at": "", "items": []})
         if not isinstance(report, dict):
-            report = {}
+            report = {"generated_at": "", "items": []}
 
-        book_id = current_ch["book_id"]
-        ch_file = current_ch["chapter_file"]
+        if "items" not in report or not isinstance(report["items"], list):
+            report["items"] = []
 
-        if "reports" not in report:
-            report["reports"] = {}
-        if book_id not in report["reports"]:
-            report["reports"][book_id] = {}
-        if ch_file not in report["reports"][book_id]:
-            report["reports"][book_id][ch_file] = []
-
-        # إضافة التقرير بداخل الهيكلية
-        report["reports"][book_id][ch_file].append({
-            "batch": f"{start_batch + 1}-{end_batch}",
-            "result": result,
-            "status": "pending",
-            "timestamp": str(datetime.datetime.now())
-        })
-        report["last_updated"] = str(datetime.date.today())
+        # إضافة الملاحظات الجديدة
+        report["items"].extend(parsed_items)
+        report["generated_at"] = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
         save_json(REPORT_FILE, report)
 
-        # 2. تحديث حالة التقدم
         if end_batch >= total_q:
             state["chapter_index"] = ch_index + 1
             state["start_batch"] = 0
@@ -217,10 +208,9 @@ def run_checker():
             state["start_batch"] = end_batch
 
         save_json(STATE_FILE, state)
-        print("💾 تم حفظ التقرير بداخل كائن (Object) بنجاح لراحة لوحة الأدمن.")
+        print("💾 تم حفظ التقرير بالصيغة المطلوبة للوحة الأدمن بنجاح.")
     else:
-        print("❌ فشل الاتصال بخدمات الذكاء الاصطناعي، سيعاد التجرِبة في التشغيل القادم.")
+        print("❌ فشل الاتصال بخدمات الذكاء الاصطناعي.")
 
 if __name__ == "__main__":
     run_checker()
-
