@@ -63,11 +63,29 @@ def save_json(filepath, data):
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+def extract_questions_from_file(filepath):
+    """استخراج مصفوفة الأسئلة بغض النظر عن طريقة تنظيم الملف"""
+    raw_data = load_json(filepath, None)
+    if raw_data is None:
+        return []
+
+    # إذا كانت الأسئلة مصفوفة مباشرة [{}, {}]
+    if isinstance(raw_data, list):
+        return raw_data
+
+    # إذا كان كائناً يحتوي على مفتاح "questions"
+    if isinstance(raw_data, dict):
+        questions = raw_data.get("questions", [])
+        if isinstance(questions, list):
+            return questions
+
+    return []
+
 def get_all_chapters():
     """البحث المباشر عن كل ملفات الفصول داخل مجلدات data الفرعية"""
     chapters_list = []
     
-    # 1. القراءة اعتماداً على ملف books.json إذا كان موجوداً
+    # 1. القراءة اعتماداً على ملف books.json
     books_data = load_json(BOOKS_FILE, load_json(os.path.join(DATA_DIR, "books.json"), []))
     
     if isinstance(books_data, list) and len(books_data) > 0:
@@ -76,11 +94,9 @@ def get_all_chapters():
                 book_id = book.get("id", "")
                 chapters = book.get("chapters", [])
                 
-                # إذا كانت الفصول مصفوفة أسماء ملفات أو كائنات
                 if isinstance(chapters, list):
                     for ch in chapters:
                         ch_file = ch.get("file") if isinstance(ch, dict) else str(ch)
-                        # البحث في جذر data وفي المجلد الفرعي الخاص بالقانون
                         possible_paths = [
                             os.path.join(DATA_DIR, book_id, ch_file),
                             os.path.join(DATA_DIR, ch_file)
@@ -94,7 +110,7 @@ def get_all_chapters():
                                 })
                                 break
 
-    # 2. خطة احتياطية: المسح المباشر لمجلد data إذا لم تظهر نتائج من books.json
+    # 2. المسح المباشر المكمل لمجلد data
     if not chapters_list and os.path.exists(DATA_DIR):
         for root, dirs, files in os.walk(DATA_DIR):
             for file in sorted(files):
@@ -116,12 +132,10 @@ def run_checker():
         print("❌ لم يتم العثور على أي فصول أو أسئلة داخل مجلدات data.")
         return
 
-    # جلب حالة التقدم القائمة
     state = load_json(STATE_FILE, {"chapter_index": 0, "start_batch": 0})
     ch_index = state.get("chapter_index", 0)
     start_batch = state.get("start_batch", 0)
 
-    # إعادة الدورة من البداية عند اكتمال كافة الفصول
     if ch_index >= len(all_chapters):
         print("🔄 تم فحص كافة الكتب والفصول بالكامل! إعادة الدورة من الفصل الأول...")
         ch_index = 0
@@ -130,13 +144,13 @@ def run_checker():
     current_ch = all_chapters[ch_index]
     print(f"📖 جاري فحص: {current_ch['book_id']} / {current_ch['chapter_file']} (الفصل {ch_index + 1} من {len(all_chapters)})", flush=True)
 
-    questions = load_json(current_ch["full_path"], [])
-    if not isinstance(questions, list) or len(questions) == 0:
-        # إذا كان الملف فارغاً الانتقال للفصل التالي
+    # استخراج الأسئلة بالدالة الذكية المعدلة
+    questions = extract_questions_from_file(current_ch["full_path"])
+    if not questions:
         state["chapter_index"] = ch_index + 1
         state["start_batch"] = 0
         save_json(STATE_FILE, state)
-        print(f"⚠️ الملف فارغ، تم التخطي إلى الفصل التالي.")
+        print(f"⚠️ لم يتم العثور على قائمة أسئلة داخل الملف، تم التخطي للفصل التالي.")
         return
 
     total_q = len(questions)
