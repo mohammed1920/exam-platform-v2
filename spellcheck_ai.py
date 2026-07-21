@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import time
+import re
 from pathlib import Path
 
 try:
@@ -14,29 +15,46 @@ except ImportError:
     print("❌ مكتبة google-generativeai غير مثبتة.")
     sys.exit(1)
 
-# استخدام النموذج المستقر لـ Flash
 MODEL = "gemini-1.5-flash"
 BATCH_SIZE = 10 
 
-SYSTEM_PROMPT = """أنت مدقق لغوي متمكن للنصوص والأسئلة القانونية باللغة العربية.
-مهمتك: فحص الأسئلة والخيارات واكتشاف الأخطاء الإملائية والطباعية (مثل: حروف ناقصة/زائدة، أخطاء همزات، أو كلمات مشوهة).
+SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص القانونية.
+افحص الأسئلة والخيارات واكتشف الأخطاء الإملائية والطباعية الحقيقية فقط.
 
-تعليمات الإرجاع:
-- افحص كلاً من نص السؤال (question) والخيارات (options).
-- أعد النتيجة بصيغة JSON فقط بهذا الشكل بالضبط:
-{"issues": [{"question_index": 0, "field": "question", "original": "النص الكامل الحالي فيه الخطأ", "corrected": "النص بعد التصحيح", "flagged_word": "الكلمة الخاطئة"}]}
+يجب أن ترجع النتيجة بصيغة JSON حصرية بالهيكل التالي:
+{
+  "issues": [
+    {
+      "question_index": 0,
+      "field": "question",
+      "original": "النص الكلي أو الكلمة الخطأ",
+      "corrected": "التصحيح المقترح",
+      "flagged_word": "الكلمة الخاطئة"
+    }
+  ]
+}
 
-إذا كان الخطأ في أحد الخيارات، اجعل "field" هو اسم الخيار مثل "option_0" أو "option_1".
-إذا لم تجد أي أخطاء، أعد: {"issues": []}
+إذا لم تجد أي أخطاء، أرجع: {"issues": []}
 """
+
+def clean_json_response(text):
+    """استخراج كود JSON من رد النموذج بدقة."""
+    text = text.strip()
+    match = re.search(r'\{.*\}', text, re.DOTALL)
+    if match:
+        return match.group(0)
+    return text
 
 def check_batch(model, questions_batch):
     numbered = []
     for i, q in enumerate(questions_batch):
+        # محاولة قراءة النص سواء كان اسمه question أو text
+        q_text = q.get("question") or q.get("text") or ""
+        q_opts = q.get("options") or q.get("choices") or []
         numbered.append({
             "question_index": i,
-            "question": q.get("question", ""),
-            "options": q.get("options", []),
+            "question": q_text,
+            "options": q_opts,
         })
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
@@ -46,12 +64,16 @@ def check_batch(model, questions_batch):
             user_content,
             generation_config={"response_mime_type": "application/json"},
         )
-        text = response.text.strip()
-        text = text.replace("```json", "").replace("```", "").strip()
-        result = json.loads(text)
-        return result.get("issues", [])
+        raw_text = response.text
+        cleaned = clean_json_response(raw_text)
+        result = json.loads(cleaned)
+        
+        issues = result.get("issues", [])
+        if issues:
+            print(f"    ✨ تم اكتشاف {len(issues)} ملاحظات في هذه الدفعة!")
+        return issues
     except Exception as e:
-        print(f"⚠️ خطأ بمعالجة دفعة: {e}")
+        print(f"⚠️ خطأ أثناء تحليل استجابة Gemini: {e}")
         return []
 
 def scan_book(model, book_id, book_dir, report):
@@ -132,6 +154,7 @@ def main():
             continue
         book_dir = data_dir / book_id
         if not book_dir.is_dir():
+            print(f"⚠️ مجلد الكتاب غير موجود: {book_dir}")
             continue
         print(f"📘 فحص كتاب: {book.get('title', book_id)}")
         scan_book(model, book_id, book_dir, report)
@@ -143,7 +166,8 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    print(f"\nتم التحديث بنجاح! إجمالي الأخطاء المكتشفة: {len(report['items'])}")
+    print(f"\n✅ تم اكتمال الفحص! إجمالي الملاحظات المكتشفة: {len(report['items'])}")
 
 if __name__ == "__main__":
     main()
+
