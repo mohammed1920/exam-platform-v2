@@ -13,12 +13,12 @@ try:
     from google import genai
     from google.genai import types
 except ImportError:
-    print("❌ مكتبة google-genai غير مثبتة.")
+    print("❌ مكتبة google-genai غير مثبتة.", flush=True)
     sys.exit(1)
 
 BATCH_SIZE = 10
 
-# الاعتماد على gemini-2.0-flash لحصته اليومية الكبيرة (1,500 طلب/يوم)
+# النموذج المستقر والمنصح به
 ALL_AVAILABLE_MODELS = [
     "gemini-2.0-flash"
 ]
@@ -50,7 +50,6 @@ def clean_json_response(text):
     return text
 
 def check_batch_with_all_models(client, questions_batch):
-    """فحص الدفعة مع إدارة أمان متقدمة لاستقرار الخدمة ومنع تجاوز Rate Limit."""
     numbered = []
     for i, q in enumerate(questions_batch):
         q_text = q.get("question") or q.get("text") or ""
@@ -64,7 +63,7 @@ def check_batch_with_all_models(client, questions_batch):
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
     for current_model in ALL_AVAILABLE_MODELS:
-        max_retries = 3
+        max_retries = 2
         for attempt in range(max_retries):
             try:
                 response = client.models.generate_content(
@@ -82,17 +81,13 @@ def check_batch_with_all_models(client, questions_batch):
             except Exception as e:
                 err_str = str(e)
                 if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                    wait_time = (attempt + 1) * 20  # انتظار تصاعدي لتهدئة API
-                    print(f"⏳ تجاوز مؤقت للحد على الموديل ({current_model})، انتظار {wait_time} ثانية للسلامة...")
+                    wait_time = 10
+                    print(f"⏳ حد الطلبات، انتظار {wait_time} ثوانٍ...", flush=True)
                     time.sleep(wait_time)
-                elif "404" in err_str or "NOT_FOUND" in err_str:
-                    print(f"⚠️ الموديل ({current_model}) غير متاح (404)...")
-                    break
                 else:
-                    print(f"⚠️ خطأ أثناء استجابة الموديل ({current_model}): {e}")
+                    print(f"⚠️ خطأ أثناء الاستجابة ({current_model}): {e}", flush=True)
                     break
 
-    print("❌ تعذر فحص هذه الدفعة بعد محاولات الأمان.")
     return []
 
 def get_all_chapters(data_dir, books):
@@ -123,13 +118,13 @@ def get_all_chapters(data_dir, books):
     return all_chapters
 
 def main():
-    parser = argparse.ArgumentParser(description="فحص إملائي آلي مقسّم للفصول مع تطبيق معايير الأمان الموصى بها")
+    parser = argparse.ArgumentParser(description="فحص إملائي آلي سريعة ومباشر")
     parser.add_argument("--repo-root", required=True, help="مسار جذر المشروع")
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        print("❌ GEMINI_API_KEY غير موجود.")
+        print("❌ GEMINI_API_KEY غير موجود.", flush=True)
         sys.exit(1)
 
     client = genai.Client(api_key=api_key)
@@ -144,7 +139,7 @@ def main():
     out_path = reports_dir / "spelling_report.json"
 
     if not books_file.exists():
-        print(f"❌ لم يتم العثور على ملف الكتب: {books_file}")
+        print(f"❌ لم يتم العثور على ملف الكتب: {books_file}", flush=True)
         sys.exit(1)
 
     with open(books_file, "r", encoding="utf-8") as f:
@@ -152,7 +147,7 @@ def main():
 
     chapters_list = get_all_chapters(data_dir, books)
     if not chapters_list:
-        print("❌ لا توجد فصول للفحص.")
+        print("❌ لا توجد فصول للفحص.", flush=True)
         sys.exit(0)
 
     current_index = 0
@@ -165,13 +160,13 @@ def main():
             current_index = 0
 
     if current_index >= len(chapters_list):
-        print("🔄 تم فحص كافة الفصول بالكامل! إعادة الدورة من الفصل الأول...")
+        print("🔄 تم فحص كافة الفصول بالكامل! إعادة الدورة من الفصل الأول...", flush=True)
         current_index = 0
 
     target = chapters_list[current_index]
-    print(f"🎯 [فحص الدورة المجدولة] ({current_index + 1}/{len(chapters_list)}):")
-    print(f"📘 الكتاب: {target['book_title']} ({target['book_id']})")
-    print(f"📑 الفصل: {target['chapter_num']}")
+    print(f"🎯 [فحص الدورة المجدولة] ({current_index + 1}/{len(chapters_list)}):", flush=True)
+    print(f"📘 الكتاب: {target['book_title']} ({target['book_id']})", flush=True)
+    print(f"📑 الفصل: {target['chapter_num']}", flush=True)
 
     with open(target['file_path'], "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -183,7 +178,7 @@ def main():
         total_batches = (len(questions) + BATCH_SIZE - 1) // BATCH_SIZE
         for idx, start in enumerate(range(0, len(questions), BATCH_SIZE)):
             batch = questions[start:start + BATCH_SIZE]
-            print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...")
+            print(f"🔄 جاري تدقيق الدفعة ({idx + 1}/{total_batches})...", flush=True)
             
             issues = check_batch_with_all_models(client, batch)
 
@@ -205,10 +200,9 @@ def main():
                     "status": "pending",
                 })
             
-            # فاصل أمان (12 ثانية) بين كل دفعة لعدم تجاوز حد الـ 15 طلب/دقيقة (RPM)
+            # تقليل وقت الانتظار إلى 4 ثوانٍ فقط لمنع التعليق
             if idx + 1 < total_batches:
-                print("☕ انتظار 12 ثانية للامتثال لحدود Rate Limit المجانية...")
-                time.sleep(12.0)
+                time.sleep(4.0)
 
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
@@ -238,8 +232,8 @@ def main():
             "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
         }, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات!")
-    print(f"📊 إجمالي الملاحظات المسجلة في المنصة: {len(final_report['items'])}")
+    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات!", flush=True)
+    print(f"📊 إجمالي الملاحظات المسجلة في المنصة: {len(final_report['items'])}", flush=True)
 
 if __name__ == "__main__":
     main()
