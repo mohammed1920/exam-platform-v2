@@ -10,16 +10,18 @@ import re
 from pathlib import Path
 
 try:
-    import google.generativeai as genai
+    from google import genai
+    from google.genai import types
 except ImportError:
-    print("❌ مكتبة google-generativeai غير مثبتة.")
+    print("❌ مكتبة google-genai غير مثبتة.")
     sys.exit(1)
 
-MODEL = "gemini-1.5-flash"
+# استخدام اسم الموديل السريع والحديث
+MODEL = "gemini-2.5-flash"
 BATCH_SIZE = 10 
 
-SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص القانونية.
-افحص الأسئلة والخيارات واكتشف الأخطاء الإملائية والطباعية الحقيقية فقط.
+SYSTEM_PROMPT = """أنت مدقق لغوي متمكن للنصوص والأسئلة القانونية باللغة العربية.
+مهمتك: فحص الأسئلة والخيارات واكتشاف الأخطاء الإملائية والطباعية الحقيقية فقط.
 
 يجب أن ترجع النتيجة بصيغة JSON حصرية بالهيكل التالي:
 {
@@ -45,10 +47,9 @@ def clean_json_response(text):
         return match.group(0)
     return text
 
-def check_batch(model, questions_batch):
+def check_batch(client, questions_batch):
     numbered = []
     for i, q in enumerate(questions_batch):
-        # محاولة قراءة النص سواء كان اسمه question أو text
         q_text = q.get("question") or q.get("text") or ""
         q_opts = q.get("options") or q.get("choices") or []
         numbered.append({
@@ -60,9 +61,13 @@ def check_batch(model, questions_batch):
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
     try:
-        response = model.generate_content(
-            user_content,
-            generation_config={"response_mime_type": "application/json"},
+        response = client.models.generate_content(
+            model=MODEL,
+            contents=user_content,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                response_mime_type="application/json"
+            )
         )
         raw_text = response.text
         cleaned = clean_json_response(raw_text)
@@ -76,7 +81,7 @@ def check_batch(model, questions_batch):
         print(f"⚠️ خطأ أثناء تحليل استجابة Gemini: {e}")
         return []
 
-def scan_book(model, book_id, book_dir, report):
+def scan_book(client, book_id, book_dir, report):
     chapter_files = sorted(
         book_dir.glob("chapter_*.json"),
         key=lambda f: int(f.stem.split("_")[1]) if "_" in f.stem and f.stem.split("_")[1].isdigit() else 0
@@ -99,7 +104,7 @@ def scan_book(model, book_id, book_dir, report):
 
         for start in range(0, len(questions), BATCH_SIZE):
             batch = questions[start:start + BATCH_SIZE]
-            issues = check_batch(model, batch)
+            issues = check_batch(client, batch)
 
             for issue in issues:
                 q_idx_in_batch = issue.get("question_index")
@@ -132,8 +137,7 @@ def main():
         print("❌ GEMINI_API_KEY غير موجود.")
         sys.exit(1)
 
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel(MODEL, system_instruction=SYSTEM_PROMPT)
+    client = genai.Client(api_key=api_key)
 
     repo_root = Path(args.repo_root).resolve()
     data_dir = repo_root / "data"
@@ -157,7 +161,7 @@ def main():
             print(f"⚠️ مجلد الكتاب غير موجود: {book_dir}")
             continue
         print(f"📘 فحص كتاب: {book.get('title', book_id)}")
-        scan_book(model, book_id, book_dir, report)
+        scan_book(client, book_id, book_dir, report)
 
     reports_dir = repo_root / "reports"
     reports_dir.mkdir(exist_ok=True)
