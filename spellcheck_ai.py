@@ -16,8 +16,8 @@ except ImportError:
     print("❌ مكتبة google-genai غير مثبتة.")
     sys.exit(1)
 
-# استخدام الموديل المستقر المعتمد في المكتبة الجديدة
-MODEL = "gemini-2.0-flash"
+# النموذج الأوفر والأكثر استقراراً للخطط المجانية
+MODEL = "gemini-1.5-flash"
 BATCH_SIZE = 10
 
 SYSTEM_PROMPT = """أنت مدقق لغوي للنصوص والأسئلة القانونية باللغة العربية.
@@ -59,24 +59,32 @@ def check_batch(client, questions_batch):
 
     user_content = json.dumps(numbered, ensure_ascii=False, indent=2)
 
-    try:
-        response = client.models.generate_content(
-            model=MODEL,
-            contents=user_content,
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                response_mime_type="application/json"
+    # محاولة إرسال الطلب مع إعادة المحاولة تلقائياً عند تجاوز الحد (Rate Limit)
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model=MODEL,
+                contents=user_content,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    response_mime_type="application/json"
+                )
             )
-        )
-        cleaned = clean_json_response(response.text)
-        result = json.loads(cleaned)
-        return result.get("issues", [])
-    except Exception as e:
-        print(f"⚠️ خطأ أثناء استجابة Gemini: {e}")
-        return []
+            cleaned = clean_json_response(response.text)
+            result = json.loads(cleaned)
+            return result.get("issues", [])
+        except Exception as e:
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                wait_time = (attempt + 1) * 5
+                print(f"⏳ تجاوز حد الطلبات، انتظار {wait_time} ثوانٍ قبل إعادة المحاولة...")
+                time.sleep(wait_time)
+            else:
+                print(f"⚠️ خطأ أثناء استجابة Gemini: {e}")
+                return []
+    return []
 
 def get_all_chapters(data_dir, books):
-    """تجميع كل الفصول لكل الكتب في قائمة مرتبة."""
     all_chapters = []
     for book in books:
         book_id = book["id"]
@@ -136,7 +144,6 @@ def main():
         print("❌ لا توجد فصول للفحص.")
         sys.exit(0)
 
-    # قراءة حالة التوقف السابقة
     current_index = 0
     if state_file.exists():
         try:
@@ -146,7 +153,6 @@ def main():
         except Exception:
             current_index = 0
 
-    # إذا انتهينا من كل الفصول نرجع للبداية
     if current_index >= len(chapters_list):
         print("🔄 تم فحص كافة الفصول بالكامل! إعادة الدورة من الفصل الأول...")
         current_index = 0
@@ -156,7 +162,6 @@ def main():
     print(f"📘 الكتاب: {target['book_title']} ({target['book_id']})")
     print(f"📑 الفصل: {target['chapter_num']}")
 
-    # قراءة أسئلة الفصل المحدد
     with open(target['file_path'], "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -185,9 +190,9 @@ def main():
                     "corrected": issue.get("corrected", ""),
                     "status": "pending",
                 })
-            time.sleep(2.0)
+            # تأخير 3 ثوانٍ بين الدفعات للحفاظ على الاستقرار
+            time.sleep(3.0)
 
-    # قراءة ودمج التقرير الأصلي
     existing_report = {"generated_at": "", "items": []}
     if out_path.exists():
         try:
@@ -205,7 +210,6 @@ def main():
         "items": list(items_dict.values())
     }
 
-    # حفظ التقرير وحفظ حالة التوقف
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(final_report, f, ensure_ascii=False, indent=2)
 
@@ -217,7 +221,7 @@ def main():
             "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
         }, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ تم فحص الفصل واكتشاف {len(new_items)} ملاحظات!")
+    print(f"✅ تم فحص الفصل بنجاح واكتشاف {len(new_items)} ملاحظات!")
     print(f"📊 إجمالي الملاحظات المسجلة في المنصة: {len(final_report['items'])}")
 
 if __name__ == "__main__":
