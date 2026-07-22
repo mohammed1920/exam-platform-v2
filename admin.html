@@ -568,29 +568,50 @@
             }
         }
 
+        // دالة حاسبة للفرق اللغوي بين النص الأصلي والتصحيح المقترح
+        function getDiffWord(original, corrected) {
+            if (!original || !corrected) return '—';
+            if (original.trim() === corrected.trim()) {
+                return '<span style="color: var(--text-dim);">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
+            }
+            const origWords = original.trim().split(/\s+/);
+            const corrWords = corrected.trim().split(/\s+/);
+            
+            for (let i = 0; i < Math.max(origWords.length, corrWords.length); i++) {
+                if (origWords[i] !== corrWords[i]) {
+                    const wordOriginal = origWords[i] || '';
+                    const wordCorrected = corrWords[i] || '';
+                    return `<span style="color:#ef4444; text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:#10b981; font-weight:700;">(الصواب: ${wordCorrected})</span>`;
+                }
+            }
+            return '—';
+        }
+
         function renderSpellingReport() {
             const listEl = document.getElementById('spellcheck-list');
             const applyBtn = document.getElementById('apply-spellcheck-btn');
             const summaryEl = document.getElementById('spellcheck-summary');
 
-            // نعرض فقط العناصر المعلّقة (لسا بدون قرار) — أي عنصر تحدد له قبول/رفض يختفي فورًا من العرض
+            // نعرض فقط العناصر المعلّقة (بدون قرار) — أي عنصر يتم قبول/رفضه يختفي فوراً
             const pendingItems = spellingItems.filter(i => i.decision === 'pending');
 
             if (pendingItems.length === 0 && spellingItems.length > 0) {
-                listEl.innerHTML = '<p style="color: var(--text-secondary);">راجعت كل الملاحظات ✅ اضغط زر "حفظ المعالجات" بالأسفل لرفع القرارات.</p>';
+                listEl.innerHTML = '<p style="color: var(--text-dim);">راجعت كل الملاحظات ✅ اضغط زر "حفظ المعالجات" بالأسفل لرفع القرارات.</p>';
             } else if (pendingItems.length === 0) {
-                listEl.innerHTML = '<p style="color: var(--text-secondary);">لا يوجد أي ملاحظات حالياً 🎉</p>';
+                listEl.innerHTML = '<p style="color: var(--text-dim);">لا يوجد أي ملاحظات حالياً 🎉</p>';
             } else {
                 listEl.innerHTML = pendingItems.map((item) => {
                     const idx = spellingItems.indexOf(item); // الفهرس الحقيقي بالمصفوفة الأصلية
+                    const realDiff = getDiffWord(item.original, item.corrected);
+
                     return `
                     <div style="border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:12px; background:var(--bg);">
                         <div style="font-size:13px; color:var(--text-dim); margin-bottom:8px;">
                             📘 ${item.book_id} — الفصل ${item.chapter} — سؤال #${item.question_id ?? '?'} — الحقل: ${item.field}
                         </div>
-                        <div style="margin-bottom:6px;"><strong>الكلمة المشبوهة:</strong> ${item.flagged_word || '—'}</div>
-                        <div style="margin-bottom:6px; color:#ef4444;"><strong>الحالي:</strong> ${item.original}</div>
-                        <div style="margin-bottom:10px; color:#10b981;"><strong>المقترح:</strong> ${item.corrected}</div>
+                        <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
+                        <div style="margin-bottom:6px; color:#ef4444; font-size:13px;"><strong>الحالي:</strong> ${item.original}</div>
+                        <div style="margin-bottom:10px; color:#10b981; font-size:13px;"><strong>المقترح:</strong> ${item.corrected}</div>
                         <div style="display:flex; gap:8px;">
                             <button class="btn btn-green btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
                             <button class="btn btn-red btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
@@ -1060,3 +1081,4 @@
     </script>
 </body>
 </html>
+
