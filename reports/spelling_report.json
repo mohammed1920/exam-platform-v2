@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22 17:11:21",
+  "generated_at": "2026-07-22 18:44:07",
   "items": [
     {
       "question_id": 28,
@@ -34,6 +34,114 @@
       "flagged_word": "إرتكب",
       "original": "شـخص مجنون جنون مؤقت وأثناء فترة إصابته بالجنون إرتكب جريمة، ففي هذه الحالة:",
       "corrected": "شخص مجنون جنون مؤقت وأثناء فترة إصابته بالجنون أرتكب جريمة، ففي هذه الحالة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 31,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "شـخص مجنون جنون منقطع وأثناء فترة صحوته إرتكب جريمة، ففي هذه الحالة:",
+      "corrected": "شـخص مجنون جنون منقطع وأثناء فترة صحوته ارتكب جريمة، ففي هذه الحالة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 33,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "إرتكب شخصصان جريمة قتل أحدهما فاقد الإدراك لأصابته بجنون في عقله وقت إرتكاب الجريمة والآخر سليم وبكامل قواه العقلية، وفقاً للواقعة:",
+      "corrected": "ارتكب شخصان جريمة قتل أحدهما فاقد الإدراك لأصابته بجنون في عقله وقت ارتكاب الجريمة والآخر سليم وبكامل قواه العقلية، وفقاً للواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 34,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "إرتكب مجنون جريمة قتل أحد المواطنين مما أدى الى حدوث ضـرر مادي يستوجب التعويض، وفقاً للواقعة:",
+      "corrected": "ارتكب مجنون جريمة قتل أحد المواطنين مما أدى الى حدوث ضرر مادي يستوجب التعويض، وفقاً للواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 35,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "إرتكب شخص جريمة قتل وأثناء التحقيق أو أثناء المحاكمة أصيب بعاهة الجنون ففي هذه الحالة:",
+      "corrected": "ارتكب شخص جريمة قتل وأثناء التحقيق أو أثناء المحاكمة أصيب بعاهة الجنون ففي هذه الحالة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 33,
+      "field": "option_0",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المتهم السليم المسسؤولية الجنائية لوحده",
+      "corrected": "يتحمل المتهم السليم المسؤولية الجنائية لوحده",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 33,
+      "field": "option_1",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المجنون والسليم المسسؤولية الجنائية",
+      "corrected": "يتحمل المجنون والسليم المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 33,
+      "field": "option_2",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المجنون المسسؤولية الجنائية لوحده",
+      "corrected": "يتحمل المجنون المسؤولية الجنائية لوحده",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 33,
+      "field": "option_3",
+      "flagged_word": "المسسؤولية",
+      "original": "تنعدم المسسؤولية الجنائية لكليهما",
+      "corrected": "تنعدم المسؤولية الجنائية لكليهما",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 34,
+      "field": "option_0",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المجنون المسسؤولية المدنية فقط",
+      "corrected": "يتحمل المجنون المسؤولية المدنية فقط",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 34,
+      "field": "option_1",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المجنون المسسؤولية الجنائية فقط",
+      "corrected": "يتحمل المجنون المسؤولية الجنائية فقط",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 34,
+      "field": "option_2",
+      "flagged_word": "المسسؤولية",
+      "original": "يتحمل المجنون المسسؤولية الجنائية والمدنية",
+      "corrected": "يتحمل المجنون المسؤولية الجنائية والمدنية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 34,
+      "field": "option_3",
+      "flagged_word": "المسسؤولية",
+      "original": "تنعدم المسسؤولية الجنائية والمدنية",
+      "corrected": "تنعدم المسؤولية الجنائية والمدنية",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
