@@ -1,6 +1,142 @@
 {
-  "generated_at": "2026-07-22 22:12:08",
-  "items": [],
+  "generated_at": "2026-07-22 23:58:06",
+  "items": [
+    {
+      "question_id": 51,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 51,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 51,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 52,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 52,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 52,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 53,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 53,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 53,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 54,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 54,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 54,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 55,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 55,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 55,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
