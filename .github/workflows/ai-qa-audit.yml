@@ -1,0 +1,47 @@
+name: AI QA Audit (فحص جودة الأسئلة)
+
+on:
+  schedule:
+    # 09:30 UTC = 12:30 ظهرًا بتوقيت بغداد (بعد الفحص الإملائي بنصف ساعة لتفادي التزاحم)
+    - cron: "30 9 * * *"
+  workflow_dispatch: {}
+
+# يمنع تشغيل نسختين بنفس الوقت (لو ضغطت تشغيل يدوي أثناء الجدولة التلقائية)
+concurrency:
+  group: ai-qa-audit
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  qa-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run QA audit
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python qa_audit.py
+
+      - name: Commit and push report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git merge -X ours --no-edit origin/${{ github.ref_name }} || true
+          git add reports/qa_report.json reports/qa_scan_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "🔍 تحديث تقرير فحص الجودة القانوني [auto]"
+            git push
+          else
+            echo "لا توجد تغييرات لرفعها."
+          fi
