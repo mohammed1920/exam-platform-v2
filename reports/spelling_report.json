@@ -1,6 +1,52 @@
 {
-  "generated_at": "2026-07-22 07:31:39",
-  "items": [],
+  "generated_at": "2026-07-22 10:21:25",
+  "items": [
+    {
+      "question_id": 11,
+      "field": "question",
+      "flagged_word": "إرتكاب",
+      "original": "يترتب على إرتكاب الشخص الأحمق جريمة، وفقاً لذلك:",
+      "corrected": "يترتب على ارتكاب الشخص الأحمق جريمة، وفقاً لذلك:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 13,
+      "field": "question",
+      "flagged_word": "إرتكاب",
+      "original": ".... ويتخذ صورة نوبات أثناءها يفقد المصاب شـعوره وإرادته، فلا يستطيع السيطرة على أعضاء جسمه وتعرض له قبل النوبة دوافع قد تحمله على إرتكاب الجريمة:",
+      "corrected": ".... ويتخذ صورة نوبات أثناءها يفقد المصاب شـعوره وإرادته، فلا يستطيع السيطرة على أعضاء جسمه وتعرض له قبل النوبة دوافع قد تحمله على ارتكاب الجريمة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 15,
+      "field": "question",
+      "flagged_word": "إرتكاب",
+      "original": "عيب عقلي يعتقد فيه المريض أنـه ضحية إضطهاد أو أنـه نبي أو أنـه يتقمص شخصية تاريخية معروفة، وهذا النوع من الجنون يدفع الى إرتكاب الجرائم تحت تأثير الأفكار المتسلطة عليه:",
+      "corrected": "عيب عقلي يعتقد فيه المريض أنـه ضحية إضطهاد أو أنـه نبي أو أنـه يتقمص شخصية تاريخية معروفة، وهذا النوع من الجنون يدفع الى ارتكاب الجرائم تحت تأثير الأفكار المتسلطة عليه:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 13,
+      "field": "option_1",
+      "flagged_word": "الشسيزوفرينيا",
+      "original": "الشسيزوفرينيا (الفصام)",
+      "corrected": "الشيزوفرينيا (الفصام)",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 14,
+      "field": "option_0",
+      "flagged_word": "الشسيزوفرينيا",
+      "original": "الشسيزوفرينيا (الفصام)",
+      "corrected": "الشيزوفرينيا (الفصام)",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
