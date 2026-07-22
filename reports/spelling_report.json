@@ -1,6 +1,43 @@
 {
-  "generated_at": "2026-07-22 16:17:12",
-  "items": [],
+  "generated_at": "2026-07-22 17:11:21",
+  "items": [
+    {
+      "question_id": 28,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "إرتكب عائل او احمق او سفيه جريمة، فوفقاً للقواعد العامة في قانون العقوبات:",
+      "corrected": "إرتكب شخص مجنون أو أحمق أو سفيه جريمة، فوفقاً للقواعد العامة في قانون العقوبات:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 28,
+      "field": "option_1",
+      "flagged_word": "المسسؤولية",
+      "original": "مانعاً من موانع المسسؤولية الجنائية",
+      "corrected": "مانعاً من موانع المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 29,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "شخص مجنون بعد تماثله للشـفاء واصبح بكامل قواه العقلية إرتكب جريمة قتل شخص تشاجر معه، فوفقاً للمبادئ العامة في قانون العقوبات:",
+      "corrected": "شخص مجنون بعد تماثله للشـفاء واصبح بكامل قواه العقلية أرتكب جريمة قتل شخص تشاجر معه، فوفقاً للمبادئ العامة في قانون العقوبات:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 30,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "شـخص مجنون جنون مؤقت وأثناء فترة إصابته بالجنون إرتكب جريمة، ففي هذه الحالة:",
+      "corrected": "شخص مجنون جنون مؤقت وأثناء فترة إصابته بالجنون أرتكب جريمة، ففي هذه الحالة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
