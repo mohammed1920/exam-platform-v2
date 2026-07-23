@@ -1,6 +1,43 @@
 {
-  "generated_at": "2026-07-23 04:34:13",
-  "items": [],
+  "generated_at": "2026-07-23 05:50:42",
+  "items": [
+    {
+      "question_id": 61,
+      "field": "question",
+      "flagged_word": "يجب ان",
+      "original": "لكي ينتج التصديق اثاره في المعاهدات الجماعية يجب ان تعلم به جميع الاطراف المتعاقدة ويتحقق ذلك عن طريق ....",
+      "corrected": "لكي ينتج التصديق اثاره في المعاهدات الجماعية يجب أن تعلم به جميع الأطراف المتعاقدة ويتحقق ذلك عن طريق ....",
+      "book_id": "law_international",
+      "chapter": 4
+    },
+    {
+      "question_id": 63,
+      "field": "question",
+      "flagged_word": "49",
+      "original": "يشترط لصحة انعقاد المعاهدات أن لا تكون مشوبة بأحد عيوب الرضا وهي .... 49",
+      "corrected": "يشترط لصحة انعقاد المعاهدات أن لا تكون مشوبة بأحد عيوب الرضا وهي ....",
+      "book_id": "law_international",
+      "chapter": 4
+    },
+    {
+      "question_id": 63,
+      "field": "option_0",
+      "flagged_word": "الغلط والتدليس والغين والإكراه",
+      "original": "الغلط والتدليس والغين والإكراه",
+      "corrected": "الغلط والتدليس والغش والإكراه",
+      "book_id": "law_international",
+      "chapter": 4
+    },
+    {
+      "question_id": 63,
+      "field": "option_6",
+      "flagged_word": "العبن",
+      "original": "التدليس والغبن والإكراه فقط",
+      "corrected": "التدليس والغش والإكراه فقط",
+      "book_id": "law_international",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
