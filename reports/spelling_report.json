@@ -1,6 +1,115 @@
 {
-  "generated_at": "2026-07-23 02:06:48",
-  "items": [],
+  "generated_at": "2026-07-23 02:55:56",
+  "items": [
+    {
+      "question_id": 56,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 56,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 57,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 57,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 58,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 59,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 59,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 60,
+      "field": "question",
+      "flagged_word": "مسسكرة",
+      "original": "تناول شخص مواد مسسكرة قسسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسسكر واستعادته لإدراكه إرتكب جريمة سرقة، فوقفاً لهذه الواقعة:",
+      "corrected": "تناول شخص مواد مسكرة قسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسكر واستعادته لإدراكه ارتكب جريمة سرقة، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 60,
+      "field": "question",
+      "flagged_word": "قسسراً",
+      "original": "تناول شخص مواد مسسكرة قسسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسسكر واستعادته لإدراكه إرتكب جريمة سرقة، فوقفاً لهذه الواقعة:",
+      "corrected": "تناول شخص مواد مسكرة قسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسكر واستعادته لإدراكه ارتكب جريمة سرقة، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 60,
+      "field": "question",
+      "flagged_word": "مسسكر",
+      "original": "تناول شخص مواد مسسكرة قسسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسسكر واستعادته لإدراكه إرتكب جريمة سرقة، فوقفاً لهذه الواقعة:",
+      "corrected": "تناول شخص مواد مسكرة قسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسكر واستعادته لإدراكه ارتكب جريمة سرقة، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 60,
+      "field": "question",
+      "flagged_word": "إرتكب",
+      "original": "تناول شخص مواد مسسكرة قسسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسسكر واستعادته لإدراكه إرتكب جريمة سرقة، فوقفاً لهذه الواقعة:",
+      "corrected": "تناول شخص مواد مسكرة قسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسكر واستعادته لإدراكه ارتكب جريمة سرقة، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 60,
+      "field": "question",
+      "flagged_word": "فوقفاً",
+      "original": "تناول شخص مواد مسسكرة قسسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسسكر واستعادته لإدراكه إرتكب جريمة سرقة، فوقفاً لهذه الواقعة:",
+      "corrected": "تناول شخص مواد مسكرة قسراً وبقي محتفظاً بكامل إدراكه واختياره، وبعد إنتهاء مفعول المسكر واستعادته لإدراكه ارتكب جريمة سرقة، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
