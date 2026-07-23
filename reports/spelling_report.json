@@ -1,6 +1,43 @@
 {
-  "generated_at": "2026-07-23 16:15:08",
-  "items": [],
+  "generated_at": "2026-07-23 17:15:03",
+  "items": [
+    {
+      "question_id": 86,
+      "field": "question",
+      "flagged_word": "التشسريعات",
+      "original": "من التشسريعات التي نصت صراحة على إعتبار الإكراه المعنوي فقط مانعاً للمسؤولية الجنائية:",
+      "corrected": "من التشريعات التي نصت صراحة على إعتبار الإكراه المعنوي فقط مانعاً للمسؤولية الجنائية:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 86,
+      "field": "option_0",
+      "flagged_word": "السسوري",
+      "original": "قانون العقوبات السسوري",
+      "corrected": "قانون العقوبات السوري",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 86,
+      "field": "option_2",
+      "flagged_word": "المصسري",
+      "original": "قانون العقوبات المصسري",
+      "corrected": "قانون العقوبات المصري",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 87,
+      "field": "question",
+      "flagged_word": "بشسكل",
+      "original": "ذهبت بعض القوانين الى النص على الإكراه المعنوي فقط بشسكل صريح كمانع من موانع المسؤولية الجزائية، ويرجع السبب في ذلك الى:",
+      "corrected": "ذهبت بعض القوانين الى النص على الإكراه المعنوي فقط بشكل صريح كمانع من موانع المسؤولية الجزائية، ويرجع السبب في ذلك الى:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
