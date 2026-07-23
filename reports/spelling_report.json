@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23 22:03:41",
+  "generated_at": "2026-07-23 23:55:37",
   "items": [
     {
       "question_id": 86,
@@ -144,6 +144,42 @@
       "corrected": "يكون للسفن ....... حصانة تامة وكاملة حيث تمنع تدخل الدولة الساحلية في شؤونها الداخلية منعًا تامًا",
       "book_id": "law_international",
       "chapter": 4
+    },
+    {
+      "question_id": 8,
+      "field": "option_1",
+      "flagged_word": "انها را مستقلة",
+      "original": "انها را مستقلة",
+      "corrected": "انهار مستقلة",
+      "book_id": "law_international",
+      "chapter": 5
+    },
+    {
+      "question_id": 8,
+      "field": "option_3",
+      "flagged_word": "انها را دولية",
+      "original": "انها را دولية",
+      "corrected": "انهار دولية",
+      "book_id": "law_international",
+      "chapter": 5
+    },
+    {
+      "question_id": 8,
+      "field": "option_4",
+      "flagged_word": "انها را موسمية",
+      "original": "انها را موسمية",
+      "corrected": "انهار موسمية",
+      "book_id": "law_international",
+      "chapter": 5
+    },
+    {
+      "question_id": 10,
+      "field": "question",
+      "flagged_word": "۲۱۲۱",
+      "original": "عهدت سلطة القوات البريطانية ادارة الملاحة في شط العرب بعد عام ۲۱۲۱ إلى ........",
+      "corrected": "عهدت سلطة القوات البريطانية ادارة الملاحة في شط العرب بعد عام ١٩٢١ إلى ........",
+      "book_id": "law_international",
+      "chapter": 5
     }
   ],
   "reports": {
