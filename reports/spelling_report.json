@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23 11:05:42",
+  "generated_at": "2026-07-23 13:44:40",
   "items": [
     {
       "question_id": 61,
@@ -35,6 +35,33 @@
       "original": "التدليس والغبن والإكراه فقط",
       "corrected": "التدليس والغش والإكراه فقط",
       "book_id": "law_international",
+      "chapter": 4
+    },
+    {
+      "question_id": 76,
+      "field": "question",
+      "flagged_word": "براكبه",
+      "original": "فرس يجمح براكبه فلا يقوى على كبح جماحه فيصيب إنسان أثناء جريه، وفقاً لذلك أي من موانع المسؤولية تحقق في هذه الواقعة:",
+      "corrected": "فرس يجمح براكب فلا يقوى على كبح جماحه فيصيب إنسان أثناء جريه، وفقاً لذلك أي من موانع المسؤولية تحقق في هذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 80,
+      "field": "option_2",
+      "flagged_word": "إنسسان",
+      "original": "لا يصسدر الا عن إنسسان",
+      "corrected": "لا يصدر إلا عن إنسان",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 80,
+      "field": "option_3",
+      "flagged_word": "يسسعه",
+      "original": "المكره فيه يحتفظ بقدر من الحرية حيث يسسعه دائماً أن يتحمل الأذى المهدد به",
+      "corrected": "المكره فيه يحتفظ بقدر من الحرية حيث يسعه دائماً أن يتحمل الأذى المهدد به",
+      "book_id": "law_general_penalties",
       "chapter": 4
     }
   ],
