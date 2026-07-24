@@ -1,43 +1,6 @@
 {
-  "generated_at": "2026-07-24 14:50:24",
-  "items": [
-    {
-      "question_id": 38,
-      "field": "option_0",
-      "flagged_word": "الأمرة",
-      "original": "أن لا يخالف القواعد القانون الدولي الأمرة ولا منافيا لحسن الاخلاق ولا مخالف لميثاق الأمم المتحدة",
-      "corrected": "أن لا يخالف القواعد القانون الدولي العامة ولا منافيا لحسن الاخلاق ولا مخالف لميثاق الأمم المتحدة",
-      "book_id": "law_international",
-      "chapter": 5
-    },
-    {
-      "question_id": 38,
-      "field": "option_2",
-      "flagged_word": "الأمرة",
-      "original": "أن لا يخالف القواعد القانون الدولي الأمرة",
-      "corrected": "أن لا يخالف القواعد القانون الدولي العامة",
-      "book_id": "law_international",
-      "chapter": 5
-    },
-    {
-      "question_id": 38,
-      "field": "option_3",
-      "flagged_word": "الأمرة",
-      "original": "أن لا يخالف القواعد القانون الدولي الأمرة ولا منافيا لحسن الاخلاق فقط",
-      "corrected": "أن لا يخالف القواعد القانون الدولي العامة ولا منافيا لحسن الاخلاق فقط",
-      "book_id": "law_international",
-      "chapter": 5
-    },
-    {
-      "question_id": 38,
-      "field": "option_4",
-      "flagged_word": "الأمرة",
-      "original": "ان لا يخالف القواعد القانون الدولي الأمرة ولا يشترط فيه حسن الاخلاق",
-      "corrected": "ان لا يخالف القواعد القانون الدولي العامة ولا يشترط فيه حسن الاخلاق",
-      "book_id": "law_international",
-      "chapter": 5
-    }
-  ],
+  "generated_at": "2026-07-24 15:54:35",
+  "items": [],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
