@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25 22:49:39",
+  "generated_at": "2026-07-25 23:55:47",
   "items": [
     {
       "question_id": 61,
@@ -394,6 +394,78 @@
       "flagged_word": "االستعمار",
       "original": "ال ،بل تجاوز ما تضمنه ميثاقها من أحكام (مثل إصدار الإعالن الخاص عام .)1960 ()7",
       "corrected": "لا، بل تجاوز ما تضمنه ميثاقها من أحكام (مثل إصدار الإعلان الخاص عام 1960)",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 81,
+      "field": "question",
+      "flagged_word": "إنهاء االستعمار",
+      "original": "ما هي العبارة التي تصف طبيعة إنهاء االستعمار التي طالب بها الإعالن الخاص عام 1960؟",
+      "corrected": "ما هي العبارة التي تصف طبيعة إنهاء الاستعمار التي طالب بها الإعلان الخاص عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 81,
+      "field": "question",
+      "flagged_word": "الإعالن",
+      "original": "ما هي العبارة التي تصف طبيعة إنهاء االستعمار التي طالب بها الإعالن الخاص عام 1960؟",
+      "corrected": "ما هي العبارة التي تصف طبيعة إنهاء الاستعمار التي طالب بها الإعلان الخاص عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 82,
+      "field": "option_1",
+      "flagged_word": "الإعالن",
+      "original": "تطبيق الإعالن الخاص بتصفية االستعمار فورا ً",
+      "corrected": "تطبيق الإعلان الخاص بتصفية الاستعمار فوراً",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 82,
+      "field": "option_1",
+      "flagged_word": "االستعمار",
+      "original": "تطبيق الإعالن الخاص بتصفية االستعمار فورا ً",
+      "corrected": "تطبيق الإعلان الخاص بتصفية الاستعمار فوراً",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 83,
+      "field": "option_0",
+      "flagged_word": "الإعالن",
+      "original": "الإعالن الخاص بتصفية االستعمار",
+      "corrected": "الإعلان الخاص بتصفية الاستعمار",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 83,
+      "field": "option_0",
+      "flagged_word": "االستعمار",
+      "original": "الإعالن الخاص بتصفية االستعمار",
+      "corrected": "الإعلان الخاص بتصفية الاستعمار",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 84,
+      "field": "question",
+      "flagged_word": "االستعمار",
+      "original": "ما هي الأشكال التي يجب إنهاء االستعمار عنها وفقا ً لإلعالن الخاص عام 1960؟",
+      "corrected": "ما هي الأشكال التي يجب إنهاء الاستعمار عنها وفقاً للإعلان الخاص عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 84,
+      "field": "question",
+      "flagged_word": "إلعالن",
+      "original": "ما هي الأشكال التي يجب إنهاء االستعمار عنها وفقا ً لإلعالن الخاص عام 1960؟",
+      "corrected": "ما هي الأشكال التي يجب إنهاء الاستعمار عنها وفقاً للإعلان الخاص عام 1960؟",
       "book_id": "law_organizations",
       "chapter": 1
     }
