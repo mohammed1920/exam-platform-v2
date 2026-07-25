@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25 20:13:35",
+  "generated_at": "2026-07-25 21:50:26",
   "items": [
     {
       "question_id": 61,
@@ -151,6 +151,150 @@
       "flagged_word": "االقتصادي",
       "original": "المجلس االقتصادي واالجتماعي",
       "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 72,
+      "field": "option_0",
+      "flagged_word": "لالستعمار",
+      "original": "وضع حد سريع وبدون قيد أو شرط لالستعمار",
+      "corrected": "وضع حد سريع وبدون قيد أو شرط للاستعمار",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 72,
+      "field": "option_1",
+      "flagged_word": "خالل",
+      "original": "دعم حق الشعوب في تقرير مصيرها من خالل الإعالن الخاص",
+      "corrected": "دعم حق الشعوب في تقرير مصيرها من خلال الإعلان الخاص",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 72,
+      "field": "option_1",
+      "flagged_word": "الإعالن",
+      "original": "دعم حق الشعوب في تقرير مصيرها من خالل الإعالن الخاص",
+      "corrected": "دعم حق الشعوب في تقرير مصيرها من خلال الإعلان الخاص",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 72,
+      "field": "option_2",
+      "flagged_word": "االستعمار",
+      "original": "إلزام المنظمات الإقليمية بالقضاء على االستعمار",
+      "corrected": "إلزام المنظمات الإقليمية بالقضاء على الاستعمار",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 72,
+      "field": "option_4",
+      "flagged_word": "االستعمار",
+      "original": "الإشراف على الأقاليم المشمولة بالوصاية وترقية أهلها والوصول بهم إلى الحكم الذاتي أو االستقالل",
+      "corrected": "الإشراف على الأقاليم المشمولة بالوصاية وترقية أهلها والوصول بهم إلى الحكم الذاتي أو الاستقلال",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 73,
+      "field": "question",
+      "flagged_word": "الإعالن",
+      "original": "متى أصدرت الأمم المتحدة الإعالن الخاص بتصفية االستعمار ومنح االستقالل للبلدان والشعوب المستعمرة؟",
+      "corrected": "متى أصدرت الأمم المتحدة الإعلان الخاص بتصفية الاستعمار ومنح الاستقلال للبلدان والشعوب المستعمرة؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 73,
+      "field": "question",
+      "flagged_word": "االستعمار",
+      "original": "متى أصدرت الأمم المتحدة الإعالن الخاص بتصفية االستعمار ومنح االستقالل للبلدان والشعوب المستعمرة؟",
+      "corrected": "متى أصدرت الأمم المتحدة الإعلان الخاص بتصفية الاستعمار ومنح الاستقلال للبلدان والشعوب المستعمرة؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 73,
+      "field": "question",
+      "flagged_word": "االستقالل",
+      "original": "متى أصدرت الأمم المتحدة الإعالن الخاص بتصفية االستعمار ومنح االستقالل للبلدان والشعوب المستعمرة؟",
+      "corrected": "متى أصدرت الأمم المتحدة الإعلان الخاص بتصفية الاستعمار ومنح الاستقلال للبلدان والشعوب المستعمرة؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "question",
+      "flagged_word": "الإعالن",
+      "original": "ما هي الضرورة التي أعلنها الإعالن الخاص بتصفية االستعمار الصادر عام 1960؟",
+      "corrected": "ما هي الضرورة التي أعلنها الإعلان الخاص بتصفية الاستعمار الصادر عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "question",
+      "flagged_word": "االستعمار",
+      "original": "ما هي الضرورة التي أعلنها الإعالن الخاص بتصفية االستعمار الصادر عام 1960؟",
+      "corrected": "ما هي الضرورة التي أعلنها الإعلان الخاص بتصفية الاستعمار الصادر عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "option_0",
+      "flagged_word": "الأقاليم",
+      "original": "ضرورة إدماج الأقاليم المشمولة بالوصاية في الدول المجاورة لها",
+      "corrected": "ضرورة إدماج الأقاليم المشمولة بالوصاية في الدول المجاورة لها",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "option_2",
+      "flagged_word": "االستعمار",
+      "original": "ضرورة تشكيل لجنة خاصة لتصفية االستعمار عام . 1960",
+      "corrected": "ضرورة تشكيل لجنة خاصة لتصفية الاستعمار عام 1960",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "option_3",
+      "flagged_word": "االستعمار",
+      "original": "ضرورة أن تقتصر تصفية االستعمار على المنظمات الإقليمية",
+      "corrected": "ضرورة أن تقتصر تصفية الاستعمار على المنظمات الإقليمية",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 74,
+      "field": "option_4",
+      "flagged_word": "االستعمار",
+      "original": "ضرورة وضع حد سريع وبدون قيد أو شرط لالستعمار بجميع صوره ومظاهره",
+      "corrected": "ضرورة وضع حد سريع وبدون قيد أو شرط للاستعمار بجميع صوره ومظاهره",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 75,
+      "field": "question",
+      "flagged_word": "الإعالن",
+      "original": "ما هو الحق الذي أكده الإعالن الخاص بتصفية االستعمار لجميع الشعوب؟",
+      "corrected": "ما هو الحق الذي أكده الإعلان الخاص بتصفية الاستعمار لجميع الشعوب؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 75,
+      "field": "question",
+      "flagged_word": "االستعمار",
+      "original": "ما هو الحق الذي أكده الإعالن الخاص بتصفية االستعمار لجميع الشعوب؟",
+      "corrected": "ما هو الحق الذي أكده الإعلان الخاص بتصفية الاستعمار لجميع الشعوب؟",
       "book_id": "law_organizations",
       "chapter": 1
     }
