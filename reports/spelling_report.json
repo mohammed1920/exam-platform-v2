@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25 05:42:12",
+  "generated_at": "2026-07-25 07:59:04",
   "items": [
     {
       "question_id": 16,
@@ -70,6 +70,33 @@
       "flagged_word": "،1815ونافذا ً",
       "original": "مؤتمر فيينا عام ،1815ونافذا ً عام 1945",
       "corrected": "مؤتمر فيينا عام 1815 ونافذاً عام 1945",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 26,
+      "field": "option_3",
+      "flagged_word": "االهتمام",
+      "original": "االهتمام بمصالح فردية بين دولتين أو أكثر",
+      "corrected": "الهتمام بمصالح فردية بين دولتين أو أكثر",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 26,
+      "field": "option_4",
+      "flagged_word": "االمتناع",
+      "original": "االمتناع عن اللجوء إلى الحرب قبل عرض النزاع على طرف التسوية القضائية",
+      "corrected": "المتناع عن اللجوء إلى الحرب قبل عرض النزاع على طرف التسوية القضائية",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 28,
+      "field": "option_0",
+      "flagged_word": "االهتمام",
+      "original": "االهتمام بمصالح الجماعة الدولية",
+      "corrected": "الهتمام بمصالح الجماعة الدولية",
       "book_id": "law_organizations",
       "chapter": 1
     }
