@@ -1,6 +1,79 @@
 {
-  "generated_at": "2026-07-25 01:13:22",
-  "items": [],
+  "generated_at": "2026-07-25 02:56:45",
+  "items": [
+    {
+      "question_id": 16,
+      "field": "question",
+      "flagged_word": "ا لذي",
+      "original": "ما هو المبدأ ا لذي قام عليه تفكير دول الحلفاء إلنشاء نظام أفضل للتنظيم الدولي كبديل لعصبة الأمم المنهارة؟",
+      "corrected": "ما هو المبدأ الذي قام عليه تفكير دول الحلفاء إنشاء نظام أفضل للتنظيم الدولي كبديل لعصبة الأمم المنهارة؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 17,
+      "field": "question",
+      "flagged_word": "االجتماعات",
+      "original": "أي من االجتماعات التمهيدية التالية إلنشاء الأمم المتحدة تم عقده في واشنطن عام 1944؟",
+      "corrected": "أي من الاجتماعات التمهيدية التالية إنشاء الأمم المتحدة تم عقده في واشنطن عام 1944؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "question",
+      "flagged_word": "ومتى",
+      "original": "في أي مؤتمر تمت المصادقة على ميثاق منظمة الأمم المتحدة ،ومتى أصبح نافذاً؟",
+      "corrected": "في أي مؤتمر تمت المصادقة على ميثاق منظمة الأمم المتحدة، ومتى أصبح نافذاً؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "option_0",
+      "flagged_word": "،1945ونافذا ً",
+      "original": "مؤتمر بوتسدام عام ،1945ونافذا ً في 24 تشرين الثاني/نوفمبر .1945",
+      "corrected": "مؤتمر بوتسدام عام 1945 ونافذاً في 24 تشرين الثاني/نوفمبر 1945",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "option_1",
+      "flagged_word": "،1943ونافذا ً",
+      "original": "مؤتمر موسكو عام ،1943ونافذا ً في 10كانون الثاني/يناير .1946",
+      "corrected": "مؤتمر موسكو عام 1943 ونافذاً في 10 كانون الثاني/يناير 1946",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "option_2",
+      "flagged_word": "،1945 ونافذا ً",
+      "original": "مؤتمر يالطا عام ،1945 ونافذا ً في 19أيلول/سبتمبر .1945",
+      "corrected": "مؤتمر يالطا عام 1945 ونافذاً في 19 أيلول/سبتمبر 1945",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "option_3",
+      "flagged_word": "،1945ونافذا ً",
+      "original": "مؤتمر سان فرانسيسكو عام ،1945ونافذا ً في 24تشرين الأول/أكتوبر .1945",
+      "corrected": "مؤتمر سان فرانسيسكو عام 1945 ونافذاً في 24 تشرين الأول/أكتوبر 1945",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 18,
+      "field": "option_4",
+      "flagged_word": "،1815ونافذا ً",
+      "original": "مؤتمر فيينا عام ،1815ونافذا ً عام 1945",
+      "corrected": "مؤتمر فيينا عام 1815 ونافذاً عام 1945",
+      "book_id": "law_organizations",
+      "chapter": 1
+    }
+  ],
   "reports": {
     "law_general_penalties": {
       "chapter_3.json": [
