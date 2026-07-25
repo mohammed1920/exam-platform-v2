@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25 18:59:59",
+  "generated_at": "2026-07-25 20:13:35",
   "items": [
     {
       "question_id": 61,
@@ -34,6 +34,123 @@
       "flagged_word": "االنتداب",
       "original": "ألنها اقتصرت على تطبيق نظام االنتداب على مستعمرات الدول المنهزمة فقط",
       "corrected": "ألنها اقتصرت على تطبيق نظام الانتداب على مستعمرات الدول المنهزمة فقط",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 66,
+      "field": "question",
+      "flagged_word": "االستعمار",
+      "original": "ما هو الدافع الذي جعل المجتمع الدولي يندفع نحو التدخل لمعالجة مشكلة االستعمار والتخفيف من آثارها؟",
+      "corrected": "ما هو الدافع الذي جعل المجتمع الدولي يندفع نحو التدخل لمعالجة مشكلة الاستعمار والتخفيف من آثارها؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 66,
+      "field": "option_1",
+      "flagged_word": "االقتصادي",
+      "original": "قرار المجلس االقتصادي واالجتماعي",
+      "corrected": "قرار المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 66,
+      "field": "option_2",
+      "flagged_word": "االنتداب",
+      "original": "إلغاء نظام االنتداب من قبل عصبة الأمم",
+      "corrected": "إلغاء نظام الانتداب من قبل عصبة الأمم",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 66,
+      "field": "option_4",
+      "flagged_word": "اآلسيوية",
+      "original": "ضغط من رغبات الشعوب اآلسيوية والأفريقية وغيرها من الشعوب الواقعة تحت وطأة االستعمار ،في الحصول على االستقالل ونيل حريتها. ()6",
+      "corrected": "ضغط من رغبات الشعوب الآسيوية والأفريقية وغيرها من الشعوب الواقعة تحت وطأة الاستعمار ،في الحصول على الاستقلال ونيل حريتها. ()6",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 67,
+      "field": "question",
+      "flagged_word": "االستقرار",
+      "original": "ما هي المجاالت التي تعمل فيها الأمم المتحدة وفقا ً للمادة 55لتهيئة دواعي االستقرار والرفاهية؟",
+      "corrected": "ما هي المجالات التي تعمل فيها الأمم المتحدة وفقاً للمادة 55 لتهيئة دواعي الاستقرار والرفاهية؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 67,
+      "field": "option_1",
+      "flagged_word": "االستعمارية",
+      "original": "إخضاع الأقاليم االستعمارية لإلشراف الدولي",
+      "corrected": "إخضاع الأقاليم الاستعمارية للإشراف الدولي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 67,
+      "field": "option_4",
+      "flagged_word": "االستخدام",
+      "original": "تحقيق مستوى أعلى للمعيشة وتوفير أسباب االستخدام المتصل لكل فرد والنهوض بعوامل التطور والتقدم االقتصادي واالجتماعي",
+      "corrected": "تحقيق مستوى أعلى للمعيشة وتوفير أسباب الاستخدام المتصل لكل فرد والنهوض بعوامل التطور والتقدم الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 68,
+      "field": "question",
+      "flagged_word": "االستعمارية",
+      "original": "ما هو الهدف الذي وضعه التنظيم الدولي إلخضاع الأقاليم الخاضعة للسيطرة االستعمارية لإلشراف الدولي؟",
+      "corrected": "ما هو الهدف الذي وضعه التنظيم الدولي لإخضاع الأقاليم الخاضعة للسيطرة الاستعمارية للإشراف الدولي؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 68,
+      "field": "option_4",
+      "flagged_word": "االستقالل",
+      "original": "النهوض بأحوالها االقتصادية واالجتماعية وتحقيق االستقالل",
+      "corrected": "النهوض بأحوالها الاقتصادية والاجتماعية وتحقيق الاستقلال",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 69,
+      "field": "option_0",
+      "flagged_word": "االستعمارية",
+      "original": "الإشراف على الأقاليم غير المتمتعة بالحكم الذاتي",
+      "corrected": "الإشراف على الأقاليم غير المتمتعة بالحكم الذاتي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 69,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "السعي إلى تحقيق التعاون االقتصادي واالجتماعي",
+      "corrected": "السعي إلى تحقيق التعاون الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 70,
+      "field": "option_2",
+      "flagged_word": "االستعمارية",
+      "original": "مجلس الوصاية",
+      "corrected": "مجلس الوصاية",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 70,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
       "book_id": "law_organizations",
       "chapter": 1
     }
