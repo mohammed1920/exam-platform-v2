@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26 05:55:44",
+  "generated_at": "2026-07-26 08:20:39",
   "items": [
     {
       "question_id": 61,
@@ -538,6 +538,15 @@
       "flagged_word": "القرارات ال",
       "original": "أن القرارات ال تصدر إال بالإجماع",
       "corrected": "أن القرارات لا تصدر إلا بالإجماع",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 96,
+      "field": "question",
+      "flagged_word": "بنا ًء",
+      "original": "تنقسم المنظمات الدولية بنا ًء على الأهداف إلى :",
+      "corrected": "تنقسم المنظمات الدولية بناء على الأهداف إلى :",
       "book_id": "law_organizations",
       "chapter": 1
     }
