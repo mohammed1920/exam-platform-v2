@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25 23:55:47",
+  "generated_at": "2026-07-26 02:25:33",
   "items": [
     {
       "question_id": 61,
@@ -466,6 +466,69 @@
       "flagged_word": "إلعالن",
       "original": "ما هي الأشكال التي يجب إنهاء االستعمار عنها وفقا ً لإلعالن الخاص عام 1960؟",
       "corrected": "ما هي الأشكال التي يجب إنهاء الاستعمار عنها وفقاً للإعلان الخاص عام 1960؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 86,
+      "field": "question",
+      "flagged_word": "13آذار",
+      "original": "ما هو المؤتمر الذي عقد في 13آذار /مارس 1815وأعلنت فيه القوى العظمى أن نابليون يعد عدو العالم؟",
+      "corrected": "ما هو المؤتمر الذي عقد في 13 آذار /مارس 1815 وأعلنت فيه القوى العظمى أن نابليون يعد عدو العالم؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 87,
+      "field": "question",
+      "flagged_word": "أعلنت ا",
+      "original": "أي من الدول التالية كانت من القوى العظمى التي هزمت نابليون عام 1815وأعلنت ا",
+      "corrected": "أي من الدول التالية كانت من القوى العظمى التي هزمت نابليون عام 1815 وأعلنت",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 87,
+      "field": "option_1",
+      "flagged_word": "إيطاليا واليابان والواليات المتحدة",
+      "original": "إيطاليا واليابان والواليات المتحدة",
+      "corrected": "إيطاليا واليابان والولايات المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 87,
+      "field": "option_2",
+      "flagged_word": "فرنسا وإنجلترا والواليات المتحدة الأمريكية",
+      "original": "فرنسا وإنجلترا والواليات المتحدة الأمريكية",
+      "corrected": "فرنسا وإنجلترا والولايات المتحدة الأمريكية",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 89,
+      "field": "question",
+      "flagged_word": "وفقا ً",
+      "original": "وفقا ً لفقهاء القانون الدولي ،ما هي أول تجربة للتنظيم الدولي الحديث التي أُنشئت في 20تشرين الثاني /نوفمبر 1815؟",
+      "corrected": "وفقًا لفقهاء القانون الدولي ،ما هي أول تجربة للتنظيم الدولي الحديث التي أُنشئت في 20 تشرين الثاني /نوفمبر 1815؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 90,
+      "field": "question",
+      "flagged_word": "مؤتمر السالم",
+      "original": "من هو الذي دعا إلى مؤتمر السالم بلاهاي (مؤتمر لاهاي)؟",
+      "corrected": "من هو الذي دعا إلى مؤتمر السلام بلاهاي (مؤتمر لاهاي)؟",
+      "book_id": "law_organizations",
+      "chapter": 1
+    },
+    {
+      "question_id": 86,
+      "field": "option_3",
+      "flagged_word": "مؤتمر لاهاي للسالم",
+      "original": "مؤتمر لاهاي للسالم",
+      "corrected": "مؤتمر لاهاي للسلام",
       "book_id": "law_organizations",
       "chapter": 1
     }
