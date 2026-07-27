@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27 18:21:09",
+  "generated_at": "2026-07-27 20:18:33",
   "items": [
     {
       "question_id": 61,
@@ -979,6 +979,42 @@
       "flagged_word": "يسر",
       "original": "ما هو الوصف الذي يسر به الأمين العام تصرف إندونيسيا عندما أرادت العودة إلى الأمم المتحدة؟",
       "corrected": "ما هو الوصف الذي وصف به الأمين العام تصرف إندونيسيا عندما أرادت العودة إلى الأمم المتحدة؟",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 987,
+      "field": "question",
+      "flagged_word": "الطرد",
+      "original": "ما هي الجهة التي تصدر قرار الفصل (الطرد .من المنظمة؟",
+      "corrected": "ما هي الجهة التي تصدر قرار الفصل (الطرد) من المنظمة؟",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 988,
+      "field": "option_4",
+      "flagged_word": "أال",
+      "original": "شرط أال يكون مدينا ً ماليا ً. ()81",
+      "corrected": "شرط أن لا يكون مدينا ً ماليا ً. ()81",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 989,
+      "field": "option_1",
+      "flagged_word": "خلوا",
+      "original": "جاء خلوا ً من النصوص بينما عهد العصبة أجاز االنسحاب صراحة",
+      "corrected": "جاء خاليًا من النصوص بينما عهد العصبة أجاز الانسحاب صراحة",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 990,
+      "field": "option_1",
+      "flagged_word": "ال يلزم",
+      "original": "ال يلزم استمرار توافرها الستمرار العضوية",
+      "corrected": "لا يلزم استمرار توافرها لاستمرار العضوية",
       "book_id": "law_organizations",
       "chapter": 10
     }
