@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27 13:35:59",
+  "generated_at": "2026-07-27 16:13:21",
   "items": [
     {
       "question_id": 61,
@@ -880,6 +880,78 @@
       "flagged_word": "قرار ال",
       "original": "قرار ال يتأثر بحق النقض",
       "corrected": "قرار لا يتأثر بحق النقض",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 976,
+      "field": "question",
+      "flagged_word": "سوريأ",
+      "original": "ما هو الأثر المترتب على زوال الشخصية الدولية للدول المندمجة (مثل مصر وسوريأ .في حالة االندماج ونشأة دولة جديدة؟",
+      "corrected": "ما هو الأثر المترتب على زوال الشخصية الدولية للدول المندمجة (مثل مصر وسوريا) في حالة الاندماج ونشأة دولة جديدة؟",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 976,
+      "field": "question",
+      "flagged_word": "االندماج",
+      "original": "ما هو الأثر المترتب على زوال الشخصية الدولية للدول المندمجة (مثل مصر وسوريأ .في حالة االندماج ونشأة دولة جديدة؟",
+      "corrected": "ما هو الأثر المترتب على زوال الشخصية الدولية للدول المندمجة (مثل مصر وسوريا) في حالة الاندماج ونشأة دولة جديدة؟",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 976,
+      "field": "option_4",
+      "flagged_word": "ال تتأثر",
+      "original": "ال تتأثر عضويتها",
+      "corrected": "لا تتأثر عضويتها",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 977,
+      "field": "option_0",
+      "flagged_word": "االشتراكات",
+      "original": "التأخر عن سداد االشتراكات",
+      "corrected": "التأخر عن سداد الاشتراكات",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 977,
+      "field": "option_3",
+      "flagged_word": "االلتزامات الجغرافية",
+      "original": "عدم قدرتها على تنفيذ االلتزامات الجغرافية",
+      "corrected": "عدم قدرتها على تنفيذ الالتزامات الجغرافية",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 978,
+      "field": "option_2",
+      "flagged_word": "جاء خلواً",
+      "original": "جاء خلواً من النصوص المتعلقة بحكم االنسحاب ،فال هو يبيحه وال هو يحظره",
+      "corrected": "جاء خالياً من النصوص المتعلقة بحكم الانسحاب، فالأول يبيحه والثاني يحظره",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 979,
+      "field": "option_0",
+      "flagged_word": "ال ينبغي",
+      "original": "أن الميثاق ال ينبغي له أن يتضمن نصا ً يجيز االنسحاب من الهيئة الدولية أو يمنعهـ",
+      "corrected": "أن الميثاق لا ينبغي له أن يتضمن نصاً يجيز الانسحاب من الهيئة الدولية أو يمنعه",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 980,
+      "field": "question",
+      "flagged_word": "وفقا ً",
+      "original": "متى ال يدخل في أغراض الهيئة أن ترغم عضوا ً على البقاء فيها ،وفقا ً لتقرير اللجنة ،إذا كانت حقوقه والتزاماته قد تغيرت؟",
+      "corrected": "متى لا يدخل في أغراض الهيئة أن ترغم عضواً على البقاء فيها، وفقاً لتقرير اللجنة، إذا كانت حقوقه والتزاماته قد تغيرت؟",
       "book_id": "law_organizations",
       "chapter": 10
     }
