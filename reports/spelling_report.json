@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27 10:37:36",
+  "generated_at": "2026-07-27 13:35:59",
   "items": [
     {
       "question_id": 61,
@@ -844,6 +844,42 @@
       "flagged_word": "تلقائيا ً",
       "original": "انتهاء العضوية تلقائيا ً",
       "corrected": "انتهاء العضوية تلقائياً",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 971,
+      "field": "question",
+      "flagged_word": "ال يمكن",
+      "original": "متى ال يمكن من الناحية العملية توقيع جزاء الإيقاف الشامل للعضوية على أحد الدول الخمس الدائمة في مجلس الأمن؟",
+      "corrected": "متى يمكن من الناحية العملية توقيع جزاء الإيقاف الشامل للعضوية على أحد الدول الخمس الدائمة في مجلس الأمن؟",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 971,
+      "field": "option_1",
+      "flagged_word": "محبة للسالم",
+      "original": "إذا كانت الدولة محبة للسالم",
+      "corrected": "إذا كانت الدولة محبة للسلام",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 971,
+      "field": "option_3",
+      "flagged_word": "حق االعتراض",
+      "original": "لتمتعها بحق االعتراض (الفيتو) الموقف للقرار في مجلس الأمن",
+      "corrected": "لتمتعها بحق الاعتراض (الفيتو) الموقف للقرار في مجلس الأمن",
+      "book_id": "law_organizations",
+      "chapter": 10
+    },
+    {
+      "question_id": 974,
+      "field": "option_4",
+      "flagged_word": "قرار ال",
+      "original": "قرار ال يتأثر بحق النقض",
+      "corrected": "قرار لا يتأثر بحق النقض",
       "book_id": "law_organizations",
       "chapter": 10
     }
