@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28 18:09:18",
+  "generated_at": "2026-07-28 20:13:11",
   "items": [
     {
       "question_id": 1011,
@@ -160,6 +160,33 @@
       "flagged_word": "التوحيد",
       "original": "المنظمة الدولية للتوحيد القياسي",
       "corrected": "المنظمة الدولية للتوحيد القياسي لا يوجد خطأ",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1038,
+      "field": "option_0",
+      "flagged_word": "الأمين",
+      "original": "محكمة العدل الدولية ،الأمين العام ،الدول الأعضاء الدائمة",
+      "corrected": "محكمة العدل الدولية ،الأمين العام ،الدول الأعضاء الدائمة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1038,
+      "field": "option_0",
+      "flagged_word": "الدول الأعضاء الدائمة",
+      "original": "محكمة العدل الدولية ،الأمين العام ،الدول الأعضاء الدائمة",
+      "corrected": "محكمة العدل الدولية ،الأمين العام ،الدول الأعضاء الدائمة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1040,
+      "field": "option_2",
+      "flagged_word": "تفرقة",
+      "original": "ال ،إذ تختص بالنظر في كليهما دون تفرقة في الإجراء الذي تقرهـ",
+      "corrected": "لا، إذ تختص بالنظر في كليهما دون تفرقة في الإجراء الذي تقره",
       "book_id": "law_organizations",
       "chapter": 11
     }
