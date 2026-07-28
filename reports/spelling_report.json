@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28 16:02:40",
+  "generated_at": "2026-07-28 18:09:18",
   "items": [
     {
       "question_id": 1011,
@@ -115,6 +115,51 @@
       "flagged_word": "مدة غير محددة. ()84",
       "original": "مدة غير محددة. ()84",
       "corrected": "مدة غير محددة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1032,
+      "field": "question",
+      "flagged_word": "االسم",
+      "original": "ما هو االسم البديل الذي يطلق على الجمعية الصغيرة؟",
+      "corrected": "ما هو الاسم البديل الذي يطلق على الجمعية الصغيرة؟",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1033,
+      "field": "option_1",
+      "flagged_word": "الالجئين",
+      "original": "لجنة أسرى الحرب المؤقتة",
+      "corrected": "لا يوجد خطأ في النص، لكن يوجد خطأ في السؤال 1032",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1034,
+      "field": "option_1",
+      "flagged_word": "السالمة",
+      "original": "منظمة الأمم المتحدة للسالمة والأمن",
+      "corrected": "منظمة الأمم المتحدة للأمن",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1034,
+      "field": "option_2",
+      "flagged_word": "الالجئين",
+      "original": "وكالة الأمم المتحدة إلغاثة وتشغيل الالجئين الفلسطينيين في الشرق الأدنى",
+      "corrected": "وكالة الأمم المتحدة لإلغاثة وتشغيل اللاجئين الفلسطينيين في الشرق الأدنى",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1034,
+      "field": "option_4",
+      "flagged_word": "التوحيد",
+      "original": "المنظمة الدولية للتوحيد القياسي",
+      "corrected": "المنظمة الدولية للتوحيد القياسي لا يوجد خطأ",
       "book_id": "law_organizations",
       "chapter": 11
     }
