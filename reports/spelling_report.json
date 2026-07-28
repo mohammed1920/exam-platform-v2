@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27 23:58:31",
+  "generated_at": "2026-07-28 02:45:53",
   "items": [
     {
       "question_id": 61,
@@ -1116,6 +1116,42 @@
       "corrected": "ما هي النظام الذي حل محله مجلس الوصاية في الأمم المتحدة؟",
       "book_id": "law_organizations",
       "chapter": 10
+    },
+    {
+      "question_id": 1001,
+      "field": "question",
+      "flagged_word": "ألمم",
+      "original": "ما هو أحد الفروع الرئيسة لألمم المتحدة والذي يمثل جهازها الإداري؟",
+      "corrected": "ما هو أحد الفروع الرئيسة للأمم المتحدة والذي يمثل جهازها الإداري؟",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1001,
+      "field": "option_4",
+      "flagged_word": "المجلس االقتصادي واالجتماعي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1002,
+      "field": "option_2",
+      "flagged_word": "المجلس االقتصادي واالجتماعي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1004,
+      "field": "question",
+      "flagged_word": "الئحة",
+      "original": "ما هي الجهة التي نصت عليها المادة 21من الميثاق ،والتي تقرر أن تضع الجمعية العامة الئحة إجراءاتها وتنتخب رئيسها بموجبها؟",
+      "corrected": "ما هي الجهة التي نصت عليها المادة 21من الميثاق ،والتي تقرر أن تضع الجمعية العامة النظام إجراءاتها وتنتخب رئيسها بموجبها?",
+      "book_id": "law_organizations",
+      "chapter": 11
     }
   ],
   "reports": {
