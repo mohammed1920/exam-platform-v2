@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28 13:52:22",
+  "generated_at": "2026-07-28 16:02:40",
   "items": [
     {
       "question_id": 1011,
@@ -70,6 +70,51 @@
       "flagged_word": "نزع السالح",
       "original": "لجنة نزع السالح",
       "corrected": "لجنة نزع السلاح",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1026,
+      "field": "option_4",
+      "flagged_word": "الأونروأ",
+      "original": "وكالة الأمم المتحدة إلغاثة وتشغيل الالجئين الفلسطينيين (الأونروأ",
+      "corrected": "وكالة الأمم المتحدة لإلغاثة وتشغيل اللاجئين الفلسطينيين (الأونروا)",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1027,
+      "field": "question",
+      "flagged_word": "ألول",
+      "original": "ما هو التاريخ الذي أصدرت فيه الجمعية العامة قرارها بإنشاء الجمعية الصغيرة ألول مرة؟",
+      "corrected": "ما هو التاريخ الذي أصدرت فيه الجمعية العامة قرارها بإنشاء الجمعية الصغيرة الأولى مرة؟",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1028,
+      "field": "option_2",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1029,
+      "field": "option_0",
+      "flagged_word": "صالحيات",
+      "original": "لجان ذات صالحيات مطلقة",
+      "corrected": "لجان ذات صلاحيات مطلقة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1030,
+      "field": "option_4",
+      "flagged_word": "مدة غير محددة. ()84",
+      "original": "مدة غير محددة. ()84",
+      "corrected": "مدة غير محددة",
       "book_id": "law_organizations",
       "chapter": 11
     }
