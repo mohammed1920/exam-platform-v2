@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28 20:13:11",
+  "generated_at": "2026-07-28 21:59:07",
   "items": [
     {
       "question_id": 1011,
@@ -187,6 +187,24 @@
       "flagged_word": "تفرقة",
       "original": "ال ،إذ تختص بالنظر في كليهما دون تفرقة في الإجراء الذي تقرهـ",
       "corrected": "لا، إذ تختص بالنظر في كليهما دون تفرقة في الإجراء الذي تقره",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1041,
+      "field": "option_2",
+      "flagged_word": "االلتزامات",
+      "original": "أن تقبل مقدما ً االلتزامات الخاصة بحل هذا النزاع حالً سلميا ً وفقا ً ألحكام الميثاق",
+      "corrected": "أن تقبل مقدما ً الالتزامات الخاصة بحل هذا النزاع حالا ً سلميا ً وفقا ً الأحكام الميثاق",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1041,
+      "field": "option_4",
+      "flagged_word": "السالم",
+      "original": "أن تكون دولة محبة للسالم فقط",
+      "corrected": "أن تكون دولة محبة للسلام فقط",
       "book_id": "law_organizations",
       "chapter": 11
     }
