@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28 21:59:07",
+  "generated_at": "2026-07-28 23:04:08",
   "items": [
     {
       "question_id": 1011,
@@ -205,6 +205,24 @@
       "flagged_word": "السالم",
       "original": "أن تكون دولة محبة للسالم فقط",
       "corrected": "أن تكون دولة محبة للسلام فقط",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1048,
+      "field": "option_1",
+      "flagged_word": "إلدخاله",
+      "original": "إقراره بعد إدخال أو حذف ما قد ترى ضرورة إلدخاله أو حذفهـ",
+      "corrected": "إقراره بعد إدخال أو حذف ما قد ترى ضرورة إدخاله أو حذفه",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1048,
+      "field": "option_4",
+      "flagged_word": "ال يمكن",
+      "original": "ال يمكن إجراء أي تعديل عليه",
+      "corrected": "لا يمكن إجراء أي تعديل عليه",
       "book_id": "law_organizations",
       "chapter": 11
     }
