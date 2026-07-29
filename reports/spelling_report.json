@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29 11:20:42",
+  "generated_at": "2026-07-29 13:57:42",
   "items": [
     {
       "question_id": 1011,
@@ -268,6 +268,15 @@
       "flagged_word": "بشأنهـ",
       "original": "اختيار الوقت المناسب لمناقشة موضوع معين أو لتقديم مشروع بشأنهـ",
       "corrected": "اختيار الوقت المناسب لمناقشة موضوع معين أو لتقديم مشروع بشأنه",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1071,
+      "field": "option_2",
+      "flagged_word": "استغالل",
+      "original": "بقدر نجاحه في استغالل عوامل وظروف العمل داخل المنظمة",
+      "corrected": "بقدر نجاحه في استغلال عوامل وظروف العمل داخل المنظمة",
       "book_id": "law_organizations",
       "chapter": 11
     }
