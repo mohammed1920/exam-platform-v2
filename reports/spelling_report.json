@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29 17:09:45",
+  "generated_at": "2026-07-29 19:05:59",
   "items": [
     {
       "question_id": 1011,
@@ -295,6 +295,42 @@
       "flagged_word": "تماما",
       "original": "االتصاالت غير العلنية (غير السرية تمامأ",
       "corrected": "التصالات غير العلنية (غير السرية تماما",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1087,
+      "field": "question",
+      "flagged_word": "و قائع",
+      "original": "في سبيل معرفة و قائع محددة يمكن بناء عليها أن تصدر الجمعية العامة توصياتها ،فما هو الإجراء الذي قررت الجمعية العامة إنشائه في مناسبات مختلفة؟",
+      "corrected": "في سبيل معرفة وقائع محددة يمكن بناء عليها أن تصدر الجمعية العامة توصياتها ،فما هو الإجراء الذي قررت الجمعية العامة إنشائه في مناسبات مختلفة؟",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1088,
+      "field": "option_1",
+      "flagged_word": "نزع السالح",
+      "original": "لجنة نزع السالح الدائمة",
+      "corrected": "لجنة نزع السلاح الدائمة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1088,
+      "field": "option_3",
+      "flagged_word": "فحص أوراق االعتماد",
+      "original": "لجنة فحص أوراق االعتماد",
+      "corrected": "لجنة فحص أوراق الاعتماد",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1090,
+      "field": "option_0",
+      "flagged_word": "فحص أوراق االعتماد",
+      "original": "لجنة فحص أوراق االعتماد",
+      "corrected": "لجنة فحص أوراق الاعتماد",
       "book_id": "law_organizations",
       "chapter": 11
     }
