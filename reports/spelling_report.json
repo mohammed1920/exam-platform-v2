@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29 13:57:42",
+  "generated_at": "2026-07-29 15:49:50",
   "items": [
     {
       "question_id": 1011,
@@ -277,6 +277,24 @@
       "flagged_word": "استغالل",
       "original": "بقدر نجاحه في استغالل عوامل وظروف العمل داخل المنظمة",
       "corrected": "بقدر نجاحه في استغلال عوامل وظروف العمل داخل المنظمة",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1076,
+      "field": "option_1",
+      "flagged_word": "االتصاالت",
+      "original": "االتصاالت غير العلنية (غير السرية تمامأ",
+      "corrected": "التصالات غير العلنية (غير السرية تماما",
+      "book_id": "law_organizations",
+      "chapter": 11
+    },
+    {
+      "question_id": 1076,
+      "field": "option_1",
+      "flagged_word": "تماما",
+      "original": "االتصاالت غير العلنية (غير السرية تمامأ",
+      "corrected": "التصالات غير العلنية (غير السرية تماما",
       "book_id": "law_organizations",
       "chapter": 11
     }
