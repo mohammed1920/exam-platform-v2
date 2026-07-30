@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30 08:15:31",
+  "generated_at": "2026-07-30 11:02:49",
   "items": [
     {
       "question_id": 1096,
@@ -367,6 +367,24 @@
       "flagged_word": "دولة",
       "original": "دولة",
       "corrected": "دولة معترف بها",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1127,
+      "field": "question",
+      "flagged_word": "النسحاب",
+      "original": "السابقة الوحيدة النسحاب دولة من عضوية الأمم المتحدة بشكل رسمي احتجاجا ً على قرار للمنظمة هي المتعلقة بدولة:",
+      "corrected": "السابقة الوحيدة انسحاب دولة من عضوية الأمم المتحدة بشكل رسمي احتجاجا ً على قرار للمنظمة هي المتعلقة بدولة:",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1127,
+      "field": "option_0",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد السوفيتي عام . 1950",
+      "corrected": "الاتحاد السوفيتي عام . 1950",
       "book_id": "law_organizations",
       "chapter": 12
     }
