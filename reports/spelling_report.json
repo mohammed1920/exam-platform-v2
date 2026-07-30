@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30 11:02:49",
+  "generated_at": "2026-07-30 13:46:41",
   "items": [
     {
       "question_id": 1096,
@@ -385,6 +385,42 @@
       "flagged_word": "االتحاد",
       "original": "االتحاد السوفيتي عام . 1950",
       "corrected": "الاتحاد السوفيتي عام . 1950",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1131,
+      "field": "option_4",
+      "flagged_word": "ديسمبر .1963 ()92",
+      "original": "ديسمبر .1963 ()92",
+      "corrected": "ديسمبر 1963",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1132,
+      "field": "option_0",
+      "flagged_word": "ال تنطبق",
+      "original": "ال تنطبق عليها شروط \"موافقة الدولة\" فقط",
+      "corrected": "لا تنطبق عليها شروط \"موافقة الدولة\" فقط",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1132,
+      "field": "option_1",
+      "flagged_word": "ال تنطبق",
+      "original": "ال تنطبق عليها شروط \"الطابع المؤقت\" فقط",
+      "corrected": "لا تنطبق عليها شروط \"الطابع المؤقت\" فقط",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1132,
+      "field": "option_3",
+      "flagged_word": "ال تنطبق",
+      "original": "ال تنطبق عليها شروط \"موافقة الدولة\" و \"الطابع غير العسكري \"",
+      "corrected": "لا تنطبق عليها شروط \"موافقة الدولة\" و \"الطابع غير العسكري \"",
       "book_id": "law_organizations",
       "chapter": 12
     }
