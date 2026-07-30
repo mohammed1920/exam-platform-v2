@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30 05:35:14",
+  "generated_at": "2026-07-30 08:15:31",
   "items": [
     {
       "question_id": 1096,
@@ -322,6 +322,51 @@
       "flagged_word": "يكفي",
       "original": "كانت قرارات مجلس عصبة الأمم تُصدر بالإجماع باستثناء حالة خاصة يكفي فيها الأغلبية ،وهي :",
       "corrected": "كانت قرارات مجلس عصبة الأمم تُصدر بالإجماع باستثناء حالة خاصة يكتفي فيها بالأغلبية ، وهي :",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1121,
+      "field": "question",
+      "flagged_word": "السالم",
+      "original": "من أهم العوامل التي ساهمت في فشل عصبة الأمم في تحقيق رسالتها في السالم :",
+      "corrected": "من أهم العوامل التي ساهمت في فشل عصبة الأمم في تحقيق رسالتها في السلام :",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1121,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "الإفراط في التعاون االقتصادي واالجتماعي بين الأمم",
+      "corrected": "الإفراط في التعاون الاقتصادي والاجتماعي بين الأمم",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1122,
+      "field": "question",
+      "flagged_word": "ألول",
+      "original": "أول وثيقة تم فيها استخدام تعبير \"الأمم المتحدة\" ألول مرة هي :",
+      "corrected": "أول وثيقة تم فيها استخدام تعبير \"الأمم المتحدة\" الأولى هي :",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1123,
+      "field": "option_2",
+      "flagged_word": "االقتصادية",
+      "original": "تحقيق التعاون الدولي في الشؤون االقتصادية واالجتماعية",
+      "corrected": "تحقيق التعاون الدولي في الشؤون الاقتصادية والاجتماعية",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1125,
+      "field": "option_2",
+      "flagged_word": "دولة",
+      "original": "دولة",
+      "corrected": "دولة معترف بها",
       "book_id": "law_organizations",
       "chapter": 12
     }
