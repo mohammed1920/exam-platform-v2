@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31 00:11:25",
+  "generated_at": "2026-07-31 04:18:58",
   "items": [
     {
       "question_id": 1096,
@@ -565,6 +565,51 @@
       "flagged_word": "ال يعدو",
       "original": "ما هو الضابط الذي ال يعدو أن يكون معيارا ً أساسا ً خاضعا ً للتقدير الذاتي للجمعية العامة؟",
       "corrected": "ما هو الضابط الذي لا يعدو أن يكون معيارا ً أساسا ً خاضعا ً للتقدير الذاتي للجمعية العامة؟",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1168,
+      "field": "option_0",
+      "flagged_word": "االجتماعات",
+      "original": "حق الدول غير الأعضاء في المشاركة في االجتماعات",
+      "corrected": "حق الدول غير الأعضاء في المشاركة في الاجتماعات",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1168,
+      "field": "option_2",
+      "flagged_word": "باالسم",
+      "original": "التفريق في نوعية العضوية إذ توجد عضوية دائمة ألعضاء محدودين باالسم",
+      "corrected": "التفريق في نوعية العضوية إذ توجد عضوية دائمة لأعضاء محدودين بالاسم",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1169,
+      "field": "option_1",
+      "flagged_word": "اقتضته",
+      "original": "تقدير سياسي اقتضته ظروف الحرب العالمية الثانية",
+      "corrected": "تقدير سياسي اقتضته ظروف الحرب العالمية الثانية",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1169,
+      "field": "option_3",
+      "flagged_word": "االقتصادية",
+      "original": "الإمكانيات االقتصادية والسياسية الحالية للدول",
+      "corrected": "الإمكانيات الاقتصادية والسياسية الحالية للدول",
+      "book_id": "law_organizations",
+      "chapter": 12
+    },
+    {
+      "question_id": 1170,
+      "field": "option_2",
+      "flagged_word": "وفقا ً",
+      "original": "عندما تتطلب إعادة النظر اتباع إجراءات تعديل الميثاق وفقا ً للمادتين 108و 109",
+      "corrected": "عندما تتطلب إعادة النظر اتباع إجراءات تعديل الميثاق وفقًا للمادتين 108 و109",
       "book_id": "law_organizations",
       "chapter": 12
     }
