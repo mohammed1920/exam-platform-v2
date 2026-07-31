@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31 20:59:01",
+  "generated_at": "2026-07-31 22:09:11",
   "items": [
     {
       "question_id": 1096,
@@ -808,6 +808,24 @@
       "flagged_word": "الغرض",
       "original": "إذا رأى أن التدابير غير العسكرية غير فعالة في تحقيق الغرض منها",
       "corrected": "إذا رأى أن التدابير غير العسكرية غير فعالة في تحقيق الغاية منها",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1207,
+      "field": "option_2",
+      "flagged_word": "االمتناع",
+      "original": "االمتناع عن تنفيذها إذا تعارضت مع القانون الداخلي",
+      "corrected": "المتناع عن تنفيذها إذا تعارضت مع القانون الداخلي",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1208,
+      "field": "option_3",
+      "flagged_word": "وال",
+      "original": "سنتين وال يجوز إعادة انتخاب العضو الذي انتهت مدته على الفور",
+      "corrected": "سنتين ولا يجوز إعادة انتخاب العضو الذي انتهت مدته على الفور",
       "book_id": "law_organizations",
       "chapter": 13
     }
