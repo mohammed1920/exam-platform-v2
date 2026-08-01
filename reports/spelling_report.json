@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 14:55:42",
+  "generated_at": "2026-08-01 15:58:16",
   "items": [
     {
       "question_id": 1096,
@@ -1078,6 +1078,33 @@
       "flagged_word": "االستراتيجية",
       "original": "الإشراف على المواقع االستراتيجية",
       "corrected": "الإشراف على المواقع الاستراتيجية",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1251,
+      "field": "question",
+      "flagged_word": "االعتراض",
+      "original": "على أي أساس دافعت الدول الكبرى عن حق االعتراض (الفيتو) في مؤتمر سان فرنسيسكو ضد اعتراض الدول المتوسطة والصغيرة؟",
+      "corrected": "على أي أساس دافعت الدول الكبرى عن حق الاعتراض (الفيتو) في مؤتمر سان فرنسيسكو ضد اعتراض الدول المتوسطة والصغيرة؟",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1252,
+      "field": "option_0",
+      "flagged_word": "االمتناع",
+      "original": "نظام االمتناع عن التصويت",
+      "corrected": "نظام المتناع عن التصويت",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1252,
+      "field": "option_1",
+      "flagged_word": "االعتراض",
+      "original": "نظام االعتراض المضاعف",
+      "corrected": "نظام الاعتراض المضاعف",
       "book_id": "law_organizations",
       "chapter": 13
     }
