@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 22:49:13",
+  "generated_at": "2026-08-01 23:52:47",
   "items": [
     {
       "question_id": 1096,
@@ -1375,6 +1375,96 @@
       "flagged_word": "ال",
       "original": "ال يسري عليه استثناء االمتناع عن التصويت الوارد في المادة 27/3ويحتفظ بحق النقض (الفيتو)",
       "corrected": "لا يسري عليه استثناء المتناع عن التصويت الوارد في المادة 27/3 ويحتفظ بحق النقض (الفيتو)",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1281,
+      "field": "option_2",
+      "flagged_word": "حالة ال",
+      "original": "حالة ال يجوز فيها للعضو الدائم ممارسة حق االعتراض",
+      "corrected": "حالة لا يجوز فيها للعضو الدائم ممارسة حق الاعتراض",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1281,
+      "field": "option_3",
+      "flagged_word": "حالة يجب فيها االمتناع",
+      "original": "حالة يجب فيها االمتناع عن التصويت ألي عضو طرف فيها",
+      "corrected": "حالة يجب فيها المتناع عن التصويت لأي عضو طرف فيها",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1281,
+      "field": "option_4",
+      "flagged_word": "حالة ال",
+      "original": "حالة ال يمكن أن تعرض السلم والأمن الدولي للخطر",
+      "corrected": "حالة لا يمكن أن تعرض السلم والأمن الدولي للخطر",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1282,
+      "field": "question",
+      "flagged_word": "صحيح ة",
+      "original": "أي من العبارات التالية صحيح ة عند محاولة التفرقة بين النزاع والموقف؟",
+      "corrected": "أي من العبارات التالية صحيحة عند محاولة التفرقة بين النزاع والموقف؟",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1282,
+      "field": "option_1",
+      "flagged_word": "،بينما ال",
+      "original": "كل نزاع دولي يمثل في حقيقته موقفا ً دولياً ،بينما ال ينطوي كل موقف على نزاع دولي",
+      "corrected": "كل نزاع دولي يمثل في حقيقته موقفاً دولياً، بينما لا ينطوي كل موقف على نزاع دولي",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1282,
+      "field": "option_3",
+      "flagged_word": "ال يمكن",
+      "original": "ال يمكن تحديد الأطراف المتنازعة في كل من النزاع والموقف",
+      "corrected": "لا يمكن تحديد الأطراف المتنازعة في كل من النزاع والموقف",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1282,
+      "field": "option_4",
+      "flagged_word": "النزاع والموقف يتم",
+      "original": "النزاع والموقف يتم التعامل معهما بنفس القواعد دائما ً",
+      "corrected": "النزاع والموقف يتم التعامل معهما بنفس القواعد دائمًا",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1283,
+      "field": "option_1",
+      "flagged_word": "اللتزاماتها",
+      "original": "ادعاء دولة بمخالفة دولة أو دول أخرى اللتزاماتها الدولية وإنكار الأخيرة لذلك",
+      "corrected": "ادعاء دولة بمخالفة دولة أو دول أخرى لالتزاماتها الدولية وإنكار الأخيرة لذلك",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1283,
+      "field": "option_2",
+      "flagged_word": "الدولة الثالثة",
+      "original": "عدم إقرار الدولة الثالثة لتضرر حقوقها",
+      "corrected": "عدم إقرار الدولة الثالثة لتضرر حقوقها",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1283,
+      "field": "option_3",
+      "flagged_word": "ال يمكن",
+      "original": "عندما ال يمكن تحديد الأطراف المتنازعة تحديداً دقيقا ً",
+      "corrected": "عندما لا يمكن تحديد الأطراف المتنازعة تحديدًا دقيقًا",
       "book_id": "law_organizations",
       "chapter": 13
     }
