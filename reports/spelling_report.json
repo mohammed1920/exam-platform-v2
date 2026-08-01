@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 13:41:25",
+  "generated_at": "2026-08-01 14:55:42",
   "items": [
     {
       "question_id": 1096,
@@ -1033,6 +1033,51 @@
       "flagged_word": "االقتراحات",
       "original": "الرقابة على التسليح ودراسة االقتراحات الخاصة بتخفيضه وتنظيمه",
       "corrected": "الرقابة على التسليح ودراسة القتراحات الخاصة بتخفيضه وتنظيمه",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1246,
+      "field": "option_2",
+      "flagged_word": "ألعضاء",
+      "original": "تحديد مدة العضوية المؤقتة لألعضاء",
+      "corrected": "تحديد مدة العضوية المؤقتة للأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1246,
+      "field": "option_3",
+      "flagged_word": "االقتصادية",
+      "original": "توقيع الجزاءات االقتصادية دون توصية",
+      "corrected": "توقيع الجزاءات الاقتصادية دون توصية",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1246,
+      "field": "option_4",
+      "flagged_word": "ألمم",
+      "original": "تعيين الأمين العام لألمم المتحدة بشكل منفرد",
+      "corrected": "تعيين الأمين العام للأمم المتحدة بشكل منفرد",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1249,
+      "field": "option_2",
+      "flagged_word": "تنتهك",
+      "original": "فصل الدول التي تنتهك المبادئ",
+      "corrected": "فصل الدول التي تنتهك المبادئ",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1249,
+      "field": "option_4",
+      "flagged_word": "االستراتيجية",
+      "original": "الإشراف على المواقع االستراتيجية",
+      "corrected": "الإشراف على المواقع الاستراتيجية",
       "book_id": "law_organizations",
       "chapter": 13
     }
