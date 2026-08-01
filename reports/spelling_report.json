@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 15:58:16",
+  "generated_at": "2026-08-01 17:02:34",
   "items": [
     {
       "question_id": 1096,
@@ -1105,6 +1105,51 @@
       "flagged_word": "االعتراض",
       "original": "نظام االعتراض المضاعف",
       "corrected": "نظام الاعتراض المضاعف",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1257,
+      "field": "question",
+      "flagged_word": "واالمتناع",
+      "original": "ما هي المشكلة الأخرى التي واجهت المجلس وتتعلق بصدور القرارات الموضوعية بخلاف حق االعتراض واالمتناع عن التصويت؟",
+      "corrected": "ما هي المشكلة الأخرى التي واجهت المجلس وتتعلق بصدور القرارات الموضوعية بخلاف حق الاعتراض والمتناع عن التصويت؟",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1257,
+      "field": "option_3",
+      "flagged_word": "الالئحة",
+      "original": "اختلاف الالئحة الداخلية للمجلس",
+      "corrected": "اختلاف الألئحة الداخلية للمجلس",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1258,
+      "field": "option_1",
+      "flagged_word": "االتحاد",
+      "original": "في عام 1946بمناسبة انسحاب االتحاد السوفيتي من جلسات مجلس الأمن",
+      "corrected": "في عام 1946 بمناسبة انسحاب الاتحاد السوفيتي من جلسات مجلس الأمن",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1258,
+      "field": "option_3",
+      "flagged_word": "االتحاد",
+      "original": "في عام 1991بمناسبة حل االتحاد السوفيتي",
+      "corrected": "في عام 1991 بمناسبة حل الاتحاد السوفيتي",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1259,
+      "field": "option_2",
+      "flagged_word": "ال يعد",
+      "original": "بأن تغيب العضو الدائم ال يعد بمثابة اعتراض منه على القرار وأن القرار يعد صحيحا ً",
+      "corrected": "بأن تغيب العضو الدائم لا يعد بمثابة اعتراض منه على القرار وأن القرار يعد صحيحاً",
       "book_id": "law_organizations",
       "chapter": 13
     }
