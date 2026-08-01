@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 02:48:37",
+  "generated_at": "2026-08-01 05:51:36",
   "items": [
     {
       "question_id": 1096,
@@ -952,6 +952,33 @@
       "flagged_word": "خالف",
       "original": "ما هو السبب الرئيس الذي ألجله تم تنظيم مجلس الأمن على وجه يستطيع معه العمل باستمرار ،على خالف الجمعية العامة؟",
       "corrected": "ما هو السبب الرئيس الذي ألجله تم تنظيم مجلس الأمن على وجه يستطيع معه العمل باستمرار ،على خلاف الجمعية العامة؟",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1221,
+      "field": "option_2",
+      "flagged_word": "الئحة",
+      "original": "أن يضع الئحة إجرائه الخاصة به",
+      "corrected": "أن يضع الألية إجراءه الخاصة به",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1223,
+      "field": "question",
+      "flagged_word": "ال يمكن",
+      "original": "من بين الجهات التالية ،أيها ال يمكن أن يطلب من رئيس المجلس الدعوة إلى االنعقاد؟",
+      "corrected": "من بين الجهات التالية ،أيها يمكن أن يطلب من رئيس المجلس الدعوة إلى الانعقاد؟",
+      "book_id": "law_organizations",
+      "chapter": 13
+    },
+    {
+      "question_id": 1225,
+      "field": "option_1",
+      "flagged_word": "الئحته",
+      "original": "نظام خاص وضعته الئحته الداخلية",
+      "corrected": "نظام خاص وضعته الألية الداخلية",
       "book_id": "law_organizations",
       "chapter": 13
     }
