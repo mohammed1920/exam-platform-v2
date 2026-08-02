@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02 16:01:42",
+  "generated_at": "2026-08-02 17:58:02",
   "items": [
     {
       "question_id": 1096,
@@ -2023,6 +2023,96 @@
       "flagged_word": "ما ه ي",
       "original": "ما ه ي الصورة التي تتخذها العالقة بين الأمم المتحدة والوكاالت المتخصصة فيما يخص تنسيق النشاطات؟",
       "corrected": "ما هي الصورة التي تتخذها العلاقة بين الأمم المتحدة والوكالات المتخصصة فيما يخص تنسيق النشاطات؟",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1326,
+      "field": "option_1",
+      "flagged_word": "ال يمكن",
+      "original": "ال يمكن للجهاز الرئيس الذي أنشأه أن يلغيهـ",
+      "corrected": "لا يمكن للجهاز الرئيس الذي أنشأه أن يلغيه",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1326,
+      "field": "option_4",
+      "flagged_word": "مداوالت",
+      "original": "يكون له حق النقض في مداوالت المجلس االقتصادي واالجتماعي",
+      "corrected": "يكون له حق النقض في مداولات المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1327,
+      "field": "question",
+      "flagged_word": "الوكاالت",
+      "original": "بالرغم من قبول الوكاالت المتخصصة التعاون مع الأمم المتحدة ،فما هو الوصف الذي تحتفظ به هذه الوكاالت؟",
+      "corrected": "بالرغم من قبول الوكالات المتخصصة التعاون مع الأمم المتحدة، فما هو الوصف الذي تحتفظ به هذه الوكالات؟",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1328,
+      "field": "question",
+      "flagged_word": "تبادر",
+      "original": "تنص المادة 59من الميثاق على أن الأمم المتحدة \"تبادر \"عند االقتضاء إلى مفاوضات لعقد اتفاقات مع الوكاالت المتخصصة إلنشاء رابطة بينها وبين الأمم المتحدة ،وهذا يعني أن :",
+      "corrected": "تنص المادة 59 من الميثاق على أن الأمم المتحدة \"تبادر\" عند الاقتضاء إلى مفاوضات لعقد اتفاقات مع الوكالات المتخصصة لإنشاء رابطة بينها وبين الأمم المتحدة، وهذا يعني أن :",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1328,
+      "field": "option_2",
+      "flagged_word": "الوكاالت",
+      "original": "الوكاالت المتخصصة ال تكون ملزمة بطلب االرتباط بالأمم المتحدة",
+      "corrected": "الوكالات المتخصصة لا تكون ملزمة بطلب الارتباط بالأمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1329,
+      "field": "option_0",
+      "flagged_word": "ألن",
+      "original": "ألن هذه المنظمات تطلب تمويالً كبيرا ً",
+      "corrected": "لأن هذه المنظمات تطلب تمويلاً كبيراً",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1329,
+      "field": "option_1",
+      "flagged_word": "ألن",
+      "original": "ألنها ترفض توقيع اتفاقيات معها",
+      "corrected": "لأنها ترفض توقيع اتفاقيات معها",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1329,
+      "field": "option_2",
+      "flagged_word": "ألن",
+      "original": "ألن هذه المنظمات قد تكون محدودة الأهمية",
+      "corrected": "لأن هذه المنظمات قد تكون محدودة الأهمية",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1329,
+      "field": "option_3",
+      "flagged_word": "ألن",
+      "original": "ألنها ال تتكون من خبراء",
+      "corrected": "لأنها لا تتكون من خبراء",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1329,
+      "field": "option_4",
+      "flagged_word": "ألن",
+      "original": "ألن نشاطها يقتصر على الأمور الإجرائية",
+      "corrected": "لأن نشاطها يقتصر على الأمور الإجرائية",
       "book_id": "law_organizations",
       "chapter": 14
     }
