@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02 23:54:12",
+  "generated_at": "2026-08-03 02:18:26",
   "items": [
     {
       "question_id": 1096,
@@ -2248,6 +2248,33 @@
       "flagged_word": "ما ه ي",
       "original": "ما ه ي الصفة التي منحها ميثاق الأمم المتحدة لمحكمة العدل الدولية في الفقرة الأولى من المادة السابعة؟",
       "corrected": "ما هي الصفة التي منحها ميثاق الأمم المتحدة لمحكمة العدل الدولية في الفقرة الأولى من المادة السابعة؟",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1356,
+      "field": "option_2",
+      "flagged_word": "االستشاري",
+      "original": "الجهاز االستشاري الرئيس لألمم المتحدة",
+      "corrected": "الجهاز الاستشاري الرئيس لألمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1357,
+      "field": "option_3",
+      "flagged_word": "الئحة",
+      "original": "الئحة إجراءات الجمعية العامة",
+      "corrected": "اللوائح إجراءات الجمعية العامة",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1357,
+      "field": "option_4",
+      "flagged_word": "االتفاقيات",
+      "original": "االتفاقيات الدولية الخاصة بمكافحة الجريمة",
+      "corrected": "الاتفاقيات الدولية الخاصة بمكافحة الجريمة",
       "book_id": "law_organizations",
       "chapter": 14
     }
