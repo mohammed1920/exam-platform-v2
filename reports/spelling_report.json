@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 20:23:21",
+  "generated_at": "2026-08-03 22:03:27",
   "items": [
     {
       "question_id": 1096,
@@ -2563,6 +2563,78 @@
       "flagged_word": "أال",
       "original": "أال تخل تلك الشروط بالمساواة بين المتقاضين أمام المحكمة",
       "corrected": "ألا تخل تلك الشروط بالمساواة بين المتقاضين أمام المحكمة",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1391,
+      "field": "question",
+      "flagged_word": "االتفاق",
+      "original": "ماذا يسمى االتفاق الذي يعقده أطراف نزاع معين -بعد قيامه -يقضي بعرضه أمام محكمة العدل الدولية؟",
+      "corrected": "ماذا يسمى الاتفاق الذي يعقده أطراف نزاع معين -بعد قيامه -يقضي بعرضه أمام محكمة العدل الدولية؟",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1391,
+      "field": "option_0",
+      "flagged_word": "االختياري",
+      "original": "تصريح القبول االختياري",
+      "corrected": "تصريح القبول الاختياري",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1391,
+      "field": "option_3",
+      "flagged_word": "الئحة",
+      "original": "الئحة داخلية",
+      "corrected": "القائمة داخلية",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1392,
+      "field": "option_0",
+      "flagged_word": "الختصاص",
+      "original": "القبول المسبق الختصاص المحكمة الإلزامي",
+      "corrected": "القبول المسبق الاختصاص المحكمة الإلزامي",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1392,
+      "field": "option_2",
+      "flagged_word": "االمتناع",
+      "original": "االمتناع عن التصويت في الجمعية العامة",
+      "corrected": "المتناع عن التصويت في الجمعية العامة",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1392,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "تبادل الوثائق مع المجلس االقتصادي واالجتماعي",
+      "corrected": "تبادل الوثائق مع المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1393,
+      "field": "question",
+      "flagged_word": "االختصاص",
+      "original": "ما هو وصف \"االختصاص الإجباري\" لمحكمة العدل الدولية وفقا ً لرأي الفقهاء؟",
+      "corrected": "ما هو وصف \"الاختصاص الإجباري\" لمحكمة العدل الدولية وفقا ً لرأي الفقهاء؟",
+      "book_id": "law_organizations",
+      "chapter": 14
+    },
+    {
+      "question_id": 1395,
+      "field": "question",
+      "flagged_word": "االختصاص",
+      "original": "ما هي القيود التي جرت العادة على تضمينها في تصريحات قبول االختصاص الإلزامي؟",
+      "corrected": "ما هي القيود التي جرت العادة على تضمينها في تصريحات قبول الاختصاص الإلزامي؟",
       "book_id": "law_organizations",
       "chapter": 14
     }
