@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04 17:40:30",
+  "generated_at": "2026-08-04 19:23:49",
   "items": [
     {
       "question_id": 1096,
@@ -2770,6 +2770,87 @@
       "flagged_word": "الأمانة العامة من عدد من المكاتب والإدارات .المكاتب تكون",
       "original": "تتكون الأمانة العامة من عدد من المكاتب والإدارات .المكاتب تكون",
       "corrected": "تتكون الأمانة العامة من عدد من المكاتب والإدارات ،المكاتب تكون",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1431,
+      "field": "question",
+      "flagged_word": "يتوالها",
+      "original": "من المهام التي يتوالها مكتب الشؤون القانونية في الأمانة العامة",
+      "corrected": "من المهام التي يتحملها مكتب الشؤون القانونية في الأمانة العامة",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1431,
+      "field": "option_1",
+      "flagged_word": "االتصال",
+      "original": "االتصال بالدول الأعضاء",
+      "corrected": "التصال بالدول الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1431,
+      "field": "option_3",
+      "flagged_word": "ألمم",
+      "original": "صياغة المعاهدات الدولية وإبداء المشورة في المسائل القانونية التي تعرض عليه من الأجهزة التابعة لألمم المتحدة",
+      "corrected": "صياغة المعاهدات الدولية وإبداء المشورة في المسائل القانونية التي تعرض عليه من الأجهزة التابعة للأمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1433,
+      "field": "option_0",
+      "flagged_word": "ألمين",
+      "original": "الأمين المساعد لألمين العام",
+      "corrected": "الأمين المساعد للأمين العام",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1433,
+      "field": "option_1",
+      "flagged_word": "ألمين",
+      "original": "المستشار القانوني لألمين العام",
+      "corrected": "المستشار القانوني للأمين العام",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1434,
+      "field": "question",
+      "flagged_word": "الوصل",
+      "original": "من مهام إدارة شؤون الوصايا والمعلومات عن البالد غير المتمتعة بالحكم الذاتي",
+      "corrected": "من مهام إدارة شؤون الوصايا والمعلومات عن البلاد غير المتمتعة بالحكم الذاتي",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1434,
+      "field": "option_0",
+      "flagged_word": "االقتصادية",
+      "original": "طبع ونشر الكتب المتعلقة بالشؤون االقتصادية",
+      "corrected": "طبع ونشر الكتب المتعلقة بالشؤون الاقتصادية",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1435,
+      "field": "question",
+      "flagged_word": "المجلس االقتصادي",
+      "original": "ما هي الإدارة التي تتولى إعداد الدراسات وتقديم الخدمات للمجلس االقتصادي واالجتماعي؟",
+      "corrected": "ما هي الإدارة التي تتولى إعداد الدراسات وتقديم الخدمات للمجلس الاقتصادي والاجتماعي؟",
+      "book_id": "law_organizations",
+      "chapter": 15
+    },
+    {
+      "question_id": 1435,
+      "field": "option_2",
+      "flagged_word": "االقتصادية",
+      "original": "إدارة الشؤون االقتصادية واالجتماعية",
+      "corrected": "إدارة الشؤون الاقتصادية والاجتماعية",
       "book_id": "law_organizations",
       "chapter": 15
     }
