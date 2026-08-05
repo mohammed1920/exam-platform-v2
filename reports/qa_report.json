@@ -816,5 +816,37 @@
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «قابلية القرار الإداري للإلغاء» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
     "status": "pending"
+  },
+  {
+    "question_id": 54,
+    "book_id": "law_administrative",
+    "chapter": 2,
+    "issue_type": "صياغة_غير_واضحة",
+    "question": "إن الفضل الأنظمة السياسية بالنسبة لفاعلية الرقابة البرلمانية هو ......",
+    "options": [
+      "البرلماني",
+      "الرئاسي",
+      "المختلط"
+    ],
+    "current_answer_index": 0,
+    "suggested_answer_index": null,
+    "reason": "وجود خطأ مطبعي في كلمة (الفضل) والصواب (أفضل)، مما أدى إلى خلل في الصياغة ووضوح المعنى.",
+    "status": "pending"
+  },
+  {
+    "question_id": 56,
+    "book_id": "law_administrative",
+    "chapter": 2,
+    "issue_type": "صياغة_غير_واضحة",
+    "question": "في عام ..... تحول القضاء الإداري في فرنسا من القضاء المحجوز إلى القضاء البات.",
+    "options": [
+      "1872",
+      "1873",
+      "1874"
+    ],
+    "current_answer_index": 0,
+    "suggested_answer_index": null,
+    "reason": "استخدام مصطلح (القضاء البات) بدلاً من المصطلح القانوني الإداري الدقيق والمستقر تاريخياً وهو (القضاء المفوض).",
+    "status": "pending"
   }
 ]
