@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06 02:08:34",
+  "generated_at": "2026-08-06 05:43:05",
   "items": [
     {
       "question_id": 1096,
@@ -3555,6 +3555,33 @@
       "corrected": "ألا العبرة بالالتزامات التي يرتبها الميثاق على سائر الالتزامات الدولية الأخرى",
       "book_id": "law_organizations",
       "chapter": 15
+    },
+    {
+      "question_id": 1511,
+      "field": "question",
+      "flagged_word": "ال يحملوا",
+      "original": "وفقا ً للنص ،متى يجب على أعضاء المنظمات الإقليمية أن ال يحملوا منازعاتهم لعرضها على مجلس الأمن ابتدا ًء؟",
+      "corrected": "وفقا ً للنص ،متى يجب على أعضاء المنظمات الإقليمية ألا يحملوا منازعاتهم لعرضها على مجلس الأمن ابتداء؟",
+      "book_id": "law_organizations",
+      "chapter": 16
+    },
+    {
+      "question_id": 1513,
+      "field": "option_0",
+      "flagged_word": "االختلاف",
+      "original": "االختلاف السياسي والتنافس االقتصادي",
+      "corrected": "الاختلاف السياسي والتنافس الاقتصادي",
+      "book_id": "law_organizations",
+      "chapter": 16
+    },
+    {
+      "question_id": 1515,
+      "field": "option_3",
+      "flagged_word": "ال تقتصر",
+      "original": "أنها ال تقتصر على الدول المتجاورة جغرافيا ً",
+      "corrected": "أنها لا تقتصر على الدول المتجاورة جغرافيا",
+      "book_id": "law_organizations",
+      "chapter": 16
     }
   ],
   "reports": {
