@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 16:47:58",
+  "generated_at": "2026-08-07 17:44:08",
   "items": [
     {
       "question_id": 1096,
@@ -3904,6 +3904,69 @@
       "flagged_word": "خالل",
       "original": "خالل السنتين الأوليين من تأسيس الحلف",
       "corrected": "خلال السنتين الأوليين من تأسيس الحلف",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1661,
+      "field": "question",
+      "flagged_word": "ال يحضر",
+      "original": "ما هي الهيئات التي ال يحضر إال مستشار أو إثنان بالإضافة إلى الممثل الدائم في اجتماعاتها في حلف شمال الأطلسي؟",
+      "corrected": "ما هي الهيئات التي لا يحضر إلا مستشار أو اثنان بالإضافة إلى الممثل الدائم في اجتماعاتها في حلف شمال الأطلسي؟",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1661,
+      "field": "option_0",
+      "flagged_word": "االجتماعات",
+      "original": "االجتماعات االعتيادية",
+      "corrected": "الاجتماعات العادية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1661,
+      "field": "option_1",
+      "flagged_word": "االجتماعات",
+      "original": "االجتماعات المقيدة",
+      "corrected": "الاجتماعات المقيدة",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1661,
+      "field": "option_2",
+      "flagged_word": "االجتماعات",
+      "original": "االجتماعات غير الرسمية",
+      "corrected": "الاجتماعات غير الرسمية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1662,
+      "field": "question",
+      "flagged_word": "وفقا ً",
+      "original": "أي من المبادئ التالية يلتزم بها الأطراف المؤسسون لحلف شمال الأطلسي لغرض الإسهام في تطوير العالقات السلمية والودية الدولية ،وفقا ً للمادة 2من المعاهدة؟",
+      "corrected": "أي من المبادئ التالية يلتزم بها الأطراف المؤسسون لحلف شمال الأطلسي لغرض الإسهام في تطوير العلاقات السلمية والودية الدولية، وفقًا للمادة 2 من المعاهدة؟",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1662,
+      "field": "option_1",
+      "flagged_word": "سياستهم االقتصادية",
+      "original": "تقوية مؤسساتهم الحرة وإزالة التناقض في سياستهم االقتصادية الدولية",
+      "corrected": "تقوية مؤسساتهم الحرة وإزالة التناقض في سياستهم الاقتصادية الدولية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1664,
+      "field": "option_0",
+      "flagged_word": "الواليات",
+      "original": "الواليات المتحدة",
+      "corrected": "الولايات المتحدة",
       "book_id": "law_organizations",
       "chapter": 17
     }
