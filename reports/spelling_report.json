@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 22:29:18",
+  "generated_at": "2026-08-07 23:28:55",
   "items": [
     {
       "question_id": 1096,
@@ -4183,6 +4183,51 @@
       "flagged_word": "منعا ً باتا ً",
       "original": "التدخل في الشؤون الداخلية للدول الأعضاء",
       "corrected": "التدخل في الشؤون الداخلية للدول الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1691,
+      "field": "option_0",
+      "flagged_word": "العلاقات",
+      "original": "تبادل العالقات الودية",
+      "corrected": "تبادل العلاقات الودية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1691,
+      "field": "option_2",
+      "flagged_word": "الاجتماعية",
+      "original": "تحقيق العدالة االجتماعية",
+      "corrected": "تحقيق العدالة الاجتماعية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1691,
+      "field": "option_4",
+      "flagged_word": "العلاقات",
+      "original": "تنظيم العالقات القانونية",
+      "corrected": "تنظيم العلاقات القانونية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1692,
+      "field": "option_2",
+      "flagged_word": "لا",
+      "original": "ال يجوز اكتساب أراضي نتيجة للقوة أو بالإكراهـ",
+      "corrected": "لا يجوز اكتساب أراضي نتيجة للقوة أو بالإكراه",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1692,
+      "field": "option_4",
+      "flagged_word": "الغيا",
+      "original": "يُعد مبدأ عدم اكتساب الأراضي بالقوة شرطا ً الغيا ً",
+      "corrected": "يُعد مبدأ عدم اكتساب الأراضي بالقوة شرطاً غياً",
       "book_id": "law_organizations",
       "chapter": 17
     }
