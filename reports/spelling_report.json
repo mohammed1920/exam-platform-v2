@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 10:50:00",
+  "generated_at": "2026-08-07 11:41:15",
   "items": [
     {
       "question_id": 1096,
@@ -3787,6 +3787,51 @@
       "flagged_word": "الالزمة",
       "original": "اتخاذ التدابير الالزمة لدفع العدوان على أحد الأعضاء",
       "corrected": "اتخاذ التدابير اللازمة لدفع العدوان على أحد الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1636,
+      "field": "question",
+      "flagged_word": "أوربا االشتراكية",
+      "original": "ما هو الهدف المعلن لمنظمة معاهدة بروكسل ،على حد تعبير معاهداتها ،قبل تحول الهدف إلى مجابهة دول أوربا االشتراكية؟",
+      "corrected": "ما هو الهدف المعلن لمنظمة معاهدة بروكسل ،على حد تعبير معاهداتها ،قبل تحول الهدف إلى مجابهة دول أوروبا الاشتراكية؟",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1636,
+      "field": "option_2",
+      "flagged_word": "نوويا",
+      "original": "توسيع رقعة الجهاز وتعزيزه نوويا ً",
+      "corrected": "توسيع رقعة الجهاز وتعزيزه نوويًا",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1638,
+      "field": "option_4",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد السوفيتي",
+      "corrected": "الاتحاد السوفيتي",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1639,
+      "field": "question",
+      "flagged_word": "4نيسان",
+      "original": "كم عدد الدول التي وقعت معاهدة شمال الأطلسي في واشنطن في 4نيسان عام 1949كأطراف مؤسسة؟",
+      "corrected": "كم عدد الدول التي وقعت معاهدة شمال الأطلسي في واشنطن في أبريل عام 1949 كأطراف مؤسسة؟",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1639,
+      "field": "option_4",
+      "flagged_word": "ثالث عشرة دولة. ()133",
+      "original": "ثلاث عشرة دولة. ()133",
+      "corrected": "ثلاث عشرة دولة",
       "book_id": "law_organizations",
       "chapter": 17
     }
