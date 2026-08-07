@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 00:38:30",
+  "generated_at": "2026-08-07 03:46:06",
   "items": [
     {
       "question_id": 1096,
@@ -3627,6 +3627,42 @@
       "corrected": "ما هو الشرط الأساس الذي قيده الميثاق على التنظيمات والوكالات الإقليمية للقيام بأي عمل من أعمال القمع؟",
       "book_id": "law_organizations",
       "chapter": 16
+    },
+    {
+      "question_id": 1606,
+      "field": "option_1",
+      "flagged_word": "ثالث",
+      "original": "ثلاث سنوات",
+      "corrected": "ثلاث سنوات",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1606,
+      "field": "option_1",
+      "flagged_word": "ثلاث",
+      "original": "ثلاث سنوات",
+      "corrected": "ثلاث سنوات",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1607,
+      "field": "question",
+      "flagged_word": "ُ",
+      "original": "لجنة دائمة ُ التعاون",
+      "corrected": "لجنة دائمة التعاون",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1609,
+      "field": "option_1",
+      "flagged_word": "ثالث",
+      "original": "ثلاث سنوات",
+      "corrected": "ثلاث سنوات",
+      "book_id": "law_organizations",
+      "chapter": 17
     }
   ],
   "reports": {
