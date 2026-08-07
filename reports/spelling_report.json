@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 21:34:08",
+  "generated_at": "2026-08-07 22:29:18",
   "items": [
     {
       "question_id": 1096,
@@ -4120,6 +4120,69 @@
       "flagged_word": "االستشارية",
       "original": "ما هو عدد الأصوات المخصص للواليات المتحدة في اللجنة االستشارية لمجلس أوربا (وفقا ً للبيانات الهامشية في النص المرفق)؟",
       "corrected": "ما هو عدد الأصوات المخصص للواليات المتحدة في اللجنة الاستشارية لمجلس أوربا (وفقا ً للبيانات الهامشية في النص المرفق)؟",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1687,
+      "field": "option_0",
+      "flagged_word": "العالقات",
+      "original": "اتفاقية فيينا للعالقات الدبلوماسية",
+      "corrected": "اتفاقية فيينا للعلاقات الدبلوماسية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1687,
+      "field": "option_1",
+      "flagged_word": "االقتصادي",
+      "original": "ميثاق التعاون االقتصادي",
+      "corrected": "ميثاق التعاون الاقتصادي",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1688,
+      "field": "option_0",
+      "flagged_word": "االلتزام",
+      "original": "االلتزام بالتدخل العسكري لحفظ السالم",
+      "corrected": "الالتزام بالتدخل العسكري لحفظ السلام",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1688,
+      "field": "option_2",
+      "flagged_word": "مراعة",
+      "original": "مراعة مبدأ حسن النية",
+      "corrected": "مراعاة مبدأ حسن النية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1689,
+      "field": "option_0",
+      "flagged_word": "إلزامية",
+      "original": "إلزامية توحيد السياسات االقتصادية",
+      "corrected": "إلزامية توحيد السياسات الاقتصادية",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1689,
+      "field": "option_2",
+      "flagged_word": "فرض",
+      "original": "فرض نظام اقتصادي موحد",
+      "corrected": "فرض نظام اقتصادي موحد",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1690,
+      "field": "option_1",
+      "flagged_word": "منعا ً باتا ً",
+      "original": "التدخل في الشؤون الداخلية للدول الأعضاء",
+      "corrected": "التدخل في الشؤون الداخلية للدول الأعضاء",
       "book_id": "law_organizations",
       "chapter": 17
     }
