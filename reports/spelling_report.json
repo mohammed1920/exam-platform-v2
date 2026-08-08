@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 04:51:02",
+  "generated_at": "2026-08-08 05:38:32",
   "items": [
     {
       "question_id": 1096,
@@ -4329,6 +4329,24 @@
       "corrected": "اتخاذ التدابير اللازمة لرد العدوان",
       "book_id": "law_organizations",
       "chapter": 18
+    },
+    {
+      "question_id": 102,
+      "field": "option_2",
+      "flagged_word": "المجلس االقتصادي واالجتماعي",
+      "original": "منظمة الصحة العالمية والمجلس االقتصادي واالجتماعي",
+      "corrected": "منظمة الصحة العالمية والمجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 103,
+      "field": "option_4",
+      "flagged_word": "().9",
+      "original": "القيام بنشاط الأجهزة بشكل متقطع. ()9",
+      "corrected": "القيام بنشاط الأجهزة بشكل متقطع",
+      "book_id": "law_organizations",
+      "chapter": 2
     }
   ],
   "reports": {
