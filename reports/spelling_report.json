@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 12:36:01",
+  "generated_at": "2026-08-08 13:41:03",
   "items": [
     {
       "question_id": 1096,
@@ -4687,6 +4687,51 @@
       "flagged_word": "الئحة",
       "original": "الئحة داخلية مؤقتة",
       "corrected": "اللوائح داخلية مؤقتة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 142,
+      "field": "option_0",
+      "flagged_word": "إلنفاذ",
+      "original": "نعم ،التوقيع يكفي إلنفاذ المعاهدة",
+      "corrected": "نعم ،التوقيع يكفي لإنفاذ المعاهدة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 142,
+      "field": "option_3",
+      "flagged_word": "ال يغني",
+      "original": "ال يغني التوقيع على المعاهدة عن التصديق عليها من الجهة أو الجهات الرسمية صاحبة االختصاص",
+      "corrected": "لا يغني التوقيع على المعاهدة عن التصديق عليها من الجهة أو الجهات الرسمية صاحبة الاختصاص",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 143,
+      "field": "option_0",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 145,
+      "field": "option_2",
+      "flagged_word": "ال تسري",
+      "original": "قاعدة عامة ال تسري على االلتزامات الالحقة",
+      "corrected": "قاعدة عامة لا تسري على الالتزامات الحقة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 145,
+      "field": "option_3",
+      "flagged_word": "الالحقة",
+      "original": "القانون الأساس الذي يتعين احترامه من الدول الأعضاء في كل ارتباطاتها الدولية سواء كانت سابقة أو الحقة",
+      "corrected": "القانون الأساس الذي يتعين احترامه من الدول الأعضاء في كل ارتباطاتها الدولية سواء كانت سابقة أو لاحقة",
       "book_id": "law_organizations",
       "chapter": 2
     }
