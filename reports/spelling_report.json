@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 17:24:04",
+  "generated_at": "2026-08-08 18:28:54",
   "items": [
     {
       "question_id": 1096,
@@ -4903,6 +4903,33 @@
       "flagged_word": "ال ،بل",
       "original": "ال ،بل للدول الأكثر سكانا ً",
       "corrected": "لا، بل للدول الأكثر سكاناً",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 167,
+      "field": "option_1",
+      "flagged_word": "قاعدة الأغراض",
+      "original": "قاعدة الأغراض",
+      "corrected": "قاعدة الغرض",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 168,
+      "field": "option_2",
+      "flagged_word": "مبدأ االختصاصات",
+      "original": "مبدأ االختصاصات الضمنية",
+      "corrected": "مبدأ الاختصاصات الضمنية",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 169,
+      "field": "option_1",
+      "flagged_word": "اآلراء",
+      "original": "اآلراء االستشارية لمحكمة العدل الدولية",
+      "corrected": "الآراء الاستشارية لمحكمة العدل الدولية",
       "book_id": "law_organizations",
       "chapter": 2
     }
