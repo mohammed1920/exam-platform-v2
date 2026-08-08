@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 09:32:15",
+  "generated_at": "2026-08-08 10:26:06",
   "items": [
     {
       "question_id": 1096,
@@ -4507,6 +4507,87 @@
       "flagged_word": "الانضمام",
       "original": "جميع الدول التي ترغب في االنضمام",
       "corrected": "جميع الدول التي ترغب في الانضمام",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 128,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "أي المنظمات التالية تعد مثاالً على المنظمات المتخصصة العالمية في المجال االقتصادي والمالي؟",
+      "corrected": "أي المنظمات التالية تعد مثالًا على المنظمات المتخصصة العالمية في المجال الاقتصادي والمالي؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 129,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "أي المنظمات التالية تعد مثاالً على المنظمات المتخصصة العالمية في المجال العلمي؟",
+      "corrected": "أي المنظمات التالية تعد مثالًا على المنظمات المتخصصة العالمية في المجال العلمي؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 130,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "أي المنظمات التالية تعد مثاالً على المنظمات المتخصصة العالمية في المجال االجتماعي والصحي؟",
+      "corrected": "أي المنظمات التالية تعد مثالًا على المنظمات المتخصصة العالمية في المجال الاجتماعي والصحي؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 128,
+      "field": "option_2",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد الدولي للمواصلات السلكية والالسلكية (ITU)",
+      "corrected": "الاتحاد الدولي للمواصلات السلكية واللاسلكية (ITU)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 130,
+      "field": "option_2",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد الدولي للمواصلات السلكية والالسلكية (ITU)",
+      "corrected": "الاتحاد الدولي للمواصلات السلكية واللاسلكية (ITU)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 128,
+      "field": "option_3",
+      "flagged_word": "صندوق النقد الدولي",
+      "original": "صندوق النقد الدولي)(IMF",
+      "corrected": "صندوق النقد الدولي (IMF)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 129,
+      "field": "option_3",
+      "flagged_word": "منظمة الطيران المدني الدولي",
+      "original": "منظمة الطيران المدني الدولي)(ICAO",
+      "corrected": "منظمة الطيران المدني الدولي (ICAO)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 130,
+      "field": "option_0",
+      "flagged_word": "الوكالة الدولية للطاقة الذرية",
+      "original": "الوكالة الدولية للطاقة الذرية (IAFA)",
+      "corrected": "الوكالة الدولية للطاقة الذرية (IAEA)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 130,
+      "field": "option_4",
+      "flagged_word": "منظمة الصحة العالمية",
+      "original": "منظمة الصحة العالمية(WHO). ()11",
+      "corrected": "منظمة الصحة العالمية (WHO)",
       "book_id": "law_organizations",
       "chapter": 2
     }
