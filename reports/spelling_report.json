@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 10:26:06",
+  "generated_at": "2026-08-08 11:22:55",
   "items": [
     {
       "question_id": 1096,
@@ -4588,6 +4588,60 @@
       "flagged_word": "منظمة الصحة العالمية",
       "original": "منظمة الصحة العالمية(WHO). ()11",
       "corrected": "منظمة الصحة العالمية (WHO)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 131,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "ما هي المنظمة التي تعد مثاالً على المنظمات المتخصصة العالمية في مجال البرق والمواصلات؟",
+      "corrected": "ما هي المنظمة التي تعد مثالًا على المنظمات المتخصصة العالمية في مجال البرق والمواصلات؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 131,
+      "field": "option_1",
+      "flagged_word": "إلنشاء",
+      "original": "البنك الدولي لإلنشاء والتعمير (IBRD)",
+      "corrected": "البنك الدولي لإعادة الإنشاء والتعمير (IBRD)",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 132,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "أي من المنظمات التالية تُعد مثاالً على المنظمات المتخصصة الإقليمية في المجال الاقتصادي؟",
+      "corrected": "أي من المنظمات التالية تُعد مثالًا على المنظمات المتخصصة الإقليمية في المجال الاقتصادي؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 132,
+      "field": "option_0",
+      "flagged_word": "إلنشاء",
+      "original": "البنك الدولي لإلنشاء والتعمير",
+      "corrected": "البنك الدولي لإعادة الإنشاء والتعمير",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 133,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "أي من المنظمات التالية تُعد مثاالً على المنظمات المتخصصة الإقليمية في المجال العلمي؟",
+      "corrected": "أي من المنظمات التالية تُعد مثالًا على المنظمات المتخصصة الإقليمية في المجال العلمي؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 135,
+      "field": "question",
+      "flagged_word": "لاشتراك",
+      "original": "ما هي العوامل التي تتدخل في تحديد الدول التي توجه إليها الدعوة لالشتراك في المؤتمر المنشئ للمنظمة؟",
+      "corrected": "ما هي العوامل التي تتدخل في تحديد الدول التي توجه إليها الدعوة للمشاركة في المؤتمر المنشئ للمنظمة؟",
       "book_id": "law_organizations",
       "chapter": 2
     }
