@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 01:11:07",
+  "generated_at": "2026-08-08 03:20:11",
   "items": [
     {
       "question_id": 1096,
@@ -4257,6 +4257,51 @@
       "corrected": "المجلس الاقتصادي",
       "book_id": "law_organizations",
       "chapter": 17
+    },
+    {
+      "question_id": 1701,
+      "field": "question",
+      "flagged_word": "االستشارية",
+      "original": "ما هي الوظيفة الرئيسة للجنة االستشارية لشؤون الدفاع التي تتبع مجلس وزراء الخارجية؟",
+      "corrected": "ما هي الوظيفة الرئيسة للجنة الاستشارية لشؤون الدفاع التي تتبع مجلس وزراء الخارجية؟",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1702,
+      "field": "question",
+      "flagged_word": "االسم",
+      "original": "ما هو االسم الذي كان يُطلق على \"الأمانة العامة\" في ميثاق بوجوتا عام 1948؟",
+      "corrected": "ما هو الاسم الذي كان يُطلق على \"الأمانة العامة\" في ميثاق بوجوتا عام 1948؟",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1702,
+      "field": "option_2",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد الأمريكي",
+      "corrected": "الاتحاد الأمريكي",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1703,
+      "field": "question",
+      "flagged_word": "االتحاد",
+      "original": "متى تم تعديل اسم \"االتحاد الأمريكي\" إلى \"الأمانة العامة\"؟",
+      "corrected": "متى تم تعديل اسم \"الاتحاد الأمريكي\" إلى \"الأمانة العامة\"؟",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1705,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 18
     }
   ],
   "reports": {
