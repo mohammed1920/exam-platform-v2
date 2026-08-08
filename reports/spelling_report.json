@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 23:28:55",
+  "generated_at": "2026-08-08 01:11:07",
   "items": [
     {
       "question_id": 1096,
@@ -4228,6 +4228,33 @@
       "flagged_word": "الغيا",
       "original": "يُعد مبدأ عدم اكتساب الأراضي بالقوة شرطا ً الغيا ً",
       "corrected": "يُعد مبدأ عدم اكتساب الأراضي بالقوة شرطاً غياً",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1698,
+      "field": "option_0",
+      "flagged_word": "المجلس االقتصادي واالجتماعي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1699,
+      "field": "option_4",
+      "flagged_word": "المجلس االقتصادي واالجتماعي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 17
+    },
+    {
+      "question_id": 1700,
+      "field": "option_4",
+      "flagged_word": "المجلس االقتصادي",
+      "original": "المجلس االقتصادي",
+      "corrected": "المجلس الاقتصادي",
       "book_id": "law_organizations",
       "chapter": 17
     }
