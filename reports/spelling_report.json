@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 11:22:55",
+  "generated_at": "2026-08-08 12:36:01",
   "items": [
     {
       "question_id": 1096,
@@ -4642,6 +4642,51 @@
       "flagged_word": "لاشتراك",
       "original": "ما هي العوامل التي تتدخل في تحديد الدول التي توجه إليها الدعوة لالشتراك في المؤتمر المنشئ للمنظمة؟",
       "corrected": "ما هي العوامل التي تتدخل في تحديد الدول التي توجه إليها الدعوة للمشاركة في المؤتمر المنشئ للمنظمة؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 136,
+      "field": "option_0",
+      "flagged_word": "ألمم",
+      "original": "الجمعية العامة لألمم المتحدة",
+      "corrected": "الجمعية العامة للأمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 136,
+      "field": "option_2",
+      "flagged_word": "ألمم",
+      "original": "الأمين العام لألمم المتحدة",
+      "corrected": "الأمين العام للأمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 136,
+      "field": "option_4",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 138,
+      "field": "question",
+      "flagged_word": "االقتصادي",
+      "original": "ما هي المنظمة التي تم إنشاء ميثاقها بقرار صادر عن المجلس االقتصادي واالجتماعي عام 1946؟",
+      "corrected": "ما هي المنظمة التي تم إنشاء ميثاقها بقرار صادر عن المجلس الاقتصادي والاجتماعي عام 1946؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 140,
+      "field": "option_0",
+      "flagged_word": "الئحة",
+      "original": "الئحة داخلية مؤقتة",
+      "corrected": "اللوائح داخلية مؤقتة",
       "book_id": "law_organizations",
       "chapter": 2
     }
