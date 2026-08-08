@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 05:38:32",
+  "generated_at": "2026-08-08 06:42:04",
   "items": [
     {
       "question_id": 1096,
@@ -4345,6 +4345,51 @@
       "flagged_word": "().9",
       "original": "القيام بنشاط الأجهزة بشكل متقطع. ()9",
       "corrected": "القيام بنشاط الأجهزة بشكل متقطع",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 106,
+      "field": "option_3",
+      "flagged_word": "الأمور االقتصادية",
+      "original": "تحقيق التعاون الإقليمي في الأمور االقتصادية دون غيرها",
+      "corrected": "تحقيق التعاون الإقليمي في الأمور الاقتصادية دون غيرها",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 108,
+      "field": "option_2",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد الأمريكي",
+      "corrected": "الاتحاد الأمريكي",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 109,
+      "field": "option_2",
+      "flagged_word": "منذ انتهاء الحرب العالمية الأولى",
+      "original": "منذ انتهاء الحرب العالمية الأولى",
+      "corrected": "بعد انتهاء الحرب العالمية الأولى",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 110,
+      "field": "option_0",
+      "flagged_word": "العتبار",
+      "original": "ما هو الشرط الواجب توافره العتبار المنظمة دولية عامة عالمية االتجاه؟",
+      "corrected": "ما هو الشرط الواجب توافره اعتبار المنظمة دولية عامة عالمية الاتجاه؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 110,
+      "field": "option_0",
+      "flagged_word": "االتجاه",
+      "original": "ما هو الشرط الواجب توافره العتبار المنظمة دولية عامة عالمية االتجاه؟",
+      "corrected": "ما هو الشرط الواجب توافره اعتبار المنظمة دولية عامة عالمية الاتجاه؟",
       "book_id": "law_organizations",
       "chapter": 2
     }
