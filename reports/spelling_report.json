@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 14:26:58",
+  "generated_at": "2026-08-08 15:24:17",
   "items": [
     {
       "question_id": 1096,
@@ -4768,6 +4768,51 @@
       "flagged_word": "بطالن",
       "original": "بطالن النصوص المخالفة له في مواثيق المنظمات الدولية الأخرى",
       "corrected": "بطلان النصوص المخالفة له في مواثيق المنظمات الدولية الأخرى",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 151,
+      "field": "option_2",
+      "flagged_word": "تعديالت",
+      "original": "إمكانية مراجعتها وإجراء ما قد يتطلبه الحال من تعديالت",
+      "corrected": "إمكانية مراجعتها وإجراء ما قد يتطلبه الحال من تعديلات",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 151,
+      "field": "option_3",
+      "flagged_word": "إال",
+      "original": "ال يمكن تعديلها إال بعد مرور خمسين عاما ً على إنشائها",
+      "corrected": "لا يمكن تعديلها إلا بعد مرور خمسين عاما ً على إنشائها",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 152,
+      "field": "option_0",
+      "flagged_word": "إلجماع",
+      "original": "إتاحة الفرصة إلجماع الأعضاء",
+      "corrected": "إتاحة الفرصة لاجماع الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 152,
+      "field": "option_2",
+      "flagged_word": "إصباغ",
+      "original": "إصباغ نوع من االستقرار للمنظمة",
+      "corrected": "إضفاء نوع من الاستقرار للمنظمة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 154,
+      "field": "option_2",
+      "flagged_word": "Super national",
+      "original": "على أساس أنها تتضمن سلطات فوق قومية (Super national)",
+      "corrected": "على أساس أنها تتضمن سلطات فوق وطنية",
       "book_id": "law_organizations",
       "chapter": 2
     }
