@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 06:42:04",
+  "generated_at": "2026-08-08 07:43:52",
   "items": [
     {
       "question_id": 1096,
@@ -4390,6 +4390,60 @@
       "flagged_word": "االتجاه",
       "original": "ما هو الشرط الواجب توافره العتبار المنظمة دولية عامة عالمية االتجاه؟",
       "corrected": "ما هو الشرط الواجب توافره اعتبار المنظمة دولية عامة عالمية الاتجاه؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 111,
+      "field": "question",
+      "flagged_word": "االسم",
+      "original": "ما هو االسم الذي يطلقه كثيرون على المنظمات المتخصصة للداللة على طبيعة نشاطها؟",
+      "corrected": "ما هو الاسم الذي يطلقه كثيرون على المنظمات المتخصصة للدلالة على طبيعة نشاطها؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 111,
+      "field": "option_1",
+      "flagged_word": "عالمية االتجاهـ",
+      "original": "المنظمات المتخصصة عالمية االتجاهـ",
+      "corrected": "المنظمات المتخصصة عالمية الاتجاه",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 111,
+      "field": "option_4",
+      "flagged_word": "عالمية االتجاه",
+      "original": "المنظمات العامة عالمية االتجاه",
+      "corrected": "المنظمات العامة عالمية الاتجاه",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 112,
+      "field": "question",
+      "flagged_word": "االتحادات",
+      "original": "بماذا يوصف ظهور المنظمات المتخصصة (االتحادات) مقارنة بالمنظمات العامة؟",
+      "corrected": "بماذا يوصف ظهور المنظمات المتخصصة (الاتحادات) مقارنة بالمنظمات العامة؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 113,
+      "field": "option_0",
+      "flagged_word": "واالقتصادية",
+      "original": "أن أهدافها تشمل المسائل السياسية واالقتصادية",
+      "corrected": "أن أهدافها تشمل المسائل السياسية والاقتصادية",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 113,
+      "field": "option_3",
+      "flagged_word": "عالمية االتجاه",
+      "original": "أنها عالمية االتجاه وتضم دول العالم كافة",
+      "corrected": "أنها عالمية الاتجاه وتضم دول العالم كافة",
       "book_id": "law_organizations",
       "chapter": 2
     }
