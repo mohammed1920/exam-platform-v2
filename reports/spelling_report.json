@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 03:20:11",
+  "generated_at": "2026-08-08 04:51:02",
   "items": [
     {
       "question_id": 1096,
@@ -4300,6 +4300,33 @@
       "flagged_word": "االقتصادي",
       "original": "المجلس االقتصادي واالجتماعي",
       "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1707,
+      "field": "option_0",
+      "flagged_word": "االستشارية",
+      "original": "اللجنة االستشارية لشؤون الدفاع",
+      "corrected": "اللجنة الاستشارية لشؤون الدفاع",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1707,
+      "field": "option_2",
+      "flagged_word": "االقتصادي",
+      "original": "المجلس االقتصادي واالجتماعي",
+      "corrected": "المجلس الاقتصادي والاجتماعي",
+      "book_id": "law_organizations",
+      "chapter": 18
+    },
+    {
+      "question_id": 1708,
+      "field": "option_2",
+      "flagged_word": "الالزمة",
+      "original": "اتخاذ التدابير الالزمة لرد العدوان",
+      "corrected": "اتخاذ التدابير اللازمة لرد العدوان",
       "book_id": "law_organizations",
       "chapter": 18
     }
