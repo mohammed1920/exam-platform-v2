@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 16:26:17",
+  "generated_at": "2026-08-08 17:24:04",
   "items": [
     {
       "question_id": 1096,
@@ -4849,6 +4849,60 @@
       "flagged_word": "وفقا ً",
       "original": "ما هو القيد الأساس الذي يثير تساؤالً حول مدى ديمقراطية تعديل ميثاق الأمم المتحدة ،وفقا ً للمادة 108؟",
       "corrected": "ما هو القيد الأساس الذي يثير تساؤلاً حول مدى ديمقراطية تعديل ميثاق الأمم المتحدة ،وفقًا للمادة 108؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 162,
+      "field": "option_2",
+      "flagged_word": "ال تتطلب",
+      "original": "أن المالئمة مع التطور المستمر ال تتطلب تعديل المعاهدة",
+      "corrected": "أن المالئمة مع التطور المستمر لا تتطلب تعديل المعاهدة",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 164,
+      "field": "option_0",
+      "flagged_word": "إلعادة",
+      "original": "هل يكون لكل عضو من أعضاء الأمم المتحدة صوت واحد في المؤتمر العام إلعادة النظر في الميثاق؟",
+      "corrected": "هل يكون لكل عضو من أعضاء الأمم المتحدة صوت واحد في المؤتمر العام لإعادة النظر في الميثاق؟",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 164,
+      "field": "option_0",
+      "flagged_word": "ال ،بل",
+      "original": "ال ،بل للدول الدائمة بمجلس الأمن صوتان",
+      "corrected": "لا، بل للدول الدائمة بمجلس الأمن صوتان",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 164,
+      "field": "option_1",
+      "flagged_word": "ال ،بل",
+      "original": "ال ،بل للدول التي صدقت على التعديل حق التصويت فقط",
+      "corrected": "لا، بل للدول التي صدقت على التعديل حق التصويت فقط",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 164,
+      "field": "option_2",
+      "flagged_word": "ال ،بل",
+      "original": "ال ،بل للدول ذات التمويل الأكبر في الميزانية",
+      "corrected": "لا، بل للدول ذات التمويل الأكبر في الميزانية",
+      "book_id": "law_organizations",
+      "chapter": 2
+    },
+    {
+      "question_id": 164,
+      "field": "option_3",
+      "flagged_word": "ال ،بل",
+      "original": "ال ،بل للدول الأكثر سكانا ً",
+      "corrected": "لا، بل للدول الأكثر سكاناً",
       "book_id": "law_organizations",
       "chapter": 2
     }
