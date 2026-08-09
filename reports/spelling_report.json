@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 05:49:48",
+  "generated_at": "2026-08-09 06:45:58",
   "items": [
     {
       "question_id": 1096,
@@ -5380,6 +5380,60 @@
       "flagged_word": "ال توجد",
       "original": "ال توجد أشخاص قانونية إال للدول المتمتعة بالسيادة",
       "corrected": "لا توجد أشخاص قانونية إلا للدول المتمتعة بالسيادة",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 216,
+      "field": "question",
+      "flagged_word": "االعتراف",
+      "original": "لماذا يرى البعض أن االعتراف بالشخصية القانونية الدولية يجب أن يقتصر على الدول؟",
+      "corrected": "لماذا يرى البعض أن الاعتراف بالشخصية القانونية الدولية يجب أن يقتصر على الدول؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 216,
+      "field": "option_2",
+      "flagged_word": "ال",
+      "original": "ألنها ال تستطيع رفع الدعاوى أمام القضاء",
+      "corrected": "ألنها لا تستطيع رفع الدعاوى أمام القضاء",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 217,
+      "field": "question",
+      "flagged_word": "وفقا ً",
+      "original": "ماذا يترتب على إضفاء الشخصية القانونية على المنظمات الدولية ،وفقا ً لرأي المعارضين؟",
+      "corrected": "ماذا يترتب على إضفاء الشخصية القانونية على المنظمات الدولية، وفقًا لرأي المعارضين؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 217,
+      "field": "option_0",
+      "flagged_word": "االعتراف",
+      "original": "االعتراف لها بالأهلية القانونية الكاملة",
+      "corrected": "الاعتراف لها بالأهلية القانونية الكاملة",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 217,
+      "field": "option_3",
+      "flagged_word": "ال",
+      "original": "منحها السيادة وهي ال تتمتع بها فعليا ً أو قانونيا ً",
+      "corrected": "منحها السيادة وهي لا تتمتع بها فعليًا أو قانونيًا",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 219,
+      "field": "question",
+      "flagged_word": "ال",
+      "original": "ما هما الركنان الماديان المهمان اللذان تفتقر إليهما المنظمة الدولية وال تتحقق السيادة بدونهما ،وفقا ً آلراء المعارضين؟",
+      "corrected": "ما هما الركنان الماديان المهمان اللذان تفتقر إليهما المنظمة الدولية ولا تتحقق السيادة بدونهما، وفقًا لرأي المعارضين؟",
       "book_id": "law_organizations",
       "chapter": 3
     }
