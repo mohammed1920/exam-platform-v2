@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 04:59:13",
+  "generated_at": "2026-08-09 05:49:48",
   "items": [
     {
       "question_id": 1096,
@@ -5290,6 +5290,96 @@
       "flagged_word": "االجتماعية",
       "original": "ما هي النتيجة المترتبة على عدم توقف الوقائع والحاجات االجتماعية للمجتمع الدولي عن التطور والتغيير؟",
       "corrected": "ما هي النتيجة المترتبة على عدم توقف الوقائع والحاجات الاجتماعية للمجتمع الدولي عن التطور والتغيير؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 211,
+      "field": "option_0",
+      "flagged_word": "العلاقات",
+      "original": "قدرة الشخص على إقامة العالقات الدولية",
+      "corrected": "قدرة الشخص على إقامة العلاقات الدولية",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 211,
+      "field": "option_1",
+      "flagged_word": "الأهلية الكتساب",
+      "original": "الأهلية الكتساب الحقوق وتحمل االلتزامات فقط",
+      "corrected": "الأهلية اكتساب الحقوق وتحمل الالتزامات فقط",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 211,
+      "field": "option_1",
+      "flagged_word": "تحمل االلتزامات",
+      "original": "الأهلية الكتساب الحقوق وتحمل االلتزامات فقط",
+      "corrected": "الأهلية اكتساب الحقوق وتحمل الالتزامات فقط",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 211,
+      "field": "option_4",
+      "flagged_word": "كشف الحقوق وااللتزام",
+      "original": "القدرة على كشف الحقوق وااللتزام بالواجبات",
+      "corrected": "القدرة على كشف الحقوق والالتزام بالواجبات",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 213,
+      "field": "option_0",
+      "flagged_word": "كشف الحقوق وااللتزام",
+      "original": "القدرة على كشف الحقوق وااللتزام بالواجبات",
+      "corrected": "القدرة على كشف الحقوق والالتزام بالواجبات",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 213,
+      "field": "option_4",
+      "flagged_word": "الأهلية الكتساب",
+      "original": "الأهلية الكتساب الحقوق ،وتحمل االلتزامات والقيام بالتصرفات القانونية ورفع الدعاوى أمام القضاء",
+      "corrected": "الأهلية اكتساب الحقوق ،وتحمل الالتزامات والقيام بالتصرفات القانونية ورفع الدعاوى أمام القضاء",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 213,
+      "field": "option_4",
+      "flagged_word": "تحمل االلتزامات",
+      "original": "الأهلية الكتساب الحقوق ،وتحمل االلتزامات والقيام بالتصرفات القانونية ورفع الدعاوى أمام القضاء",
+      "corrected": "الأهلية اكتساب الحقوق ،وتحمل الالتزامات والقيام بالتصرفات القانونية ورفع الدعاوى أمام القضاء",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 214,
+      "field": "option_3",
+      "flagged_word": "ال توجد",
+      "original": "ال توجد أشخاص قانونية بالطبيعة ،وال أشخاص قانونية بالنسبة لكل الأنظمة",
+      "corrected": "لا توجد أشخاص قانونية بالطبيعة ،ولا أشخاص قانونية بالنسبة لكل الأنظمة",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 214,
+      "field": "option_3",
+      "flagged_word": "وال",
+      "original": "ال توجد أشخاص قانونية بالطبيعة ،وال أشخاص قانونية بالنسبة لكل الأنظمة",
+      "corrected": "لا توجد أشخاص قانونية بالطبيعة ،ولا أشخاص قانونية بالنسبة لكل الأنظمة",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 214,
+      "field": "option_4",
+      "flagged_word": "ال توجد",
+      "original": "ال توجد أشخاص قانونية إال للدول المتمتعة بالسيادة",
+      "corrected": "لا توجد أشخاص قانونية إلا للدول المتمتعة بالسيادة",
       "book_id": "law_organizations",
       "chapter": 3
     }
