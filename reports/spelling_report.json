@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 12:38:52",
+  "generated_at": "2026-08-09 13:44:26",
   "items": [
     {
       "question_id": 1096,
@@ -5758,6 +5758,33 @@
       "flagged_word": "عمالً",
       "original": "تأتي عمالً غير مشروع ،وتكون الدول الأعضاء غير ملزمة باحترام ما تصدره في هذا الصدد من توصيات وقرارات",
       "corrected": "تأتي عملاً غير مشروع ، وتكون الدول الأعضاء غير ملزمة باحترام ما تصدره في هذا الصدد من توصيات وقرارات",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 252,
+      "field": "option_0",
+      "flagged_word": "االتفاقيات",
+      "original": "االتفاقيات الثنائية بين الدول",
+      "corrected": "الاتفاقيات الثنائية بين الدول",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 253,
+      "field": "option_2",
+      "flagged_word": "إلرادة",
+      "original": "أن تكون إرادة مكملة إلرادة الدول فقط",
+      "corrected": "أن تكون إرادة مكملة لِإِرادة الدول فقط",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 255,
+      "field": "option_2",
+      "flagged_word": "ال تتمتع",
+      "original": "ال تتمتع باستقالل مالي وتعتمد على الدول التي أنشأتها التي تستطيع إلغاءها",
+      "corrected": "لا تتمتع باستقلال مالي وتعتمد على الدول التي أنشأتها التي تستطيع إلغاءها",
       "book_id": "law_organizations",
       "chapter": 3
     }
