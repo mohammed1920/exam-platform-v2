@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 20:25:22",
+  "generated_at": "2026-08-09 21:25:41",
   "items": [
     {
       "question_id": 1096,
@@ -5956,6 +5956,60 @@
       "flagged_word": "عاتق",
       "original": "يضع قبول الدولة مباشرة المنظمة الدولية لمهام معينة على إقليمها التزاما ً على عاتق هذه الدولة يتمثل في :",
       "corrected": "يضع قبول الدولة مباشرة المنظمة الدولية لمهام معينة على إقليمها التزامًا على عاتق هذه الدولة يتمثل في :",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 291,
+      "field": "option_0",
+      "flagged_word": "امتالك",
+      "original": "حقها في امتالك قوات عسكرية",
+      "corrected": "حقها في امتلاك قوات عسكرية",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 292,
+      "field": "option_0",
+      "flagged_word": "استقالل",
+      "original": "استقالل المنظمة التام",
+      "corrected": "استقلال المنظمة التام",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 292,
+      "field": "option_2",
+      "flagged_word": "إهدار",
+      "original": "إضعاف المنظمة وإهدار فعاليتها وعلة وجودها",
+      "corrected": "إضعاف المنظمة وإهدار فعاليتها وعلة وجودها",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 294,
+      "field": "option_0",
+      "flagged_word": "أي",
+      "original": "ال تشملها بأي حال من الأحوال",
+      "corrected": "لا تشملها بأي حال من الأحوال",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 294,
+      "field": "option_2",
+      "flagged_word": "بااللتزام",
+      "original": "تشملها فقط في حالة الإخالل بااللتزام التعاقدي",
+      "corrected": "تشملها فقط في حالة الإخلال بالالتزام التعاقدي",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 294,
+      "field": "option_3",
+      "flagged_word": "تلحق",
+      "original": "تشملها في حالة قيامها بتصرفات تلحق أضرارا ً بمصالح أشخاص القانون الداخلي أو الدولي",
+      "corrected": "تشملها في حالة قيامها بتصرفات تلحق أضرارا ً بمصالح أشخاص القانون الداخلي أو الدولي",
       "book_id": "law_organizations",
       "chapter": 3
     }
