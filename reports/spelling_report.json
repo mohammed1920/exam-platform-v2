@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 08:35:16",
+  "generated_at": "2026-08-09 09:33:50",
   "items": [
     {
       "question_id": 1096,
@@ -5515,6 +5515,60 @@
       "flagged_word": "ال غنى",
       "original": "ما هو الشيء الذي أكدت المحكمة في الفتوى أنه أمر ال غنى عنه لألمم المتحدة؟",
       "corrected": "ما هو الشيء الذي أكدت المحكمة في الفتوى أنه أمر غير必要 لألمم المتحدة؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 231,
+      "field": "question",
+      "flagged_word": "ال يمكن",
+      "original": "ما هو الشيء الذي ال يمكن أن تتحقق بدونه واجبات وحقوق المنظمة ،وفقا ً لما أكدته المحكمة في الفتوى؟",
+      "corrected": "ما هو الشيء الذي لا يمكن أن تتحقق بدونه واجبات وحقوق المنظمة ،وفقا ً لما أكدته المحكمة في الفتوى؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 231,
+      "field": "option_1",
+      "flagged_word": "مبادئهـ",
+      "original": "أهداف الميثاق ومبادئهـ",
+      "corrected": "أهداف الميثاق ومبادئه",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 231,
+      "field": "option_2",
+      "flagged_word": "الضيق الختصاصات",
+      "original": "التفسير الضيق الختصاصات المنظمة",
+      "corrected": "التفسير الضيق لاختصاصات المنظمة",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 231,
+      "field": "option_3",
+      "flagged_word": "االلتزام",
+      "original": "االلتزام بالمعيار الوظيفي فقط",
+      "corrected": "الالتزام بالمعيار الوظيفي فقط",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 233,
+      "field": "question",
+      "flagged_word": "االختصاصات",
+      "original": "ما هي الخطورة التي ينطوي عليها تطبيق المعيار الوظيفي للشخصية الدولية ،إذا لم تحدد هذه الوظائف أو االختصاصات؟",
+      "corrected": "ما هي الخطورة التي ينطوي عليها تطبيق المعيار الوظيفي للشخصية الدولية ،إذا لم تحدد هذه الوظائف أو الاختصاصات؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 233,
+      "field": "option_3",
+      "flagged_word": "صالحيات ال",
+      "original": "إباحة المنظمة لنفسها ،تحت ستار هذه الشخصية ،صالحيات ال يبيحها فعالً ميثاقها",
+      "corrected": "إباحة المنظمة لنفسها ،تحت ستار هذه الشخصية ،صالحيات لا يبيحها فعال ميثاقها",
       "book_id": "law_organizations",
       "chapter": 3
     }
