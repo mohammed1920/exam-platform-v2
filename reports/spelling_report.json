@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 01:15:46",
+  "generated_at": "2026-08-09 03:28:20",
   "items": [
     {
       "question_id": 1096,
@@ -5193,6 +5193,69 @@
       "corrected": "أهلية المنظمة في الاعتراف باختصاصاتها الضمنية",
       "book_id": "law_organizations",
       "chapter": 2
+    },
+    {
+      "question_id": 201,
+      "field": "question",
+      "flagged_word": "لماذا ال",
+      "original": "لماذا ال يمكن للمبادئ أن تبقى بعيدة عن مسايرة التطور في مجال التنظيم الدولي؟",
+      "corrected": "لماذا لا يمكن للمبادئ أن تبقى بعيدة عن مسايرة التطور في مجال التنظيم الدولي؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 201,
+      "field": "option_0",
+      "flagged_word": "ألن",
+      "original": "ألن نصوص المعاهدات صريحة وواضحة جدا ً",
+      "corrected": "ألا نصوص المعاهدات صريحة وواضحة جدا ً",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 201,
+      "field": "option_2",
+      "flagged_word": "ألن",
+      "original": "ألن جميع المنظمات تتخذ قراراتها بالإجماع",
+      "corrected": "ألا جميع المنظمات تتخذ قراراتها بالإجماع",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 201,
+      "field": "option_3",
+      "flagged_word": "االجتماعية",
+      "original": "بسبب الضغط المستمر لتغير الوقائع والحاجات االجتماعية للمجتمع الدولي",
+      "corrected": "بسبب الضغط المستمر لتغير الوقائع والحاجات الاجتماعية للمجتمع الدولي",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 201,
+      "field": "option_4",
+      "flagged_word": "االلتزام",
+      "original": "بسبب االلتزام المطلق بالتفسير الذي ال يتضمن التوسع",
+      "corrected": "بسبب الالتزام المطلق بالتفسير الذي لا يتضمن التوسع",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 202,
+      "field": "question",
+      "flagged_word": "ال مبدأ",
+      "original": "ما هو ال مبدأ الذي يجب على كل مجتمع أن يأخذ به إذا لم يرد الحياة في الفوضى؟",
+      "corrected": "ما هو المبدأ الذي يجب على كل مجتمع أن يأخذه إذا لم يرد الحياة في الفوضى؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 205,
+      "field": "question",
+      "flagged_word": "االعتراف",
+      "original": "ما هو الشيء الذي يصبح من الضروري االعتراف به للمنظمة الدولية ،لكي تحقق غاياتها؟",
+      "corrected": "ما هو الشيء الذي يصبح من الضروري الاعتراف به للمنظمة الدولية ،لكي تحقق غاياتها؟",
+      "book_id": "law_organizations",
+      "chapter": 3
     }
   ],
   "reports": {
