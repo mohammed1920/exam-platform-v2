@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 03:28:20",
+  "generated_at": "2026-08-09 04:59:13",
   "items": [
     {
       "question_id": 1096,
@@ -5254,6 +5254,42 @@
       "flagged_word": "االعتراف",
       "original": "ما هو الشيء الذي يصبح من الضروري االعتراف به للمنظمة الدولية ،لكي تحقق غاياتها؟",
       "corrected": "ما هو الشيء الذي يصبح من الضروري الاعتراف به للمنظمة الدولية ،لكي تحقق غاياتها؟",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 207,
+      "field": "option_0",
+      "flagged_word": "باالختصاصات",
+      "original": "المبادئ المتعلقة باالختصاصات الضمنية للمنظمات",
+      "corrected": "المبادئ المتعلقة بالاختصاصات الضمنية للمنظمات",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 208,
+      "field": "option_1",
+      "flagged_word": "االقتصادية",
+      "original": "ترقية الشؤون االقتصادية واالجتماعية",
+      "corrected": "ترقية الشؤون الاقتصادية والاجتماعية",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 208,
+      "field": "option_1",
+      "flagged_word": "واالجتماعية",
+      "original": "ترقية الشؤون االقتصادية واالجتماعية",
+      "corrected": "ترقية الشؤون الاقتصادية والاجتماعية",
+      "book_id": "law_organizations",
+      "chapter": 3
+    },
+    {
+      "question_id": 209,
+      "field": "question",
+      "flagged_word": "االجتماعية",
+      "original": "ما هي النتيجة المترتبة على عدم توقف الوقائع والحاجات االجتماعية للمجتمع الدولي عن التطور والتغيير؟",
+      "corrected": "ما هي النتيجة المترتبة على عدم توقف الوقائع والحاجات الاجتماعية للمجتمع الدولي عن التطور والتغيير؟",
       "book_id": "law_organizations",
       "chapter": 3
     }
