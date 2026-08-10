@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 18:49:24",
+  "generated_at": "2026-08-10 19:51:57",
   "items": [
     {
       "question_id": 1096,
@@ -6334,6 +6334,15 @@
       "flagged_word": "االشتراكي",
       "original": "النظام االشتراكي",
       "corrected": "النظام الاشتراكي",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 367,
+      "field": "option_0",
+      "flagged_word": "باالنضمام",
+      "original": "العضوية باالنضمام",
+      "corrected": "العضوية بالنضمام",
       "book_id": "law_organizations",
       "chapter": 4
     }
