@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 17:47:09",
+  "generated_at": "2026-08-10 18:49:24",
   "items": [
     {
       "question_id": 1096,
@@ -6325,6 +6325,15 @@
       "flagged_word": "()30",
       "original": "شروط تتعلق بمسؤولية الدولة. ()30",
       "corrected": "شروط تتعلق بمسؤولية الدولة",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 361,
+      "field": "option_1",
+      "flagged_word": "االشتراكي",
+      "original": "النظام االشتراكي",
+      "corrected": "النظام الاشتراكي",
       "book_id": "law_organizations",
       "chapter": 4
     }
