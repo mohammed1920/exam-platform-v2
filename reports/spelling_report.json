@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 22:31:31",
+  "generated_at": "2026-08-10 23:29:53",
   "items": [
     {
       "question_id": 1096,
@@ -6442,6 +6442,60 @@
       "flagged_word": "االنسحاب",
       "original": "االنسحاب من المنظمة عند تنفيذ التعديل",
       "corrected": "الانسحاب من المنظمة عند تنفيذ التعديل",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 386,
+      "field": "question",
+      "flagged_word": "1975إذا",
+      "original": "ما هو الإجراء الذي هددت به الواليات المتحدة عام 1975إذا فصلت إسرائيل من الأمم المتحدة؟",
+      "corrected": "ما هو الإجراء الذي هددت به الولايات المتحدة عام 1975 إذا فصلت إسرائيل من الأمم المتحدة؟",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 386,
+      "field": "option_0",
+      "flagged_word": "الواليات",
+      "original": "فرض عقوبات اقتصادية على الدول الأعضاء",
+      "corrected": "فرض عقوبات اقتصادية على الدول الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 386,
+      "field": "option_1",
+      "flagged_word": "االنسحاب",
+      "original": "االنسحاب من الوكاالت المتخصصة فقط",
+      "corrected": "الانسحاب من الوكالات المتخصصة فقط",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 386,
+      "field": "option_2",
+      "flagged_word": "االنسحاب",
+      "original": "االنسحاب من الأمم المتحدة",
+      "corrected": "الانسحاب من الأمم المتحدة",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 387,
+      "field": "option_1",
+      "flagged_word": "كوسيلة الحترام",
+      "original": "كوسيلة الحترام الدول الأعضاء اللتزاماتها سواء كانت مالية أو غير مالية",
+      "corrected": "كوسيلة لتحترام الدول الأعضاء لالتزاماتها سواء كانت مالية أو غير مالية",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 390,
+      "field": "question",
+      "flagged_word": "حقق",
+      "original": "ما هو أحد حقو ق العضوية التي يتم حرمان الدولة الموقوفة من ممارستها بموجب المادة الخامسة من ميثاق الأمم المتحدة؟",
+      "corrected": "ما هو أحد حقوق العضوية التي يتم حرمان الدولة الموقوفة من ممارستها بموجب المادة الخامسة من ميثاق الأمم المتحدة؟",
       "book_id": "law_organizations",
       "chapter": 4
     }
