@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 19:51:57",
+  "generated_at": "2026-08-10 20:36:00",
   "items": [
     {
       "question_id": 1096,
@@ -6343,6 +6343,33 @@
       "flagged_word": "باالنضمام",
       "original": "العضوية باالنضمام",
       "corrected": "العضوية بالنضمام",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 371,
+      "field": "question",
+      "flagged_word": "ال يجوز",
+      "original": "وفقا ً للقاعدة العامة في القانون الدولي ،ال يجوز انضمام دولة من الغير إلى معاهدة دولية إال إذا تضمنت هذه المعاهدة نصا ً يجيز ذلك ،وتسمى المعاهدة التي تسمح بذلك :",
+      "corrected": "وفقا ً للقاعدة العامة في القانون الدولي ،لا يجوز انضمام دولة من الغير إلى معاهدة دولية إلا إذا تضمنت هذه المعاهدة نصا ً يجيز ذلك ،وتسمى المعاهدة التي تسمح بذلك :",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 372,
+      "field": "option_2",
+      "flagged_word": "السالم",
+      "original": "أن تكون محبة للسالم",
+      "corrected": "أن تكون محبة للسلام",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 374,
+      "field": "option_0",
+      "flagged_word": "الدول الأمريكية",
+      "original": "منظمة الصحة العالمية ومنظمة الدول الأمريكية",
+      "corrected": "منظمة الصحة العالمية ومنظمة الولايات الأمريكية",
       "book_id": "law_organizations",
       "chapter": 4
     }
