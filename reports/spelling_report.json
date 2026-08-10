@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 20:36:00",
+  "generated_at": "2026-08-10 21:36:07",
   "items": [
     {
       "question_id": 1096,
@@ -6370,6 +6370,60 @@
       "flagged_word": "الدول الأمريكية",
       "original": "منظمة الصحة العالمية ومنظمة الدول الأمريكية",
       "corrected": "منظمة الصحة العالمية ومنظمة الولايات الأمريكية",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 376,
+      "field": "option_1",
+      "flagged_word": "االشتراكي",
+      "original": "النظام االشتراكي",
+      "corrected": "النظام الاشتراكي",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 377,
+      "field": "question",
+      "flagged_word": "االنضمام",
+      "original": "ما هي الخطوة الإجرائية المبدئية التي تشترط لقبول االنضمام إلى عضوية المنظمة الدولية عموماً؟",
+      "corrected": "ما هي الخطوة الإجرائية المبدئية التي تشترط لقبول الانضمام إلى عضوية المنظمة الدولية عموماً؟",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 378,
+      "field": "option_4",
+      "flagged_word": "االنضمام",
+      "original": "في حالة االنضمام التلقائي الستيفاء الشروط",
+      "corrected": "في حالة الانضمام التلقائي الاستيفاء الشروط",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 379,
+      "field": "option_2",
+      "flagged_word": "بنا ًء",
+      "original": "الجمعية العامة بنا ًء على توصية مجلس الأمن",
+      "corrected": "الجمعية العامة بناء على توصية مجلس الأمن",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 380,
+      "field": "option_1",
+      "flagged_word": "االنسحاب",
+      "original": "وجوب تقديم طلب االنسحاب قبل عامين من تاريخ التنفيذ",
+      "corrected": "وجوب تقديم طلب الانسحاب قبل عامين من تاريخ التنفيذ",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 380,
+      "field": "option_2",
+      "flagged_word": "االنسحاب",
+      "original": "ضرورة أن تكون الدولة الراغبة في االنسحاب قد نفذت التزاماتها المالية القائمة تجاه المنظمة",
+      "corrected": "ضرورة أن تكون الدولة الراغبة في الانسحاب قد نفذت التزاماتها المالية القائمة تجاه المنظمة",
       "book_id": "law_organizations",
       "chapter": 4
     }
