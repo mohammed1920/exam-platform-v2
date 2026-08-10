@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 16:50:06",
+  "generated_at": "2026-08-10 17:47:09",
   "items": [
     {
       "question_id": 1096,
@@ -6289,6 +6289,42 @@
       "flagged_word": "باالنضمام",
       "original": "العضوية باالنضمام",
       "corrected": "العضوية بالنضمام",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 356,
+      "field": "question",
+      "flagged_word": "ال يجوز",
+      "original": "وفقا ً للقاعدة العامة في القانون الدولي ،ال يجوز انضمام دولة من الغير إلى معاهدة دولية إال إذا تضمنت هذه المعاهدة نصا ً يجيز ذلك ،وتسمى المعاهدة التي تسمح بذلك :",
+      "corrected": "وفقا ً للقاعدة العامة في القانون الدولي ،لا يجوز انضمام دولة من الغير إلى معاهدة دولية إلا إذا تضمنت هذه المعاهدة نصا ً يجيز ذلك ،وتسمى المعاهدة التي تسمح بذلك :",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 357,
+      "field": "option_2",
+      "flagged_word": "السالم",
+      "original": "أن تكون محبة للسالم",
+      "corrected": "أن تكون محبة للسلام",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 359,
+      "field": "option_3",
+      "flagged_word": "الإقليمية",
+      "original": "جميع المنظمات الإقليمية",
+      "corrected": "جميع المنظمات الإقليمية",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 360,
+      "field": "option_4",
+      "flagged_word": "()30",
+      "original": "شروط تتعلق بمسؤولية الدولة. ()30",
+      "corrected": "شروط تتعلق بمسؤولية الدولة",
       "book_id": "law_organizations",
       "chapter": 4
     }
