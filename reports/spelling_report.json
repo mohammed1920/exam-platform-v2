@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 20:49:01",
+  "generated_at": "2026-08-11 21:40:11",
   "items": [
     {
       "question_id": 1096,
@@ -6795,6 +6795,105 @@
       "corrected": "مجلس الأمن والمجلس الاقتصادي والاجتماعي فقط",
       "book_id": "law_organizations",
       "chapter": 5
+    },
+    {
+      "question_id": 501,
+      "field": "option_0",
+      "flagged_word": "ال",
+      "original": "هو أمر ال يتضمن قوة الإلزام وال تترتب على مخالفته أية مسؤولية قانونية",
+      "corrected": "هو أمر لا يتضمن قوة الإلزام ولا تترتب على مخالفته أية مسؤولية قانونية",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 501,
+      "field": "option_2",
+      "flagged_word": "ال",
+      "original": "هو أمر يتضمن قوة الإلزام وال يختلف من إذ القوة عن أي قانون تصدره السلطة المختصة في داخل دولة من الدول",
+      "corrected": "هو أمر يتضمن قوة الإلزام ولا يختلف من حيث القوة عن أي قانون تصدره السلطة المختصة في داخل دولة من الدول",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 502,
+      "field": "question",
+      "flagged_word": "مثاال",
+      "original": "ما الذي يعد مثاالً على استعمال المواثيق الدولية لأللفاظ دون تدقيق أو تمييز بين القرار والتوصية؟",
+      "corrected": "ما الذي يعد مثالًا على استعمال المواثيق الدولية للألفاظ دون تدقيق أو تمييز بين القرار والتوصية؟",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 502,
+      "field": "option_0",
+      "flagged_word": "إلشارة",
+      "original": "استعمال كلمة \"قرار\" فقط لإلشارة إلى تدابير الفصل السادس الملزمة لمجلس الأمن",
+      "corrected": "استعمال كلمة \"قرار\" فقط للإشارة إلى تدابير الفصل السادس الملزمة لمجلس الأمن",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 502,
+      "field": "option_1",
+      "flagged_word": "إلشارة",
+      "original": "استعمال كلمة \"قرار\" لإلشارة لتدابير الفصل السادس (غير الملزمة) والفصل السابع (الملزمة) لمجلس الأمن",
+      "corrected": "استعمال كلمة \"قرار\" للإشارة لتدابير الفصل السادس (غير الملزمة) والفصل السابع (الملزمة) لمجلس الأمن",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 504,
+      "field": "option_1",
+      "flagged_word": "أغلبية",
+      "original": "أن يتم اتخاذ القرار بأغلبية الثلثين المطلقة من الأعضاء",
+      "corrected": "أن يتم اتخاذ القرار بأغلبية الثلثين المطلقة من الأعضاء",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 505,
+      "field": "option_0",
+      "flagged_word": "ال",
+      "original": "يتمتع العضو بأكثر من صوت واحد بنا ًء على حجمه االقتصادي",
+      "corrected": "يتمتع العضو بأكثر من صوت واحد بناء على حجمه الاقتصادي",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 505,
+      "field": "option_1",
+      "flagged_word": "يصوت",
+      "original": "يتمتع العضو بصوت واحد شريطة أن يصوت بالإجماع",
+      "corrected": "يتمتع العضو بصوت واحد شريطة أن يصوت بالإجماع",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 505,
+      "field": "option_2",
+      "flagged_word": "ال",
+      "original": "يتمتع العضو بصوت واحد ،ال فرق في ذلك بين دولة كبيرة ودولة صغيرة",
+      "corrected": "يتمتع العضو بصوت واحد ،لا فرق في ذلك بين دولة كبيرة ودولة صغيرة",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 505,
+      "field": "option_3",
+      "flagged_word": "ال",
+      "original": "أصوات الأعضاء تعد غير متساوية في القوة نتيجة لعدم المساواة القانونية",
+      "corrected": "أصوات الأعضاء تعد غير متساوية في القوة نتيجة لعدم المساواة القانونية",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 505,
+      "field": "option_4",
+      "flagged_word": "يرغم",
+      "original": "يرغم العضو دائما ً على التصويت وال يحق له االمتناع",
+      "corrected": "يرغم العضو دائمًا على التصويت ولا يحق له الامتناع",
+      "book_id": "law_organizations",
+      "chapter": 6
     }
   ],
   "reports": {
