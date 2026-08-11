@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 03:38:31",
+  "generated_at": "2026-08-11 05:02:22",
   "items": [
     {
       "question_id": 1096,
@@ -6561,6 +6561,42 @@
       "corrected": "التزاما ً دوليا ً مطلقا",
       "book_id": "law_organizations",
       "chapter": 4
+    },
+    {
+      "question_id": 402,
+      "field": "option_1",
+      "flagged_word": "المعاهدة ال",
+      "original": "المعاهدة ال تنشئ حقوقا ً والتزامات للغير إال بطلب من الأمين العام",
+      "corrected": "المعاهدة لا تنشئ حقوقا ً والتزامات للغير إلا بطلب من الأمين العام",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 402,
+      "field": "option_2",
+      "flagged_word": "المعاهدة ال",
+      "original": "المعاهدة ال تنشئ التزامات أو حقوقا ً للدول الغير أطراف فيها بدون موافقتها",
+      "corrected": "المعاهدة لا تنشئ التزامات أو حقوقا ً للدول الغير أطراف فيها بدون موافقتها",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 404,
+      "field": "option_2",
+      "flagged_word": "ما تبرمه",
+      "original": "عن طريق ما تبرمه معها من اتفاقات أو عن طريق االستفادة من اختصاصات ونشاطات المنظمة",
+      "corrected": "عن طريق ما يبرم معها من اتفاقات أو عن طريق الاستفادة من اختصاصات ونشاطات المنظمة",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 404,
+      "field": "option_2",
+      "flagged_word": "االستفادة",
+      "original": "عن طريق ما تبرمه معها من اتفاقات أو عن طريق االستفادة من اختصاصات ونشاطات المنظمة",
+      "corrected": "عن طريق ما يبرم معها من اتفاقات أو عن طريق الاستفادة من اختصاصات ونشاطات المنظمة",
+      "book_id": "law_organizations",
+      "chapter": 5
     }
   ],
   "reports": {
