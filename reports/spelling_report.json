@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 22:35:42",
+  "generated_at": "2026-08-11 23:34:11",
   "items": [
     {
       "question_id": 1096,
@@ -6892,6 +6892,24 @@
       "flagged_word": "يرغم",
       "original": "يرغم العضو دائما ً على التصويت وال يحق له االمتناع",
       "corrected": "يرغم العضو دائمًا على التصويت ولا يحق له الامتناع",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 511,
+      "field": "option_0",
+      "flagged_word": "االقتصادي",
+      "original": "القضايا المتعلقة بالتعاون االقتصادي والتنمية",
+      "corrected": "القضايا المتعلقة بالتعاون الاقتصادي والتنمية",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 511,
+      "field": "option_4",
+      "flagged_word": "االنضمام",
+      "original": "قضايا االنضمام إلى عضوية المنظمة",
+      "corrected": "قضايا الانضمام إلى عضوية المنظمة",
       "book_id": "law_organizations",
       "chapter": 6
     }
