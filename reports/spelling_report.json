@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 16:54:44",
+  "generated_at": "2026-08-11 17:54:00",
   "items": [
     {
       "question_id": 1096,
@@ -6766,6 +6766,15 @@
       "flagged_word": "االتحاد",
       "original": "االتحاد الأفريقي",
       "corrected": "الاتحاد الأفريقي",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 452,
+      "field": "question",
+      "flagged_word": "استقالال",
+      "original": "ما هي السلطة التي يتمتع بها الأمين العام للمنظمة استقالالً عن الدول الأعضاء؟",
+      "corrected": "ما هي السلطة التي يتمتع بها الأمين العام للمنظمة استقلالاً عن الدول الأعضاء؟",
       "book_id": "law_organizations",
       "chapter": 5
     }
