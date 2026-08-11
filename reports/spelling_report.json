@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 23:29:53",
+  "generated_at": "2026-08-11 01:15:54",
   "items": [
     {
       "question_id": 1096,
@@ -6496,6 +6496,69 @@
       "flagged_word": "حقق",
       "original": "ما هو أحد حقو ق العضوية التي يتم حرمان الدولة الموقوفة من ممارستها بموجب المادة الخامسة من ميثاق الأمم المتحدة؟",
       "corrected": "ما هو أحد حقوق العضوية التي يتم حرمان الدولة الموقوفة من ممارستها بموجب المادة الخامسة من ميثاق الأمم المتحدة؟",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 394,
+      "field": "question",
+      "flagged_word": "ال يعنيه",
+      "original": "ما الذي ال يعنيه وقف العضوية بالنسبة للعضو الموقوف؟",
+      "corrected": "ما الذي يعنيه وقف العضوية بالنسبة للعضو الموقوف؟",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 394,
+      "field": "option_0",
+      "flagged_word": "مزاياهـ",
+      "original": "حرمان العضو من ممارسة حقوقه ومزاياهـ",
+      "corrected": "حرمان العضو من ممارسة حقوقه ومزاياه",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 394,
+      "field": "option_1",
+      "flagged_word": "االلتزامات",
+      "original": "كونه إجرا ًء عقابيا ً الحترام االلتزامات",
+      "corrected": "كونه إجراء عقابيا ً بالحترام للالتزامات",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 394,
+      "field": "option_2",
+      "flagged_word": "يتحلل",
+      "original": "أن العضو الموقوف يتحلل من التزاماته القائمة تجاه المنظمة",
+      "corrected": "أن العضو الموقوف لا يتحلل من التزاماته القائمة تجاه المنظمة",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 395,
+      "field": "option_0",
+      "flagged_word": "قابالً",
+      "original": "حقا ً غير قابالً للتصرف",
+      "corrected": "حقا ً غير قابل للتصرف",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 395,
+      "field": "option_1",
+      "flagged_word": "غنى عنهـ",
+      "original": "حقا ً ال غنى عنهـ",
+      "corrected": "حقا ً لا غنى عنه",
+      "book_id": "law_organizations",
+      "chapter": 4
+    },
+    {
+      "question_id": 395,
+      "field": "option_2",
+      "flagged_word": "مطلقا ً",
+      "original": "التزاما ً دوليا ً مطلقا ً",
+      "corrected": "التزاما ً دوليا ً مطلقا",
       "book_id": "law_organizations",
       "chapter": 4
     }
