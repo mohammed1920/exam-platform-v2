@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 14:16:28",
+  "generated_at": "2026-08-11 15:56:04",
   "items": [
     {
       "question_id": 1096,
@@ -6712,6 +6712,24 @@
       "flagged_word": "االعتبار",
       "original": "ما هو االعتبار الذي أدى إلى ظهور أجهزة رئيسة أخرى في الأمم المتحدة إلى جانب الأجهزة العامة والتنفيذية والإدارية؟",
       "corrected": "ما هو العتبار الذي أدى إلى ظهور أجهزة رئيسة أخرى في الأمم المتحدة إلى جانب الأجهزة العامة والتنفيذية والإدارية؟",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 441,
+      "field": "option_1",
+      "flagged_word": "باالختيار",
+      "original": "باالختيار من قبل الأمين العام",
+      "corrected": "بالاختيار من قبل الأمين العام",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 441,
+      "field": "option_4",
+      "flagged_word": "باالتفاق",
+      "original": "باالتفاق الإجماعي المسبق",
+      "corrected": "بالاتفاق الإجماعي المسبق",
       "book_id": "law_organizations",
       "chapter": 5
     }
