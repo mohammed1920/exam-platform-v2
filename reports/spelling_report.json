@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 15:56:04",
+  "generated_at": "2026-08-11 16:54:44",
   "items": [
     {
       "question_id": 1096,
@@ -6730,6 +6730,42 @@
       "flagged_word": "باالتفاق",
       "original": "باالتفاق الإجماعي المسبق",
       "corrected": "بالاتفاق الإجماعي المسبق",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 446,
+      "field": "question",
+      "flagged_word": "الالئحة",
+      "original": "من هي الجهة التي تتولى وضع الالئحة الداخلية التي يحدد فيها نظام العمل والتصويت للجهاز الخاص؟",
+      "corrected": "من هي الجهة التي تتولى وضع اللائحة الداخلية التي يحدد فيها نظام العمل والتصويت للجهاز الخاص؟",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 447,
+      "field": "question",
+      "flagged_word": "الختيار",
+      "original": "ما هي الطريقة المتبعة الختيار رئيس مجلس الأمن ،والتي تندرج تحت طرق اختيار رئيس الجهاز الخاص؟",
+      "corrected": "ما هي الطريقة المتبعة لاختيار رئيس مجلس الأمن ،والتي تندرج تحت طرق اختيار رئيس الجهاز الخاص؟",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 447,
+      "field": "option_0",
+      "flagged_word": "االنتخاب",
+      "original": "عن طريق االنتخاب المباشر",
+      "corrected": "عن طريق الانتخاب المباشر",
+      "book_id": "law_organizations",
+      "chapter": 5
+    },
+    {
+      "question_id": 449,
+      "field": "option_2",
+      "flagged_word": "االتحاد",
+      "original": "االتحاد الأفريقي",
+      "corrected": "الاتحاد الأفريقي",
       "book_id": "law_organizations",
       "chapter": 5
     }
