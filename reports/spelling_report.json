@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12 12:56:36",
+  "generated_at": "2026-08-12 14:19:25",
   "items": [
     {
       "question_id": 1096,
@@ -6973,6 +6973,33 @@
       "flagged_word": "االستشاري",
       "original": "طبقا ً للرأي االستشاري لمحكمة العدل الدولية سنة ،1949لتعويض الأضرار التي أصابت موظفي الأمم المتحدة ،ما هي إحدى صفات \"العامل الدولي\"؟",
       "corrected": "طبقا ً للرأي الاستشاري لمحكمة العدل الدولية سنة ،1949لتعويض الأضرار التي أصابت موظفي الأمم المتحدة ،ما هي إحدى صفات \"العامل الدولي\"؟",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 556,
+      "field": "question",
+      "flagged_word": "Fonctionnal",
+      "original": "على ماذا تخضع العالقة التنظيمية الدولية أساساً ،والتي يترتب عليها أن العالقة تكون وظيفية ) (Fonctionnal؟",
+      "corrected": "على ماذا تخضع العالقة التنظيمية الدولية أساساً ،والتي يترتب عليها أن العالقة تكون وظيفية ) (وظيفية؟",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 557,
+      "field": "option_2",
+      "flagged_word": "ال يعمل",
+      "original": "بأنه ال يعمل لتحقيق هدف دولي",
+      "corrected": "بأنه لا يعمل لتحقيق هدف دولي",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 559,
+      "field": "question",
+      "flagged_word": "ال",
+      "original": "من الذي ال يعد موظفا ً دوليا ً حسب النص؟",
+      "corrected": "من الذي لا يعد موظفاً دولياً حسب النص؟",
       "book_id": "law_organizations",
       "chapter": 6
     }
