@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12 14:19:25",
+  "generated_at": "2026-08-12 15:55:14",
   "items": [
     {
       "question_id": 1096,
@@ -7000,6 +7000,33 @@
       "flagged_word": "ال",
       "original": "من الذي ال يعد موظفا ً دوليا ً حسب النص؟",
       "corrected": "من الذي لا يعد موظفاً دولياً حسب النص؟",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 561,
+      "field": "question",
+      "flagged_word": "ال يؤثر",
+      "original": "ما هو الأثر الذي ال يؤثر في كون الموظف الدولي يعمل لتحقيق مصالح الجماعة الدولية؟",
+      "corrected": "ما هو الأثر الذي لا يؤثر في كون الموظف الدولي يعمل لتحقيق مصالح الجماعة الدولية؟",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 564,
+      "field": "option_1",
+      "flagged_word": "ألي",
+      "original": "سلطة الإشراف الإداري ألي دولة",
+      "corrected": "سلطة الإشراف الإداري لدولة",
+      "book_id": "law_organizations",
+      "chapter": 6
+    },
+    {
+      "question_id": 565,
+      "field": "option_1",
+      "flagged_word": "كلية",
+      "original": "أن الموظف يكون كلية في خدمة المنظمة طوال فترة خدمته المحددة في العقد",
+      "corrected": "أن الموظف يكون كلياً في خدمة المنظمة طوال فترة خدمته المحددة في العقد",
       "book_id": "law_organizations",
       "chapter": 6
     }
