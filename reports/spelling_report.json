@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12 18:54:51",
+  "generated_at": "2026-08-12 19:58:45",
   "items": [
     {
       "question_id": 1096,
@@ -7081,6 +7081,42 @@
       "flagged_word": "مذهب االختصاص",
       "original": "مذهب االختصاص الداخلي",
       "corrected": "مذهب الاختصاص الداخلي",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 612,
+      "field": "option_0",
+      "flagged_word": "االختلاف",
+      "original": "زيادة االختلافات الكبيرة بين المنظمات",
+      "corrected": "زيادة الاختلافات الكبيرة بين المنظمات",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 612,
+      "field": "option_1",
+      "flagged_word": "حاله",
+      "original": "بقاء الوضع القانوني لكل منظمة على حاله",
+      "corrected": "بقاء الوضع القانوني لكل منظمة على حالها",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 612,
+      "field": "option_2",
+      "flagged_word": "بهؤالء",
+      "original": "قد يؤدي إلى توحيد النظم القانونية الخاصة بهؤالء الموظفين",
+      "corrected": "قد يؤدي إلى توحيد النظم القانونية الخاصة بهؤلاء الموظفين",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 613,
+      "field": "question",
+      "flagged_word": "اآلخر",
+      "original": "إلى جانب العقد والقواعد العامة في المواثيق واللوائح الداخلية ،ما هو المصدر اآلخر الذي يلتزم الموظف الدولي بالقيام بوظائفه طبقا ً له؟",
+      "corrected": "إلى جانب العقد والقواعد العامة في المواثيق واللوائح الداخلية ،ما هو المصدر الآخر الذي يلتزم الموظف الدولي بالقيام بوظائفه طبقا ً له؟",
       "book_id": "law_organizations",
       "chapter": 7
     }
