@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13 19:54:14",
+  "generated_at": "2026-08-13 20:36:26",
   "items": [
     {
       "question_id": 1096,
@@ -7479,6 +7479,33 @@
       "corrected": "لا يزيد عن 25% من الميزانية",
       "book_id": "law_organizations",
       "chapter": 7
+    },
+    {
+      "question_id": 716,
+      "field": "option_1",
+      "flagged_word": "االنضمام",
+      "original": "العالمية التي تقوم على أساس االنضمام التلقائي غير المشروط",
+      "corrected": "العالمية التي تقوم على أساس الانضمام التلقائي غير المشروط",
+      "book_id": "law_organizations",
+      "chapter": 8
+    },
+    {
+      "question_id": 717,
+      "field": "question",
+      "flagged_word": "االنضمام",
+      "original": "ما هو الشرط الذي يتوقف عليه االنضمام في إطار \"العالمية النسبية\" للمنظمة الدولية؟",
+      "corrected": "ما هو الشرط الذي يتوقف عليه الانضمام في إطار \"العالمية النسبية\" للمنظمة الدولية؟",
+      "book_id": "law_organizations",
+      "chapter": 8
+    },
+    {
+      "question_id": 720,
+      "field": "option_0",
+      "flagged_word": "العالمية",
+      "original": "أن العصبة يجب أن تقوم على العالمية المطلقة",
+      "corrected": "أن العصبة يجب أن تقوم على العالمية المطلقة",
+      "book_id": "law_organizations",
+      "chapter": 8
     }
   ],
   "reports": {
