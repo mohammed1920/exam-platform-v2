@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13 14:22:22",
+  "generated_at": "2026-08-13 15:54:23",
   "items": [
     {
       "question_id": 1096,
@@ -7423,6 +7423,60 @@
       "flagged_word": "كمشاجرة",
       "original": "تصرفاته البعيدة عن مهامه الرسمية والتي تصدر منه باعتباره شخصا ً عاديا ً كمشاجرة أو استدانة",
       "corrected": "تصرفاته البعيدة عن مهامه الرسمية والتي تصدر منه باعتباره شخصاً عادياً كالمشاجرة أو الاستدانة",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 678,
+      "field": "question",
+      "flagged_word": "لاشتراك",
+      "original": "أي منظمة دولية أخذت بمعيار \"مدى استعداد الدولة\" لالشتراك ،وقسمت االشتراك إلى سبع فئات تترك للدولة اختيار ما يناسبها؟",
+      "corrected": "أي منظمة دولية أخذت بمعيار \"مدى استعداد الدولة\" للمشاركة ،وقسمت المشاركة إلى سبع فئات تترك للدولة اختيار ما يناسبها؟",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 677,
+      "field": "option_0",
+      "flagged_word": "ال يقل عن (. )%0 04",
+      "original": "ال يقل عن (. )%0 04",
+      "corrected": "لا يقل عن 0.04%",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 677,
+      "field": "option_1",
+      "flagged_word": "ال يزيد عن ( )%50",
+      "original": "ال يزيد عن ( )%50",
+      "corrected": "لا يزيد عن 50%",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 677,
+      "field": "option_2",
+      "flagged_word": "ال يزيد عن (. )%10",
+      "original": "ال يزيد عن (. )%10",
+      "corrected": "لا يزيد عن 10%",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 677,
+      "field": "option_3",
+      "flagged_word": "ال يزيد عن ( )%20من الميزانية",
+      "original": "ال يزيد عن ( )%20من الميزانية",
+      "corrected": "لا يزيد عن 20% من الميزانية",
+      "book_id": "law_organizations",
+      "chapter": 7
+    },
+    {
+      "question_id": 677,
+      "field": "option_4",
+      "flagged_word": "ال يزيد عن ( )%25من الميزانية",
+      "original": "ال يزيد عن ( )%25من الميزانية",
+      "corrected": "لا يزيد عن 25% من الميزانية",
       "book_id": "law_organizations",
       "chapter": 7
     }
