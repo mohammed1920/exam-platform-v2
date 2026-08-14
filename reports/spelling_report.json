@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13 23:35:42",
+  "generated_at": "2026-08-14 01:25:06",
   "items": [
     {
       "question_id": 1096,
@@ -7531,6 +7531,78 @@
       "flagged_word": "المحبة",
       "original": "مبدأ المساواة في السيادة بين جميع الدول المحبة للسالم",
       "corrected": "مبدأ المساواة في السيادة بين جميع الدول المحبّة للسلام",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 811,
+      "field": "option_0",
+      "flagged_word": "إعالن يالطا",
+      "original": "إعالن يالطا",
+      "corrected": "إعلان يالطا",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 811,
+      "field": "option_1",
+      "flagged_word": "إعالن طهران",
+      "original": "إعالن طهران",
+      "corrected": "إعلان طهران",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_0",
+      "flagged_word": "االتحاد",
+      "original": "الواليات المتحدة ،االتحاد السوفيتي ،ألمانيا ،فرنسا ،الصين",
+      "corrected": "الولايات المتحدة ،الاتحاد السوفيتي ،ألمانيا ،فرنسا ،الصين",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_0",
+      "flagged_word": "الواليات",
+      "original": "الواليات المتحدة ،االتحاد السوفيتي ،ألمانيا ،فرنسا ،الصين",
+      "corrected": "الولايات المتحدة ،الاتحاد السوفيتي ،ألمانيا ،فرنسا ،الصين",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_1",
+      "flagged_word": "االتحاد",
+      "original": "الصين ،فرنسا ،االتحاد السوفيتي ،بريطانيا ،والواليات المتحدة الأمريكية",
+      "corrected": "الصين ،فرنسا ،الاتحاد السوفيتي ،بريطانيا ،والولايات المتحدة الأمريكية",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_1",
+      "flagged_word": "والواليات",
+      "original": "الصين ،فرنسا ،االتحاد السوفيتي ،بريطانيا ،والواليات المتحدة الأمريكية",
+      "corrected": "الصين ،فرنسا ،الاتحاد السوفيتي ،بريطانيا ،والولايات المتحدة الأمريكية",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_2",
+      "flagged_word": "الواليات",
+      "original": "الواليات المتحدة ،بريطانيا ،إيطاليا ،فرنسا ،الصين",
+      "corrected": "الولايات المتحدة ،بريطانيا ،إيطاليا ،فرنسا ،الصين",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 813,
+      "field": "option_4",
+      "flagged_word": "الواليات",
+      "original": "الواليات المتحدة ،ألمانيا ،إيطاليا ،اليابان ،بريطانيا",
+      "corrected": "الولايات المتحدة ،ألمانيا ،إيطاليا ،اليابان ،بريطانيا",
       "book_id": "law_organizations",
       "chapter": 9
     }
