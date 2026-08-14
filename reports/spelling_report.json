@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14 01:25:06",
+  "generated_at": "2026-08-14 04:02:40",
   "items": [
     {
       "question_id": 1096,
@@ -7603,6 +7603,60 @@
       "flagged_word": "الواليات",
       "original": "الواليات المتحدة ،ألمانيا ،إيطاليا ،اليابان ،بريطانيا",
       "corrected": "الولايات المتحدة ،ألمانيا ،إيطاليا ،اليابان ،بريطانيا",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 816,
+      "field": "option_2",
+      "flagged_word": "ثالثة",
+      "original": "حوالي ثالثة أشهر",
+      "corrected": "حوالي ثلاثة أشهر",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 817,
+      "field": "question",
+      "flagged_word": "االتفاق",
+      "original": "ما هو عدد المواد التي تضمنها ميثاق الأمم المتحدة عند االتفاق عليه في مؤتمر سان فرانسيسكو؟",
+      "corrected": "ما هو عدد المواد التي تضمنها ميثاق الأمم المتحدة عند الاتفاق عليه في مؤتمر سان فرانسيسكو؟",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 819,
+      "field": "option_1",
+      "flagged_word": "كانون",
+      "original": "10 كانون الثاني عام . 1946",
+      "corrected": "10 يناير عام 1946",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 819,
+      "field": "option_2",
+      "flagged_word": "تموز",
+      "original": "26 تموز عام . 1945",
+      "corrected": "26 يوليو عام 1945",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 819,
+      "field": "option_3",
+      "flagged_word": "آب",
+      "original": "14 آب سنة . 1941",
+      "corrected": "14 أغسطس سنة 1941",
+      "book_id": "law_organizations",
+      "chapter": 9
+    },
+    {
+      "question_id": 820,
+      "field": "option_0",
+      "flagged_word": "االقتصادية",
+      "original": "تحقيق التعاون الدولي في الشؤون االقتصادية واالجتماعية",
+      "corrected": "تحقيق التعاون الدولي في الشؤون الاقتصادية والاجتماعية",
       "book_id": "law_organizations",
       "chapter": 9
     }
