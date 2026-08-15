@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15 05:19:38",
+  "generated_at": "2026-08-15 06:27:46",
   "items": [
     {
       "question_id": 1096,
@@ -7756,6 +7756,51 @@
       "flagged_word": "الطفل الى",
       "original": "عدم تسليم الطفل الى من له حق الحضانة",
       "corrected": "عدم تسليم الطفل إلى من له حق الحضانة",
+      "book_id": "law_general_penalties",
+      "chapter": 2
+    },
+    {
+      "question_id": 26,
+      "field": "option_0",
+      "flagged_word": "أجازة",
+      "original": "جريمة حمل السلاح دون أجازة",
+      "corrected": "جريمة حمل السلاح دون ترخيص",
+      "book_id": "law_general_penalties",
+      "chapter": 2
+    },
+    {
+      "question_id": 27,
+      "field": "option_1",
+      "flagged_word": "أجازة",
+      "original": "جريمة حمل السلاح دون أجازة",
+      "corrected": "جريمة حمل السلاح دون ترخيص",
+      "book_id": "law_general_penalties",
+      "chapter": 2
+    },
+    {
+      "question_id": 27,
+      "field": "option_2",
+      "flagged_word": "أجازة",
+      "original": "جريمة سياقة السيارة دون أجازة",
+      "corrected": "جريمة سياقة السيارة دون رخصة",
+      "book_id": "law_general_penalties",
+      "chapter": 2
+    },
+    {
+      "question_id": 28,
+      "field": "question",
+      "flagged_word": "فإستمرار",
+      "original": "لا أهمية للآثار المترتبة على الجريمة أو الناتجة عن وقوعها فإستمرار هذه الآثار لا يجعل الجريمة مستمرة ما دام السلوك المكون لها لم تتوفر فيه حالة الإستمرار:",
+      "corrected": "لا أهمية للآثار المترتبة على الجريمة أو الناتجة عن وقوعها فإن استمرار هذه الآثار لا يجعل الجريمة مستمرة ما دام السلوك المكون لها لم تتوفر فيه حالة الاستمرار:",
+      "book_id": "law_general_penalties",
+      "chapter": 2
+    },
+    {
+      "question_id": 29,
+      "field": "option_0",
+      "flagged_word": "أجازة",
+      "original": "جريمة سياقة السيارة دون أجازة",
+      "corrected": "جريمة سياقة السيارة دون رخصة",
       "book_id": "law_general_penalties",
       "chapter": 2
     }
