@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15 22:15:11",
+  "generated_at": "2026-08-15 23:15:03",
   "items": [
     {
       "question_id": 1096,
@@ -7992,6 +7992,33 @@
       "corrected": "يُقصد بالجرائم غير المقصودة أو غير العمدية تلك الجرائم التي لا يتطلب القانون فيها توافر القصد الجنائي بل يكفي الإهمال أو عدم الاحتياط وما شابه ذلك:",
       "book_id": "law_general_penalties",
       "chapter": 2
+    },
+    {
+      "question_id": 11,
+      "field": "question",
+      "flagged_word": "المُعدل",
+      "original": "السؤال 211 – وفقاً لقانون العقوبات العراقي رقم (111) لسنة 1969 المُعدل يمكن معاقبة ممثل الشخص المعنوي الذي يرتكب جريمة عندما يعمل لمصلحة الشخص المعنوي بـ:",
+      "corrected": "السؤال 211 – وفقاً لقانون العقوبات العراقي رقم (111) لسنة 1969 المعدل يمكن معاقبة ممثل الشخص المعنوي الذي يرتكب جريمة عندما يعمل لمصلحة الشخص المعنوي بـ:",
+      "book_id": "law_general_penalties",
+      "chapter": 3
+    },
+    {
+      "question_id": 14,
+      "field": "option_0",
+      "flagged_word": "كل ما ذُكر",
+      "original": "كل ما ذُكر",
+      "corrected": "كل ما ذكر",
+      "book_id": "law_general_penalties",
+      "chapter": 3
+    },
+    {
+      "question_id": 15,
+      "field": "option_3",
+      "flagged_word": "كل ما ذُكر",
+      "original": "كل ما ذُكر",
+      "corrected": "كل ما ذكر",
+      "book_id": "law_general_penalties",
+      "chapter": 3
     }
   ],
   "reports": {
