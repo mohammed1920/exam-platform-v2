@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 13:26:17",
+  "generated_at": "2026-08-16 14:16:59",
   "items": [
     {
       "question_id": 1096,
@@ -8044,6 +8044,33 @@
       "flagged_word": "إشترط",
       "original": "إشترط قانون العقوبات العراقي رقم (111) لسنة 1969 المُعدل لإمتناع المسؤولية الجنائية عن المجنون الذي يرتكب جريمة:",
       "corrected": "اشترط قانون العقوبات العراقي رقم (111) لسنة 1969 المُعدل لإمتناع المسؤولية الجنائية عن المجنون الذي يرتكب جريمة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 11,
+      "field": "question",
+      "flagged_word": "الأحمق",
+      "original": "يترتب على إرتكاب الشخص الأحمق جريمة، وفقاً لذلك:",
+      "corrected": "يترتب على إرتكاب الشخص الحمق جريمة، وفقاً لذلك:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 13,
+      "field": "option_1",
+      "flagged_word": "الشسيزوفرينيا",
+      "original": "الشسيزوفرينيا (الفصام)",
+      "corrected": "الشيزوفرينيا (الفصام)",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 14,
+      "field": "option_0",
+      "flagged_word": "الشسيزوفرينيا",
+      "original": "الشسيزوفرينيا (الفصام)",
+      "corrected": "الشيزوفرينيا (الفصام)",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
