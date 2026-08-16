@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 19:17:06",
+  "generated_at": "2026-08-16 20:15:09",
   "items": [
     {
       "question_id": 1096,
@@ -8125,6 +8125,105 @@
       "flagged_word": "إرتكب",
       "original": "إرتكب شخص جريمة أثناء ثورة العاطفة وشدة الإنفعال بأقصى درجاتها، وفقاً لذلك:",
       "corrected": "ارتكب شخص جريمة أثناء ثورة العاطفة وشدة الإنفعال بأقصى درجاتها، وفقاً لذلك:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 42,
+      "field": "question",
+      "flagged_word": "السكر والمخدر",
+      "original": "حدد قانون العقوبات العراقي رقم (111) لسنة 1969 المُعدل موانع المسؤولية الجنائية على سبيل الحصر ومنها (السكر والمخدر):",
+      "corrected": "حدد قانون العقوبات العراقي رقم (111) لسنة 1969 المُعدل موانع المسؤولية الجنائية على سبيل الحصر ومنها (المسكر والمخدر):",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 43,
+      "field": "option_1",
+      "flagged_word": "مัสسكرة",
+      "original": "تناول مواد مسسكرة أو مخدرة قسسراً أو عن غير علم",
+      "corrected": "تناول مواد مسكرة أو مخدرة قسراً أو عن غير علم",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 43,
+      "field": "option_1",
+      "flagged_word": "قسسراً",
+      "original": "تناول مواد مسسكرة أو مخدرة قسسراً أو عن غير علم",
+      "corrected": "تناول مواد مسكرة أو مخدرة قسراً أو عن غير علم",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_0",
+      "flagged_word": "تنعدم",
+      "original": "تنعدم المسسؤولية الجنائية",
+      "corrected": "تنعدم المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_0",
+      "flagged_word": "المسسؤولية",
+      "original": "تنعدم المسسؤولية الجنائية",
+      "corrected": "تنعدم المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_1",
+      "flagged_word": "تشسدد",
+      "original": "تشسدد المسسؤولية الجنائية",
+      "corrected": "تشدد المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_1",
+      "flagged_word": "المسسؤولية",
+      "original": "تشسدد المسسؤولية الجنائية",
+      "corrected": "تشدد المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_2",
+      "flagged_word": "تخفف",
+      "original": "تخفف المسسؤولية الجنائية",
+      "corrected": "تخفف المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_2",
+      "flagged_word": "المسسؤولية",
+      "original": "تخفف المسسؤولية الجنائية",
+      "corrected": "تخفف المسؤولية الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_3",
+      "flagged_word": "يتحمل",
+      "original": "يتحمل مسسؤولية جنائية عادية",
+      "corrected": "يتحمل مسؤولية جنائية عادية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 44,
+      "field": "option_3",
+      "flagged_word": "مسسؤولية",
+      "original": "يتحمل مسسؤولية جنائية عادية",
+      "corrected": "يتحمل مسؤولية جنائية عادية",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
