@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 22:14:43",
+  "generated_at": "2026-08-16 23:14:23",
   "items": [
     {
       "question_id": 1096,
@@ -8422,6 +8422,51 @@
       "flagged_word": "شـخص",
       "original": "تناول شـخص مسكرة من دون علم منه وبقي محتفظاً بكامل إدراكه واختياره وارتكب جريمة تزوير محررات رسمية، وفقاً لهذه الواقعة:",
       "corrected": "تناول شخص مسكرة من دون علم منه وبقي محتفظاً بكامل إدراكه واختياره وارتكب جريمة تزوير محررات رسمية، وفقاً لهذه الواقعة:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 56,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 57,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 58,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 58,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 59,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
