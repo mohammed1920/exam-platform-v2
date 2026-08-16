@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 05:22:43",
+  "generated_at": "2026-08-16 06:30:15",
   "items": [
     {
       "question_id": 1096,
@@ -8017,6 +8017,15 @@
       "flagged_word": "كل ما ذُكر",
       "original": "كل ما ذُكر",
       "corrected": "كل ما ذكر",
+      "book_id": "law_general_penalties",
+      "chapter": 3
+    },
+    {
+      "question_id": 41,
+      "field": "question",
+      "flagged_word": "إرتكاب",
+      "original": "السؤال 241 - ........... بوصفه من عناصر سبق الإصرار يُقصد به عقد النية على إرتكاب الجريمة قبل تنفيذها بفترة قصيرة:",
+      "corrected": "السؤال 241 - ........... بوصفه من عناصر سبق الإصرار يُقصد به عقد النية على ارتكاب الجريمة قبل تنفيذها بفترة قصيرة:",
       "book_id": "law_general_penalties",
       "chapter": 3
     }
