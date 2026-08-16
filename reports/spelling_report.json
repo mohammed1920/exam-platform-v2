@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 20:15:09",
+  "generated_at": "2026-08-16 21:14:23",
   "items": [
     {
       "question_id": 1096,
@@ -8224,6 +8224,159 @@
       "flagged_word": "مسسؤولية",
       "original": "يتحمل مسسؤولية جنائية عادية",
       "corrected": "يتحمل مسؤولية جنائية عادية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 46,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 46,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 46,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 46,
+      "field": "option_3",
+      "flagged_word": "مسسؤولية",
+      "original": "يتحمل مسسؤولية جنائية عادية",
+      "corrected": "يتحمل مسؤولية جنائية عادية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 47,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 47,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 47,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 47,
+      "field": "option_3",
+      "flagged_word": "مسسؤولية",
+      "original": "يتحمل مسسؤولية جنائية عادية",
+      "corrected": "يتحمل مسؤولية جنائية عادية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 48,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 48,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 48,
+      "field": "option_3",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 49,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 49,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 49,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 50,
+      "field": "option_0",
+      "flagged_word": "مسسؤوليته",
+      "original": "تنعدم مسسؤوليته الجنائية",
+      "corrected": "تنعدم مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 50,
+      "field": "option_1",
+      "flagged_word": "مسسؤوليته",
+      "original": "تشدد مسسؤوليته الجنائية",
+      "corrected": "تشدد مسؤوليته الجنائية",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 50,
+      "field": "option_2",
+      "flagged_word": "مسسؤوليته",
+      "original": "تخفف مسسؤوليته الجنائية",
+      "corrected": "تخفف مسؤوليته الجنائية",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
