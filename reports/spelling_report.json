@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17 04:35:23",
+  "generated_at": "2026-08-17 05:30:38",
   "items": [
     {
       "question_id": 1096,
@@ -8665,6 +8665,96 @@
       "flagged_word": "شسهادة",
       "original": "أعصسار يقطع طرق المواصسلات على شساهد فيمنعه من الذهاب الى المحكمة لإداء شسهادة دعا اليها قانوناً",
       "corrected": "عصابة يقطع طرق المواصلات على شاهد فيمنعه من الذهاب إلى المحكمة لإداء شهادته دعا إليه قانوناً",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 81,
+      "field": "option_2",
+      "flagged_word": "لا يصسدر",
+      "original": "لا يصسدر الا عن إنسسان",
+      "corrected": "لا يصدر إلا عن إنسان",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 82,
+      "field": "option_0",
+      "flagged_word": "الجسسامة",
+      "original": "أن يكون من الجسسامة بحيث يفقد الجاني تماماً الاختيار لديه",
+      "corrected": "أن يكون من الجسامة بحيث يفقد الجاني تماماً الاختيار لديه",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 82,
+      "field": "option_1",
+      "flagged_word": "إستطاعة",
+      "original": "أن يكون في إستطاعة الجاني توقع سبب الإكراه",
+      "corrected": "أن يكون في استطاعة الجاني توقع سبب الإكراه",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 82,
+      "field": "option_2",
+      "flagged_word": "إستطاعة",
+      "original": "اذا كان في إستطاعة الجاني توقع سبب الإكراه",
+      "corrected": "إذا كان في استطاعة الجاني توقع سبب الإكراه",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 83,
+      "field": "option_0",
+      "flagged_word": "الجسسامة",
+      "original": "أن لا يكون في الجسسامة بحيث يفقد الجاني تماماً الاختيار بل يُضعفه فقط",
+      "corrected": "أن لا يكون في الجسامة بحيث يفقد الجاني تماماً الاختيار بل يضعفه فقط",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 83,
+      "field": "option_1",
+      "flagged_word": "الجسسامة",
+      "original": "أن يكون من الجسسامة بحيث يفقد الجاني تماماً الاختيار",
+      "corrected": "أن يكون من الجسامة بحيث يفقد الجاني تماماً الاختيار",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 85,
+      "field": "question",
+      "flagged_word": "التشسريعات",
+      "original": "من التشسريعات التي نصت صراحة على إعتبار الإكراه بنوعية المادي والمعنوي مانعاً للمسسؤولية الجنائية:",
+      "corrected": "من التشريعات التي نصت صراحة على اعتبار الإكراه بنوعية المادي والمعنوي مانعاً للمسؤولية الجنائية:",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 85,
+      "field": "option_1",
+      "flagged_word": "الإيماني",
+      "original": "قانون العقوبات الإيماني",
+      "corrected": "قانون العقوبات الإيراني",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 85,
+      "field": "option_2",
+      "flagged_word": "المصسري",
+      "original": "قانون العقوبات المصسري",
+      "corrected": "قانون العقوبات المصري",
+      "book_id": "law_general_penalties",
+      "chapter": 4
+    },
+    {
+      "question_id": 85,
+      "field": "question",
+      "flagged_word": "المسسؤولية",
+      "original": "من التشسريعات التي نصت صراحة على إعتبار الإكراه بنوعية المادي والمعنوي مانعاً للمسسؤولية الجنائية:",
+      "corrected": "من التشريعات التي نصت صراحة على اعتبار الإكراه بنوعية المادي والمعنوي مانعاً للمسؤولية الجنائية:",
       "book_id": "law_general_penalties",
       "chapter": 4
     }
