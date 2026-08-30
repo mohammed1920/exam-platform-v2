@@ -431,16 +431,18 @@
     })();
 
     // ---------- عداد زوار الموقع ----------
-    // يستخدم خدمة CounterAPI.dev المجانية (بدون تسجيل حساب ولا مفتاح API).
+    // يستخدم خدمة CounterAPI.dev (نسخة V2 — V1 توقفت نهائياً بتاريخ 7 أغسطس 2026).
+    // العداد مضبوط كـ Public من لوحة تحكم CounterAPI، لذلك لا حاجة لمفتاح API هنا
+    // ولا لكشفه بكود الواجهة الأمامية.
     // يزيد الرقم مرة واحدة فقط لكل جلسة متصفح (sessionStorage) حتى لا يُحتسب
     // نفس الطالب أكثر من مرة لو تنقّل بين صفحات الموقع أو عمل تحديث (refresh).
     (function setupVisitorCounter() {
       const countEl = document.getElementById('visitor-count');
       if (!countEl) return;
 
-      const NAMESPACE = 'exam-platform-v2-mohammed1920';
-      const COUNTER_NAME = 'visitors';
-      const BASE_URL = `https://api.counterapi.dev/v1/${NAMESPACE}/${COUNTER_NAME}`;
+      const WORKSPACE = 'mhmd-hmyds-team-5310';
+      const COUNTER_NAME = 'first-counter-5310';
+      const BASE_URL = `https://api.counterapi.dev/v2/${WORKSPACE}/${COUNTER_NAME}`;
 
       const alreadyCountedThisSession = sessionStorage.getItem('visitCounted') === '1';
       const requestUrl = alreadyCountedThisSession ? `${BASE_URL}` : `${BASE_URL}/up`;
@@ -448,7 +450,8 @@
       fetch(requestUrl)
         .then((res) => res.json())
         .then((data) => {
-          const value = data.count ?? data.value ?? data.data ?? null;
+          // شكل استجابة V2: { code, data: { up_count, down_count, ... } }
+          const value = data.data?.up_count ?? data.data?.value ?? data.count ?? data.value ?? null;
           countEl.textContent = (value !== null && value !== undefined) ? value : '—';
           if (!alreadyCountedThisSession) {
             sessionStorage.setItem('visitCounted', '1');
