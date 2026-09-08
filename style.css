@@ -1,0 +1,1323 @@
+:root {
+  --primary: #c29d5f;
+  --primary-hover: #b08d4f;
+  --bg-dark: #0f172a;
+  --card-bg: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --success: #10b981;
+  --error: #ef4444;
+  --header-bg: rgba(30, 41, 59, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+body.exam-mode header,
+body.exam-mode footer {
+  display: none;
+}
+
+header {
+  background: var(--header-bg);
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  font-weight: 900;
+}
+
+header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-container {
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-wrapper i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(194, 157, 95, 0.2);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.book-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-icon {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.book-author {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.book-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.book-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chapters-badge {
+  background: rgba(194, 157, 95, 0.1);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* توحيد وإجبار أزرار الكتب على الحواف الدائرية الفاخرة */
+.book-card button, .card button, .start-exam-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-card button:hover, .start-exam-btn:hover {
+  background: var(--primary-hover);
+}
+
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: var(--card-bg);
+  border-color: var(--text-secondary);
+}
+
+.chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chapter-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.chapter-item:hover {
+  border-color: var(--primary);
+}
+
+.chapter-info h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.chapter-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.exam-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.exam-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.stat-wrong .stat-value { color: #ef4444; }
+.stat-wrong { border-color: rgba(239, 68, 68, 0.3); }
+
+.stat-correct .stat-value { color: #10b981; }
+.stat-correct { border-color: rgba(16, 185, 129, 0.3); }
+
+.stat-progress .stat-value { color: var(--text-primary); }
+
+.stat-time .stat-value { color: var(--primary); }
+.stat-time { border-color: rgba(194, 157, 95, 0.35); }
+
+.exam-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.exam-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.exam-timer {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.progress-bar-container {
+  background: var(--bg-dark);
+  height: 6px;
+  border-radius: 3px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background: var(--primary);
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.question-container {
+  margin-bottom: 25px;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: right;
+  padding: 14px 20px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: rgba(194, 157, 95, 0.05);
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.exam-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.exam-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.exam-btn.prev {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.exam-btn.next {
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+.results-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.result-emoji {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.result-grade {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.result-score {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.result-details {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.detail-label {
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-weight: 700;
+}
+
+.results-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.results-actions button {
+  flex: 1;
+}
+
+.review-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.review-question {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.review-answer {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.review-answer.incorrect {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.review-answer.correct {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.review-explanation {
+  background: var(--bg-dark);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-right: 3px solid var(--primary);
+  margin-top: 10px;
+}
+
+footer {
+  background: var(--card-bg);
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: 50px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-btn, .footer-link-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(194, 157, 95, 0.1);
+  border: 1.5px solid var(--primary);
+  border-radius: 25px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.footer-btn:hover, .footer-link-btn:hover {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 12px rgba(194, 157, 95, 0.3);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.footer-contact-info a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  margin: 0 8px;
+}
+
+.footer-contact-info a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom p {
+  margin: 6px 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .question-text {
+    font-size: 1.1rem;
+  }
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .book-title {
+    font-size: 1rem;
+  }
+  .exam-box, .results-box {
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   أغلفة الكتب
+   يدعم الصور الموجودة في data/images/books/
+   ========================================================= */
+
+.book-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.book-card-content {
+  min-width: 0;
+}
+
+.book-cover {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  margin: -2px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #111827, #0b1220);
+  border: 1px solid rgba(194, 157, 95, 0.16);
+}
+
+.book-cover img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.book-card:hover .book-cover img {
+  transform: scale(1.025);
+}
+
+.book-cover-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 3rem;
+}
+
+.book-cover-fallback.visible {
+  display: flex;
+}
+
+.book-card-footer {
+  margin-top: auto;
+}
+
+.book-card button {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .book-cover {
+    height: 200px;
+  }
+
+  .book-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cover {
+    height: 175px;
+  }
+
+  .book-title {
+    font-size: 0.95rem;
+  }
+
+  .book-author {
+    font-size: 0.75rem;
+  }
+
+  .chapters-badge {
+    font-size: 0.72rem;
+  }
+
+  .book-card button {
+    padding: 9px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   Premium Book Cover — Seamless Integration
+   الغلاف جزء من البطاقة وليس صندوقاً داخلها
+   ========================================================= */
+
+.book-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.book-card-content {
+  position: relative;
+  min-width: 0;
+}
+
+/*
+ * المنطقة أصبحت شفافة بالكامل.
+ * لا خلفية، لا border، لا صندوق حول الصورة.
+ */
+.book-cover {
+  --gold: #c9a45b;
+
+  position: relative;
+  width: calc(100% + 22px);
+  height: 230px;
+  margin: -8px -11px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+  isolation: isolate;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+
+  /* يترك الإضاءة داخل البطاقة */
+  filter: none;
+}
+
+/*
+ * هالة خلف الكتاب.
+ * أهم شيء: لا يوجد مستطيل خلف الصورة.
+ */
+.book-cover-glow {
+  position: absolute;
+  z-index: 0;
+
+  width: 72%;
+  height: 72%;
+  left: 14%;
+  top: 12%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 205, 105, 0.34) 0%,
+      rgba(201, 164, 91, 0.20) 18%,
+      rgba(201, 164, 91, 0.08) 42%,
+      transparent 72%
+    );
+
+  filter: blur(22px);
+  opacity: 0.72;
+
+  transform: scale(1.05);
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+/*
+ * شعاع ضوء خفيف أسفل الكتاب.
+ */
+.book-cover-floor-light {
+  position: absolute;
+  z-index: 1;
+
+  width: 58%;
+  height: 30px;
+  left: 21%;
+  bottom: 10px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 210, 112, 0.48) 0%,
+      rgba(201, 164, 91, 0.20) 34%,
+      transparent 74%
+    );
+
+  filter: blur(10px);
+  opacity: 0.68;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+/*
+ * الصورة هي العنصر الرئيسي.
+ *
+ * mix-blend-mode: screen:
+ * يجعل الخلفية السوداء/الداكنة للصورة تندمج مع
+ * خلفية الصفحة بدلاً من ظهورها كصندوق منفصل.
+ *
+ * mask-image:
+ * يخفف أطراف الصورة تدريجياً حتى لا يظهر حد المستطيل.
+ */
+.book-cover img {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+
+  /*
+   * دمج الخلفية الداكنة للصورة مع خلفية البطاقة.
+   */
+  mix-blend-mode: screen;
+
+  /*
+   * تلاشي الأطراف.
+   * - المتصفحات الحديثة تستخدم -webkit-mask-image أيضاً.
+   */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 64% 70% at center,
+      #000 48%,
+      rgba(0,0,0,0.96) 60%,
+      rgba(0,0,0,0.58) 76%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 64% 70% at center,
+      #000 48%,
+      rgba(0,0,0,0.96) 60%,
+      rgba(0,0,0,0.58) 76%,
+      transparent 100%
+    );
+
+  filter:
+    drop-shadow(0 17px 15px rgba(0, 0, 0, 0.46))
+    drop-shadow(0 0 12px rgba(201, 164, 91, 0.20));
+
+  transform: translateY(-1px);
+
+  transition:
+    transform 0.42s cubic-bezier(.2,.7,.2,1),
+    filter 0.42s ease,
+    opacity 0.25s ease;
+}
+
+/*
+ * طبقة توهج ذهبي ناعمة فوق منطقة الكتاب.
+ * شفافة بالكامل وليست صندوقاً.
+ */
+.book-cover::before {
+  content: "";
+
+  position: absolute;
+  z-index: 2;
+
+  width: 66%;
+  height: 76%;
+  left: 17%;
+  top: 10%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 211, 112, 0.11) 0%,
+      rgba(201, 164, 91, 0.045) 38%,
+      transparent 72%
+    );
+
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/*
+ * لا نستخدم أي overlay مستطيل فوق الصورة.
+ * هذه الطبقة فقط تساعد على دمج الضوء في الأطراف.
+ */
+.book-cover::after {
+  content: "";
+
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 55%,
+      transparent 42%,
+      rgba(5, 13, 25, 0.08) 70%,
+      rgba(5, 13, 25, 0.20) 100%
+    );
+
+  opacity: 0.7;
+}
+
+/* عند تمرير المؤشر */
+.book-card:hover .book-cover-glow {
+  opacity: 0.98;
+  transform: scale(1.16);
+  filter: blur(25px);
+}
+
+.book-card:hover .book-cover-floor-light {
+  opacity: 0.92;
+  transform: scaleX(1.14);
+}
+
+.book-card:hover .book-cover img {
+  transform: translateY(-5px) scale(1.035);
+
+  filter:
+    drop-shadow(0 21px 18px rgba(0, 0, 0, 0.52))
+    drop-shadow(0 0 19px rgba(201, 164, 91, 0.28));
+}
+
+/* =========================================================
+   حالة عدم وجود صورة
+   ========================================================= */
+
+.book-cover-fallback {
+  position: absolute;
+  z-index: 5;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #c9a45b;
+  font-size: 3.1rem;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 91, 0.12) 0%,
+      transparent 54%
+    );
+
+  filter:
+    drop-shadow(0 9px 10px rgba(0,0,0,0.45))
+    drop-shadow(0 0 17px rgba(201,164,91,0.25));
+}
+
+.book-cover-fallback.visible {
+  display: flex;
+}
+
+/*
+ * عند ظهور المطرقة لا نعرض أي إطار للصورة.
+ */
+.book-cover:has(.book-cover-fallback.visible) img {
+  display: none !important;
+}
+
+.book-cover:has(.book-cover-fallback.visible) .book-cover-glow {
+  opacity: 0.55;
+}
+
+.book-cover:has(.book-cover-fallback.visible) .book-cover-floor-light {
+  opacity: 0.40;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .book-cover {
+    width: calc(100% + 18px);
+    height: 205px;
+    margin: -6px -9px 7px;
+  }
+
+  .book-cover img {
+    filter:
+      drop-shadow(0 14px 13px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 0 10px rgba(201, 164, 91, 0.18));
+  }
+
+  .book-cover-glow {
+    filter: blur(18px);
+  }
+
+  .book-cover-floor-light {
+    bottom: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cover {
+    height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-cover img,
+  .book-cover-glow,
+  .book-cover-floor-light {
+    transition: none;
+  }
+
+  .book-card:hover .book-cover img {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   FINAL DESIGN POLISH — لمسة فاخرة متناسقة مع الكتب
+   ========================================================= */
+
+/* لوحة ألوان أعمق وأكثر فخامة */
+:root {
+  --primary: #c9a45b;
+  --primary-hover: #e0bb70;
+  --gold-light: #e8c77f;
+  --gold-soft: rgba(201, 164, 91, 0.16);
+  --bg-dark: #09111f;
+  --card-bg: #182438;
+  --text-primary: #f8f7f2;
+  --text-secondary: #9ba8b9;
+  --border: #2d3b50;
+  --header-bg: rgba(12, 19, 32, 0.88);
+}
+
+/* خلفية الصفحة: عمق خفيف جداً خلف البطاقات */
+body {
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(201, 164, 91, 0.075),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 0% 50%,
+      rgba(38, 83, 125, 0.075),
+      transparent 28%
+    ),
+    var(--bg-dark);
+}
+
+/* الهيدر أكثر هدوءاً واحترافية */
+header {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(19, 28, 43, 0.94),
+      rgba(9, 16, 29, 0.88)
+    );
+  border-bottom-color: rgba(201, 164, 91, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* شبكة الكتب */
+.books-grid {
+  gap: 18px;
+}
+
+/* البطاقة نفسها: تدرج داخلي وحافة ذهبية شبه مخفية */
+.book-card {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 50% 5%,
+      rgba(201, 164, 91, 0.045),
+      transparent 35%
+    ),
+    linear-gradient(
+      155deg,
+      #1d2a3e 0%,
+      #172337 54%,
+      #142033 100%
+    );
+
+  border: 1px solid rgba(122, 143, 166, 0.24);
+  border-radius: 16px;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 0.35s cubic-bezier(.2,.7,.2,1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* خط ذهبي دقيق جداً أعلى البطاقة */
+.book-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 164, 91, 0.48),
+    transparent
+  );
+
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 164, 91, 0.42);
+
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(201, 164, 91, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+/* العنوان */
+.book-title {
+  position: relative;
+  z-index: 6;
+
+  font-size: 1.12rem;
+  line-height: 1.65;
+  letter-spacing: -0.15px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+}
+
+/* اسم المؤلف */
+.book-author {
+  color: #aab4c2;
+  font-size: 0.82rem;
+}
+
+/* شارة الفصول بشكل زجاجي */
+.chapters-badge {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201, 164, 91, 0.15),
+      rgba(201, 164, 91, 0.075)
+    );
+
+  border: 1px solid rgba(201, 164, 91, 0.14);
+  border-radius: 9px;
+
+  color: var(--gold-light);
+  padding: 5px 10px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.025),
+    0 4px 12px rgba(0,0,0,0.10);
+}
+
+/* الأزرار: ذهب مطفأ مع إضاءة راقية */
+.book-card button,
+.card button,
+.start-exam-btn {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8b46d 0%,
+      #c29d5f 48%,
+      #b68e4f 100%
+    );
+
+  color: #101722;
+
+  border-radius: 13px !important;
+
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.22);
+
+  text-shadow: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* لمعة تمر على الزر */
+.book-card button::before,
+.card button::before,
+.start-exam-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 45%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.22),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.book-card button:hover,
+.card button:hover,
+.start-exam-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #e4c27c 0%,
+      #d1aa66 50%,
+      #bd9654 100%
+    );
+
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.24),
+    0 0 18px rgba(201, 164, 91, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+.book-card button:hover::before,
+.card button:hover::before,
+.start-exam-btn:hover::before {
+  left: 125%;
+}
+
+/* التركيز بالكيبورد */
+.book-card button:focus-visible,
+.card button:focus-visible,
+.start-exam-btn:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+/* البحث بنفس لغة التصميم */
+#search-input {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(29, 42, 62, 0.96),
+      rgba(18, 30, 47, 0.96)
+    );
+
+  border-color: rgba(122, 143, 166, 0.25);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+#search-input:focus {
+  border-color: rgba(201, 164, 91, 0.68);
+
+  box-shadow:
+    0 0 0 3px rgba(201, 164, 91, 0.08),
+    0 10px 28px rgba(0,0,0,0.14);
+}
+
+/* منع التصاق محتوى البطاقة بالحواف بعد دمج الغلاف */
+.book-card-content {
+  padding-top: 2px;
+}
+
+/* تحسين ارتفاع زر الدخول على الهاتف */
+@media (max-width: 600px) {
+  .books-grid {
+    gap: 13px;
+  }
+
+  .book-card {
+    border-radius: 15px;
+    padding: 13px;
+  }
+
+  .book-title {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .book-author {
+    margin-bottom: 12px;
+  }
+
+  .chapters-badge {
+    padding: 5px 8px;
+  }
+
+  .book-card button {
+    min-height: 48px;
+  }
+}
+
+/* الشاشات الصغيرة جداً: لا نبالغ في الإضاءة */
+@media (max-width: 380px) {
+  .book-card {
+    padding: 11px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* تقليل الحركة لمن يفضل ذلك */
+@media (prefers-reduced-motion: reduce) {
+  .book-card,
+  .book-card button,
+  .card button,
+  .start-exam-btn {
+    transition: none;
+  }
+
+  .book-card:hover,
+  .book-card button:hover,
+  .card button:hover,
+  .start-exam-btn:hover {
+    transform: none;
+  }
+}
+
