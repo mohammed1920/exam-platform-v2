@@ -54,12 +54,5 @@
     "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
     "chapters": 22,
     "color": "#e67e22"
-  },
-  {
-    "id": "law-Named-contracts",
-    "title": "العقود المسماة",
-    "author": "مستشار",
-    "description": "",
-    "chapters": 1
   }
 ]
