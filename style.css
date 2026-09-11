@@ -1455,3 +1455,704 @@ header {
   }
 }
 
+
+/* =========================================================
+   PREMIUM UI v2 — تحسين بصري شامل بدون تغيير الوظائف
+   الهوية: قانونية / أكاديمية / فخامة هادئة
+   ========================================================= */
+
+:root {
+  --primary: #c8a45d;
+  --primary-hover: #e0bd76;
+  --gold-light: #edd28f;
+  --gold-soft: rgba(200, 164, 93, .14);
+  --bg-dark: #07101d;
+  --bg-deep: #050b14;
+  --card-bg: #142238;
+  --card-bg-2: #19283d;
+  --text-primary: #f7f4ec;
+  --text-secondary: #9eacbd;
+  --border: rgba(148, 163, 184, .20);
+  --border-gold: rgba(200, 164, 93, .34);
+  --success: #20b486;
+  --error: #e85b5b;
+  --header-bg: rgba(7, 16, 29, .88);
+  --shadow: 0 18px 50px rgba(0,0,0,.24);
+  --radius-lg: 18px;
+  --radius-md: 13px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(200,164,93,.10), transparent 28%),
+    radial-gradient(circle at 100% 25%, rgba(41,82,124,.10), transparent 30%),
+    radial-gradient(circle at 0% 70%, rgba(25,57,89,.10), transparent 28%),
+    linear-gradient(180deg, #07101d 0%, #081321 52%, #060e19 100%);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* شريط علوي أنيق */
+header {
+  position: relative;
+  padding: 34px 20px 30px;
+  background:
+    linear-gradient(180deg, rgba(18,29,46,.95), rgba(7,16,29,.90));
+  border-bottom: 1px solid rgba(200,164,93,.18);
+  box-shadow: 0 10px 35px rgba(0,0,0,.20);
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,164,93,.55), transparent);
+  pointer-events: none;
+}
+
+header h1 {
+  font-size: clamp(1.55rem, 3vw, 2.05rem);
+  line-height: 1.5;
+  letter-spacing: -.3px;
+  text-shadow: 0 4px 18px rgba(0,0,0,.30);
+}
+
+header h1 span {
+  filter: drop-shadow(0 0 10px rgba(200,164,93,.22));
+}
+
+header p {
+  max-width: 650px;
+  margin: 5px auto 0;
+  line-height: 1.8;
+}
+
+/* مساحة المحتوى */
+.container {
+  width: min(1200px, calc(100% - 32px));
+  padding: 28px 0 12px;
+}
+
+/* البحث */
+.search-container {
+  max-width: 650px;
+  margin: 4px auto 26px;
+}
+
+.search-wrapper {
+  filter: drop-shadow(0 12px 25px rgba(0,0,0,.16));
+}
+
+.search-wrapper i {
+  right: 18px;
+  color: rgba(200,164,93,.78);
+}
+
+#search-input {
+  min-height: 52px;
+  padding: 13px 50px 13px 18px;
+  background: rgba(18,31,49,.82);
+  border: 1px solid rgba(148,163,184,.20);
+  border-radius: 15px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 10px 30px rgba(0,0,0,.14);
+}
+
+#search-input::placeholder {
+  color: #8290a3;
+}
+
+#search-input:focus {
+  border-color: rgba(200,164,93,.68);
+  background: rgba(20,35,55,.95);
+}
+
+/* الاختبار العشوائي */
+.custom-exam-entry-btn {
+  position: relative;
+  overflow: hidden;
+  max-width: 650px;
+  margin: 0 auto 26px;
+  min-height: 50px;
+  border: 1px solid rgba(200,164,93,.42);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(200,164,93,.15), rgba(200,164,93,.055));
+  box-shadow: 0 10px 28px rgba(0,0,0,.14);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.custom-exam-entry-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.06) 50%, transparent 80%);
+  transform: translateX(120%);
+  transition: transform .55s ease;
+}
+
+.custom-exam-entry-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(200,164,93,.70);
+  box-shadow: 0 15px 34px rgba(0,0,0,.22);
+}
+
+.custom-exam-entry-btn:hover::before {
+  transform: translateX(-120%);
+}
+
+/* شبكة الكتب */
+.books-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.book-card {
+  padding: 13px;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(200,164,93,.055), transparent 34%),
+    linear-gradient(155deg, rgba(26,42,64,.98), rgba(17,31,49,.98));
+  border: 1px solid rgba(148,163,184,.19);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.book-card::after {
+  left: 22%;
+  right: 22%;
+  background: linear-gradient(90deg, transparent, rgba(200,164,93,.55), transparent);
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200,164,93,.42);
+  box-shadow:
+    0 22px 48px rgba(0,0,0,.28),
+    0 0 25px rgba(200,164,93,.045),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.book-cover {
+  height: 176px;
+  margin: -5px -8px 10px;
+}
+
+.book-title {
+  font-size: 1.04rem;
+  line-height: 1.65;
+  font-weight: 800;
+}
+
+.book-author {
+  color: #a7b2c1;
+}
+
+.chapters-badge {
+  background: linear-gradient(135deg, rgba(200,164,93,.16), rgba(200,164,93,.055));
+  border: 1px solid rgba(200,164,93,.20);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.book-card button,
+.card button,
+.start-exam-btn {
+  min-height: 44px;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #d1ad67, #b98f4b);
+  box-shadow: 0 8px 20px rgba(0,0,0,.16);
+  transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+}
+
+.book-card button:hover,
+.card button:hover,
+.start-exam-btn:hover {
+  background: linear-gradient(135deg, #e0bd76, #c29b56);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,.24);
+}
+
+/* عناوين الفصول */
+#chapters-header {
+  padding: 4px 2px 12px;
+}
+
+.chapters-list {
+  gap: 13px;
+}
+
+.chapter-item {
+  min-height: 72px;
+  padding: 15px 17px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(24,39,60,.96), rgba(17,31,49,.96));
+  border: 1px solid rgba(148,163,184,.18);
+  box-shadow: 0 9px 24px rgba(0,0,0,.13);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.chapter-item:hover {
+  transform: translateX(-3px);
+  border-color: rgba(200,164,93,.40);
+  box-shadow: 0 14px 30px rgba(0,0,0,.20);
+}
+
+.chapter-info h3 {
+  line-height: 1.6;
+}
+
+.chapter-info p {
+  margin-top: 2px;
+}
+
+/* أزرار الرجوع */
+.back-btn {
+  min-height: 43px;
+  padding: 9px 16px;
+  border-radius: 11px;
+  border-color: rgba(148,163,184,.22);
+  background: rgba(20,34,53,.55);
+  transition: all .25s ease;
+}
+
+.back-btn:hover {
+  background: rgba(200,164,93,.08);
+  border-color: rgba(200,164,93,.42);
+  color: var(--primary);
+}
+
+/* صندوق الاختبار */
+.exam-box {
+  max-width: 760px;
+  padding: 24px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(200,164,93,.045), transparent 32%),
+    linear-gradient(155deg, rgba(21,37,58,.98), rgba(13,27,44,.98));
+  border: 1px solid rgba(148,163,184,.20);
+  box-shadow: var(--shadow);
+}
+
+.exam-stats-bar {
+  gap: 11px;
+}
+
+.stat-item {
+  min-height: 70px;
+  justify-content: center;
+  background: rgba(7,16,29,.54);
+  border-radius: 13px;
+  border-color: rgba(148,163,184,.17);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.018);
+}
+
+.stat-label {
+  font-size: .72rem;
+}
+
+.stat-value {
+  font-size: 1.18rem;
+}
+
+.exam-header {
+  min-height: 54px;
+  padding-bottom: 15px;
+  border-bottom-color: rgba(148,163,184,.16);
+}
+
+.exam-title {
+  line-height: 1.55;
+}
+
+.share-question-btn {
+  border: 1px solid rgba(200,164,93,.45);
+  color: var(--primary);
+  background: rgba(200,164,93,.055);
+  border-radius: 11px;
+}
+
+.share-question-btn:hover:not(:disabled) {
+  background: var(--primary);
+  color: #07101d;
+}
+
+/* شريط التقدم */
+.progress-bar-container {
+  height: 7px;
+  margin: 20px 0 25px;
+  background: rgba(7,16,29,.75);
+  border: 1px solid rgba(148,163,184,.08);
+  border-radius: 999px;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #a98243, #e0bd76);
+  border-radius: inherit;
+  box-shadow: 0 0 13px rgba(200,164,93,.22);
+}
+
+/* السؤال */
+.question-card {
+  border-right-width: 4px;
+  border-radius: 16px;
+  padding: 21px 21px 19px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(200,164,93,.10), transparent 50%),
+    linear-gradient(155deg, #21314a, #18283f);
+  box-shadow:
+    0 15px 32px rgba(0,0,0,.23),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.question-label {
+  background: rgba(200,164,93,.12);
+  border-color: rgba(200,164,93,.23);
+}
+
+.question-card .question-text {
+  font-size: clamp(1.08rem, 2.2vw, 1.34rem);
+  line-height: 1.85;
+}
+
+/* الخيارات */
+.options-list {
+  gap: 10px;
+}
+
+.option-btn {
+  position: relative;
+  min-height: 57px;
+  padding: 14px 18px;
+  border: 1px solid rgba(148,163,184,.20);
+  border-radius: 13px;
+  background:
+    linear-gradient(135deg, rgba(19,34,53,.95), rgba(13,27,44,.95));
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.10),
+    inset 0 1px 0 rgba(255,255,255,.018);
+  line-height: 1.65;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: rgba(200,164,93,.62);
+  background:
+    linear-gradient(135deg, rgba(36,52,73,.98), rgba(17,33,52,.98));
+  transform: translateX(-3px);
+  box-shadow: 0 9px 22px rgba(0,0,0,.17);
+}
+
+.option-btn.correct {
+  border-color: #20b486;
+  box-shadow: 0 8px 25px rgba(32,180,134,.20);
+}
+
+.option-btn.incorrect {
+  border-color: #e85b5b;
+  box-shadow: 0 8px 25px rgba(232,91,91,.20);
+}
+
+/* أزرار التنقل */
+.exam-footer {
+  gap: 12px;
+}
+
+.exam-btn {
+  min-height: 46px;
+  border-radius: 12px;
+  transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+
+.exam-btn.prev {
+  background: rgba(148,163,184,.13);
+  border: 1px solid rgba(148,163,184,.17);
+}
+
+.exam-btn.next {
+  background: linear-gradient(135deg, #d1ad67, #b98f4b);
+  box-shadow: 0 8px 20px rgba(0,0,0,.16);
+}
+
+.exam-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+/* زر الرئيسية */
+.exam-home-btn {
+  min-height: 44px;
+  border-radius: 11px;
+  border-color: rgba(148,163,184,.18);
+  background: rgba(7,16,29,.30);
+}
+
+/* النتائج */
+.results-box {
+  max-width: 640px;
+  padding: 34px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(200,164,93,.08), transparent 34%),
+    linear-gradient(155deg, rgba(24,40,61,.98), rgba(13,27,44,.98));
+  border-color: rgba(200,164,93,.18);
+  box-shadow: var(--shadow);
+}
+
+.result-emoji {
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,.22));
+}
+
+.result-grade {
+  color: var(--gold-light);
+  text-shadow: 0 3px 15px rgba(200,164,93,.16);
+}
+
+.result-details {
+  background: rgba(7,16,29,.48);
+  border: 1px solid rgba(148,163,184,.12);
+  border-radius: 14px;
+}
+
+.results-actions {
+  gap: 10px;
+}
+
+/* المراجعة */
+.review-item {
+  border-radius: 15px;
+  background: linear-gradient(155deg, rgba(24,40,61,.96), rgba(15,29,46,.96));
+  border-color: rgba(148,163,184,.18);
+  box-shadow: 0 10px 25px rgba(0,0,0,.14);
+}
+
+.review-explanation {
+  background: rgba(7,16,29,.48);
+  border-right-color: var(--primary);
+}
+
+/* النوافذ/قوائم الاختبار المخصص */
+.custom-exam-books-list,
+.custom-exam-count-row,
+.question-search-results {
+  box-shadow: 0 10px 26px rgba(0,0,0,.12);
+}
+
+.custom-exam-book-option {
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.custom-exam-book-option:hover {
+  border-color: rgba(200,164,93,.30);
+  background: rgba(200,164,93,.055);
+}
+
+.custom-exam-start-btn {
+  min-height: 50px;
+  background: linear-gradient(135deg, #d1ad67, #b98f4b);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.custom-exam-start-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+/* الفوتر */
+footer {
+  margin-top: 70px;
+  padding: 34px 20px 28px;
+  background:
+    linear-gradient(180deg, rgba(14,26,42,.88), rgba(6,14,24,.96));
+  border-top-color: rgba(200,164,93,.14);
+}
+
+.footer-links {
+  gap: 10px;
+}
+
+.footer-btn,
+.footer-link-btn {
+  padding: 9px 15px;
+  border: 1px solid rgba(200,164,93,.38);
+  background: rgba(200,164,93,.06);
+  border-radius: 999px;
+}
+
+.footer-bottom {
+  border-top-color: rgba(148,163,184,.13);
+}
+
+.visitor-counter {
+  opacity: .68;
+}
+
+/* الهاتف — الأولوية للوضوح وسهولة الضغط */
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 22px, 620px);
+    padding-top: 20px;
+  }
+
+  header {
+    padding: 27px 15px 24px;
+  }
+
+  header h1 {
+    font-size: 1.42rem;
+  }
+
+  header p {
+    font-size: .83rem;
+  }
+
+  .books-grid {
+    gap: 12px;
+  }
+
+  .book-card {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .book-cover {
+    height: 145px;
+    margin: -4px -6px 8px;
+  }
+
+  .book-title {
+    font-size: .94rem;
+    line-height: 1.55;
+  }
+
+  .book-author {
+    font-size: .70rem;
+  }
+
+  .chapters-badge {
+    padding: 3px 7px;
+    font-size: .69rem;
+  }
+
+  .book-card button {
+    min-height: 42px;
+    padding: 8px 8px;
+    font-size: .80rem;
+  }
+
+  .exam-box {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .exam-stats-bar {
+    gap: 6px;
+  }
+
+  .stat-item {
+    min-height: 63px;
+    padding: 7px 3px;
+  }
+
+  .stat-label {
+    font-size: .65rem;
+  }
+
+  .stat-value {
+    font-size: 1rem;
+  }
+
+  .question-card {
+    padding: 16px;
+    border-radius: 13px;
+  }
+
+  .question-card .question-text {
+    font-size: 1.08rem;
+    line-height: 1.72;
+  }
+
+  .option-btn {
+    min-height: 54px;
+    padding: 12px 14px;
+    font-size: .92rem;
+  }
+
+  .exam-footer {
+    gap: 8px;
+  }
+
+  .exam-btn {
+    flex: 1;
+    padding: 10px 12px;
+  }
+
+  .results-box {
+    padding: 25px 17px;
+  }
+
+  footer {
+    margin-top: 50px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    width: calc(100% - 16px);
+  }
+
+  .books-grid {
+    gap: 9px;
+  }
+
+  .book-cover {
+    height: 125px;
+  }
+
+  .book-card {
+    padding: 8px;
+  }
+
+  .book-title {
+    font-size: .87rem;
+  }
+
+  .book-card button {
+    min-height: 39px;
+    font-size: .74rem;
+  }
+
+  .stat-label {
+    font-size: .60rem;
+  }
+
+  .stat-value {
+    font-size: .92rem;
+  }
+}
+
+/* احترام إعدادات تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
