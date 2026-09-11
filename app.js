@@ -448,7 +448,7 @@ class ExamApp {
     this.renderChapters();
   }
 
-  renderChapters() {
+  async renderChapters() {
     const header = document.getElementById('chapters-header');
     const container = document.getElementById('chapters-container');
     if (!header || !container) return;
@@ -456,18 +456,45 @@ class ExamApp {
     header.innerHTML = `<h2>${this.escapeHtml(this.currentBook.title)}</h2><p>اختر الفصل الذي تريد بدء امتحانه:</p>`;
     container.innerHTML = '';
 
-    for (let i = 1; i <= this.currentBook.chapters; i++) {
+    const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+
+    const chapters = await Promise.all(
+      Array.from({ length: this.currentBook.chapters }, async (_, index) => {
+        const chapterNum = index + 1;
+        let topic = `أسئلة مخصصة لـ الفصل ${chapterNum}`;
+
+        try {
+          const res = await fetch(
+            `${basePath}/data/${this.currentBook.id}/chapter_${chapterNum}.json?v=${Date.now()}`
+          );
+
+          if (res.ok) {
+            const chapterData = await res.json();
+
+            if (chapterData.topic && String(chapterData.topic).trim()) {
+              topic = chapterData.topic;
+            }
+          }
+        } catch (e) {
+          // إذا تعذر تحميل ملف الفصل، نستخدم العبارة الاحتياطية.
+        }
+
+        return { chapterNum, topic };
+      })
+    );
+
+    chapters.forEach(({ chapterNum, topic }) => {
       const item = document.createElement('div');
       item.className = 'chapter-item';
       item.innerHTML = `
         <div class="chapter-info">
-          <h3>الفصل ${i}</h3>
-          <p>اسئلة مخصصة لـ الفصل ${i}</p>
+          <h3>الفصل ${chapterNum}</h3>
+          <p>${this.escapeHtml(topic)}</p>
         </div>
-        <button class="exam-btn next" onclick="app.startExam(${i})" style="width:auto; border-radius:8px !important;">ابدأ 🚀</button>
+        <button class="exam-btn next" onclick="app.startExam(${chapterNum})" style="width:auto; border-radius:8px !important;">ابدأ 🚀</button>
       `;
       container.appendChild(item);
-    }
+    });
   }
 
   async startExam(chapterNum) {
