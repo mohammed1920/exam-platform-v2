@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-11T04:46:05+00:00",
+  "generated_at": "2026-09-11T04:47:34+00:00",
   "summary": {
     "books": 8,
-    "questions": 6270,
-    "issues": 15
+    "questions": 6268,
+    "issues": 16
   },
   "items": [
     {
@@ -125,6 +125,13 @@
       "question_index": 5,
       "options_count": 1,
       "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "chapter_gap",
+      "book_id": "law_Named_contracts",
+      "missing": [
+        1
+      ]
     }
   ]
 }
