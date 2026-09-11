@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Repair missing question identities before deployment
+        run: python3 update_questions.py
+
       - name: Validate project before deployment
         run: python3 validate_project.py
 
