@@ -464,19 +464,18 @@ class ExamApp {
         let topic = `أسئلة مخصصة لـ الفصل ${chapterNum}`;
 
         try {
-          const res = await fetch(
+          const response = await fetch(
             `${basePath}/data/${this.currentBook.id}/chapter_${chapterNum}.json?v=${Date.now()}`
           );
 
-          if (res.ok) {
-            const chapterData = await res.json();
-
+          if (response.ok) {
+            const chapterData = await response.json();
             if (chapterData.topic && String(chapterData.topic).trim()) {
-              topic = chapterData.topic;
+              topic = String(chapterData.topic).trim();
             }
           }
-        } catch (e) {
-          // إذا تعذر تحميل ملف الفصل، نستخدم العبارة الاحتياطية.
+        } catch (error) {
+          // نستخدم العبارة الاحتياطية إذا تعذر تحميل ملف الفصل.
         }
 
         return { chapterNum, topic };
@@ -486,13 +485,21 @@ class ExamApp {
     chapters.forEach(({ chapterNum, topic }) => {
       const item = document.createElement('div');
       item.className = 'chapter-item';
+
       item.innerHTML = `
         <div class="chapter-info">
-          <h3>الفصل ${chapterNum}</h3>
+          <div class="chapter-number">الفصل ${chapterNum}</div>
           <p>${this.escapeHtml(topic)}</p>
         </div>
-        <button class="exam-btn next" onclick="app.startExam(${chapterNum})" style="width:auto; border-radius:8px !important;">ابدأ 🚀</button>
+
+        <button class="exam-btn next chapter-start-btn"
+                onclick="app.startExam(${chapterNum})"
+                type="button">
+          <span>ابدأ</span>
+          <span class="chapter-start-icon" aria-hidden="true">🚀</span>
+        </button>
       `;
+
       container.appendChild(item);
     });
   }
