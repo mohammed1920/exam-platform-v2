@@ -1266,12 +1266,12 @@
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول - المبادئ الأساسية"></div>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
             } else if (type === 'editChapter') {
                 const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${escapeAttr(ch ? ch.title : '')}"></div>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">حفظ التعديلات</button>`;
             } else if (type === 'addQuestion') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
@@ -1362,22 +1362,22 @@
 
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
-            if (!title || !currentBook) { showAlert('يرجى إدخال اسم الفصل', 'error'); return; }
+            if (!currentBook) { showAlert('لم يتم اختيار كتاب', 'error'); return; }
             try {
                 if (editingChapterNum !== null) {
                     const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
                     const chContent = JSON.parse(decode(data.content));
-                    chContent.title = title;
-                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }], `تعديل عنوان الفصل: ${title}`);
+                    chContent.title = title || `الفصل ${editingChapterNum}`;
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }], title ? `تعديل اسم موضوع الفصل ${editingChapterNum}: ${title}` : `إلغاء الاسم المخصص للفصل ${editingChapterNum}`);
                     const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
-                    if (ch) ch.title = title;
-                    showAlert('تم تعديل الفصل بنجاح');
+                    if (ch) ch.title = title || `الفصل ${editingChapterNum}`;
+                    showAlert(title ? 'تم تعديل اسم الموضوع بنجاح' : 'تم إلغاء الاسم المخصص، وسيظهر الاسم الافتراضي');
                 } else {
                     const maxNum = bookChapterFiles.length ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
                     const newNum = maxNum + 1;
-                    const newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title, description: '', questions: [] };
-                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) }], `إضافة فصل جديد: ${title}`);
-                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائياً.`);
+                    const newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title: title || `الفصل ${newNum}`, description: '', questions: [] };
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) }], title ? `إضافة فصل ${newNum}: ${title}` : `إضافة فصل ${newNum}`);
+                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائيًا.`);
                 }
                 closeModal();
                 await loadBookChapters();

@@ -470,8 +470,21 @@ class ExamApp {
 
           if (response.ok) {
             const chapterData = await response.json();
-            if (chapterData.topic && String(chapterData.topic).trim()) {
-              topic = String(chapterData.topic).trim();
+
+            // الاسم المخصص من لوحة الإدارة هو title.
+            // إذا كان title مجرد "الفصل N" نعتبره غير مخصص.
+            const customTitle = String(chapterData.title || '').trim();
+            const oldTopic = String(chapterData.topic || '').trim();
+
+            if (
+              customTitle &&
+              customTitle !== `الفصل ${chapterNum}` &&
+              customTitle !== `الفصل ${this.toArabicNumber ? this.toArabicNumber(chapterNum) : chapterNum}`
+            ) {
+              topic = customTitle;
+            } else if (oldTopic) {
+              // دعم الملفات القديمة التي تستخدم topic.
+              topic = oldTopic;
             }
           }
         } catch (error) {
