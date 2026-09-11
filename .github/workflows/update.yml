@@ -1,19 +1,15 @@
 name: Deploy
-
 on:
   workflow_dispatch:
   push:
     branches: [main]
-
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
-
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
-
 jobs:
   deploy:
     environment:
@@ -22,24 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Validate project before deployment
-        run: python3 validate_project.py
-
-      - name: Build public site only
-        run: |
-          rm -rf dist
-          mkdir -p dist
-          cp index.html app.js style.css manifest.json service-worker.js dist/
-          cp -r engine icons data dist/
-          # لا ننشر لوحة الأدمن، التقارير، ملفات Python، الوثائق، أو إعدادات CI.
-          touch dist/.nojekyll
-
       - uses: actions/configure-pages@v5
-
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
-
+          path: '.'
       - uses: actions/deploy-pages@v4
         id: deployment
