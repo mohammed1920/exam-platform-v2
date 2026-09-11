@@ -1,42 +1,50 @@
-name: Auto Update Chapter Counts
+name: Maintain Book Index
 
-# يشتغل تلقائيًا بكل مرة يتغيّر فيها أي ملف بمجلد data/
-# (سواء رفعته يدويًا من GitHub، أو عبر لوحة الأدمن، أو أي طريقة ثانية)
 on:
   push:
     branches: [main]
     paths:
       - 'data/**'
-      - '!data/books.json'   # نستثني تغييرات books.json نفسها لمنع حلقة تشغيل لا نهائية
+      - '!data/books.json'
+  workflow_dispatch:
+
+# يمنع سباق عمليتين من إعادة كتابة books.json فوق بعضهما.
+concurrency:
+  group: content-maintenance
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  maintain:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Run update_questions.py
+      - name: Repair missing question identities and update chapter counts
         run: python3 update_questions.py
 
-      - name: Commit and push changes (if any)
+      - name: Generate non-destructive data integrity report
+        run: python3 integrity_check.py
+
+      - name: Commit safe maintenance changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/books.json
+          git add data/books.json data/*/chapter_*.json reports/data_integrity_report.json
           if git diff --cached --quiet; then
-            echo "لا يوجد تغيير بعدد الفصول، ما فيه شي نرفعه."
-          else
-            git commit -m "تحديث تلقائي: عدد الفصول بـ books.json"
-            git fetch origin main
-            git merge origin/main --no-edit -X ours
-            git push
+            echo "لا توجد صيانة تلقائية مطلوبة."
+            exit 0
           fi
+          git commit -m "صيانة تلقائية آمنة لفهرس الكتب ومعرفات الأسئلة"
+          git pull --rebase origin main
+          git push origin HEAD:main
