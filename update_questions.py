@@ -76,7 +76,9 @@ def ensure_question_identity(chapter_data: dict, book_id: str, chapter_num: int)
             modified = True
 
         uid = q.get("uid")
-        if not uid or uid in used_uids:
+        if not uid:
+            # uid المفقود فقط هو الذي يُنشأ. لا نغيّر uid موجودًا حتى لو كان مكررًا؛
+            # validator سيوقف النشر ليتم حل التعارض يدويًا بدل تغيير هوية سؤال قائم.
             q["uid"] = stable_uid(book_id, chapter_num, i, q.get("id"))
             modified = True
         used_uids.add(q["uid"])
