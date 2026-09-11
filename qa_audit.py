@@ -147,6 +147,7 @@ def normalize_questions(raw_questions, book_id, chapter_num):
 
         normalized.append({
             "id": qid,
+            "uid": q.get("uid"),
             "question": question_text,
             "options": options,
             "answer": answer,
@@ -322,6 +323,7 @@ def enrich_and_merge(new_issues, questions_by_id, book_id, chapter_num, existing
 
         existing_report.append({
             "question_id": qid,
+            "question_uid": q.get("uid"),
             "book_id": book_id,
             "chapter": chapter_num,
             "issue_type": item.get("issue_type"),

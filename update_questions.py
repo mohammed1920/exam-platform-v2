@@ -1,169 +1,147 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""صيانة آمنة لفهرس الكتب وهوية الأسئلة.
+
+المبدأ الأساسي:
+- books.json هو مصدر الحقيقة لقائمة الكتب؛ لا نحذف كتابًا لأن مجلده أو فصوله ناقصة.
+- التحديث الآلي يعدّل عداد chapters فقط، ويضيف معرّفات مفقودة للأسئلة/الفصول بشكل آمن.
+- لا نعدّل نص السؤال أو الخيارات أو الإجابة أو الشرح تلقائيًا.
+- لا نستخدم أسماء مجلدات ثابتة مثل law_ كشرط لظهور الكتاب.
+"""
+import hashlib
 import json
 import os
 import re
+from pathlib import Path
 
-# الإعدادات
-DATA_DIR = "data"
-BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
+DATA_DIR = Path("data")
+BOOKS_FILE = DATA_DIR / "books.json"
+BOOK_ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+CHAPTER_RE = re.compile(r"^chapter_(\d+)\.json$")
 
-# معلومات الكتب الافتراضية (سيتم استخدامها إذا لم يوجد ملف تعريف خاص داخل مجلد الكتاب)
-BOOK_METADATA = {
-    "law_constitutional": {
-        "title": "القانون الدستوري",
-        "author": "د. حميد حنون خالد",
-        "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
-        "color": "#e74c3c"
-    },
-    "law_administrative": {
-        "title": "القضاء الإداري",
-        "author": "د. وسام صبار",
-        "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
-        "color": "#8e44ad"
-    },
-    "law_general_penalties": {
-        "title": "قانون العقوبات العام",
-        "author": "مستشار قانوني",
-        "description": "مجموعة اختبارات شاملة في قانون العقوبات العام والقواعد العامة للجريمة والعقاب.",
-        "color": "#c29d5f"
-    },
-    "law_international": {
-        "title": "القانون الدولي العام",
-        "author": "مستشار قانوني",
-        "description": "دراسة شاملة واختبارات في القانون الدولي العام.",
-        "color": "#c29d5f"
-    },
-    "law_special_sanctions": {
-        "title": "قانون العقوبات الخاص",
-        "author": "مستشار قانوني",
-        "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
-        "color": "#e67e22"
-    },
-    "law_international_humanitarian": {
-        "title": "القانون الدولي الإنساني",
-        "author": "مستشار قانوني",
-        "description": "قواعد حماية ضحايا النزاعات المسلحة والحد من وسائل وأساليب القتال.",
-        "color": "#27ae60"
-    },
-    "law_organizations": {
-        "title": "المنظمات الدولية",
-        "author": "مستشار قانوني",
-        "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
-        "color": "#2980b9"
-    }
-}
+
+def stable_uid(book_id: str, chapter_num: int, index: int, legacy_id) -> str:
+    """معرّف ثابت وفريد للسؤال، يُنشأ مرة واحدة ولا يتغير عند تعديل النص."""
+    seed = f"{book_id}\x00{chapter_num}\x00{legacy_id!s}\x00{index}"
+    digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()[:20]
+    return f"q_{digest}"
+
+
+def load_json(path: Path, default):
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+
+
+def dump_json(path: Path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+def chapter_numbers(book_id: str):
+    book_dir = DATA_DIR / book_id
+    if not book_dir.is_dir():
+        return []
+    nums = []
+    for p in book_dir.iterdir():
+        m = CHAPTER_RE.match(p.name)
+        if m and p.is_file():
+            nums.append(int(m.group(1)))
+    return sorted(set(nums))
+
+
+def ensure_question_identity(chapter_data: dict, book_id: str, chapter_num: int) -> bool:
+    """إضافة id/uid المفقودين فقط. لا نلمس أي محتوى تحريري."""
+    modified = False
+    if not chapter_data.get("id"):
+        chapter_data["id"] = f"{book_id}_ch{chapter_num}"
+        modified = True
+
+    questions = chapter_data.get("questions")
+    if not isinstance(questions, list):
+        return modified
+
+    used_uids = set()
+    for i, q in enumerate(questions):
+        if not isinstance(q, dict):
+            continue
+
+        # id القديم يُحفظ كما هو. إذا كان مفقودًا ننشئه مرة واحدة.
+        if q.get("id") in (None, ""):
+            q["id"] = f"{book_id}_ch{chapter_num}_q{i + 1}"
+            modified = True
+
+        uid = q.get("uid")
+        if not uid or uid in used_uids:
+            q["uid"] = stable_uid(book_id, chapter_num, i, q.get("id"))
+            modified = True
+        used_uids.add(q["uid"])
+
+    return modified
+
 
 def update_books_index():
-    """تحديث ملف books.json بناءً على المجلدات الموجودة في data فقط"""
-    books = []
-    print("🔍 جاري مسح مجلدات البيانات في v2...")
-    
-    if not os.path.exists(DATA_DIR):
-        print(f"❌ المجلد {DATA_DIR} غير موجود")
-        return
+    """يحافظ على كل الكتب الموجودة ويحدّث chapters فقط من الملفات الفعلية."""
+    books = load_json(BOOKS_FILE, [])
+    if not isinstance(books, list):
+        raise RuntimeError("data/books.json يجب أن يكون مصفوفة JSON.")
 
-    # ترتيب المجلدات لضمان ثبات الترتيب في الموقع
-    folders = sorted(os.listdir(DATA_DIR))
+    changed = False
+    seen = set()
+    for book in books:
+        if not isinstance(book, dict) or not book.get("id"):
+            continue
+        book_id = str(book["id"])
+        if book_id in seen:
+            raise RuntimeError(f"معرف كتاب مكرر في books.json: {book_id}")
+        seen.add(book_id)
 
-    # نقرأ books.json الحالي أولاً (إن وُجد) حتى لا نمسح أي تعديل يدوي
-    # على العنوان/المؤلف/الوصف/اللون سوّاه الأدمن من قبل (مشكلة حقيقية صارت سابقًا:
-    # كتاب "القانون الدولي" رجع اسمه إنكليزي "International" لأنه غير موجود
-    # بقائمة BOOK_METADATA الثابتة، فاستُخدمت قيمة احتياطية تلقائية بدل المحفوظة).
-    existing_books = {}
-    if os.path.exists(BOOKS_FILE):
-        try:
-            with open(BOOKS_FILE, "r", encoding="utf-8") as f:
-                for b in json.load(f):
-                    existing_books[b["id"]] = b
-        except Exception as e:
-            print(f"⚠️  تعذّرت قراءة books.json الحالي، سيُعاد بناؤه من الصفر: {e}")
+        nums = chapter_numbers(book_id)
+        new_count = max(nums, default=0)
+        if book.get("chapters") != new_count:
+            book["chapters"] = new_count
+            changed = True
 
-    for folder in folders:
-        folder_path = os.path.join(DATA_DIR, folder)
-        if os.path.isdir(folder_path) and folder.startswith('law_'):
-            # حساب عدد الفصول: نعتمد على "أعلى رقم فصل موجود فعلياً" وليس عدد الملفات،
-            # لأن وجود فجوات (فصول محذوفة من الوسط) يجعل عدد الملفات أقل من أعلى رقم،
-            # وهذا كان يسبب فصولاً "منشورة" بدون ملف حقيقي وفصولاً أخرى غير قابلة للوصول.
-            chapter_files = [f for f in os.listdir(folder_path) if f.startswith('chapter_') and f.endswith('.json')]
-            chapter_nums = []
-            for f in chapter_files:
-                m = re.search(r'chapter_(\d+)\.json$', f)
-                if m:
-                    chapter_nums.append(int(m.group(1)))
-            ch_count = max(chapter_nums) if chapter_nums else 0
+    if changed:
+        dump_json(BOOKS_FILE, books)
+    print(f"📚 books.json محفوظ: {len(books)} كتاب، لا حذف تلقائي للكتب.")
+    return changed
 
-            # تحذير إن وُجدت فجوات في الترقيم (فصول مفقودة بين 1 وأعلى رقم)
-            missing = [n for n in range(1, ch_count + 1) if n not in chapter_nums]
-            if missing:
-                print(f"⚠️  {folder}: فصول مفقودة الملف رغم وجود ترقيم أعلى منها: {missing}")
 
-            if ch_count > 0:
-                # الأولوية: القيم المحفوظة حاليًا بـ books.json (تعديلات الأدمن اليدوية)
-                # ثم القائمة الثابتة BOOK_METADATA كقيم أولية معقولة لكتاب جديد تمامًا
-                # ثم أخيرًا قيمة احتياطية عامة إذا الكتاب غير موجود بأي منهما
-                if folder in existing_books:
-                    meta = existing_books[folder]
-                elif folder in BOOK_METADATA:
-                    meta = BOOK_METADATA[folder]
-                else:
-                    meta = {
-                        "title": folder.replace('law_', '').replace('_', ' ').title(),
-                        "author": "مستشار قانوني",
-                        "description": f"دراسة شاملة واختبارات في {folder}.",
-                        "color": "#c29d5f"
-                    }
-                    print(f"⚠️  {folder}: كتاب جديد غير مسجّل بـ BOOK_METADATA، استُخدم عنوان مؤقت "
-                          f"'{meta['title']}' — يُفضّل تصحيحه يدويًا من لوحة الأدمن.")
+def validate_and_repair_question_identity():
+    """إصلاح الهوية فقط للأسئلة/الفصول التي ينقصها id أو uid."""
+    changed_files = []
+    for book_dir in sorted(DATA_DIR.iterdir() if DATA_DIR.exists() else []):
+        if not book_dir.is_dir() or book_dir.name.startswith("."):
+            continue
+        for chapter_path in sorted(book_dir.glob("chapter_*.json")):
+            m = CHAPTER_RE.match(chapter_path.name)
+            if not m:
+                continue
+            chapter_num = int(m.group(1))
+            data = load_json(chapter_path, None)
+            if not isinstance(data, dict):
+                print(f"⚠️ ملف غير صالح أو غير مدعوم: {chapter_path}")
+                continue
+            if ensure_question_identity(data, book_dir.name, chapter_num):
+                dump_json(chapter_path, data)
+                changed_files.append(str(chapter_path))
 
-                books.append({
-                    "id": folder,
-                    "title": meta["title"],
-                    "author": meta["author"],
-                    "description": meta["description"],
-                    "chapters": ch_count,
-                    "color": meta.get("color", "#c29d5f")
-                })
-                print(f"✅ تم إضافة: {meta['title']} ({ch_count} فصول)")
+    print(f"🆔 تم إصلاح هوية {len(changed_files)} ملف فصل عند الحاجة فقط.")
+    return changed_files
 
-    with open(BOOKS_FILE, "w", encoding="utf-8") as f:
-        json.dump(books, f, ensure_ascii=False, indent=2)
-    print(f"🚀 تم تحديث الفهرس بنجاح! إجمالي الكتب في v2: {len(books)}")
 
-def validate_data():
-    """فحص سلامة ملفات JSON وإصلاح المعرفات المفقودة"""
-    print("🛠️ جاري فحص وإصلاح ملفات البيانات...")
-    total_q = 0
-    for root, dirs, files in os.walk(DATA_DIR):
-        for file in files:
-            if file.startswith("chapter_") and file.endswith(".json"):
-                file_path = os.path.join(root, file)
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.load(f)
-                    
-                    modified = False
-                    # التأكد من وجود ID للفصل
-                    if 'id' not in data:
-                        book_id = os.path.basename(root)
-                        ch_num = file.replace('chapter_', '').replace('.json', '')
-                        data['id'] = f"{book_id}_ch{ch_num}"
-                        modified = True
-                        
-                    for i, q in enumerate(data.get('questions', [])):
-                        total_q += 1
-                        if 'id' not in q:
-                            q['id'] = f"{data['id']}_q{i+1}"
-                            modified = True
-                        if 'explanation' not in q or not q['explanation']:
-                            q['explanation'] = "لا يوجد شرح متوفر حالياً."
-                            modified = True
-                            
-                    if modified:
-                        with open(file_path, 'w', encoding='utf-8') as f:
-                            json.dump(data, f, ensure_ascii=False, indent=2)
-                except Exception as e:
-                    print(f"❌ خطأ في {file_path}: {e}")
-    print(f"✓ تم فحص {total_q} سؤال بنجاح.")
+def main():
+    if not DATA_DIR.exists():
+        raise SystemExit("❌ مجلد data غير موجود")
+    # ترتيب التنفيذ مهم: نصلح الهوية فقط، ثم نحدّث العداد من الكتب الموجودة.
+    validate_and_repair_question_identity()
+    update_books_index()
+
 
 if __name__ == "__main__":
-    update_books_index()
-    validate_data()
+    main()

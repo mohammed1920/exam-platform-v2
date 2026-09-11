@@ -344,11 +344,28 @@
         let editingQuestionIdx = null;
         let modifiedQuestionsIndices = [];
         let opInProgress = false;
-        let config = {
-            token: localStorage.getItem('gh_token'),
-            user: localStorage.getItem('gh_user') || 'mohammed1920',
-            repo: localStorage.getItem('gh_repo') || 'exam-platform-v2'
-        };
+        // رمز GitHub يبقى في الذاكرة فقط ولا يُحفظ في تخزين المتصفح.
+        // عند إعادة فتح/تحديث لوحة الإدارة سيُطلب الرمز من جديد.
+        let config = { token: null, user: '', repo: 'exam-platform-v2' };
+
+        function escapeHtml(value) {
+            const div = document.createElement('div');
+            div.textContent = value == null ? '' : String(value);
+            return div.innerHTML;
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value).replace(/`/g, '&#96;');
+        }
+
+        function questionKey(q) {
+            return q?.uid || q?.id || '';
+        }
+
+        function createQuestionUid() {
+            if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+            return 'q_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
+        }
 
         // ===== حماية من الضغط المزدوج =====
         // يمنع إرسال أكثر من عملية حفظ/حذف بنفس الوقت (شائع عند الضغط مرتين بسرعة من الموبايل)
@@ -375,6 +392,18 @@
             return btoa(Array.from(new TextEncoder().encode(str), b => String.fromCharCode(b)).join(''));
         }
 
+        async function resolveGitHubIdentity() {
+            if (!config.token) throw new Error('لم يتم إدخال رمز GitHub.');
+            const res = await fetch('https://api.github.com/user', {
+                headers: { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' }
+            });
+            if (!res.ok) throw new Error('رمز GitHub غير صالح أو منتهي الصلاحية.');
+            const user = await res.json();
+            if (!user.login) throw new Error('تعذر معرفة حساب GitHub المرتبط بالرمز.');
+            config.user = user.login;
+            return user.login;
+        }
+
         async function ghRequest(path, method = 'GET', body = null) {
             const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}?t=${Date.now()}`;
             const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
@@ -389,9 +418,8 @@
         }
 
         function logout() {
-            localStorage.removeItem('gh_token');
-            localStorage.removeItem('gh_user');
-            localStorage.removeItem('gh_repo');
+            config.token = null;
+            config.user = '';
             window.location.href = 'index.html';
         }
 
@@ -446,23 +474,30 @@
             }
         }
 
-        // لا يبلع الأخطاء بعد الآن؛ أي فشل بحفظ books.json/index.html يظهر للمستخدم
-        async function updateIndexAndBooks() {
-            const idxData = await ghRequest('index.html');
-            let idxContent = decode(idxData.content);
-            idxContent = idxContent.replace(
-                /const BOOKS = \[[\s\S]*?\];/,
-                `const BOOKS = ${JSON.stringify(books, null, 4)};`
-            );
+        // حفظ آمن للفهرس: نقرأ آخر نسخة من GitHub قبل التعديل حتى لا تكتب جلسة قديمة فوق إضافة أحدث.
+        async function saveBooks(mutator, message) {
+            const remote = await ghRequest('data/books.json');
+            const latest = JSON.parse(decode(remote.content));
+            if (!Array.isArray(latest)) throw new Error('books.json غير صالح');
+            const result = await mutator(latest);
+            const nextBooks = Array.isArray(result) ? result : latest;
             await commitFiles([
-                { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                { path: 'index.html', content: idxContent }
-            ], 'تحديث قائمة الكتب والموقع');
+                { path: 'data/books.json', content: JSON.stringify(nextBooks, null, 2) }
+            ], message);
+            books = nextBooks;
+            renderBooks();
+            return nextBooks;
+        }
+
+        // اسم قديم للتوافق مع بعض أجزاء اللوحة، لكنه الآن لا يكتب index.html ولا يعتمد على نسخة محلية قديمة.
+        async function updateIndexAndBooks() {
+            await saveBooks(() => books, 'تحديث قائمة الكتب');
         }
 
         async function loadBooks() {
             if (!config.token) return;
             try {
+                if (!config.user) await resolveGitHubIdentity();
                 const data = await ghRequest('data/books.json');
                 books = JSON.parse(decode(data.content));
                 renderBooks();
@@ -482,12 +517,17 @@
                 list.innerHTML = `<p class="empty-hint">${books.length === 0 ? 'لا توجد كتب بعد.' : 'لا نتائج مطابقة.'}</p>`;
                 return;
             }
-            list.innerHTML = filtered.map(b => `
-                <div class="book-item ${currentBook?.id === b.id ? 'active' : ''}" onclick="selectBook('${b.id}')">
-                    <strong>${b.title}</strong>
-                    <div class="book-item-meta">${b.chapters || 0} فصول</div>
-                </div>
-            `).join('');
+            list.innerHTML = filtered.map(b => {
+                const id = escapeAttr(b.id);
+                return `
+                <div class="book-item ${currentBook?.id === b.id ? 'active' : ''}" data-book-id="${id}">
+                    <strong>${escapeHtml(b.title)}</strong>
+                    <div class="book-item-meta">${Number(b.chapters) || 0} فصول</div>
+                </div>`;
+            }).join('');
+            list.querySelectorAll('[data-book-id]').forEach(el => {
+                el.addEventListener('click', () => selectBook(el.dataset.bookId));
+            });
         }
 
         function toggleBookPanel(state) {
@@ -507,9 +547,9 @@
             document.getElementById('current-book-name').textContent = currentBook.title;
             document.getElementById('book-bar-name').textContent = currentBook.title;
             document.getElementById('current-book-info').innerHTML = `
-                <p><strong>المؤلف:</strong> ${currentBook.author || 'غير محدد'}</p>
-                <p><strong>الوصف:</strong> ${currentBook.description || 'بدون وصف'}</p>
-                <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
+                <p><strong>المؤلف:</strong> ${escapeHtml(currentBook.author || 'غير محدد')}</p>
+                <p><strong>الوصف:</strong> ${escapeHtml(currentBook.description || 'بدون وصف')}</p>
+                <p><strong>عدد الفصول:</strong> <span id="chapters-count">${Number(currentBook.chapters) || 0}</span></p>
             `;
 
             const bookEditSection = document.getElementById('book-edit-section');
@@ -572,7 +612,7 @@
             list.innerHTML = bookChapterFiles.map((ch) => `
                 <div class="item-card">
                     <div class="item-card-header">
-                        <div class="item-card-title">${ch.title}</div>
+                        <div class="item-card-title">${escapeHtml(ch.title)}</div>
                         <div class="item-card-actions">
                             <button class="btn btn-secondary btn-sm" onclick="editChapter(${ch.num})">تعديل</button>
                             <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteChapter(${ch.num}))">حذف</button>
@@ -585,7 +625,7 @@
 
         function updateChapterSelect() {
             const sel = document.getElementById('chapter-select');
-            sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${ch.title}</option>`).join('');
+            sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${escapeHtml(ch.title)}</option>`).join('');
             if (bookChapterFiles.length > 0) {
                 currentChapterNum = bookChapterFiles[0].num;
                 modifiedQuestionsIndices = [];
@@ -631,14 +671,14 @@
                                 <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteQuestion(${i}))">حذف</button>
                             </div>
                         </div>
-                        <div class="question-text">${qText}</div>
+                        <div class="question-text">${escapeHtml(qText)}</div>
                         <div class="question-options">
                             ${opts.map((o, oi) => {
                                 const isCorrect = (q.answer === oi);
                                 return `
                                 <label class="question-option-radio ${isCorrect ? 'selected' : ''}">
                                     <input type="radio" name="q_${i}_ans" value="${oi}" ${isCorrect ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
-                                    <span>${oi+1}) ${o}</span>
+                                    <span>${oi+1}) ${escapeHtml(o)}</span>
                                 </label>
                             `;
                             }).join('')}
@@ -688,9 +728,11 @@
             try {
                 const cleanedQuestions = currentChapterData.questions.map(q => {
                     const cleaned = {
-                        id: q.id,
-                        question: q.question || q.q,
-                        options: q.options || q.opts,
+                        ...q,
+                        id: q.id || null,
+                        uid: q.uid || createQuestionUid(),
+                        question: q.question || q.q || '',
+                        options: q.options || q.opts || [],
                         answer: q.answer !== undefined ? q.answer : q.ans,
                         explanation: q.explanation || ''
                     };
@@ -769,8 +811,8 @@
 
             for (let i = 0; i < Math.max(origWords.length, corrWords.length); i++) {
                 if (origWords[i] !== corrWords[i]) {
-                    const wordOriginal = origWords[i] || '';
-                    const wordCorrected = corrWords[i] || '';
+                    const wordOriginal = escapeHtml(origWords[i] || '');
+                    const wordCorrected = escapeHtml(corrWords[i] || '');
                     return `<span style="color:#ef4444; text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:#10b981; font-weight:700;">(الصواب: ${wordCorrected})</span>`;
                 }
             }
@@ -796,11 +838,11 @@
                     return `
                     <div class="item-card">
                         <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
-                            📘 ${item.book_id} — الفصل ${item.chapter} — سؤال #${item.question_id ?? '?'} — الحقل: ${item.field}
+                            📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')} — الحقل: ${escapeHtml(item.field)}
                         </div>
                         <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
-                        <div style="margin-bottom:6px; color:#ef4444; font-size:13px;"><strong>الحالي:</strong> ${item.original}</div>
-                        <div style="margin-bottom:10px; color:#10b981; font-size:13px;"><strong>المقترح:</strong> ${item.corrected}</div>
+                        <div style="margin-bottom:6px; color:#ef4444; font-size:13px;"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
+                        <div style="margin-bottom:10px; color:#10b981; font-size:13px;"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
                         <div class="btn-row">
                             <button class="btn btn-green btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
                             <button class="btn btn-red btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
@@ -860,7 +902,7 @@
                 }
 
                 const chapterObj = chapterCache[key].data;
-                const q = (chapterObj.questions || []).find(qq => qq.id === item.question_id);
+                const q = (chapterObj.questions || []).find(qq => (item.question_uid && qq.uid === item.question_uid) || (!item.question_uid && String(qq.id) === String(item.question_id)));
                 if (!q) {
                     skipped.push(`${key} / سؤال #${item.question_id}: السؤال غير موجود`);
                     continue;
@@ -976,18 +1018,18 @@
                             style += 'background: rgba(194,157,95,0.15); border-left:3px solid var(--gold);';
                             tag = ' <span style="color:var(--gold); font-weight:700;">(مقترحة)</span>';
                         }
-                        return `<div style="${style}">${oi + 1}) ${o}${tag}</div>`;
+                        return `<div style="${style}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
                     }).join('');
 
                     return `
                     <div class="item-card">
                         <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
-                            📘 ${item.book_id} — الفصل ${item.chapter} — سؤال #${item.question_id ?? '?'}
+                            📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')}
                         </div>
-                        <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${issueInfo.label}</div>
-                        <div class="question-text">${item.question || ''}</div>
+                        <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${escapeHtml(issueInfo.label)}</div>
+                        <div class="question-text">${escapeHtml(item.question || '')}</div>
                         <div class="question-options">${optionsHtml}</div>
-                        <div style="margin-bottom:12px; color:var(--text-dim); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${item.reason || '—'}</div>
+                        <div style="margin-bottom:12px; color:var(--text-dim); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
                         <div class="btn-row">
                             <button class="btn btn-secondary btn-sm" onclick="openQuestionForReview(${idx})">✏️ تعديل السؤال</button>
                             <button class="btn btn-green btn-sm" onclick="setQaDecision(${idx}, 'accepted')">✅ تم التعديل / موافق عليها</button>
@@ -1027,7 +1069,7 @@
                 sel.value = item.chapter;
                 await loadChapterQuestions();
 
-                const qIdx = (currentChapterData?.questions || []).findIndex(q => q.id === item.question_id);
+                const qIdx = (currentChapterData?.questions || []).findIndex(q => (item.question_uid && q.uid === item.question_uid) || (!item.question_uid && String(q.id) === String(item.question_id)));
                 if (qIdx === -1) {
                     showAlert('تعذر العثور على السؤال (ربما تم تعديله أو حذفه مسبقاً)', 'error');
                     return;
@@ -1107,8 +1149,8 @@
                     linkDiv.innerHTML = `
                         <div class="item-card-header">
                             <div style="flex:1;">
-                                <input type="text" placeholder="اسم الرابط" value="${link.label}" class="link-label-${idx}" style="margin-bottom: 6px;">
-                                <input type="text" placeholder="رابط URL" value="${link.url}" class="link-url-${idx}">
+                                <input type="text" placeholder="اسم الرابط" value="${escapeAttr(link.label)}" class="link-label-${idx}" style="margin-bottom: 6px;">
+                                <input type="text" placeholder="رابط URL" value="${escapeAttr(link.url)}" class="link-url-${idx}">
                             </div>
                             <button class="btn btn-red btn-sm" onclick="deleteContactLink(${idx})">❌ حذف</button>
                         </div>
@@ -1160,9 +1202,9 @@
         function openSettings() {
             const t = prompt('أدخل GitHub Token:', config.token || '');
             if (t !== null && t.trim()) {
-                localStorage.setItem('gh_token', t.trim());
                 config.token = t.trim();
-                loadBooks();
+                config.user = '';
+                resolveGitHubIdentity().then(loadBooks).catch(e => showAlert(e.message, 'error'));
             }
         }
 
@@ -1182,24 +1224,21 @@
             }
 
             try {
-                currentBook.title = newTitle;
-                currentBook.description = newDescription;
-                currentBook.author = newAuthor;
-
-                const bookIndex = books.findIndex(b => b.id === currentBook.id);
-                if (bookIndex !== -1) books[bookIndex] = currentBook;
-
-                await commitFiles([
-                    { path: 'data/books.json', content: JSON.stringify(books, null, 2) }
-                ], `تحديث مسميات ووصف كتاب: ${newTitle}`);
-
-                await updateIndexAndBooks();
+                await saveBooks(latest => {
+                    const book = latest.find(b => b.id === currentBook.id);
+                    if (!book) throw new Error('الكتاب لم يعد موجوداً في books.json؛ أعد تحميل القائمة قبل التعديل.');
+                    book.title = newTitle;
+                    book.description = newDescription;
+                    book.author = newAuthor;
+                    return latest;
+                }, `تحديث بيانات كتاب: ${newTitle}`);
+                currentBook = books.find(b => b.id === currentBook.id);
 
                 document.getElementById('current-book-name').textContent = newTitle;
                 document.getElementById('book-bar-name').textContent = newTitle;
                 document.getElementById('current-book-info').innerHTML = `
-                    <p><strong>المؤلف:</strong> ${newAuthor || 'غير محدد'}</p>
-                    <p><strong>الوصف:</strong> ${newDescription || 'بدون وصف'}</p>
+                    <p><strong>المؤلف:</strong> ${escapeHtml(newAuthor || 'غير محدد')}</p>
+                    <p><strong>الوصف:</strong> ${escapeHtml(newDescription || 'بدون وصف')}</p>
                     <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
                 `;
 
@@ -1221,123 +1260,125 @@
             if (type === 'addBook') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة كتاب جديد</h3>
                     <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
-                    <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil"></div>
+                    <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil" pattern="[a-z0-9_-]+" autocomplete="off"></div>
                     <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
                     <div class="form-group"><label>الوصف</label><textarea id="m-desc" rows="3" placeholder="وصف الكتاب"></textarea></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
-
             } else if (type === 'addChapter') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
                     <div class="form-group"><label>اسم الفصل</label><input id="m-title" placeholder="مثال: الفصل الأول - المبادئ الأساسية"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
-
             } else if (type === 'editChapter') {
                 const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
-                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${ch ? ch.title : ''}"></div>
+                    <div class="form-group"><label>اسم الفصل</label><input id="m-title" value="${escapeAttr(ch ? ch.title : '')}"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">حفظ التعديلات</button>`;
-
             } else if (type === 'addQuestion') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
                     <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3"></textarea></div>
-                    <div class="form-group"><label>خيار 1</label><input id="m-o1"></div>
-                    <div class="form-group"><label>خيار 2</label><input id="m-o2"></div>
-                    <div class="form-group"><label>خيار 3</label><input id="m-o3"></div>
-                    <div class="form-group"><label>خيار 4</label><input id="m-o4"></div>
-                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4"></div>
+                    <div id="question-options-editor"></div>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
+                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="4" value="1"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">إضافة السؤال</button>`;
-
             } else if (type === 'editQuestion') {
                 const q = currentChapterData.questions[editingQuestionIdx];
                 const qText = q.q || q.question || '';
-                const opts = q.opts || q.options || [];
-                const ans = (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer)) + 1;
+                const opts = Array.isArray(q.opts || q.options) ? (q.opts || q.options) : [];
+                const answer = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
+                const ans = Number.isInteger(answer) ? answer + 1 : 1;
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل السؤال</h3>
-                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${qText}</textarea></div>
-                    <div class="form-group"><label>خيار 1</label><input id="m-o1" value="${opts[0] || ''}"></div>
-                    <div class="form-group"><label>خيار 2</label><input id="m-o2" value="${opts[1] || ''}"></div>
-                    <div class="form-group"><label>خيار 3</label><input id="m-o3" value="${opts[2] || ''}"></div>
-                    <div class="form-group"><label>خيار 4</label><input id="m-o4" value="${opts[3] || ''}"></div>
-                    <div class="form-group"><label>رقم الإجابة الصحيحة (1-4)</label><input type="number" id="m-ans" min="1" max="4" value="${ans}"></div>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${escapeHtml(qText)}</textarea></div>
+                    <div id="question-options-editor"></div>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
+                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="${Math.max(2, opts.length)}" value="${ans}"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">حفظ التعديلات</button>`;
             }
-
             body.innerHTML = html + `<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="closeModal()">إلغاء</button>`;
             document.getElementById('modal').classList.add('active');
+            if (type === 'addQuestion') setTimeout(() => renderQuestionOptionFields(['', '', '', ''], 0), 0);
+            if (type === 'editQuestion') setTimeout(() => renderQuestionOptionFields(opts, Math.max(0, ans - 1)), 0);
+        }
+
+        function renderQuestionOptionFields(options, selectedIndex = 0) {
+            const container = document.getElementById('question-options-editor');
+            if (!container) return;
+            const values = Array.isArray(options) && options.length ? options : ['', '', '', ''];
+            container.innerHTML = values.map((value, i) => `
+                <div class="form-group question-option-editor">
+                    <label>خيار ${i + 1}</label>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input class="question-option-input" data-option-index="${i}" value="${escapeAttr(value)}">
+                        ${values.length > 2 ? `<button type="button" class="btn btn-red btn-sm" onclick="removeQuestionOptionField(${i})">حذف</button>` : ''}
+                    </div>
+                </div>`).join('');
+            const answer = document.getElementById('m-ans');
+            if (answer) {
+                answer.max = String(values.length);
+                answer.value = String(Math.min(selectedIndex + 1, values.length));
+            }
+        }
+
+        function addQuestionOptionField() {
+            const values = [...document.querySelectorAll('.question-option-input')].map(el => el.value);
+            values.push('');
+            const answer = parseInt(document.getElementById('m-ans')?.value || '1', 10) - 1;
+            renderQuestionOptionFields(values, Math.max(0, Math.min(answer, values.length - 1)));
+        }
+
+        function removeQuestionOptionField(index) {
+            const fields = [...document.querySelectorAll('.question-option-input')];
+            if (fields.length <= 2) return;
+            const values = fields.map(el => el.value);
+            values.splice(index, 1);
+            let answer = parseInt(document.getElementById('m-ans')?.value || '1', 10) - 1;
+            if (index < answer) answer--;
+            else if (index === answer) answer = Math.max(0, answer - 1);
+            renderQuestionOptionFields(values, Math.max(0, Math.min(answer, values.length - 1)));
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
         async function saveBook() {
-            const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_');
+            const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_').toLowerCase();
             const title = document.getElementById('m-title').value.trim();
             const author = document.getElementById('m-author').value.trim();
             const desc = document.getElementById('m-desc').value.trim();
             if (!id || !title) { showAlert('يرجى إدخال اسم الكتاب والمعرف', 'error'); return; }
-            if (books.some(b => b.id === id)) { showAlert('هذا المعرف مستخدم مسبقاً، اختر معرفاً آخر', 'error'); return; }
-
-            books.push({ id, title, author, description: desc, chapters: 0 });
+            if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) {
+                showAlert('معرف الكتاب يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام و _ أو - فقط', 'error'); return;
+            }
             try {
-                await updateIndexAndBooks();
-                showAlert('تمت إضافة الكتاب بنجاح');
+                await saveBooks(latest => {
+                    if (latest.some(b => b.id === id)) throw new Error('هذا المعرف مستخدم مسبقاً، اختر معرفاً آخر');
+                    latest.push({ id, title, author, description: desc, chapters: 0 });
+                    return latest;
+                }, `إضافة كتاب: ${title}`);
+                currentBook = books.find(b => b.id === id) || null;
+                showAlert('تمت إضافة الكتاب بنجاح. عدد الفصول سيُحدّث تلقائياً عند إضافة الفصول.');
                 closeModal();
                 renderBooks();
-            } catch (e) {
-                books = books.filter(b => b.id !== id); // تراجع محلي لأن الحفظ الفعلي فشل
-                showAlert('فشلت إضافة الكتاب: ' + e.message, 'error');
-            }
+            } catch (e) { showAlert('فشلت إضافة الكتاب: ' + e.message, 'error'); }
         }
 
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
             if (!title || !currentBook) { showAlert('يرجى إدخال اسم الفصل', 'error'); return; }
-
             try {
                 if (editingChapterNum !== null) {
                     const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
                     const chContent = JSON.parse(decode(data.content));
                     chContent.title = title;
-
-                    await commitFiles([
-                        { path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }
-                    ], `تعديل عنوان الفصل: ${title}`);
-
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }], `تعديل عنوان الفصل: ${title}`);
                     const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
                     if (ch) ch.title = title;
-
                     showAlert('تم تعديل الفصل بنجاح');
                 } else {
-                    const maxNum = bookChapterFiles.length > 0 ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
+                    const maxNum = bookChapterFiles.length ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
                     const newNum = maxNum + 1;
-                    const newChapter = {
-                        id: `chapter_${newNum}`,
-                        book_id: currentBook.id,
-                        chapter: newNum,
-                        title: title,
-                        description: '',
-                        questions: []
-                    };
-
-                    currentBook.chapters = newNum;
-                    const bookInList = books.find(b => b.id === currentBook.id);
-                    if (bookInList) bookInList.chapters = newNum;
-
-                    const idxData = await ghRequest('index.html');
-                    let idxContent = decode(idxData.content);
-                    idxContent = idxContent.replace(
-                        /const BOOKS = \[[\s\S]*?\];/,
-                        `const BOOKS = ${JSON.stringify(books, null, 4)};`
-                    );
-
-                    await commitFiles([
-                        { path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) },
-                        { path: 'data/books.json', content: JSON.stringify(books, null, 2) },
-                        { path: 'index.html', content: idxContent }
-                    ], `إضافة فصل جديد: ${title}`);
-
-                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json)`);
+                    const newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title, description: '', questions: [] };
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) }], `إضافة فصل جديد: ${title}`);
+                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائياً.`);
                 }
-
                 closeModal();
                 await loadBookChapters();
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
@@ -1363,8 +1404,7 @@
                 const bookInList = books.find(b => b.id === currentBook.id);
                 if (bookInList) bookInList.chapters = newCount;
 
-                await updateIndexAndBooks();
-                showAlert('تم حذف الفصل بنجاح');
+                showAlert('تم حذف الفصل بنجاح. سيتم تحديث عدد الفصول تلقائياً.');
                 renderChapters();
                 updateChapterSelect();
             } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
@@ -1376,44 +1416,52 @@
         }
 
         async function saveQuestion() {
-            if (!currentChapterData || currentChapterNum === null) {
-                showAlert('يرجى اختيار فصل أولاً', 'error'); return;
+            if (!currentChapterData || currentChapterNum === null) { showAlert('يرجى اختيار فصل أولاً', 'error'); return; }
+            const qText = document.getElementById('m-q').value.trim();
+            const opts = [...document.querySelectorAll('.question-option-input')].map(el => el.value.trim());
+            const ans = parseInt(document.getElementById('m-ans').value, 10) - 1;
+            if (!qText || opts.length < 2 || opts.some(v => !v) || Number.isNaN(ans) || ans < 0 || ans >= opts.length) {
+                showAlert(`يرجى إدخال السؤال وجميع الخيارات وتحديد إجابة صحيحة بين 1 و ${opts.length}`, 'error'); return;
             }
-            const q = document.getElementById('m-q').value.trim();
-            const opts = [
-                document.getElementById('m-o1').value.trim(),
-                document.getElementById('m-o2').value.trim(),
-                document.getElementById('m-o3').value.trim(),
-                document.getElementById('m-o4').value.trim()
-            ];
-            const ans = parseInt(document.getElementById('m-ans').value) - 1;
-            if (!q || isNaN(ans) || ans < 0 || ans > 3) {
-                showAlert('يرجى إدخال السؤال ورقم الإجابة الصحيحة (1-4)', 'error'); return;
-            }
-
-            const questionObj = { question: q, options: opts, answer: ans };
             let insertedIdx = null;
-
+            let previousQuestion = null;
             if (editingQuestionIdx !== null) {
-                currentChapterData.questions[editingQuestionIdx] = questionObj;
+                previousQuestion = currentChapterData.questions[editingQuestionIdx];
+                const existing = previousQuestion || {};
+                currentChapterData.questions[editingQuestionIdx] = {
+                    ...existing,
+                    question: qText,
+                    options: opts,
+                    answer: ans,
+                    id: existing.id || `${currentBook.id}_ch${currentChapterNum}_q${editingQuestionIdx + 1}`,
+                    uid: existing.uid || createQuestionUid(),
+                    explanation: existing.explanation || ''
+                };
+                delete currentChapterData.questions[editingQuestionIdx].q;
+                delete currentChapterData.questions[editingQuestionIdx].opts;
+                delete currentChapterData.questions[editingQuestionIdx].ans;
+                delete currentChapterData.questions[editingQuestionIdx].correct;
             } else {
-                currentChapterData.questions.push(questionObj);
+                const numericIds = currentChapterData.questions.map(x => Number(x.id)).filter(Number.isFinite);
+                const nextLegacyId = Math.max(0, ...numericIds) + 1;
+                currentChapterData.questions.push({
+                    id: `${currentBook.id}_ch${currentChapterNum}_q${nextLegacyId}`,
+                    uid: createQuestionUid(),
+                    question: qText,
+                    options: opts,
+                    answer: ans,
+                    explanation: ''
+                });
                 insertedIdx = currentChapterData.questions.length - 1;
             }
-
             try {
-                await commitFiles([
-                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
-                ], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
-
-                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال بنجاح' : 'تمت إضافة السؤال بنجاح');
+                await commitFiles([{ path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال مع الحفاظ على المعرف والشرح' : 'تمت إضافة السؤال بنجاح');
                 closeModal();
                 renderQuestions();
             } catch (e) {
-                // تراجع محلي لأن الحفظ الفعلي على GitHub فشل - لا نترك واجهة تعرض بيانات غير محفوظة كأنها محفوظة
-                if (editingQuestionIdx === null && insertedIdx !== null) {
-                    currentChapterData.questions.splice(insertedIdx, 1);
-                }
+                if (editingQuestionIdx === null && insertedIdx !== null) currentChapterData.questions.splice(insertedIdx, 1);
+                else if (editingQuestionIdx !== null && previousQuestion) currentChapterData.questions[editingQuestionIdx] = previousQuestion;
                 showAlert('فشلت إضافة/تعديل السؤال: ' + e.message, 'error');
             }
         }

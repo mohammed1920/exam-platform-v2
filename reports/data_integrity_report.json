@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-09-10T14:53:37+00:00",
+  "summary": {
+    "books": 7,
+    "questions": 6245,
+    "issues": 17
+  },
+  "items": [
+    {
+      "type": "orphan_book_folder",
+      "book_id": "Law-gh",
+      "message": "مجلد بيانات غير موجود في books.json؛ لا يُحذف تلقائياً."
+    },
+    {
+      "type": "orphan_book_folder",
+      "book_id": "Law-moh",
+      "message": "مجلد بيانات غير موجود في books.json؛ لا يُحذف تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 1,
+      "question_index": 84,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 1,
+      "question_index": 87,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 2,
+      "question_index": 34,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 2,
+      "question_index": 80,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 3,
+      "question_index": 10,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 4,
+      "question_index": 2,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 4,
+      "question_index": 27,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 6,
+      "question_index": 61,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 6,
+      "question_index": 82,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 7,
+      "question_index": 22,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 7,
+      "question_index": 50,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 7,
+      "question_index": 75,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 7,
+      "question_index": 78,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 7,
+      "question_index": 87,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "too_few_options",
+      "book_id": "law_international_humanitarian",
+      "chapter": 8,
+      "question_index": 5,
+      "options_count": 1,
+      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    }
+  ]
+}

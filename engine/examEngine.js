@@ -46,7 +46,8 @@ class ExamEngine {
     
     // توحيد بنية الأسئلة عند التحميل لضمان المرونة
     this.questions = qs.map(q => ({
-      id: q.id || Math.random().toString(36).substr(2, 9),
+      id: q.id || q.uid || null,
+      uid: q.uid || q.id || null,
       question: q.question || q.q || "",
       options: q.options || q.opts || [],
       answer: q.answer !== undefined ? q.answer : (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : 0)),
@@ -68,7 +69,8 @@ class ExamEngine {
     this.currentChapter = null;
 
     this.questions = (questions || []).map(q => ({
-      id: q.id || Math.random().toString(36).substr(2, 9),
+      id: q.id || q.uid || null,
+      uid: q.uid || q.id || null,
       question: q.question || q.q || "",
       options: q.options || q.opts || [],
       answer: q.answer !== undefined ? q.answer : (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : 0)),
@@ -91,8 +93,22 @@ class ExamEngine {
   submitAnswer(optionIndex) {
     const q = this.getCurrentQuestion();
     if (!q) return false;
+
+    // منع تسجيل الإجابة أكثر من مرة لنفس السؤال.
+    // uid هو المعرف الأساسي، وid هو البديل عند عدم وجود uid.
+    const questionUid = q.uid || null;
+    const questionId = q.id || null;
+    const existingAnswer = this.userAnswers.find(a => {
+      if (questionUid) return a.questionUid === questionUid;
+      if (questionId) return a.questionId === questionId;
+      return false;
+    });
+    if (existingAnswer) return existingAnswer.isCorrect;
+
     const isCorrect = optionIndex === q.answer;
     this.userAnswers.push({
+      questionUid: questionUid,
+      questionId: questionId,
       questionText: q.question,
       userAnswer: q.options[optionIndex],
       correctAnswer: q.options[q.answer],
@@ -150,3 +166,4 @@ class ExamEngine {
 }
 
 const examEngine = new ExamEngine();
+window.examEngine = examEngine;

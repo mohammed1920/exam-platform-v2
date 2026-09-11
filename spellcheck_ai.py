@@ -139,13 +139,17 @@ def run_checker():
     # تفكيك النصوص لجعل كل خيار وسؤال عنصراً مستقلاً بدقة
     texts_to_check = []
     for q in batch_questions:
+        # الحفاظ على هوية السؤال: uid هو المعرف الثابت الأساسي،
+        # ونستخدم id القديم كـ fallback للتوافق مع البيانات القديمة فقط.
         q_id = q.get("id", "?")
+        q_uid = q.get("uid") or q_id
         q_text = q.get("question") or q.get("q", "")
         options = q.get("options") or q.get("opts", [])
         
         if q_text:
             texts_to_check.append({
                 "question_id": q_id,
+                "question_uid": q_uid,
                 "field": "question",
                 "text": q_text
             })
@@ -154,6 +158,7 @@ def run_checker():
             if opt:
                 texts_to_check.append({
                     "question_id": q_id,
+                    "question_uid": q_uid,
                     "field": f"option_{idx}",
                     "text": opt
                 })
@@ -202,9 +207,13 @@ def run_checker():
             
             parsed = json.loads(cleaned_res)
             if isinstance(parsed, list):
+                by_id = {str(q.get("id")): q for q in batch_questions}
                 for item in parsed:
                     item["book_id"] = current_ch["book_id"]
                     item["chapter"] = current_ch["chapter_num"]
+                    source_q = by_id.get(str(item.get("question_id")))
+                    if source_q and source_q.get("uid"):
+                        item["question_uid"] = source_q["uid"]
                     parsed_items.append(item)
         except Exception as e:
             print(f"⚠️ تعذر تحليل استجابة الذكاء الاصطناعي كـ JSON: {e}")

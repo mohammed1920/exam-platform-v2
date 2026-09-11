@@ -15,7 +15,8 @@
         "الجهاز التنفيذي (مجلس الأمن أو مجلس الجامعة)"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cf95913ebe03db94a795"
     },
     {
       "id": 702,
@@ -28,7 +29,8 @@
         "فرض الرسوم والضرائب على موظفيها"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5bbb387563a25c119529"
     },
     {
       "id": 703,
@@ -41,7 +43,8 @@
         "حصيلة الدولة من العمالت الصعبة فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9cda5c45069cac4b950"
     },
     {
       "id": 704,
@@ -54,7 +57,8 @@
         "عدد السكان للدولة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a719611afbf0ac8e1ac0"
     },
     {
       "id": 705,
@@ -67,7 +71,8 @@
         "إذا رفضت محكمة العدل الدولية السماح له بالتصويت"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a05bfeb3496f93cfce50"
     },
     {
       "id": 706,
@@ -80,7 +85,8 @@
         "عام .1957 ()58"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_166e9859a1f01b79aeb8"
     },
     {
       "id": 707,
@@ -93,7 +99,8 @@
         "فرض الرسوم والضرائب على الموظفين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65e1560ca19162fea2d0"
     },
     {
       "id": 708,
@@ -106,7 +113,8 @@
         "القروض من الدول الأعضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b339271ba51b260eafc5"
     },
     {
       "id": 709,
@@ -119,7 +127,8 @@
         "نفقات االحتياجات اليومية من قرطاسية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ae7fcca1d0852e565f63"
     },
     {
       "id": 710,
@@ -132,7 +141,8 @@
         "خمس سنوات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fcd3ca7162ed82307181"
     },
     {
       "id": 711,
@@ -145,7 +155,8 @@
         "قاعدة مرونة الميزانية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_55d25496b1e1f2e75000"
     },
     {
       "id": 712,
@@ -158,7 +169,8 @@
         "قاعدة الأغلبية الموصوفة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a44bcddb2b09e93fd22"
     },
     {
       "id": 713,
@@ -171,7 +183,8 @@
         "أنها تتطلب إجماع جميع الدول الأعضاء لالنضمام"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b557a2c3fa8a4cac42c"
     },
     {
       "id": 714,
@@ -184,7 +197,8 @@
         "النص في ميثاق المنظمة على إلزامية العضوية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6404cddb3812b61829fc"
     },
     {
       "id": 715,
@@ -197,7 +211,8 @@
         "إلزام الدول التي لم تشترك في التأسيس باالنضمام"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2d54780d755c6f67f551"
     },
     {
       "id": 716,
@@ -210,7 +225,8 @@
         "نظام القبول بالإجماع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dd0d9d980c5060333249"
     },
     {
       "id": 717,
@@ -223,7 +239,8 @@
         "أن تكون المنظمة بطبيعتها دائمة ومؤيدة. ()59"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4bc6c908cda49e5361a9"
     },
     {
       "id": 718,
@@ -236,7 +253,8 @@
         "تحاشي تضمين الميثاق أي شرط يجعل قبول الأعضاء الجديدة صعباً"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e2f88c4dc05f715811d4"
     },
     {
       "id": 719,
@@ -249,7 +267,8 @@
         "شرط موافقة ألمانيا والنمسا أوالً"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a893ab875711a95bec46"
     },
     {
       "id": 720,
@@ -262,7 +281,8 @@
         "لعدم استعمال واضعي ميثاق العصبة لعبارة العالمية صراحة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_561af1fc76e91df043c8"
     },
     {
       "id": 721,
@@ -275,7 +295,8 @@
         "السماح باالنسحاب الإرادي من المنظمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33069f029ec19691ae2c"
     },
     {
       "id": 722,
@@ -288,7 +309,8 @@
         "تطبيق العالمية المطلقة لحين تحقيق التجانس بين الدول"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f9cc06d07e6a8f9eadb"
     },
     {
       "id": 723,
@@ -301,7 +323,8 @@
         "فرض غرامة مالية ثابتة دون فائدة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e32f9d6faba1596ab84b"
     },
     {
       "id": 724,
@@ -314,7 +337,8 @@
         "تمويل عمليات تدر أرباحا ً للمنظمة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e91f8973fb3b0d269a46"
     },
     {
       "id": 725,
@@ -327,7 +351,8 @@
         "الرسوم والضرائب المفروضة على المواطنين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8169441c44840ba0db95"
     },
     {
       "id": 726,
@@ -340,7 +365,8 @@
         "النفقات التي يتم تحديدها في الميزانية السنوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_56273ea835705fd73e7a"
     },
     {
       "id": 727,
@@ -353,7 +379,8 @@
         "الأغلبية الموصوفة بأربعة أخماس. ()60"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07f27a0cf1dd7ebfe1bc"
     },
     {
       "id": 728,
@@ -366,7 +393,8 @@
         "القضاء المحلي فيما يتعلق بتصرفاتهم البعيدة عن مهامهم الرسمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c55a4e43482b7c9df53"
     },
     {
       "id": 729,
@@ -379,7 +407,8 @@
         "ألن الطابع العالمي للمنظمة يتعارض مع إباحة االنسحاب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08c44ce5e17f04905e7a"
     },
     {
       "id": 730,
@@ -392,7 +421,8 @@
         "خمس سنوات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5d7c828683563cb972e8"
     },
     {
       "id": 731,
@@ -405,7 +435,8 @@
         "أال تكون دولة عظمى"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fef82a3ed10514f0da1d"
     },
     {
       "id": 732,
@@ -418,7 +449,8 @@
         "أيزنهاور"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_74793f96857c8e3807ca"
     },
     {
       "id": 733,
@@ -431,7 +463,8 @@
         "عند صدور قرار بالطرد ضد الدولة العضو"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ac44a0d579abc3de75b"
     },
     {
       "id": 734,
@@ -444,7 +477,8 @@
         "إذا طال بقاؤه في مقر االجتماع بعد انتهاء مهمته الرسمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_62b70bd5a58c960691ac"
     },
     {
       "id": 735,
@@ -457,7 +491,8 @@
         "لوجود نص في ميثاقها يجيز حق االنسحاب بشكل مطلق"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_934678add7070b490af1"
     },
     {
       "id": 736,
@@ -470,7 +505,8 @@
         "مبدأ القبول بالإجماع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08349e45b7db6e9391af"
     },
     {
       "id": 737,
@@ -483,7 +519,8 @@
         "أنها تقوم على أساس االنضمام التلقائي غير المشروط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ee9e21aa6390658bb02"
     },
     {
       "id": 738,
@@ -496,7 +533,8 @@
         "إلزام جميع الدول ذات السيادة الموجودة وقت الإنشاء باالنضمام. ()61"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5b45b39717abbe1ba7af"
     },
     {
       "id": 739,
@@ -509,7 +547,8 @@
         "تحاشي تضمين الميثاق أي نص يجيز الطرد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e6737d4bf5342eeac718"
     },
     {
       "id": 740,
@@ -522,7 +561,8 @@
         "فرض بعض الرسوم والضرائب على المواطنين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c71e695233ec7d36d3f5"
     },
     {
       "id": 741,
@@ -535,7 +575,8 @@
         "قاعدة الأغلبية الموصوفة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e0e2d2df16bcb51e247"
     },
     {
       "id": 742,
@@ -548,7 +589,8 @@
         "لجنة الشؤون الخارجية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d9b523a87fb45d1c8f1"
     },
     {
       "id": 743,
@@ -561,7 +603,8 @@
         "اتحاد البريد العالمي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_73e54caba65788c34925"
     },
     {
       "id": 744,
@@ -574,7 +617,8 @@
         "النفقات التي يتم تحديدها في الميزانية السنوية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d1f753c5f49a2502c10"
     },
     {
       "id": 745,
@@ -587,7 +631,8 @@
         "في أراضي الدول غير الأعضاء التي لم توقع على الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e40fae798ae4fe38074"
     },
     {
       "id": 746,
@@ -600,7 +645,8 @@
         "قواعد النظام المالي محددة بالإجماع المطلق للدول الأعضاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4fd1e33eaed0f0f6b7c6"
     },
     {
       "id": 747,
@@ -613,7 +659,8 @@
         "الدول الأعضاء بالتساوي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_572fc5a49c0325278f23"
     },
     {
       "id": 748,
@@ -626,7 +673,8 @@
         "موافقة مجلس الأمن فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b56542162ed76711fb5"
     },
     {
       "id": 749,
@@ -639,7 +687,8 @@
         "ال يُطلب تصويت إلقرار الميزانية في الجامعة العربية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29d2f5bcfd4d534638e6"
     },
     {
       "id": 750,
@@ -652,7 +701,8 @@
         "النفقات التي يتم تحديدها سنويا ً في الميزانية. ()62"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_09ed180b9ceb70c110cb"
     },
     {
       "id": 751,
@@ -665,7 +715,8 @@
         "متوسط دخل الفرد وحصيلة الدولة من العمالت الصعبة فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ed0a6f27b8993090d0b"
     },
     {
       "id": 752,
@@ -678,7 +729,8 @@
         "ال يزيد عن ( )%25من الميزانية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_62fc56846a8a746d4e80"
     },
     {
       "id": 753,
@@ -691,7 +743,8 @@
         "متوسط الدخل القومي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_683f5165d211b636771a"
     },
     {
       "id": 754,
@@ -704,7 +757,8 @@
         "تحويل الدولة إلى محكمة العدل الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff84faea795085f836f4"
     },
     {
       "id": 755,
@@ -717,7 +771,8 @@
         "خمس سنوات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5982605b398ed0c9d3e2"
     },
     {
       "id": 756,
@@ -730,7 +785,8 @@
         "قاعدة مرونة الميزانية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5d128883552e9b09a9fc"
     },
     {
       "id": 757,
@@ -743,7 +799,8 @@
         "التبرعات والهبات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a56414efd5c7c2de930"
     },
     {
       "id": 758,
@@ -756,7 +813,8 @@
         "أنها تسمح باالنسحاب بعد إعالن سابق بسنتين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a12fa7a4eb3166d3ed58"
     },
     {
       "id": 759,
@@ -769,7 +827,8 @@
         "إلزام جميع الدول ذات السيادة الموجودة وقت الإنشاء باالنضمام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aaf4f3be0901fb100fbf"
     },
     {
       "id": 760,
@@ -782,7 +841,8 @@
         "الواليات المتحدة ،روسيا ،فرنسا ،انكلترا ،ألمانيا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_baf26c8a99a4a3708d48"
     },
     {
       "id": 761,
@@ -795,7 +855,8 @@
         "ألمانيا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d5c2eaae9f85e37b40e4"
     },
     {
       "id": 762,
@@ -808,7 +869,8 @@
         "عام .1938"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5c5c7a5aba108dd942d"
     },
     {
       "id": 763,
@@ -821,7 +883,8 @@
         "عام .1938 ()63"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd0f09eeeb671eeb3171"
     },
     {
       "id": 764,
@@ -834,7 +897,8 @@
         "أغلبية أربعة أخماس الأعضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0cdc1f2028c10647b355"
     },
     {
       "id": 765,
@@ -847,7 +911,8 @@
         "ال يُعد قبول الأعضاء الجدد استثنا ًء لقاعدة الإجماع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a57e1a23d32493f0dd36"
     },
     {
       "id": 766,
@@ -860,7 +925,8 @@
         "أغلبية الأعضاء الحاضرين في االجتماع"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_661df0e8df2dcd638bec"
     },
     {
       "id": 767,
@@ -873,7 +939,8 @@
         "اللجنة السياسية ،لجنة حقوق الإنسان ،لجنة المنظمات الفنية ،لجنة الميزانية ،اللجنة االجتماعية ،لجنة نزع السالح"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bbfee2afc026ff0c3e0a"
     },
     {
       "id": 768,
@@ -886,7 +953,8 @@
         "الأعضاء الدائمون في المجلس"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd3187b3951b9dcff29a"
     },
     {
       "id": 769,
@@ -899,7 +967,8 @@
         "بعد موافقة الجمعية العمومية بالإجماع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92eaf310596093df5e4b"
     },
     {
       "id": 770,
@@ -912,7 +981,8 @@
         "أغلبية الدول الأعضاء الدائمين في المجلس"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c64f25d66ad771b3640"
     },
     {
       "id": 771,
@@ -925,7 +995,8 @@
         "إذا طال بقاؤها في دولة المقر بعد انتهاء المهمة الرسمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d6a72919d3b2b22e4106"
     },
     {
       "id": 772,
@@ -938,7 +1009,8 @@
         "الإكوادور"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dbf186ace6485c7f454a"
     },
     {
       "id": 773,
@@ -951,7 +1023,8 @@
         "إقامة عالقات صريحة بين الدول أساسها الشرف ،وتوحيد العملة الدولية ،وإلغاء الرسوم الجمركية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ee553c1853316b117f9e"
     },
     {
       "id": 774,
@@ -964,7 +1037,8 @@
         "منظمة اليونسكو"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a1f983626bae872f2763"
     },
     {
       "id": 775,
@@ -977,7 +1051,8 @@
         "عشرة اجتماعات. ()64"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_faff70947d761a1f9a5b"
     },
     {
       "id": 776,
@@ -990,7 +1065,8 @@
         "منذ عام .1919"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f588ebc6096f26a6665"
     },
     {
       "id": 777,
@@ -1003,7 +1079,8 @@
         "حضور الأعضاء المتنازعة أصواتهم"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a43f7a984ac57fa52fed"
     },
     {
       "id": 778,
@@ -1016,7 +1093,8 @@
         "الإيطالية والفرنسية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36ce7774a6db084a51cc"
     },
     {
       "id": 779,
@@ -1029,7 +1107,8 @@
         "إجماع الأعضاء غير المتنازعين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d83d7ced19b1737ea9de"
     },
     {
       "id": 780,
@@ -1042,7 +1121,8 @@
         "فرض العقوبات على الدول المخالفة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36a79eb4b3bb915b97a7"
     },
     {
       "id": 781,
@@ -1055,7 +1135,8 @@
         "الأمينان العامان المساعدان"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3fdf58c3acc6bab85bba"
     },
     {
       "id": 782,
@@ -1068,7 +1149,8 @@
         "لجنة الميزانية والإدارة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_686c96126829b921f947"
     },
     {
       "id": 783,
@@ -1081,7 +1163,8 @@
         "التفاوض على المعاهدات الجديدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0f242748a0e7fc9893d"
     },
     {
       "id": 784,
@@ -1094,7 +1177,8 @@
         "اللجنة القانونية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9aa128f5f7b94517ceb8"
     },
     {
       "id": 785,
@@ -1107,7 +1191,8 @@
         "عام .1945"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_135a9373d972abbb8274"
     },
     {
       "id": 786,
@@ -1120,7 +1205,8 @@
         "فض النزاع بين الدول المتنازعة (إجماع دون حساب رأي الدول الأطراف)"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aa9e3ec0e32906322359"
     },
     {
       "id": 787,
@@ -1133,7 +1219,8 @@
         "احترام وضمان سالمة أقاليم الدول الأعضاء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db4c0901d06afc16b568"
     },
     {
       "id": 788,
@@ -1146,7 +1233,8 @@
         "كون قراراتها تتخذ بالأغلبية البسيطة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0e7c07774754458ec6f"
     },
     {
       "id": 789,
@@ -1159,7 +1247,8 @@
         "لجنة تدوين القانون الدولي. ()65"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_32fd3c0f833f762108a6"
     },
     {
       "id": 790,
@@ -1172,7 +1261,8 @@
         "أغلبية الأعضاء غير الدائمين"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d1f210cdc788ee81cb9"
     },
     {
       "id": 791,
@@ -1185,7 +1275,8 @@
         "تجميد عضوية الدول المتأخرة عن تسديد االشتراكات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_339d4faeb445af3b0818"
     },
     {
       "id": 792,
@@ -1198,7 +1289,8 @@
         "رفض مجلس الأمن تشكيل قوات لحفظ السالم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_74937bd7ea8089af0022"
     },
     {
       "id": 793,
@@ -1211,7 +1303,8 @@
         "عدم احترامها لمبدأ حماية الأقليات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_94a8d3657a85afc4a351"
     },
     {
       "id": 794,
@@ -1224,7 +1317,8 @@
         "المجال االجتماعي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37e1350cc3f1977edd7b"
     },
     {
       "id": 795,
@@ -1237,7 +1331,8 @@
         "إقليم لوكسمبرغ"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1863ca1d8c4e9f033362"
     },
     {
       "id": 796,
@@ -1250,7 +1345,8 @@
         "صيف عام .1933"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f7f495c68ebc97f59d5"
     },
     {
       "id": 797,
@@ -1263,7 +1359,8 @@
         "أن يقوم على العالمية المطلقة والإلزامية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48294fe2718200a997bc"
     },
     {
       "id": 798,
@@ -1276,7 +1373,8 @@
         "إعالن يالطا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89c27859bbc899a48443"
     },
     {
       "id": 799,
@@ -1289,7 +1387,8 @@
         "منظمة اليونسكو"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e806847e920aa5842d4e"
     },
     {
       "id": 800,
@@ -1302,7 +1401,8 @@
         "الدول المنتدبة بشكل منفرد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_040b4e2342d25139e420"
     }
   ]
 }

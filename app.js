@@ -116,7 +116,7 @@ class ExamApp {
 
       let targetIdx = 0;
       if (qid) {
-        const found = this.currentQuestions.findIndex(q => String(q.id) === String(qid));
+        const found = this.currentQuestions.findIndex(q => String(q.uid || q.id) === String(qid));
         if (found !== -1) targetIdx = found;
       } else if (qNum && qNum >= 1 && qNum <= this.currentQuestions.length) {
         targetIdx = qNum - 1;
@@ -160,7 +160,6 @@ class ExamApp {
   }
 
   async loadBooks() {
-    window.examEngine = new ExamEngine();
     this.books = await examEngine.loadBooks();
     this.renderBooks(this.books);
   }
@@ -182,22 +181,40 @@ class ExamApp {
     if (!data) return;
     const footerContact = document.getElementById('footerContactDetails');
     const footerLinks = document.getElementById('footerSocialButtons');
-    
+
     if (footerContact) {
-      let contactHtml = '';
+      footerContact.innerHTML = '';
       if (data.phone) {
-        contactHtml += `<a href="tel:${data.phone}"><i class="fas fa-phone"></i> ${data.phone}</a>`;
+        const a = document.createElement('a');
+        a.href = `tel:${encodeURIComponent(String(data.phone))}`;
+        a.innerHTML = '<i class="fas fa-phone"></i> ';
+        a.appendChild(document.createTextNode(String(data.phone)));
+        footerContact.appendChild(a);
       }
       if (data.email) {
-        contactHtml += ` | <a href="mailto:${data.email}"><i class="fas fa-envelope"></i> ${data.email}</a>`;
+        if (data.phone) footerContact.appendChild(document.createTextNode(' | '));
+        const a = document.createElement('a');
+        a.href = `mailto:${encodeURIComponent(String(data.email))}`;
+        a.innerHTML = '<i class="fas fa-envelope"></i> ';
+        a.appendChild(document.createTextNode(String(data.email)));
+        footerContact.appendChild(a);
       }
-      footerContact.innerHTML = contactHtml;
     }
-    
-    if (footerLinks && data.social_links && data.social_links.length > 0) {
-      footerLinks.innerHTML = data.social_links.map(link => 
-        `<a href="${link.url}" target="_blank" class="footer-link-btn"><i class="fab fa-telegram-plane"></i> ${link.label}</a>`
-      ).join('');
+
+    if (footerLinks) {
+      footerLinks.innerHTML = '';
+      (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
+        const href = this.safeExternalUrl(link.url);
+        if (href === '#') return;
+        const a = document.createElement('a');
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'footer-link-btn';
+        a.innerHTML = '<i class="fab fa-telegram-plane"></i> ';
+        a.appendChild(document.createTextNode(String(link.label || 'رابط')));
+        footerLinks.appendChild(a);
+      });
     }
   }
 
@@ -321,6 +338,14 @@ class ExamApp {
     return div.innerHTML;
   }
 
+  safeExternalUrl(value) {
+    try {
+      const url = new URL(String(value || ''), window.location.origin);
+      if (url.protocol === 'https:') return url.href;
+    } catch (_) {}
+    return '#';
+  }
+
   filterBooks() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
     const filtered = this.books.filter(b => 
@@ -403,7 +428,8 @@ class ExamApp {
     this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
     examEngine.questions = this.currentQuestions;
 
-    const targetIdx = this.currentQuestions.findIndex(q => q.id === matchedQuestion.id);
+    const targetKey = matchedQuestion.uid || matchedQuestion.id;
+    const targetIdx = this.currentQuestions.findIndex(q => (q.uid || q.id) === targetKey);
     examEngine.currentQuestionIndex = targetIdx !== -1 ? targetIdx : 0;
 
     this.isCustomExam = false;
@@ -427,7 +453,7 @@ class ExamApp {
     const container = document.getElementById('chapters-container');
     if (!header || !container) return;
 
-    header.innerHTML = `<h2>${this.currentBook.title}</h2><p>اختر الفصل الذي تريد بدء امتحانه:</p>`;
+    header.innerHTML = `<h2>${this.escapeHtml(this.currentBook.title)}</h2><p>اختر الفصل الذي تريد بدء امتحانه:</p>`;
     container.innerHTML = '';
 
     for (let i = 1; i <= this.currentBook.chapters; i++) {
@@ -481,8 +507,8 @@ class ExamApp {
 
     container.innerHTML = this.books.map(book => `
       <label class="custom-exam-book-option">
-        <input type="checkbox" value="${book.id}" class="custom-exam-book-checkbox">
-        <span>${book.title} <small>(${book.chapters || 0} فصل)</small></span>
+        <input type="checkbox" value="${this.escapeHtml(book.id)}" class="custom-exam-book-checkbox">
+        <span>${this.escapeHtml(book.title)} <small>(${Number(book.chapters) || 0} فصل)</small></span>
       </label>
     `).join('');
   }
@@ -613,12 +639,20 @@ class ExamApp {
     if (statCorrect) statCorrect.innerText = correctCount;
     if (statProgress) statProgress.innerText = `${qIdx + 1}/${total}`;
 
-    const pastAns = examEngine.userAnswers.find(a => a.questionText === q.question);
+    // uid هو المعرف الأساسي للسؤال، وid هو البديل عند عدم وجود uid.
+    // لا نستخدم نص السؤال لأنه قد يتكرر في أكثر من سؤال.
+    const questionUid = q.uid || null;
+    const questionId = q.id || null;
+    const pastAns = examEngine.userAnswers.find(a => {
+      if (questionUid) return a.questionUid === questionUid;
+      if (questionId) return a.questionId === questionId;
+      return false;
+    });
 
     container.innerHTML = `
       <div class="question-card">
         <span class="question-label">⚖️ السؤال ${qIdx + 1} من ${total}</span>
-        <div class="question-text">${q.question}</div>
+        <div class="question-text">${this.escapeHtml(q.question)}</div>
       </div>
       <div class="options-list">
         ${q.options.map((opt, i) => {
@@ -627,7 +661,10 @@ class ExamApp {
             if (opt === pastAns.userAnswer && !pastAns.isCorrect) extraClass = 'incorrect';
             if (opt === pastAns.correctAnswer) extraClass = 'correct';
           }
-          return `<button class="option-btn ${extraClass}" ${pastAns ? 'disabled class="disabled"' : ''} onclick="app.handleAnswer(${i}, this)">${opt}</button>`;
+          const classNames = ['option-btn'];
+          if (extraClass) classNames.push(extraClass);
+          if (pastAns) classNames.push('disabled');
+          return `<button class="${classNames.join(' ')}"${pastAns ? ' disabled' : ''} onclick="app.handleAnswer(${i}, this)">${this.escapeHtml(opt)}</button>`;
         }).join('')}
       </div>
     `;
@@ -655,8 +692,9 @@ class ExamApp {
     if (!bookId || !chapterNum) return `${origin}${basePath}/`;
 
     let url = `${origin}${basePath}/?book=${encodeURIComponent(bookId)}&chapter=${chapterNum}`;
-    if (q.id) {
-      url += `&qid=${encodeURIComponent(q.id)}`;
+    const stableQuestionId = q.uid || q.id;
+    if (stableQuestionId) {
+      url += `&qid=${encodeURIComponent(stableQuestionId)}`;
     } else if (!this.isCustomExam) {
       // بدون id: نستخدم رقم موقع السؤال داخل الفصل كبديل (غير متاح بدقة أثناء الاختبار العشوائي)
       const posIdx = this.currentQuestions.indexOf(q);
@@ -979,10 +1017,10 @@ class ExamApp {
       const item = document.createElement('div');
       item.className = 'review-item';
       item.innerHTML = `
-        <div class="review-question"><strong>س${idx + 1}:</strong> ${ans.questionText}</div>
-        <div class="review-answer incorrect">❌ إجابتك: ${ans.userAnswer}</div>
-        <div class="review-answer correct">✔ الإجابة الصحيحة: ${ans.correctAnswer}</div>
-        ${ans.explanation ? `<div class="review-explanation"><strong>📚 الشرح:</strong> ${ans.explanation}</div>` : ''}
+        <div class="review-question"><strong>س${idx + 1}:</strong> ${this.escapeHtml(ans.questionText)}</div>
+        <div class="review-answer incorrect">❌ إجابتك: ${this.escapeHtml(ans.userAnswer)}</div>
+        <div class="review-answer correct">✔ الإجابة الصحيحة: ${this.escapeHtml(ans.correctAnswer)}</div>
+        ${ans.explanation ? `<div class="review-explanation"><strong>📚 الشرح:</strong> ${this.escapeHtml(ans.explanation)}</div>` : ''}
       `;
       content.appendChild(item);
     });

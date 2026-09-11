@@ -15,7 +15,8 @@
         "دراسة المسائل التي تحال إليها من المجلس الدائم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2e0ab4703bee048c049"
     },
     {
       "id": 1702,
@@ -28,7 +29,8 @@
         "مجلس الشؤون القانونية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9224eed4ef0a2a5afe61"
     },
     {
       "id": 1703,
@@ -41,7 +43,8 @@
         "عام .1950"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cebaf0f4abfd7ade1de4"
     },
     {
       "id": 1704,
@@ -54,7 +57,8 @@
         "منظمة اقتصادية متخصصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ccfe6cfdb224203ae74"
     },
     {
       "id": 1705,
@@ -67,7 +71,8 @@
         "المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd8df154355afacc2d59"
     },
     {
       "id": 1706,
@@ -80,7 +85,8 @@
         "الأمانة العامة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6e406cca51b3d24aa15c"
     },
     {
       "id": 1707,
@@ -93,7 +99,8 @@
         "اللجنة العليا للسياسات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_679fb2368835321f884d"
     },
     {
       "id": 1708,
@@ -106,7 +113,8 @@
         "رئاسة المؤتمر العام في غياب الوزراء. ()138"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f32d6a517b10c6a0cd9"
     }
   ]
 }

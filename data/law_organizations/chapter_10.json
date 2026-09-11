@@ -15,7 +15,8 @@
         "طالبت بموافقة جميع الدول الأعضاء بالإجماع لكسر مبدأ الحياد"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_28c69d84e47593228bf8"
     },
     {
       "id": 902,
@@ -28,7 +29,8 @@
         "أن تكون الدولة محبة للسلام. ()74"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_077943017e25ddebd604"
     },
     {
       "id": 903,
@@ -41,7 +43,8 @@
         "الإعفاء من القيود الخاصة بالهجرة فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_77c0353226906b140df4"
     },
     {
       "id": 904,
@@ -54,7 +57,8 @@
         "توقيع اتفاقية هدنة مؤقتة مع الطرف المعتدي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f985300ec57adc00651"
     },
     {
       "id": 905,
@@ -67,7 +71,8 @@
         "اللجنة التنفيذية لمجلس الأمن"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_40c56c423b97e0fd82c0"
     },
     {
       "id": 906,
@@ -80,7 +85,8 @@
         "أغلبية أصوات الأعضاء الحاضرين فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3a811abfd66d16f300a"
     },
     {
       "id": 907,
@@ -93,7 +99,8 @@
         "الدول الأعضاء الخمس الدائمة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_113d595dab641ed9d8b9"
     },
     {
       "id": 908,
@@ -106,7 +113,8 @@
         "إصدار قرار جديد من مجلس الأمن بالموافقة النهائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12fc36b0293e5e006add"
     },
     {
       "id": 909,
@@ -119,7 +127,8 @@
         "موافقة الأغلبية المطلقة لألعضاء الدائمين فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f6d2e1384ed8fa358c88"
     },
     {
       "id": 910,
@@ -132,7 +141,8 @@
         "التصويت النهائي على طلب العضوية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c7f90178d74731b78186"
     },
     {
       "id": 911,
@@ -145,7 +155,8 @@
         "إجبار الجمعية العامة على عدم التصويت"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6388e655f1984017be21"
     },
     {
       "id": 912,
@@ -158,7 +169,8 @@
         "أن يتم إلغاؤها بأغلبية الثلثين من مجموع الأعضاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e9aba37688f3f2e531bc"
     },
     {
       "id": 913,
@@ -171,7 +183,8 @@
         "يقتصر على أنها عضو في المنظمة تتمتع بالحقوق فقط. ()75"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af83b067f03bbd77feb2"
     },
     {
       "id": 914,
@@ -184,7 +197,8 @@
         "أن الجمعية العامة يجب أن تطلب إعادة النظر في التوصية دون رفضها"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c10dbf6f5831ba6f8339"
     },
     {
       "id": 915,
@@ -197,7 +211,8 @@
         "الدول الأعضاء غير الدائمة العضوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d1f2b275168a0bfb9820"
     },
     {
       "id": 916,
@@ -210,7 +225,8 @@
         "إيداع وثيقة التصديق على الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02dc058c2fb86c88c298"
     },
     {
       "id": 917,
@@ -223,7 +239,8 @@
         "أن تكون الدولة راغبة في تنفيذ االلتزامات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d5feb91c4fdfec143d35"
     },
     {
       "id": 918,
@@ -236,7 +253,8 @@
         "أنها ال تعد مسألة موضوعية بل إجرائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33be23ae5c7ad438e281"
     },
     {
       "id": 919,
@@ -249,7 +267,8 @@
         "مسألة استشارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6fe869906fb468280329"
     },
     {
       "id": 920,
@@ -262,7 +281,8 @@
         "يجب أن تكون مشروطة بالقدرة على التنفيذ"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_86de91248f019bf83325"
     },
     {
       "id": 921,
@@ -275,7 +295,8 @@
         "لجنة قبول الأعضاء الجدد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_79202986c54a6bbb2182"
     },
     {
       "id": 922,
@@ -288,7 +309,8 @@
         "هل يجوز للعضو تعليق موافقته على قبول طلبات دول أخرى؟"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fc1375c32ebb07fe28f"
     },
     {
       "id": 923,
@@ -301,7 +323,8 @@
         "10 كانون الثاني (يناير) .1946"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_acd84882190a23499928"
     },
     {
       "id": 924,
@@ -314,7 +337,8 @@
         "يجب تطبيق حق النقض على جميع الشروط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a947d84b87bc69cd3cf0"
     },
     {
       "id": 925,
@@ -327,7 +351,8 @@
         "سنتان فقط (.)1947-1945 ()76"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_394092ebb899320e161f"
     },
     {
       "id": 926,
@@ -340,7 +365,8 @@
         "خمس دول فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1295e9827ae59d0cc939"
     },
     {
       "id": 927,
@@ -353,7 +379,8 @@
         "هل يعد حق النقض مسألة إجرائية أم موضوعية؟"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_564088cd652bca79ccc6"
     },
     {
       "id": 928,
@@ -366,7 +393,8 @@
         "يجوز للجمعية القبول بعد استشارة الدول الخمس الدائمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be5be880e0540d5bfcd0"
     },
     {
       "id": 929,
@@ -379,7 +407,8 @@
         "أن التوصية كانت إيجابية فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cffc85c3deb1941ed7d7"
     },
     {
       "id": 930,
@@ -392,7 +421,8 @@
         "أدت إلى تعديل المادة 2/4في الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ceabacd59da6d2dfc12b"
     },
     {
       "id": 931,
@@ -405,7 +435,8 @@
         "دولة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a36fead513f61156c9a8"
     },
     {
       "id": 932,
@@ -418,7 +449,8 @@
         "أن القرارات المتعلقة بالقبول يتم تمريرها بأغلبية الثلثين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eedcedf472b7b795bcc8"
     },
     {
       "id": 933,
@@ -431,7 +463,8 @@
         "الحياد الدائم لبعض الدول المتقدمة بطلب االنضمام"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f0d8d4b663defd246bc3"
     },
     {
       "id": 934,
@@ -444,7 +477,8 @@
         "سحب جميع طلباتها المقدمة لتجميد المشكلة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a537bf0e9696ac4c3a9e"
     },
     {
       "id": 935,
@@ -457,7 +491,8 @@
         "إلغاء حق النقض في مسألة القبول"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6fe5ad2b07721097bab3"
     },
     {
       "id": 936,
@@ -470,7 +505,8 @@
         "وجود عدد كبير من الدول غير الشيوعية ضمن الطلبات. ()77"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7512e9b817281892c36a"
     },
     {
       "id": 937,
@@ -483,7 +519,8 @@
         "الحياد الدائم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5c7309fef083afab6ea"
     },
     {
       "id": 938,
@@ -496,7 +533,8 @@
         "الحياد المؤقت"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9b7bb121b738f4d0a028"
     },
     {
       "id": 939,
@@ -509,7 +547,8 @@
         "المادة .2/5"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b935c2f683731fb18957"
     },
     {
       "id": 940,
@@ -522,7 +561,8 @@
         "أن يتم قبولها بشرط تعديل الميثاق أوالً"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63f3f1b7916b5bb291b2"
     },
     {
       "id": 941,
@@ -535,7 +575,8 @@
         "أنه يؤدي إلى تأجيل القبول فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0801c8f9e8051aeb702"
     },
     {
       "id": 942,
@@ -548,7 +589,8 @@
         "الحياد السياسي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02b9cb7f6f765038ec02"
     },
     {
       "id": 943,
@@ -561,7 +603,8 @@
         "الدول المحايدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec04050b767a828a4660"
     },
     {
       "id": 944,
@@ -574,7 +617,8 @@
         "الأمين العام"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92bf2ce306c1027a56b7"
     },
     {
       "id": 945,
@@ -587,7 +631,8 @@
         "مبدأ الإرادة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_848d26a732a9ab1af902"
     },
     {
       "id": 946,
@@ -600,7 +645,8 @@
         "الحياد العرضي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bf14d5b91ec4eba3aae9"
     },
     {
       "id": 947,
@@ -613,7 +659,8 @@
         "االلتزامات المتعلقة بالحياد يمكن تنفيذها بالتوازي مع التزامات الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c979edf7073e45572f32"
     },
     {
       "id": 948,
@@ -626,7 +673,8 @@
         "تعديل للميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_437b7ca47668e11f151d"
     },
     {
       "id": 949,
@@ -639,7 +687,8 @@
         "المادة .27"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_526959e882d0a0a695a4"
     },
     {
       "id": 950,
@@ -652,7 +701,8 @@
         "في جميع حاالت التأخر عن التسديد بغض النظر عن المدة. ()78"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ed4a620021fc3a130de7"
     },
     {
       "id": 951,
@@ -665,7 +715,8 @@
         "اللجنة الأولى (السياسية)"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be475432a741ce28ee6d"
     },
     {
       "id": 952,
@@ -678,7 +729,8 @@
         "الإيقاف عن توقيع المعاهدات الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_49cbd2dd635d1437a6fb"
     },
     {
       "id": 953,
@@ -691,7 +743,8 @@
         "الدول الأعضاء الأخرى"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b47093ddf0a78f4b5748"
     },
     {
       "id": 954,
@@ -704,7 +757,8 @@
         "الدول الدائمة العضوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_afd0d918184280957cb8"
     },
     {
       "id": 955,
@@ -717,7 +771,8 @@
         "عدم موافقة الدولة العضو على تعديل الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4311f40405e9f382ec6c"
     },
     {
       "id": 956,
@@ -730,7 +785,8 @@
         "لجنة قبول الأعضاء الجدد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_015f75da21f04b12f317"
     },
     {
       "id": 957,
@@ -743,7 +799,8 @@
         "الدورة السادسة عشرة (.)1961"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_452c97e2459f2ab2aa8f"
     },
     {
       "id": 958,
@@ -756,7 +813,8 @@
         "بريطانيا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a866618e8c68f0972834"
     },
     {
       "id": 959,
@@ -769,7 +827,8 @@
         "طالب محكمة العدل الدولية بفتوى تفسر المادة .19"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ddf2ff07e02d18791377"
     },
     {
       "id": 960,
@@ -782,7 +841,8 @@
         "نفقات الأمانة العامة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99dac40e057da04dc629"
     },
     {
       "id": 961,
@@ -795,7 +855,8 @@
         "المادة 27من الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_17daa7b727a5a06cf0b1"
     },
     {
       "id": 962,
@@ -808,7 +869,8 @@
         "ميزة ممنوحة للدول الكبرى"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5b88843625a62db3f6f"
     },
     {
       "id": 963,
@@ -821,7 +883,8 @@
         "أن تكون دولة موقعة على ميثاق الأمم المتحدة. ()79"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2136cdb6d08fb15dd052"
     },
     {
       "id": 964,
@@ -834,7 +897,8 @@
         "يجب عليها إعادة تقديم طلب العضوية كل 10سنوات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_caa61ebca793f499f0bd"
     },
     {
       "id": 965,
@@ -847,7 +911,8 @@
         "استعمال حق النقض (الفيتو)"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d8dd0ddcb2f95bad93d"
     },
     {
       "id": 966,
@@ -860,7 +925,8 @@
         "تم تعليق عضويتها مؤقتا ً"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ed958f50a31f7686e03"
     },
     {
       "id": 967,
@@ -873,7 +939,8 @@
         "الحصول على ثلثي الأصوات في الجمعية العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_719851846ee5b7c4a58b"
     },
     {
       "id": 968,
@@ -886,7 +953,8 @@
         "إيقاف العضوية بشكل شامل"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ed345932150bd2a51676"
     },
     {
       "id": 969,
@@ -899,7 +967,8 @@
         "قبول منغوليا في العضوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_21162c9df25637a87ee3"
     },
     {
       "id": 970,
@@ -912,7 +981,8 @@
         "العضوية المؤقتة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b807a58870f586b1c84e"
     },
     {
       "id": 971,
@@ -925,7 +995,8 @@
         "لعدم اشتراط توصية مجلس الأمن لرفع الجزاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b9a42b9b13998beed13"
     },
     {
       "id": 972,
@@ -938,7 +1009,8 @@
         "اللجنة الأولى (السياسية)"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2fdbdc4c6d919567f53c"
     },
     {
       "id": 973,
@@ -951,7 +1023,8 @@
         "ال تحتاج إلى قرار من الجمعية العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc07d1ee426e61ac966e"
     },
     {
       "id": 974,
@@ -964,7 +1037,8 @@
         "قرار لا يتأثر بحق النقض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_68ea05f0f99bdf99390a"
     },
     {
       "id": 975,
@@ -977,7 +1051,8 @@
         "أصبحت جميع الأطراف أعضاء مراقبين فقط. ()80"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a88465fb6f0ca330e8c0"
     },
     {
       "id": 976,
@@ -990,7 +1065,8 @@
         "لا تتأثر عضويتها"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f7ef7da6d751da5668a6"
     },
     {
       "id": 977,
@@ -1003,7 +1079,8 @@
         "التوقيع على معاهدة ثنائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0f0f06c873868492c15"
     },
     {
       "id": 978,
@@ -1016,7 +1093,8 @@
         "أجاز االنسحاب بشرط موافقة مجلس الأمن فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b127e90b1a601a628723"
     },
     {
       "id": 979,
@@ -1029,7 +1107,8 @@
         "ألن االنسحاب كان محظوراً بالعرف الدولي"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_79951eb11d0df780ea43"
     },
     {
       "id": 980,
@@ -1042,7 +1121,8 @@
         "إذا كانت الدولة قد صدر بحقها جزاء الإيقاف الشامل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9177f1f7f9959a77ed1f"
     },
     {
       "id": 981,
@@ -1055,7 +1135,8 @@
         "البرازيل احتجاجا ً على حق النقض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ce1d566354cd5beb1267"
     },
     {
       "id": 982,
@@ -1068,7 +1149,8 @@
         "1970"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2e6bd34bbe6e6e91ed4f"
     },
     {
       "id": 983,
@@ -1081,7 +1163,8 @@
         "الفصل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_17510b5d8d1d41fac037"
     },
     {
       "id": 984,
@@ -1094,7 +1177,8 @@
         "أنه كان إيقافا ً شامالً"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29e7aceaa43a038d8d71"
     },
     {
       "id": 985,
@@ -1107,7 +1191,8 @@
         "المادة .27"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_898176a6cb4aa8c8f258"
     },
     {
       "id": 986,
@@ -1120,7 +1205,8 @@
         "إذا لم يوافق على تعديل الميثاق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_441219a0f23ed152dc07"
     },
     {
       "id": 987,
@@ -1133,7 +1219,8 @@
         "الدول الأعضاء الخمس الدائمة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd742c5dc4152e3a5fc8"
     },
     {
       "id": 988,
@@ -1146,7 +1233,8 @@
         "شرط أن لا يكون مدينا ً ماليا ً. ()81"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1198fc5064f504697a20"
     },
     {
       "id": 989,
@@ -1159,7 +1247,8 @@
         "جعله حقا ً للدول الصغيرة دون الكبيرة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5147483e81f483a8bd7b"
     },
     {
       "id": 990,
@@ -1172,7 +1261,8 @@
         "يقتصر ذلك على شرط السيادة فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa615ca6d7e377269f81"
     },
     {
       "id": 991,
@@ -1185,7 +1275,8 @@
         "1 يناير .1968"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef946145c79fc7c3df47"
     },
     {
       "id": 992,
@@ -1198,7 +1289,8 @@
         "استمرار عضويتها رغم إرادتها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_854e1f21e27de067f088"
     },
     {
       "id": 993,
@@ -1211,7 +1303,8 @@
         "تمسك الدولة العضو بالحياد الدائم"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82185f3e96fcf7049bd7"
     },
     {
       "id": 994,
@@ -1224,7 +1317,8 @@
         "أغلبية الثلثين من الدول الأعضاء الدائمة فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1804d26322a942cf528"
     },
     {
       "id": 995,
@@ -1237,7 +1331,8 @@
         "مسألة تتطلب أغلبية تسعة أصوات دون اشتراط الفيتو"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f18e1499183581bcc0b5"
     },
     {
       "id": 996,
@@ -1250,7 +1345,8 @@
         "لا يوجد حد أدنى ويترك تقديرها للدول الكبرى"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7716735ad6512ebac068"
     },
     {
       "id": 997,
@@ -1263,7 +1359,8 @@
         "الأمين العام (مباشرة)"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_13ebb3fca1abedc1f36d"
     },
     {
       "id": 998,
@@ -1276,7 +1373,8 @@
         "ستة أجهزة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00f0ff24ab031f5d3bb3"
     },
     {
       "id": 999,
@@ -1289,7 +1387,8 @@
         "مجلس الأمن والمجلس االقتصادي واالجتماعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_894fdad6f2ab63e22343"
     },
     {
       "id": 1000,
@@ -1302,7 +1401,8 @@
         "نظام نزع السالح"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9937095e9da891e7eee3"
     }
   ]
 }

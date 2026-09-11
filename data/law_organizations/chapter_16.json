@@ -15,7 +15,8 @@
         "عالقة إلزام بعرض النزاع على مجلس الأمن ابتدا ًء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_460c4f977317fea1e6b2"
     },
     {
       "id": 1502,
@@ -28,7 +29,8 @@
         "منع مجلس الأمن من القيام بالعمل المناسب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9cf9669d539a58867208"
     },
     {
       "id": 1503,
@@ -41,7 +43,8 @@
         "الجهاز المعني بالرقابة على المنظمات الإقليمية من دون توجيه"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a77136633d486e1f308e"
     },
     {
       "id": 1504,
@@ -54,7 +57,8 @@
         "الفصل الرابع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b67441bfbfd4e4a07279"
     },
     {
       "id": 1505,
@@ -67,7 +71,8 @@
         "أعمال تشجيع التعاون الثقافي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_de37cd632e055c3e97ba"
     },
     {
       "id": 1506,
@@ -80,7 +85,8 @@
         "موافقة جميع الدول الأعضاء في المنظمة الإقليمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_186b981cd4a8ef2fb29d"
     },
     {
       "id": 1507,
@@ -93,7 +99,8 @@
         "وجوب تفويض المنظمات الإقليمية بصالحيات مطلقة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_25c95efff823b327dd09"
     },
     {
       "id": 1508,
@@ -106,7 +113,8 @@
         "سيطرة المنظمات العالمية وحدها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dd96e89d3a819277a7ff"
     },
     {
       "id": 1509,
@@ -119,7 +127,8 @@
         "المادة .51"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3bad80eebe5046e89ee"
     },
     {
       "id": 1510,
@@ -132,7 +141,8 @@
         "عالقة إلغاء لكافة اختصاصات المنظمات الإقليمية. ()123"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_172d2937a6f0b1f6b0d7"
     },
     {
       "id": 1511,
@@ -145,7 +155,8 @@
         "عندما تكون المنظمة غير متالئمة مع مقاصد الأمم المتحدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b474d627860e702cbb84"
     },
     {
       "id": 1512,
@@ -158,7 +169,8 @@
         "عالقة منع التنظيم الإقليمي من حل المنازعات المحلية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9192303f94d8278ca57f"
     },
     {
       "id": 1513,
@@ -171,7 +183,8 @@
         "وجود قوة عسكرية مهيمنة داخل الإقليم"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9853b25f82d4b6b550fd"
     },
     {
       "id": 1514,
@@ -184,7 +197,8 @@
         "منظمة السارك"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be4125858e7aaf1c38db"
     },
     {
       "id": 1515,
@@ -197,7 +211,8 @@
         "أنها تمثل خطرا ً يهدد العالم باالنقسامات والتكتالت ويؤدي إلى تفتيت المجتمع الدولي"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7a414fcfda57c745199"
     },
     {
       "id": 1516,
@@ -210,7 +225,8 @@
         "كونها تنظم العالقات الدولية بمعزل عن ميثاق الأمم المتحدة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64e64bb15b68af94516b"
     },
     {
       "id": 1517,
@@ -223,7 +239,8 @@
         "ميثاق عصبة الأمم وحده (المادة .)21"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f4bb5119095578cbaf6d"
     },
     {
       "id": 1518,
@@ -236,7 +253,8 @@
         "1963"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b55c499e2fb5ca38e83b"
     },
     {
       "id": 1519,
@@ -249,7 +267,8 @@
         "ضمان علوية االلتزامات الإقليمية على التزامات الميثاق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_06e2d45c8ac6084477a1"
     },
     {
       "id": 1520,
@@ -262,7 +281,8 @@
         "أن تقتصر على معالجة الأمور االقتصادية واالجتماعية فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_19831ad8d5fa95da04de"
     },
     {
       "id": 1521,
@@ -275,7 +295,8 @@
         "ضمان عدم اصطدام الشرط بالتفسير والتخريج. ()124"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5159ba5177470c16d9c6"
     },
     {
       "id": 1522,
@@ -288,7 +309,8 @@
         "التدخل المباشر من جانب مجلس الأمن دون إحالة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_39221c810767d15dae34"
     },
     {
       "id": 1523,
@@ -301,7 +323,8 @@
         "تفويض التنظيمات الإقليمية بسلطة مطلقة في إقليمها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a52beb2f57ea8ed860b3"
     },
     {
       "id": 1524,
@@ -314,7 +337,8 @@
         "الفصل الثالث"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d7711f7e19c2df2caa86"
     },
     {
       "id": 1525,
@@ -327,7 +351,8 @@
         "إبالغ مجلس الأمن بالعمل بعد وقوعه مباشرة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_73c2d4cccd1972c31f64"
     },
     {
       "id": 1526,
@@ -340,7 +365,8 @@
         "15 آذار (مارس) .1945"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8df56a59556cd6a1a4fa"
     },
     {
       "id": 1527,
@@ -353,7 +379,8 @@
         "أن الفكرة تهدف إلى تكريس سيادات الدول الأعضاء وحدودها الطبيعية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_643bbf766907491aab2e"
     },
     {
       "id": 1528,
@@ -366,7 +393,8 @@
         "أنها المنظمة الإقليمية الوحيدة التي تتسم بالطابع القومي وتضم أبناء أمة واحدة وتستخدم لغة واحدة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd1df19ab3ac036972ab"
     },
     {
       "id": 1529,
@@ -379,7 +407,8 @@
         "خالف ال يخشى منه وقوع حرب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a35d77da054aa235fbf6"
     },
     {
       "id": 1530,
@@ -392,7 +421,8 @@
         "اللجوء إلى محكمة العدل الدولية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_986af4fd6a5c831f0d9d"
     },
     {
       "id": 1531,
@@ -405,7 +435,8 @@
         "شؤون الجنسية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f624bd8b8a2322797ae0"
     },
     {
       "id": 1532,
@@ -418,7 +449,8 @@
         "منظمة الوحدة الأفريقية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b82c20e142a7698840e9"
     },
     {
       "id": 1533,
@@ -431,7 +463,8 @@
         "أن دورها يقتصر على الروابط الخاصة كالأصل واللغة فقط. ()125"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f533eab9407108dc7c1a"
     },
     {
       "id": 1534,
@@ -444,7 +477,8 @@
         "المادة 53"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0720f01887e47202026f"
     },
     {
       "id": 1535,
@@ -457,7 +491,8 @@
         "مجلس الوصاية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e8484ded166412302565"
     },
     {
       "id": 1536,
@@ -470,7 +505,8 @@
         "1953"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef25b6d0a98e4babdb0a"
     },
     {
       "id": 1537,
@@ -483,7 +519,8 @@
         "المادة 34"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d0e35dbc43f3464fba86"
     },
     {
       "id": 1538,
@@ -496,7 +533,8 @@
         "استخدام القوة فوراً لمنع تفاقم النزاع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9cfd10debd393db00994"
     },
     {
       "id": 1539,
@@ -509,7 +547,8 @@
         "المادتان 8و 2"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_93573c0dc781c5c4501d"
     },
     {
       "id": 1540,
@@ -522,7 +561,8 @@
         "الفصل الرابع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_571b78bf04012f2198ac"
     },
     {
       "id": 1541,
@@ -535,7 +575,8 @@
         "من 13نيسان إلى 7تشرين الأول عام 1944"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d600fb3d7c8d3cb872c7"
     },
     {
       "id": 1542,
@@ -548,7 +589,8 @@
         "إقامة عالقات وطيدة مع الدول الأعجمية فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_447e9a45fe482800292b"
     },
     {
       "id": 1543,
@@ -561,7 +603,8 @@
         "شؤون المواصالت"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec5ed3e07276693460fc"
     },
     {
       "id": 1544,
@@ -574,7 +617,8 @@
         "المادة الثالثة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1cc39b9562079bb2340f"
     },
     {
       "id": 1545,
@@ -587,7 +631,8 @@
         "موافقة ممثل الدولة المعتدى عليها فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c6a6c4c9f766cb362a94"
     },
     {
       "id": 1546,
@@ -600,7 +645,8 @@
         "ثالث دول فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d17ea51884e53c2151f"
     },
     {
       "id": 1547,
@@ -613,7 +659,8 @@
         "منظمة الأغذية والزراعة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61502183c29dce29c850"
     },
     {
       "id": 1548,
@@ -626,7 +673,8 @@
         "المادة الثامنة. ()126"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc028ab687c21250acaf"
     },
     {
       "id": 1549,
@@ -639,7 +687,8 @@
         "المساواة في السيادة ال تعني المساواة في التصويت في اللجان"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35cdba56214c2ba2e01c"
     },
     {
       "id": 1550,
@@ -652,7 +701,8 @@
         "إجماع الدول الأعضاء في الجامعة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d5dc40115db5167d366e"
     },
     {
       "id": 1551,
@@ -665,7 +715,8 @@
         "شرط موافقة جميع أعضاء مجلس الدفاع المشترك باستثناء الدولة المعتدية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5943271944e722a65f3e"
     },
     {
       "id": 1552,
@@ -678,7 +729,8 @@
         "مصر ،الأردن ،العراق ،السعودية ،الكويت ،سورية ،لبنان"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c2bc03a38ed391192850"
     },
     {
       "id": 1553,
@@ -691,7 +743,8 @@
         "مجلس الجامعة مباشرة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdf2602fa00ccddb379d"
     },
     {
       "id": 1554,
@@ -704,7 +757,8 @@
         "فلسطين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0e08bff097964e12998f"
     },
     {
       "id": 1555,
@@ -717,7 +771,8 @@
         "حصول الدولتين على عضوية المراقب في منظمة الأمم المتحدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48ada3ba7e887f0b3ad2"
     },
     {
       "id": 1556,
@@ -730,7 +785,8 @@
         "صفة الدولة المستقلة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_285d0272a231d88f5308"
     },
     {
       "id": 1557,
@@ -743,7 +799,8 @@
         "التمثيل الدبلوماسي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_565eb2781df5a46b66ff"
     },
     {
       "id": 1558,
@@ -756,7 +813,8 @@
         "ممثلي الدول المؤسسة التي لم تستكمل استقاللها"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a96e622a842dc35bb419"
     },
     {
       "id": 1559,
@@ -769,7 +827,8 @@
         "الصومال"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_10abe45ce371cc089077"
     },
     {
       "id": 1560,
@@ -782,7 +841,8 @@
         "في شهر أيار .1976 ()127"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f93061dfe5e51c8e46d"
     },
     {
       "id": 1561,
@@ -795,7 +855,8 @@
         "حصولها على االستقالل الكامل من فرنسا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dd2a7e151506bc1a4139"
     },
     {
       "id": 1562,
@@ -808,7 +869,8 @@
         "رؤساء الدول المؤسسة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_62f33a16a278cbaa5ebc"
     },
     {
       "id": 1563,
@@ -821,7 +883,8 @@
         "ثالثة أرباع أعضاء المجلس"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c47e46dda11ce7a6b0b6"
     },
     {
       "id": 1564,
@@ -834,7 +897,8 @@
         "اليمن"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_befe053f187dbe230835"
     },
     {
       "id": 1565,
@@ -847,7 +911,8 @@
         "المادة التاسعة عشرة من الميثاق المتعلقة بالتعديل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91cbfca0135cc1cee782"
     },
     {
       "id": 1566,
@@ -860,7 +925,8 @@
         "1974"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_84b084d9081aa447ddad"
     },
     {
       "id": 1567,
@@ -873,7 +939,8 @@
         "خمس عشرة دولة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7efa68418a2ab841370"
     },
     {
       "id": 1568,
@@ -886,7 +953,8 @@
         "عمان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0d50d772e6eac658370"
     },
     {
       "id": 1569,
@@ -899,7 +967,8 @@
         "موريتانيا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99d2055846d87c80a422"
     },
     {
       "id": 1570,
@@ -912,7 +981,8 @@
         "إبالغ الأمم المتحدة فقط بقرار االنسحاب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_808b70f31410e607bba0"
     },
     {
       "id": 1571,
@@ -925,7 +995,8 @@
         "لتمكين الدول الأعضاء من ممارسة حق الفصل ضد الدولة المنسحبة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9af576988c474c523a93"
     },
     {
       "id": 1572,
@@ -938,7 +1009,8 @@
         "إجماع الدول المؤسسة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a4642e7d06f54ecbce45"
     },
     {
       "id": 1573,
@@ -951,7 +1023,8 @@
         "أن يكون التعديل قد تم البت فيه في دور االنعقاد الذي قدم فيه الطلب"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c5df38e1a6c839daead1"
     },
     {
       "id": 1574,
@@ -964,7 +1037,8 @@
         "الطرد المؤقت"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61365d0c0d67f8b4c856"
     },
     {
       "id": 1575,
@@ -977,7 +1051,8 @@
         "إجماع أعضائه بالكامل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d62298405bca14644d22"
     },
     {
       "id": 1576,
@@ -990,7 +1065,8 @@
         "قبولها اتفاقيات سالم مع دول غير عربية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d6ca25f7573cfdcb131"
     },
     {
       "id": 1577,
@@ -1003,7 +1079,8 @@
         "عام 1967بعد تحفظ السعودية على قبول اليمن الديمقراطي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9befec17e5cbab3fc6c1"
     },
     {
       "id": 1578,
@@ -1016,7 +1093,8 @@
         "إذا تم إعالن الوحدة بينها وبين دولة أخرى خارج شهر أيار"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d642eb7ac69304da32dd"
     },
     {
       "id": 1579,
@@ -1029,7 +1107,8 @@
         "تم تطبيق عقوبة الفصل عليها بالإجماع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d931dc8a71f1a4760c63"
     },
     {
       "id": 1580,
@@ -1042,7 +1121,8 @@
         "مؤتمر القمة ،مجلس الجامعة ،اللجان الفرعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37e83e5411fb30f6d2f7"
     },
     {
       "id": 1581,
@@ -1055,7 +1135,8 @@
         "صوت واحد"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bde1c42e58d2cc7f6510"
     },
     {
       "id": 1582,
@@ -1068,7 +1149,8 @@
         "المادة السادسة المتعلقة بدفع العدوان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a5c3e9c20f88122631fd"
     },
     {
       "id": 1583,
@@ -1081,7 +1163,8 @@
         "موريتانيا"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d594bfbc8ab3d15cae9"
     },
     {
       "id": 1584,
@@ -1094,7 +1177,8 @@
         "في شهر تموز وحزيران من كل عام. ()129"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_705be921445ccf14e727"
     },
     {
       "id": 1585,
@@ -1107,7 +1191,8 @@
         "الأغلبية المطلقة للدول المؤسسة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aefc5c8f5de7bf629199"
     },
     {
       "id": 1586,
@@ -1120,7 +1205,8 @@
         "بحضور الأمين العام وثالثة مساعدين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_617277ea39865ed0de03"
     },
     {
       "id": 1587,
@@ -1133,7 +1219,8 @@
         "الحق في الدفاع الشرعي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c992457ee81dff618cf"
     },
     {
       "id": 1588,
@@ -1146,7 +1233,8 @@
         "ثالثة أشهر"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fa7498b9c5173ff95c4"
     },
     {
       "id": 1589,
@@ -1159,7 +1247,8 @@
         "بعد إعالن موافقة ثلثي الدول الأعضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92ba9fe8028f9650c658"
     },
     {
       "id": 1590,
@@ -1172,7 +1261,8 @@
         "تعديل ميثاق الجامعة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c6c99cc485bbbbaab7f2"
     },
     {
       "id": 1591,
@@ -1185,7 +1275,8 @@
         "خمس سنوات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_935db5e53e2f61164ac0"
     },
     {
       "id": 1592,
@@ -1198,7 +1289,8 @@
         "لجنة الشؤون المالية والإدارية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0354cab71706034596eb"
     },
     {
       "id": 1593,
@@ -1211,7 +1303,8 @@
         "عند والدة دولة فلسطين في اجتماع المجلس الوطني الفلسطيني"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7b6ab2c4cb13fdc7964e"
     },
     {
       "id": 1594,
@@ -1224,7 +1317,8 @@
         "عام .1994"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07e676f91a910462c3ff"
     },
     {
       "id": 1595,
@@ -1237,7 +1331,8 @@
         "فقد السيادة (بالإكراه)"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b297441d01452d88de8e"
     },
     {
       "id": 1596,
@@ -1250,7 +1345,8 @@
         "إقرار اللوائح الداخلية للمجلس"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e58e35492e83c24d9b7"
     },
     {
       "id": 1597,
@@ -1263,7 +1359,8 @@
         "الإجماع على قرارات اللجان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc144b9ba5d59de135ca"
     },
     {
       "id": 1598,
@@ -1276,7 +1373,8 @@
         "وضع النظام الداخلي لألمانة العامة للجامعة. ()130"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ca782d8b909cc8699e4"
     },
     {
       "id": 1599,
@@ -1289,7 +1387,8 @@
         "حزيران وتشرين الثاني"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_544dded4c3a115a69368"
     },
     {
       "id": 1600,
@@ -1302,7 +1401,8 @@
         "إجماع الدول المؤسسة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_df73539ee243fa9b47c1"
     }
   ]
 }

@@ -15,7 +15,8 @@
         "حماية المصالح الحيوية للدول الكبرى"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0efd78b3be2360faa00"
     },
     {
       "id": 1302,
@@ -28,7 +29,8 @@
         "الوكاالت المتخصصة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c27007cc49f31d7c15ab"
     },
     {
       "id": 1303,
@@ -41,7 +43,8 @@
         "لجنة الخبراء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_403426bb1755b7bd969b"
     },
     {
       "id": 1304,
@@ -54,7 +57,8 @@
         "أن المجلس لا يستطيع إعداد الاتفاقات مع الوكالات المتخصصة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ae4e879de51b779e6af"
     },
     {
       "id": 1305,
@@ -67,7 +71,8 @@
         "إيرادات محكمة العدل الدولية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c643971af5ef78a5844"
     },
     {
       "id": 1306,
@@ -80,7 +85,8 @@
         "يعين رؤساء الوكاالت المتخصصة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_387e16c20897d8f86754"
     },
     {
       "id": 1307,
@@ -93,7 +99,8 @@
         "المجلس االقتصادي واالجتماعي نفسه"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7ffacdd267cac4970212"
     },
     {
       "id": 1308,
@@ -106,7 +113,8 @@
         "بطلب موافقة مجلس الوصاية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d70292e934c30d93235f"
     },
     {
       "id": 1309,
@@ -119,7 +127,8 @@
         "اشتراط موافقة الوكاالت على تعديل الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bbc1e125d71bb6e3190a"
     },
     {
       "id": 1310,
@@ -132,7 +141,8 @@
         "كيفية تحديد زمان ومكان عقد مؤتمر إعادة النظر في الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3169353c0e10cad4f8f4"
     },
     {
       "id": 1311,
@@ -145,7 +155,8 @@
         "يجب أن يكون المجلس الاقتصادي هو الجهاز الرئيس وليس التبعي. ()107"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d4b21d738de6b60de4de"
     },
     {
       "id": 1312,
@@ -158,7 +169,8 @@
         "الدول دائمة العضوية في مجلس الأمن"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0b2fdbfaa48e0f2bf9e1"
     },
     {
       "id": 1313,
@@ -171,7 +183,8 @@
         "قرار من محكمة العدل الدولية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_57c7bb43e974fa0be7f0"
     },
     {
       "id": 1314,
@@ -184,7 +197,8 @@
         "محكمة العدل الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e76e02fdc02aa72d93c4"
     },
     {
       "id": 1315,
@@ -197,7 +211,8 @@
         "توقيع جزاءات اقتصادية على الوكالة إذا كانت التقارير غير مرضية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ece20fc210e00360466"
     },
     {
       "id": 1316,
@@ -210,7 +225,8 @@
         "أن يكون لديهم حق النقض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7ed67f352222c086fce"
     },
     {
       "id": 1317,
@@ -223,7 +239,8 @@
         "تحديد قوة الوحدات الجوية الأهلية للوكاالت"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2b8edac2b0c7e8a7aea"
     },
     {
       "id": 1318,
@@ -236,7 +253,8 @@
         "الأمين العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_80d42a3b348e643265a5"
     },
     {
       "id": 1319,
@@ -249,7 +267,8 @@
         "الإشراف المباشر من مجلس الأمن"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_11290ba80c7e77ec43cc"
     },
     {
       "id": 1320,
@@ -262,7 +281,8 @@
         "مجال تنظيم التسليح العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cbe5bfb490b7ec2de663"
     },
     {
       "id": 1321,
@@ -275,7 +295,8 @@
         "المادة .17"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_238275f174e0308e7b48"
     },
     {
       "id": 1322,
@@ -288,7 +309,8 @@
         "تقديم الأمم المتحدة للميزانية التشغيلية الكاملة للوكاالت"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_776d8477d2cefe549e13"
     },
     {
       "id": 1323,
@@ -301,7 +323,8 @@
         "تقرر تغييرها أو تعديلها من دون الرجوع للوكالة. ()108"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd078400d80e07d3f2a6"
     },
     {
       "id": 1324,
@@ -314,7 +337,8 @@
         "أن المجلس االقتصادي ال يمكنه إنشاء أجهزة فرعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a547c62a36bee260557"
     },
     {
       "id": 1325,
@@ -327,7 +351,8 @@
         "وجود تمثيل دائم للكيان في مقر الأمم المتحدة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96812ff1154ab4aa6128"
     },
     {
       "id": 1326,
@@ -340,7 +365,8 @@
         "يكون له حق النقض في مداولات المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e79d0d52ccc800e7b33a"
     },
     {
       "id": 1327,
@@ -353,7 +379,8 @@
         "لجان تخضع لسلطة مجلس الوصاية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7b3b58256bebadf66440"
     },
     {
       "id": 1328,
@@ -366,7 +393,8 @@
         "الأمم المتحدة لها حق النقض في قرارات الوكالة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_428371ceb509e8cfbb47"
     },
     {
       "id": 1329,
@@ -379,7 +407,8 @@
         "لأن نشاطها يقتصر على الأمور الإجرائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5586cba1f903e805b14a"
     },
     {
       "id": 1330,
@@ -392,7 +421,8 @@
         "لجنة أركان الحرب"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0225dd8d6d9e1cc2484c"
     },
     {
       "id": 1331,
@@ -405,7 +435,8 @@
         "صفة المراقب الدائم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ba22a615d02551ef88a6"
     },
     {
       "id": 1332,
@@ -418,7 +449,8 @@
         "محكمة العدل الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_15eacb91ce93842bafd6"
     },
     {
       "id": 1333,
@@ -431,7 +463,8 @@
         "قرار عام .1949"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d57d172f5d42e7b6d0bb"
     },
     {
       "id": 1334,
@@ -444,7 +477,8 @@
         "فئة المنظمات المستقلة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ebfb380af0f32703656c"
     },
     {
       "id": 1335,
@@ -457,7 +491,8 @@
         "10 هيئات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5de5793cd973f88d3eb1"
     },
     {
       "id": 1336,
@@ -470,7 +505,8 @@
         "منظمة الصحة العالمية. ()109"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eb07b1ffc3f3921e9dc4"
     },
     {
       "id": 1337,
@@ -483,7 +519,8 @@
         "10 هيئات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1324563d9e03d9c82b41"
     },
     {
       "id": 1338,
@@ -496,7 +533,8 @@
         "لفصلها من المنظمة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f60f0cb34916e9bcbe15"
     },
     {
       "id": 1339,
@@ -509,7 +547,8 @@
         "الجمعية الدولية لقضاة الأحداث"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3bbde585d671def80aa6"
     },
     {
       "id": 1340,
@@ -522,7 +561,8 @@
         "عدم قدرة الأمم المتحدة على تحديد الأقاليم الخاضعة للوصاية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_de1838508fa3588e9294"
     },
     {
       "id": 1341,
@@ -535,7 +575,8 @@
         "باتفاق بين الدول الخمس دائمة العضوية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9319861b4dd9a612e1a7"
     },
     {
       "id": 1342,
@@ -548,7 +589,8 @@
         "محكمة العدل الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1b1b4414e1d6aa647c3e"
     },
     {
       "id": 1343,
@@ -561,7 +603,8 @@
         "الأعضاء غير الدائمين في مجلس الأمن"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9eb6a3607338c739f370"
     },
     {
       "id": 1344,
@@ -574,7 +617,8 @@
         "أن يكون لديها حق النقض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c8fc718fd3179c4efe6"
     },
     {
       "id": 1345,
@@ -587,7 +631,8 @@
         "الدول التي يختارها الأمين العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad7333d0fa58523b76c1"
     },
     {
       "id": 1346,
@@ -600,7 +645,8 @@
         "إعطاء الأولوية للدول التي تتولى الإدارة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b01dd7618a5d404b1353"
     },
     {
       "id": 1347,
@@ -613,7 +659,8 @@
         "خمس سنوات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d9beae1db7fb4676f625"
     },
     {
       "id": 1348,
@@ -626,7 +673,8 @@
         "تعيين قضاة محكمة العدل الدولية. ()110"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a87d08b81f3b7d44f85e"
     },
     {
       "id": 1349,
@@ -639,7 +687,8 @@
         "دعوة مندوبين عن الإقليم للمشاركة في مداوالت مجلس الأمن"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8b22678648d1e4cadc1c"
     },
     {
       "id": 1350,
@@ -652,7 +701,8 @@
         "إلزام الأمين العام بتقديم تقارير سنوية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fa42f373fcb860f330e"
     },
     {
       "id": 1351,
@@ -665,7 +715,8 @@
         "فصل الدول التي تنتهك مبادئ الميثاق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8e4e67db99905e1f191b"
     },
     {
       "id": 1352,
@@ -678,7 +729,8 @@
         "المجلس االقتصادي واالجتماعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3cf074afae4b40525562"
     },
     {
       "id": 1353,
@@ -691,7 +743,8 @@
         "مبدأ حق االعتراض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_437f46756077547ba7af"
     },
     {
       "id": 1354,
@@ -704,7 +757,8 @@
         "في 1تشرين الثاني/نوفمبر .1994"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82d1e33b324d8fba2420"
     },
     {
       "id": 1355,
@@ -717,7 +771,8 @@
         "جهاز تنفيذي محدود العضوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe666daa98104b80860d"
     },
     {
       "id": 1356,
@@ -730,7 +785,8 @@
         "الأداة الأمنية الرئيسة لألمم المتحدة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4c168ce6421c3787cba9"
     },
     {
       "id": 1357,
@@ -743,7 +799,8 @@
         "الاتفاقيات الدولية الخاصة بمكافحة الجريمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a0a9e53d8430318f8cfb"
     },
     {
       "id": 1358,
@@ -756,7 +813,8 @@
         "كالهما جهاز رئيس تابع للمنظمة الدولية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d4e64693208db2bd2030"
     },
     {
       "id": 1359,
@@ -769,7 +827,8 @@
         "ألنها كانت تمثل قمة التحالف الدولي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_508983329aebdf535238"
     },
     {
       "id": 1360,
@@ -782,7 +841,8 @@
         "عشرون قاضيا ً ()111"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b154938c9bb5cfdb3b24"
     },
     {
       "id": 1361,
@@ -795,7 +855,8 @@
         "أن يكونوا من جنسية أطراف الدعوى المعروضة عليهم"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b06b62c8e9f6c9d4b951"
     },
     {
       "id": 1362,
@@ -808,7 +869,8 @@
         "يجب أن يكونوا من الدول غير الأعضاء في الأمم المتحدة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d3b57ddc16d1c58f383"
     },
     {
       "id": 1363,
@@ -821,7 +883,8 @@
         "يجب عليه أن يمتنع عن التصويت في القرار قاض من جنسية أحد أطراف ٍ"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7e83b37f7c7a8c79d96c"
     },
     {
       "id": 1364,
@@ -834,7 +897,8 @@
         ""
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a770da68f6e44ae56f8b"
     },
     {
       "id": 1365,
@@ -847,7 +911,8 @@
         ""
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b127ad05dd9f128fac55"
     },
     {
       "id": 1366,
@@ -860,7 +925,8 @@
         "مدى الحياة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7553ad9f0c0852bf518"
     },
     {
       "id": 1367,
@@ -873,7 +939,8 @@
         "المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d7077a1189314f0f89ea"
     },
     {
       "id": 1368,
@@ -886,7 +953,8 @@
         "عشرون قاضيا ً"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29662ba611268bf2fe2b"
     },
     {
       "id": 1369,
@@ -899,7 +967,8 @@
         "الوكاالت المتخصصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00c19d4b948351ae6535"
     },
     {
       "id": 1370,
@@ -912,7 +981,8 @@
         "إحالة المسألة إلى مجلس الأمن وحده لتعيين القاضي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6a0938f4da5d97ea991d"
     },
     {
       "id": 1371,
@@ -925,7 +995,8 @@
         "الجمعية العامة والمجلس الاقتصادي والاجتماعي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64a2533a285a82182126"
     },
     {
       "id": 1372,
@@ -938,7 +1009,8 @@
         "سبعة أعضاء. ()112"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63df885ba163c9d0df58"
     },
     {
       "id": 1373,
@@ -951,7 +1023,8 @@
         "الدول التي لم تكن طرفا ً في النزاع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_77fdb45ea7457e698e19"
     },
     {
       "id": 1374,
@@ -964,7 +1037,8 @@
         "بفريق القاضي من الدولة غير العضو في الأمم المتحدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ccbca936c4fcaab50042"
     },
     {
       "id": 1375,
@@ -977,7 +1051,8 @@
         "لتمكين الوكاالت المتخصصة من المشاركة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bea470ea8964dde57e51"
     },
     {
       "id": 1376,
@@ -990,7 +1065,8 @@
         "ثماني سنوات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d3dc968fcefa98fb02b"
     },
     {
       "id": 1377,
@@ -1003,7 +1079,8 @@
         "رئيس مجلس الوصاية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e64ecb29084102f3a6c1"
     },
     {
       "id": 1378,
@@ -1016,7 +1093,8 @@
         "تسعة قضاة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d7022662434b1e7dc22"
     },
     {
       "id": 1379,
@@ -1029,7 +1107,8 @@
         "أغلبية الثلثين للقضاة الحاضرين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7fecf9ae1d92145cee30"
     },
     {
       "id": 1380,
@@ -1042,7 +1121,8 @@
         "الوكاالت المتخصصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f400ce055d2956ffeb79"
     },
     {
       "id": 1381,
@@ -1055,7 +1135,8 @@
         "لعدم وجود قضاة مؤهلين لنظر هذه المنازعات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5caf9795b8ee9c42e6b9"
     },
     {
       "id": 1382,
@@ -1068,7 +1149,8 @@
         "أن تكون الدول المتقاضية من الدول دائمة العضوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81dea9084fbd0f15b31a"
     },
     {
       "id": 1383,
@@ -1081,7 +1163,8 @@
         "يجب أن تقبل الأمم المتحدة اختصاص المحكمة في المنازعات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_328751485999726d5938"
     },
     {
       "id": 1384,
@@ -1094,7 +1177,8 @@
         "عند تقديمهم مساهمات مالية للمحكمة. ()113"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e6f0bbbc45db9330ce7"
     },
     {
       "id": 1385,
@@ -1107,7 +1191,8 @@
         "المجلس االقتصادي واالجتماعي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_248df07b37e49e04db3e"
     },
     {
       "id": 1386,
@@ -1120,7 +1205,8 @@
         "في 15تموز .1948"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7e73073b28ef8ff0122c"
     },
     {
       "id": 1387,
@@ -1133,7 +1219,8 @@
         "أن تلتزم بتنفيذ أحكام محكمة العدل الدولية بحسن نية فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5435ceca75cda8b3a5de"
     },
     {
       "id": 1388,
@@ -1146,7 +1233,8 @@
         "الالتزام بتنفيذ جميع قرارات المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb18bd170964cf402f01"
     },
     {
       "id": 1389,
@@ -1159,7 +1247,8 @@
         "عقد اتفاق ) (compromiseبين أطراف النزاع بعد قيامه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b30bd255993cfe67f984"
     },
     {
       "id": 1390,
@@ -1172,7 +1261,8 @@
         "أن يصدر القرار بأغلبية الأعضاء الدائمين فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4fab654d8797ca466c7f"
     },
     {
       "id": 1391,
@@ -1185,7 +1275,8 @@
         "اتفاق وصاية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6029a3ff12aa9f37a19c"
     },
     {
       "id": 1392,
@@ -1198,7 +1289,8 @@
         "تبادل الوثائق مع المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8bb0e1b51f852ce96b96"
     },
     {
       "id": 1393,
@@ -1211,7 +1303,8 @@
         "أمر ال يجوز تقييده بأي قيود موضوعية أو زمنية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4db4ed55439e38827867"
     },
     {
       "id": 1394,
@@ -1224,7 +1317,8 @@
         "عام ( 1942صدور تصريح الأمم المتحدة)"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b082c732e9fa72cf41f"
     },
     {
       "id": 1395,
@@ -1237,7 +1331,8 @@
         "أن يتم تعيين خمسة قضاة بعد ثالث سنوات. ()114"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_071aa6005f36e27f1b36"
     },
     {
       "id": 1396,
@@ -1250,7 +1345,8 @@
         "إلزام الدولة بالتقاضي في جميع الأحوال"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_174f8b9a4b2651429259"
     },
     {
       "id": 1397,
@@ -1263,7 +1359,8 @@
         "حقها في نقض قرارات المحكمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ea1877948ace829952e"
     },
     {
       "id": 1398,
@@ -1276,7 +1373,8 @@
         "إذا لم يتم الإخطار خالل أربعة عشر يوما ً"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3285d363df04a971d018"
     },
     {
       "id": 1399,
@@ -1289,7 +1387,8 @@
         "على أساس التوزيع الجغرافي العادل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fcf0d0953f229a0653b"
     },
     {
       "id": 1400,
@@ -1302,7 +1401,8 @@
         "الفقرة (ب)"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_485fd0680f91974f5604"
     }
   ]
 }

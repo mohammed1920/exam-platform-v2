@@ -14,7 +14,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «رئيس محكمة التمييز الاتحادية وعضوية اثنين من قضاتها واثنين من أعضاء مجلس الدولة.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7ddc5c0384f258a76eda"
   },
   {
     "question_id": 52,
@@ -31,7 +32,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أن يكون محلها قراراً إدارياً نهائياً، وتوافر شرط المصلحة، وتقديم التظلم الإداري المسبق خلال الميعاد القانوني.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_909ebfbb1232e9b10a02"
   },
   {
     "question_id": 53,
@@ -48,7 +50,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «بساطة الإجراءات، وسهولة تحديد الجهة المختصة، وتجنب مشكلة تنازع الاختصاص القضائي.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_0d7721ab851c08d42824"
   },
   {
     "question_id": 61,
@@ -64,7 +67,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "صياغة السؤال ركيكة وبها نقص في حروف الجر والمضاف إليه (الأصح: من أهم أنواع/صور الرقابة الحقيقية الضامنة لمبدأ المشروعية).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d76539da2b872d03eb7b"
   },
   {
     "question_id": 66,
@@ -81,7 +85,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (30 يوماً) و(شهراً) متطابقان تقريباً في المعنى والمدى الزمني، مما يسبب إرباكاً وتشتيتاً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_c9fd4cbee051be0da2e2"
   },
   {
     "question_id": 70,
@@ -97,7 +102,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود نقص في المصطلح القانوني؛ حيث كُتب 'الدفع الاختصاص' والصواب قانوناً 'الدفع بعدم الاختصاص'.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_c38064cc2bd533c9a052"
   },
   {
     "question_id": 62,
@@ -113,7 +119,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الدعاوى والطعون القضائية التي يقيمها الأفراد المتضررون أمام القضاء المختص» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_9697561f87b6d664ebcd"
   },
   {
     "question_id": 64,
@@ -130,7 +137,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أن تكون لديه خدمة قانونية أو قضائية فعلية لا تقل عن 18 سنة وفق قانون مجلس الدولة العراقي» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_651853c1c16eb76ca14e"
   },
   {
     "question_id": 68,
@@ -146,7 +154,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «ثمانية أعضاء مناصفة بين مجلس الدولة ومحكمة النقض الفرنسية إضافة إلى وزير العدل برئاستها» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_318fa06e82272b7da307"
   },
   {
     "question_id": 71,
@@ -163,7 +172,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «خضوع الإدارة وجميع السلطات العامة في الدولة للقانون بمدلوله الواسع.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1c4690bfbcd45ee1a35c"
   },
   {
     "question_id": 75,
@@ -180,7 +190,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أعمال السيادة، والقرارات الصادرة عن رئيس الجمهورية، والهيئات ذات الاختصاص القضائي، والأعمال القضائية.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3271c766ebd9370fcc84"
   },
   {
     "question_id": 76,
@@ -197,7 +208,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «عدم مشروعية التصرف الإداري وبطلانه وإلغاؤه من قبل القضاء الإداري.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_123138cfee576146febf"
   },
   {
     "question_id": 78,
@@ -214,7 +226,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الفقيه الفرنسي موريس هوريو (Maurice Hauriou).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4becda1612a82ec68790"
   },
   {
     "question_id": 79,
@@ -231,7 +244,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «قضية بلانكو (Blanco).» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_922c5657f280bdd11437"
   },
   {
     "question_id": 84,
@@ -248,7 +262,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "تضمّن السؤال عبارة غير مفهومة أو مشوهة مطبعياً وهي (في الكل في) في صيغة «تختص ..... في الكل في تعارض الاحكام»، وكان أصلها غالباً (في الفصل في) أو (في حسم)، مما أربك المعنى.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ea40ec59f3cdcc5ed9cf"
   },
   {
     "question_id": 81,
@@ -265,7 +280,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الفقيه الفرنسي جان ريفيرو (Jean Rivero)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_080a71796561bed91a36"
   },
   {
     "question_id": 90,
@@ -282,7 +298,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أعمال السيادة وحظر توجيه أوامر للإدارة أو الحلول محلها» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f4dae0f0ffab9cba46f9"
   },
   {
     "question_id": 92,
@@ -299,7 +316,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "استخدام عبارة (يراقب القاضي الإداري الرقابة) فيه ركاكة وتكرار يسبب إرباكاً في فهم المعنى المقصود بالسؤال.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a7a6b096175530f9442e"
   },
   {
     "question_id": 93,
@@ -316,7 +334,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (نظرية الموازنة) و(نظرية المنافع والمضار) يعبران عن النظرية ذاتها في القانون الإداري الفرنسي، مما يسبب التباساً حقيقياً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6af299a1862b7e72b956"
   },
   {
     "question_id": 92,
@@ -333,7 +352,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «مدى وجود الظرف الاستثنائي بالفعل ومدى تناسب الإجراءات المتخذة مع مقتضياته.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a7a6b096175530f9442e"
   },
   {
     "question_id": 93,
@@ -350,7 +370,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «نظرية الخطأ الظاهر في التقدير ونظرية الموازنة بين المنافع والأضرار.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6af299a1862b7e72b956"
   },
   {
     "question_id": 1,
@@ -367,7 +388,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (نظرية الموازنة) و(نظرية المنافع والمضار) يعبران عن النظرية ذاتها في القضاء الإداري (نظرية الموازنة بين المنافع والأضرار)، ومجيئهما كخيارين منفصلين يسبب إرباكاً وتشتيتاً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6625d2235e8919b7c4d1"
   },
   {
     "question_id": 4,
@@ -384,7 +406,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «رقابة مشروعية توسع من السلطة التقديرية للإدارة لتتلاءم مع طبيعة الظرف الاستثنائي.» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_159d735ff4e983b7eece"
   },
   {
     "question_id": 5,
@@ -401,7 +424,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «بطلان القرار الإداري وقابليته للإلغاء.» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_60927ca742de80db0452"
   },
   {
     "question_id": 6,
@@ -418,7 +442,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «إلغاء القرار الإداري (البطلان النسبي).» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3257488a8c7022b6cecc"
   },
   {
     "question_id": 8,
@@ -435,7 +460,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «المعيار القضائي (طبيعة العمل الإداري).» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_062b32fc1d93d9f514f5"
   },
   {
     "question_id": 9,
@@ -452,7 +478,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرقابة الإدارية (الرقابة الذاتية).» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_01ce1faf8f84178cad91"
   },
   {
     "question_id": 20,
@@ -468,7 +495,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "السؤال ناقص حيث يتضمن ثلاثة خيارات فقط بدلاً من أربعة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1007aea9cd76f822ee35"
   },
   {
     "question_id": 11,
@@ -485,7 +513,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «رقابة مشروعية تمتد للتحقق من التناسب وعدم الغلو في فرض العقوبة» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f5ef3e512eabca6d2413"
   },
   {
     "question_id": 14,
@@ -502,7 +531,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «بطء الإجراءات وتطبيق قواعد القانون الخاص على الإدارة مما لا يتلاءم مع طبيعة النشاط الإداري» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_850ed18c08e4d47f07d6"
   },
   {
     "question_id": 16,
@@ -519,7 +549,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «رقابة مشروعية تقتصر على التحقق من مدى خضوع الإدارة للقانون دون التدخل في الملاءمة» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_2ac43cc2c59afb47d072"
   },
   {
     "question_id": 17,
@@ -536,7 +567,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «قضية ميرسي دوكس (Mersey Docks)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4ed9f9a63da1077aadb5"
   },
   {
     "question_id": 19,
@@ -553,7 +585,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الجان أو المحاكم الإدارية الخاصة (Administrative Tribunals) كـ محكمة الأراضي» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_673277eb17693995f856"
   },
   {
     "question_id": 27,
@@ -570,7 +603,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود تشابه كبير ومباشر في المعنى والصياغة بين خياري 'محكمة القضاء الإداري' و'المحاكم الادارية' مما يسبب إرباكاً والتباساً حقيقياً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_8dce5a877a9a9f5d6d03"
   },
   {
     "question_id": 22,
@@ -587,7 +621,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «قانون التعديل الخامس رقم (106) لسنة 2013 لقانون مجلس شورى الدولة (مجلس الدولة).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_804b9aa6b6f0e53bcaef"
   },
   {
     "question_id": 23,
@@ -604,7 +639,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «رايلاندز ضد فليتشر (Rylands v. Fletcher).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f7937cdf836b6cd0d76c"
   },
   {
     "question_id": 26,
@@ -621,7 +657,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «مجلس الدولة رقم 165 لسنة 1955.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_60770c277d2b8181ee66"
   },
   {
     "question_id": 29,
@@ -637,7 +674,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «(50) عضواً (بواقع 25 مستشاراً و25 مستشاراً مساعداً).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e63ccb309fcd14dfd727"
   },
   {
     "question_id": 30,
@@ -654,7 +692,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «اتفاق الوزارتين أو الجهتين غير المرتبطتين بوزارة المتنازعتين على أحكامها وحسم النزاع بموجبها.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_59ffd182a46aeaa07920"
   },
   {
     "question_id": 36,
@@ -670,7 +709,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (خضوع الحكام والمحكومين للقانون) و(الخضوع للقانون) يتطابقان بالمعنى والمضمون، مما يسبب إرباكاً للطالب خاصة مع وجود خيار (جميع ما تقدم).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6f6be37bbfd4ed892516"
   },
   {
     "question_id": 38,
@@ -686,7 +726,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "توجد صياغة ناقصة لغوياً بسبب سقوط حرف الجر (عن) في عبارة (تمييز أعمال السيادة غيرها من أعمال الادارة)، والصحيح (تمييز أعمال السيادة عن غيرها).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5a470007a0de5e9b5977"
   },
   {
     "question_id": 31,
@@ -703,7 +744,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «رئيس وعدد من المستشارين والمستشارين المساعدين.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_95de3f81e3dbb229127e"
   },
   {
     "question_id": 34,
@@ -719,7 +761,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرقابة الرئاسية (أو الرقابة الإدارية).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_597a6e8181b7370c956b"
   },
   {
     "question_id": 35,
@@ -735,7 +778,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرقابة القضائية» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f2344cfb4472ef8e73f7"
   },
   {
     "question_id": 36,
@@ -751,7 +795,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «خضوع الإدارة وجميع تصرفاتها وأعمالها لأحكام القانون والقواعد القانونية النافذة.» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6f6be37bbfd4ed892516"
   },
   {
     "question_id": 38,
@@ -767,7 +812,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «طبيعة العمل (أو معيار العمل الحكومي بطبيعته)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5a470007a0de5e9b5977"
   },
   {
     "question_id": 39,
@@ -783,7 +829,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «ركن الاختصاص وركن الشكل.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d6e0a73face61435b48b"
   },
   {
     "question_id": 50,
@@ -799,7 +846,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "تضمن السؤال خطأً مطبعياً في كلمة (الغرف الإداري) والصواب (العرف الإداري)، مما يجعل المعنى غير واضح.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7150e4c88b2da3e31d99"
   },
   {
     "question_id": 49,
@@ -815,7 +863,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «قابلية القرار الإداري للإلغاء» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_eecab5c219f92c517a67"
   },
   {
     "question_id": 54,
@@ -831,7 +880,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في كلمة (الفضل) والصواب (أفضل)، مما أدى إلى خلل في الصياغة ووضوح المعنى.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_86bf75e029356df652b6"
   },
   {
     "question_id": 56,
@@ -847,7 +897,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "استخدام مصطلح (القضاء البات) بدلاً من المصطلح القانوني الإداري الدقيق والمستقر تاريخياً وهو (القضاء المفوض).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_9ac920699730524d0518"
   },
   {
     "question_id": 61,
@@ -863,7 +914,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «الدساتير الجامدة» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_69f5ec491720975d49fe"
   },
   {
     "question_id": 62,
@@ -879,7 +931,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «المعيار الموضوعي (أو المادي)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_270f60a52b3635ca0f4b"
   },
   {
     "question_id": 63,
@@ -895,7 +948,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرقابة الرئاسية (أو الإدارية)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3f5254a491da62f26878"
   },
   {
     "question_id": 65,
@@ -911,7 +965,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الولاية العامة للمحاكم المدنية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5fc0f3dc55dcb6b698ab"
   },
   {
     "question_id": 66,
@@ -927,7 +982,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الهيئة العامة لمجلس الدولة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_bb22f48866618f6c2e4e"
   },
   {
     "question_id": 68,
@@ -943,7 +999,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «العقود القابلة للإبطال (التصرفات الموقوفة)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1519ecedd056e7ec5736"
   },
   {
     "question_id": 69,
@@ -959,7 +1016,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «القضاء الإداري (مجلس الدولة)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_62df2ffce58bd8c4a935"
   },
   {
     "question_id": 70,
@@ -975,7 +1033,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «التظلم الرئاسي» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3918257a228225df7ce6"
   },
   {
     "question_id": 76,
@@ -991,7 +1050,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "يوجد تناقض منطقي بين صياغة السؤال التي تنص على اتباع «أحد السبيلين» وبين الخيار (الاثنين معا).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ca5d92898ff697213ab1"
   },
   {
     "question_id": 74,
@@ -1007,7 +1067,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «الهيئة العامة لمجلس الدولة» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f98b61faf0a2fd823ada"
   },
   {
     "question_id": 77,
@@ -1023,7 +1084,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة الإدارية العليا» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_34f708d1d4d54cac8409"
   },
   {
     "question_id": 81,
@@ -1039,7 +1101,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود نقص في صياغة السؤال بسبب سقوط حرف الجر (عن) من عبارة (تمييز أعمال السيادة غيرها)، والصياغة السليمة هي (تمييز أعمال السيادة عن غيرها).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_14b375b73fce4cc06b42"
   },
   {
     "question_id": 81,
@@ -1055,7 +1118,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «المعيار الموضوعي (معيار طبيعة العمل)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_14b375b73fce4cc06b42"
   },
   {
     "question_id": 82,
@@ -1071,7 +1135,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «حقوق وصلاحيات الوزير» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_bd0d92814514f1326f5b"
   },
   {
     "question_id": 84,
@@ -1087,7 +1152,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة الاتحادية العليا» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7bc1961ca7f5c0be3141"
   },
   {
     "question_id": 85,
@@ -1103,7 +1169,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «قانون مجلس شورى الدولة رقم (65) لسنة 1979 المعدل» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_8a6e7c593d6f763aaaf4"
   },
   {
     "question_id": 89,
@@ -1119,7 +1186,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «مجلس الدولة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_43d0f40772311d12be24"
   },
   {
     "question_id": 91,
@@ -1135,7 +1203,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «رئيس مجلس الدولة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_9f3188edd3d55395521a"
   },
   {
     "question_id": 92,
@@ -1151,7 +1220,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «المادة (6) من قانون مجلس الدولة رقم 65 لسنة 1979 المعدل» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_665bbf7fbd0d7fd28d40"
   },
   {
     "question_id": 1,
@@ -1167,7 +1237,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران 'هيئة مفوضي الدولة' و'هيئة مفوض الحكومة' يعبران عن ذات المؤسسة والمفهوم القانوني في القضاء الإداري، مما يسبب التباساً في الاختيار.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d7a66491a633d423edb2"
   },
   {
     "question_id": 2,
@@ -1183,7 +1254,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "موقع خيار 'جميع ما تقدم' في بداية الخيارات غير منطقي ومربك، حيث تشير كلمة 'ما تقدم' إلى نصوص لم تذكر بعد.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_004f2fef121ed6d97ffa"
   },
   {
     "question_id": 9,
@@ -1199,7 +1271,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "موقع خيار 'جميع ما تقدم' في الخيار الأول يسبب خللاً لغوياً ومفاهيمياً لأن العبارة تشير إلى ما سبقتها من خيارات.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_019dbbe7b4e544ba4bb4"
   },
   {
     "question_id": 1,
@@ -1215,7 +1288,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أنشأ محاكم إدارية في المحافظات أو محاكم استئناف إدارية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d7a66491a633d423edb2"
   },
   {
     "question_id": 2,
@@ -1231,7 +1305,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «يمضي مدة لا تقل عن ثلاث سنوات في وظيفة مستشار مساعد ويثبت جدارته واقتداره» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_004f2fef121ed6d97ffa"
   },
   {
     "question_id": 4,
@@ -1247,7 +1322,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الولاية العامة والكاملة في نظر كافة المنازعات المدنية والإدارية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_36e88c7effd2e74f5536"
   },
   {
     "question_id": 10,
@@ -1263,7 +1339,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «معيار الباعث السياسي ومعيار طبيعة العمل» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_df27fe777135bb7a5584"
   },
   {
     "question_id": 16,
@@ -1280,7 +1357,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران 'لتقديم الطعن القضائي' و'لمباشرة الدعوى القضائية' متطابقان تقريبًا في المعنى القانوني مما يسبب التباسًا حقيقيًا.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7276e4e2b3e4d68139e2"
   },
   {
     "question_id": 11,
@@ -1296,7 +1374,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «تحضير الدعاوى الإدارية وإعداد التقرير بالرأي القانوني فيها» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_cb4af490080d6339772a"
   },
   {
     "question_id": 13,
@@ -1312,7 +1391,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «بابل» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_008d317b57ccd6843675"
   },
   {
     "question_id": 16,
@@ -1329,7 +1409,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «شكلياً لقبول الدعوى الإدارية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7276e4e2b3e4d68139e2"
   },
   {
     "question_id": 25,
@@ -1345,7 +1426,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ لغوي وتركيب غير سليم في الجملة ('المجلس الدولة' بدلاً من 'في مجلس الدولة' أو 'لمجلس الدولة') مما يؤثر على وضوح الصياغة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4916d0ca9c56718b466a"
   },
   {
     "question_id": 26,
@@ -1361,7 +1443,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "سقوط حرف الجر (في/بـ) بعد كلمة 'الطعن' ('إن الطعن قرار...')، مما يغير المعنى ويربك الطالب وكأن الطعن نفسه هو القرار.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_9cc80fcc1f595775dbf3"
   },
   {
     "question_id": 27,
@@ -1377,7 +1460,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران 'الاختصاص المقيد' و'الاختصاص المحدد بنظر بعض المنازعات الادارية' يتشابهان بشكل كبير في المعنى القانوني مما يسبب التباساً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4200fb75436fc7481452"
   },
   {
     "question_id": 29,
@@ -1394,7 +1478,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «قضية بوغان (Bouguen).» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ebc7fd9a2d2cefe3d48d"
   },
   {
     "question_id": 30,
@@ -1411,7 +1496,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «مبدأ دوام سير المرافق العامة بانتظام واستمرار.» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_edb3b59eb65c93fbcd4e"
   },
   {
     "question_id": 32,
@@ -1427,7 +1513,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الانحراف بالسلطة (إساءة استعمال السلطة)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5330f8ee9a39c58be4f0"
   },
   {
     "question_id": 33,
@@ -1444,7 +1531,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «المقيد (أو الكاشف)» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_75653d530c022ea8face"
   },
   {
     "question_id": 34,
@@ -1461,7 +1549,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «سحب القرار الإداري» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_92e9b04aa3679e43fb0b"
   },
   {
     "question_id": 35,
@@ -1478,7 +1567,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «قانون رقم 112 لسنة 1946» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d04ad5f723a90360501f"
   },
   {
     "question_id": 37,
@@ -1495,7 +1585,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة الاتحادية العليا» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_182a87fa01fa35ad9ce2"
   },
   {
     "question_id": 39,
@@ -1512,7 +1603,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «معيار الغاية (أو دافع الموظف)» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b66113cfe14a05af9e00"
   },
   {
     "question_id": 40,
@@ -1529,7 +1621,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «طرفي الدعوى (المدعي والإدارة) بتوجيه القاضي الإداري نظراً للطابع التحقيقي للدعوى» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3cf6d995320fefac95f5"
   },
   {
     "question_id": 45,
@@ -1546,7 +1639,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخيارات (خطر جسيم، خطر محدق، خطر حقيقي) متقاربة ومتشابهة جداً في المعنى اللغوي، مما يسبب التباساً كبيراً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_cd2ccc06a32ed009dcec"
   },
   {
     "question_id": 42,
@@ -1563,7 +1657,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «غوميل (Gomel)» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_2de52fb04c85fe5c754a"
   },
   {
     "question_id": 43,
@@ -1580,7 +1675,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الشخصية المباشرة والمحققة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4deddc8c72c5159fd33e"
   },
   {
     "question_id": 44,
@@ -1597,7 +1693,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «عيب الاختصاص» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_2c2cffbd08b29eeab947"
   },
   {
     "question_id": 46,
@@ -1614,7 +1711,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «تقديم التظلم الإداري» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_87af8e67dc8ff4cdcbf7"
   },
   {
     "question_id": 48,
@@ -1631,7 +1729,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «انعدام القرار الإداري والبطلان المطلق» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e608714abb821e87c91a"
   },
   {
     "question_id": 49,
@@ -1648,7 +1747,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «استثناء مسألة أو قرارات محددة من رقابة القضاء الإداري دون تحديد معيار عام للاختصاص» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_8698e55b7f793625049c"
   },
   {
     "question_id": 50,
@@ -1666,7 +1766,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «هيأة تنازع الاختصاص» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d3c876a6e4f350ba1249"
   },
   {
     "question_id": 56,
@@ -1684,7 +1785,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «75 (خمسين مستشاراً و25 مستشاراً مساعداً)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d6dcd8725d7aab561776"
   },
   {
     "question_id": 57,
@@ -1702,7 +1804,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «الخطأ الظاهر في التقدير» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_57254971ff73db0f5241"
   },
   {
     "question_id": 59,
@@ -1720,7 +1823,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «معيار طبيعة العمل (أو موضوع القرار)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_02e98441d75d5332d03c"
   },
   {
     "question_id": 62,
@@ -1736,7 +1840,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في كلمة (صالحية) والصواب (صلاحية)، مما قد يسبب التباساً أو عدم وضوح في صياغة السؤال.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d14fd511bbb3bf425c27"
   },
   {
     "question_id": 62,
@@ -1752,7 +1857,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الولاية العامة للنظر في جميع المنازعات الإدارية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d14fd511bbb3bf425c27"
   },
   {
     "question_id": 67,
@@ -1770,7 +1876,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «محكمة القضاء الإداري عام 1989» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b253bc35baca44c7b758"
   },
   {
     "question_id": 68,
@@ -1788,7 +1895,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «قانون التعديل الخامس لقانون مجلس شورى الدولة رقم 71 لسنة 2017» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7a0e22b6e65d189b5328"
   },
   {
     "question_id": 69,
@@ -1806,7 +1914,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «إدارة الشؤون الإدارية والمالية والتنظيمية لمجلس الدولة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1b65c9a07e4023849b7b"
   },
   {
     "question_id": 76,
@@ -1824,7 +1933,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في الخيار الأول ('معيار العام المرفق' بدلاً من 'المرفق العام')، بالإضافة إلى تداخل وتشابه شديد بين الخيارات مثل ('السلطة العامة' و'معيار امتيازات السلطة العامة').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_bc38d999a8ca3c699bbe"
   },
   {
     "question_id": 72,
@@ -1841,7 +1951,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «رئيس الهيأة وعدد من المستشارين والمستشارين المساعدين» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f307305599f7247b1a25"
   },
   {
     "question_id": 74,
@@ -1859,7 +1970,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «النظر في الطعون المقدمة ضد الأحكام والقرارات الصادرة عن محكمة القضاء الإداري ومحكمة قضاء الموظفين» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_0ab4f1124cb5b7a65838"
   },
   {
     "question_id": 75,
@@ -1877,7 +1989,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «حالة اتفاق الوزيرين أو الجهتين المتنازعتين الملتكبتين على طلب الرأي والالتزام به» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d4a2cc73608a82aed458"
   },
   {
     "question_id": 76,
@@ -1895,7 +2008,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «المعيار المختلط (الجمع بين معيار المرفق العام ومعيار السلطة العامة)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_bc38d999a8ca3c699bbe"
   },
   {
     "question_id": 79,
@@ -1913,7 +2027,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «رئيس المجلس ونائبيه ورؤساء الهيآت المتخصصة» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7e323d4d2bf5e8cd0dfb"
   },
   {
     "question_id": 87,
@@ -1931,7 +2046,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (المبدأ العام) و(القاعدة العامة) مترادفان تماماً في المعنى اللغوي والقانوني، مما يسبب التباساً حقيقياً للطالب في التمييز بينهما.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b6169f6458d9398e1bc1"
   },
   {
     "question_id": 81,
@@ -1949,7 +2065,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «درجة مستشار» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_fff1c8929a288de47c1e"
   },
   {
     "question_id": 86,
@@ -1964,7 +2081,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «مبدأ تدرج القواعد القانونية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e62649182bf81e000492"
   },
   {
     "question_id": 87,
@@ -1982,7 +2100,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الحجية المطلقة للشئ المحكوم به» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b6169f6458d9398e1bc1"
   },
   {
     "question_id": 90,
@@ -2000,7 +2119,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «شروط الصحة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6c910ef7406bde988cef"
   },
   {
     "question_id": 92,
@@ -2018,7 +2138,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «جسيمًا وعاجلاً يهدد النظام العام أو سير المرافق العامة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ebc188da2d6e126516d8"
   },
   {
     "question_id": 1,
@@ -2036,7 +2157,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "توجد أخطاء إملائية ولغوية تؤثر على وضوح المعنى (مثل: 'عليه ما تنتهى اليه نظرينا' والصواب 'ما تنتهي إليه نظريتا').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_0dc27e6944a89d52bf26"
   },
   {
     "question_id": 9,
@@ -2054,7 +2176,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في نص السؤال المتمثل بكلمة 'النساء' والمقصود بها 'القضاء' ('اتجه القضاء الإنجليزي').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_0d514ba0009b10e0b696"
   },
   {
     "question_id": 2,
@@ -2070,7 +2193,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «القضاء (الاجتهاد القضائي)» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f15e0ac07084ead2379c"
   },
   {
     "question_id": 3,
@@ -2086,7 +2210,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «للسلطة القضائية ومجلس الدولة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_59b6b45a5eff68dad60a"
   },
   {
     "question_id": 5,
@@ -2104,7 +2229,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرقابة السياسية» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4051ae3022ec8c33a42d"
   },
   {
     "question_id": 8,
@@ -2122,7 +2248,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «النظام السياسي» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_807cda9c16062147569c"
   },
   {
     "question_id": 10,
@@ -2140,7 +2267,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «القانون الإداري المستقل» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6b1acd05685265eac485"
   },
   {
     "question_id": 14,
@@ -2158,7 +2286,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «بوحدة الجهة القضائية التي تختص بالنظر في جميع المنازعات العادية والإدارية على حد سواء.» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7cdebce50b3177f28b61"
   },
   {
     "question_id": 16,
@@ -2176,7 +2305,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «المفوض» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a77893af97d1c8d1d0d6"
   },
   {
     "question_id": 19,
@@ -2194,7 +2324,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «دعوة من رئيس مجلس الدولة.» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_961a7cbd2a832d438e5f"
   },
   {
     "question_id": 21,
@@ -2212,7 +2343,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "موقع خيار (كلتا الحالتين السابقتين) ورد في بداية الخيارات مما يجعله مبهمًا، فضلاً عن وجود ثلاثة خيارات بعده وليس حالتين فقط.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e53c9a80b760b01c91d9"
   },
   {
     "question_id": 24,
@@ -2230,7 +2362,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "ورود خيار (كل ما ذكر سابقا) في بداية القائمة يربك الطالب لعدم وجود خيارات سبقت هذا الخيار.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_094c799b29e2da4d9618"
   },
   {
     "question_id": 29,
@@ -2247,7 +2380,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "ورود خيار (كل ما ذكر سابقا) كأول خيار في القائمة يجعل الصياغة غير منطقية.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5c7d39704d45863e5d84"
   },
   {
     "question_id": 30,
@@ -2265,7 +2399,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "التداخل والتشابه الكبير بين (التظلم الولائي) و(التظلم الإداري) يسبب إرباكًا حقيقيًا للطالب لأن الولائي نوع من أنواع التظلم الإداري، فضلاً عن مجيء خيار (كل ما ذكر سابقا) في بداية الخيارات.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_56ebcffe12179c9f2f97"
   },
   {
     "question_id": 21,
@@ -2283,7 +2418,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «من قبل الإدارة نفسها إما بمبادرة منها (رقابة تلقائية) أو بناءً على تظلم يتقدم به صاحب المصلحة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e53c9a80b760b01c91d9"
   },
   {
     "question_id": 22,
@@ -2301,7 +2437,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحاكم التأديبية» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e299e0c70c232848f48f"
   },
   {
     "question_id": 26,
@@ -2319,7 +2456,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة الإدارية العليا في مجلس الدولة» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f666f404acb13fc3a4c4"
   },
   {
     "question_id": 27,
@@ -2337,7 +2475,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة التأديبية لمستوى الإدارة العليا» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4798fe189a64e2f2d464"
   },
   {
     "question_id": 29,
@@ -2354,7 +2493,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الأنجلوسكسونية» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_5c7d39704d45863e5d84"
   },
   {
     "question_id": 30,
@@ -2372,7 +2512,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «التظلم الإداري (أو التظلم الولائي)» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_56ebcffe12179c9f2f97"
   },
   {
     "question_id": 38,
@@ -2390,7 +2531,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران الثاني (القضاء المزدوج) والثالث (قضاء مزدوج يتضمن قضاء عادي واداري) متطابقان في المعنى مما يسبب التباساً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_727558f2d705286c31e8"
   },
   {
     "question_id": 40,
@@ -2408,7 +2550,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "صياغة الخيار الأول ملتبسة وغير متسقة مع السؤال؛ فسبب رد الطعن هو (عدم التظلم) بينما الخيار المكتوب هو (تقديم تظلم).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1ada1bead0e0868dbf1e"
   },
   {
     "question_id": 33,
@@ -2426,7 +2569,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «هو القرار المشوب بعيب جسيم ولا يرتب أي أثر قانوني ولا يتحصن بمضي المدة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b8b3b9b06737001a25f6"
   },
   {
     "question_id": 35,
@@ -2444,7 +2588,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «مجلس الدولة العراقي» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3b877b8de7abac4f01d5"
   },
   {
     "question_id": 38,
@@ -2462,7 +2607,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «القضاء الموحد» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_727558f2d705286c31e8"
   },
   {
     "question_id": 40,
@@ -2480,7 +2626,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «عدم تقديم التظلم الإداري الوجوبي للجهة أصدرت العقوبة أو الرئاسية قبل رفع الدعوى» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1ada1bead0e0868dbf1e"
   },
   {
     "question_id": 41,
@@ -2498,7 +2645,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "تداخل وتشابه كبير بين الخيارين الثاني والثالث يسبب إرباكاً، فضلاً عن مجيء خيار 'كل ما ذكر سابقا' في بداية الخيارات.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_19477ceb3a85d1377207"
   },
   {
     "question_id": 47,
@@ -2516,7 +2664,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الجمع بين خيارات (صح/خطأ) وخيارات تفصيلية يربك الطالب، إضافة إلى الإشارة لأحرف الخيارات (أ، ج) وهي غير معنونة بالأحرف.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_599a8d899d4b09b0a829"
   },
   {
     "question_id": 50,
@@ -2532,7 +2681,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "نص السؤال عبارة عن فرضية فقط وهو غير مكتمل، إذ يخلو من طرح سؤال محدد أو فراغ لإكمال الجملة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_8e2bb17938adaf4601ce"
   },
   {
     "question_id": 41,
@@ -2550,7 +2700,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «النظر في الدعاوى والطعون المتعلقة بالعقوبات الانضباطية والحقوق الناشئة عن تطبيق قوانين الخدمة المدنية للموظفين.» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_19477ceb3a85d1377207"
   },
   {
     "question_id": 51,
@@ -2568,7 +2719,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخيار الثاني (رأي المجلس غير ملزم) والخيار الثالث (اطراف القضية مخيرين بأخذ الرأي من عدمه) يمتلكان المعنى القانوني والعملي نفسه تماماً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_2dde92e4021b55f688d5"
   },
   {
     "question_id": 56,
@@ -2586,7 +2738,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "نص السؤال كُتب على هيئة جملة تقريرية خبرية طويلة دون تحديد المطلوب بوضوح، مما يسبب إرباكاً للطالب لعدم معرفة ما إذا كان المطلوب تقييم صحة العبارة أم اختيار توضيح لها.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ac81a0133b5c13540448"
   },
   {
     "question_id": 52,
@@ -2604,7 +2757,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «بعيب الانحراف بالسلطة (أو الانحراف بالغاية).» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ab2ee0816442657e49d4"
   },
   {
     "question_id": 53,
@@ -2622,7 +2776,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «مجلس الدولة (الهيئة العامة).» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_dcec56cd9e0ccc84e0ea"
   },
   {
     "question_id": 57,
@@ -2640,7 +2795,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «تعد جزءاً لا يتجزأ من الدستور وتتمتع بمرتبة وقيمة قانونية دستورية ملزمة.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4506ab0289e6d3df93c6"
   },
   {
     "question_id": 58,
@@ -2658,7 +2814,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «الدستور، والقوانين (التشريع العادي)، والأنظمة والتعليمات (التشريع الفرعي)، والمعاهدات الدولية المصادق عليها.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b19de5b128d56c6fac89"
   },
   {
     "question_id": 60,
@@ -2676,7 +2833,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «تصبح المعاهدة بحكم القانون الداخلي العادي وتتساوى معه في القوة بعد المصادقة عليها ونشرها في الجريدة الرسمية.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_34b17aa3fe0e86cd3dcc"
   },
   {
     "question_id": 61,
@@ -2694,7 +2852,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود حرف 'في' بعد الفراغ جعل الصياغة ركيكة وغير مكتملة المعنى عند التوصيل بالخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6ec5661c0d1ba0c73a88"
   },
   {
     "question_id": 67,
@@ -2712,7 +2871,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران 'حجية مطلقة' و'حجية الكافة' مترادفان قانوناً في نطاق أحكام الإلغاء الإداري، مما يسبب التباساً شديداً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e4fe9ed545f8daaf08f9"
   },
   {
     "question_id": 61,
@@ -2730,7 +2890,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «العرف» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_6ec5661c0d1ba0c73a88"
   },
   {
     "question_id": 64,
@@ -2747,7 +2908,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «يحدد الاختصاص عن طريق استبعاد واستثناء منازعات أو قرارات معينة من ولاية القضاء الإداري» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3e0ab6f9e80d1472b608"
   },
   {
     "question_id": 68,
@@ -2765,7 +2927,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «محكمة القضاء الإداري ومحكمة قضاء الموظفين» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e374c6185918cd8a05d7"
   },
   {
     "question_id": 71,
@@ -2783,7 +2946,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "صياغة السؤال غير مكتملة وركيكة في نهايتها (لا دعوى الابطال ......) مما يجعل المعنى ملتبساً وغير مجهّز بسياق صحيح.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_694efe1b3a879ec34193"
   },
   {
     "question_id": 77,
@@ -2801,7 +2965,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "تركيب جملة السؤال (بأن يكون ......) لا يتسق لغوياً ونحوياً مع أغلب الخيارات المطروحة، مما يسبب إرباكاً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_c587a06bd04eef466b59"
   },
   {
     "question_id": 80,
@@ -2819,7 +2984,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (30 يوم) و(شهر) متقاربان ومتطابقان في المعنى الزمني في السياق القانوني مما يسبب التباساً حقيقياً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_f56619bb475478660be4"
   },
   {
     "question_id": 72,
@@ -2837,7 +3003,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «اشتراط التظلم الإداري المسبق (الوجوبي) قبل رفع الدعوى.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_9aa95f104514ebe66269"
   },
   {
     "question_id": 74,
@@ -2853,7 +3020,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 2,
     "reason": "الإجابة الصحيحة وفق الفحص: «المصلحة الشخصية والمباشرة في إلغاء القرار الإداري.» — وهذا يطابق الخيار رقم 3 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_4cf00b14b0a49c866f62"
   },
   {
     "question_id": 75,
@@ -2871,7 +3039,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «قراراً إدارياً نهائياً محدثاً لأثر قانوني ومضراً بالمراكز القانونية.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7f5dbeee36a84ed014f5"
   },
   {
     "question_id": 77,
@@ -2889,7 +3058,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «القرار الإداري قد ألحق ضرراً بمورثهم قبل وفاته أو أثر مباشرة في حقوقهم الإرثية.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_c587a06bd04eef466b59"
   },
   {
     "question_id": 81,
@@ -2907,7 +3077,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي يخل بالمعنى في بداية السؤال (كلمة 'تنصف' والأصل 'تتصف').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_76e0cb33b142f7ceb8e2"
   },
   {
     "question_id": 82,
@@ -2925,7 +3096,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "صياغة السؤال ركيكة وغير سليمة لغوياً ('التصدي لها الملائمة التصرفات الإدارية').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e8f9fb6c36c43a31aa75"
   },
   {
     "question_id": 87,
@@ -2943,7 +3115,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "السؤال يتضمن أخطاء مطبعية وتركيبية تمنع فهم المعنى المباشر ('بعد' بدلاً من 'يعد'، و'عند' بدلاً من 'عن').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3bd98391b2ef2ee0fb00"
   },
   {
     "question_id": 88,
@@ -2961,7 +3134,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "تناقض بين نص السؤال الذي يجزم بأنه 'قرار إداري' وبين الخيار الأول الذي ينفي كونه قراراً إدارياً.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ceb5d0fee1efeee4dd0e"
   },
   {
     "question_id": 89,
@@ -2979,7 +3153,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي بكلمة 'البراءات' (والصحيح 'إجراءات') مما أدى لإبهام الجملة، فضلاً عن التشابه الكبير بين خياري 'المحاكم المدنية' و'المحاكم العادية'.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_78eeedd9f5af7727c4f1"
   },
   {
     "question_id": 90,
@@ -2997,7 +3172,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خيارين متطابقين بالمعنى في هذا السياق القانوني وهما ('المعاهدات' و'الاتفاقيات').",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_72867b97beaaf27a49e2"
   },
   {
     "question_id": 93,
@@ -3015,7 +3191,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في الخيار الأخير (كلمة 'بعد' بدلاً من 'يعد') مما يغير المعنى ويجعله غير واضح، إضافة إلى ورود خيار 'كل ما ذكر سابقا' كأول خيار بدلاً من آخرها.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7aeb4e93b3288f5ea503"
   },
   {
     "question_id": 91,
@@ -3033,7 +3210,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 4,
     "reason": "الإجابة الصحيحة وفق الفحص: «المحكمة الإدارية العليا، ومحكمة القضاء الإداري، والمحاكم الإدارية، والمحاكم التأديبية، وهيئة مفوضي الدولة.» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_85ab59cf4ed3e2945613"
   },
   {
     "question_id": 92,
@@ -3050,7 +3228,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «خدمة قضائية أو قانونية فعلية لا تقل عن (18) سنة وفق قانون مجلس الدولة العراقي.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_743319335d6b17dde2ac"
   },
   {
     "question_id": 93,
@@ -3068,7 +3247,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «عدم ترتيب أي أثر قانوني، وجواز سحبه أو الطعن فيه في أي وقت دون التقيد بمواعيد السحب أو ميعاد الطعن.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7aeb4e93b3288f5ea503"
   },
   {
     "question_id": 1,
@@ -3085,7 +3265,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخيار الأول (الحكام والمحكومين) يطابق بالمعنى الخيار الرابع (جميع ما ذكر) لأن الخيارين الثاني والثالث يمثلان الإدارة والأفراد، مما يسبب التباسًا حقيقيًا للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_070824fbaaef8c72598c"
   },
   {
     "question_id": 11,
@@ -3102,7 +3283,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الصياغة اقتطعت النص الدستوري بشكل أخلّ بالتركيب اللغوي (الأصل: أن لا يصادق عليها إلا بعد)، مما جعل المعنى غامضاً وغير مستقيم مع الخيارات.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e3d587a164deaa81a0dd"
   },
   {
     "question_id": 17,
@@ -3119,7 +3301,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (قرارات إدارية) و(أنظمة إدارية) متقاربان جداً في المعنى والسياق القانوني مما يسبب إرباكاً وتداخل لدى الطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_3d212a116d44b561041d"
   },
   {
     "question_id": 18,
@@ -3136,7 +3319,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "خيار (حجية الشيء المقضي فيه) يمثل المفهوم العام الشامل للحجية المطلقة والنسبية، مما يجعل الخيارات متداخلة ومربكة مع وجود خيار (جميع ما ذكر).",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_bbe559f718f66cbbc0a6"
   },
   {
     "question_id": 11,
@@ -3153,7 +3337,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «أن لا يبرمها أو يصدق عليها إلا بعد موافقة مجلس الأمة» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e3d587a164deaa81a0dd"
   },
   {
     "question_id": 15,
@@ -3170,7 +3355,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «تنفيذية (أو تشريعات فرعية)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ab9247136f159454b7d3"
   },
   {
     "question_id": 20,
@@ -3187,7 +3373,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «مبدأ المشروعية وسادة القانون» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_b6c6bf8c6ae35279298f"
   },
   {
     "question_id": 24,
@@ -3204,7 +3391,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "السؤال مصاغ كجملة خبرية تنتهي بعلامة استفهام دون تحديد موضع الفراغ أو صياغته بأسلوب استفهامي يوضح المطلوب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_8a2fa73e06d1fabe6e79"
   },
   {
     "question_id": 29,
@@ -3221,7 +3409,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "خيارات السؤال تتضمن (المعيار الموضوعي) و(المعيار المادي)، وهما مترادفان ويمثلان المعيار ذاته في الفقه القانوني مما يسبب إرباكاً وحيرة للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_53c391536c3c52a9aa5f"
   },
   {
     "question_id": 30,
@@ -3238,7 +3427,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «عدم مشروعية» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d3d91224cf813a5c3b92"
   },
   {
     "question_id": 31,
@@ -3255,7 +3445,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خطأ مطبعي في السؤال بذكر كلمة (الإدارة) بدلاً من (الإرادة) كـركن من أركان التصرف القانوني.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_57f9f2a7b7bd9d80e2c1"
   },
   {
     "question_id": 34,
@@ -3272,7 +3463,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الصياغة غير دقيقة لغوياً وقانونياً؛ حيث ربطت بين البطلان المطلق وتوافر أركان الانعقاد بأسلوب ملتبس ومربك للطلبة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_cc9dee1e74c037e26f6b"
   },
   {
     "question_id": 38,
@@ -3289,7 +3481,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "استخدام كلمة (المشروع) بدلاً من (المشرّع)، وهو خطأ مطبعي يخل بالمعنى القانوني للمصطلح.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_ec5a1d611ec856faa129"
   },
   {
     "question_id": 31,
@@ -3306,7 +3499,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «البطلان المطلق» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_57f9f2a7b7bd9d80e2c1"
   },
   {
     "question_id": 33,
@@ -3323,7 +3517,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «عدم اكتسابه الحصانة بمضي المدة وجواز سحبه أو إلغائه في أي وقت» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_073225d0eca0b4f37e5e"
   },
   {
     "question_id": 35,
@@ -3340,7 +3535,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 1,
     "reason": "الإجابة الصحيحة وفق الفحص: «قرار قابل للإلغاء (باطل بطلاناً نسبياً)» — وهذا يطابق الخيار رقم 2 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_d5d9ae4a6032dbd26035"
   },
   {
     "question_id": 36,
@@ -3357,7 +3553,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «ستون يوماً (مدة الطعن بالإلغاء)» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a6b12b973a4e3e7728aa"
   },
   {
     "question_id": 37,
@@ -3374,7 +3571,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «الإيقاف (العقد الموقوف)» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e15ab050b2c753772184"
   },
   {
     "question_id": 39,
@@ -3391,7 +3589,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «ممارسة للاختصاص في حدود القانون واختيار الحل الأكثر ملاءمة» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e553826e701a8f0cd0d5"
   },
   {
     "question_id": 40,
@@ -3408,7 +3607,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «سلطة مقيدة» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_7718dce1e8f24d981e45"
   },
   {
     "question_id": 41,
@@ -3425,7 +3625,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخيارات الثلاثة الأولى (بانتظام وإطراد / بانتظام / بأطراد) متشابهة جداً وتعتمد على التجزئة اللفظية لنفس المفهوم مما يعيب صياغة الاختيارات ويسبب إرباكاً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a4d67101b3f56e6cf0d4"
   },
   {
     "question_id": 43,
@@ -3442,7 +3643,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "صياغة السؤال غير سليمة لغوياً وركيكة التراكيب ('لا تلتزم... الذي يرد على سلطة الإدارة') مما يجعل المعنى ملتبساً وغير مفهوم، فضلاً عن وجود خطأ إملائي في كلمة 'والية' والمقصود 'ولاية'.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_aaaf053c96fd5731e6e8"
   },
   {
     "question_id": 41,
@@ -3459,7 +3661,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «حسن سير المرافق العامة وتحقيق المصلحة العامة» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_a4d67101b3f56e6cf0d4"
   },
   {
     "question_id": 44,
@@ -3476,7 +3679,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": 3,
     "reason": "الإجابة الصحيحة وفق الفحص: «عنصر تقدير الملائمة» — وهذا يطابق الخيار رقم 4 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_02a2c684a4ec3a3b9165"
   },
   {
     "question_id": 55,
@@ -3493,7 +3697,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خيارين مترادفين بالمعنى وهما 'الاستفتاء الشعبي' و'الاستفتاء' مما يسبب التباساً حقيقياً للطالب.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1c0cc3f9ff4c5b70772b"
   },
   {
     "question_id": 58,
@@ -3510,7 +3715,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "وجود خيارين متقاربين جداً في المعنى والمفهوم الإداري وهما 'الرقابة التلقائية' و'الرقابة الذاتية' مما يسبب إرباكاً في التمييز بينهما.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_e8d9c2b0b73a4c42dbcc"
   },
   {
     "question_id": 55,
@@ -3527,7 +3733,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «الرأي العام (عن طريق الصحافة ووسائل الإعلام).» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_1c0cc3f9ff4c5b70772b"
   },
   {
     "question_id": 56,
@@ -3544,7 +3751,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «وسائل الإعلام والصحافة والأحزاب السياسية والنقابات والجمعيات.» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_11eb68da53df6eeb1c66"
   },
   {
     "question_id": 61,
@@ -3561,7 +3769,8 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الخياران (التظلم الى جهة صدرت القرار) و(التظلم الولائي) متطابقان في المعنى القانوني؛ إذ إن التظلم الولائي هو بحد ذاته التظلم الموجه إلى نفس الجهة التي أصدرت القرار، مما يسبب إرباكاً وطعناً بصحة الاختيار.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_dd3729aae8a316de9976"
   },
   {
     "question_id": 62,
@@ -3578,24 +3787,7 @@
     "current_answer_index": 0,
     "suggested_answer_index": null,
     "reason": "الإجابة الصحيحة وفق الفحص: «حماية مبدأ المشروعية وضمان حقوق وحريات الأفراد وحكم القانون» — لا يوجد خيار مطابق واضح لها بين الخيارات المتاحة.",
-    "status": "pending"
-  },
-  {
-    "question_id": 83,
-    "book_id": "law_administrative",
-    "chapter": 4,
-    "issue_type": "اجابة_غير_صحيحة",
-    "question": "القرار الصادر من نقيب المحامين العراقي بعقوبة محامي نتيجة إخلاله بالسلوك المهني يكون الطعن فيه أمام .......",
-    "options": [
-      "محكمة التمييز الاتحادية",
-      "محكمة البداءة",
-      "محكمة التحقيق",
-      "محكمة الاستئناف",
-      "لا شيء مما سبق"
-    ],
-    "current_answer_index": 0,
-    "suggested_answer_index": 4,
-    "reason": "الإجابة الصحيحة وفق الفحص: «مجلس تأديب المحامين» — وهذا يطابق الخيار رقم 5 وليس الخيار المحدد حاليًا رقم 1.",
-    "status": "pending"
+    "status": "pending",
+    "question_uid": "q_70459469895b9bb6b86e"
   }
 ]

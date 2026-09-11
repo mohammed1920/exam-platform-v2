@@ -8,7 +8,7 @@ on:
 
 # يمنع تشغيل نسختين بنفس الوقت (لو ضغطت تشغيل يدوي أثناء الجدولة التلقائية)
 concurrency:
-  group: ai-qa-audit
+  group: content-maintenance
   cancel-in-progress: false
 
 permissions:
@@ -39,8 +39,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin
-          git merge -X ours --no-edit origin/${{ github.ref_name }} || true
+          git fetch origin main
+          git rebase origin/main
           git add reports/qa_report.json reports/qa_scan_state.json
           if ! git diff --cached --quiet; then
             git commit -m "🔍 تحديث تقرير فحص الجودة القانوني [auto]"

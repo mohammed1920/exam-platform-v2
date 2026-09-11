@@ -13,7 +13,9 @@
         "أنها تفرض إرادة تمارس اختصاصات مستقلة عن شخصية الأفراد المكونين لها"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "id": "law_organizations_ch2_q1",
+      "uid": "q_ab53bedbb61845a08d3f"
     },
     {
       "id": 102,
@@ -26,7 +28,8 @@
         "اتحاد البريد العالمي ومنظمة الأرصاد الجوية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c1265e57940864ed1c93"
     },
     {
       "id": 103,
@@ -39,7 +42,8 @@
         "القيام بنشاط الأجهزة بشكل متقطع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1adf48d182727950b333"
     },
     {
       "id": 104,
@@ -52,7 +56,8 @@
         "الالئحة الداخلية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f1b260ad800ee8d75c88"
     },
     {
       "id": 105,
@@ -65,7 +70,8 @@
         "منظمة فنية أو متخصصة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a522e8d030daabd0ff11"
     },
     {
       "id": 106,
@@ -78,7 +84,8 @@
         "خدمة المرافق العامة الدولية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3e8c82a14c2422ace2a"
     },
     {
       "id": 107,
@@ -91,7 +98,8 @@
         "بأنها أكثر قبوالً من الدول لعدم مساسها بالسيادة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1df8507b2939fd16894e"
     },
     {
       "id": 108,
@@ -104,7 +112,8 @@
         "منظمة الوحدة الأفريقية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18d3abb928c20ff454d0"
     },
     {
       "id": 109,
@@ -117,7 +126,8 @@
         "مع ظهور نظام الوفاق الأوربي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ca665f74d6833859c29"
     },
     {
       "id": 110,
@@ -130,7 +140,8 @@
         "أن تقتصر عضويتها على الدول المتجانسة سياسيا ً"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2b7b68bf76fd46d4d77"
     },
     {
       "id": 111,
@@ -143,7 +154,8 @@
         "المنظمات العامة عالمية الاتجاه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2145dcc15041c5c47bba"
     },
     {
       "id": 112,
@@ -156,7 +168,8 @@
         "بأنها ظهرت مع نشأة عصبة الأمم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d03dd3a3a9925372ea46"
     },
     {
       "id": 113,
@@ -169,7 +182,8 @@
         "أنها أكثر حداثة في الظهور من المنظمات العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ff84738787149d339ad"
     },
     {
       "id": 114,
@@ -182,7 +196,8 @@
         "القيد الزمني"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a72d290fe5c7452ec986"
     },
     {
       "id": 115,
@@ -195,7 +210,8 @@
         "القيد االقتصادي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0827b697e70861835239"
     },
     {
       "id": 116,
@@ -208,7 +224,8 @@
         "اتحادات دولية عامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c6b74328fcbc9108697"
     },
     {
       "id": 117,
@@ -221,7 +238,8 @@
         "جامعة الدول العربية. ()10"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_27c08217bdfe0ea34d17"
     },
     {
       "id": 118,
@@ -234,7 +252,8 @@
         "شؤون المواصالت والبريد فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e377cd34490d8f37322a"
     },
     {
       "id": 119,
@@ -247,7 +266,8 @@
         "منظمة العمل الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_866cf1a38bc8dccb3928"
     },
     {
       "id": 120,
@@ -260,7 +280,8 @@
         "منظمة دولية فوق الدول"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64c80ad5bc1678805a9b"
     },
     {
       "id": 121,
@@ -273,7 +294,8 @@
         "تحديد الدول التي يحق لها االشتراك في المؤتمر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d69a5c8edfcbfc0c5acb"
     },
     {
       "id": 122,
@@ -286,7 +308,8 @@
         "عهد أو ميثاق أو نظام أساس أو دستور"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f5d49e5d2d627f3ee49"
     },
     {
       "id": 123,
@@ -299,7 +322,8 @@
         "قرار إجماعي من المنظمة الأم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e72b6c23dce392d75b73"
     },
     {
       "id": 124,
@@ -312,7 +336,8 @@
         "جميع الدول التي ترغب في الانضمام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3fe2d89cda2fe2725830"
     },
     {
       "id": 125,
@@ -325,7 +350,8 @@
         "العراق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1648579f7dcf4a4b7136"
     },
     {
       "id": 126,
@@ -338,7 +364,8 @@
         "عام .1944"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6e5a0f876f4e55387ecf"
     },
     {
       "id": 127,
@@ -351,7 +378,8 @@
         "جامعة الدول العربية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f23d6d60f95c8596b9a"
     },
     {
       "id": 128,
@@ -364,7 +392,8 @@
         "منظمة الأرصاد الجوية(WMO)"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66c54a255a7a275aa839"
     },
     {
       "id": 129,
@@ -377,7 +406,8 @@
         "المنظمة العالمية لألرصاد الجوية(WMO)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_727b1ef0df9a0c40e55f"
     },
     {
       "id": 130,
@@ -390,7 +420,8 @@
         "منظمة الصحة العالمية (WHO)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f789479fbc0cc53af642"
     },
     {
       "id": 131,
@@ -403,7 +434,8 @@
         "اتحاد البريد العالمي(UPU)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c0edb9e091c2c01af43"
     },
     {
       "id": 132,
@@ -416,7 +448,8 @@
         "السوق الأوربية المشتركة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aa81b1d96b093fe77432"
     },
     {
       "id": 133,
@@ -429,7 +462,8 @@
         "المنظمة العربية للتربية والثقافة والعلوم"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3374ded976b826cd8f0"
     },
     {
       "id": 134,
@@ -442,7 +476,8 @@
         "تحديد الأعضاء الدائمين في مجلس الأمن"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f2f1547aa880102503c"
     },
     {
       "id": 135,
@@ -455,7 +490,8 @@
         "عدد سكان الدول الراغبة في االنضمام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1be0c6889a8f960f1ff5"
     },
     {
       "id": 136,
@@ -468,7 +504,8 @@
         "المجلس الاقتصادي والاجتماعي"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c8ac733232ba5d0d2023"
     },
     {
       "id": 137,
@@ -481,7 +518,8 @@
         "15 شباط /فبراير سنة .1946"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2281f28b58332a4cbdf8"
     },
     {
       "id": 138,
@@ -494,7 +532,8 @@
         "اتحاد البريد العالمي(UPU)"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_79b364bb938d457145b1"
     },
     {
       "id": 139,
@@ -507,7 +546,8 @@
         "تولي وظائف المنظمة بشكل مؤقت"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d0a52ce8d9109d8778b0"
     },
     {
       "id": 140,
@@ -520,7 +560,8 @@
         "إعالن بالتفسير لألحكام الأساسية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4da6215b3f538901d1ff"
     },
     {
       "id": 141,
@@ -533,7 +574,8 @@
         "موافقة جميع المنظمات الإقليمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_edcaaf610691891f2984"
     },
     {
       "id": 142,
@@ -546,7 +588,8 @@
         "نعم ،إذا كانت المعاهدة تتعلق بمسائل فنية فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f5cb6f726632c5ff0ff"
     },
     {
       "id": 143,
@@ -559,7 +602,8 @@
         "مجلس الأمن. ()12"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36c2e186412e7980fd3c"
     },
     {
       "id": 144,
@@ -572,7 +616,8 @@
         "تحديد الدول التي يحق لها التصديق على المعاهدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_957def770dcb09c1f192"
     },
     {
       "id": 145,
@@ -585,7 +630,8 @@
         "نص إرشادي غير ملزم إال بعد قرار من الجمعية العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_45ff713018cb27ac1cd6"
     },
     {
       "id": 146,
@@ -598,7 +644,8 @@
         "المنظمات التي يكون لها أكثر من اختصاص"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2aa5be5939ad928c08d"
     },
     {
       "id": 147,
@@ -611,7 +658,8 @@
         "المعاهدة المنشأة لأي منظمة دولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e2602ed8c572d322edb"
     },
     {
       "id": 148,
@@ -624,7 +672,8 @@
         "إبطال ميثاق الأمم المتحدة في المسألة المتعارضة فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d903e7da6bb82e3f6e32"
     },
     {
       "id": 149,
@@ -637,7 +686,8 @@
         "المادة .103"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e47e8c80cdf0c386460b"
     },
     {
       "id": 150,
@@ -650,7 +700,8 @@
         "ال يجوز التحفظ إال على ميثاق المنظمات الإقليمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_deefeeadbe496886927e"
     },
     {
       "id": 151,
@@ -663,7 +714,8 @@
         "جواز التعديل بقرار من رئيس المنظمة فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_661e06f3b81e482fd229"
     },
     {
       "id": 152,
@@ -676,7 +728,8 @@
         "اشتراط موافقة الدول الكبرى فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7ca4660132665e298489"
     },
     {
       "id": 153,
@@ -689,7 +742,8 @@
         "من 9شباط/فبراير 1958إلى 9شباط/فبراير .1960"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4bdad1ad9a98894e7230"
     },
     {
       "id": 154,
@@ -702,7 +756,8 @@
         "لكي تتماشى مع التطور المستمر في العالقات الدولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_667a1202d114ed275293"
     },
     {
       "id": 155,
@@ -715,7 +770,8 @@
         "المادة .109 ()13"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b0a3190d08ab4787a336"
     },
     {
       "id": 156,
@@ -728,7 +784,8 @@
         "الدول الدائمة بمجلس الأمن"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8677f891953d6ba9a8a9"
     },
     {
       "id": 157,
@@ -741,7 +798,8 @@
         "إجماع الأعضاء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e582f476f54998449c37"
     },
     {
       "id": 158,
@@ -754,7 +812,8 @@
         "تسعة من أعضاء مجلس الأمن"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe1370dec15c5f0b0a9d"
     },
     {
       "id": 159,
@@ -767,7 +826,8 @@
         "أن يصدق عليه جميع الأعضاء الأصليين لألمم المتحدة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc44362c69af95b72bdc"
     },
     {
       "id": 160,
@@ -780,7 +840,8 @@
         "اشتراط صدور التعديل بموافقة ثلثي أعضاء الجمعية العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81c12bb6031e941664c5"
     },
     {
       "id": 161,
@@ -793,7 +854,8 @@
         "مبدأ النفاذ الفوري للمعاهدة بالتوقيع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d0213c50e15ad3e40e0"
     },
     {
       "id": 162,
@@ -806,7 +868,8 @@
         "أن الهدف هو إقرار نوع من االستقرار للمنظمة فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0e7853efc1d3583f2ff6"
     },
     {
       "id": 163,
@@ -819,7 +882,8 @@
         "لضمان أن تكون للدول الأعضاء فقط حق طلب التعديل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aaf0f7605c684b16fd78"
     },
     {
       "id": 164,
@@ -832,7 +896,8 @@
         "نعم ،يكون لكل عضو من أعضاء الأمم المتحدة صوت واحد في المؤتمر"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b17c157c0c0eb2e8ff2d"
     },
     {
       "id": 165,
@@ -845,7 +910,8 @@
         "أن يوافقوا على مجرد عقد المؤتمر العام فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6cc5d6ac15db9b10916b"
     },
     {
       "id": 166,
@@ -858,7 +924,8 @@
         "توضيح وتفسير معنى نصوص المعاهدة ونطاق تطبيقها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_205d129a2c3bcbcc00cb"
     },
     {
       "id": 167,
@@ -871,7 +938,8 @@
         "القاعدة الشخصية. ()14"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48323dda05d440af240f"
     },
     {
       "id": 168,
@@ -884,7 +952,8 @@
         "مبدأ سيادة الدولة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2cdefaaeaf72aac1d6b"
     },
     {
       "id": 169,
@@ -897,7 +966,8 @@
         "الأعمال التحضيرية ومحاضر االجتماعات وتصرفات الدول الأعضاء"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ac43057b14caaf7657e8"
     },
     {
       "id": 170,
@@ -910,7 +980,8 @@
         "القاعدة الموضوعية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e20f57e7ec44789b3bab"
     },
     {
       "id": 171,
@@ -923,7 +994,8 @@
         "عدم تفسير النص وتأجيل العمل به لحين إجماع الأطراف"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00e24f0be790b382063e"
     },
     {
       "id": 172,
@@ -936,7 +1008,8 @@
         "الآراء الاستشارية لمحكمة العدل الدولية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4175e97ff4716824ceca"
     },
     {
       "id": 173,
@@ -949,7 +1022,8 @@
         "لعدم وجود نصوص واضحة في المواثيق"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_97b3ed31a0979b00ab42"
     },
     {
       "id": 174,
@@ -962,7 +1036,8 @@
         "تنازل الدول عن جميع اختصاصاتها لصالح المنظمات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_78d21605fac5a244a6ff"
     },
     {
       "id": 175,
@@ -975,7 +1050,8 @@
         "التفسير الموضوعي الذي يراعي السيادة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4fbd51901f28c9f1c0c9"
     },
     {
       "id": 176,
@@ -988,7 +1064,8 @@
         "الاختصاصات الضمنية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_498d0d1d4f27c06f8e32"
     },
     {
       "id": 177,
@@ -1001,7 +1078,8 @@
         "إذا كانت المنظمة إقليمية وليست عالمية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_663d6f3873bed98d4e36"
     },
     {
       "id": 178,
@@ -1014,7 +1092,8 @@
         "تطبيق القاعدة الموضوعية بدالً من القاعدة الشخصية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f503aefe60bd966010e"
     },
     {
       "id": 179,
@@ -1027,7 +1106,8 @@
         "أطراف المعاهدة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67174274571ef54209ce"
     },
     {
       "id": 180,
@@ -1040,7 +1120,8 @@
         "الحكومات الداعية للمؤتمر. ()15"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc3480e76498e298a583"
     },
     {
       "id": 181,
@@ -1053,7 +1134,8 @@
         "تحديد قانون المنظمة الذاتي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36f4a3f5baad08f82eda"
     },
     {
       "id": 182,
@@ -1066,7 +1148,8 @@
         "الأمانة العامة للمنظمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_667d7bb4adc4882278b3"
     },
     {
       "id": 183,
@@ -1079,7 +1162,8 @@
         "االتفاقيات الثنائية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_660410f1d8c318acd2ad"
     },
     {
       "id": 184,
@@ -1092,7 +1176,8 @@
         "لو كانت المنظمات الدولية لديها سلطات ممنوحة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b549b90ef37b502a27a9"
     },
     {
       "id": 185,
@@ -1105,7 +1190,8 @@
         "محكمة العدل الدولية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e6b84acb97c68a68746d"
     },
     {
       "id": 186,
@@ -1118,7 +1204,8 @@
         "الاختصاصات التي لا تعطى صراحة للمنظمة الدولية بمقتضى دستورها ولكن أهليتها لمباشرتها تستفاد حتما ً من عبارات الميثاق وأهداف المنظمة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_199ab6355a516b3472dc"
     },
     {
       "id": 187,
@@ -1131,7 +1218,8 @@
         "إذا كانت هذه السلطات خاصة بمسائل فنية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_967ed78bd50ef80b2157"
     },
     {
       "id": 188,
@@ -1144,7 +1232,8 @@
         "قضية التعويض"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e76e44944896ea5253a9"
     },
     {
       "id": 189,
@@ -1157,7 +1246,8 @@
         "مجلس الوصاية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_86c6477f09e3e3627765"
     },
     {
       "id": 190,
@@ -1170,7 +1260,8 @@
         "نظام التعاون االختياري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_961e57081b80415338e3"
     },
     {
       "id": 191,
@@ -1183,7 +1274,8 @@
         "المادة العاشرة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a5093e811367e02eb04"
     },
     {
       "id": 192,
@@ -1196,7 +1288,8 @@
         "منظمة الدول الأمريكية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e68eb12386f0ceb5c1ed"
     },
     {
       "id": 193,
@@ -1209,7 +1302,8 @@
         "الأقاليم المنزوعة من تركيا. يعط صراحة اختصاص إنشاءها للمنظمة ،ولكن ذلك"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ade1183c637da714df5"
     },
     {
       "id": 194,
@@ -1222,7 +1316,8 @@
         "المحكمة الإدارية لألمم المتحدة. ()16"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_790be36576172218aadc"
     },
     {
       "id": 195,
@@ -1235,7 +1330,8 @@
         "إبطال القرارات الصادرة بأغلبية الأعضاء"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2bc5a3407f016437335a"
     },
     {
       "id": 196,
@@ -1248,7 +1344,8 @@
         "فكرة الضرورة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_072fd5426e94c8e6ff8f"
     },
     {
       "id": 197,
@@ -1261,7 +1358,8 @@
         "إنشاء محكمة تسهر على أن تسود العدالة في عالقات المنظمة بموظفيها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48689c0b6a5cd2eb8e20"
     },
     {
       "id": 198,
@@ -1274,7 +1372,8 @@
         "قضية التعويضات"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f322cf5deb633eeec4ad"
     },
     {
       "id": 199,
@@ -1287,7 +1386,8 @@
         "إثبات الشخصية الدولية للمنظمة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ef2fc08c18eec5c2815"
     },
     {
       "id": 200,
@@ -1300,7 +1400,8 @@
         "إبطال جميع القرارات السابقة على نشأة المنظمة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_524630b61fc554f1a5df"
     }
   ]
 }

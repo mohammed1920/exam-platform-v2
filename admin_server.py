@@ -54,6 +54,8 @@ def safe_book_dir(book_id: str) -> Path:
 
 # نماذج البيانات
 class Question(BaseModel):
+    id: Optional[str] = None
+    uid: Optional[str] = None
     question: str
     options: List[str]
     answer: int
@@ -106,7 +108,8 @@ async def add_book(book: Book):
             "id": book.id,
             "title": book.title,
             "author": book.author or "",
-            "chapters": book.chapters
+            "description": book.description or "",
+            "chapters": book.chapters or 0
         })
         
         # حفظ الفهرس
@@ -299,7 +302,7 @@ async def delete_chapter(book_id: str, chapter_id: int):
                 json.dump(data, f, ensure_ascii=False, indent=2)
             old_path.unlink()
 
-        new_total = len(remaining) - 1
+        new_total = len(remaining)
 
         # 3) تحديث books.json بعدد الفصول الصحيح الجديد لهذا الكتاب
         with open(BOOKS_FILE, "r", encoding="utf-8") as f:
@@ -343,7 +346,10 @@ async def add_question(book_id: str, chapter_id: int, question: Question):
             chapter_data = json.load(f)
         
         # إضافة السؤال
+        next_id = question.id or f"{book_id}_ch{chapter_id + 1}_q{len(chapter_data.get('questions', [])) + 1}"
         question_dict = {
+            "id": next_id,
+            "uid": question.uid or f"q_{book_id}_{chapter_id + 1}_{len(chapter_data.get('questions', [])) + 1}",
             "question": question.question or question.q,
             "options": question.options or question.opts,
             "answer": question.answer if question.answer is not None else question.ans,
@@ -380,11 +386,15 @@ async def update_question(book_id: str, chapter_id: int, question_id: int, quest
         opts = question.options or question.opts
         ans = question.answer if question.answer is not None else question.ans
         
+        existing = chapter_data["questions"][question_id]
         chapter_data["questions"][question_id] = {
+            **existing,
+            "id": existing.get("id") or question.id or f"{book_id}_ch{chapter_id + 1}_q{question_id + 1}",
+            "uid": existing.get("uid") or question.uid or f"q_{book_id}_{chapter_id + 1}_{question_id + 1}",
             "question": q_text,
             "options": opts,
             "answer": ans,
-            "explanation": question.explanation or ""
+            "explanation": question.explanation if question.explanation is not None else existing.get("explanation", "")
         }
         
         with open(chapter_file, "w", encoding="utf-8") as f:
@@ -403,8 +413,10 @@ async def update_chapter_full(book_id: str, chapter_num: int, chapter_data: Chap
         
         # تحويل البيانات إلى قاموس مع التأكد من صيغة الأسئلة (استخدام الحقل answer حصراً)
         final_questions = []
-        for q in chapter_data.questions:
+        for i, q in enumerate(chapter_data.questions):
             final_questions.append({
+                "id": q.id or f"{book_id}_ch{chapter_num}_q{i + 1}",
+                "uid": q.uid or f"q_{book_id}_{chapter_num}_{i + 1}",
                 "question": q.question or q.q,
                 "options": q.options or q.opts,
                 "answer": q.answer if q.answer is not None else q.ans,
