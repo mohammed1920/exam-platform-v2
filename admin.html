@@ -1415,6 +1415,18 @@
             showModal('editChapter');
         }
 
+        // يضمن أن كل سؤال محفوظ من لوحة الإدارة يمتلك هوية ثابتة.
+        // لا يغيّر id/uid الموجودين؛ ينشئهما فقط عند فقدانهما.
+        function ensureQuestionIdentitiesInMemory() {
+            if (!currentChapterData || !Array.isArray(currentChapterData.questions)) return;
+            const chapterNum = currentChapterNum;
+            currentChapterData.questions.forEach((q, idx) => {
+                if (!q || typeof q !== 'object') return;
+                if (!q.id) q.id = `${currentBook.id}_ch${chapterNum}_q${idx + 1}`;
+                if (!q.uid) q.uid = createQuestionUid();
+            });
+        }
+
         async function saveQuestion() {
             if (!currentChapterData || currentChapterNum === null) { showAlert('يرجى اختيار فصل أولاً', 'error'); return; }
             const qText = document.getElementById('m-q').value.trim();
@@ -1455,6 +1467,9 @@
                 insertedIdx = currentChapterData.questions.length - 1;
             }
             try {
+                // حماية إضافية: حتى لو كان الفصل يحتوي أسئلة مستوردة قديمة بلا معرفات،
+                // نضمن هويتها قبل أي حفظ. الموجود منها لا يتغير.
+                ensureQuestionIdentitiesInMemory();
                 await commitFiles([{ path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
                 showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال مع الحفاظ على المعرف والشرح' : 'تمت إضافة السؤال بنجاح');
                 closeModal();
