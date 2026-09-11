@@ -4,5 +4,16 @@
   "chapter": 1,
   "title": "الفصل تجريبي",
   "description": "",
-  "questions": []
+  "questions": [
+    {
+      "question": "محمد",
+      "options": [
+        "محامي",
+        "طبيب",
+        "شاعر",
+        "معلم"
+      ],
+      "answer": 0
+    }
+  ]
 }
