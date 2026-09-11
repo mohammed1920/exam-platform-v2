@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-11T05:33:32+00:00",
+  "generated_at": "2026-09-11T06:04:01+00:00",
   "summary": {
     "books": 8,
-    "questions": 9958,
-    "issues": 21
+    "questions": 9956,
+    "issues": 15
   },
   "items": [
     {
@@ -125,52 +125,6 @@
       "question_index": 5,
       "options_count": 1,
       "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
-    },
-    {
-      "type": "too_few_options",
-      "book_id": "law_Named_contracts",
-      "chapter": 31,
-      "question_index": 10,
-      "options_count": 0,
-      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
-    },
-    {
-      "type": "invalid_answer_index",
-      "book_id": "law_Named_contracts",
-      "chapter": 31,
-      "question_index": 10,
-      "answer": null,
-      "options_count": 0
-    },
-    {
-      "type": "duplicate_legacy_question_id",
-      "book_id": "law_Named_contracts",
-      "chapter": 4,
-      "id": "70"
-    },
-    {
-      "type": "too_few_options",
-      "book_id": "law_Named_contracts",
-      "chapter": 6,
-      "question_index": 47,
-      "options_count": 0,
-      "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
-    },
-    {
-      "type": "invalid_answer_index",
-      "book_id": "law_Named_contracts",
-      "chapter": 6,
-      "question_index": 47,
-      "answer": null,
-      "options_count": 0
-    },
-    {
-      "type": "invalid_answer_index",
-      "book_id": "law_Named_contracts",
-      "chapter": 6,
-      "question_index": 48,
-      "answer": null,
-      "options_count": 4
     }
   ]
 }
