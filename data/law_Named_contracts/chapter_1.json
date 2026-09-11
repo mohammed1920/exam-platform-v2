@@ -25,7 +25,9 @@
         "نجار",
         "كاسب"
       ],
-      "answer": 1
+      "answer": 1,
+      "id": "law_Named_contracts_ch1_q2",
+      "uid": "q_b8959c413e2d0263bce1"
     },
     {
       "question": "جابر",
@@ -35,7 +37,9 @@
         "قديم",
         "جديد"
       ],
-      "answer": 0
+      "answer": 0,
+      "id": "law_Named_contracts_ch1_q3",
+      "uid": "q_7718f225845302349b3b"
     }
   ]
 }
