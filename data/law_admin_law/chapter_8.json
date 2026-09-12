@@ -16,7 +16,8 @@
         "مجموعة الأحكام التي تهدف إلى تحقيق الربح."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc01652ae1615955a496"
     },
     {
       "id": "law_admin_law_ch8_2",
@@ -29,7 +30,8 @@
         "الوحدة، السيادة، الاستقلال."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f8630648648ff87ef3d"
     },
     {
       "id": "law_admin_law_ch8_3",
@@ -42,7 +44,8 @@
         "الفقيه جيز."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04b4d850c340c2710e3e"
     },
     {
       "id": "law_admin_law_ch8_4",
@@ -55,7 +58,8 @@
         "الطعن في قرارات الإدارة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ac02eaf0be64a48e32da"
     },
     {
       "id": "law_admin_law_ch8_5",
@@ -68,7 +72,8 @@
         "القيود على سلطة إصدار اللوائح."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_83a87cec7775ac781fb4"
     },
     {
       "id": "law_admin_law_ch8_6",
@@ -81,7 +86,8 @@
         "الضبط التعويضي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d6726ed6f8d4a44e6333"
     },
     {
       "id": "law_admin_law_ch8_7",
@@ -94,7 +100,8 @@
         "نشاط عسكري استراتيجي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b760c3713a2937e48797"
     },
     {
       "id": "law_admin_law_ch8_8",
@@ -107,7 +114,8 @@
         "الضبط اللائحي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65faf8b7105b42e13ea0"
     },
     {
       "id": "law_admin_law_ch8_9",
@@ -120,7 +128,8 @@
         "في شكل تشريع من السلطة المختصة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37dc72fce97aad94c969"
     },
     {
       "id": "law_admin_law_ch8_10",
@@ -133,7 +142,8 @@
         "نشاط ذو طبيعة رقابية وإشرافية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ed2a83607fb37c30ed2"
     },
     {
       "id": "law_admin_law_ch8_11",
@@ -146,7 +156,8 @@
         "المحكمة الاتحادية العليا."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_51821d5a79379495cbdb"
     },
     {
       "id": "law_admin_law_ch8_12",
@@ -159,7 +170,8 @@
         "يصدر في شكل مراسيم جمهورية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_641960925afd1e822125"
     },
     {
       "id": "law_admin_law_ch8_13",
@@ -172,7 +184,8 @@
         "تنظيم نشاط صيد بعض الحيوانات النادرة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0a66847af5df24ae6ad9"
     },
     {
       "id": "law_admin_law_ch8_14",
@@ -185,7 +198,8 @@
         "المحاكم المدنية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8e77b191b295e704a869"
     },
     {
       "id": "law_admin_law_ch8_15",
@@ -198,7 +212,8 @@
         "تعيين الموظفين الإداريين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b87a9f0b355f7fd2e873"
     },
     {
       "id": "law_admin_law_ch8_16",
@@ -211,7 +226,8 @@
         "قرار يتعلق بتنظيم حركة الملاحة الجوية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8880df4e58eaa4461df3"
     },
     {
       "id": "law_admin_law_ch8_17",
@@ -224,7 +240,8 @@
         "في جميع أنحاء الدولة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4c06d4b2a6a96a472b69"
     },
     {
       "id": "law_admin_law_ch8_18",
@@ -237,7 +254,8 @@
         "المحافظ"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0a0e6522cece448b088"
     },
     {
       "id": "law_admin_law_ch8_19",
@@ -250,7 +268,8 @@
         "تعيين موظفي الإدارة العامة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ddb3c716ccb923051659"
     },
     {
       "id": "law_admin_law_ch8_20",
@@ -263,7 +282,8 @@
         "إعفاء رؤساء الوحدات الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08f348e20d4639a3a5d5"
     },
     {
       "id": "law_admin_law_ch8_21",
@@ -276,7 +296,8 @@
         "عدم التمييز بين أعمال الضبط الإداري والضبط القضائي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b56c5cb1b6b8bf518e3"
     },
     {
       "id": "law_admin_law_ch8_22",
@@ -289,7 +310,8 @@
         "يهدف إلى تحقيق أغراض الضبط الخاص فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c0b6439c603bd847cbc"
     },
     {
       "id": "law_admin_law_ch8_23",
@@ -302,7 +324,8 @@
         "الضبط الإداري الجزائي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_60e877e66a391c1e7e3b"
     },
     {
       "id": "law_admin_law_ch8_24",
@@ -315,7 +338,8 @@
         "السلطة التشريعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59ac5c8fb655d563b788"
     },
     {
       "id": "law_admin_law_ch8_25",
@@ -328,7 +352,8 @@
         "إعفاء الموظفين الإداريين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d102d2c370b3b40b50cd"
     },
     {
       "id": "law_admin_law_ch8_26",
@@ -341,7 +366,8 @@
         "فكرة خاصة بالمجتمعات الريفية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_77d7cdc8d820e39f4228"
     },
     {
       "id": "law_admin_law_ch8_27",
@@ -354,7 +380,8 @@
         "السلطة التنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6df0fdb849f28ae6b275"
     },
     {
       "id": "law_admin_law_ch8_28",
@@ -367,7 +394,8 @@
         "إصدار العفو الخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_015a296ec05377ee8012"
     },
     {
       "id": "law_admin_law_ch8_29",
@@ -380,7 +408,8 @@
         "الأذن المسبق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3f77a51625c6e4968199"
     },
     {
       "id": "law_admin_law_ch8_30",
@@ -393,7 +422,8 @@
         "قواعد تعاقدية ملزمة للطرفين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cba3a2c0ff829c98dd95"
     },
     {
       "id": "law_admin_law_ch8_31",
@@ -406,7 +436,8 @@
         "إنشاء الشركات العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d5389edfe9d9e13cfd8e"
     },
     {
       "id": "law_admin_law_ch8_32",
@@ -419,7 +450,8 @@
         "لا يمكن لتقييد الحريات أن يحدث إلا عبر لوائح فردية..."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a6c59552469d2d00eb0a"
     },
     {
       "id": "law_admin_law_ch8_33",
@@ -432,7 +464,8 @@
         "الإجازة اللاحقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c7ddf4bb6e5df0f5b423"
     },
     {
       "id": "law_admin_law_ch8_34",
@@ -445,7 +478,8 @@
         "التنفيذ الجبري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_68b92e1b88f40c674681"
     },
     {
       "id": "law_admin_law_ch8_35",
@@ -458,7 +492,8 @@
         "عندما يتم توجيه الحظر إلى شخص معين"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92993f3df819e3452d03"
     },
     {
       "id": "law_admin_law_ch8_36",
@@ -471,7 +506,8 @@
         "التنظيم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a7b6cb2221ecca29d95"
     },
     {
       "id": "law_admin_law_ch8_37",
@@ -484,7 +520,8 @@
         "لوائح تعيين الموظفين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_baedb164b145914b590c"
     },
     {
       "id": "law_admin_law_ch8_38",
@@ -497,7 +534,8 @@
         "التنفيذ الجبري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c98bc9508c16846ce77f"
     },
     {
       "id": "law_admin_law_ch8_39",
@@ -510,7 +548,8 @@
         "التنفيذ الجبري."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ee39b4a304f12864b3c"
     },
     {
       "id": "law_admin_law_ch8_40",
@@ -523,7 +562,8 @@
         "تخضع لرقابة القضاء العادي."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c2317d2a826d69678cd8"
     },
     {
       "id": "law_admin_law_ch8_41",
@@ -536,7 +576,8 @@
         "القرارات المتعلقة بتعيين الممثلين الدبلوماسيين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e271bf4aebd786724117"
     },
     {
       "id": "law_admin_law_ch8_42",
@@ -549,7 +590,8 @@
         "يتم التنفيذ الجبري من دون إخطار مسبق."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0419efdd556df2dde6d3"
     },
     {
       "id": "law_admin_law_ch8_43",
@@ -562,7 +604,8 @@
         "حالة التنفيذ الجبري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7cb6dc981e475c38dacb"
     },
     {
       "id": "law_admin_law_ch8_44",
@@ -575,7 +618,8 @@
         "الأذن المسبق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a0afaf51152cc352237c"
     },
     {
       "id": "law_admin_law_ch8_45",
@@ -588,7 +632,8 @@
         "عندما يكون النشاط مخالفا لنظام الضبط الخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a1e8878d2d96b122feaa"
     },
     {
       "id": "law_admin_law_ch8_46",
@@ -601,7 +646,8 @@
         "التفويض في السلطة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5362259e4d773e1dd4a1"
     },
     {
       "id": "law_admin_law_ch8_47",
@@ -614,7 +660,8 @@
         "المصلحة الإقليمية للمحافظة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a53ca59d5db8b9a76c99"
     },
     {
       "id": "law_admin_law_ch8_48",
@@ -627,7 +674,8 @@
         "أن يكون التفويض غير قابل للرجوع فيه."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c48f5afc2ae873197624"
     },
     {
       "id": "law_admin_law_ch8_49",
@@ -640,7 +688,8 @@
         "أغلبية الثلثين للأعضاء المنتخبين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff243f7a64028ad8f740"
     },
     {
       "id": "law_admin_law_ch8_50",
@@ -653,7 +702,8 @@
         "قرار قابل للإلغاء من القضاء العادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5e826ddcec348282e879"
     },
     {
       "id": "law_admin_law_ch8_51",
@@ -666,7 +716,8 @@
         "تنظيم النشاط فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_535398cd736b5d608567"
     },
     {
       "id": "law_admin_law_ch8_52",
@@ -679,7 +730,8 @@
         "إجازة النشاط بشكل مطلق من دون قيد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_370b8712f1c621e39b74"
     },
     {
       "id": "law_admin_law_ch8_53",
@@ -692,7 +744,8 @@
         "معاهدات دولية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_054c66eaac17bfa7fac0"
     },
     {
       "id": "law_admin_law_ch8_54",
@@ -705,7 +758,8 @@
         "مصلحة المفوض إليه"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d006c6b6a67c9a5b1e2"
     },
     {
       "id": "law_admin_law_ch8_55",
@@ -718,7 +772,8 @@
         "حالة التنظيم والتنسيق بين الوزارات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1eb7f3e37372f50f3f48"
     },
     {
       "id": "law_admin_law_ch8_56",
@@ -731,7 +786,8 @@
         "عندما يكون القرار صادرا عن مفوض إليه."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ecbf561ed5611efbc89"
     },
     {
       "id": "law_admin_law_ch8_57",
@@ -744,7 +800,8 @@
         "قانون اتحادي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0aab52f054179d64a6e3"
     },
     {
       "id": "law_admin_law_ch8_58",
@@ -757,7 +814,8 @@
         "التنفيذ الجبري."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c1bb9d6076dc2050a0b1"
     },
     {
       "id": "law_admin_law_ch8_59",
@@ -770,7 +828,8 @@
         "التنظيم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35725b49d2acf8da6a5d"
     },
     {
       "id": "law_admin_law_ch8_60",
@@ -783,7 +842,8 @@
         "إجازة أعمال الإدارة التي تصدر في حالة الضرورة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_87683927d63a7c8aaff5"
     },
     {
       "id": "law_admin_law_ch8_61",
@@ -796,7 +856,8 @@
         "قيام الرئيس المفوض بمراجعة قرارات مرؤوسيه."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f85afe2ee768134c1501"
     },
     {
       "id": "law_admin_law_ch8_62",
@@ -809,7 +870,8 @@
         "أن يكون السبب متعلقا بالتنظيم الإداري للدولة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a02ac750cee22f6096a"
     },
     {
       "id": "law_admin_law_ch8_63",
@@ -822,7 +884,8 @@
         "أن تستند الوسائل إلى لوائح الضبط من دون القوانين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ccfdbf6436cea0bf6367"
     },
     {
       "id": "law_admin_law_ch8_64",
@@ -835,7 +898,8 @@
         "يخضع لرقابة مجلس الوزراء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c50f5e16c484a940548"
     },
     {
       "id": "law_admin_law_ch8_65",
@@ -848,7 +912,8 @@
         "رئيس مجلس النواب."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b28d1836be81e3da293"
     },
     {
       "id": "law_admin_law_ch8_66",
@@ -861,7 +926,8 @@
         "تفويض المسؤولية. ُ ُ.."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4de3f64e1527ec466322"
     },
     {
       "id": "law_admin_law_ch8_67",
@@ -874,7 +940,8 @@
         "تنسب إلى مجلس النواب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5a96660414e5a0ab3dc8"
     },
     {
       "id": "law_admin_law_ch8_68",
@@ -887,7 +954,8 @@
         "يجب على الأصيل أن يلغي التفويض قبل ممارسة الاختصاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8fea1de73df5461ed86c"
     },
     {
       "id": "law_admin_law_ch8_69",
@@ -900,7 +968,8 @@
         "صدور مرسوم جمهوري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_73ff6056d33f80b23d72"
     },
     {
       "id": "law_admin_law_ch8_70",
@@ -913,7 +982,8 @@
         "بصفته قاضيا."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_20f731c7f815e1b1f6f9"
     },
     {
       "id": "law_admin_law_ch8_71",
@@ -926,7 +996,8 @@
         "التفويض في المسؤولية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_656d839d2bcf3ef43e5a"
     },
     {
       "id": "law_admin_law_ch8_72",
@@ -939,7 +1010,8 @@
         "يتحمل المفوض إليه كامل المسؤولية من دون الرئيس."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d4a287c2704abba8819d"
     },
     {
       "id": "law_admin_law_ch8_73",
@@ -952,7 +1024,8 @@
         "يجب أن يفوض الرئيس الإداري جميع الاختصاصات لمرة واحدة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_24ce7dbe6e3885071f21"
     },
     {
       "id": "law_admin_law_ch8_74",
@@ -965,7 +1038,8 @@
         "يخضع التفويض الثاني لرقابة القضاء العادي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f0a43480810af7019af"
     },
     {
       "id": "law_admin_law_ch8_75",
@@ -978,7 +1052,8 @@
         "لا يستطيع الرئيس استرداد اختصاصه."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e592358a836ab06d70e"
     },
     {
       "id": "law_admin_law_ch8_76",
@@ -991,7 +1066,8 @@
         "يرون أن المفوض إليه يع د رئيسا إداريا بالنسبة للقرارات الصادرة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f351df350cf8ea0bbbf"
     },
     {
       "id": "law_admin_law_ch8_77",
@@ -1004,7 +1080,8 @@
         "عندما يكون القرار في شكل لائحة عامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4de8f5f94181365e0b09"
     },
     {
       "id": "law_admin_law_ch8_78",
@@ -1017,7 +1094,8 @@
         "الامتناع عن أي تدخل إداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67f505f3a2502cb18c0d"
     },
     {
       "id": "law_admin_law_ch8_79",
@@ -1030,7 +1108,8 @@
         "عند إلغاء التفويض الممنوح للرئيس."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f0cfa33bd3266c3884f"
     },
     {
       "id": "law_admin_law_ch8_80",
@@ -1043,7 +1122,8 @@
         "لا تستطيع الإدارة استخدام أي وسيلة ضبط إداري"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_73b73c99d17443213c0d"
     },
     {
       "id": "law_admin_law_ch8_81",
@@ -1056,7 +1136,8 @@
         "الدستور العراقي لعام 2005."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c33bfb161b6d87cf3e0f"
     },
     {
       "id": "law_admin_law_ch8_82",
@@ -1069,7 +1150,8 @@
         "رقابة التعويض"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63840ea57b94806e2e51"
     },
     {
       "id": "law_admin_law_ch8_83",
@@ -1082,7 +1164,8 @@
         "وزير الدفاع."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d95c54317775cd6d352"
     },
     {
       "id": "law_admin_law_ch8_84",
@@ -1095,7 +1178,8 @@
         "وزير الداخلية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a3e9c7f576a7ef4a0a7"
     },
     {
       "id": "law_admin_law_ch8_85",
@@ -1108,7 +1192,8 @@
         "ثلث عدد الأعضاء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96e6454f85e18b2833ba"
     },
     {
       "id": "law_admin_law_ch8_86",
@@ -1121,7 +1206,8 @@
         "خطر اقتصادي بحت."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eadd87de77e19316eb29"
     },
     {
       "id": "law_admin_law_ch8_87",
@@ -1134,7 +1220,8 @@
         "عام واحد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d83ec3b3b812b29de319"
     },
     {
       "id": "law_admin_law_ch8_88",
@@ -1147,7 +1234,8 @@
         "رئيس مجلس القضاء الأعلى."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af36992fe5e3a1e6b3ad"
     },
     {
       "id": "law_admin_law_ch8_89",
@@ -1160,7 +1248,8 @@
         "عام واحد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3577042ef8d0bdae6b9"
     },
     {
       "id": "law_admin_law_ch8_90",
@@ -1173,7 +1262,8 @@
         "أعمال عنف تنظمها الحكومة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_de2cf1cb33edd05d525c"
     },
     {
       "id": "law_admin_law_ch8_91",
@@ -1186,7 +1276,8 @@
         "تعديل الدستور الاتحادي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_818026014c970d3c3853"
     },
     {
       "id": "law_admin_law_ch8_92",
@@ -1199,7 +1290,8 @@
         "حصر سلطات الضبط الإداري بالرئيس الأعلى."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e8be813a70ae6daa2f22"
     },
     {
       "id": "law_admin_law_ch8_93",
@@ -1212,7 +1304,8 @@
         "تعيينهم في وظائف عليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_798de10c6ba33198754c"
     },
     {
       "id": "law_admin_law_ch8_94",
@@ -1225,7 +1318,8 @@
         "حرية تأسيس الشركات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9ac296b7ff9c1409994a"
     },
     {
       "id": "law_admin_law_ch8_95",
@@ -1238,7 +1332,8 @@
         "منحها للجهات العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4790f6c35f5df7cb3d7c"
     },
     {
       "id": "law_admin_law_ch8_96",
@@ -1251,7 +1346,8 @@
         "المناطق التي تخضع للضبط الخاص."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a39d8ceb53553fb05edc"
     },
     {
       "id": "law_admin_law_ch8_97",
@@ -1264,7 +1360,8 @@
         "الكتب والصحف."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0285045a863e36291d8"
     },
     {
       "id": "law_admin_law_ch8_98",
@@ -1277,7 +1374,8 @@
         "منحهم تعويضات فورية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_460206bd8091b9e0b54d"
     },
     {
       "id": "law_admin_law_ch8_99",
@@ -1290,7 +1388,8 @@
         "مصادرتها مطلقا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9c74aedb46749845ebee"
     },
     {
       "id": "law_admin_law_ch8_100",
@@ -1303,7 +1402,8 @@
         "لا يجوز لها إصدار أوامر فردية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be95ae5a4fe9f9ec0cc4"
     },
     {
       "id": "law_admin_law_ch8_101",
@@ -1316,7 +1416,8 @@
         "يع د قرارا صحيحا لتوافر أسبابه."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a220c5b2040670ac97be"
     },
     {
       "id": "law_admin_law_ch8_102",
@@ -1329,7 +1430,8 @@
         "مصادرة الأسلحة النارية فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c789194ea30242a40d21"
     },
     {
       "id": "law_admin_law_ch8_103",
@@ -1342,7 +1444,8 @@
         "عام واحد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b42906b2565e9e787109"
     },
     {
       "id": "law_admin_law_ch8_104",
@@ -1355,7 +1458,8 @@
         "الأغلبية المطلقة للأعضاء الحاضرين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_26ae844c45a6a7836174"
     },
     {
       "id": "law_admin_law_ch8_105",
@@ -1368,7 +1472,8 @@
         "إلغاء جميع الرسوم عليها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04f10d00101dd5578340"
     },
     {
       "id": "law_admin_law_ch8_106",
@@ -1381,7 +1486,8 @@
         "رئيس الجمهورية ومجلس النواب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f6fcb8734dc8e676dd7"
     },
     {
       "id": "law_admin_law_ch8_107",
@@ -1394,7 +1500,8 @@
         "تصدر بشأنها لائحة ضبط إداري جديدة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_945fc04ad496559de802"
     },
     {
       "id": "law_admin_law_ch8_108",
@@ -1407,7 +1514,8 @@
         "تفويض اختصاصاتها لسلطة أدنى."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d599bfed1dc47d857fc4"
     },
     {
       "id": "law_admin_law_ch8_109",
@@ -1420,7 +1528,8 @@
         "الأدوية والمستلزمات الطبية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2789c6dc1886cfc8ff3e"
     },
     {
       "id": "law_admin_law_ch8_110",
@@ -1433,7 +1542,8 @@
         "سبعة أيام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_081751e3baf7f8ab6696"
     },
     {
       "id": "law_admin_law_ch8_111",
@@ -1446,7 +1556,8 @@
         "يراقب بعد انتهاء المدة القانونية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1329175e8e2a7c25e371"
     },
     {
       "id": "law_admin_law_ch8_112",
@@ -1459,7 +1570,8 @@
         "تحديد مبلغ التعويضات المترتبة على الإعلان."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_20e2af464e46293e1632"
     },
     {
       "id": "law_admin_law_ch8_113",
@@ -1472,7 +1584,8 @@
         "أن يكون القرار في شكل لائحة ضبط إداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a00e9faf31a54e50250"
     },
     {
       "id": "law_admin_law_ch8_114",
@@ -1485,7 +1598,8 @@
         "تأخر صدور الموازنة العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_219b807a62a1419f07a2"
     },
     {
       "id": "law_admin_law_ch8_115",
@@ -1498,7 +1612,8 @@
         "أن تراجع الإدارة قراراتها الصادرة قبل الإعلان."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8da69947cc5f5bee6fc8"
     },
     {
       "id": "law_admin_law_ch8_116",
@@ -1511,7 +1626,8 @@
         "أن يكون القرار في شكل قرار قضائي"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53409a294e5e767ea23b"
     },
     {
       "id": "law_admin_law_ch8_117",
@@ -1524,7 +1640,8 @@
         "أن يختص القضاء الإداري برقابة الملائمة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53b6ddcf40bd862da8c6"
     },
     {
       "id": "law_admin_law_ch8_118",
@@ -1537,7 +1654,8 @@
         "عيب السبب."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8709160663153e95ec58"
     },
     {
       "id": "law_admin_law_ch8_119",
@@ -1550,7 +1668,8 @@
         "لأن عيب الغاية يختص به القضاء العادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50e82f34502cded1ab81"
     },
     {
       "id": "law_admin_law_ch8_120",
@@ -1563,7 +1682,8 @@
         "توسيع اختصاصاتها الإدارية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad5501c0f76eda445f05"
     },
     {
       "id": "law_admin_law_ch8_121",
@@ -1576,7 +1696,8 @@
         "وجود نص قانوني صريح يحدد الإجراء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a045ad25de4f4e107573"
     },
     {
       "id": "law_admin_law_ch8_122",
@@ -1589,7 +1710,8 @@
         "تنظيم اللامركزية الإدارية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d93c9f647ed853f85bb"
     },
     {
       "id": "law_admin_law_ch8_123",
@@ -1602,7 +1724,8 @@
         "أن تستمر. إلى حين صدور قانون جديد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65c4829ddbe66a2eb6fa"
     },
     {
       "id": "law_admin_law_ch8_124",
@@ -1615,7 +1738,8 @@
         "عيب التفويض."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fc3a3addc3f1f46958a7"
     },
     {
       "id": "law_admin_law_ch8_125",
@@ -1628,7 +1752,8 @@
         "عيب التنفيذ الجبري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_01f6722768d900123904"
     },
     {
       "id": "law_admin_law_ch8_126",
@@ -1641,7 +1766,8 @@
         "عيب الشكل."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d136040bc7b485c05023"
     },
     {
       "id": "law_admin_law_ch8_127",
@@ -1654,7 +1780,8 @@
         "المواد الغذائية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f02243bd02f270a35965"
     },
     {
       "id": "law_admin_law_ch8_128",
@@ -1667,7 +1794,8 @@
         "بموافقة مجلس الوزراء بالإجماع."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_34249d60e0221b7af89f"
     }
   ]
 }

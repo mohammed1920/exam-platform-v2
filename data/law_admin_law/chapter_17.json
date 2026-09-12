@@ -16,7 +16,8 @@
         "خمس مهام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_625541821609309af2a5"
     },
     {
       "id": "law_admin_law_ch17_2",
@@ -29,7 +30,8 @@
         "وضع القواعد العامة المجردة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_863904ced5100085c04e"
     },
     {
       "id": "law_admin_law_ch17_3",
@@ -42,7 +44,8 @@
         "الأعمال المادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0925b77e4d4db4552176"
     },
     {
       "id": "law_admin_law_ch17_4",
@@ -55,7 +58,8 @@
         "أعمال مشرعة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7cf32fdc3d6e81467593"
     },
     {
       "id": "law_admin_law_ch17_5",
@@ -68,7 +72,8 @@
         "سن القوانين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_edc2df464db84f0d9c70"
     },
     {
       "id": "law_admin_law_ch17_6",
@@ -81,7 +86,8 @@
         "عن طريق القرارات الإدارية الفردية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe6a77df315ed821676e"
     },
     {
       "id": "law_admin_law_ch17_7",
@@ -94,7 +100,8 @@
         "الإشراف على تعبيد الطرق"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8fc3cf4861f23731b330"
     },
     {
       "id": "law_admin_law_ch17_8",
@@ -107,7 +114,8 @@
         "التظلم أمام مجلس الدولة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dce6f8efd936f04cc5b3"
     },
     {
       "id": "law_admin_law_ch17_9",
@@ -120,7 +128,8 @@
         "الطعن أمام المحكمة المدنية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b388ae977fa615870f7b"
     },
     {
       "id": "law_admin_law_ch17_10",
@@ -133,7 +142,8 @@
         "المعيار الشكلي والموضوعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a610a83b257392394a54"
     },
     {
       "id": "law_admin_law_ch17_11",
@@ -146,7 +156,8 @@
         "المراكز المتعلقة بالوظيفة القضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_87fae2be32bc6148b88b"
     },
     {
       "id": "law_admin_law_ch17_12",
@@ -159,7 +170,8 @@
         "مركز المشرع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe6e03882b2fafcd7421"
     },
     {
       "id": "law_admin_law_ch17_13",
@@ -172,7 +184,8 @@
         "بأنها تصدر بالاتفاق دائما"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bee93c21a10cd40e38a6"
     },
     {
       "id": "law_admin_law_ch17_14",
@@ -185,7 +198,8 @@
         "أعمال مادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c6a37e74b1a0d33d400"
     },
     {
       "id": "law_admin_law_ch17_15",
@@ -198,7 +212,8 @@
         "أعمال تنظيمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18b9ddd671235ab386ac"
     },
     {
       "id": "law_admin_law_ch17_16",
@@ -211,7 +226,8 @@
         "أعمال قضائية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_968e068547d2e500ab03"
     },
     {
       "id": "law_admin_law_ch17_17",
@@ -224,7 +240,8 @@
         "قرار إلغاء قانون"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c03e25ce720f641127cd"
     },
     {
       "id": "law_admin_law_ch17_18",
@@ -237,7 +254,8 @@
         "إذا كان صادرا من القضاء الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f96f8e15207a9ae97c84"
     },
     {
       "id": "law_admin_law_ch17_19",
@@ -250,7 +268,8 @@
         "المراكز القانونية التي ينشئها"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_adfa88621846fe41907c"
     },
     {
       "id": "law_admin_law_ch17_20",
@@ -263,7 +282,8 @@
         "عدم وضوح الإجراءات المتبعة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f95c6dd1c7c25439e007"
     },
     {
       "id": "law_admin_law_ch17_21",
@@ -276,7 +296,8 @@
         "القاعدة العامة المجردة التي يصدرها القاضي ً."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6223cd95b15267553106"
     },
     {
       "id": "law_admin_law_ch17_22",
@@ -289,7 +310,8 @@
         "إذا كان عملا شرطيا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2061a7c574d5f7282fc"
     },
     {
       "id": "law_admin_law_ch17_23",
@@ -302,7 +324,8 @@
         "إذا كان عملا ماديا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_088845480469d75b2290"
     },
     {
       "id": "law_admin_law_ch17_24",
@@ -315,7 +338,8 @@
         "مركز قانوني تعاقدي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_153884df3abb096d7e7d"
     },
     {
       "id": "law_admin_law_ch17_25",
@@ -328,7 +352,8 @@
         "عدم قابليته للتطبيق لتعقيده"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1592b377869e41b9d805"
     },
     {
       "id": "law_admin_law_ch17_26",
@@ -341,7 +366,8 @@
         "المعيار الشخصي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a7b49152ad53376fd397"
     },
     {
       "id": "law_admin_law_ch17_27",
@@ -354,7 +380,8 @@
         "قرارات إسقاط العضوية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_09b3950c3f0357ade2d7"
     },
     {
       "id": "law_admin_law_ch17_28",
@@ -367,7 +394,8 @@
         "قرار التعيين في وظيفة قيادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ce479c6f843919e0cd4f"
     },
     {
       "id": "law_admin_law_ch17_29",
@@ -380,7 +408,8 @@
         "الإصدار التلقائي للقرارات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d6e90c876e36fcfa15d3"
     },
     {
       "id": "law_admin_law_ch17_30",
@@ -393,7 +422,8 @@
         "تعارض ذلك مع مبدأ الفصل بين السلطات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8983c83e5fd4bc3f8cb7"
     },
     {
       "id": "law_admin_law_ch17_31",
@@ -406,7 +436,8 @@
         "إذا صدر عن سلطة تتمتع باختصاص تقديري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29c105d06d3d15e626ea"
     },
     {
       "id": "law_admin_law_ch17_32",
@@ -419,7 +450,8 @@
         "أنه يأخذ في الاعتبار مضمون العمل وطبيعته"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ac0c400f961beb4c80c"
     },
     {
       "id": "law_admin_law_ch17_33",
@@ -432,7 +464,8 @@
         "أن يصدر عن جهة إدارية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9369f572234fe8369571"
     },
     {
       "id": "law_admin_law_ch17_34",
@@ -445,7 +478,8 @@
         "إذا كان الغرض منه حماية النظام القانوني للدولة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_05f2cfbf491299560028"
     },
     {
       "id": "law_admin_law_ch17_35",
@@ -458,7 +492,8 @@
         "المزج بين الطابع الفردي والطابع العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00260640693755bf2a05"
     },
     {
       "id": "law_admin_law_ch17_36",
@@ -471,7 +506,8 @@
         "المعيار التلقائي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6d350a31b3aa5b87cf1d"
     },
     {
       "id": "law_admin_law_ch17_37",
@@ -484,7 +520,8 @@
         "المعيار الفردي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c2824ff6eff785b1ac4"
     },
     {
       "id": "law_admin_law_ch17_38",
@@ -497,7 +534,8 @@
         "دستورية وقضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fed22cf8b3240d90d68e"
     },
     {
       "id": "law_admin_law_ch17_39",
@@ -510,7 +548,8 @@
         "تحديد عقوبات الاعتداء على الطرق العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdb239b8eccadceae004"
     },
     {
       "id": "law_admin_law_ch17_40",
@@ -523,7 +562,8 @@
         "جواز التصرف فيها بعد إنهاء التخصيص فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cbcbe0066ab26c47601a"
     },
     {
       "id": "law_admin_law_ch17_41",
@@ -536,7 +576,8 @@
         "يتحول المال إلى مال خاص بمجرد البيع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e2811bf3f1c287a3540c"
     },
     {
       "id": "law_admin_law_ch17_42",
@@ -549,7 +590,8 @@
         "المرافق العامة الحيوية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_741b6d3c6edbaf4c5940"
     },
     {
       "id": "law_admin_law_ch17_43",
@@ -562,7 +604,8 @@
         "اتفاق الإدارة مع أحد الأفراد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d795a075e7489e0728f6"
     },
     {
       "id": "law_admin_law_ch17_44",
@@ -575,7 +618,8 @@
         "القانون التجاري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eeb6c317c1ee71efdfc2"
     },
     {
       "id": "law_admin_law_ch17_45",
@@ -588,7 +632,8 @@
         "لكون الأموال العامة غير قابلة للتقييم المالي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d954b5063ae42a46789e"
     },
     {
       "id": "law_admin_law_ch17_46",
@@ -601,7 +646,8 @@
         "جواز ترتيب حق الامتياز بشرط التسجيل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bdea686347012b940fbd"
     },
     {
       "id": "law_admin_law_ch17_47",
@@ -614,7 +660,8 @@
         "لأن القانون المدني لا يطبق على الأموال العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_324d41435ae9dd5f29b7"
     },
     {
       "id": "law_admin_law_ch17_48",
@@ -627,7 +674,8 @@
         "التعويض المالي فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_445f99953e81cca0c06a"
     },
     {
       "id": "law_admin_law_ch17_49",
@@ -640,7 +688,8 @@
         "حفر بئر ارتوازية بالقرب من الطريق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d3741111061a22e0def"
     },
     {
       "id": "law_admin_law_ch17_50",
@@ -653,7 +702,8 @@
         "الأموال التي لم يصدر بتخصيصها مرسوم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c30bae919143c4f986f"
     },
     {
       "id": "law_admin_law_ch17_51",
@@ -666,7 +716,8 @@
         "معيار المراكز العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_013635d563bd91359215"
     },
     {
       "id": "law_admin_law_ch17_52",
@@ -679,7 +730,8 @@
         "كونه حاسما في خصومة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6183d537e0d8e3b4a518"
     },
     {
       "id": "law_admin_law_ch17_53",
@@ -692,7 +744,8 @@
         "أفعال غير مؤثرة في المراكز القانونية بالضرورة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8f20b9fa8a6f60d8bf07"
     },
     {
       "id": "law_admin_law_ch17_54",
@@ -705,7 +758,8 @@
         "قد تكون أفعالا إرادية مثل هدم منزل آيل للسقوط تنفيذا لقرار"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ee6a978dcf7998137c79"
     },
     {
       "id": "law_admin_law_ch17_55",
@@ -718,7 +772,8 @@
         "القرار التشريعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0d3b440cb12f250dc31"
     },
     {
       "id": "law_admin_law_ch17_56",
@@ -731,7 +786,8 @@
         "عندما يصدر بقرار من المحكمة العليا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_895466ada816bfdcfbc3"
     },
     {
       "id": "law_admin_law_ch17_57",
@@ -744,7 +800,8 @@
         "أن محل العمل القانوني يصح أن يكون محلا لدعوى القضاء الكامل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8dbacf116e133f9d9b06"
     },
     {
       "id": "law_admin_law_ch17_58",
@@ -757,7 +814,8 @@
         "إذا صدر بناء على طلب من الأفراد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5b42bf21e4e8501571d"
     },
     {
       "id": "law_admin_law_ch17_59",
@@ -770,7 +828,8 @@
         "أنه يخضع للطعن بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a9a1ba51d9263a48101"
     },
     {
       "id": "law_admin_law_ch17_60",
@@ -783,7 +842,8 @@
         "إبرام عقد إداري"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29906882a939b66bc15c"
     },
     {
       "id": "law_admin_law_ch17_61",
@@ -796,7 +856,8 @@
         "أن يصدر عن اختصاص تقديري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f2d8b8d1d91dfb53dd9"
     },
     {
       "id": "law_admin_law_ch17_62",
@@ -809,7 +870,8 @@
         "كونه يصدر بطلب من الأفراد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_54fe4acb2fc546cf15a6"
     },
     {
       "id": "law_admin_law_ch17_63",
@@ -822,7 +884,8 @@
         "أن يكون محل عملها واقعة مادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5385aa9fae9720c2d611"
     },
     {
       "id": "law_admin_law_ch17_64",
@@ -835,7 +898,8 @@
         "بحث نهاية القرارات الإدارية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91f0161ce96d77ae0e05"
     },
     {
       "id": "law_admin_law_ch17_65",
@@ -848,7 +912,8 @@
         "أنها تكون محلا لمنازعة إدارية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b9a7a41222482610c476"
     },
     {
       "id": "law_admin_law_ch17_66",
@@ -861,7 +926,8 @@
         "أن يكون غير مؤثر في المراكز القانونية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6bc56ba244c8300f430a"
     },
     {
       "id": "law_admin_law_ch17_67",
@@ -874,7 +940,8 @@
         "دعوى الإلغاء بسبب تجاوز السلطة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_242a1254534019dbf98f"
     },
     {
       "id": "law_admin_law_ch17_68",
@@ -887,7 +954,8 @@
         "ما إذا كانت تتسم بطابع الفردية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_613d0b627c28326ac0c3"
     },
     {
       "id": "law_admin_law_ch17_69",
@@ -900,7 +968,8 @@
         "عملا تشريعيا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_323071c1ab7c077a9e8c"
     }
   ]
 }

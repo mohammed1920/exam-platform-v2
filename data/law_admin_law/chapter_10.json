@@ -16,7 +16,8 @@
         "أن المشرع قد وضع تعريفا منظما وموحدا للموظف العام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ed2483887b2e0237cbf"
     },
     {
       "id": "law_admin_law_ch10_2",
@@ -29,7 +30,8 @@
         "حصر الموظفين في الوظائف الدائمة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_76475639d8ae11455b7d"
     },
     {
       "id": "law_admin_law_ch10_3",
@@ -42,7 +44,8 @@
         "كل من يعين في إحدى الوظائف المبينة بموازنة كل وحدة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_79ead02dce3c75814159"
     },
     {
       "id": "law_admin_law_ch10_4",
@@ -55,7 +58,8 @@
         "لا يوجد تعريف للموظف العام إلا في القانون الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_420755644a475dee5fb1"
     },
     {
       "id": "law_admin_law_ch10_5",
@@ -68,7 +72,8 @@
         "من يعين في الوظائف المؤقتة للمتمتعين بالجنسية المصرية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_42981e7be7d4baf803ef"
     },
     {
       "id": "law_admin_law_ch10_6",
@@ -81,7 +86,8 @@
         "قرار من الهيئة التي تملك سلطة التعيين من دون مرسوم أو قرار جمهوري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_510f68a3b05880000796"
     },
     {
       "id": "law_admin_law_ch10_7",
@@ -94,7 +100,8 @@
         "حصر التعيين في الوظائف التي تملك سلطة التعيين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c389fff3f6b5010d2468"
     },
     {
       "id": "law_admin_law_ch10_8",
@@ -107,7 +114,8 @@
         "أن يكون متمتعا بالجنسية المصرية فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db01f8a80b343aa14fa5"
     },
     {
       "id": "law_admin_law_ch10_9",
@@ -120,7 +128,8 @@
         "مبدأ خضوع المرفق للقانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_291a4ade59ad0da28ecf"
     },
     {
       "id": "law_admin_law_ch10_10",
@@ -133,7 +142,8 @@
         "عدم جواز تطبيق نظرية الظروف الطارئة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a096a8309d217bb5458"
     },
     {
       "id": "law_admin_law_ch10_11",
@@ -146,7 +156,8 @@
         "تحول المرفق العام إلى مرفق اختياري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_355404ddb60cffea5cd6"
     },
     {
       "id": "law_admin_law_ch10_12",
@@ -159,7 +170,8 @@
         "قاعدة عدم جواز الحجز على أموال المرفق العام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_51fb400709c4b6d6af45"
     },
     {
       "id": "law_admin_law_ch10_13",
@@ -172,7 +184,8 @@
         "أن يكون العقد خاضعا بالكامل لنظام القانون الخاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82e0a035a8e7058bc6ef"
     },
     {
       "id": "law_admin_law_ch10_14",
@@ -185,7 +198,8 @@
         "إذا كان المتعاقد هو من تسبب في الحوادث."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_55e4f479a25e1679c0d1"
     },
     {
       "id": "law_admin_law_ch10_15",
@@ -198,7 +212,8 @@
         "مبدأ نظرية الظروف الطارئة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c0bb6b892e149057987"
     },
     {
       "id": "law_admin_law_ch10_16",
@@ -211,7 +226,8 @@
         "لأن المرافق العامة تدار دائما بالطريق المباشر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_69e62d520cb0606d718d"
     },
     {
       "id": "law_admin_law_ch10_17",
@@ -224,7 +240,8 @@
         "أن علاقة الإدارة بالموظفين علاقة تعاقدية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ba668ca8126cd173a71"
     },
     {
       "id": "law_admin_law_ch10_18",
@@ -237,7 +254,8 @@
         "اقتصار المبدأ على المرافق المدارة بطريق الالتزام فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0b1eeee04488d4191da5"
     },
     {
       "id": "law_admin_law_ch10_19",
@@ -250,7 +268,8 @@
         "علاقة تمنح للموظف حق الاعتراض على التغيير."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_23a88c3c0d838ae8a2e6"
     },
     {
       "id": "law_admin_law_ch10_20",
@@ -263,7 +282,8 @@
         "مبدأ نظرية الظروف الطارئة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f57aaf20fc0d333e01e"
     },
     {
       "id": "law_admin_law_ch10_21",
@@ -276,7 +296,8 @@
         "لا يحق لهم طلب إلغاء القرار التمييزي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18e5531e2906d3a40af9"
     },
     {
       "id": "law_admin_law_ch10_22",
@@ -289,7 +310,8 @@
         "أنه يمنح المرفق شخصية معنوية مستقلة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_017d8227277bec125bd3"
     },
     {
       "id": "law_admin_law_ch10_23",
@@ -302,7 +324,8 @@
         "أسلوب التأميم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a81f0871baf65b04a989"
     },
     {
       "id": "law_admin_law_ch10_24",
@@ -315,7 +338,8 @@
         "المرافق العامة المتمتعة بالشخصية المعنوية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ec460395d3255478410"
     },
     {
       "id": "law_admin_law_ch10_25",
@@ -328,7 +352,8 @@
         "التأميم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eb0140494ed82f889086"
     },
     {
       "id": "law_admin_law_ch10_26",
@@ -341,7 +366,8 @@
         "إعفاء من الرسوم الجمركية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ccab4de077600a73d75"
     },
     {
       "id": "law_admin_law_ch10_27",
@@ -354,7 +380,8 @@
         "الأحكام الخاصة بنظرية الظروف الطارئة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b0fb5ccba62a55e1db54"
     },
     {
       "id": "law_admin_law_ch10_28",
@@ -367,7 +394,8 @@
         "كل شخص يعمل بعقد مؤقت في وظيفة دائمة داخل الملاك الدائم."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c747a048eea1890ca14"
     },
     {
       "id": "law_admin_law_ch10_29",
@@ -380,7 +408,8 @@
         "أن يكون عمله في خدمة مشروع خاص ذي نفع عام."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0fa12ccb891a05e27e25"
     },
     {
       "id": "law_admin_law_ch10_30",
@@ -393,7 +422,8 @@
         "كل شخص يعمل لحساب مرفق يدار بطريقة الالتزام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_72d15d81693fd4556562"
     },
     {
       "id": "law_admin_law_ch10_31",
@@ -406,7 +436,8 @@
         "أن يكون التعيين بمجرد تسليم العمل أو تقاضي المرتب."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdfffb3a8373efffab63"
     },
     {
       "id": "law_admin_law_ch10_32",
@@ -419,7 +450,8 @@
         "الموظفين. الذين عهدت إليهم وظيفة داخل ملاك الوزارة أو الجهة غير المرتبطة بوزارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe6cf20005038a883951"
     },
     {
       "id": "law_admin_law_ch10_33",
@@ -432,7 +464,8 @@
         "يعد موظفا فعليا ً ً وليس موظفا عاما."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e665dee0d404073987c"
     },
     {
       "id": "law_admin_law_ch10_34",
@@ -445,7 +478,8 @@
         "المعنى الاقتصادي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5b81746f9d5208e26260"
     },
     {
       "id": "law_admin_law_ch10_35",
@@ -458,7 +492,8 @@
         "المعنى التشريعي المحدد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3b07fd58d9979aa1d3f1"
     },
     {
       "id": "law_admin_law_ch10_36",
@@ -471,7 +506,8 @@
         "أن الوظيفة يجب أن تكون خارج الملاك الدائم."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dde3ed8e2b678d9171d4"
     },
     {
       "id": "law_admin_law_ch10_37",
@@ -484,7 +520,8 @@
         "أن يعمل في شركة أو منشأة لا تتمتع بالشخصية الاعتبارية العامة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd47d81e7b251cff10b4"
     },
     {
       "id": "law_admin_law_ch10_38",
@@ -497,7 +534,8 @@
         "المنصب الدائم الداخل في التنظيم الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_58079535e28a3b6bd5bf"
     },
     {
       "id": "law_admin_law_ch10_39",
@@ -510,7 +548,8 @@
         "طريقة التأميم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f34596c44323f8df6eb3"
     },
     {
       "id": "law_admin_law_ch10_40",
@@ -523,7 +562,8 @@
         "يعدون موظفين دائمين إذا كانت الوظيفة داخل الملاك."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_27345d429cde7df2c681"
     },
     {
       "id": "law_admin_law_ch10_41",
@@ -536,7 +576,8 @@
         "يعدون موظفين فعليين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_98d9ca5014634173e239"
     },
     {
       "id": "law_admin_law_ch10_42",
@@ -549,7 +590,8 @@
         "أن تكون تولية الوظيفة العامة بواسطة السلطة المختصة بالتعيين."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2809068ece2415a3d10"
     },
     {
       "id": "law_admin_law_ch10_43",
@@ -562,7 +604,8 @@
         "الموظف الذي يشغل وظيفة داخل الملاك الدائم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5cb948e53e3719e0d1d"
     },
     {
       "id": "law_admin_law_ch10_44",
@@ -575,7 +618,8 @@
         "أن يكون العمل منتظما غير عارض."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef2ef2136b1573935a1d"
     },
     {
       "id": "law_admin_law_ch10_45",
@@ -588,7 +632,8 @@
         "أنها علاقة لائحية مطلقة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7b8ca6f4473526f469f7"
     },
     {
       "id": "law_admin_law_ch10_46",
@@ -601,7 +646,8 @@
         "أن العلاقة لا تقبل المفاوضات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2bbf728069b98e1432d"
     },
     {
       "id": "law_admin_law_ch10_47",
@@ -614,7 +660,8 @@
         "أن الدولة هي التي تحدد شروط العقد بشكل منفرد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_da092c0bfbb9b034e0e5"
     },
     {
       "id": "law_admin_law_ch10_48",
@@ -627,7 +674,8 @@
         "أن العقد لا يتم إلا بقرار إداري منفرد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_210872f6895a21d29e36"
     },
     {
       "id": "law_admin_law_ch10_49",
@@ -640,7 +688,8 @@
         "عدم وجود تباين في القوانين المنظمة للوظيفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_73c6ab3cd6530d65b290"
     },
     {
       "id": "law_admin_law_ch10_50",
@@ -653,7 +702,8 @@
         "أنها تحصر سلطة الإدارة في جانب واحد من العقد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d83921da415ad4d01098"
     },
     {
       "id": "law_admin_law_ch10_51",
@@ -666,7 +716,8 @@
         "أن يكون موظفا فعليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e510d28bed47ac13d27b"
     },
     {
       "id": "law_admin_law_ch10_52",
@@ -679,7 +730,8 @@
         "المعنى التعاقدي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3b2afbc298c9357e4f17"
     },
     {
       "id": "law_admin_law_ch10_53",
@@ -692,7 +744,8 @@
         "لإثبات أن العلاقة لائحية تنظيمية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65e81dca16c1d7f9c65b"
     },
     {
       "id": "law_admin_law_ch10_54",
@@ -705,7 +758,8 @@
         "تقييد سلطات الإدارة تجاه الموظف."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04cefea560ccb3145775"
     },
     {
       "id": "law_admin_law_ch10_55",
@@ -718,7 +772,8 @@
         "قاعدة التكليف لخدمة المواطنين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e4915ca347aefa69e3f5"
     },
     {
       "id": "law_admin_law_ch10_56",
@@ -731,7 +786,8 @@
         "حصر سلطتها في جانب واحد من العقد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fc49b8f4f1afc75c2e26"
     },
     {
       "id": "law_admin_law_ch10_57",
@@ -744,7 +800,8 @@
         "مبدأ الالتزام بالمفاوضات المسبقة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7bb63133e531ce047b7c"
     },
     {
       "id": "law_admin_law_ch10_58",
@@ -757,7 +814,8 @@
         "حرمان الموظف من الأجر من دون إجراء آخر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a024b6fa8b361d872c6"
     },
     {
       "id": "law_admin_law_ch10_59",
@@ -770,7 +828,8 @@
         "أن يكون الهدف هو تحقيق المصلحة العامة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18457327464f7f84140c"
     },
     {
       "id": "law_admin_law_ch10_60",
@@ -783,7 +842,8 @@
         "وفقا لقاعدة العقد شريعة المتعاقدين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2d8e42811a229cbda7e6"
     },
     {
       "id": "law_admin_law_ch10_61",
@@ -796,7 +856,8 @@
         "جيلينك."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e6bb55f33515ef95996e"
     },
     {
       "id": "law_admin_law_ch10_62",
@@ -809,7 +870,8 @@
         "القانون المدني."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7cd5b23fcbad4e3814f0"
     },
     {
       "id": "law_admin_law_ch10_63",
@@ -822,7 +884,8 @@
         "مبدأ عدم جواز الحجز على أموال المرفق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29916515f2e133260b73"
     },
     {
       "id": "law_admin_law_ch10_64",
@@ -835,7 +898,8 @@
         "مركز قانوني غير محدد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_200f692fb613a800d498"
     },
     {
       "id": "law_admin_law_ch10_65",
@@ -848,7 +912,8 @@
         "وفقا لقاعدة العقد شريعة المتعاقدين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f1110192cb99a4ab2fd5"
     },
     {
       "id": "law_admin_law_ch10_66",
@@ -861,7 +926,8 @@
         "إنهاء خدمته من دون سبب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a7a1bc6713cbb01b6c83"
     },
     {
       "id": "law_admin_law_ch10_67",
@@ -874,7 +940,8 @@
         "قواعد ثابتة غير قابلة للتعديل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_606a2948b69fb1285ad0"
     },
     {
       "id": "law_admin_law_ch10_68",
@@ -887,7 +954,8 @@
         "تبنى نظرية العقد المدني"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab3af0f31edf9a1ce922"
     }
   ]
 }

@@ -16,7 +16,8 @@
         "المذهب الطبيعي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c57fe16a8fec7a172d66"
     },
     {
       "id": "law_admin_law_ch22_2",
@@ -29,7 +30,8 @@
         "محكمة العدل العليا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5741e3cae0e7ef3fbd3"
     },
     {
       "id": "law_admin_law_ch22_3",
@@ -42,7 +44,8 @@
         "تحصين جميع أعمال الإدارة من رقابة القضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c664a8746a75f928493b"
     },
     {
       "id": "law_admin_law_ch22_4",
@@ -55,7 +58,8 @@
         "القانون المدني العراقي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f7c9658e10bbd272be1"
     },
     {
       "id": "law_admin_law_ch22_5",
@@ -68,7 +72,8 @@
         "قرار قضائي يحسم في خصومة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c1435eb87bb990988782"
     },
     {
       "id": "law_admin_law_ch22_6",
@@ -81,7 +86,8 @@
         "يخضع لأحكام الأهلية الخاصة بالشخص الطبيعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db5e6fb89726b7b592e2"
     },
     {
       "id": "law_admin_law_ch22_7",
@@ -94,7 +100,8 @@
         "الإثراء الخاص لموظفي الإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5cdb10da551a166d684c"
     },
     {
       "id": "law_admin_law_ch22_8",
@@ -107,7 +114,8 @@
         "تتطلب وجود قرار تعيين سابق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_95851e90df81dd1d1d0c"
     },
     {
       "id": "law_admin_law_ch22_9",
@@ -120,7 +128,8 @@
         "يخضع للتصديق المسبق من البرلمان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f1db83e65ece894a90e"
     },
     {
       "id": "law_admin_law_ch22_10",
@@ -133,7 +142,8 @@
         "إلغاء المرافق العامة المهنية والاقتصادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe277617bc09f53b7a19"
     },
     {
       "id": "law_admin_law_ch22_11",
@@ -146,7 +156,8 @@
         "أن يكون بأثر رجعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7635533a277bcbdf60c0"
     },
     {
       "id": "law_admin_law_ch22_12",
@@ -159,7 +170,8 @@
         "المذهب المزدوج"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fbe5d23bd726bd15deca"
     },
     {
       "id": "law_admin_law_ch22_13",
@@ -172,7 +184,8 @@
         "تحويل المرافق العامة إلى مرافق خاصة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b4f2265d74df8d1ca06b"
     },
     {
       "id": "law_admin_law_ch22_14",
@@ -185,7 +198,8 @@
         "حول تحديد النطاق الزماني والمكاني للعقد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_44067e69bc5622137080"
     },
     {
       "id": "law_admin_law_ch22_15",
@@ -198,7 +212,8 @@
         "المحكمة الدستورية العليا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08f674f8fa2cdbc66031"
     },
     {
       "id": "law_admin_law_ch22_16",
@@ -211,7 +226,8 @@
         "الإلغاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96abbbfe4f45abd32087"
     },
     {
       "id": "law_admin_law_ch22_17",
@@ -224,7 +240,8 @@
         "لتقليل الإجراءات القانونية اللازمة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a6ca87e2586ce963819"
     },
     {
       "id": "law_admin_law_ch22_18",
@@ -237,7 +254,8 @@
         "مبدأ نسبية العقود"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f9d208384b145ed786b9"
     },
     {
       "id": "law_admin_law_ch22_19",
@@ -250,7 +268,8 @@
         "الإجراءات الشكلية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e36ca67b36ba26162e4a"
     },
     {
       "id": "law_admin_law_ch22_20",
@@ -263,7 +282,8 @@
         "أن يكون موجوداً ومشروعا"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2aebd754685e48c88fef"
     },
     {
       "id": "law_admin_law_ch22_21",
@@ -276,7 +296,8 @@
         "منازعات العقود المدنية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fa609510cd10d2ef0d9"
     },
     {
       "id": "law_admin_law_ch22_22",
@@ -289,7 +310,8 @@
         "مذهب الشروط الاستثنائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7978c727e86ad120fa55"
     },
     {
       "id": "law_admin_law_ch22_23",
@@ -302,7 +324,8 @@
         "معيار النشر والإعلان"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64bebb9584eb99986575"
     },
     {
       "id": "law_admin_law_ch22_24",
@@ -315,7 +338,8 @@
         "أن يصدر العقد بإرادة منفردة من الإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3da9fc0b85db44a9e423"
     },
     {
       "id": "law_admin_law_ch22_25",
@@ -328,7 +352,8 @@
         "لا يجوز الطعن فيه أمام القضاء الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a87738675c9cd2938b01"
     },
     {
       "id": "law_admin_law_ch22_26",
@@ -341,7 +366,8 @@
         "نية التنازل عن امتيازات السلطة العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2c775a6ec673c5cdb26a"
     },
     {
       "id": "law_admin_law_ch22_27",
@@ -354,7 +380,8 @@
         "قاعدة عدم الرجعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_168383f477e377cce882"
     },
     {
       "id": "law_admin_law_ch22_28",
@@ -367,7 +394,8 @@
         "تحويله إلى عمل مادي لا يرتب آثارا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9aa14ac189f20f158ddd"
     },
     {
       "id": "law_admin_law_ch22_29",
@@ -380,7 +408,8 @@
         "عيب الغاية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fcf7ae92d1eec0c8361b"
     },
     {
       "id": "law_admin_law_ch22_30",
@@ -393,7 +422,8 @@
         "أن يكون محل العقد محددا أو قابلا للتحديد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_69007905929c699521ae"
     }
   ]
 }

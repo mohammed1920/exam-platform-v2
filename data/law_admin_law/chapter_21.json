@@ -16,7 +16,8 @@
         "عدم جواز المساس بالإجراءات الداخلية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_03355e2f2dcca667638e"
     },
     {
       "id": "law_admin_law_ch21_2",
@@ -29,7 +30,8 @@
         "يكون نافذا من تاريخ إعلانه فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ea5dc9f0fff9fcbf5dc5"
     },
     {
       "id": "law_admin_law_ch21_3",
@@ -42,7 +44,8 @@
         "لجوء الإدارة إلى السلطات التشريعية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81387f7e7ccbf941eac7"
     },
     {
       "id": "law_admin_law_ch21_4",
@@ -55,7 +58,8 @@
         "أن يكون ً ً قرارا منعدما في حالة تحققه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f68c3c1432253444c2f2"
     },
     {
       "id": "law_admin_law_ch21_5",
@@ -68,7 +72,8 @@
         "إرجاء آثار القرار إلى تاريخ لاحق"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b79bf317c7677c20c5d4"
     },
     {
       "id": "law_admin_law_ch21_6",
@@ -81,7 +86,8 @@
         "استمرار القرار في إنتاج آثاره"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e3d5b14bbaa5799018f"
     },
     {
       "id": "law_admin_law_ch21_7",
@@ -94,7 +100,8 @@
         "يصبح القرار قابلا للسحب المطلق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_955ad8ad24ec4d0cc0de"
     },
     {
       "id": "law_admin_law_ch21_8",
@@ -107,7 +114,8 @@
         "الأعمال المادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5d30d6150b6a1050d62"
     },
     {
       "id": "law_admin_law_ch21_9",
@@ -120,7 +128,8 @@
         "عيب قصدي أو عمدي يتعلق بنية مصدر القرار"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_602fcc0d91928b7bea21"
     },
     {
       "id": "law_admin_law_ch21_10",
@@ -133,7 +142,8 @@
         "القرارات الكاشفة لا يمكن الطعن فيها بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a193e0edd1a8a73ab24c"
     },
     {
       "id": "law_admin_law_ch21_11",
@@ -146,7 +156,8 @@
         "عدم تحقق الشرط الفاسخ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af48006b190eb7904360"
     },
     {
       "id": "law_admin_law_ch21_12",
@@ -159,7 +170,8 @@
         "القرارات المنشئة للحقوق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aaedfecb910c7ddb5ed7"
     },
     {
       "id": "law_admin_law_ch21_13",
@@ -172,7 +184,8 @@
         "يصبح قابلا للسحب فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_84ffa195f83d99e7bdf7"
     },
     {
       "id": "law_admin_law_ch21_14",
@@ -185,7 +198,8 @@
         "عدم استناده لإرادة الإدارة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e8e34a331bd33b7a5808"
     },
     {
       "id": "law_admin_law_ch21_15",
@@ -198,7 +212,8 @@
         "معيار طبيعة العمل"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad720156c9678ef83704"
     },
     {
       "id": "law_admin_law_ch21_16",
@@ -211,7 +226,8 @@
         "السبب"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8293e51c3085bf1ed005"
     },
     {
       "id": "law_admin_law_ch21_17",
@@ -224,7 +240,8 @@
         "اعتداء مصدر القرار على اختصاص سلفه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f971c964002b7f573e3"
     },
     {
       "id": "law_admin_law_ch21_18",
@@ -237,7 +254,8 @@
         "يع د من القرارات الكاشفة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8552631c2a5641d9639e"
     },
     {
       "id": "law_admin_law_ch21_19",
@@ -250,7 +268,8 @@
         "تعني أن القضاء الإداري يمتنع عن رقابة القرارات الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d3d30a227e58b0f1cbc"
     },
     {
       "id": "law_admin_law_ch21_20",
@@ -263,7 +282,8 @@
         "يختص القضاء الإداري بتفسيرها فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eb239bfd36ca5e257064"
     },
     {
       "id": "law_admin_law_ch21_21",
@@ -276,7 +296,8 @@
         "القرار الكاشف"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0cee1c10d150bb514096"
     },
     {
       "id": "law_admin_law_ch21_22",
@@ -289,7 +310,8 @@
         "إذا لم تكن هناك مصلحة عامة تستدعي الإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4fa142e1c7cfeb4ca90e"
     },
     {
       "id": "law_admin_law_ch21_23",
@@ -302,7 +324,8 @@
         "يجوز سحبه بأثر رجعي فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_32a7c56dccdcacad1adf"
     },
     {
       "id": "law_admin_law_ch21_24",
@@ -315,7 +338,8 @@
         "إذا كانت فردية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18dd3301c9ccb71ca199"
     },
     {
       "id": "law_admin_law_ch21_25",
@@ -328,7 +352,8 @@
         "بعد فوات ميعاد الطعن بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_890b601e988192fb246c"
     },
     {
       "id": "law_admin_law_ch21_26",
@@ -341,7 +366,8 @@
         "القرارات المركبة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53bd62ee97fc603db243"
     },
     {
       "id": "law_admin_law_ch21_27",
@@ -354,7 +380,8 @@
         "تسري بأثر رجعي من تاريخ صدورها"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02759903a621f9d7e97b"
     },
     {
       "id": "law_admin_law_ch21_28",
@@ -367,7 +394,8 @@
         "يتحول القرار إلى عمل مادي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5e02c0487b50c0a6aa41"
     },
     {
       "id": "law_admin_law_ch21_29",
@@ -380,7 +408,8 @@
         "يصبح القرار قابلا للإلغاء فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_564df56e07d7de14991e"
     },
     {
       "id": "law_admin_law_ch21_30",
@@ -393,7 +422,8 @@
         "أن يقتصر على حالة الضرورة فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4420c004413d79c6e5fd"
     },
     {
       "id": "law_admin_law_ch21_31",
@@ -406,7 +436,8 @@
         "إذا لم يتضمن القرار سببا صحيحا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5735002959b331fdf446"
     },
     {
       "id": "law_admin_law_ch21_32",
@@ -419,7 +450,8 @@
         "مبدأ السلطة التقديرية المطلقة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a8fc1927928129100a4a"
     },
     {
       "id": "law_admin_law_ch21_33",
@@ -432,7 +464,8 @@
         "تقييد السلطة التقديرية للإدارة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b3605bb6bded942abe1"
     },
     {
       "id": "law_admin_law_ch21_34",
@@ -445,7 +478,8 @@
         "يع د من القرارات الكاشفة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_531f5ff44e77a2f8cd71"
     },
     {
       "id": "law_admin_law_ch21_35",
@@ -458,7 +492,8 @@
         "تعمد الإدارة التفسير الخاطئ للقاعدة القانونية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2423783ac2875f8e5d1"
     },
     {
       "id": "law_admin_law_ch21_36",
@@ -471,7 +506,8 @@
         "استمرار القرار في إنتاج آثاره"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8504f484853c68835bcc"
     },
     {
       "id": "law_admin_law_ch21_37",
@@ -484,7 +520,8 @@
         "الإرجاء (تأجيل الآثار)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_129dadf3770cb2b5a484"
     },
     {
       "id": "law_admin_law_ch21_38",
@@ -497,7 +534,8 @@
         "المعيار الشخصي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9bb07783b705b64f8a3b"
     },
     {
       "id": "law_admin_law_ch21_39",
@@ -510,7 +548,8 @@
         "الإجراءات الداخلية والتعليمات"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f04a2953d4cdd0ec40e"
     },
     {
       "id": "law_admin_law_ch21_40",
@@ -523,7 +562,8 @@
         "السحب"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c54c80a18e923af081c"
     },
     {
       "id": "law_admin_law_ch21_41",
@@ -536,7 +576,8 @@
         "بعد فوات ميعاد الطعن بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_481fb51c6ab7d151eab4"
     },
     {
       "id": "law_admin_law_ch21_42",
@@ -549,7 +590,8 @@
         "يجوز سحبها فقط إذا كانت فردية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c171d874b0822e7087d"
     },
     {
       "id": "law_admin_law_ch21_43",
@@ -562,7 +604,8 @@
         "إذا لم يكن القرار قابلا للتجزئة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_11497934a28d3adb3749"
     },
     {
       "id": "law_admin_law_ch21_44",
@@ -575,7 +618,8 @@
         "يجب سحبها خلال ميعاد الطعن بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d0a5815eafae04804087"
     },
     {
       "id": "law_admin_law_ch21_45",
@@ -588,7 +632,8 @@
         "القرارات التنظيمية التي نشرت"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_204f9ea2cd22da82bec6"
     },
     {
       "id": "law_admin_law_ch21_46",
@@ -601,7 +646,8 @@
         "يجب أن يكون شكل قرار الإلغاء مختلفا عن القرار الأصلي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c0001799d14b4c1f134"
     },
     {
       "id": "law_admin_law_ch21_47",
@@ -614,7 +660,8 @@
         "القرار السلبي (الضمني بالرفض)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a52c9916fb52defd15b0"
     },
     {
       "id": "law_admin_law_ch21_48",
@@ -627,7 +674,8 @@
         "القرارات السلبية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f09be8d1ee511400a4cf"
     },
     {
       "id": "law_admin_law_ch21_49",
@@ -640,7 +688,8 @@
         "يصبح القرار قابلا للسحب المطلق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7f308a1b10b9ba38f56"
     },
     {
       "id": "law_admin_law_ch21_50",
@@ -653,7 +702,8 @@
         "الإرجاء (تأجيل الآثار)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81347f20e82932023f40"
     },
     {
       "id": "law_admin_law_ch21_51",
@@ -666,7 +716,8 @@
         "إذا انعدم ركن المحل في اللحظة المحددة للتنفيذ"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8fdadcab4f721b16754f"
     },
     {
       "id": "law_admin_law_ch21_52",
@@ -679,7 +730,8 @@
         "مبدأ التنفيذ المباشر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_42957601236e0a65c0b6"
     },
     {
       "id": "law_admin_law_ch21_53",
@@ -692,7 +744,8 @@
         "يلغى جزئيا فيما تضمن من أثر رجعي"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f09d7bfe58c78453cad3"
     },
     {
       "id": "law_admin_law_ch21_54",
@@ -705,7 +758,8 @@
         "زوال القرار بأثر رجعي من تاريخ صدوره"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b45c060e41a5de73aac9"
     },
     {
       "id": "law_admin_law_ch21_55",
@@ -718,7 +772,8 @@
         "عدم تحقق الشرط الفاسخ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f1c75a48656c5fce6137"
     },
     {
       "id": "law_admin_law_ch21_56",
@@ -731,7 +786,8 @@
         "عيب قصدي أو عمدي يتعلق بنية مصدر القرار"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e9685f7098fa1ac0b3e1"
     },
     {
       "id": "law_admin_law_ch21_57",
@@ -744,7 +800,8 @@
         "يع د قرارا سليما إذا تعلقت به حقوق الغير"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_687fafa156c073d194fa"
     },
     {
       "id": "law_admin_law_ch21_58",
@@ -757,7 +814,8 @@
         "صدور القرار من فرد عادي لا يتمتع بصفة الموظف"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_23bc0e80ad906fe990be"
     },
     {
       "id": "law_admin_law_ch21_59",
@@ -770,7 +828,8 @@
         "قرينة المشروعية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_daf3a32fb21be7f75c04"
     },
     {
       "id": "law_admin_law_ch21_60",
@@ -783,7 +842,8 @@
         "لا يصح سحبها إلا إذا كانت فردية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_202323b53f97b85704e2"
     },
     {
       "id": "law_admin_law_ch21_61",
@@ -796,7 +856,8 @@
         "قرار فرض الضبط الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdd901f5a4ec0df26935"
     },
     {
       "id": "law_admin_law_ch21_62",
@@ -809,7 +870,8 @@
         "يصبح قابلا للسحب فقط خلال ميعاد الطعن"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67eb654223049f4c675e"
     },
     {
       "id": "law_admin_law_ch21_63",
@@ -822,7 +884,8 @@
         "زوال القرار بأثر رجعي من تاريخ صدوره"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bf59f1dddf28642cd3e0"
     },
     {
       "id": "law_admin_law_ch21_64",
@@ -835,7 +898,8 @@
         "حماية المصلحة العامة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9ccdd13ef6a8aa8837d3"
     },
     {
       "id": "law_admin_law_ch21_65",
@@ -848,7 +912,8 @@
         "بعد فوات ميعاد الطعن بالإلغاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5dab49c95df0edb77f28"
     },
     {
       "id": "law_admin_law_ch21_66",
@@ -861,7 +926,8 @@
         "يجوز سحبها بأثر رجعي فقط إذا كانت تستهدف المصلحة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5db9433c6fb6c2823bb3"
     },
     {
       "id": "law_admin_law_ch21_67",
@@ -874,7 +940,8 @@
         "يطبق لمرة واحدة ثم تستنفذ اللائحة موضوعها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d92c6fdcfee463b8247"
     },
     {
       "id": "law_admin_law_ch21_68",
@@ -887,7 +954,8 @@
         "في حالة وجود خطر يهدد النظام العام"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cd3fad0ba47b7da5e188"
     },
     {
       "id": "law_admin_law_ch21_69",
@@ -900,7 +968,8 @@
         "النفاذ يتعلق بالآثار القانونية (عنصر داخلي)، والتنفيذ يتعلق بإظهار آثاره في الواقع (إخراجه إلى حيز العمل)."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d40b1247c64e2cf188b2"
     },
     {
       "id": "law_admin_law_ch21_70",
@@ -913,7 +982,8 @@
         "الإلغاء الإداري"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0251436537a5f1febcd5"
     },
     {
       "id": "law_admin_law_ch21_71",
@@ -926,7 +996,8 @@
         "يعد من القرارات الكاشفة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a2fa62d905b100e247f"
     },
     {
       "id": "law_admin_law_ch21_72",
@@ -939,7 +1010,8 @@
         "عيب عدم الاختصاص (الاعتداء من الأدنى على الأعلى)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b9edd1900c0ec7f9be03"
     },
     {
       "id": "law_admin_law_ch21_73",
@@ -952,7 +1024,8 @@
         "جواز سحب القرار المنعدم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48781c1fe754883884ea"
     },
     {
       "id": "law_admin_law_ch21_74",
@@ -965,7 +1038,8 @@
         "يتحول إلى عقد إداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cea534cd14168ee1aeaa"
     },
     {
       "id": "law_admin_law_ch21_75",
@@ -978,7 +1052,8 @@
         "القرارات السلبية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b16167a2555875d29d2"
     },
     {
       "id": "law_admin_law_ch21_76",
@@ -991,7 +1066,8 @@
         "خلال خمس سنوات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3d6e51e660ddbc4b4d5"
     },
     {
       "id": "law_admin_law_ch21_77",
@@ -1004,7 +1080,8 @@
         "قرار تنظيمي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cc3b9be43dbf95e34499"
     },
     {
       "id": "law_admin_law_ch21_78",
@@ -1017,7 +1094,8 @@
         "القرارات المتعلقة بأعمال السيادة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6306fb5b949935b67fd7"
     },
     {
       "id": "law_admin_law_ch21_79",
@@ -1030,7 +1108,8 @@
         "عيب الغاية (إساءة استعمال السلطة أو الانحراف بها)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4461bdeeb6f0f85f69bb"
     },
     {
       "id": "law_admin_law_ch21_80",
@@ -1043,7 +1122,8 @@
         "إذا كان القرار خاضعا للسلطة التقديرية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c21417e9a5de6f32e09"
     },
     {
       "id": "law_admin_law_ch21_81",
@@ -1056,7 +1136,8 @@
         "أن يكون السبب غير مشروع"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a07293e453a7bca6699"
     },
     {
       "id": "law_admin_law_ch21_82",
@@ -1069,7 +1150,8 @@
         "عندما يتم تطبيق القانون خطأ"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d45478cb89204ea4a892"
     },
     {
       "id": "law_admin_law_ch21_83",
@@ -1082,7 +1164,8 @@
         "القرارات المتعلقة بالمال العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_659102e09f5f55b42aba"
     },
     {
       "id": "law_admin_law_ch21_84",
@@ -1095,7 +1178,8 @@
         "إذا لم يكن القرار مكتوبا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_03f79e0c374cdd34a7f1"
     },
     {
       "id": "law_admin_law_ch21_85",
@@ -1108,7 +1192,8 @@
         "القرارات البسيطة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2957fb1c5770b21796f"
     },
     {
       "id": "law_admin_law_ch21_86",
@@ -1121,7 +1206,8 @@
         "القرارات البسيطة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91015b9b86790766f1ff"
     },
     {
       "id": "law_admin_law_ch21_87",
@@ -1134,7 +1220,8 @@
         "إمكانية التعويض عنه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cc97eb11a50510e242c2"
     },
     {
       "id": "law_admin_law_ch21_88",
@@ -1147,7 +1234,8 @@
         "معيار القائمة القضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_60bcb5039e53969bc2b3"
     },
     {
       "id": "law_admin_law_ch21_89",
@@ -1160,7 +1248,8 @@
         "إذا كان القرار متعلقا بالتنفيذ المباشر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f25d77836a893dc2172"
     },
     {
       "id": "law_admin_law_ch21_90",
@@ -1173,7 +1262,8 @@
         "محكمة النقض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0156a6083cd29be29749"
     },
     {
       "id": "law_admin_law_ch21_91",
@@ -1186,7 +1276,8 @@
         "أن يكون قرارا تمهيديا أو تحضيريا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dcdb2d16df5cfdd2bef4"
     },
     {
       "id": "law_admin_law_ch21_92",
@@ -1199,7 +1290,8 @@
         "القرارات الصادرة بتوقيع الجزاء التأديبي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa5466eb0f02d20dbdd5"
     },
     {
       "id": "law_admin_law_ch21_93",
@@ -1212,7 +1304,8 @@
         "يجوز الطعن فيه بالإلغاء إذا كان إراديا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_faf62dabad61d8d06765"
     },
     {
       "id": "law_admin_law_ch21_94",
@@ -1225,7 +1318,8 @@
         "قرارات مركبة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8bc91b6dd553f7741f4e"
     },
     {
       "id": "law_admin_law_ch21_95",
@@ -1238,7 +1332,8 @@
         "الدعوى الجنائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7e5d18c3c9f15d0149f4"
     },
     {
       "id": "law_admin_law_ch21_96",
@@ -1251,7 +1346,8 @@
         "أن تكون بأثر رجعي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a6ccf2478923ca2da74"
     },
     {
       "id": "law_admin_law_ch21_97",
@@ -1264,7 +1360,8 @@
         "عندما تكون ناصحة أو مقررة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1b94048e5ae639eaf2f8"
     },
     {
       "id": "law_admin_law_ch21_98",
@@ -1277,7 +1374,8 @@
         "الأخذ بمعيار النية الداخلية لمصدر القرار"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_390d3f7a696c8a608e37"
     },
     {
       "id": "law_admin_law_ch21_99",
@@ -1290,7 +1388,8 @@
         "أنه يصدر عن اختصاص مقيد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab7ccd7692922f4f750d"
     },
     {
       "id": "law_admin_law_ch21_100",
@@ -1303,7 +1402,8 @@
         "مخالفة متعمدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_74b895c96f2458c5a9ec"
     },
     {
       "id": "law_admin_law_ch21_101",
@@ -1316,7 +1416,8 @@
         "مبدأ السلطة التقديرية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_206b10d73c848e1029eb"
     },
     {
       "id": "law_admin_law_ch21_102",
@@ -1329,7 +1430,8 @@
         "نظام القائمة القضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e93e5259b24f7e920592"
     },
     {
       "id": "law_admin_law_ch21_103",
@@ -1342,7 +1444,8 @@
         "معيار الشروط الاستثنائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2abd63b5bedbda557451"
     },
     {
       "id": "law_admin_law_ch21_104",
@@ -1355,7 +1458,8 @@
         "معيار القضاء الموحد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d5c29b9529237a5a2e2"
     },
     {
       "id": "law_admin_law_ch21_105",
@@ -1368,7 +1472,8 @@
         "قرارات مركبة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b5ad1a9eb25cbc09a632"
     },
     {
       "id": "law_admin_law_ch21_106",
@@ -1381,7 +1486,8 @@
         "دعوى إلغاء العقد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a99a82b0748ea4760902"
     },
     {
       "id": "law_admin_law_ch21_107",
@@ -1394,7 +1500,8 @@
         "الحكم القضائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_345347de57261deaf7d9"
     },
     {
       "id": "law_admin_law_ch21_108",
@@ -1407,7 +1514,8 @@
         "التمييز بين الإدارة العامة والإدارة الخاصة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_45f2c1ecd321f4055333"
     },
     {
       "id": "law_admin_law_ch21_109",
@@ -1420,7 +1528,8 @@
         "يجعله عملا ماديا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66bdf3692b049b8922ea"
     },
     {
       "id": "law_admin_law_ch21_110",
@@ -1433,7 +1542,8 @@
         "عيب السبب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_68a4190f97645f91e2b0"
     },
     {
       "id": "law_admin_law_ch21_111",
@@ -1446,7 +1556,8 @@
         "التحول إلى عمل مادي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_39df6642d9df002658b7"
     },
     {
       "id": "law_admin_law_ch21_112",
@@ -1459,7 +1570,8 @@
         "النشر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cd8e56f4ed3a1e1bbd8c"
     },
     {
       "id": "law_admin_law_ch21_113",
@@ -1472,7 +1584,8 @@
         "بعد موافقة السلطة التشريعية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cc8d8eb9ec9dc06c275b"
     },
     {
       "id": "law_admin_law_ch21_114",
@@ -1485,7 +1598,8 @@
         "مبدأ النيابة عن الشخص العام"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8f088e9dc61e59c13d3a"
     },
     {
       "id": "law_admin_law_ch21_115",
@@ -1498,7 +1612,8 @@
         "إذا كان القرار لا يمس المصلحة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2600c4193747dbb333f5"
     },
     {
       "id": "law_admin_law_ch21_116",
@@ -1511,7 +1626,8 @@
         "القرار الذي صدر في ظل سلطة تقديرية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec499e238e055671dccd"
     },
     {
       "id": "law_admin_law_ch21_117",
@@ -1524,7 +1640,8 @@
         "عيب الغاية (إساءة استعمال السلطة أو الانحراف بها)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a80c16fa185ff8b08bec"
     },
     {
       "id": "law_admin_law_ch21_118",
@@ -1537,7 +1654,8 @@
         "القرار المنشئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a93dc9575e6e56a9b35"
     },
     {
       "id": "law_admin_law_ch21_119",
@@ -1550,7 +1668,8 @@
         "النشر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_342a3dffa082daf0f8b3"
     },
     {
       "id": "law_admin_law_ch21_120",
@@ -1563,7 +1682,8 @@
         "تسري من تاريخ موافقة القضاء الإداري عليها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4064b700ce6933a4e774"
     },
     {
       "id": "law_admin_law_ch21_121",
@@ -1576,7 +1696,8 @@
         "القرارات التنظيمية (اللوائح)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_078b8b97c2ebb0cb29ec"
     },
     {
       "id": "law_admin_law_ch21_122",
@@ -1589,7 +1710,8 @@
         "يحول القرار من فردي إلى تنظيمي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f4740c0a9aa448ed6aa"
     },
     {
       "id": "law_admin_law_ch21_123",
@@ -1602,7 +1724,8 @@
         "عيب الغاية (إساءة استعمال السلطة أو الانحراف بها)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_601664fd683e0ac01f04"
     },
     {
       "id": "law_admin_law_ch21_124",
@@ -1615,7 +1738,8 @@
         "تحميل القرار على أسباب أخرى صحيحة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe1c46f0709fd1d70898"
     },
     {
       "id": "law_admin_law_ch21_125",
@@ -1628,7 +1752,8 @@
         "الرقابة على نية مصدر القرار النفسية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_601898453480282b6700"
     },
     {
       "id": "law_admin_law_ch21_126",
@@ -1641,7 +1766,8 @@
         "إذا صدر بناء على تفويض"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e17459fe9e4968ba10c4"
     },
     {
       "id": "law_admin_law_ch21_127",
@@ -1654,7 +1780,8 @@
         "استقرار المعاملات بين الأفراد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5d18df9f6bffe8c414eb"
     },
     {
       "id": "law_admin_law_ch21_128",
@@ -1667,7 +1794,8 @@
         "يعالج كقرار إداري سليم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fca4f940d454b2bf4c25"
     },
     {
       "id": "law_admin_law_ch21_129",
@@ -1680,7 +1808,8 @@
         "يصبح القرار قابلا للسحب فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ea7c5da8777129b06fd"
     },
     {
       "id": "law_admin_law_ch21_130",
@@ -1693,7 +1822,8 @@
         "عند انتفاء قرينة المشروعية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f871ce8d679d6ad2ca35"
     },
     {
       "id": "law_admin_law_ch21_131",
@@ -1706,7 +1836,8 @@
         "يحتاج إلى قرار إلغاء صريح من السلطة الرئاسية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa19692daecc468c0ae2"
     },
     {
       "id": "law_admin_law_ch21_132",
@@ -1719,7 +1850,8 @@
         "يخضع لرقابة القضاء الإداري فقط للسحب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2b4a88e627779e48b6f"
     },
     {
       "id": "law_admin_law_ch21_133",
@@ -1732,7 +1864,8 @@
         "موظف مختص أخطأ في تطبيق القانون"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ecca8ec7effdc03e668"
     },
     {
       "id": "law_admin_law_ch21_134",
@@ -1745,7 +1878,8 @@
         "يجوز السحب بموافقة القضاء الإداري فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aa8a2509910349d900ea"
     },
     {
       "id": "law_admin_law_ch21_135",
@@ -1758,7 +1892,8 @@
         "لا يجوز للإدارة تضليل القضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ddf652b96bcf79841a1"
     },
     {
       "id": "law_admin_law_ch21_136",
@@ -1771,7 +1906,8 @@
         "كتمان صاحب الشأن عمدا بعض المعلومات الأساسية التي تجهلها الإدارة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d26fef805eaf738b9ce5"
     },
     {
       "id": "law_admin_law_ch21_137",
@@ -1784,7 +1920,8 @@
         "بعد انتهاء الغرض الذي صدر من أجله القرار"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1066b901b8a1ba2c350a"
     },
     {
       "id": "law_admin_law_ch21_138",
@@ -1797,7 +1934,8 @@
         "في أي وقت متى كان لتحقيق المصلحة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6804568da376a05b0e6e"
     },
     {
       "id": "law_admin_law_ch21_139",
@@ -1810,7 +1948,8 @@
         "تنظيم العلاقات الشخصية بين الموظفين"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be42e54e0efaeb0b07a0"
     },
     {
       "id": "law_admin_law_ch21_140",
@@ -1823,7 +1962,8 @@
         "الأعمال المادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e28a929fcd46b0f9b967"
     },
     {
       "id": "law_admin_law_ch21_141",
@@ -1836,7 +1976,8 @@
         "العقود الشخصية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ccc25807539122ac6651"
     },
     {
       "id": "law_admin_law_ch21_142",
@@ -1849,7 +1990,8 @@
         "جهة قضائية تفصل في النزاعات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_714c9594937ba5a6217a"
     },
     {
       "id": "law_admin_law_ch21_143",
@@ -1862,7 +2004,8 @@
         "حماية الأموال الخاصة فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_49d576f37001756ec707"
     }
   ]
 }

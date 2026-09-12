@@ -16,7 +16,8 @@
         "القانون المدني"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be42d560378e99f9c154"
     },
     {
       "id": "law_admin_law_ch1_2",
@@ -29,7 +30,8 @@
         "سلطة تنظيم العلاقات الخاصة بين الأفراد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07d66d3fbd4524cb6a0a"
     },
     {
       "id": "law_admin_law_ch1_3",
@@ -42,7 +44,8 @@
         "طرفا يتنازل عن امتيازاته."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b78939e52baf53ae7ec9"
     },
     {
       "id": "law_admin_law_ch1_4",
@@ -55,7 +58,8 @@
         "تنظم الدولة أموالها العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_85a5a33bcc7629bb4652"
     },
     {
       "id": "law_admin_law_ch1_5",
@@ -68,7 +72,8 @@
         "القانون الدولي الخاص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b94a2684275a235bb83d"
     },
     {
       "id": "law_admin_law_ch1_6",
@@ -81,7 +86,8 @@
         "القانون العام الخارجي."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff0ad89bd89ecf90b72a"
     },
     {
       "id": "law_admin_law_ch1_7",
@@ -94,7 +100,8 @@
         "العلاقات الدولية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c870bef43e2e1fd6a2be"
     },
     {
       "id": "law_admin_law_ch1_8",
@@ -107,7 +114,8 @@
         "مجموعة القواعد القانونية المنظمة للأموال العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_76e497088413d1348c87"
     },
     {
       "id": "law_admin_law_ch1_9",
@@ -120,7 +128,8 @@
         "السياسي."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bdbefb81140829e5093d"
     },
     {
       "id": "law_admin_law_ch1_10",
@@ -133,7 +142,8 @@
         "مراقبة أعمال السلطة التشريعية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_262ef39cdefe8ca7393f"
     },
     {
       "id": "law_admin_law_ch1_11",
@@ -146,7 +156,8 @@
         "الحريات العامة للأفراد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7be57ca058655e69ebd1"
     },
     {
       "id": "law_admin_law_ch1_12",
@@ -159,7 +170,8 @@
         "المسائل المتعلقة بالموظفين فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6db7ee08d81030a23e1a"
     },
     {
       "id": "law_admin_law_ch1_13",
@@ -172,7 +184,8 @@
         "الدول التي لديها محكمة إدارية عليا فقط."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e03a629407790c38323d"
     },
     {
       "id": "law_admin_law_ch1_14",
@@ -185,7 +198,8 @@
         "استبعاد فكرة السلطة العامة من التعريف."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e1ff64ee309e28804588"
     },
     {
       "id": "law_admin_law_ch1_15",
@@ -198,7 +212,8 @@
         "المفهوم المالي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c85ca0976cc34362d9b9"
     },
     {
       "id": "law_admin_law_ch1_16",
@@ -211,7 +226,8 @@
         "النشاط الإداري لإشباع الحاجات العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_41675775128cb63cff77"
     },
     {
       "id": "law_admin_law_ch1_17",
@@ -224,7 +240,8 @@
         "يعالج المسائل المتفرعة من القانون الإداري."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f96579e3834e873f184"
     },
     {
       "id": "law_admin_law_ch1_18",
@@ -237,7 +254,8 @@
         "قواعد العلاقات الدولية. :.."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4d19b0fc05df600c9290"
     },
     {
       "id": "law_admin_law_ch1_19",
@@ -250,7 +268,8 @@
         "القواعد الأساسية التي تضعها الدولة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63a668584b09d7721f09"
     },
     {
       "id": "law_admin_law_ch1_20",
@@ -263,7 +282,8 @@
         "يع د القانون الدستوري ً تابعا للقانون الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c8e2e4908a8c087f50bd"
     },
     {
       "id": "law_admin_law_ch1_21",
@@ -276,7 +296,8 @@
         "يختص بتنظيم الأموال العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1eeae7522add8f7f475b"
     },
     {
       "id": "law_admin_law_ch1_22",
@@ -289,7 +310,8 @@
         "العلاقات التعاقدية للإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3d3a6dbcc968b3e54347"
     },
     {
       "id": "law_admin_law_ch1_23",
@@ -302,7 +324,8 @@
         "الدولي العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b81e7c8de4ece907aa39"
     },
     {
       "id": "law_admin_law_ch1_24",
@@ -315,7 +338,8 @@
         "بارتلمي"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a96b352cf6501f1bead"
     },
     {
       "id": "law_admin_law_ch1_25",
@@ -328,7 +352,8 @@
         "القانون التجاري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2fd387dfb0be40da419e"
     },
     {
       "id": "law_admin_law_ch1_26",
@@ -341,7 +366,8 @@
         "وسيلة لرفع مستوى الأداء للموظفين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7498fa2d8b2efc61a39a"
     },
     {
       "id": "law_admin_law_ch1_27",
@@ -354,7 +380,8 @@
         "الناحية التنظيمية للوظيفة الصادر عنها."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bb3b85aa5f2edf34bd6e"
     },
     {
       "id": "law_admin_law_ch1_28",
@@ -367,7 +394,8 @@
         "القانون التجاري."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_28248bdd829521ed2b0e"
     },
     {
       "id": "law_admin_law_ch1_29",
@@ -380,7 +408,8 @@
         "طرق اختيار الموظفين ووسائل رفع كفاءتهم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5885e460b1bc587ee038"
     },
     {
       "id": "law_admin_law_ch1_30",
@@ -393,7 +422,8 @@
         "قانون المرافعات المدنية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_70df51ab11f286ed63d5"
     },
     {
       "id": "law_admin_law_ch1_31",
@@ -406,7 +436,8 @@
         "السياسي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6cb4732643ce6e4ec6d6"
     },
     {
       "id": "law_admin_law_ch1_32",
@@ -419,7 +450,8 @@
         "الشكلي"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f9e8bfa06f3b355deef6"
     },
     {
       "id": "law_admin_law_ch1_33",
@@ -432,7 +464,8 @@
         "الكيفية العلمية والواقعية التي صدر على أساسها وعملية. صنعه والمراحل المختلفة التي مرت بها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd4dcae19b90c7fcac5a"
     },
     {
       "id": "law_admin_law_ch1_34",
@@ -445,7 +478,8 @@
         "المركز القانوني للموظف العام وطبيعة علاقته بالدولة وشروط تعيينه وحقوقه وواجباته والعقوبات التأديبية وضماناته."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e14d64c1a85dc1bda76d"
     },
     {
       "id": "law_admin_law_ch1_35",
@@ -458,7 +492,8 @@
         "طرق انتهاء العلاقة الوظيفية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fb431efe5c3dc7a5a427"
     },
     {
       "id": "law_admin_law_ch1_36",
@@ -471,7 +506,8 @@
         "تحديد اختصاصات ومواصفات الوظيفة فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1fcfef32f6f0f715ddde"
     },
     {
       "id": "law_admin_law_ch1_37",
@@ -484,7 +520,8 @@
         "القانون المالي."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a05ed86150b8fc743fcf"
     },
     {
       "id": "law_admin_law_ch1_38",
@@ -497,7 +534,8 @@
         "يتعلق بالناحية الفنية والتنظيمية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e0e70a6078d14947acf"
     },
     {
       "id": "law_admin_law_ch1_39",
@@ -510,7 +548,8 @@
         "الدول التي يغلب فيها المفهوم العضوي للإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f4599f916fdb79c36275"
     },
     {
       "id": "law_admin_law_ch1_40",
@@ -523,7 +562,8 @@
         "القواعد المتميزة والمغايرة للقانون الخاص فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53103a7d049f62a80fbc"
     },
     {
       "id": "law_admin_law_ch1_41",
@@ -536,7 +576,8 @@
         "إعداد الميزانية العامة للدولة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_14bf58b3886b49963e55"
     },
     {
       "id": "law_admin_law_ch1_42",
@@ -549,7 +590,8 @@
         "علم الإدارة العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4cf5555ec8f0c9bc043e"
     },
     {
       "id": "law_admin_law_ch1_43",
@@ -562,7 +604,8 @@
         "تبنيهما للمفهوم العضوي والموضوعي للإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_821c884c5dde393a76b0"
     },
     {
       "id": "law_admin_law_ch1_44",
@@ -575,7 +618,8 @@
         "الهيكلية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_31127adaa3c1760f8acc"
     },
     {
       "id": "law_admin_law_ch1_45",
@@ -588,7 +632,8 @@
         "القواعد القانونية لانتهاء العلاقة الوظيفية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_223560ee082f8426ed31"
     },
     {
       "id": "law_admin_law_ch1_46",
@@ -601,7 +646,8 @@
         "المركزية واللامركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_95edd3922f1e9e3730e3"
     },
     {
       "id": "law_admin_law_ch1_47",
@@ -614,7 +660,8 @@
         "آراء الفقهاء في علم الإدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_24b97ee8ed5d5794d929"
     }
   ]
 }

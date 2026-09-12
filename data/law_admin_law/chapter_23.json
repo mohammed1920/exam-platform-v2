@@ -16,7 +16,8 @@
         "خضوع العقد للقضاء العادي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f0e7e78f22906a49773e"
     },
     {
       "id": "law_admin_law_ch23_2",
@@ -29,7 +30,8 @@
         "لأن تطبيق نظام القانون العام يكون أكثر ملائمة لحل المنازعات المعروضة من القانون الخاص."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04f050892784c6be323a"
     },
     {
       "id": "law_admin_law_ch23_3",
@@ -42,7 +44,8 @@
         "حماية الأموال الخاصة للأفراد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59769203f99c924d8b76"
     },
     {
       "id": "law_admin_law_ch23_4",
@@ -55,7 +58,8 @@
         "القضاء الدستوري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_80ef8d9634acb53d3579"
     },
     {
       "id": "law_admin_law_ch23_5",
@@ -68,7 +72,8 @@
         "في بريطانيا في القرون الوسطى."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d4be209bc0b4c71a75a"
     },
     {
       "id": "law_admin_law_ch23_6",
@@ -81,7 +86,8 @@
         "مبدأ حرية التعاقد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4f4a39cd9686c055c103"
     },
     {
       "id": "law_admin_law_ch23_7",
@@ -94,7 +100,8 @@
         "عقود الأشغال العامة للطرق والجسور الصغيرة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_01c95fae22e80958c842"
     },
     {
       "id": "law_admin_law_ch23_8",
@@ -107,7 +114,8 @@
         "قانون التموين لسنة 1956."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d75b70aa65cc3f4fa9dd"
     },
     {
       "id": "law_admin_law_ch23_9",
@@ -120,7 +128,8 @@
         "أن جميع العقود المتعلقة بالمال العام يجب أن تخضع للقانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eb138e0d3c38549d1cf0"
     },
     {
       "id": "law_admin_law_ch23_10",
@@ -133,7 +142,8 @@
         "يجعله يخضع لأحكام القانون الخاص بشكل مطلق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a7e340110eb89d31a706"
     },
     {
       "id": "law_admin_law_ch23_11",
@@ -146,7 +156,8 @@
         "لتوحيد المعيار مع القانون الفرنسي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33c1da97115bf47a4644"
     },
     {
       "id": "law_admin_law_ch23_12",
@@ -159,7 +170,8 @@
         "ضمن دائرة قانون المرافق العامة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef526de79cf0cf76d3ad"
     },
     {
       "id": "law_admin_law_ch23_13",
@@ -172,7 +184,8 @@
         "أن يكون موضوع العقد شغلا لمال عام."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_80b4ecafc71468d202d5"
     },
     {
       "id": "law_admin_law_ch23_14",
@@ -185,7 +198,8 @@
         "تحقيق أغراض الإدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2dae4898e2728e0b5130"
     },
     {
       "id": "law_admin_law_ch23_15",
@@ -198,7 +212,8 @@
         "جميع سلطات الدولة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_237153c8da7359b606c0"
     },
     {
       "id": "law_admin_law_ch23_16",
@@ -211,7 +226,8 @@
         "جميع ما سبق (كلها أشخاص قانون عام)."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_01723b305862fb9dcf43"
     },
     {
       "id": "law_admin_law_ch23_17",
@@ -224,7 +240,8 @@
         "أن تكون الإدارة هي الطرف الضعيف في العقد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0219c13c66d1a1af5724"
     },
     {
       "id": "law_admin_law_ch23_18",
@@ -237,7 +254,8 @@
         "مبدأ الغرامة التأخيرية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_47becaafe5606da47c67"
     },
     {
       "id": "law_admin_law_ch23_19",
@@ -250,7 +268,8 @@
         "الشاي."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ce636b0a9ee8417a42a7"
     },
     {
       "id": "law_admin_law_ch23_20",
@@ -263,7 +282,8 @@
         "يع د عقدا إداريا فقط إذا أبرمته الإدارة المركزية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ba6b82afe5499d84827d"
     },
     {
       "id": "law_admin_law_ch23_21",
@@ -276,7 +296,8 @@
         "الأعمال التمهيدية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ff2dc296a996963db3d"
     },
     {
       "id": "law_admin_law_ch23_22",
@@ -289,7 +310,8 @@
         "أن يخضع لأحكام القانون المدني بالكامل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_84d40aab35fe2fbe3954"
     },
     {
       "id": "law_admin_law_ch23_23",
@@ -302,7 +324,8 @@
         "الجمعيات الأهلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cadce3c632ff68e76274"
     },
     {
       "id": "law_admin_law_ch23_24",
@@ -315,7 +338,8 @@
         "البرلمان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c73bd97bb44875f2fc7a"
     },
     {
       "id": "law_admin_law_ch23_25",
@@ -328,7 +352,8 @@
         "أن يكون العقد قد تم تنفيذه بالكامل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a6700f505160777c6c81"
     },
     {
       "id": "law_admin_law_ch23_26",
@@ -341,7 +366,8 @@
         "هيئة سيادية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b5e3b6177919139428f3"
     },
     {
       "id": "law_admin_law_ch23_27",
@@ -354,7 +380,8 @@
         "معيار القضاء العادي المختص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4df9fb0ea1aac7bd5255"
     },
     {
       "id": "law_admin_law_ch23_28",
@@ -367,7 +394,8 @@
         "الفصل التام بين السلطات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_153553bc2d4110e06e08"
     },
     {
       "id": "law_admin_law_ch23_29",
@@ -380,7 +408,8 @@
         "معيار الغاية السياسية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_068c3a89a393d15eb427"
     },
     {
       "id": "law_admin_law_ch23_30",
@@ -393,7 +422,8 @@
         "الإدارة الاستثنائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4aba6d2dc4ee5ceb92b5"
     },
     {
       "id": "law_admin_law_ch23_31",
@@ -406,7 +436,8 @@
         "أن يكون غير محدد المدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d66870b5b2363768fbde"
     },
     {
       "id": "law_admin_law_ch23_32",
@@ -419,7 +450,8 @@
         "عقد تجاري في حالة العقود الإدارية المنصوص ً عليها قانونا (بتحديد القانون)،"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02f8c8aa44ac49ae12b3"
     },
     {
       "id": "law_admin_law_ch23_33",
@@ -432,7 +464,8 @@
         "أن يكون طرفا العقد من أشخاص القانون الخاص"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_169b8361893dbeb97c99"
     },
     {
       "id": "law_admin_law_ch23_34",
@@ -445,7 +478,8 @@
         "عدم استهدافه للمصلحة العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ee95121d91fa7a1c6c4e"
     },
     {
       "id": "law_admin_law_ch23_35",
@@ -458,7 +492,8 @@
         "أن يكون العقد متعلقا بمال عام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_56ca95e9a62d07b35c16"
     },
     {
       "id": "law_admin_law_ch23_36",
@@ -471,7 +506,8 @@
         "روميو"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b17110a9101023def0d6"
     },
     {
       "id": "law_admin_law_ch23_37",
@@ -484,7 +520,8 @@
         "معيار القائمة القضائية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_72d7ba153ed8028a8380"
     },
     {
       "id": "law_admin_law_ch23_38",
@@ -497,7 +534,8 @@
         "إذا تم إبرامه بين شخصين من القانون الخاص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a430ecae069bc44876a"
     },
     {
       "id": "law_admin_law_ch23_39",
@@ -510,7 +548,8 @@
         "عدم صدوره من شخص عام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08a4dbab7489d8f8a2c3"
     },
     {
       "id": "law_admin_law_ch23_40",
@@ -523,7 +562,8 @@
         "لأن الإدارة استعملت سلطتها في تقنين الأسعار فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_06d943b3e00b290f4627"
     },
     {
       "id": "law_admin_law_ch23_41",
@@ -536,7 +576,8 @@
         "أن يكون العقد متعلقا حصرا بعقود الالتزام."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bba0016226754a3e8749"
     },
     {
       "id": "law_admin_law_ch23_42",
@@ -549,7 +590,8 @@
         "أنها تخضع لمعايير محكمة التنازع فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a0b4b565454dc13629f3"
     },
     {
       "id": "law_admin_law_ch23_43",
@@ -562,7 +604,8 @@
         "حكم.amegeaS"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dd38e03bae4e0671f5c5"
     },
     {
       "id": "law_admin_law_ch23_44",
@@ -575,7 +618,8 @@
         "المعيار المزدوج."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_762f265f0edaf811753d"
     },
     {
       "id": "law_admin_law_ch23_45",
@@ -588,7 +632,8 @@
         "المعيار المزدوج."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_06f7d2bcfdd7c37485f8"
     },
     {
       "id": "law_admin_law_ch23_46",
@@ -601,7 +646,8 @@
         "أي نشاط يتعلق بالمال العام من دون اتصال بالمصلحة العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_094f130e048f8fc9db2d"
     },
     {
       "id": "law_admin_law_ch23_47",
@@ -614,7 +660,8 @@
         "في فترة ما بين الحربين العالميتين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3207a197587a74b5a729"
     },
     {
       "id": "law_admin_law_ch23_48",
@@ -627,7 +674,8 @@
         "حكم شركة الاقتصاد المختلط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a18f3f95e3c3e4af3d3c"
     },
     {
       "id": "law_admin_law_ch23_49",
@@ -640,7 +688,8 @@
         "العميد هوريو."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a30961a487b3d0c63867"
     },
     {
       "id": "law_admin_law_ch23_50",
@@ -653,7 +702,8 @@
         "طبيعة العقد القانونية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82488c9528a12cf3c567"
     },
     {
       "id": "law_admin_law_ch23_51",
@@ -666,7 +716,8 @@
         "قانون العقود الإدارية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ea88486b2dda54b816e0"
     },
     {
       "id": "law_admin_law_ch23_52",
@@ -679,7 +730,8 @@
         "توحيد قواعد القانون العام والخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_059f3e4f1b26e6e8600a"
     },
     {
       "id": "law_admin_law_ch23_53",
@@ -692,7 +744,8 @@
         "أن يكون موضوع العقد لا يتصل بالمصلحة العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f4d4da2d2de54772c28f"
     },
     {
       "id": "law_admin_law_ch23_54",
@@ -705,7 +758,8 @@
         "ذهبوا إلى إخضاع جميع العقود الإدارية للقضاء العادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ac7e2dae4a7dd132822"
     },
     {
       "id": "law_admin_law_ch23_55",
@@ -718,7 +772,8 @@
         "معيار الإرادة المنفردة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d141a1fc89d1d98226a"
     },
     {
       "id": "law_admin_law_ch23_56",
@@ -731,7 +786,8 @@
         "حكم.dlihcstoR"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_687c90e92f0b8e7ce125"
     },
     {
       "id": "law_admin_law_ch23_57",
@@ -744,7 +800,8 @@
         "الإدارة الاقتصادية والإدارة الاجتماعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cfec4f253d24abb1d727"
     },
     {
       "id": "law_admin_law_ch23_58",
@@ -757,7 +814,8 @@
         "على أساس كون العقد يتعلق بمال عام أم لا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5fd63631567fd1487d02"
     },
     {
       "id": "law_admin_law_ch23_59",
@@ -770,7 +828,8 @@
         "عندما يبرم أحد عقود الالتزام أو الأشغال العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_20996ccf0b9473713a73"
     },
     {
       "id": "law_admin_law_ch23_60",
@@ -783,7 +842,8 @@
         "عندما يتعلق التصرف بمرفق عام ذي طبيعة إدارية صرفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b77943eca203132a2eae"
     },
     {
       "id": "law_admin_law_ch23_61",
@@ -796,7 +856,8 @@
         "إبرام عقد امتياز."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c4d4c5e9e3f5b22a1a78"
     },
     {
       "id": "law_admin_law_ch23_62",
@@ -809,7 +870,8 @@
         "أنها تخضع للقضاء العادي حصرا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_015b38f9ea793eb33a10"
     },
     {
       "id": "law_admin_law_ch23_63",
@@ -822,7 +884,8 @@
         "حكم amegeaS الصادر عام 1970."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_43b5279e608d99b678f4"
     },
     {
       "id": "law_admin_law_ch23_64",
@@ -835,7 +898,8 @@
         "في منتصف القرن العشرين بعد حكم بيرتان."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99e20ae8dafb5ec2e5a9"
     },
     {
       "id": "law_admin_law_ch23_65",
@@ -848,7 +912,8 @@
         "بالتعهد به ً إلى أشخاص القانون العام حصرا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e51f37eb0f274b625e01"
     },
     {
       "id": "law_admin_law_ch23_66",
@@ -861,7 +926,8 @@
         "إتباع الإدارة لأساليب القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5f5ae5c1f5aa6b62aec"
     },
     {
       "id": "law_admin_law_ch23_67",
@@ -874,7 +940,8 @@
         "قانون التطور القضائي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_74bad00972f92859dd9e"
     },
     {
       "id": "law_admin_law_ch23_68",
@@ -887,7 +954,8 @@
         "توحيد قواعد القانون العام والخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0fb84de695ba65fa28ce"
     },
     {
       "id": "law_admin_law_ch23_69",
@@ -900,7 +968,8 @@
         "ذهبوا إلى إخضاع جميع العقود الإدارية للقضاء العادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3f0e2d9169197e33885b"
     },
     {
       "id": "law_admin_law_ch23_70",
@@ -913,7 +982,8 @@
         "إلغاء الشروط الاستثنائية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_93932d6544d9b58b7a9a"
     },
     {
       "id": "law_admin_law_ch23_71",
@@ -926,7 +996,8 @@
         "عام 1956."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ce151bf555cd0dfb8f19"
     },
     {
       "id": "law_admin_law_ch23_72",
@@ -939,7 +1010,8 @@
         "القانون العام والقانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_68d179fba91e5872f4d5"
     },
     {
       "id": "law_admin_law_ch23_73",
@@ -952,7 +1024,8 @@
         "عندما يتعلق التصرف بمرفق عام ذي طبيعة تجارية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdef3db0a34339f645a4"
     },
     {
       "id": "law_admin_law_ch23_74",
@@ -965,7 +1038,8 @@
         "أن الإدارة يجب أن تستخدم أساليب القانون العام حصرا في جميع عقودها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eeb74983e24a17313e06"
     },
     {
       "id": "law_admin_law_ch23_75",
@@ -978,7 +1052,8 @@
         "معيار ارتباط العقد بمال عام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c4e549061ee3c7ad416b"
     },
     {
       "id": "law_admin_law_ch23_76",
@@ -991,7 +1066,8 @@
         "لأن الإدارة لم تتبع أساليب القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9fd65c4cb9ebc84e18c6"
     },
     {
       "id": "law_admin_law_ch23_77",
@@ -1004,7 +1080,8 @@
         "السنة 8 للثورة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35155b3163a74191b112"
     },
     {
       "id": "law_admin_law_ch23_78",
@@ -1017,7 +1094,8 @@
         "اعتبرت أن الإدارة يجب أن تلجأ لأسلوب القانون العام دائما."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9e72c008eb271f9902e"
     },
     {
       "id": "law_admin_law_ch23_79",
@@ -1030,7 +1108,8 @@
         "عقد إيجار عقار لتقر فيه مكاتب إدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b7272d4a4714f32304a1"
     },
     {
       "id": "law_admin_law_ch23_80",
@@ -1043,7 +1122,8 @@
         "عندما يخضع العقد لأحكام الوكالة في القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_675658dc601fe643d934"
     },
     {
       "id": "law_admin_law_ch23_81",
@@ -1056,7 +1136,8 @@
         "عقود الالتزام وعقود العمل الفردية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc1daf532e748bc62a12"
     },
     {
       "id": "law_admin_law_ch23_82",
@@ -1069,7 +1150,8 @@
         "عمل لجنة توزيع الشاي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ed538f8490dfae2dc247"
     },
     {
       "id": "law_admin_law_ch23_83",
@@ -1082,7 +1164,8 @@
         "كل عقد يتضمن شغلاً لمال عام"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7ba8e8dad2ba7c469ca5"
     },
     {
       "id": "law_admin_law_ch23_84",
@@ -1095,7 +1178,8 @@
         "أنها عقود إدارية ما لم يثبت العكس."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3fd42b0e6f071724547"
     },
     {
       "id": "law_admin_law_ch23_85",
@@ -1108,7 +1192,8 @@
         "القانون رقم 32 لسنة 1986"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_60cb27405459d02c2f2d"
     },
     {
       "id": "law_admin_law_ch23_86",
@@ -1121,7 +1206,8 @@
         "تحت أشرافها ومراقبتها وتوجيهاتها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3429ac47100c47ae037"
     },
     {
       "id": "law_admin_law_ch23_87",
@@ -1134,7 +1220,8 @@
         "أن تتجه نية الإدارة إلى الأخذ بأسلوب القانون العام"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a129096a30b53918a966"
     },
     {
       "id": "law_admin_law_ch23_88",
@@ -1147,7 +1234,8 @@
         "ledeV"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a5dd3cd6f29bd78849ef"
     },
     {
       "id": "law_admin_law_ch23_89",
@@ -1160,7 +1248,8 @@
         "إذا توافرت للمرفق أهمية خاصة أو بلغت معاونة الفرد المتعاقد مع الإدارة درجة كبيرة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8e8ea7eda11b73c2eb34"
     },
     {
       "id": "law_admin_law_ch23_90",
@@ -1173,7 +1262,8 @@
         "عقود الإذعان"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b6289036b1273ebd3329"
     },
     {
       "id": "law_admin_law_ch23_91",
@@ -1186,7 +1276,8 @@
         "عزز الاستقرار والتوازن في ظل المعيار المزدوج."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5af2be1678a3a5398e0"
     },
     {
       "id": "law_admin_law_ch23_92",
@@ -1199,7 +1290,8 @@
         "معيار الإدارة العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f0228ef2ed2699f3bbf0"
     },
     {
       "id": "law_admin_law_ch23_93",
@@ -1212,7 +1304,8 @@
         "مبدأ العقود الإدارية تبعا لأنظمتها."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c66bcf4a0259623739e"
     },
     {
       "id": "law_admin_law_ch23_94",
@@ -1225,7 +1318,8 @@
         "عقد الالتزام أو الامتياز."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aaab15a3031d3cbc7d04"
     },
     {
       "id": "law_admin_law_ch23_95",
@@ -1238,7 +1332,8 @@
         "أنه عقد وكالة ينوب فيه الملتزم عن الإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec23f67f0643e4c11e0e"
     },
     {
       "id": "law_admin_law_ch23_96",
@@ -1251,7 +1346,8 @@
         "لأنه يجعل آثار العقد تنشأ عن إرادة الإدارة المنفردة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6c5adee4f7ffa107ead9"
     },
     {
       "id": "law_admin_law_ch23_97",
@@ -1264,7 +1360,8 @@
         "أن يكون العقد لا يخضع لنظام قانوني غير مألوف."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6a60d82a6693a85f43f1"
     },
     {
       "id": "law_admin_law_ch23_98",
@@ -1277,7 +1374,8 @@
         "أنه يجعل العقد إداريا وإن لم تكن الإدارة طرفا فيه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_45661caf7cb7ee2eafe3"
     },
     {
       "id": "law_admin_law_ch23_99",
@@ -1290,7 +1388,8 @@
         "إذا توافرت للمرفق أهمية خاصة أو بلغت معاونة الفرد المتعاقد مع الإدارة درجة كبيرة."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e2ff95738206b8a9e66c"
     },
     {
       "id": "law_admin_law_ch23_100",
@@ -1303,7 +1402,8 @@
         "معيار الاشتراك المباشر."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a74a79a7b457ea0532e5"
     },
     {
       "id": "law_admin_law_ch23_101",
@@ -1316,7 +1416,8 @@
         "ledeV"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d77d6554b02d85f3bd6a"
     },
     {
       "id": "law_admin_law_ch23_102",
@@ -1329,7 +1430,8 @@
         "دورا مصطنعا مجردا من كل قيمة منطقية جوهرية."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c1b3643d894d5e2a00cb"
     },
     {
       "id": "law_admin_law_ch23_103",
@@ -1342,7 +1444,8 @@
         "المعيار المتناوب."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd07650f318e0ca131b8"
     },
     {
       "id": "law_admin_law_ch23_104",
@@ -1355,7 +1458,8 @@
         "عقد يسمح بأن تستخدم شركة الكهرباء الفرنسية الطاقة المنتجة من الشركة الوطنية لمنطقة (الرون)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4f244abae745e0d91354"
     },
     {
       "id": "law_admin_law_ch23_105",
@@ -1368,7 +1472,8 @@
         "القانون الدستوري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c600bb6ed4a401b4f06"
     },
     {
       "id": "law_admin_law_ch23_106",
@@ -1381,7 +1486,8 @@
         "إبطال الشروط اللائحية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8df6acf05fe9823c56a4"
     },
     {
       "id": "law_admin_law_ch23_107",
@@ -1394,7 +1500,8 @@
         "الطماوي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d7014b3bf22b001f8934"
     },
     {
       "id": "law_admin_law_ch23_108",
@@ -1407,7 +1514,8 @@
         "الشروط الاتفاقية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ee989df732eac40454d8"
     },
     {
       "id": "law_admin_law_ch23_109",
@@ -1420,7 +1528,8 @@
         "الشروط العينية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4068ee78a25637e81b96"
     },
     {
       "id": "law_admin_law_ch23_110",
@@ -1433,7 +1542,8 @@
         "شروط الخدمات للمنتفعين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d49042f46a6a6f1ec972"
     },
     {
       "id": "law_admin_law_ch23_111",
@@ -1446,7 +1556,8 @@
         "اسم الملتزم."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f266a9c38e7cb084714"
     },
     {
       "id": "law_admin_law_ch23_112",
@@ -1459,7 +1570,8 @@
         "ضمان سير المرفق العام."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d219e4b7d971a32289fd"
     },
     {
       "id": "law_admin_law_ch23_113",
@@ -1472,7 +1584,8 @@
         "الإدارة الذاتية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_127edf92a8a684c7f30a"
     },
     {
       "id": "law_admin_law_ch23_114",
@@ -1485,7 +1598,8 @@
         "سلطات الإدارة الرقابية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c67782682ff2ea79f4d6"
     },
     {
       "id": "law_admin_law_ch23_115",
@@ -1498,7 +1612,8 @@
         "عدم جواز الإلغاء إلا بقانون"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63062c1c95d2755fa017"
     },
     {
       "id": "law_admin_law_ch23_116",
@@ -1511,7 +1626,8 @@
         "عقد نقل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_212446d25eb6fb8cc459"
     },
     {
       "id": "law_admin_law_ch23_117",
@@ -1524,7 +1640,8 @@
         "صيانة العقارات."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6c1052273bce1c673b6b"
     },
     {
       "id": "law_admin_law_ch23_118",
@@ -1537,7 +1654,8 @@
         "خدمات التدريب للعاملين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4518d42720e1e1e20f55"
     },
     {
       "id": "law_admin_law_ch23_119",
@@ -1550,7 +1668,8 @@
         "أن يتم العمل من دون مقابل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64bfbeb4df3ddf43021c"
     },
     {
       "id": "law_admin_law_ch23_120",
@@ -1563,7 +1682,8 @@
         "اتفاقات القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_10950b64fa0d14298cba"
     },
     {
       "id": "law_admin_law_ch23_121",
@@ -1576,7 +1696,8 @@
         "تصفية حسابات مالية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef15635d40dc7aeed706"
     },
     {
       "id": "law_admin_law_ch23_122",
@@ -1589,7 +1710,8 @@
         "الأهداف الاستثمارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c17c051395d4282c5981"
     },
     {
       "id": "law_admin_law_ch23_123",
@@ -1602,7 +1724,8 @@
         "عقود بيع العقارات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_09d250e644b8768d2018"
     },
     {
       "id": "law_admin_law_ch23_124",
@@ -1615,7 +1738,8 @@
         "خدمات التخليص الجمركي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a13940795fe1e1114f61"
     },
     {
       "id": "law_admin_law_ch23_125",
@@ -1628,7 +1752,8 @@
         "الأموال المنقولة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5d735c9f045624b43d87"
     },
     {
       "id": "law_admin_law_ch23_126",
@@ -1641,7 +1766,8 @@
         "الأشغال التي لا تحقق نفعا عاما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a9d061712a53e726ecce"
     },
     {
       "id": "law_admin_law_ch23_127",
@@ -1654,7 +1780,8 @@
         "المدى الذي يحدده القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d0a088f194f53d44c3f"
     },
     {
       "id": "law_admin_law_ch23_128",
@@ -1667,7 +1794,8 @@
         "تحديد مدة العقد فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2be41f571fab63884e02"
     },
     {
       "id": "law_admin_law_ch23_129",
@@ -1680,7 +1808,8 @@
         "براءات اختراع."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_edf1eb83e09e84a20785"
     },
     {
       "id": "law_admin_law_ch23_130",
@@ -1693,7 +1822,8 @@
         "يتم توريدها دفعة واحدة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6039fdafa566b699937d"
     },
     {
       "id": "law_admin_law_ch23_131",
@@ -1706,7 +1836,8 @@
         "يخلو من الشروط الاستثنائية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab0a1c6a0d162a0517ad"
     },
     {
       "id": "law_admin_law_ch23_132",
@@ -1719,7 +1850,8 @@
         "إذا كان موضوعه أجهزة وبضائع مختلفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f61549c7ac4e7684422"
     },
     {
       "id": "law_admin_law_ch23_133",
@@ -1732,7 +1864,8 @@
         "عقارات بالتخصيص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4dee5a8d1be5fa381f3a"
     },
     {
       "id": "law_admin_law_ch23_134",
@@ -1745,7 +1878,8 @@
         "الاقتصاد المخطط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f0a3239cf5a27db803ff"
     },
     {
       "id": "law_admin_law_ch23_135",
@@ -1758,7 +1892,8 @@
         "القروض البنكية الحكومية فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_048ceca7c915c72b4362"
     },
     {
       "id": "law_admin_law_ch23_136",
@@ -1771,7 +1906,8 @@
         "ضرورة تدخل القضاء الإداري فيها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_80859506db6e77175beb"
     },
     {
       "id": "law_admin_law_ch23_137",
@@ -1784,7 +1920,8 @@
         "عقود الالتزام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_97b71ebc37734bfd26ba"
     },
     {
       "id": "law_admin_law_ch23_138",
@@ -1797,7 +1934,8 @@
         "جهة تمويل دولية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7336c8a0bd3ff21a7dab"
     },
     {
       "id": "law_admin_law_ch23_139",
@@ -1810,7 +1948,8 @@
         "زيادة الأصول الحكومية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc99a164e745047d2eea"
     },
     {
       "id": "law_admin_law_ch23_140",
@@ -1823,7 +1962,8 @@
         "هيئة التحكيم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be868ef5593d3b52c733"
     },
     {
       "id": "law_admin_law_ch23_141",
@@ -1836,7 +1976,8 @@
         "إبقاء ملكية المشروع لديها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_188ff57ccfdbb8e9e65d"
     },
     {
       "id": "law_admin_law_ch23_142",
@@ -1849,7 +1990,8 @@
         "منظمة التجارة العالمية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4846431be21ae7bf3e89"
     },
     {
       "id": "law_admin_law_ch23_143",
@@ -1862,7 +2004,8 @@
         "شراء الأثاث"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ac6507e86c285a2ad854"
     },
     {
       "id": "law_admin_law_ch23_144",
@@ -1875,7 +2018,8 @@
         "ألمانيا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa65533674054d8ca04d"
     },
     {
       "id": "law_admin_law_ch23_145",
@@ -1888,7 +2032,8 @@
         "السودان."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_88133992679dc9274fb9"
     },
     {
       "id": "law_admin_law_ch23_146",
@@ -1901,7 +2046,8 @@
         "بيع أسهم الشركة للحكومة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4740da9dd228092eb74a"
     },
     {
       "id": "law_admin_law_ch23_147",
@@ -1914,7 +2060,8 @@
         "أيسمان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c015bf6dedea1ecc299f"
     },
     {
       "id": "law_admin_law_ch23_148",
@@ -1927,7 +2074,8 @@
         "الشروط الأساسية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_09e19ba450f97ad2bad3"
     },
     {
       "id": "law_admin_law_ch23_149",
@@ -1940,7 +2088,8 @@
         "شروط الرقابة الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d56ea01b2e41f3b10f66"
     },
     {
       "id": "law_admin_law_ch23_150",
@@ -1953,7 +2102,8 @@
         "مدة العقد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e501b1db15f0f4063423"
     },
     {
       "id": "law_admin_law_ch23_151",
@@ -1966,7 +2116,8 @@
         "المقابل المتفق عليه."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_efb48e820489b6e6ef8b"
     },
     {
       "id": "law_admin_law_ch23_152",
@@ -1979,7 +2130,8 @@
         "تعديل الشروط اللائحية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4b48c9ebbb641506eafe"
     },
     {
       "id": "law_admin_law_ch23_153",
@@ -1992,7 +2144,8 @@
         "عقد التوريد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5a43bd72858536793880"
     },
     {
       "id": "law_admin_law_ch23_154",
@@ -2005,7 +2158,8 @@
         "أن يحدد ثمن العمل في العقد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_daef26246f1bbca4bac7"
     },
     {
       "id": "law_admin_law_ch23_155",
@@ -2018,7 +2172,8 @@
         "التأجير."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5885c4681b51082a301e"
     },
     {
       "id": "law_admin_law_ch23_156",
@@ -2031,7 +2186,8 @@
         "تخضع لقواعد القانون العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65ee319b43ef250cbc48"
     },
     {
       "id": "law_admin_law_ch23_157",
@@ -2044,7 +2200,8 @@
         "إدارة المرافق الصناعية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_386d0f05799f664c9136"
     },
     {
       "id": "law_admin_law_ch23_158",
@@ -2057,7 +2214,8 @@
         "سلطة الإدارة الرقابية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0e0731b6d768db16f39f"
     },
     {
       "id": "law_admin_law_ch23_159",
@@ -2070,7 +2228,8 @@
         "أموال الوقف."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bcbdb2981d4cc38de1d6"
     },
     {
       "id": "law_admin_law_ch23_160",
@@ -2083,7 +2242,8 @@
         "المرافق الصناعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e43de8e8288226891c83"
     },
     {
       "id": "law_admin_law_ch23_161",
@@ -2096,7 +2256,8 @@
         "المرافق الصناعية والتجارية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_342b647fa68f1f3a5270"
     },
     {
       "id": "law_admin_law_ch23_162",
@@ -2109,7 +2270,8 @@
         "أشياء منقولة دائما."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d1d0f794df8c4896169d"
     },
     {
       "id": "law_admin_law_ch23_163",
@@ -2122,7 +2284,8 @@
         "الالتزام والإدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07798cfa3a0731936332"
     },
     {
       "id": "law_admin_law_ch23_164",
@@ -2135,7 +2298,8 @@
         "طريق سريع في فرنسا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_970e25e20d5f79e6b6e9"
     },
     {
       "id": "law_admin_law_ch23_165",
@@ -2148,7 +2312,8 @@
         "تتولى إدارته من دون مقابل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c0896e238a0aa28482aa"
     },
     {
       "id": "law_admin_law_ch23_166",
@@ -2161,7 +2326,8 @@
         "الحصول على تعويض مالي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c1b2fedcb7563852948"
     },
     {
       "id": "law_admin_law_ch23_167",
@@ -2174,7 +2340,8 @@
         "تجديد العقد لمدد غير محددة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9ce26c128eb748c82efe"
     },
     {
       "id": "law_admin_law_ch23_168",
@@ -2187,7 +2354,8 @@
         "الديون الحكومية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2bf504197751e062d034"
     },
     {
       "id": "law_admin_law_ch23_169",
@@ -2200,7 +2368,8 @@
         "عقود إيجار طويلة الأجل."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_25952ba01aff9f7cec0a"
     },
     {
       "id": "law_admin_law_ch23_170",
@@ -2213,7 +2382,8 @@
         "القانون العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91a05cb13e0183386107"
     },
     {
       "id": "law_admin_law_ch23_171",
@@ -2226,7 +2396,8 @@
         "شروط الرقابة الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63b48b09c4b07bfb1831"
     },
     {
       "id": "law_admin_law_ch23_172",
@@ -2239,7 +2410,8 @@
         "الحلول محل الملتزم في كل شيء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92614c6a1204c2dfb617"
     },
     {
       "id": "law_admin_law_ch23_173",
@@ -2252,7 +2424,8 @@
         "الالتزام المالي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b399c513f045ab3c564d"
     },
     {
       "id": "law_admin_law_ch23_174",
@@ -2265,7 +2438,8 @@
         "لحساب المساهمين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_992594f7e0c65e595cb4"
     },
     {
       "id": "law_admin_law_ch23_175",
@@ -2278,7 +2452,8 @@
         "تعد عقود تصميم وبناء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f21b7a1c6cbb7371f16b"
     },
     {
       "id": "law_admin_law_ch23_176",
@@ -2291,7 +2466,8 @@
         "الخدمات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4fc865ab1d864d820b14"
     },
     {
       "id": "law_admin_law_ch23_177",
@@ -2304,7 +2480,8 @@
         "الإشراف المباشر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be43fef2a0a099e778d6"
     },
     {
       "id": "law_admin_law_ch23_178",
@@ -2317,7 +2494,8 @@
         "ملكية الأفراد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96a4622780f2b28d77de"
     },
     {
       "id": "law_admin_law_ch23_179",
@@ -2330,7 +2508,8 @@
         "المدى الذي يحدده القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_808055627579720e166b"
     },
     {
       "id": "law_admin_law_ch23_180",
@@ -2343,7 +2522,8 @@
         "عقارات بالتخصيص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_970e65f246164b76d830"
     },
     {
       "id": "law_admin_law_ch23_181",
@@ -2356,7 +2536,8 @@
         "تتعلق بالشروط المالية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6080cf8481a4c877eb6f"
     },
     {
       "id": "law_admin_law_ch23_182",
@@ -2369,7 +2550,8 @@
         "تأجيره للغير."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_79e99ae511b7bf326c7e"
     },
     {
       "id": "law_admin_law_ch23_183",
@@ -2382,7 +2564,8 @@
         "زيادة الاعتماد على النشاط العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_15c911295f884882cc04"
     },
     {
       "id": "law_admin_law_ch23_184",
@@ -2395,7 +2578,8 @@
         "الاقتصاد المركزي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_099eeecba9008e7fb16a"
     },
     {
       "id": "law_admin_law_ch23_185",
@@ -2408,7 +2592,8 @@
         "القانون العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_05bcc06a61691b3adfe3"
     },
     {
       "id": "law_admin_law_ch23_186",
@@ -2421,7 +2606,8 @@
         "مستأجرة من الدولة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ec6efc03650a31ea992"
     },
     {
       "id": "law_admin_law_ch23_187",
@@ -2434,7 +2620,8 @@
         "عقود استثمار أجنبي منفصلة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ac3465f3b9bb60b448d"
     },
     {
       "id": "law_admin_law_ch23_188",
@@ -2447,7 +2634,8 @@
         "يخضع لقانون التأميم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_69fba2d65e4434c8dcc4"
     },
     {
       "id": "law_admin_law_ch23_189",
@@ -2460,7 +2648,8 @@
         "تسعة وتسعون عاما."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1421719f3bbdf5da22f5"
     },
     {
       "id": "law_admin_law_ch23_190",
@@ -2473,7 +2662,8 @@
         "مجلس الوزراء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6205a0dec561fda87144"
     },
     {
       "id": "law_admin_law_ch23_191",
@@ -2486,7 +2676,8 @@
         "عدم جواز تملك أراضي البناء إلا إذا كانت جنسية الشركاء مصرية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61cb21e1fcb3b4f1decb"
     },
     {
       "id": "law_admin_law_ch23_192",
@@ -2499,7 +2690,8 @@
         "قيد الشركة في سجل المستوردين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ef0f2819344912ff292"
     },
     {
       "id": "law_admin_law_ch23_193",
@@ -2512,7 +2704,8 @@
         "سداد رسوم جمركية إضافية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2632ce77983b2a23ab23"
     },
     {
       "id": "law_admin_law_ch23_194",
@@ -2525,7 +2718,8 @@
         "بقرار من الوزير المختص فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_750cf233f21a4520c27c"
     },
     {
       "id": "law_admin_law_ch23_195",
@@ -2538,7 +2732,8 @@
         "محكمة القضاء الإداري."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e718fe63319f30a0ab9a"
     },
     {
       "id": "law_admin_law_ch23_196",
@@ -2551,7 +2746,8 @@
         "خمسون عاما.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2aa95ec6b98a60ea832d"
     },
     {
       "id": "law_admin_law_ch23_197",
@@ -2564,7 +2760,8 @@
         "الحق في استيراد مستلزمات الإنتاج من دون قيد في سجل المستوردين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f50211d5d60f4c3684dd"
     },
     {
       "id": "law_admin_law_ch23_198",
@@ -2577,7 +2774,8 @@
         "عقد من عقود القانون الخاص حتما."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_afbc15b4fe07769ff27b"
     },
     {
       "id": "law_admin_law_ch23_199",
@@ -2590,7 +2788,8 @@
         "الهيئة العامة للاستثمار."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4dc36c8de5dc1ca68f07"
     },
     {
       "id": "law_admin_law_ch23_200",
@@ -2603,7 +2802,8 @@
         "اتحاد مالي ناتج عن التعاقدات الفرعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_269351e459a976a1d0bf"
     },
     {
       "id": "law_admin_law_ch23_201",
@@ -2616,7 +2816,8 @@
         "تصفية أعمالها بعد فترة التشغيل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fcd297c0035482ea5edb"
     },
     {
       "id": "law_admin_law_ch23_202",
@@ -2629,7 +2830,8 @@
         "تقديم العطاءات ودراسات الجدوى فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_11d26ccb1a11b7909c21"
     },
     {
       "id": "law_admin_law_ch23_203",
@@ -2642,7 +2844,8 @@
         "نعم، يمنع إلا في حالة الضرورة القصوى."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d79c297b9e827b572630"
     },
     {
       "id": "law_admin_law_ch23_204",
@@ -2655,7 +2858,8 @@
         "الملتزم أو شركة المشروع. :."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d43ce30a24b0c35531a7"
     },
     {
       "id": "law_admin_law_ch23_205",
@@ -2668,7 +2872,8 @@
         "كيان ناتج عن العديد من التعاقدات في إطار العقد الرئيس."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96617debe891e690271d"
     },
     {
       "id": "law_admin_law_ch23_206",
@@ -2681,7 +2886,8 @@
         "التدخل في تسعير المنتجات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9fdf50ad92b7c4aaed4"
     },
     {
       "id": "law_admin_law_ch23_207",
@@ -2694,7 +2900,8 @@
         "التعاقد مع شركات متخصصة لتنفيذ الالتزامات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f333643303734342d346"
     },
     {
       "id": "law_admin_law_ch23_208",
@@ -2707,7 +2914,8 @@
         "الحق في تملك أراضي البناء والعقارات المبنية"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_58cd91600f7339b4e73e"
     },
     {
       "id": "law_admin_law_ch23_209",
@@ -2720,7 +2928,8 @@
         "كونها حتما من عقود القانون الخاص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8f13c9c1dffeaa48e45d"
     }
   ]
 }

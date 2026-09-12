@@ -16,7 +16,8 @@
         "مؤقتة إلى حين صدور تشريع جديد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1e24cd3261304ac84718"
     },
     {
       "id": "law_admin_law_ch4_2",
@@ -29,7 +30,8 @@
         "مصدرا يقتصر على تطبيق القانون الخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ab0062eaaca1032e3ef"
     },
     {
       "id": "law_admin_law_ch4_3",
@@ -42,7 +44,8 @@
         "قرار إداري فردي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f30b772fe02c2ef1cb2"
     },
     {
       "id": "law_admin_law_ch4_4",
@@ -55,7 +58,8 @@
         "رغبة الإدارة في ذلك..."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e4f507687403be35ef44"
     },
     {
       "id": "law_admin_law_ch4_5",
@@ -68,7 +72,8 @@
         "مبدأ نسبية آثار الأحكام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08ac491e31c9fcfd1066"
     },
     {
       "id": "law_admin_law_ch4_6",
@@ -81,7 +86,8 @@
         "آراء الفقهاء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f45851b0dbc55c455b0"
     },
     {
       "id": "law_admin_law_ch4_7",
@@ -94,7 +100,8 @@
         "مبدأ سلطان الإرادة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ef8520242951506677a"
     },
     {
       "id": "law_admin_law_ch4_8",
@@ -107,7 +114,8 @@
         "أحكام قضاء عادية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a81758498e8b7727ff20"
     },
     {
       "id": "law_admin_law_ch4_9",
@@ -120,7 +128,8 @@
         "الفقيه روتشليد."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa7f7c90cc56943f2303"
     },
     {
       "id": "law_admin_law_ch4_10",
@@ -133,7 +142,8 @@
         "إلغاء مبدأ المشروعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8aa3e7e55249f5f84d97"
     },
     {
       "id": "law_admin_law_ch4_11",
@@ -146,7 +156,8 @@
         "السلطة التشريعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5fea924fffb79a6cdce2"
     },
     {
       "id": "law_admin_law_ch4_12",
@@ -159,7 +170,8 @@
         "ينطبق على جميع المنازعات التي تختص بها محكمة النقض."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ac73401e590c4b62107"
     },
     {
       "id": "law_admin_law_ch4_13",
@@ -172,7 +184,8 @@
         "حكم بونار."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48f5133a6f704a446129"
     },
     {
       "id": "law_admin_law_ch4_14",
@@ -185,7 +198,8 @@
         "القرارات الصادرة عن الموظفين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d4b20f50261c6366f7c"
     },
     {
       "id": "law_admin_law_ch4_15",
@@ -198,7 +212,8 @@
         "متفقة مع مبدأ دوام استمرار المرافق العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8903bc1ca318a857cbf1"
     },
     {
       "id": "law_admin_law_ch4_16",
@@ -211,7 +226,8 @@
         "بعد صدور دستور 1958"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_df6b594fd40dc619c49e"
     },
     {
       "id": "law_admin_law_ch4_17",
@@ -224,7 +240,8 @@
         "تقع مسؤوليتها على عاتق عمال المصنع"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2f4427e50f0dc4ab928"
     },
     {
       "id": "law_admin_law_ch4_18",
@@ -237,7 +254,8 @@
         "مبدأ الظروف الاستثنائية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d5a2415051b55a74a2c"
     },
     {
       "id": "law_admin_law_ch4_19",
@@ -250,7 +268,8 @@
         "عندما يصدر القرار من رئيس السلطة التنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1734fbd2a344211770a6"
     },
     {
       "id": "law_admin_law_ch4_20",
@@ -263,7 +282,8 @@
         "أنها تلزم الإدارة من دون الأفراد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_95a62110cf128176c686"
     },
     {
       "id": "law_admin_law_ch4_21",
@@ -276,7 +296,8 @@
         "جميع ما ذكر صحيح."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_30492ef8da3992aa7a5d"
     },
     {
       "id": "law_admin_law_ch4_22",
@@ -289,7 +310,8 @@
         "حكم بونار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c4aec876632124a7352"
     },
     {
       "id": "law_admin_law_ch4_23",
@@ -302,7 +324,8 @@
         "مقتصرة على مسؤولية عمال المصنع."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cda831ae77bf2049609f"
     },
     {
       "id": "law_admin_law_ch4_24",
@@ -315,7 +338,8 @@
         "معيار الفكرة الأساسية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_94b96f23b9a3ec173b9c"
     },
     {
       "id": "law_admin_law_ch4_25",
@@ -328,7 +352,8 @@
         "عدم وجود عرف إداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9bb36b3d77129fe97a8"
     },
     {
       "id": "law_admin_law_ch4_26",
@@ -341,7 +366,8 @@
         "معيار الفكرة الأساسية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2bbdefb737283134a1d3"
     },
     {
       "id": "law_admin_law_ch4_27",
@@ -354,7 +380,8 @@
         "العرف الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_178a75bf30c3f9b48a01"
     },
     {
       "id": "law_admin_law_ch4_28",
@@ -367,7 +394,8 @@
         "إذا كانت قواعد المسؤولية فيه تخضع للقانون المدني."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4aada9f0bbf6655de31a"
     },
     {
       "id": "law_admin_law_ch4_29",
@@ -380,7 +408,8 @@
         "الفقيه جيز."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_359ec8ee04cd8a971f57"
     },
     {
       "id": "law_admin_law_ch4_30",
@@ -393,7 +422,8 @@
         "تعتمد على أساس الأهداف التي تسعى الإدارة لتحقيقها."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f51267adabf4448ffd16"
     },
     {
       "id": "law_admin_law_ch4_31",
@@ -406,7 +436,8 @@
         "مدرسة القضاء الموحد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_faffae09019a1895877d"
     },
     {
       "id": "law_admin_law_ch4_32",
@@ -419,7 +450,8 @@
         "أنها تتفق مع أحكام القانون المدني."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_795f93c5a0a7b51f2713"
     },
     {
       "id": "law_admin_law_ch4_33",
@@ -432,7 +464,8 @@
         "حكم جيز."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a21a7482e8896248a726"
     },
     {
       "id": "law_admin_law_ch4_34",
@@ -445,7 +478,8 @@
         "تطبيق قواعد القانون التجاري"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1acb1e5822fff3aeae6"
     },
     {
       "id": "law_admin_law_ch4_35",
@@ -458,7 +492,8 @@
         "معيار النفع العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2d2dddd2464e5d073592"
     },
     {
       "id": "law_admin_law_ch4_36",
@@ -471,7 +506,8 @@
         "لا يطبق إلا على أعمال الإدارة المادية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e104a45f974346bcdb52"
     },
     {
       "id": "law_admin_law_ch4_37",
@@ -484,7 +520,8 @@
         "عند إصدار لوائح الضبط الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3608262ada6d41490073"
     },
     {
       "id": "law_admin_law_ch4_38",
@@ -497,7 +534,8 @@
         "نظرية السلطة التقديرية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_561a09ff213ed1315188"
     },
     {
       "id": "law_admin_law_ch4_39",
@@ -510,7 +548,8 @@
         "فكرة الفصل بين السلطات."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_116375272861213e9b17"
     },
     {
       "id": "law_admin_law_ch4_40",
@@ -523,7 +562,8 @@
         "معيار النفع الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f3c5d8a5c00897025505"
     },
     {
       "id": "law_admin_law_ch4_41",
@@ -536,7 +576,8 @@
         "الأحكام القضائية التي تبتدع الحلول."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61b83988c5919269546d"
     },
     {
       "id": "law_admin_law_ch4_42",
@@ -549,7 +590,8 @@
         "روتشليد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c891b75582a3e90059f"
     },
     {
       "id": "law_admin_law_ch4_43",
@@ -562,7 +604,8 @@
         "معيار السلطة العامة الحديث."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_26f0842b26ce562427d4"
     },
     {
       "id": "law_admin_law_ch4_44",
@@ -575,7 +618,8 @@
         "عدم اعتراف مجلس الدولة الفرنسي بها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_32d3055e536667e7a06f"
     },
     {
       "id": "law_admin_law_ch4_45",
@@ -588,7 +632,8 @@
         "بلانكو."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66ed7786beaae66b95b6"
     },
     {
       "id": "law_admin_law_ch4_46",
@@ -601,7 +646,8 @@
         "أعمال السيادة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7aba672a31cf86514b94"
     },
     {
       "id": "law_admin_law_ch4_47",
@@ -614,7 +660,8 @@
         "التمتع بامتيازات السلطة العامة المطلقة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ec97f713d21764fca51"
     },
     {
       "id": "law_admin_law_ch4_48",
@@ -627,7 +674,8 @@
         "عندما يصدر القرار بصفة تنظيمية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99bab8add4fcde0d7ad0"
     },
     {
       "id": "law_admin_law_ch4_49",
@@ -640,7 +688,8 @@
         "عندما يتعلق الأمر بعقود الإيجار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd7c547c7c45f9f7297f"
     },
     {
       "id": "law_admin_law_ch4_50",
@@ -653,7 +702,8 @@
         "تقتصر على أعمال الضبط الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89ebde59f5113c5204de"
     },
     {
       "id": "law_admin_law_ch4_51",
@@ -666,7 +716,8 @@
         "لا يقبل فيه التعويض."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_da6c6fce40508cf9db6b"
     },
     {
       "id": "law_admin_law_ch4_52",
@@ -679,7 +730,8 @@
         "يكون العقد إداريا ولكن لا يختص به القضاء الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_619e4ead53056273fd17"
     },
     {
       "id": "law_admin_law_ch4_53",
@@ -692,7 +744,8 @@
         "القانون الخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3af68d7907601212c73f"
     },
     {
       "id": "law_admin_law_ch4_54",
@@ -705,7 +758,8 @@
         "القانون الدولي العام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d83d606e2cf08ecff21d"
     },
     {
       "id": "law_admin_law_ch4_55",
@@ -718,7 +772,8 @@
         "معيار القيود غير المألوفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_90e987bc26517d0001ab"
     },
     {
       "id": "law_admin_law_ch4_56",
@@ -731,7 +786,8 @@
         "اقتصاره على أعمال الضبط الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa47ffb836826320efa3"
     },
     {
       "id": "law_admin_law_ch4_57",
@@ -744,7 +800,8 @@
         "تطبيق قواعد القانون المدني."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5de01ddcdca5645fa8f7"
     },
     {
       "id": "law_admin_law_ch4_58",
@@ -757,7 +814,8 @@
         "القواعد القانونية التي تحكم السلطات الإدارية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_558002eb0993b673617e"
     },
     {
       "id": "law_admin_law_ch4_59",
@@ -770,7 +828,8 @@
         "قانون السلطة التنفيذية الحكومية من دون الإدارية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6c2b1c5fd37adb7b1dda"
     },
     {
       "id": "law_admin_law_ch4_60",
@@ -783,7 +842,8 @@
         "معيار القيود غير المألوفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_09cd2f6c991d48704966"
     },
     {
       "id": "law_admin_law_ch4_61",
@@ -796,7 +856,8 @@
         "الفقيه بونار."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33fde72c12b2d01877b7"
     },
     {
       "id": "law_admin_law_ch4_62",
@@ -809,7 +870,8 @@
         "معيار القيود الاستثنائية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b94d33efcfea020c2ae8"
     },
     {
       "id": "law_admin_law_ch4_63",
@@ -822,7 +884,8 @@
         "معيار السلطة التقديرية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9263118c0da0a0b48ae0"
     },
     {
       "id": "law_admin_law_ch4_64",
@@ -835,7 +898,8 @@
         "عندما يتعلق الأمر بقرارات الضبط الإداري فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f5de23de6d02cb830c5"
     },
     {
       "id": "law_admin_law_ch4_65",
@@ -848,7 +912,8 @@
         "القانون الخاص على القانون الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ffed8cd4edc79b7d43d"
     },
     {
       "id": "law_admin_law_ch4_66",
@@ -861,7 +926,8 @@
         "معيار القانون الخاص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_22012990b527056c384a"
     },
     {
       "id": "law_admin_law_ch4_67",
@@ -874,7 +940,8 @@
         "نشاط الإدارة الذي يهدف للربح."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2afc177657a63f80cf14"
     },
     {
       "id": "law_admin_law_ch4_68",
@@ -887,7 +954,8 @@
         "نظرية الجمع بين المرفق العام والسلطة العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b93c78f4c168889c6396"
     },
     {
       "id": "law_admin_law_ch4_69",
@@ -900,7 +968,8 @@
         "لأنها لم تعترف بامتيازات السلطة العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_771208140402c6a9155f"
     },
     {
       "id": "law_admin_law_ch4_70",
@@ -913,7 +982,8 @@
         "فكرة القيود غير المألوفة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0214a75b785e06b826b5"
     },
     {
       "id": "law_admin_law_ch4_71",
@@ -926,7 +996,8 @@
         "أن يكون متعلقا بالنشاط الاقتصادي الموجه للربح."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d7b4f94ef7221cd7f46e"
     },
     {
       "id": "law_admin_law_ch4_72",
@@ -939,7 +1010,8 @@
         "عندما يهدف النشاط لتحقيق النفع العام من دون استخدام امتيازات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ddcd0017a66043ea5bf3"
     },
     {
       "id": "law_admin_law_ch4_73",
@@ -952,7 +1024,8 @@
         "معيار السلطة التقديرية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2387a875933a1cc12137"
     },
     {
       "id": "law_admin_law_ch4_74",
@@ -965,7 +1038,8 @@
         "الفقيه جيز."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c908e46be4e5f9098b4c"
     },
     {
       "id": "law_admin_law_ch4_75",
@@ -978,7 +1052,8 @@
         "إمكانية خضوعه للقانون المدني."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f58632d97e1c72b33bce"
     },
     {
       "id": "law_admin_law_ch4_76",
@@ -991,7 +1066,8 @@
         "أن جميع أحكامه من صنع القضاء."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_034c87c0c5a35b851714"
     },
     {
       "id": "law_admin_law_ch4_77",
@@ -1004,7 +1080,8 @@
         "القانون الدستوري فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca601dbcfdac79f9f945"
     },
     {
       "id": "law_admin_law_ch4_78",
@@ -1017,7 +1094,8 @@
         "القواعد القانونية التي تحكم السلطات الإدارية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f7d9d2dcbd09e06f154"
     },
     {
       "id": "law_admin_law_ch4_79",
@@ -1030,7 +1108,8 @@
         "المبادئ العامة للقانون."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50cefc0929e86104ead6"
     },
     {
       "id": "law_admin_law_ch4_80",
@@ -1043,7 +1122,8 @@
         "عند إصدار لوائح الضبط الإداري. ً :"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2eae05607fe7b3ef4cf1"
     },
     {
       "id": "law_admin_law_ch4_81",
@@ -1056,7 +1136,8 @@
         "عدم خضوعها للرقابة القضائية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_382cf57ea4decbe8c456"
     },
     {
       "id": "law_admin_law_ch4_82",
@@ -1069,7 +1150,8 @@
         "القانون الدستوري يبحث في علاقة الإدارة بالأفراد فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_afc89792f6e0f0b00b0b"
     },
     {
       "id": "law_admin_law_ch4_83",
@@ -1082,7 +1164,8 @@
         "القيود الاستثنائية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e802145d1ef2a91f9871"
     },
     {
       "id": "law_admin_law_ch4_84",
@@ -1095,7 +1178,8 @@
         "المرافق العامة القاضية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fc9e17c615da1f2fd99a"
     },
     {
       "id": "law_admin_law_ch4_85",
@@ -1108,7 +1192,8 @@
         "الدول التي لا يوجد فيها جهاز إداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37486e1ed56540e384e2"
     },
     {
       "id": "law_admin_law_ch4_86",
@@ -1121,7 +1206,8 @@
         "السلطة العامة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be9294ce79e5ae9c9539"
     },
     {
       "id": "law_admin_law_ch4_87",
@@ -1134,7 +1220,8 @@
         "جعل معيار الشرط غير المألوف هو المعيار المساعد دائما."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f64d39b9cdd4bd695d7"
     },
     {
       "id": "law_admin_law_ch4_88",
@@ -1147,7 +1234,8 @@
         "الاكتفاء بكون المرفق العام عنصرا مهما فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6edc076f42efb3a4759f"
     },
     {
       "id": "law_admin_law_ch4_89",
@@ -1160,7 +1248,8 @@
         "الامتيازات الممنوحة للإدارة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_87e5ffad61e8bceec3c2"
     },
     {
       "id": "law_admin_law_ch4_90",
@@ -1173,7 +1262,8 @@
         "كانت بعيدة عن أي نشاط متعلق بمرفق عام."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_958175d5f15b0c7f54a8"
     }
   ]
 }

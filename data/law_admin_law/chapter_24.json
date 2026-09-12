@@ -16,7 +16,8 @@
         "لا تخضع لأي قيود ما دامت تحقق وفرا ماليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fefe1934251578f6ba19"
     },
     {
       "id": "law_admin_law_ch24_2",
@@ -29,7 +30,8 @@
         "الإعلان عن المناقصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ca3b2ec6d874b1bf75b"
     },
     {
       "id": "law_admin_law_ch24_3",
@@ -42,7 +44,8 @@
         "إبرام العقود بقرار من مجلس الوزراء فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f88c4291625a363f2dd"
     },
     {
       "id": "law_admin_law_ch24_4",
@@ -55,7 +58,8 @@
         "الممارسة المقيدة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_baa6f6681387054da135"
     },
     {
       "id": "law_admin_law_ch24_5",
@@ -68,7 +72,8 @@
         "للإدارة مطلق الحرية في اختيار المتعاقد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c8eb086a7ba9bb5a14a"
     },
     {
       "id": "law_admin_law_ch24_6",
@@ -81,7 +86,8 @@
         "لتقليل عدد الراغبين في التعاقد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_907d88115bb870d12c75"
     },
     {
       "id": "law_admin_law_ch24_7",
@@ -94,7 +100,8 @@
         "الدعوة المباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fec222d8e2ad61898154"
     },
     {
       "id": "law_admin_law_ch24_8",
@@ -107,7 +114,8 @@
         "تحديد مواصفات تفصيلية وجداول الكميات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b8463d184b8bcf808da2"
     },
     {
       "id": "law_admin_law_ch24_9",
@@ -120,7 +128,8 @@
         "تضييق نطاق العقود الإدارية على عقود الأشغال العامة فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07b80f59a699c0daa682"
     },
     {
       "id": "law_admin_law_ch24_10",
@@ -133,7 +142,8 @@
         "تضييق نطاق المنافسة على عدد محدود من الشركات."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89d7e09e0bf5a636c2d7"
     },
     {
       "id": "law_admin_law_ch24_11",
@@ -146,7 +156,8 @@
         "التنفيذ الإداري."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2e885515aae4c9d84fa"
     },
     {
       "id": "law_admin_law_ch24_12",
@@ -159,7 +170,8 @@
         "إعلان حرية المنافسة والمساواة بين المتنافسين."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d91f392e0c0d1cb10d35"
     },
     {
       "id": "law_admin_law_ch24_13",
@@ -172,7 +184,8 @@
         "التنازل عن أملاك الدولة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fcfa25ce54d9fe74bd0a"
     },
     {
       "id": "law_admin_law_ch24_14",
@@ -185,7 +198,8 @@
         "العطاء الواحد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_70d7a1b215dc3c0bd74c"
     },
     {
       "id": "law_admin_law_ch24_15",
@@ -198,7 +212,8 @@
         "الشركة المتقدمة بأقل عطاء."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61d957640de10296f57b"
     },
     {
       "id": "law_admin_law_ch24_16",
@@ -211,7 +226,8 @@
         "قرار العدول عن أسلوب المناقصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7038a9a3276fb66e5df3"
     },
     {
       "id": "law_admin_law_ch24_17",
@@ -224,7 +240,8 @@
         "التنفيذ المباشر."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_554939fb5584ca7da111"
     },
     {
       "id": "law_admin_law_ch24_18",
@@ -237,7 +254,8 @@
         "تقتصر المنافسة على شركات الكونسورتيوم فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_15522fd9d5426c2a8c9d"
     },
     {
       "id": "law_admin_law_ch24_19",
@@ -250,7 +268,8 @@
         "فكرة التنفيذ المباشر للأعمال العامة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_213b7ada0f9fba00cbd5"
     },
     {
       "id": "law_admin_law_ch24_20",
@@ -263,7 +282,8 @@
         "العطاء الواحد والمناقصة المحدودة فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e601a3e50cb90aa4842e"
     },
     {
       "id": "law_admin_law_ch24_21",
@@ -276,7 +296,8 @@
         "لجنة العطاءات."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3f3a412d70573274d12d"
     },
     {
       "id": "law_admin_law_ch24_22",
@@ -289,7 +310,8 @@
         "العدول عن أسلوب المناقصة إلى الدعوة المباشرة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_49fb59566acca6b3960a"
     },
     {
       "id": "law_admin_law_ch24_23",
@@ -302,7 +324,8 @@
         "الكونسورتيوم والشركة الفعلية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b789d94b43d4630c6481"
     },
     {
       "id": "law_admin_law_ch24_24",
@@ -315,7 +338,8 @@
         "لتمكين لجنة. العطاءات من اتخاذ القرار النهائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e0e7cc5cde591d5f093"
     },
     {
       "id": "law_admin_law_ch24_25",
@@ -328,7 +352,8 @@
         "آلية الإرساء."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_72dbba8825d72961d3f5"
     },
     {
       "id": "law_admin_law_ch24_26",
@@ -341,7 +366,8 @@
         "التحقق من صدور الإذن من الجهة المختصة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cf5c4504403d909376cb"
     },
     {
       "id": "law_admin_law_ch24_27",
@@ -354,7 +380,8 @@
         "المزايدة العامة."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ca9a63af82a662d15f5"
     },
     {
       "id": "law_admin_law_ch24_28",
@@ -367,7 +394,8 @@
         "عند الحاجة لتعيين أكفأ الموظفين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2a77877ff55f2d7f19c"
     },
     {
       "id": "law_admin_law_ch24_29",
@@ -380,7 +408,8 @@
         "التقييد على حرية الإدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2dccd502abca4ce8b461"
     },
     {
       "id": "law_admin_law_ch24_30",
@@ -393,7 +422,8 @@
         "اختيار المتعاقد الأكفأ."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ac02f3f18e7fa273420b"
     },
     {
       "id": "law_admin_law_ch24_31",
@@ -406,7 +436,8 @@
         "الجهة المانحة للامتياز."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04755ba4277fb9acb658"
     },
     {
       "id": "law_admin_law_ch24_32",
@@ -419,7 +450,8 @@
         "لتبرير العدول عن أسلوب المناقصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_15bf7c3ee20d30c23c59"
     },
     {
       "id": "law_admin_law_ch24_33",
@@ -432,7 +464,8 @@
         "تحقيق أكبر وفر مالي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bbd3a8933c9fe27597e9"
     },
     {
       "id": "law_admin_law_ch24_34",
@@ -445,7 +478,8 @@
         "يجوز إذا كان المتعاقد أجنبيا."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0a57a529a8aee1611a8"
     },
     {
       "id": "law_admin_law_ch24_35",
@@ -458,7 +492,8 @@
         "فكرة التقييد على حرية الإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_14b14247aea5353ce26c"
     },
     {
       "id": "law_admin_law_ch24_36",
@@ -471,7 +506,8 @@
         "فكرة عدم التدخل في تسعير المنتجات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f9e4db5ef313b2ed55b"
     },
     {
       "id": "law_admin_law_ch24_37",
@@ -484,7 +520,8 @@
         "عدم التدخل في تحديد الأرباح."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d0642f1a636f13bc95a3"
     },
     {
       "id": "law_admin_law_ch24_38",
@@ -497,7 +534,8 @@
         "العطاء الواحد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2be6f04ccaa4e69bc0d0"
     },
     {
       "id": "law_admin_law_ch24_39",
@@ -510,7 +548,8 @@
         "عدم جواز إلغاء الترخيص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67b96e8a9f7a0807c334"
     },
     {
       "id": "law_admin_law_ch24_40",
@@ -523,7 +562,8 @@
         "يؤدي إلى العدول عن أسلوب التعاقد."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4832901ec03a1dcb36c2"
     },
     {
       "id": "law_admin_law_ch24_41",
@@ -536,7 +576,8 @@
         "التنفيذ المباشر."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_47377b280f8810115b2d"
     },
     {
       "id": "law_admin_law_ch24_42",
@@ -549,7 +590,8 @@
         "مبدأ التنفيذ أمانة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ba45bd8b8098ad033048"
     },
     {
       "id": "law_admin_law_ch24_43",
@@ -562,7 +604,8 @@
         "اقتصار المنافسة على المقاولين المحليين فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3a2b70e530414c473e46"
     },
     {
       "id": "law_admin_law_ch24_44",
@@ -575,7 +618,8 @@
         "مبدأ الإرساء النهائي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e86a6f4eeb74efe8f86b"
     },
     {
       "id": "law_admin_law_ch24_45",
@@ -588,7 +632,8 @@
         "ضرورة معاملة جميع المتنافسين بنفس الطريقة من دون تفريق مطلقا."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e14619abc94d8975c49"
     },
     {
       "id": "law_admin_law_ch24_46",
@@ -601,7 +646,8 @@
         "20.%"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6d3b6bb9c2750268236a"
     },
     {
       "id": "law_admin_law_ch24_47",
@@ -614,7 +660,8 @@
         "المناقصة الفردية والجماعية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c10093bed272ce51fe54"
     },
     {
       "id": "law_admin_law_ch24_48",
@@ -627,7 +674,8 @@
         "الممارسة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8efc93989ba948d2ad88"
     },
     {
       "id": "law_admin_law_ch24_49",
@@ -640,7 +688,8 @@
         "50.مليون دينار."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bf29cefa7c4558de9978"
     },
     {
       "id": "law_admin_law_ch24_50",
@@ -653,7 +702,8 @@
         "الإعلان في المقر الإداري فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64f6458c355e915beae7"
     },
     {
       "id": "law_admin_law_ch24_51",
@@ -666,7 +716,8 @@
         "الدعوة المباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6a77b4943ffb1432e701"
     },
     {
       "id": "law_admin_law_ch24_52",
@@ -679,7 +730,8 @@
         "أن تكون لديهم خبرة في عقود القانون الخاص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff25bbe247b6728e0a47"
     },
     {
       "id": "law_admin_law_ch24_53",
@@ -692,7 +744,8 @@
         "شرط الإعلان عن المناقصة في وسائل الإعلام العالمية فقط.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6bb4d4f9a09d2ff01600"
     },
     {
       "id": "law_admin_law_ch24_54",
@@ -705,7 +758,8 @@
         "عند إعفاء الشركات الوطنية من شرط القدرة المالية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_39e09a417a4f81ea31ac"
     },
     {
       "id": "law_admin_law_ch24_55",
@@ -718,7 +772,8 @@
         "عقود الدعوة المباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_da344eb625403a432370"
     },
     {
       "id": "law_admin_law_ch24_56",
@@ -731,7 +786,8 @@
         "التكليف المباشر."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1d108991bf47a486df1b"
     },
     {
       "id": "law_admin_law_ch24_57",
@@ -744,7 +800,8 @@
         "خضوعه لأحكام المناقصة العامة بالكامل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ae726b40986e409b1a0"
     },
     {
       "id": "law_admin_law_ch24_58",
@@ -757,7 +814,8 @@
         "طابع التقييد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1afbac25de021542234"
     },
     {
       "id": "law_admin_law_ch24_59",
@@ -770,7 +828,8 @@
         "100 مليون دينار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36492e5901a1eda1f94d"
     },
     {
       "id": "law_admin_law_ch24_60",
@@ -783,7 +842,8 @@
         "المناقصة المحدودة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3b3608b19bd3895da0b6"
     },
     {
       "id": "law_admin_law_ch24_61",
@@ -796,7 +856,8 @@
         "على المقاولين المحليين فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_16ecdd1344dbf3e298e6"
     },
     {
       "id": "law_admin_law_ch24_62",
@@ -809,7 +870,8 @@
         "صلاحية إرساء العقد على أعلى عطاء سعرا."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53699c04741796c9a50d"
     },
     {
       "id": "law_admin_law_ch24_63",
@@ -822,7 +884,8 @@
         "مرحلة تزويد وثائق المناقصة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59975e5bd06c06828288"
     },
     {
       "id": "law_admin_law_ch24_64",
@@ -835,7 +898,8 @@
         "اختيار الأقل سعرا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_22359f7d3f8a2587a477"
     },
     {
       "id": "law_admin_law_ch24_65",
@@ -848,7 +912,8 @@
         "الممارسة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_78d42faafc354edfbd2e"
     },
     {
       "id": "law_admin_law_ch24_66",
@@ -861,7 +926,8 @@
         "الدعوة المباشرة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_42f383d4164c75533868"
     },
     {
       "id": "law_admin_law_ch24_67",
@@ -874,7 +940,8 @@
         "عقود الإيجار طويلة الأمد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ece74174ae3d25c7536b"
     },
     {
       "id": "law_admin_law_ch24_68",
@@ -887,7 +954,8 @@
         "الدعوة المباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6cebc2c476c034fada36"
     },
     {
       "id": "law_admin_law_ch24_69",
@@ -900,7 +968,8 @@
         "عن طريق استحصال الموافقات الأصولية فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9b0dbd9829e661e49a02"
     },
     {
       "id": "law_admin_law_ch24_70",
@@ -913,7 +982,8 @@
         "بوسائل الإعلان الأخرى فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c27d083a9d541cc2c20e"
     },
     {
       "id": "law_admin_law_ch24_71",
@@ -926,7 +996,8 @@
         "ست مراحل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f02b5ef93ddf03c3d0fa"
     },
     {
       "id": "law_admin_law_ch24_72",
@@ -939,7 +1010,8 @@
         "دراسة الجدوى."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c5fba30a08edd3e9507b"
     },
     {
       "id": "law_admin_law_ch24_73",
@@ -952,7 +1024,8 @@
         "فض المظاريف، البت فيها، إبرام العقد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_126f4eb9c437c0318227"
     },
     {
       "id": "law_admin_law_ch24_74",
@@ -965,7 +1038,8 @@
         "عدم وجود أي عمل غير مدرج في الميزانية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5a6d99e82ccf421057cd"
     },
     {
       "id": "law_admin_law_ch24_75",
@@ -978,7 +1052,8 @@
         "العقود التي تقل قيمتها عن 25 مليون دينار."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_afe150b4f5447c5381f4"
     },
     {
       "id": "law_admin_law_ch24_76",
@@ -991,7 +1066,8 @@
         "يصحح بصدور إذن لاحق"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f45cfed1e616659295f"
     },
     {
       "id": "law_admin_law_ch24_77",
@@ -1004,7 +1080,8 @@
         "لأن العقد يبرم باسم السلطة الإدارية العليا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6bb9eadbde7ede1d917a"
     },
     {
       "id": "law_admin_law_ch24_78",
@@ -1017,7 +1094,8 @@
         "تصحيح العقد بصدور إذن لاحق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b9b0ce2bef6b9c470e1"
     },
     {
       "id": "law_admin_law_ch24_79",
@@ -1030,7 +1108,8 @@
         "تمديد مدة قبول العطاءات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_930665478003f1912e79"
     },
     {
       "id": "law_admin_law_ch24_80",
@@ -1043,7 +1122,8 @@
         "تحديد عدد المناقصين الراغبين في التعاقد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6fdbb84d140c3d0be42d"
     },
     {
       "id": "law_admin_law_ch24_81",
@@ -1056,7 +1136,8 @@
         "عدم جواز تصحيح العقد بصدور إذن لاحق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_256d44fb90c25f6c9c0c"
     },
     {
       "id": "law_admin_law_ch24_82",
@@ -1069,7 +1150,8 @@
         "لأنها تهدف لحماية الأفراد فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_059be7a37d013da57cd7"
     },
     {
       "id": "law_admin_law_ch24_83",
@@ -1082,7 +1164,8 @@
         "فض المظاريف والبت فيها."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9b5a1e5f199fa5ecadeb"
     },
     {
       "id": "law_admin_law_ch24_84",
@@ -1095,7 +1178,8 @@
         "يعد عقد وكالة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b554516103e0d30b6e76"
     },
     {
       "id": "law_admin_law_ch24_85",
@@ -1108,7 +1192,8 @@
         "أساس مبدأ حرية المنافسة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d738daf268ee56c5cd21"
     },
     {
       "id": "law_admin_law_ch24_86",
@@ -1121,7 +1206,8 @@
         "دراسة الجدوى"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_28a990e0a59867894b6c"
     },
     {
       "id": "law_admin_law_ch24_87",
@@ -1134,7 +1220,8 @@
         "خلال مدة 10 أيام من الإعلان."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1668419f9a8ccc6a0b31"
     },
     {
       "id": "law_admin_law_ch24_88",
@@ -1147,7 +1234,8 @@
         "إذا لم يطلب تمديد مدة القبول أغلبية الشركات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_65512ecab42a9e9b6cf2"
     },
     {
       "id": "law_admin_law_ch24_89",
@@ -1160,7 +1248,8 @@
         "محكمة القضاء الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4c6eb11d2100f865d8b8"
     },
     {
       "id": "law_admin_law_ch24_90",
@@ -1173,7 +1262,8 @@
         "الحاجة إلى توفير الاعتماد المالي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_57661dd287f5ff74c9f9"
     },
     {
       "id": "law_admin_law_ch24_91",
@@ -1186,7 +1276,8 @@
         "معلومات تتعلق بآراء الفقه والقضاء في المناقصات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eed362f2230180f9583e"
     },
     {
       "id": "law_admin_law_ch24_92",
@@ -1199,7 +1290,8 @@
         "موافقة وزارة التجارة على المشروع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_613b7e548df0224dbfca"
     },
     {
       "id": "law_admin_law_ch24_93",
@@ -1212,7 +1304,8 @@
         "قائمة بالأسعار التي يقترح الراغب بالتعاقد التعاقد بها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ed4bbf6928ca5dd4d3ea"
     },
     {
       "id": "law_admin_law_ch24_94",
@@ -1225,7 +1318,8 @@
         "أنه غير محروم من التعامل مع الجهات الإدارية أو مستبعد من التقدم للتعامل معها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d42a419de285e7116bfa"
     },
     {
       "id": "law_admin_law_ch24_95",
@@ -1238,7 +1332,8 @@
         "بيان طريقة وأسلوب إنجاز المشروع"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0436a704339e3d2b7df3"
     },
     {
       "id": "law_admin_law_ch24_96",
@@ -1251,7 +1346,8 @@
         "وثيقة تأمين صحي شاملة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a61ad083ff32af693157"
     },
     {
       "id": "law_admin_law_ch24_97",
@@ -1264,7 +1360,8 @@
         "اعتماد المناقصة من الجهة المختصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_399e05c73a99c4356376"
     },
     {
       "id": "law_admin_law_ch24_98",
@@ -1277,7 +1374,8 @@
         "إذا تعهد صاحب العطاء بتقديم التأمين لاحقا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ece95e3669127408b8c5"
     },
     {
       "id": "law_admin_law_ch24_99",
@@ -1290,7 +1388,8 @@
         "أنه لم يسبق أن أدين بجناية أو جنحة مخلة بالشرف أو الأمانة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_071116698146dd33acca"
     },
     {
       "id": "law_admin_law_ch24_100",
@@ -1303,7 +1402,8 @@
         "القواعد العامة في العقود الإدارية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_03dfcab342b595d4e885"
     },
     {
       "id": "law_admin_law_ch24_101",
@@ -1316,7 +1416,8 @@
         "التزام المتقدم يبدأ من لحظة توقيع العقد النهائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2783e02af97c60f094c9"
     },
     {
       "id": "law_admin_law_ch24_102",
@@ -1329,7 +1430,8 @@
         "عند تقديمهم تحفظات على العطاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8b194a1cb7f067154a33"
     },
     {
       "id": "law_admin_law_ch24_103",
@@ -1342,7 +1444,8 @@
         "لمدة ستة أشهر من تاريخ إرساء المناقصة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c851e5398416106b752d"
     },
     {
       "id": "law_admin_law_ch24_104",
@@ -1355,7 +1458,8 @@
         "إبطال المناقصة إذا رأى أنها لا تخدم المصلحة العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35412ac15b03fe61ab85"
     },
     {
       "id": "law_admin_law_ch24_105",
@@ -1368,7 +1472,8 @@
         "إرساء المناقصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c619c239e006d058486e"
     },
     {
       "id": "law_admin_law_ch24_106",
@@ -1381,7 +1486,8 @@
         "في تمام الساعة الثالثة بعد الظهر"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_85b1f0018024f29f790b"
     },
     {
       "id": "law_admin_law_ch24_107",
@@ -1394,7 +1500,8 @@
         "إرسال إشعار لصاحب العطاء الأقل سعرا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67088431ef8a38cf41b1"
     },
     {
       "id": "law_admin_law_ch24_108",
@@ -1407,7 +1514,8 @@
         "على صاحب العطاء الذي قام بأعمال مماثلة أكثر"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_57156ec644d6d49dbf0b"
     },
     {
       "id": "law_admin_law_ch24_109",
@@ -1420,7 +1528,8 @@
         "إذا لم يتم تقديم تأمين ابتدائي مع العطاء الأقل سعرا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_442e4748359910428990"
     },
     {
       "id": "law_admin_law_ch24_110",
@@ -1433,7 +1542,8 @@
         "لا يشترط النظر إلى فارق الأسعار في هذه الحالة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c63403a9e0595a0c0991"
     },
     {
       "id": "law_admin_law_ch24_111",
@@ -1446,7 +1556,8 @@
         "رفض العطاء وإعادة طرح المناقصة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_52d9366615dedeb2a6ab"
     },
     {
       "id": "law_admin_law_ch24_112",
@@ -1459,7 +1570,8 @@
         "إلزام المتقدمين بتقديم أسعار جديدة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5add764eb842d014c1f4"
     },
     {
       "id": "law_admin_law_ch24_113",
@@ -1472,7 +1584,8 @@
         "تعديل شروط العطاءات الفائزة بالإرادة المنفردة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad332384a61e4eadf9c3"
     },
     {
       "id": "law_admin_law_ch24_114",
@@ -1485,7 +1598,8 @@
         "قرار نهائي لا يجوز العدول عنه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_46f041ae8419f1ce8794"
     },
     {
       "id": "law_admin_law_ch24_115",
@@ -1498,7 +1612,8 @@
         "المصرف الذي قدم خطاب الضمان"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d54b91c7fd022f09dce6"
     },
     {
       "id": "law_admin_law_ch24_116",
@@ -1511,7 +1626,8 @@
         "إذا لم يلتزم صاحب العطاء الفائز بإحضار التأمين النهائي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_24a351729a2a603e4a2d"
     },
     {
       "id": "law_admin_law_ch24_117",
@@ -1524,7 +1640,8 @@
         "العقود الإدارية تلتزم فيها الإدارة بقاعدة \"العقد شريعة المتعاقدين\" بشكل مطلق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33b4d7cc2771d9464cd7"
     },
     {
       "id": "law_admin_law_ch24_118",
@@ -1537,7 +1654,8 @@
         "مصلحة الرقابة والتوجيه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d64f46eda9f56b13063b"
     },
     {
       "id": "law_admin_law_ch24_119",
@@ -1550,7 +1668,8 @@
         "سلطة إلغاء التأمين النهائي بعد الإبرام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd2473cf5a719a366f5d"
     },
     {
       "id": "law_admin_law_ch24_120",
@@ -1563,7 +1682,8 @@
         "إصدار أوامر بتغيير طبيعة العقد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33f89dfa3ff46751c064"
     },
     {
       "id": "law_admin_law_ch24_121",
@@ -1576,7 +1696,8 @@
         "عدم استخدامها لتحقيق أغراض خاصة لا تتعلق بالمصلحة العامة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ece84d2c1ae739a4c365"
     },
     {
       "id": "law_admin_law_ch24_122",
@@ -1589,7 +1710,8 @@
         "سلطة فحص العطاءات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75213b4188d779e3e598"
     },
     {
       "id": "law_admin_law_ch24_123",
@@ -1602,7 +1724,8 @@
         "رغبة الإدارة في تحقيق إيرادات مالية من الغرامات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e4cb2517da2909e4a87d"
     },
     {
       "id": "law_admin_law_ch24_124",
@@ -1615,7 +1738,8 @@
         "بمجرد انتهاء أعمال اللجنة المركزية للعطاءات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8e4fb8b0c68a142b9dcd"
     },
     {
       "id": "law_admin_law_ch24_125",
@@ -1628,7 +1752,8 @@
         "مقارنة الأسعار مع الميزانية التقديرية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64afd59660f65e20cb0b"
     }
   ]
 }

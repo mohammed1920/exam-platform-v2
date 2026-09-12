@@ -16,7 +16,8 @@
         "القرارات التنظيمية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_adfea28e618583e230d6"
     },
     {
       "id": "law_admin_law_ch19_2",
@@ -29,7 +30,8 @@
         "قرار التفسير لقرار سابق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d428ba413ed6f12d9df4"
     },
     {
       "id": "law_admin_law_ch19_3",
@@ -42,7 +44,8 @@
         "القرارات الكاشفة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f4c8b0044cc666aa464"
     },
     {
       "id": "law_admin_law_ch19_4",
@@ -55,7 +58,8 @@
         "قرار سحب ترخيص"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91ca35eeeaf0add48f57"
     },
     {
       "id": "law_admin_law_ch19_5",
@@ -68,7 +72,8 @@
         "إجراء المناقصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_27474577ee7abb2dfd4b"
     },
     {
       "id": "law_admin_law_ch19_6",
@@ -81,7 +86,8 @@
         "القرارات التنظيمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3234c971d6fbf4d6e74a"
     },
     {
       "id": "law_admin_law_ch19_7",
@@ -94,7 +100,8 @@
         "قرار إرساء المزاد"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f068456f17fc3ccb0d8d"
     },
     {
       "id": "law_admin_law_ch19_8",
@@ -107,7 +114,8 @@
         "القرارات التنظيمية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f34e343e12eb7aa3e4e"
     },
     {
       "id": "law_admin_law_ch19_9",
@@ -120,7 +128,8 @@
         "قرار إرساء المناقصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c44f153e15f361f3aeb5"
     },
     {
       "id": "law_admin_law_ch19_10",
@@ -133,7 +142,8 @@
         "تأجيل سريان الآثار القانونية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ece1f816682b72527115"
     },
     {
       "id": "law_admin_law_ch19_11",
@@ -146,7 +156,8 @@
         "عند إلغاء القرار"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_775df29aa5ec432c8446"
     },
     {
       "id": "law_admin_law_ch19_12",
@@ -159,7 +170,8 @@
         "عند سحب القرار من الإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b98ec4c05f87f8ae18d1"
     },
     {
       "id": "law_admin_law_ch19_13",
@@ -172,7 +184,8 @@
         "يجب أن يصدر قرار السحب عن سلطة قضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_051d65422eb4f842e8d4"
     },
     {
       "id": "law_admin_law_ch19_14",
@@ -185,7 +198,8 @@
         "الأعمال المادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_faf4f3f9f369e85e8e62"
     },
     {
       "id": "law_admin_law_ch19_15",
@@ -198,7 +212,8 @@
         "أنها تخضع لرقابة الإدارة العليا فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_428da8741690db1fcaae"
     },
     {
       "id": "law_admin_law_ch19_16",
@@ -211,7 +226,8 @@
         "القرارات النافذة والقرارات غير النافذة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e3d131193129e0d95ab"
     },
     {
       "id": "law_admin_law_ch19_17",
@@ -224,7 +240,8 @@
         "الفقه الإنجليزي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81a6ac3797794d133caf"
     },
     {
       "id": "law_admin_law_ch19_18",
@@ -237,7 +254,8 @@
         "البسيطة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0a0505265c6521611f7"
     },
     {
       "id": "law_admin_law_ch19_19",
@@ -250,7 +268,8 @@
         "المعيار الزمني (وقت صدور القرار)"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab3e579671a4cf49c73b"
     },
     {
       "id": "law_admin_law_ch19_20",
@@ -263,7 +282,8 @@
         "القرارات التي تصدر بالإرادة المنفردة للإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0e66c8d99aaf423bd11a"
     },
     {
       "id": "law_admin_law_ch19_21",
@@ -276,7 +296,8 @@
         "قرارات نزع الملكية للمنفعة العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d8ef761e9cc7965ad8f7"
     },
     {
       "id": "law_admin_law_ch19_22",
@@ -289,7 +310,8 @@
         "قرارات الجزاءات التأديبية البسيطة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_428a9478bc3ef7c39dca"
     },
     {
       "id": "law_admin_law_ch19_23",
@@ -302,7 +324,8 @@
         "حصر أعمال السيادة في القرارات المتعلقة بتنظيم القضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a58d22c25e370272c05b"
     },
     {
       "id": "law_admin_law_ch19_24",
@@ -315,7 +338,8 @@
         "القرارات الصادرة بتنظيم المرور في الطرق العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a0aa8b74e7a1646495a0"
     },
     {
       "id": "law_admin_law_ch19_25",
@@ -328,7 +352,8 @@
         "القرارات الصادرة بنزع الملكية للمنفعة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8bb8588a6623914b0ef3"
     },
     {
       "id": "law_admin_law_ch19_26",
@@ -341,7 +366,8 @@
         "كونها قرارات بسيطة غير مرتبطة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af825d020f83fa940961"
     },
     {
       "id": "law_admin_law_ch19_27",
@@ -354,7 +380,8 @@
         "تحديد مدى عمومية القرار"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad812956f95ecee7f584"
     },
     {
       "id": "law_admin_law_ch19_28",
@@ -367,7 +394,8 @@
         "مبدأ نسبية القرارات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_388d116623ec82e27192"
     },
     {
       "id": "law_admin_law_ch19_29",
@@ -380,7 +408,8 @@
         "نظام القضاء الدستوري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_88ca76a97eff0a1f7b21"
     },
     {
       "id": "law_admin_law_ch19_30",
@@ -393,7 +422,8 @@
         "يقدم التعويض فقط من دون النظر في إلغاء القرار"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48cecfeff745b1026aa8"
     },
     {
       "id": "law_admin_law_ch19_31",
@@ -406,7 +436,8 @@
         "سويسرا وبلجيكا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f094ddf2505d4353ac0"
     },
     {
       "id": "law_admin_law_ch19_32",
@@ -419,7 +450,8 @@
         "نظام القضاء المختلط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0049516efc65ff6e3a03"
     },
     {
       "id": "law_admin_law_ch19_33",
@@ -432,7 +464,8 @@
         "إلغاء جميع القرارات الإدارية المشوبة بعيب"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_972f3a987bb967634853"
     },
     {
       "id": "law_admin_law_ch19_34",
@@ -445,7 +478,8 @@
         "العراق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_097162ad6e7abff72376"
     },
     {
       "id": "law_admin_law_ch19_35",
@@ -458,7 +492,8 @@
         "يوحد الاختصاصات القضائية في جهة واحدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d12f82840b3597df2a9a"
     },
     {
       "id": "law_admin_law_ch19_36",
@@ -471,7 +506,8 @@
         "قانون المرافعات المدنية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e66cbd7f67923ca1f84"
     },
     {
       "id": "law_admin_law_ch19_37",
@@ -484,7 +520,8 @@
         "عيب الشكل"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cfeacd9b88ee6873f2b7"
     },
     {
       "id": "law_admin_law_ch19_38",
@@ -497,7 +534,8 @@
         "المعيار الإجرائي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35b317a569ffa3c5238c"
     },
     {
       "id": "law_admin_law_ch19_39",
@@ -510,7 +548,8 @@
         "لأنه يتفق مع مبدأ المشروعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_499f5bb1951a8150ef17"
     },
     {
       "id": "law_admin_law_ch19_40",
@@ -523,7 +562,8 @@
         "المعيار الإجرائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7209015caff62df422c4"
     },
     {
       "id": "law_admin_law_ch19_41",
@@ -536,7 +576,8 @@
         "القرارات الخاصة بانتخاب المجالس النيابية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a9464203649b9528e42"
     },
     {
       "id": "law_admin_law_ch19_42",
@@ -549,7 +590,8 @@
         "المعيار الغائي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ff73235a6fa0b5f7024"
     },
     {
       "id": "law_admin_law_ch19_43",
@@ -562,7 +604,8 @@
         "القرارات الصادرة بنزع الملكية للمنفعة العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff82e3d2eb36dd641e85"
     },
     {
       "id": "law_admin_law_ch19_44",
@@ -575,7 +618,8 @@
         "المجلس الأعلى للدولة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ceb967892f93cd019a88"
     },
     {
       "id": "law_admin_law_ch19_45",
@@ -588,7 +632,8 @@
         "يعطي القضاء العادي سلطة إلغاء القرارات الإدارية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ed5124c953c0ec146061"
     },
     {
       "id": "law_admin_law_ch19_46",
@@ -601,7 +646,8 @@
         "المعيار الإجرائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc1d3e4397328802de32"
     },
     {
       "id": "law_admin_law_ch19_47",
@@ -614,7 +660,8 @@
         "تحويلها إلى أعمال سيادة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3835cf7b7ef26ffbefd9"
     },
     {
       "id": "law_admin_law_ch19_48",
@@ -627,7 +674,8 @@
         "تحديد النطاق الزمني للقرار"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ff751e73e7185a436b5c"
     },
     {
       "id": "law_admin_law_ch19_49",
@@ -640,7 +688,8 @@
         "مجلس الوزراء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7388a18b5db4b179b965"
     },
     {
       "id": "law_admin_law_ch19_50",
@@ -653,7 +702,8 @@
         "القرارات المتعلقة بالانتخابات النيابية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b61673a03d44f5f3543"
     },
     {
       "id": "law_admin_law_ch19_51",
@@ -666,7 +716,8 @@
         "تفسير القرارات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2841ba196780e7811c37"
     },
     {
       "id": "law_admin_law_ch19_52",
@@ -679,7 +730,8 @@
         "قرار نزع الملكية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1f241583afd2869fc8f3"
     },
     {
       "id": "law_admin_law_ch19_53",
@@ -692,7 +744,8 @@
         "الحصر في التعويض فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_238bf00e14573fd88bec"
     },
     {
       "id": "law_admin_law_ch19_54",
@@ -705,7 +758,8 @@
         "نظام القضاء المختلط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c4ce626ef169ffcb02f4"
     },
     {
       "id": "law_admin_law_ch19_55",
@@ -718,7 +772,8 @@
         "مبدأ استمرارية المرافق العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef28bf8a07f4915b2a9a"
     },
     {
       "id": "law_admin_law_ch19_56",
@@ -731,7 +786,8 @@
         "الأعمال المادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e15e96d53313472d324"
     },
     {
       "id": "law_admin_law_ch19_57",
@@ -744,7 +800,8 @@
         "قرارات الضبط الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_623e75819de614764487"
     },
     {
       "id": "law_admin_law_ch19_58",
@@ -757,7 +814,8 @@
         "تعزيز مبدأ المشروعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_307ae2f87c1f4a41e28a"
     },
     {
       "id": "law_admin_law_ch19_59",
@@ -770,7 +828,8 @@
         "قرارات الندب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0208c98578ada76e5836"
     },
     {
       "id": "law_admin_law_ch19_60",
@@ -783,7 +842,8 @@
         "القرارات البسيطة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cef0f38c918cc05f0b03"
     },
     {
       "id": "law_admin_law_ch19_61",
@@ -796,7 +856,8 @@
         "القرارات المتعلقة بالتنظيم الداخلي للمرفق"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63321d8baae61ff387a4"
     },
     {
       "id": "law_admin_law_ch19_62",
@@ -809,7 +870,8 @@
         "اللجوء إلى الإجراءات الداخلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8ff2affb1d0a4522bc0a"
     },
     {
       "id": "law_admin_law_ch19_63",
@@ -822,7 +884,8 @@
         "القرارات الصادرة من الإدارة المحلية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81317fc1bf53cc0be2a7"
     },
     {
       "id": "law_admin_law_ch19_64",
@@ -835,7 +898,8 @@
         "القرارات النافذة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b73179f6c7cbc1939a66"
     },
     {
       "id": "law_admin_law_ch19_65",
@@ -848,7 +912,8 @@
         "لأنها قرارات صادرة عن سلطة قضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5041eafb89d1ca066387"
     },
     {
       "id": "law_admin_law_ch19_66",
@@ -861,7 +926,8 @@
         "كونها أعمال سيادة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fae277daebaa8aa9cd7d"
     },
     {
       "id": "law_admin_law_ch19_67",
@@ -874,7 +940,8 @@
         "كونها غير خاضعة لرقابة القضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c6c2dd22b9b59f51ba60"
     },
     {
       "id": "law_admin_law_ch19_68",
@@ -887,7 +954,8 @@
         "لأنها أعمال سيادة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4003049b4e16aa445086"
     },
     {
       "id": "law_admin_law_ch19_69",
@@ -900,7 +968,8 @@
         "لا يجوز له الطعن فيها مطلقا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6f12620f706da3a2ed52"
     },
     {
       "id": "law_admin_law_ch19_70",
@@ -913,7 +982,8 @@
         "كونه قرارا مركبا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c6eff4964bdaeeb6785"
     },
     {
       "id": "law_admin_law_ch19_71",
@@ -926,7 +996,8 @@
         "أن يكون ً صادرا عن سلطة قضائية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_908c0593534e8bf84b2b"
     },
     {
       "id": "law_admin_law_ch19_72",
@@ -939,7 +1010,8 @@
         "لا يمكن إلغاؤه إلا بقرار قضائي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f764a08904ae069e15e"
     },
     {
       "id": "law_admin_law_ch19_73",
@@ -952,7 +1024,8 @@
         "القرارات المركبة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3a38f8623d6f065265b"
     },
     {
       "id": "law_admin_law_ch19_74",
@@ -965,7 +1038,8 @@
         "القرار المنشئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cc55fab82cc41729d038"
     },
     {
       "id": "law_admin_law_ch19_75",
@@ -978,7 +1052,8 @@
         "القرار المنشئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6a955b1b347d2683aeef"
     },
     {
       "id": "law_admin_law_ch19_76",
@@ -991,7 +1066,8 @@
         "قرار نزع الملكية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_61d73d086425c138696e"
     },
     {
       "id": "law_admin_law_ch19_77",
@@ -1004,7 +1080,8 @@
         "اللوائح التنظيمية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3077f8c49bf6925847c"
     },
     {
       "id": "law_admin_law_ch19_78",
@@ -1017,7 +1094,8 @@
         "القرار المركب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5d5ea7a0ffd553520e37"
     },
     {
       "id": "law_admin_law_ch19_79",
@@ -1030,7 +1108,8 @@
         "بقرار مركب"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_360ef6198d2e2c7be5df"
     },
     {
       "id": "law_admin_law_ch19_80",
@@ -1043,7 +1122,8 @@
         "القرارات البسيطة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08c95c246c151604a262"
     },
     {
       "id": "law_admin_law_ch19_81",
@@ -1056,7 +1136,8 @@
         "القرارات النافذة في حق الأفراد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_03dd84bd33698e6face0"
     },
     {
       "id": "law_admin_law_ch19_82",
@@ -1069,7 +1150,8 @@
         "القرارات التنظيمية تكون سلبية دائما"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_20beba231c0246a2a4e7"
     },
     {
       "id": "law_admin_law_ch19_83",
@@ -1082,7 +1164,8 @@
         "القاعدة القانونية في التشريع العادي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_395c2b61d0c2fc7d1b85"
     },
     {
       "id": "law_admin_law_ch19_84",
@@ -1095,7 +1178,8 @@
         "أن تخضع لرقابة القضاء العادي فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_056587bd2dcc28ed2b3b"
     },
     {
       "id": "law_admin_law_ch19_85",
@@ -1108,7 +1192,8 @@
         "إلغاؤه يكون بقرار تنظيمي أعلى"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0e53f0efb02559029168"
     },
     {
       "id": "law_admin_law_ch19_86",
@@ -1121,7 +1206,8 @@
         "أن تكون قواعدها أقل ثباتا من القانون"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a9107ff041b55965ac5"
     },
     {
       "id": "law_admin_law_ch19_87",
@@ -1134,7 +1220,8 @@
         "هيئة النشر"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9c2970617fb8dda443ca"
     },
     {
       "id": "law_admin_law_ch19_88",
@@ -1147,7 +1234,8 @@
         "الأعمال المادية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1b6e06435acb2b9b1c93"
     },
     {
       "id": "law_admin_law_ch19_89",
@@ -1160,7 +1248,8 @@
         "القرار المنشئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3c8a37d9111af5daa25d"
     },
     {
       "id": "law_admin_law_ch19_90",
@@ -1173,7 +1262,8 @@
         "يظل نافذا لكونه تشريعا ثانويا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89df222100cc3dd13739"
     },
     {
       "id": "law_admin_law_ch19_91",
@@ -1186,7 +1276,8 @@
         "أن يكون قرارا بسيطا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b536d30de1252b9865ab"
     },
     {
       "id": "law_admin_law_ch19_92",
@@ -1199,7 +1290,8 @@
         "القرار البسيط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c3b8e8efb51714366ea"
     },
     {
       "id": "law_admin_law_ch19_93",
@@ -1212,7 +1304,8 @@
         "لا يوجد تدرج بين القرارات التنظيمية والقوانين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12d50abac4275f1b912a"
     },
     {
       "id": "law_admin_law_ch19_94",
@@ -1225,7 +1318,8 @@
         "الأثر القانوني الكاشف فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2cb16823f733129122fb"
     },
     {
       "id": "law_admin_law_ch19_95",
@@ -1238,7 +1332,8 @@
         "عندما تكون صادرة عن سلطة مقيدة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d0aca7d2d3220cdfd33f"
     },
     {
       "id": "law_admin_law_ch19_96",
@@ -1251,7 +1346,8 @@
         "الحقوق المحتملة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_84d90b7233ec76217054"
     },
     {
       "id": "law_admin_law_ch19_97",
@@ -1264,7 +1360,8 @@
         "إذا كان لا يترتب عليه ضرر للغير"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3dc8ebbe089fb1efc329"
     },
     {
       "id": "law_admin_law_ch19_98",
@@ -1277,7 +1374,8 @@
         "مبدأ الوحدة القانونية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ba0bdd5776da2ea580c3"
     },
     {
       "id": "law_admin_law_ch19_99",
@@ -1290,7 +1388,8 @@
         "لا يجوز إلغاؤه إلا بقرار تنظيمي"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a9fc9a03e647e83ae1ae"
     },
     {
       "id": "law_admin_law_ch19_100",
@@ -1303,7 +1402,8 @@
         "خمسة عشر يوما من تاريخ النشر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a774a0baadd3ce62fc84"
     },
     {
       "id": "law_admin_law_ch19_101",
@@ -1316,7 +1416,8 @@
         "القرار المنشئ غير المشروع"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a3a95ae628342214f5b2"
     },
     {
       "id": "law_admin_law_ch19_102",
@@ -1329,7 +1430,8 @@
         "القرارات المتعلقة بالتنظيم الداخلي للسلطة القضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9c31e18db58ac9b0c06e"
     },
     {
       "id": "law_admin_law_ch19_103",
@@ -1342,7 +1444,8 @@
         "القرارات الفردية النافذة في حق الأفراد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e7fd14d75a6c2944f14c"
     },
     {
       "id": "law_admin_law_ch19_104",
@@ -1355,7 +1458,8 @@
         "أن يكون غير نافذ في حق الأفراد"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_532247a891266b303e50"
     },
     {
       "id": "law_admin_law_ch19_105",
@@ -1368,7 +1472,8 @@
         "إذا تم الطعن فيه أمام القضاء الإداري"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_192b393568538f86a88c"
     },
     {
       "id": "law_admin_law_ch19_106",
@@ -1381,7 +1486,8 @@
         "يمكن تصحيحه بقرار لاحق"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3551901a5a235e8d1470"
     },
     {
       "id": "law_admin_law_ch19_107",
@@ -1394,7 +1500,8 @@
         "القرار البسيط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b3d3cc773d2434998614"
     },
     {
       "id": "law_admin_law_ch19_108",
@@ -1407,7 +1514,8 @@
         "عند موافقة القضاء العادي عليه"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3dacccc70b07a29517e"
     },
     {
       "id": "law_admin_law_ch19_109",
@@ -1420,7 +1528,8 @@
         "النظام القانوني للعقود الإدارية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a54146a07cd8ae7849c"
     },
     {
       "id": "law_admin_law_ch19_110",
@@ -1433,7 +1542,8 @@
         "القرار التنظيمي"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6e5064a8bd0377ce213b"
     }
   ]
 }

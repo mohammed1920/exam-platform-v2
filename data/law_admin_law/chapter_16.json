@@ -16,7 +16,8 @@
         "أن ً يكون مخصصا بقرار من الإدارة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_829418d7981d5e6ddcf8"
     },
     {
       "id": "law_admin_law_ch16_2",
@@ -29,7 +30,8 @@
         "لأنه يشترط التخصيص للمنفعة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a4ea14b8ba4279897ddd"
     },
     {
       "id": "law_admin_law_ch16_3",
@@ -42,7 +44,8 @@
         "أن عدم القابلية ترجع لصدور تشريع خاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4604fc9bb6cbcf3525dc"
     },
     {
       "id": "law_admin_law_ch16_4",
@@ -55,7 +58,8 @@
         "مدرسة المنفعة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0a8f818473f0e8b5f126"
     },
     {
       "id": "law_admin_law_ch16_5",
@@ -68,7 +72,8 @@
         "لأنه لا يشترط الإعداد الخاص للمال"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a4ea5aa430f23622b587"
     },
     {
       "id": "law_admin_law_ch16_6",
@@ -81,7 +86,8 @@
         "لأنه يخرج الأموال المخصصة للاستعمال المباشر للجمهور"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12a6d500859a608be2bc"
     },
     {
       "id": "law_admin_law_ch16_7",
@@ -94,7 +100,8 @@
         "أن يكون المرفق مرفقا عاما غير جوهريا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ea65701d0ea5c923710"
     },
     {
       "id": "law_admin_law_ch16_8",
@@ -107,7 +114,8 @@
         "الحجز الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a37dd0315efef9d62bdf"
     },
     {
       "id": "law_admin_law_ch16_9",
@@ -120,7 +128,8 @@
         "عدم جواز رفض الملاك التنازل عن أملاكهم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_daf5655efd00c3d4c207"
     },
     {
       "id": "law_admin_law_ch16_10",
@@ -133,7 +142,8 @@
         "العقارات المملوكة للأشخاص المعنوية العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f48e879355527a098fa9"
     },
     {
       "id": "law_admin_law_ch16_11",
@@ -146,7 +156,8 @@
         "جميع الحقوق العينية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_289dcbe44cfd397e075e"
     },
     {
       "id": "law_admin_law_ch16_12",
@@ -159,7 +170,8 @@
         "عيب السبب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bb1c0140b39e1f2bdc20"
     },
     {
       "id": "law_admin_law_ch16_13",
@@ -172,7 +184,8 @@
         "قانون من السلطة التشريعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0b86910580a88d3d6e81"
     },
     {
       "id": "law_admin_law_ch16_14",
@@ -185,7 +198,8 @@
         "قرار من رئيس الوزراء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e966eb4e34a8f0be4e4d"
     },
     {
       "id": "law_admin_law_ch16_15",
@@ -198,7 +212,8 @@
         "أي جهة تحقق منفعة عامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53e5da113dddc905fecb"
     },
     {
       "id": "law_admin_law_ch16_16",
@@ -211,7 +226,8 @@
         "الانتفاع الخاص بقرار إداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f14ba8ab202409126e09"
     },
     {
       "id": "law_admin_law_ch16_17",
@@ -224,7 +240,8 @@
         "الشركات المساهمة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f5e639bf28a3bc72cbd2"
     },
     {
       "id": "law_admin_law_ch16_18",
@@ -237,7 +254,8 @@
         "صدور تشريع خاص"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5cf5bcadddc89f656a29"
     },
     {
       "id": "law_admin_law_ch16_19",
@@ -250,7 +268,8 @@
         "أموال الدومين العام"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_782e86570de84b2e6ddd"
     },
     {
       "id": "law_admin_law_ch16_20",
@@ -263,7 +282,8 @@
         "لأنه يشترط الإعداد الخاص للمال"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_97e359f5eea1f3f3a2c0"
     },
     {
       "id": "law_admin_law_ch16_21",
@@ -276,7 +296,8 @@
         "دور العبادة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fed58690d6f98f40c5c5"
     },
     {
       "id": "law_admin_law_ch16_22",
@@ -289,7 +310,8 @@
         "التوافق مع معيار طبيعة المال"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f13cd16b503026566583"
     },
     {
       "id": "law_admin_law_ch16_23",
@@ -302,7 +324,8 @@
         "أن يكون المال مخصصا للمنفعة الخاصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67bd545c99801125639b"
     },
     {
       "id": "law_admin_law_ch16_24",
@@ -315,7 +338,8 @@
         "الأموال المخصصة للجماعات الخاصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d525963b287aa0a16b2c"
     },
     {
       "id": "law_admin_law_ch16_25",
@@ -328,7 +352,8 @@
         "التخصيص بقرار إداري"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7193e5ce105e354239c7"
     },
     {
       "id": "law_admin_law_ch16_26",
@@ -341,7 +366,8 @@
         "إعداده إعدادا خاصا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a1b5e78bf372cdccac7"
     },
     {
       "id": "law_admin_law_ch16_27",
@@ -354,7 +380,8 @@
         "مخصصة للجماعات الخاصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07e4902006b1c16e893e"
     },
     {
       "id": "law_admin_law_ch16_28",
@@ -367,7 +394,8 @@
         "الأموال المخصصة للخدمات العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_84330ff735c495986059"
     },
     {
       "id": "law_admin_law_ch16_29",
@@ -380,7 +408,8 @@
         "بصدور قانون من السلطة التشريعية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca5a533ed3a031c6e353"
     },
     {
       "id": "law_admin_law_ch16_30",
@@ -393,7 +422,8 @@
         "الحجز الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2fc86e8af09c33f9a0a8"
     },
     {
       "id": "law_admin_law_ch16_31",
@@ -406,7 +436,8 @@
         "الأصل هو جواز رفض الملاك التنازل عن أملاكهم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aba09110bdb3dcc6cedb"
     },
     {
       "id": "law_admin_law_ch16_32",
@@ -419,7 +450,8 @@
         "بناء على تشريع خاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e07dd391fc77fcc160a"
     },
     {
       "id": "law_admin_law_ch16_33",
@@ -432,7 +464,8 @@
         "العقارات المملوكة للأشخاص المعنوية العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_92e28e1dd4c93fcc6c08"
     },
     {
       "id": "law_admin_law_ch16_34",
@@ -445,7 +478,8 @@
         "الحقوق العينية الأصلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_219bdd20b140d4563ff6"
     },
     {
       "id": "law_admin_law_ch16_35",
@@ -458,7 +492,8 @@
         "عيب السبب"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8a6848b58067a03bceb2"
     },
     {
       "id": "law_admin_law_ch16_36",
@@ -471,7 +506,8 @@
         "قانون من السلطة التشريعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c5e2c0d25952fa570c9"
     },
     {
       "id": "law_admin_law_ch16_37",
@@ -484,7 +520,8 @@
         "أي جهة تحقق منفعة عامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3f98cbbead6146919023"
     },
     {
       "id": "law_admin_law_ch16_38",
@@ -497,7 +534,8 @@
         "الانتفاع الخاص بقرار إداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_496ede714acedf688cbd"
     },
     {
       "id": "law_admin_law_ch16_39",
@@ -510,7 +548,8 @@
         "مظاهر القواعد العينية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b718cbbc6165998abd8f"
     },
     {
       "id": "law_admin_law_ch16_40",
@@ -523,7 +562,8 @@
         "الدومين الخاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2264618c419ef4551fc"
     },
     {
       "id": "law_admin_law_ch16_41",
@@ -536,7 +576,8 @@
         "جواز مصادرة الحريات"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9494fa493e378120b235"
     },
     {
       "id": "law_admin_law_ch16_42",
@@ -549,7 +590,8 @@
         "الاستعمال العادي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2cf413b51ca51a873587"
     },
     {
       "id": "law_admin_law_ch16_43",
@@ -562,7 +604,8 @@
         "الاستعمال الطبيعي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a86924001bb61e7dac26"
     },
     {
       "id": "law_admin_law_ch16_44",
@@ -575,7 +618,8 @@
         "فقط إذا كان المال عقارا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c499faac48c6d2129618"
     },
     {
       "id": "law_admin_law_ch16_45",
@@ -588,7 +632,8 @@
         "يجوز لها الإلغاء بقرار قضائي فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1e1ffb464708f4ffd585"
     },
     {
       "id": "law_admin_law_ch16_46",
@@ -601,7 +646,8 @@
         "دستورية وإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_03f9de49dc018344c4ae"
     },
     {
       "id": "law_admin_law_ch16_47",
@@ -614,7 +660,8 @@
         "إدارتها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e352b998a33c3fae3534"
     },
     {
       "id": "law_admin_law_ch16_48",
@@ -627,7 +674,8 @@
         "الانتقال بين الأشخاص الاعتبارية العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8e4f8a4127c2a9490f58"
     },
     {
       "id": "law_admin_law_ch16_49",
@@ -640,7 +688,8 @@
         "تحول المال إلى مال خاص بمجرد التصرف"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a3d7a0382c1d1ce741b2"
     },
     {
       "id": "law_admin_law_ch16_50",
@@ -653,7 +702,8 @@
         "بمجرد توقيع عقد بيع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5389b747497a74b51339"
     },
     {
       "id": "law_admin_law_ch16_51",
@@ -666,7 +716,8 @@
         "موافقة المشتري على شروط الإدارة"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08ce502803bfa6f0e313"
     },
     {
       "id": "law_admin_law_ch16_52",
@@ -679,7 +730,8 @@
         "تصرفات الإيجار الطويل الأجل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_76e46105aa37b790f25a"
     },
     {
       "id": "law_admin_law_ch16_53",
@@ -692,7 +744,8 @@
         "لأنه يتم بترخيص مؤقت"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ea7b975fd104f1a9c06"
     },
     {
       "id": "law_admin_law_ch16_54",
@@ -705,7 +758,8 @@
         "يحق للفرد التصرف في المال العام ما دام العقد ساريا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6198a6b5b58efafeea96"
     },
     {
       "id": "law_admin_law_ch16_55",
@@ -718,7 +772,8 @@
         "لأن الحجز يؤدي إلى تغيير جنس المال"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a9a49d804d438dfc348d"
     },
     {
       "id": "law_admin_law_ch16_56",
@@ -731,7 +786,8 @@
         "جواز ترتيب حق الامتياز عليه بشرط القيد في السجل العقاري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb35128383f9be20a1f9"
     },
     {
       "id": "law_admin_law_ch16_57",
@@ -744,7 +800,8 @@
         "الأموال المنقولة التي ليس لها سجل رسمي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c6b8a129e28b6dfec61"
     },
     {
       "id": "law_admin_law_ch16_58",
@@ -757,7 +814,8 @@
         "الاستملاك للمنفعة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2179783134e41c2d7ccb"
     },
     {
       "id": "law_admin_law_ch16_59",
@@ -770,7 +828,8 @@
         "قاعدة الاستيلاء على المنقولات المتروكة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4bb22ae28b138a54344c"
     },
     {
       "id": "law_admin_law_ch16_60",
@@ -783,7 +842,8 @@
         "لتشجيع الإدارة على استثمار أموالها العامة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d126ac8227bca5a94140"
     },
     {
       "id": "law_admin_law_ch16_61",
@@ -796,7 +856,8 @@
         "يتم قسمة المال بين الإدارة ومالك المال الخاص"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_633e6590e1cb90d62278"
     },
     {
       "id": "law_admin_law_ch16_62",
@@ -809,7 +870,8 @@
         "الأموال العقارية فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_badcfcee5e24da001f50"
     },
     {
       "id": "law_admin_law_ch16_63",
@@ -822,7 +884,8 @@
         "تحقيق مبدأ سيادة القانون فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04de74f815c2dbb48dec"
     },
     {
       "id": "law_admin_law_ch16_64",
@@ -835,7 +898,8 @@
         "قانون أملاك الدولة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1ad6022c3527cf0d84d1"
     },
     {
       "id": "law_admin_law_ch16_65",
@@ -848,7 +912,8 @@
         "جرائم التزوير في المستندات الرسمية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd5f9bfd7907a2badce0"
     },
     {
       "id": "law_admin_law_ch16_66",
@@ -861,7 +926,8 @@
         "التعويض المالي فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b7ad5ddb26ad9fce57a6"
     },
     {
       "id": "law_admin_law_ch16_67",
@@ -874,7 +940,8 @@
         "إشعال النار في محيط الطريق العام"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d8d85759dd3ff5431680"
     },
     {
       "id": "law_admin_law_ch16_68",
@@ -887,7 +954,8 @@
         "تحويل المال العام ً إلى مال خاص مع التعويض"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f078f8299f4f0f56d4b2"
     },
     {
       "id": "law_admin_law_ch16_69",
@@ -900,7 +968,8 @@
         "الأموال المخصصة للنفع العام بموجب مرسوم فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_abc53795227ea996bec9"
     },
     {
       "id": "law_admin_law_ch16_70",
@@ -913,7 +982,8 @@
         "الشخصية الاعتبارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe5c03ee51ab15fef2c9"
     },
     {
       "id": "law_admin_law_ch16_71",
@@ -926,7 +996,8 @@
         "صحة التصرف مع التعويض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1e8e125e56a4e37b3156"
     },
     {
       "id": "law_admin_law_ch16_72",
@@ -939,7 +1010,8 @@
         "أن تعمد أولا إلى إنهاء صفتها بإنهاء تخصيصها للمنفعة العامة بمقتضى قانون أو مرسوم أو بالفعل"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db304db40794c50c7515"
     },
     {
       "id": "law_admin_law_ch16_73",
@@ -952,7 +1024,8 @@
         "التنازل عن شيء منه بمجرد قرار وزاري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec4df4fd1b230f167fa7"
     },
     {
       "id": "law_admin_law_ch16_74",
@@ -965,7 +1038,8 @@
         "حق الحيازة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e643441c421260045a6b"
     },
     {
       "id": "law_admin_law_ch16_75",
@@ -978,7 +1052,8 @@
         "التملك عن طريق الاستيلاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2c72f7000c53ef3a04e"
     },
     {
       "id": "law_admin_law_ch16_76",
@@ -991,7 +1066,8 @@
         "يتم بيع المال لتقسيم قيمته بين الإدارة وصاحب المال الخاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_772eb410cb271ba97f98"
     },
     {
       "id": "law_admin_law_ch16_77",
@@ -1004,7 +1080,8 @@
         "المادة 27"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e2c3cdb40375355bc30e"
     },
     {
       "id": "law_admin_law_ch16_78",
@@ -1017,7 +1094,8 @@
         "تحويل المال العام تلقائيا إلى مال خاص للإدارة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3f4c9bbbcb515b45c5c2"
     },
     {
       "id": "law_admin_law_ch16_79",
@@ -1030,7 +1108,8 @@
         "لأن المال العام لا يمكن بيعه جبرا بحكم القانون المدني"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_55ed34669061e7c0bf35"
     },
     {
       "id": "law_admin_law_ch16_80",
@@ -1043,7 +1122,8 @@
         "البيع أو الوصية أو الهبة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a7ddc55e3e85b86481cb"
     }
   ]
 }

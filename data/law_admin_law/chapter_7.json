@@ -16,7 +16,8 @@
         "نظام يقترب من السلطة الرئاسية المطلقة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd89fcb81bd1f61a55c6"
     },
     {
       "id": "law_admin_law_ch7_2",
@@ -29,7 +30,8 @@
         "المحكمة الاتحادية العليا."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b90227d1c55d517031ea"
     },
     {
       "id": "law_admin_law_ch7_3",
@@ -42,7 +44,8 @@
         "تعيين القضاة وموظفي الدولة المدنيين فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96412ca8fbdcecc516c7"
     },
     {
       "id": "law_admin_law_ch7_4",
@@ -55,7 +58,8 @@
         "تعيين وعزل الوزراء ونواب رئيس الجمهورية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1d7ef210ca13aa530453"
     },
     {
       "id": "law_admin_law_ch7_5",
@@ -68,7 +72,8 @@
         "توجيه ومراقبة أعمال الهيئات اللامركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c22617c35685d18d2fb5"
     },
     {
       "id": "law_admin_law_ch7_6",
@@ -81,7 +86,8 @@
         "الأمناء العامين لمجلس قيادة الثورة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2c1101e546a1a948de2"
     },
     {
       "id": "law_admin_law_ch7_7",
@@ -94,7 +100,8 @@
         "رؤساء الجامعات والهيئات العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_39d29146147a457363a0"
     },
     {
       "id": "law_admin_law_ch7_8",
@@ -107,7 +114,8 @@
         "العفو عن الجرائم المالية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b39651e658b9956f723e"
     },
     {
       "id": "law_admin_law_ch7_9",
@@ -120,7 +128,8 @@
         "يمارسها بعد موافقة السلطة التشريعية المختصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0a9adfb50edc42e17ad8"
     },
     {
       "id": "law_admin_law_ch7_10",
@@ -133,7 +142,8 @@
         "توجيه ومراقبة أعمال الممثليات الدبلوماسية فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_713f6e13875c6b765149"
     },
     {
       "id": "law_admin_law_ch7_11",
@@ -146,7 +156,8 @@
         "المجالس المحلية المنتخبة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e615f88fe66246abc4f"
     },
     {
       "id": "law_admin_law_ch7_12",
@@ -159,7 +170,8 @@
         "منحهم الأوسمة والرتب العسكرية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1202b713c7a580223a6c"
     },
     {
       "id": "law_admin_law_ch7_13",
@@ -172,7 +184,8 @@
         "لدى مجلس قيادة الثورة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d09e93bb2c6e2a7d2717"
     },
     {
       "id": "law_admin_law_ch7_14",
@@ -185,7 +198,8 @@
         "يمارس عليها سلطة توجيه ومراقبة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3c9a684fe76f5910890"
     },
     {
       "id": "law_admin_law_ch7_15",
@@ -198,7 +212,8 @@
         "إعداد مشروعات القوانين"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b983ef5411f85a93dd0"
     },
     {
       "id": "law_admin_law_ch7_16",
@@ -211,7 +226,8 @@
         "السلطة التشريعية والسلطة التنفيذية والسلطة القضائية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00d06f7ac9d636c6b611"
     },
     {
       "id": "law_admin_law_ch7_17",
@@ -224,7 +240,8 @@
         "الموظفين المدنيين المعينين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e3b76782b24e1159df2"
     },
     {
       "id": "law_admin_law_ch7_18",
@@ -237,7 +254,8 @@
         "الهيئات اللامركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1df388ddca98e3c9097"
     },
     {
       "id": "law_admin_law_ch7_19",
@@ -250,7 +268,8 @@
         "مراقبة السلطة التشريعية. ً.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_54b487c48bb62a7ed2f0"
     },
     {
       "id": "law_admin_law_ch7_20",
@@ -263,7 +282,8 @@
         "القوانين التي يقرها مجلس قيادة الثورة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_69beeee3f415e65460c6"
     },
     {
       "id": "law_admin_law_ch7_21",
@@ -276,7 +296,8 @@
         "نظام الحلول القانوني....."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3817cc95daf23f5e1b3"
     },
     {
       "id": "law_admin_law_ch7_22",
@@ -289,7 +310,8 @@
         "نواب رئيس الجمهورية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0bb4b85034a4a28943fe"
     },
     {
       "id": "law_admin_law_ch7_23",
@@ -302,7 +324,8 @@
         "إحالتها إلى رئيس الجمهورية للمصادقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ae29aa953c80dee17e20"
     },
     {
       "id": "law_admin_law_ch7_24",
@@ -315,7 +338,8 @@
         "نظام اللامركزية المطلقة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_40043aba820ee4ae4495"
     },
     {
       "id": "law_admin_law_ch7_25",
@@ -328,7 +352,8 @@
         "أساس الحلول القانوني."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66bc58c134cdfe972762"
     },
     {
       "id": "law_admin_law_ch7_26",
@@ -341,7 +366,8 @@
         "مجلس قيادة الثورة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7cb49df448a59aa16865"
     },
     {
       "id": "law_admin_law_ch7_27",
@@ -354,7 +380,8 @@
         "قيام رؤساء الدوائر بتقديم التقارير إلى السلطة المركزية مباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b361c4f39ef1161e61e7"
     },
     {
       "id": "law_admin_law_ch7_28",
@@ -367,7 +394,8 @@
         "كانوا لا يخضعون للمحافظين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07ed741c6238a993b798"
     },
     {
       "id": "law_admin_law_ch7_29",
@@ -380,7 +408,8 @@
         "في نطاق رقابة قرارات إدارة الحكم الذاتي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b6423d41d861be8b3841"
     },
     {
       "id": "law_admin_law_ch7_30",
@@ -393,7 +422,8 @@
         "يقتصر دورهم على إعداد مشروع الميزانية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc65ac9773a1296b518a"
     },
     {
       "id": "law_admin_law_ch7_31",
@@ -406,7 +436,8 @@
         "قرار من هيئة قضائية خاصة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ebc6a0bae140eb2be82"
     },
     {
       "id": "law_admin_law_ch7_32",
@@ -419,7 +450,8 @@
         "توحيد النظم والإجراءات المتبعة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ad23d2899afc192c745"
     },
     {
       "id": "law_admin_law_ch7_33",
@@ -432,7 +464,8 @@
         "الحق في حل مجالس الشعب المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_650800fdcdf7ecf94f4e"
     },
     {
       "id": "law_admin_law_ch7_34",
@@ -445,7 +478,8 @@
         "عدم التركيز الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b8b7503481bf9d0ab94"
     },
     {
       "id": "law_admin_law_ch7_35",
@@ -458,7 +492,8 @@
         "إدارة الأنشطة غير المتجانسة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_507b2d98f5beb361a8f2"
     },
     {
       "id": "law_admin_law_ch7_36",
@@ -471,7 +506,8 @@
         "وجوب تمتعها بذات التنظيم القانوني للإقليمية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3398d1fd8416851644f6"
     },
     {
       "id": "law_admin_law_ch7_37",
@@ -484,7 +520,8 @@
         "أغراض لا تتقيد إلا بحدود الإقليم الجغرافي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fb7692382ed0b5aa3ada"
     },
     {
       "id": "law_admin_law_ch7_38",
@@ -497,7 +534,8 @@
         "لا يوجد فارق جوهري بينهما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b3802042c2f432648887"
     },
     {
       "id": "law_admin_law_ch7_39",
@@ -510,7 +548,8 @@
         "مراجعة تخمينات مشروع الميزانية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_647dcef00907b5d92659"
     },
     {
       "id": "law_admin_law_ch7_40",
@@ -523,7 +562,8 @@
         "مجالس الشعب المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_048b284f78b505955927"
     },
     {
       "id": "law_admin_law_ch7_41",
@@ -536,7 +576,8 @@
         "يتم عرض القرار على رئيس الجمهورية للتصديق."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4bc42c8d852f7dd75595"
     },
     {
       "id": "law_admin_law_ch7_42",
@@ -549,7 +590,8 @@
         "ثلاثة أشهر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b9842ca948f8d3cf8b59"
     },
     {
       "id": "law_admin_law_ch7_43",
@@ -562,7 +604,8 @@
         "إلغاء القوانين الصادرة من مجلس قيادة الثورة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50f765f3503932743665"
     },
     {
       "id": "law_admin_law_ch7_44",
@@ -575,7 +618,8 @@
         "بعد صدور قانون من السلطة التشريعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc0388dd1d18ba99cf22"
     },
     {
       "id": "law_admin_law_ch7_45",
@@ -588,7 +632,8 @@
         "المدن الكبرى والعاصمة فقط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_625985f1e156e9faf7fd"
     },
     {
       "id": "law_admin_law_ch7_46",
@@ -601,7 +646,8 @@
         "أعضاء يتم اختيارهم من قبل الهيئة القضائية الخاصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33f0596e9adaca7a5c90"
     },
     {
       "id": "law_admin_law_ch7_47",
@@ -614,7 +660,8 @@
         "تمتع رؤساء الدوائر المحلية بالاستقلال الكامل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_39b35b7a8afeac016103"
     },
     {
       "id": "law_admin_law_ch7_48",
@@ -627,7 +674,8 @@
         "ممارسة الرقابة على مشروعية قرارات الهيئة القضائية الخاصة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d1b28e83ca0fbeb76f30"
     },
     {
       "id": "law_admin_law_ch7_49",
@@ -640,7 +688,8 @@
         "عشر سنوات غير قابلة للتجديد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5f3eed41c863e7ed0be"
     },
     {
       "id": "law_admin_law_ch7_50",
@@ -653,7 +702,8 @@
         "خمسة أضعاف عدد الأعضاء المعينين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_967f723475ab3a96e6b8"
     },
     {
       "id": "law_admin_law_ch7_51",
@@ -666,7 +716,8 @@
         "سبعون عضوا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63273305d035ebe287b6"
     },
     {
       "id": "law_admin_law_ch7_52",
@@ -679,7 +730,8 @@
         "عشرون عضوا..."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07581ce3a0769387702e"
     },
     {
       "id": "law_admin_law_ch7_53",
@@ -692,7 +744,8 @@
         "مدير توزيع الكهرباء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5fe5b3d72ada3a258e22"
     },
     {
       "id": "law_admin_law_ch7_54",
@@ -705,7 +758,8 @@
         "مائة عضو."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5908c541c9539d66a03c"
     },
     {
       "id": "law_admin_law_ch7_55",
@@ -718,7 +772,8 @@
         "أربعون عضوا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_473c91bb189b95a77d5c"
     },
     {
       "id": "law_admin_law_ch7_56",
@@ -731,7 +786,8 @@
         "مسؤول دائرة الكهرباء (في القضاء)."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_28ef7d3c6732e98c8986"
     },
     {
       "id": "law_admin_law_ch7_57",
@@ -744,7 +800,8 @@
         "تزيد من سلطة الرقابة والإشراف للسلطة المركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f87c4253e45fc1b9f510"
     },
     {
       "id": "law_admin_law_ch7_58",
@@ -757,7 +814,8 @@
         "من نظام الوصاية الإدارية إلى نظام السلطة الرئاسية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cabea92e9f33696fae0f"
     },
     {
       "id": "law_admin_law_ch7_59",
@@ -770,7 +828,8 @@
         "إيقاف تنفيذ قرارات وزير العدل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8b620c2d32338f91c507"
     },
     {
       "id": "law_admin_law_ch7_60",
@@ -783,7 +842,8 @@
         "دولة تابعة لنظام الوصاية الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_674053711a1f6c30244e"
     },
     {
       "id": "law_admin_law_ch7_61",
@@ -796,7 +856,8 @@
         "الرقابة على المشروعية فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_88b0db55307da6d87992"
     },
     {
       "id": "law_admin_law_ch7_62",
@@ -809,7 +870,8 @@
         "تعيين رؤساء الوحدات الإدارية في المشاريع."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a8d9840690888f2d3a3"
     },
     {
       "id": "law_admin_law_ch7_63",
@@ -822,7 +884,8 @@
         "عقد الاتفاقيات والمعاهدات الدولية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_87f9aacfc951bdf60373"
     },
     {
       "id": "law_admin_law_ch7_64",
@@ -835,7 +898,8 @@
         "تفويض اختصاصاته إليها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3effc571c724f2ea1928"
     },
     {
       "id": "law_admin_law_ch7_65",
@@ -848,7 +912,8 @@
         "في نظام الحكم الذاتي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_233dd759c6f862c448bc"
     },
     {
       "id": "law_admin_law_ch7_66",
@@ -861,7 +926,8 @@
         "الهيئة القضائية الخاصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e02b3e0d5be5e505419"
     },
     {
       "id": "law_admin_law_ch7_67",
@@ -874,7 +940,8 @@
         "أن تكون قرارات المجالس متعلقة بالاستثمار فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b4c475491c12b0a9df6"
     },
     {
       "id": "law_admin_law_ch7_68",
@@ -887,7 +954,8 @@
         "إعفاء نواب رئيس الجمهورية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8f4da045e4f84e3865ee"
     },
     {
       "id": "law_admin_law_ch7_69",
@@ -900,7 +968,8 @@
         "إلغاء قرارات السلطة المركزية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be38c68f81b34bf5734c"
     },
     {
       "id": "law_admin_law_ch7_70",
@@ -913,7 +982,8 @@
         "المصادقة على أحكام الإعدام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2268b997d194bc69812"
     },
     {
       "id": "law_admin_law_ch7_71",
@@ -926,7 +996,8 @@
         "تحديد اختصاصات السلطة الرئاسية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1454525f7d71b55bee2"
     },
     {
       "id": "law_admin_law_ch7_72",
@@ -939,7 +1010,8 @@
         "يمثلون الأغلبية الساحقة من الأعضاء المنتخبين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7096321edb89d18418ce"
     },
     {
       "id": "law_admin_law_ch7_73",
@@ -952,7 +1024,8 @@
         "نظام الوصاية الإدارية المطلقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7dc2901f96082225908a"
     },
     {
       "id": "law_admin_law_ch7_74",
@@ -965,7 +1038,8 @@
         "بالاختيار من قبل الهيئة القضائية الخاصة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e33d88c0c608f4670205"
     },
     {
       "id": "law_admin_law_ch7_75",
@@ -978,7 +1052,8 @@
         "أن نشاطها كان مقيدا بالهدف الذي أنشئت من أجله."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59f7a1717999106e9807"
     },
     {
       "id": "law_admin_law_ch7_76",
@@ -991,7 +1066,8 @@
         "نظام الحكم الذاتي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db5dbd58242a54dc8ddd"
     },
     {
       "id": "law_admin_law_ch7_77",
@@ -1004,7 +1080,8 @@
         "هو المسؤول عن إعداد مشروعات القوانين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_931bfc7636a2005d625f"
     },
     {
       "id": "law_admin_law_ch7_78",
@@ -1017,7 +1094,8 @@
         "تعيين القضاة ونواب رئيس الوزراء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_995c0d9de9339a6705ef"
     },
     {
       "id": "law_admin_law_ch7_79",
@@ -1030,7 +1108,8 @@
         "الجرائم المرتبطة بالحق العام فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a27e40609822b16e9f3c"
     },
     {
       "id": "law_admin_law_ch7_80",
@@ -1043,7 +1122,8 @@
         "يتم إصدارها كقانون من قبل رئيس الجمهورية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e5ee6ae02ba790de01d"
     },
     {
       "id": "law_admin_law_ch7_81",
@@ -1056,7 +1136,8 @@
         "يجب أن تعرض على إقليم كردستان."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_160125c4ddec968d8bed"
     },
     {
       "id": "law_admin_law_ch7_82",
@@ -1069,7 +1150,8 @@
         "ستون يوما."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_98996d6f22cf64d39a7a"
     },
     {
       "id": "law_admin_law_ch7_83",
@@ -1082,7 +1164,8 @@
         "القائد العام للقوات المسلحة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9105ed767215ede7af41"
     },
     {
       "id": "law_admin_law_ch7_84",
@@ -1095,7 +1178,8 @@
         "يمنحهم الرتب العسكرية والأوسمة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_868b63cfd54a76968371"
     },
     {
       "id": "law_admin_law_ch7_85",
@@ -1108,7 +1192,8 @@
         "المجلس التشريعي للإقليم."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_44f9242e5007472097f4"
     },
     {
       "id": "law_admin_law_ch7_86",
@@ -1121,7 +1206,8 @@
         "منحه الأوسمة والنياشين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5f7a990d4700ac413978"
     },
     {
       "id": "law_admin_law_ch7_87",
@@ -1134,7 +1220,8 @@
         "سلطات الرقابة على قرارات هيئة الحكم الذاتي.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5518dd0c71dd54975bc"
     },
     {
       "id": "law_admin_law_ch7_88",
@@ -1147,7 +1234,8 @@
         "حامل الأوسمة والنياشين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3fc8ef7629569666364"
     },
     {
       "id": "law_admin_law_ch7_89",
@@ -1160,7 +1248,8 @@
         "سلطة إصدار الأنظمة والقرارات الإدارية الاتحادية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f775b721e08432c4e66"
     },
     {
       "id": "law_admin_law_ch7_90",
@@ -1173,7 +1262,8 @@
         "إيقاف تنفيذ القانون الاتحادي بالكامل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c814b27255249154c363"
     },
     {
       "id": "law_admin_law_ch7_91",
@@ -1186,7 +1276,8 @@
         "حجم الاختصاصات الحصرية للسلطات الاتحادية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_572bfc7fa10f01e3d63b"
     },
     {
       "id": "law_admin_law_ch7_92",
@@ -1199,7 +1290,8 @@
         "منح الأوسمة والنياشين المتعلقة بالجهود البيئية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_01571e71c0f1bea21e1f"
     },
     {
       "id": "law_admin_law_ch7_93",
@@ -1212,7 +1304,8 @@
         "وضع خطط التنمية والتطوير مع الحكومة الاتحادية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_16ff6cdec67cc961c6b7"
     },
     {
       "id": "law_admin_law_ch7_94",
@@ -1225,7 +1318,8 @@
         "تعيين الموظفين العسكريين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e770d714b48b996da67"
     },
     {
       "id": "law_admin_law_ch7_95",
@@ -1238,7 +1332,8 @@
         "إصدار العفو الخاص في جرائم الفساد في قطاع الطاقة.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f14605a7def7034893ee"
     },
     {
       "id": "law_admin_law_ch7_96",
@@ -1251,7 +1346,8 @@
         "أن يتم إقراره من مجلس النواب الاتحادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91dab3adc757e3bc5426"
     },
     {
       "id": "law_admin_law_ch7_97",
@@ -1264,7 +1360,8 @@
         "مراسيم منح الأوسمة..."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d6cab2678c1bf14fbe6"
     },
     {
       "id": "law_admin_law_ch7_98",
@@ -1277,7 +1374,8 @@
         "نظام عدم التركيز الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c70d040357a11a872d03"
     },
     {
       "id": "law_admin_law_ch7_99",
@@ -1290,7 +1388,8 @@
         "نظام الوصاية الإدارية المطلقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4ce12341c1f7760adec5"
     },
     {
       "id": "law_admin_law_ch7_100",
@@ -1303,7 +1402,8 @@
         "إصدار العفو الخاص المتعلق بها."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9678d74f999c736ad62a"
     },
     {
       "id": "law_admin_law_ch7_101",
@@ -1316,7 +1416,8 @@
         "إصدار الأنظمة والقرارات الإدارية المتعلقة بالتطوير."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f071b741721ff9386e37"
     },
     {
       "id": "law_admin_law_ch7_102",
@@ -1329,7 +1430,8 @@
         "وزير العدل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c64257ef6e849c41f414"
     },
     {
       "id": "law_admin_law_ch7_103",
@@ -1342,7 +1444,8 @@
         "يشترك معه في رئاسة مجلس المحافظة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3b2cedc23ca256b25b6"
     },
     {
       "id": "law_admin_law_ch7_104",
@@ -1355,7 +1458,8 @@
         "يتمتع بالشخصية المعنوية المرفقية فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f0d6d060c5435aa5155a"
     },
     {
       "id": "law_admin_law_ch7_105",
@@ -1368,7 +1472,8 @@
         "لا يجوز التفويض بين السلطات الاتحادية والمحلية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d1f2b17fbeba3eb9c948"
     },
     {
       "id": "law_admin_law_ch7_106",
@@ -1381,7 +1486,8 @@
         "يخضع مجلسها لسيطرة وزارة المالية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb20154980853181633a"
     },
     {
       "id": "law_admin_law_ch7_107",
@@ -1394,7 +1500,8 @@
         "صلاحيات تقتصر على الميزانية التشغيلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f7467400750252dd9f7a"
     },
     {
       "id": "law_admin_law_ch7_108",
@@ -1407,7 +1514,8 @@
         "قانون الإدارة الذاتية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca64fa2c4367a670d98d"
     },
     {
       "id": "law_admin_law_ch7_109",
@@ -1420,7 +1528,8 @@
         "عدم التركيز الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3ff761297c7eebd0673a"
     },
     {
       "id": "law_admin_law_ch7_110",
@@ -1433,7 +1542,8 @@
         "المصادقة على المعاهدات الدولية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cd8df70965572f809c91"
     },
     {
       "id": "law_admin_law_ch7_111",
@@ -1446,7 +1556,8 @@
         "ألا تتعارض مع الاختصاصات الحصرية للأقاليم."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_545478fd1a4ccd523f60"
     },
     {
       "id": "law_admin_law_ch7_112",
@@ -1459,7 +1570,8 @@
         "ممارسة الرقابة القضائية على رؤساء الوحدات الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_647a30115cd6245e71af"
     },
     {
       "id": "law_admin_law_ch7_113",
@@ -1472,7 +1584,8 @@
         "مجلس النواب الاتحادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c4778cc7c9b729d9d156"
     },
     {
       "id": "law_admin_law_ch7_114",
@@ -1485,7 +1598,8 @@
         "لا تتعارض مع التشريعات النافذة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_72a28795999d94810e1c"
     },
     {
       "id": "law_admin_law_ch7_115",
@@ -1498,7 +1612,8 @@
         "رسم السياسة النقدية"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_22e8b6c91cc5dbead0d1"
     },
     {
       "id": "law_admin_law_ch7_116",
@@ -1511,7 +1626,8 @@
         "إعفاء رؤساء الوحدات الإدارية مباشرة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_757baf99657fe516d2d7"
     },
     {
       "id": "law_admin_law_ch7_117",
@@ -1524,7 +1640,8 @@
         "إجماع الأعضاء الدائميين.."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2af0faee84e0bd52f966"
     },
     {
       "id": "law_admin_law_ch7_118",
@@ -1537,7 +1654,8 @@
         "تعيين القضاة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0eeb605fe7f5f6de36d1"
     },
     {
       "id": "law_admin_law_ch7_119",
@@ -1550,7 +1668,8 @@
         "بعد موافقة رئيس مجلس الوزراء.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b22b7e26570e649d0f73"
     },
     {
       "id": "law_admin_law_ch7_120",
@@ -1563,7 +1682,8 @@
         "يقترح رئيس مجلس الوزراء تعيين المحافظ على مجلس المحافظة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a9f465f1e57dd74f015"
     },
     {
       "id": "law_admin_law_ch7_121",
@@ -1576,7 +1696,8 @@
         "إيقاف تنفيذ قرارات المحافظ."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f3fb979fd548e2758c5"
     },
     {
       "id": "law_admin_law_ch7_122",
@@ -1589,7 +1710,8 @@
         "منح القروض للمؤسسات الاتحادية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aa0c571ca9c708544440"
     },
     {
       "id": "law_admin_law_ch7_123",
@@ -1602,7 +1724,8 @@
         "يجوز للأقضية والنواحي أن تنضم إلى إقليم آخر."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b496cacda253edcf9fe9"
     },
     {
       "id": "law_admin_law_ch7_124",
@@ -1615,7 +1738,8 @@
         "ينظم بقرار من رئيس مجلس الوزراء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_26a01f2332790a7cbd00"
     },
     {
       "id": "law_admin_law_ch7_125",
@@ -1628,7 +1752,8 @@
         "المصادقة على قراراتها الإدارية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e0ce3844721b2515576"
     },
     {
       "id": "law_admin_law_ch7_126",
@@ -1641,7 +1766,8 @@
         "إصدار تعليمات ملزمة بخصوصها من دون الرجوع للجهة الاتحادية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ed22a5a16490ee38c1c"
     },
     {
       "id": "law_admin_law_ch7_127",
@@ -1654,7 +1780,8 @@
         "وزير العدل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e8a1394fa32107bacf7c"
     },
     {
       "id": "law_admin_law_ch7_128",
@@ -1667,7 +1794,8 @@
         "ثلث عدد الأعضاء."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aa0e9a7473ef54f5a8db"
     },
     {
       "id": "law_admin_law_ch7_129",
@@ -1680,7 +1808,8 @@
         "إيقاف تنفيذ قرار مجلس النواب."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_750e96a85a1e15c42699"
     },
     {
       "id": "law_admin_law_ch7_130",
@@ -1693,7 +1822,8 @@
         "يمارس صلاحيات مجلس المحافظة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0887c4ad9ab5d5bdefa8"
     },
     {
       "id": "law_admin_law_ch7_131",
@@ -1706,7 +1836,8 @@
         "إجماع الأعضاء الدائميين."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12748d88d4acbb51dd02"
     },
     {
       "id": "law_admin_law_ch7_132",
@@ -1719,7 +1850,8 @@
         "عام واحد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4f4b88c775befaab3a3c"
     },
     {
       "id": "law_admin_law_ch7_133",
@@ -1732,7 +1864,8 @@
         "عام واحد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1a347cfd8f94751890cd"
     },
     {
       "id": "law_admin_law_ch7_134",
@@ -1745,7 +1878,8 @@
         "تستثنى منها الأجهزة التي لديها مالية مستقلة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af1c6936f46e117011de"
     },
     {
       "id": "law_admin_law_ch7_135",
@@ -1758,7 +1892,8 @@
         "وزير العدل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_feb93f3801a271d8abdf"
     },
     {
       "id": "law_admin_law_ch7_136",
@@ -1771,7 +1906,8 @@
         "إجماع الأعضاء"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_496b1620141c740fa85a"
     },
     {
       "id": "law_admin_law_ch7_137",
@@ -1784,7 +1920,8 @@
         "المحافظ نفسه."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_06b4d09bf5d3079bf412"
     },
     {
       "id": "law_admin_law_ch7_138",
@@ -1797,7 +1934,8 @@
         "وظيفة إقرار الموازنة التشغيلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b8647f36f4a7a2ac80ca"
     },
     {
       "id": "law_admin_law_ch7_139",
@@ -1810,7 +1948,8 @@
         "إعفاء رؤساء الوحدات الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b10ac5374392a6750ea9"
     },
     {
       "id": "law_admin_law_ch7_140",
@@ -1823,7 +1962,8 @@
         "منح القروض للمؤسسات الاتحادية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_401cc21408dbd7827292"
     },
     {
       "id": "law_admin_law_ch7_141",
@@ -1836,7 +1976,8 @@
         "مجلس النواب."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4b7eee793f70faa3ea77"
     },
     {
       "id": "law_admin_law_ch7_142",
@@ -1849,7 +1990,8 @@
         "رسم السياسة العامة لتطوير المحافظة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e3c13a706b36491c38f1"
     },
     {
       "id": "law_admin_law_ch7_143",
@@ -1862,7 +2004,8 @@
         "نسبة عدد الموظفين في كل ناحية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ae8dbf754b7e34ad857"
     },
     {
       "id": "law_admin_law_ch7_144",
@@ -1875,7 +2018,8 @@
         "المصادقة على الخطط الأمنية من دون تنسيق مع الدوائر الاتحادية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e968111fb84cfc96fec7"
     },
     {
       "id": "law_admin_law_ch7_145",
@@ -1888,7 +2032,8 @@
         "إجماع الأعضاء المنتخبين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3d73684106699cad5b3"
     },
     {
       "id": "law_admin_law_ch7_146",
@@ -1901,7 +2046,8 @@
         "مجلس القضاء الأعلى."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_32236eeffb717f6ccd1d"
     },
     {
       "id": "law_admin_law_ch7_147",
@@ -1914,7 +2060,8 @@
         "وزير الداخلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_de908ba9cae2d39a1919"
     },
     {
       "id": "law_admin_law_ch7_148",
@@ -1927,7 +2074,8 @@
         "ضرورة إجراء المناقلة بين أبوابها."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f69a32788960332ac006"
     },
     {
       "id": "law_admin_law_ch7_149",
@@ -1940,7 +2088,8 @@
         "قرار من القضاء المختص."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3fefb03fea4e1c2522ee"
     },
     {
       "id": "law_admin_law_ch7_150",
@@ -1953,7 +2102,8 @@
         "تعديل المعايير الدستورية في التوزيع."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b7e8d33e03627b51f59f"
     },
     {
       "id": "law_admin_law_ch7_151",
@@ -1966,7 +2116,8 @@
         "رؤساء الوحدات الإدارية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ab861d9258f472dcd33"
     },
     {
       "id": "law_admin_law_ch7_152",
@@ -1979,7 +2130,8 @@
         "يتم إحالته إلى رئيس مجلس الوزراء لاتخاذ قرار الإقالة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c5729585250d89febf84"
     },
     {
       "id": "law_admin_law_ch7_153",
@@ -1992,7 +2144,8 @@
         "لا يمكن أن تستمد من القانون أو الدستور."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5955158fc7b05a0d60a8"
     },
     {
       "id": "law_admin_law_ch7_154",
@@ -2005,7 +2158,8 @@
         "حكم القضاء الإداري الذي يمنع المساس باستقلالها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_324488d72887dc63d572"
     },
     {
       "id": "law_admin_law_ch7_155",
@@ -2018,7 +2172,8 @@
         "أنها أقل خبرة ودراية من السلطة المركزية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a5cb2dd7d986295ed420"
     },
     {
       "id": "law_admin_law_ch7_156",
@@ -2031,7 +2186,8 @@
         "يمنح السلطة المركزية حق الحلول محل الهيئات المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f23ce2692143f8b367af"
     },
     {
       "id": "law_admin_law_ch7_157",
@@ -2044,7 +2200,8 @@
         "أنشطة المحافظ فيما يتعلق بتصريف الأعمال اليومية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e25a0f6c755c9805e143"
     },
     {
       "id": "law_admin_law_ch7_158",
@@ -2057,7 +2214,8 @@
         "خمس عدد أعضاء المجلس بناء على طلب المحافظ"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9f8a2b1a7911f626f202"
     }
   ]
 }

@@ -16,7 +16,8 @@
         "أنها عقود تنتهي بالإرادة المنفردة للإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_702cd0618236c3492301"
     },
     {
       "id": "law_admin_law_ch26_2",
@@ -29,7 +30,8 @@
         "بهلاك محل العقد بقوة قاهرة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4b0119d997ff7a520953"
     },
     {
       "id": "law_admin_law_ch26_3",
@@ -42,7 +44,8 @@
         "عند سحب العمل من المقاول"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_651b8f24bd9c801ddba1"
     },
     {
       "id": "law_admin_law_ch26_4",
@@ -55,7 +58,8 @@
         "عقود القرض الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8cfd466e0e6b32764a88"
     },
     {
       "id": "law_admin_law_ch26_5",
@@ -68,7 +72,8 @@
         "يتم تحويل العقد إلى عقد فوري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_30e5be5bf9c732d694b2"
     },
     {
       "id": "law_admin_law_ch26_6",
@@ -81,7 +86,8 @@
         "انقضاء العقد بعد القبول النهائي للأعمال"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96ad893d616ff667bcad"
     },
     {
       "id": "law_admin_law_ch26_7",
@@ -94,7 +100,8 @@
         "سحب العمل، الشراء على الحساب، الحراسة، الغرامات التأخيرية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a0a3f0422199acf6c50"
     },
     {
       "id": "law_admin_law_ch26_8",
@@ -107,7 +114,8 @@
         "أن يكون رئيس الجهة الإدارية وحده"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02687bbd17ba495aecdf"
     },
     {
       "id": "law_admin_law_ch26_9",
@@ -120,7 +128,8 @@
         "يجب أن يكون في صورة حكم قضائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9de5d29686108422066e"
     },
     {
       "id": "law_admin_law_ch26_10",
@@ -133,7 +142,8 @@
         "في حالة هلاك محله من دون موافقة الإدارة المسبقة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9b9882cf02f127bbe2a5"
     },
     {
       "id": "law_admin_law_ch26_11",
@@ -146,7 +156,8 @@
         "تقوم بمصادرة التأمين النهائي للمتعاقد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e8ede26c2a0388fed92"
     },
     {
       "id": "law_admin_law_ch26_12",
@@ -159,7 +170,8 @@
         "إذا تم هلاك المحل في الأيام الأولى لتنفيذ العقد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35d816749aecb636fb97"
     },
     {
       "id": "law_admin_law_ch26_13",
@@ -172,7 +184,8 @@
         "إذا رفض المتعاقد تعديل شروط العقد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_728e353c5467ead362ce"
     },
     {
       "id": "law_admin_law_ch26_14",
@@ -185,7 +198,8 @@
         "قاعدة الالتزام بالتعويض المسبق"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_366d6bdf21d69f125b46"
     },
     {
       "id": "law_admin_law_ch26_15",
@@ -198,7 +212,8 @@
         "سلطة مصادرة التأمينات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_41d2426fcf1022076ac4"
     },
     {
       "id": "law_admin_law_ch26_16",
@@ -211,7 +226,8 @@
         "عدم كفاية التأمين النهائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9c0cd47b7f25f94ce2a"
     },
     {
       "id": "law_admin_law_ch26_17",
@@ -224,7 +240,8 @@
         "حقه في تمديد مدة العقد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e0be2ba6e538d610cf39"
     },
     {
       "id": "law_admin_law_ch26_18",
@@ -237,7 +254,8 @@
         "الإنهاء بالإرادة المنفردة للإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e26f7852397309b57d09"
     },
     {
       "id": "law_admin_law_ch26_19",
@@ -250,7 +268,8 @@
         "يجب أن يكون الفسخ جزئيا ً وليس كليا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6ce5579879503a8c7874"
     },
     {
       "id": "law_admin_law_ch26_20",
@@ -263,7 +282,8 @@
         "أن يكون العقد مكتوبا بخط اليد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36de0491a96713ba2a7a"
     },
     {
       "id": "law_admin_law_ch26_21",
@@ -276,7 +296,8 @@
         "إذا كانت مدة التنفيذ قصيرة جدا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_035fae53d92b4b7ebe80"
     },
     {
       "id": "law_admin_law_ch26_22",
@@ -289,7 +310,8 @@
         "سحب العمل من المقاول"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b1eed5e75349a16824d6"
     },
     {
       "id": "law_admin_law_ch26_23",
@@ -302,7 +324,8 @@
         "يمثل ثلث التعويض الكلي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3fc250e0bfcff13abbe"
     },
     {
       "id": "law_admin_law_ch26_24",
@@ -315,7 +338,8 @@
         "إذا كانت مصادرة التأمينات لا تتجاوز الحد الأدنى للتعويض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_392e853b922bf94dfb8e"
     },
     {
       "id": "law_admin_law_ch26_25",
@@ -328,7 +352,8 @@
         "أن يقتصر الضرر على الربح الفائت فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_999328bac85458c52be7"
     },
     {
       "id": "law_admin_law_ch26_26",
@@ -341,7 +366,8 @@
         "أن يكون حادثا يجعل تنفيذ العقد ً مستحيلا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e11b64dcdf64975a976"
     },
     {
       "id": "law_admin_law_ch26_27",
@@ -354,7 +380,8 @@
         "أن يكون الظرف الطارئ خارجا عن إرادة الغير"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_985b8234d7fb5ef058c6"
     },
     {
       "id": "law_admin_law_ch26_28",
@@ -367,7 +394,8 @@
         "أن يقتصر على الضرر المادي المباشر فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2911e659f70b0801f3e1"
     },
     {
       "id": "law_admin_law_ch26_29",
@@ -380,7 +408,8 @@
         "أن يكون الحادث الطارئ يتعلق بنطاق العقد فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ae25fd20f762d850f20c"
     },
     {
       "id": "law_admin_law_ch26_30",
@@ -393,7 +422,8 @@
         "يخول الإدارة سلطة توقيع جزاءات إضافية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08bb18613c4df5131dcb"
     },
     {
       "id": "law_admin_law_ch26_31",
@@ -406,7 +436,8 @@
         "الظرف الطارئ لا يوجب التعويض بينما القوة القاهرة تقتضيه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bf1912e2ac916e3b63df"
     },
     {
       "id": "law_admin_law_ch26_32",
@@ -419,7 +450,8 @@
         "مصادرة التأمين النهائي ورد جزء من المقابل النقدي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4b8a2ba53f36de620219"
     },
     {
       "id": "law_admin_law_ch26_33",
@@ -432,7 +464,8 @@
         "يعد جائزا إذا صدر به قرار تشريعي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0b1e2dc84727fd4b7dfb"
     },
     {
       "id": "law_admin_law_ch26_34",
@@ -445,7 +478,8 @@
         "يتحمل فقط الأضرار غير المادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2da59e67b3db6248f32"
     },
     {
       "id": "law_admin_law_ch26_35",
@@ -458,7 +492,8 @@
         "لا، ويجب عليه إنجاز العمل بالكامل من دون تعويض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67fb97c13db850be7e40"
     },
     {
       "id": "law_admin_law_ch26_36",
@@ -471,7 +506,8 @@
         "عقود الامتياز فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a60255d9f1efb841bb0"
     },
     {
       "id": "law_admin_law_ch26_37",
@@ -484,7 +520,8 @@
         "أن يقع في يوم توقيع العقد نفسه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7bf318c339c7827bff09"
     },
     {
       "id": "law_admin_law_ch26_38",
@@ -497,7 +534,8 @@
         "أن يكون الحادث متوقعا فقط بنطاقه وليس بأصله"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3d874138121dd86556b4"
     },
     {
       "id": "law_admin_law_ch26_39",
@@ -510,7 +548,8 @@
         "الظروف الطارئة تؤدي إلى انفساخ العقد تلقائيا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_62de085c9523cbe757d8"
     },
     {
       "id": "law_admin_law_ch26_40",
@@ -523,7 +562,8 @@
         "يسمح للإدارة بإنهاء العقد بإرادتها المنفردة مع التعويض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96fdf733b1b09276e0d0"
     },
     {
       "id": "law_admin_law_ch26_41",
@@ -536,7 +576,8 @@
         "استحالة مؤقتة فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64e18d87c66ed5b3419a"
     },
     {
       "id": "law_admin_law_ch26_42",
@@ -549,7 +590,8 @@
         "يتحول إلى دفع قيمة التأمين النهائي"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96241218507fce40ee37"
     },
     {
       "id": "law_admin_law_ch26_43",
@@ -562,7 +604,8 @@
         "يعد العقد موقوفا بانتظار زوال الظرف"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50bc84db7c57c8c77ca9"
     },
     {
       "id": "law_admin_law_ch26_44",
@@ -575,7 +618,8 @@
         "الحكم يقرر تحويل العقد إلى عقد جديد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bac3fb32bf6ad43b6ed8"
     },
     {
       "id": "law_admin_law_ch26_45",
@@ -588,7 +632,8 @@
         "يجوز للمتعاقد فسخ العقد بالإرادة المنفردة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4765e5a71bf3d8ce61f1"
     },
     {
       "id": "law_admin_law_ch26_46",
@@ -601,7 +646,8 @@
         "لتطبيق أحكام القانون المدني فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fab614ae6e8d47710798"
     },
     {
       "id": "law_admin_law_ch26_47",
@@ -614,7 +660,8 @@
         "في حالة رفض المتعاقد تعديل شروط العقد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_502a0448b97fd47df1b6"
     },
     {
       "id": "law_admin_law_ch26_48",
@@ -627,7 +674,8 @@
         "قاعدة المسؤولية الشخصية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81dafa5a72af042106a7"
     },
     {
       "id": "law_admin_law_ch26_49",
@@ -640,7 +688,8 @@
         "أن يكون الحادث غير متوقع فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_53349082efe977ba8a4f"
     },
     {
       "id": "law_admin_law_ch26_50",
@@ -653,7 +702,8 @@
         "استحالة مادية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_15df650fbf91d3dfe46c"
     },
     {
       "id": "law_admin_law_ch26_51",
@@ -666,7 +716,8 @@
         "إجبار المتعاقد على اللجوء للقضاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9712456963f626f707fd"
     },
     {
       "id": "law_admin_law_ch26_52",
@@ -679,7 +730,8 @@
         "تعويض المتعاقد تعويضا كافيا."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e6205993ef64f214d794"
     },
     {
       "id": "law_admin_law_ch26_53",
@@ -692,7 +744,8 @@
         "اللجوء للقضاء من دون انتظار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_14b9463522e477da3e11"
     },
     {
       "id": "law_admin_law_ch26_54",
@@ -705,7 +758,8 @@
         "إذا وجد أن التعويض غير كاف، والتعديل تسبب في قلب اقتصاديات العقد."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_22bd160c88d6c1d0b392"
     },
     {
       "id": "law_admin_law_ch26_55",
@@ -718,7 +772,8 @@
         "تمديد مدة تنفيذ العقد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b836590af5928e39466"
     },
     {
       "id": "law_admin_law_ch26_56",
@@ -731,7 +786,8 @@
         "تاريخ إبرام العقد الأصلي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fcf30c44948a60b3d4d8"
     },
     {
       "id": "law_admin_law_ch26_57",
@@ -744,7 +800,8 @@
         "أن يوافق على التعديلات الجديدة بشكل مبدئي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_23bb86b41192c2896184"
     },
     {
       "id": "law_admin_law_ch26_58",
@@ -757,7 +814,8 @@
         "محكوما له بالتعويض عن الأضرار."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36c1f062d703026900d5"
     },
     {
       "id": "law_admin_law_ch26_59",
@@ -770,7 +828,8 @@
         "أن الإدارة لم تستخدم سلطتها بشكل صحيح."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cee66bc069cc253e8e3d"
     },
     {
       "id": "law_admin_law_ch26_60",
@@ -783,7 +842,8 @@
         "طلبت ذلك جهة إدارية عليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7d1cd9543bd876c62b64"
     },
     {
       "id": "law_admin_law_ch26_61",
@@ -796,7 +856,8 @@
         "إذا أصدر القاضي حكما غير نهائي بالفسخ."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b0cf90eb080134a87cd3"
     },
     {
       "id": "law_admin_law_ch26_62",
@@ -809,7 +870,8 @@
         "تعويضا يساوي قيمة الأعمال المنفذة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8a755eb7fa9447f0b68f"
     },
     {
       "id": "law_admin_law_ch26_63",
@@ -822,7 +884,8 @@
         "إنهاء العقد من دون رد التأمين بالضرورة."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9adda3573e65a6bb275a"
     },
     {
       "id": "law_admin_law_ch26_64",
@@ -835,7 +898,8 @@
         "توقيع محضر إنهاء بين الطرفين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04776168f1c0d3c8e5fd"
     },
     {
       "id": "law_admin_law_ch26_65",
@@ -848,7 +912,8 @@
         "منح القاضي الإداري سلطة الفسخ"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1242523ebb271280b7e8"
     },
     {
       "id": "law_admin_law_ch26_66",
@@ -861,7 +926,8 @@
         "إذا رفض التعديلات الجديدة التي أقرتها الإدارة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_33cd372795f36cb74e8f"
     },
     {
       "id": "law_admin_law_ch26_67",
@@ -874,7 +940,8 @@
         "إطالة إجراءات البت في النزاع."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fef9485099d76959caa9"
     },
     {
       "id": "law_admin_law_ch26_68",
@@ -887,7 +954,8 @@
         "قيمة التأمين المقدم من المتعاقد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96b3fd84231b68e18495"
     },
     {
       "id": "law_admin_law_ch26_69",
@@ -900,7 +968,8 @@
         "المبالغ التي دفعها للإدارة كتأمين."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c07110cae08aa5f55387"
     },
     {
       "id": "law_admin_law_ch26_70",
@@ -913,7 +982,8 @@
         "النص على حق الفسخ في العقد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64617727fdd8e916a966"
     },
     {
       "id": "law_admin_law_ch26_71",
@@ -926,7 +996,8 @@
         "إلزامه بتعويض الإدارة عن قيمة الأعمال المنفذة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_952a870c9a042b5d8697"
     },
     {
       "id": "law_admin_law_ch26_72",
@@ -939,7 +1010,8 @@
         "يتم النظر فيها بعد شهر من تقديمها"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_57e33784e541431549a2"
     },
     {
       "id": "law_admin_law_ch26_73",
@@ -952,7 +1024,8 @@
         "تقديم عقد تأسيس هذه الشركة ونوعها ومقدار رأس مالها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_88d5345352a4c6afa106"
     },
     {
       "id": "law_admin_law_ch26_74",
@@ -965,7 +1038,8 @@
         "ما يفيد دفع ضريبة الدخل"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0338b8aa7d8a012296df"
     },
     {
       "id": "law_admin_law_ch26_75",
@@ -978,7 +1052,8 @@
         "الوثائق التي تؤيد أنه لم يسبق أن أدين بجناية أو جنحة مخلة بالشرف أو الأمانة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_19510360d4ea0e4ad8f6"
     },
     {
       "id": "law_admin_law_ch26_76",
@@ -991,7 +1066,8 @@
         "إيجاب إداري بات"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cf5aa1534556c1b83839"
     },
     {
       "id": "law_admin_law_ch26_77",
@@ -1004,7 +1080,8 @@
         "الإيجاب الذي ينبغي أن يتلقى عنده قبول الإدارة لينعقد العقد"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ae934391c603feb3121f"
     },
     {
       "id": "law_admin_law_ch26_78",
@@ -1017,7 +1094,8 @@
         "يجوز النظر في عطائه لمقتضيات المصلحة العامة وبموافقة الجهة طالبة التعاقد"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2cc5155d1b553105cf54"
     },
     {
       "id": "law_admin_law_ch26_79",
@@ -1030,7 +1108,8 @@
         "بشكل لا يسمح بوجود لبس أو تفسير خاطئ"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0dee34f9ba66c483e77a"
     },
     {
       "id": "law_admin_law_ch26_80",
@@ -1043,7 +1122,8 @@
         "وزارة المالية"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad9dcac1be7effc803f0"
     }
   ]
 }

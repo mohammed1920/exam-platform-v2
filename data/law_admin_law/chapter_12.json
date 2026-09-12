@@ -16,7 +16,8 @@
         "أن تكون مضافة إلى مدة الخدمة التقاعدية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9fa1dc6867b4935cb56b"
     },
     {
       "id": "law_admin_law_ch12_2",
@@ -29,7 +30,8 @@
         "يتم منحها فقط إذا لم يحصل على علاوة تشجيعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_17950535810e4cc72bc8"
     },
     {
       "id": "law_admin_law_ch12_3",
@@ -42,7 +44,8 @@
         "بعد حصوله على الإجازة الاعتيادية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9558aa4487ccdc19efa8"
     },
     {
       "id": "law_admin_law_ch12_4",
@@ -55,7 +58,8 @@
         "إثبات أن الموظف في مركز تعاقدي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8a6829328ec6aa8142ab"
     },
     {
       "id": "law_admin_law_ch12_5",
@@ -68,7 +72,8 @@
         "تكون مضافة إلى الإجازة المتراكمة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82a1d853c610fb5aba37"
     },
     {
       "id": "law_admin_law_ch12_6",
@@ -81,7 +86,8 @@
         "يتم تجميعها مع الإجازات المتراكمة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e5ca4e082a5e298cd81e"
     },
     {
       "id": "law_admin_law_ch12_7",
@@ -94,7 +100,8 @@
         "زيادة المبلغ المالي الذي يتقاضاه الموظف شهريا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3ab17dad378fc8cfee9"
     },
     {
       "id": "law_admin_law_ch12_8",
@@ -107,7 +114,8 @@
         "إثبات أن الموظف في. مركز تعاقدي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_de8de0a942d0d381b680"
     },
     {
       "id": "law_admin_law_ch12_9",
@@ -120,7 +128,8 @@
         "إجازة الخدمة الطويلة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_17e3ecd2fe550d9417c2"
     },
     {
       "id": "law_admin_law_ch12_10",
@@ -133,7 +142,8 @@
         "ستة أشهر. ً. -"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4bd2849a0788b459e7d1"
     },
     {
       "id": "law_admin_law_ch12_11",
@@ -146,7 +156,8 @@
         "180 يوما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f08dca320ed3d09c1671"
     },
     {
       "id": "law_admin_law_ch12_12",
@@ -159,7 +170,8 @@
         "الإدارة ملزمة بمنحها إذا كان الموظف يعمل في مرفق اقتصادي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f528cf4909a35847e19b"
     },
     {
       "id": "law_admin_law_ch12_13",
@@ -172,7 +184,8 @@
         "لا يستحق الموظف راتب الإجازات المتراكمة إذا تمت ترقيته قبل الإحالة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_da4bc7370aa9e30f4e86"
     },
     {
       "id": "law_admin_law_ch12_14",
@@ -185,7 +198,8 @@
         "تضاف إلى الإجازة التشجيعية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7e64f586932d9b1648b7"
     },
     {
       "id": "law_admin_law_ch12_15",
@@ -198,7 +212,8 @@
         "الإجازة من دون راتب لمدة قصيرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1412eb42dfe85c6e3045"
     },
     {
       "id": "law_admin_law_ch12_16",
@@ -211,7 +226,8 @@
         "سنة واحدة براتب كامل."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_307a0f6e8253459c7769"
     },
     {
       "id": "law_admin_law_ch12_17",
@@ -224,7 +240,8 @@
         "سنة واحدة من دون راتب."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4536d86de76db17c1cfa"
     },
     {
       "id": "law_admin_law_ch12_18",
@@ -237,7 +254,8 @@
         "أن لا تزيد المدة التي تتمتع بها قبل الولادة عن 72 يوما."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50a073e49ae299fbf749"
     },
     {
       "id": "law_admin_law_ch12_19",
@@ -250,7 +268,8 @@
         "حماية تجعله قابلا للتعديل بإرادة الإدارة المنفردة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b391697e4697606c588c"
     },
     {
       "id": "law_admin_law_ch12_20",
@@ -263,7 +282,8 @@
         "قرار التعيين"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bcd66ae94d84fb1217b3"
     },
     {
       "id": "law_admin_law_ch12_21",
@@ -276,7 +296,8 @@
         "العلاوة الدورية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_be2221c5c9e0294f8b43"
     },
     {
       "id": "law_admin_law_ch12_22",
@@ -289,7 +310,8 @@
         "مركز قانوني يخضع للمفاوضات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af0e11c58fdd1fbda0e8"
     },
     {
       "id": "law_admin_law_ch12_23",
@@ -302,7 +324,8 @@
         "بعد إتمامه خدمة غير مرضية.."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_020564361f77f13d7c18"
     },
     {
       "id": "law_admin_law_ch12_24",
@@ -315,7 +338,8 @@
         "لمدة تزيد على ( 180 ) يوما."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4f7039fa3d9c0a991855"
     },
     {
       "id": "law_admin_law_ch12_25",
@@ -328,7 +352,8 @@
         "يصبح الموظف في مركز تعاقدي مطلق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_535608706a10a513599a"
     },
     {
       "id": "law_admin_law_ch12_26",
@@ -341,7 +366,8 @@
         "سنتان"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_47b17d33b82d1ac0b594"
     },
     {
       "id": "law_admin_law_ch12_27",
@@ -354,7 +380,8 @@
         "سنة واحدة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66b301d79c35e422327f"
     },
     {
       "id": "law_admin_law_ch12_28",
@@ -367,7 +394,8 @@
         "سنة واحدة براتب تام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6bf377e9313893e6789a"
     },
     {
       "id": "law_admin_law_ch12_29",
@@ -380,7 +408,8 @@
         "لمدة غير محددة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e95a91edaf4059b4971"
     },
     {
       "id": "law_admin_law_ch12_30",
@@ -393,7 +422,8 @@
         "يتم تغيير درجته الوظيفية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_adca8ca224ff8497c30d"
     },
     {
       "id": "law_admin_law_ch12_31",
@@ -406,7 +436,8 @@
         "إذا كان يحمل شهادة جامعية عليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a2ec6607844651dde22a"
     },
     {
       "id": "law_admin_law_ch12_32",
@@ -419,7 +450,8 @@
         "يتم تغيير مركزه القانوني إلى تعاقدي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36f123997dee7630f450"
     },
     {
       "id": "law_admin_law_ch12_33",
@@ -432,7 +464,8 @@
         "180 يوما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_303f698dfd280eed3085"
     },
     {
       "id": "law_admin_law_ch12_34",
@@ -445,7 +478,8 @@
         "براتب مؤقت."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ac07c8c31f6bc7865c14"
     },
     {
       "id": "law_admin_law_ch12_35",
@@ -458,7 +492,8 @@
         "كل سنة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50a8989f11d7edf3c36f"
     },
     {
       "id": "law_admin_law_ch12_36",
@@ -471,7 +506,8 @@
         "خمس سنوات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_96adf754156f6f76e509"
     },
     {
       "id": "law_admin_law_ch12_37",
@@ -484,7 +520,8 @@
         "لا يجوز أن تتجاوز ً 180 يوما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_47327994c1f0e527b2e0"
     },
     {
       "id": "law_admin_law_ch12_38",
@@ -497,7 +534,8 @@
         "المطالبة بتعديل شروط وظيفته بإرادته المنفردة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c51c4895974d8120bc73"
     },
     {
       "id": "law_admin_law_ch12_39",
@@ -510,7 +548,8 @@
         "لأنه يتعلق بحق الموظف في المرتب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aef1a14986073b10469d"
     },
     {
       "id": "law_admin_law_ch12_40",
@@ -523,7 +562,8 @@
         "أن يؤديه بقرار إداري منفرد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_706b693defa75b077c54"
     },
     {
       "id": "law_admin_law_ch12_41",
@@ -536,7 +576,8 @@
         "واجب ممارسة الأعمال السياسية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_674eefd2c1b66a460ae4"
     },
     {
       "id": "law_admin_law_ch12_42",
@@ -549,7 +590,8 @@
         "صفة الانعدام."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e38887c10f93677849d"
     },
     {
       "id": "law_admin_law_ch12_43",
@@ -562,7 +604,8 @@
         "إذا كان الأمر يتعلق بقرار الترقية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_085d57808d9c99945beb"
     },
     {
       "id": "law_admin_law_ch12_44",
@@ -575,7 +618,8 @@
         "أن يحيل الأمر إلى القضاء الإداري مباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8f58f38b5a71dc3f8590"
     },
     {
       "id": "law_admin_law_ch12_45",
@@ -588,7 +632,8 @@
         "تقع المسؤولية على الإدارة فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59112c2d544284ca2b18"
     },
     {
       "id": "law_admin_law_ch12_46",
@@ -601,7 +646,8 @@
         "منح الموظف. إجازة مرضية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a458c82a2128e37a857"
     },
     {
       "id": "law_admin_law_ch12_47",
@@ -614,7 +660,8 @@
         "واجب عدم ممارسة الأعمال السياسية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_734e682ad4e6ca000427"
     },
     {
       "id": "law_admin_law_ch12_48",
@@ -627,7 +674,8 @@
         "واجب المحافظة على شرف وكرامة الوظيفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3478bf8387668e07ead0"
     },
     {
       "id": "law_admin_law_ch12_49",
@@ -640,7 +688,8 @@
         "بعد حصوله على شهادة جامعية عليا."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f3169313e9988f54df8"
     },
     {
       "id": "law_admin_law_ch12_50",
@@ -653,7 +702,8 @@
         "منح الموظف إجازة المصاحبة الزوجية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eb7999e777660cc8de2f"
     },
     {
       "id": "law_admin_law_ch12_51",
@@ -666,7 +716,8 @@
         "عدم الجمع بين الوظيفة وأي عمل آخر. ً."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d3883d3b45fcb0ed9918"
     },
     {
       "id": "law_admin_law_ch12_52",
@@ -679,7 +730,8 @@
         "لا يجوز له أداء أي عمل في غير الأوقات الرسمية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_76a747a98032cc88376d"
     },
     {
       "id": "law_admin_law_ch12_53",
@@ -692,7 +744,8 @@
         "إذا كان العمل يتعلق بأسرار الوظيفة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8a99a6ec40fdc888c8e6"
     },
     {
       "id": "law_admin_law_ch12_54",
@@ -705,7 +758,8 @@
         "واجب احترام القوانين."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6cba7e7e9b8ad7bc2d8e"
     },
     {
       "id": "law_admin_law_ch12_55",
@@ -718,7 +772,8 @@
         "على أساس الاختيار الديمقراطي للموظفين."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f88fd4b3567b4abb30ef"
     },
     {
       "id": "law_admin_law_ch12_56",
@@ -731,7 +786,8 @@
         "حقه في منح الإجازة المرضية المطلقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cfa0015f58a109899e17"
     },
     {
       "id": "law_admin_law_ch12_57",
@@ -744,7 +800,8 @@
         "الحق في الموافقة على المصاحبة الزوجية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7994ea05ca27610f6fb4"
     },
     {
       "id": "law_admin_law_ch12_58",
@@ -757,7 +814,8 @@
         "أن يكون الموظف قد استنفذ إجازاته المرضية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_93157b1fd4cb1aa5457f"
     },
     {
       "id": "law_admin_law_ch12_59",
@@ -770,7 +828,8 @@
         "إذا كان الأمر يتعلق بالإعارة أو الانتداب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_944fac735aef16f38d76"
     },
     {
       "id": "law_admin_law_ch12_60",
@@ -783,7 +842,8 @@
         "يطالب بتغيير مركزه القانوني إلى تعاقدي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1aff83876f10374e15f2"
     },
     {
       "id": "law_admin_law_ch12_61",
@@ -796,7 +856,8 @@
         "تقع المسؤولية على الرئيس الآمر وحده."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_91f5217b79e728befdd0"
     },
     {
       "id": "law_admin_law_ch12_62",
@@ -809,7 +870,8 @@
         "واجب طاعة. الرؤساء المطلقة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36cb21d4808b12fc084a"
     },
     {
       "id": "law_admin_law_ch12_63",
@@ -822,7 +884,8 @@
         "يتم نقله نقلا مكانيا فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dac3a4a140b1a3a1c4c3"
     },
     {
       "id": "law_admin_law_ch12_64",
@@ -835,7 +898,8 @@
         "إذا كان الموظف يعمل في مرفق اقتصادي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a038b43b35996da75986"
     },
     {
       "id": "law_admin_law_ch12_65",
@@ -848,7 +912,8 @@
         "إذا لم يتقاض الموظف راتبه لمدة شهر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d5ade9e511d45deb355f"
     },
     {
       "id": "law_admin_law_ch12_66",
@@ -861,7 +926,8 @@
         "الإخلال بواجب الطاعة للرؤساء."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_83b843bd9e7a373666a5"
     },
     {
       "id": "law_admin_law_ch12_67",
@@ -874,7 +940,8 @@
         "قاعدة تسري بعد انتهاء خدمة الموظف فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c74ac53f739b0d6281d5"
     },
     {
       "id": "law_admin_law_ch12_68",
@@ -887,7 +954,8 @@
         "يسقط عنه واجب طاعة الرؤساء."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f7c494e26e81775ece7f"
     },
     {
       "id": "law_admin_law_ch12_69",
@@ -900,7 +968,8 @@
         "الأعمال التي يكون فيها الموظف غير مسؤول"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_26fa45bdd8ad442d58eb"
     },
     {
       "id": "law_admin_law_ch12_70",
@@ -913,7 +982,8 @@
         "تمكين الموظف من الجمع بين الوظيفة وعمل آخر."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d35f44ee91c50e2bea91"
     },
     {
       "id": "law_admin_law_ch12_71",
@@ -926,7 +996,8 @@
         "أن يكون في مركز تعاقدي مطلق."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb36e5f453eebac20624"
     },
     {
       "id": "law_admin_law_ch12_72",
@@ -939,7 +1010,8 @@
         "التنازل عن واجب أداء العمل."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c1e66b049ccfd223b6f7"
     },
     {
       "id": "law_admin_law_ch12_73",
@@ -952,7 +1024,8 @@
         "يع د الموظف في مركز تعاقدي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bf375a40d8b12351f722"
     },
     {
       "id": "law_admin_law_ch12_74",
@@ -965,7 +1038,8 @@
         "تتضاعف المسؤولية على الموظف."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_18db3220687dbf4e1106"
     },
     {
       "id": "law_admin_law_ch12_75",
@@ -978,7 +1052,8 @@
         "ضمان حصول الموظف على العلاوات الدورية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2069fabbd512fff54ddc"
     },
     {
       "id": "law_admin_law_ch12_76",
@@ -991,7 +1066,8 @@
         "تسقط بعد بلوغ سن التقاعد.."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_331f426165d49793493e"
     },
     {
       "id": "law_admin_law_ch12_77",
@@ -1004,7 +1080,8 @@
         "الحظر على ذوي المؤهلات المهنية والعلمية فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7f0dae8fc61844579ed0"
     },
     {
       "id": "law_admin_law_ch12_78",
@@ -1017,7 +1094,8 @@
         "المؤهلات المالية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_56197bf39d8ab3bdcd5f"
     },
     {
       "id": "law_admin_law_ch12_79",
@@ -1030,7 +1108,8 @@
         "المسؤولية عن انتهاء خدمة الموظف بحكم القانون."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_baa18aa0b4a30de4a665"
     }
   ]
 }

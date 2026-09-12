@@ -16,7 +16,8 @@
         "الوصاية الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75a0a3d6c6fb9d2e3846"
     },
     {
       "id": "law_admin_law_ch6_2",
@@ -29,7 +30,8 @@
         "الفصل التام بين السلطات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_864d0ff97fc994a5e5ed"
     },
     {
       "id": "law_admin_law_ch6_3",
@@ -42,7 +44,8 @@
         "نظام التسلسل الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b075e5b211288baab98"
     },
     {
       "id": "law_admin_law_ch6_4",
@@ -55,7 +58,8 @@
         "الهيئات المستقلة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5923a6fc16412f31d5e2"
     },
     {
       "id": "law_admin_law_ch6_5",
@@ -68,7 +72,8 @@
         "لا تلتزم بها إلا بنص قانوني"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5609b1f93023120920f3"
     },
     {
       "id": "law_admin_law_ch6_6",
@@ -81,7 +86,8 @@
         "وجود أشخاص معنوية مرفقية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b8a035b0f660a52da774"
     },
     {
       "id": "law_admin_law_ch6_7",
@@ -94,7 +100,8 @@
         "نعم، لها حق إصدار قرارات نهائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a78e3577ad20b413e98d"
     },
     {
       "id": "law_admin_law_ch6_8",
@@ -107,7 +114,8 @@
         "سبعة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f524ed739a4f21409421"
     },
     {
       "id": "law_admin_law_ch6_9",
@@ -120,7 +128,8 @@
         "السلطة الأمرة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0cf7e8f1635c0277d448"
     },
     {
       "id": "law_admin_law_ch6_10",
@@ -133,7 +142,8 @@
         "تتولى إصدار اللوائح الخاصة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_961b188c7e9806bcd0ad"
     },
     {
       "id": "law_admin_law_ch6_11",
@@ -146,7 +156,8 @@
         "الموظفين التابعين للوحدات المحلية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4e5397fb25ab42f4f048"
     },
     {
       "id": "law_admin_law_ch6_12",
@@ -159,7 +170,8 @@
         "سلطة الأمر"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_966dfd16dad99f80f13b"
     },
     {
       "id": "law_admin_law_ch6_13",
@@ -172,7 +184,8 @@
         "رئيس مجلس الإدارة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0823d6c1de1d7837d84a"
     },
     {
       "id": "law_admin_law_ch6_14",
@@ -185,7 +198,8 @@
         "يقتصر دوره على التوجيه قبل صدور القرار"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9017eb1a5a3e20313155"
     },
     {
       "id": "law_admin_law_ch6_15",
@@ -198,7 +212,8 @@
         "رقابة قضائية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b725b2ad7aeb0a6e2f5"
     },
     {
       "id": "law_admin_law_ch6_16",
@@ -211,7 +226,8 @@
         "نظام الفصل بين السلطات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_35201dbd86b2cd420f67"
     },
     {
       "id": "law_admin_law_ch6_17",
@@ -224,7 +240,8 @@
         "الوصاية الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_462a7d0cd72d0c8e59b1"
     },
     {
       "id": "law_admin_law_ch6_18",
@@ -237,7 +254,8 @@
         "اللامركزية المرفقية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b378b7d175544d2ceb58"
     },
     {
       "id": "law_admin_law_ch6_19",
@@ -250,7 +268,8 @@
         "تتقرر بعد موافقة السلطة التشريعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cd6045c4414cbd7ad2ea"
     },
     {
       "id": "law_admin_law_ch6_20",
@@ -263,7 +282,8 @@
         "مسؤولية المفتشين فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f8c4ad930502683bd080"
     },
     {
       "id": "law_admin_law_ch6_21",
@@ -276,7 +296,8 @@
         "حق إجازة أعمال المرؤوس"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a8e923dc57358373bf8a"
     },
     {
       "id": "law_admin_law_ch6_22",
@@ -289,7 +310,8 @@
         "تتطلب موافقة القضاء الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12b35203131bea0408bd"
     },
     {
       "id": "law_admin_law_ch6_23",
@@ -302,7 +324,8 @@
         "سلطة الحلول محل المرؤوس"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_696b68d4ed0e8c67b076"
     },
     {
       "id": "law_admin_law_ch6_24",
@@ -315,7 +338,8 @@
         "سلطة الحلول محل المرؤوس"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c9b3f95b54096dd72de9"
     },
     {
       "id": "law_admin_law_ch6_25",
@@ -328,7 +352,8 @@
         "سلطة آمرة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6779b3efbe23923cd61d"
     },
     {
       "id": "law_admin_law_ch6_26",
@@ -341,7 +366,8 @@
         "سلطة العزل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fc273e3d278e6488e05b"
     },
     {
       "id": "law_admin_law_ch6_27",
@@ -354,7 +380,8 @@
         "تخفيف العبء عن الوزارات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9eb22704f62cfcdbba49"
     },
     {
       "id": "law_admin_law_ch6_28",
@@ -367,7 +394,8 @@
         "اللامركزية الإقليمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d36ec0236243d0c667ca"
     },
     {
       "id": "law_admin_law_ch6_29",
@@ -380,7 +408,8 @@
         "ممارسة جزء من اختصاصات الوزير المفوضة إليهم"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e1afa3101e39d9070bc9"
     },
     {
       "id": "law_admin_law_ch6_30",
@@ -393,7 +422,8 @@
         "استحالة تطبيق مبدأ السلطة الرئاسية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d09a35a6225593a4ed1a"
     },
     {
       "id": "law_admin_law_ch6_31",
@@ -406,7 +436,8 @@
         "التركيز الوزاري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_43f3c710bc14be135eae"
     },
     {
       "id": "law_admin_law_ch6_32",
@@ -419,7 +450,8 @@
         "إلزام الموظفين بالرجوع إلى الوزير في جميع الأمور"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ed64289b02680a27673"
     },
     {
       "id": "law_admin_law_ch6_33",
@@ -432,7 +464,8 @@
         "لا يمكن للوزير إصدار قرارات ملزمة لهم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fe35f96f44a07b14cf86"
     },
     {
       "id": "law_admin_law_ch6_34",
@@ -445,7 +478,8 @@
         "حصر سلطة القرار في العاصمة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_67601d1e59ba707c53f8"
     },
     {
       "id": "law_admin_law_ch6_35",
@@ -458,7 +492,8 @@
         "عدم التركيز يعني الاستقلال التام للسلطات الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_98291ad199d907d32cd1"
     },
     {
       "id": "law_admin_law_ch6_36",
@@ -471,7 +506,8 @@
         "الصورة التي يلغى فيها التفويض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99013313d1e18d99d257"
     },
     {
       "id": "law_admin_law_ch6_37",
@@ -484,7 +520,8 @@
         "المركزية المتطرفة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64699134a077305941a6"
     },
     {
       "id": "law_admin_law_ch6_38",
@@ -497,7 +534,8 @@
         "أن يصدر الرئيس أمرا ملزما للمرؤوس"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_854c5b595ce3010a8f09"
     },
     {
       "id": "law_admin_law_ch6_39",
@@ -510,7 +548,8 @@
         "أن يكون التفويض شاملا لجميع الاختصاصات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_599a3ef7dc49697b8e47"
     },
     {
       "id": "law_admin_law_ch6_40",
@@ -523,7 +562,8 @@
         "زيادة الأعباء عن الرئيس صاحب الاختصاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8cf0338c42cb57f8bd04"
     },
     {
       "id": "law_admin_law_ch6_41",
@@ -536,7 +576,8 @@
         "منحهم أهلية قانونية أوسع نطاقا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2bda163d696da4171cc1"
     },
     {
       "id": "law_admin_law_ch6_42",
@@ -549,7 +590,8 @@
         "يجب أن يكون بموافقة السلطة التشريعية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_66bb3beef8300b16442f"
     },
     {
       "id": "law_admin_law_ch6_43",
@@ -562,7 +604,8 @@
         "لأن التفويض في المسؤولية وليس في السلطة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_876873f88268be8a1376"
     },
     {
       "id": "law_admin_law_ch6_44",
@@ -575,7 +618,8 @@
         "يسأل المفوض إليه أمام القضاء الإداري فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ef93af122acc18d697ce"
     },
     {
       "id": "law_admin_law_ch6_45",
@@ -588,7 +632,8 @@
         "أمام الجهة التي يتبعها هذا الشخص المعنوي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bee9b5e178fb4eb07abe"
     },
     {
       "id": "law_admin_law_ch6_46",
@@ -601,7 +646,8 @@
         "لا يحدد له مدة زمنية محددة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d8181138c6ff37c1cbf7"
     },
     {
       "id": "law_admin_law_ch6_47",
@@ -614,7 +660,8 @@
         "يكون قابلا للإلغاء من الرئيس المفوض فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0b8dff999ec6f1ec9c14"
     },
     {
       "id": "law_admin_law_ch6_48",
@@ -627,7 +674,8 @@
         "قاعدة الوصاية الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_60ad408c9e8ebe26a6af"
     },
     {
       "id": "law_admin_law_ch6_49",
@@ -640,7 +688,8 @@
         "الأصل هو مسؤولية المفوض إليه"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_83db5919b61e6104a273"
     },
     {
       "id": "law_admin_law_ch6_50",
@@ -653,7 +702,8 @@
         "سلطته تقتصر على إيقاع العقوبات التأديبية على المفوض إليه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2c333ef04930fa74d195"
     },
     {
       "id": "law_admin_law_ch6_51",
@@ -666,7 +716,8 @@
         "هو النظام الأقدم والأكثر تطرفا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d65c033e2609f6b7ed92"
     },
     {
       "id": "law_admin_law_ch6_52",
@@ -679,7 +730,8 @@
         "لتمكين المرؤوس المفوض إليه من تفويض غيره"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_aceb5761e9918e8c4dbc"
     },
     {
       "id": "law_admin_law_ch6_53",
@@ -692,7 +744,8 @@
         "يجعل المرؤوس مسؤولا أمام السلطة التشريعية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7af435906c8aaf2f746a"
     },
     {
       "id": "law_admin_law_ch6_54",
@@ -705,7 +758,8 @@
         "مبدأ الحلول القانوني"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f8d168fa3f09dc0a288"
     },
     {
       "id": "law_admin_law_ch6_55",
@@ -718,7 +772,8 @@
         "التفويض الجزئي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b74e85dfc4a95d84decd"
     },
     {
       "id": "law_admin_law_ch6_56",
@@ -731,7 +786,8 @@
         "إلى السلطة القضائية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_38a1776ee498ba96e971"
     },
     {
       "id": "law_admin_law_ch6_57",
@@ -744,7 +800,8 @@
         "مراجعة قرارات مرؤوسيه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_50fb50a3dd8cae265a22"
     },
     {
       "id": "law_admin_law_ch6_58",
@@ -757,7 +814,8 @@
         "إلى الجهة التي يتبعها المفوض إليه"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_24537959e15fe984de6d"
     },
     {
       "id": "law_admin_law_ch6_59",
@@ -770,7 +828,8 @@
         "يأخذ القرار الصادر مرتبة قرارات الأصيل"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e4d40a5131422ecad878"
     },
     {
       "id": "law_admin_law_ch6_60",
@@ -783,7 +842,8 @@
         "تفويض المسؤولية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c82b314664da3c282f5e"
     },
     {
       "id": "law_admin_law_ch6_61",
@@ -796,7 +856,8 @@
         "نوع الاختصاص المفوض"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2bee1222c91749ad9c71"
     },
     {
       "id": "law_admin_law_ch6_62",
@@ -809,7 +870,8 @@
         "المرؤوس المباشر"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8fde8d0bd3a502f3a777"
     },
     {
       "id": "law_admin_law_ch6_63",
@@ -822,7 +884,8 @@
         "كلاهما لا ينظمه المشرع بالضرورة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fd5af7a07e1a2c743fa0"
     },
     {
       "id": "law_admin_law_ch6_64",
@@ -835,7 +898,8 @@
         "أن يكون التفويض بصفة لا بشخصية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75925cb03b6cd75e938f"
     },
     {
       "id": "law_admin_law_ch6_65",
@@ -848,7 +912,8 @@
         "لا يوجد فرق بينهما من حيث الحضور."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ad311f6dc652d0ac478f"
     },
     {
       "id": "law_admin_law_ch6_66",
@@ -861,7 +926,8 @@
         "أمر شفهي من الرئيس المباشر"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0bf42666ab5de120e1ca"
     },
     {
       "id": "law_admin_law_ch6_67",
@@ -874,7 +940,8 @@
         "مرتبة القرارات الإدارية العليا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8568878f1f1537043f4b"
     },
     {
       "id": "law_admin_law_ch6_68",
@@ -887,7 +954,8 @@
         "يسأل أمام القضاء الإداري فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_68acbea0399cc11f660d"
     },
     {
       "id": "law_admin_law_ch6_69",
@@ -900,7 +968,8 @@
         "إذا أصيب الأصيل بعجز دائم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f42dbd04ae741d13b258"
     },
     {
       "id": "law_admin_law_ch6_70",
@@ -913,7 +982,8 @@
         "إشغال الإدارة المركزية بمسائل هامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3753c3dd2c7a004302a5"
     },
     {
       "id": "law_admin_law_ch6_71",
@@ -926,7 +996,8 @@
         "المرافق التي تدار من خلال سكان الوحدات المحلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f90918f40b6e3df9d952"
     },
     {
       "id": "law_admin_law_ch6_72",
@@ -939,7 +1010,8 @@
         "إيجاد مجالس وهيئات لامركزية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_43d85a36e0d25855f86a"
     },
     {
       "id": "law_admin_law_ch6_73",
@@ -952,7 +1024,8 @@
         "تقوية سلطة الدولة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59843a9321646be5f9fd"
     },
     {
       "id": "law_admin_law_ch6_74",
@@ -965,7 +1038,8 @@
         "قتل روح المثابرة والإبداع"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_57acfd548b7cf3c98ba2"
     },
     {
       "id": "law_admin_law_ch6_75",
@@ -978,7 +1052,8 @@
         "عدم القدرة على إدارة المرافق العامة القومية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_56590edaf43e4c0e43a6"
     },
     {
       "id": "law_admin_law_ch6_76",
@@ -991,7 +1066,8 @@
         "مبدأ تركيز الوظيفة الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b68c0cdb3b89bbd3b79"
     },
     {
       "id": "law_admin_law_ch6_77",
@@ -1004,7 +1080,8 @@
         "تخفيف العبء عن الوزارات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d3021c51c74726cd0c0"
     },
     {
       "id": "law_admin_law_ch6_78",
@@ -1017,7 +1094,8 @@
         "لا يجوز الرجوع فيه من جانب الرئيس."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12bc6dfd136b519d88b2"
     },
     {
       "id": "law_admin_law_ch6_79",
@@ -1030,7 +1108,8 @@
         "إدارة المرافق العامة القومية بفاعلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7adb868ba74d04a9b194"
     },
     {
       "id": "law_admin_law_ch6_80",
@@ -1043,7 +1122,8 @@
         "لتمتع الموظفين بالاستقلال الفني."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75aea9bd6b0c5897c42c"
     },
     {
       "id": "law_admin_law_ch6_81",
@@ -1056,7 +1136,8 @@
         "خضوع السلطات المحلية للسلطة الرئاسية المطلقة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cefdfc33796e4fc578de"
     },
     {
       "id": "law_admin_law_ch6_82",
@@ -1069,7 +1150,8 @@
         "حصر دورها في تنفيذ الأوامر والتعليمات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9264d878f0e561bfe95f"
     },
     {
       "id": "law_admin_law_ch6_83",
@@ -1082,7 +1164,8 @@
         "انحصار دورها في تقديم المقترحات والآراء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_080815399de1a2834301"
     },
     {
       "id": "law_admin_law_ch6_84",
@@ -1095,7 +1178,8 @@
         "تركه للمرافق المحلية تحت إدارة السلطة المركزية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5180a95aedf88378d6a5"
     },
     {
       "id": "law_admin_law_ch6_85",
@@ -1108,7 +1192,8 @@
         "الحلول القانوني"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1888f63ea759e3ab2073"
     },
     {
       "id": "law_admin_law_ch6_86",
@@ -1121,7 +1206,8 @@
         "إخضاعها للسلطة الرئاسية المطلقة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_36b32d71cc7245f5f885"
     },
     {
       "id": "law_admin_law_ch6_87",
@@ -1134,7 +1220,8 @@
         "فكرة الحلول القانوني."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6147de0da95668900570"
     },
     {
       "id": "law_admin_law_ch6_88",
@@ -1147,7 +1234,8 @@
         "الأنشطة التي تقتصر على تقديم المقترحات."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89ddc51afff3235c08d3"
     },
     {
       "id": "law_admin_law_ch6_89",
@@ -1160,7 +1248,8 @@
         "المرافق التي تخضع لقاعدة لا تفويض في المسؤولية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fa1475f9dac503e6ebc7"
     },
     {
       "id": "law_admin_law_ch6_90",
@@ -1173,7 +1262,8 @@
         "لأنها تتمتع بالشخصية المعنوية المستقلة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e854b704aa8bbc3d43f1"
     },
     {
       "id": "law_admin_law_ch6_91",
@@ -1186,7 +1276,8 @@
         "أن يكون نشاطها موجها إلى إقليم جغرافي محدد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5e4a06dc7b54f3e442c5"
     },
     {
       "id": "law_admin_law_ch6_92",
@@ -1199,7 +1290,8 @@
         "علاقة قائمة على مبدأ الحلول القانوني."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1578c2a7faf35fcb5ec0"
     },
     {
       "id": "law_admin_law_ch6_93",
@@ -1212,7 +1304,8 @@
         "إشغالهم بمسائل رسم السياسة العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9051d21e62685153b1e5"
     },
     {
       "id": "law_admin_law_ch6_94",
@@ -1225,7 +1318,8 @@
         "بسبب اللامركزية الوزارية المتطرفة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75730d369e0f7404be3d"
     },
     {
       "id": "law_admin_law_ch6_95",
@@ -1238,7 +1332,8 @@
         "لا يوجد فرق بينهما من حيث التجانس"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2503aefb8d0946594347"
     },
     {
       "id": "law_admin_law_ch6_96",
@@ -1251,7 +1346,8 @@
         "عدم التركيز الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_802dcaac38881a25da2a"
     },
     {
       "id": "law_admin_law_ch6_97",
@@ -1264,7 +1360,8 @@
         "نظام التركيز الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_29b8f9cde9cbb5acb968"
     },
     {
       "id": "law_admin_law_ch6_98",
@@ -1277,7 +1374,8 @@
         "المرافق التي تدير أنشطة متجانسة فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9812f292c835151a5ec4"
     },
     {
       "id": "law_admin_law_ch6_99",
@@ -1290,7 +1388,8 @@
         "نظام تفويض الاختصاص. ً...."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7ad7073e64a958870b17"
     },
     {
       "id": "law_admin_law_ch6_100",
@@ -1303,7 +1402,8 @@
         "فكرة التقليل من النفقات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b17826e13a6b96e62917"
     },
     {
       "id": "law_admin_law_ch6_101",
@@ -1316,7 +1416,8 @@
         "الإدارات الوزارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3926e371ebbff19976f7"
     },
     {
       "id": "law_admin_law_ch6_102",
@@ -1329,7 +1430,8 @@
         "لتحويلها إلى مرافق ذات طابع قومي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02b26956bf51c807346d"
     },
     {
       "id": "law_admin_law_ch6_103",
@@ -1342,7 +1444,8 @@
         "الرقابة القضائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c76c27948f17838bc3f9"
     },
     {
       "id": "law_admin_law_ch6_104",
@@ -1355,7 +1458,8 @@
         "عندما يتم إلغاء أي رقابة من الحكومة المركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c2dbe3dce0e6e77d4638"
     },
     {
       "id": "law_admin_law_ch6_105",
@@ -1368,7 +1472,8 @@
         "المركزية الإدارية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_28e2144254a3eac3c7ee"
     },
     {
       "id": "law_admin_law_ch6_106",
@@ -1381,7 +1486,8 @@
         "نظام التفويض الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_691cf4a1170f01ef2106"
     },
     {
       "id": "law_admin_law_ch6_107",
@@ -1394,7 +1500,8 @@
         "لأن الوصاية الإدارية تتقرر بنص دستوري."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_51879a725c7ad9d17a73"
     },
     {
       "id": "law_admin_law_ch6_108",
@@ -1407,7 +1514,8 @@
         "يتحمل المسؤولية المشتركة مع الهيئة المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a0b6dcf1631b2f9e3be1"
     },
     {
       "id": "law_admin_law_ch6_109",
@@ -1420,7 +1528,8 @@
         "الرقابة الذاتية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b14d5e217b4939fca687"
     },
     {
       "id": "law_admin_law_ch6_110",
@@ -1433,7 +1542,8 @@
         "في السلطة الرئاسية، لا يملك الرئيس إلغاء قرارات مرؤوسه."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_58ac15b00399b557e6a9"
     },
     {
       "id": "law_admin_law_ch6_111",
@@ -1446,7 +1556,8 @@
         "خضوعها للرقابة الإدارية المطلقة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c72484a3d317553f75bb"
     },
     {
       "id": "law_admin_law_ch6_112",
@@ -1459,7 +1570,8 @@
         "الوصاية لا تتقرر إلا بقرار صريح من الوزير."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08197cf8879ff5209c40"
     },
     {
       "id": "law_admin_law_ch6_113",
@@ -1472,7 +1584,8 @@
         "الحلول القانوني"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af68e1a2d1d04dae643d"
     },
     {
       "id": "law_admin_law_ch6_114",
@@ -1485,7 +1598,8 @@
         "التفويض الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6469604311f8cbbe5007"
     },
     {
       "id": "law_admin_law_ch6_115",
@@ -1498,7 +1612,8 @@
         "الرقابة القضائية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c3d786325c3dfb3699a8"
     },
     {
       "id": "law_admin_law_ch6_116",
@@ -1511,7 +1626,8 @@
         "الرقابة المفروضة بموجب التفويض الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b2aa57f0637e324f4e1e"
     },
     {
       "id": "law_admin_law_ch6_117",
@@ -1524,7 +1640,8 @@
         "أن تتقرر بنظام التفويض الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f00b0dad3193b0a3db2"
     },
     {
       "id": "law_admin_law_ch6_118",
@@ -1537,7 +1654,8 @@
         "تتحول الرقابة إلى رقابة قضائية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca437b548ff4208778e3"
     },
     {
       "id": "law_admin_law_ch6_119",
@@ -1550,7 +1668,8 @@
         "صلاحية الرقابة اللاحقة فقط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_25fbcff70264a8c0553a"
     },
     {
       "id": "law_admin_law_ch6_120",
@@ -1563,7 +1682,8 @@
         "عندما يكون نظام الرقابة إداريا وليس رئاسيا."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cd180c62e19327e30329"
     },
     {
       "id": "law_admin_law_ch6_121",
@@ -1576,7 +1696,8 @@
         "حصر الاختصاصات في المرافق القومية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2279b32684cfc4a9746b"
     },
     {
       "id": "law_admin_law_ch6_122",
@@ -1589,7 +1710,8 @@
         "منع نشوء أي صراع بين الهيئات والسلطة المركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b50f96ab4236defc30cb"
     },
     {
       "id": "law_admin_law_ch6_123",
@@ -1602,7 +1724,8 @@
         "التخفيف من العبء عن الإدارة المركزية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0868b1c99f1ff58143c9"
     },
     {
       "id": "law_admin_law_ch6_124",
@@ -1615,7 +1738,8 @@
         "إعفاء الهيئات اللامركزية من المسؤولية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_55a2ed2a8221046408ff"
     },
     {
       "id": "law_admin_law_ch6_125",
@@ -1628,7 +1752,8 @@
         "أنها تضمن عدم لجوء الموظفين إلى القضاء الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_418eb4e5af6e01e1e831"
     },
     {
       "id": "law_admin_law_ch6_126",
@@ -1641,7 +1766,8 @@
         "إلغاء الشخصية المعنوية للهيئات المحلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_303e014a76657f22828c"
     },
     {
       "id": "law_admin_law_ch6_127",
@@ -1654,7 +1780,8 @@
         "إلغاء القرارات المخالفة للملائمة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a01699c5484b002cd567"
     },
     {
       "id": "law_admin_law_ch6_128",
@@ -1667,7 +1794,8 @@
         "لا تمنح الحق في إلغاء القرارات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_231c38897a8e650fdfe2"
     },
     {
       "id": "law_admin_law_ch6_129",
@@ -1680,7 +1808,8 @@
         "لا يوجد اختلاف بينهما من حيث الغرض."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb69e7c5fc159decfe10"
     },
     {
       "id": "law_admin_law_ch6_130",
@@ -1693,7 +1822,8 @@
         "كونها غالبا ما تقدم المصالح المحلية على العامة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6c80f0391594e78d9fed"
     },
     {
       "id": "law_admin_law_ch6_131",
@@ -1706,7 +1836,8 @@
         "أن يتم الحلول باسم السلطة المركزية ولحسابها."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3e2c696e4cf04709d1cf"
     },
     {
       "id": "law_admin_law_ch6_132",
@@ -1719,7 +1850,8 @@
         "يؤدي إلى صراع بين الهيئات اللامركزية والسلطة المركزية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_abb998d01d78212368af"
     }
   ]
 }

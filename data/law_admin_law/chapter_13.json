@@ -16,7 +16,8 @@
         "الفصل السياسي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bb46fb0a31c9c34e89d0"
     },
     {
       "id": "law_admin_law_ch13_2",
@@ -29,7 +30,8 @@
         "ثمانية وستون سنة ميلادية كاملة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_81ca3527ff1077073c0f"
     },
     {
       "id": "law_admin_law_ch13_3",
@@ -42,7 +44,8 @@
         "يلزم قبول ً استقالته صراحة أو ضمنا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f7e4f6dc9b4d8ec04213"
     },
     {
       "id": "law_admin_law_ch13_4",
@@ -55,7 +58,8 @@
         "إذا كان قد استنفذ رصيده من الإجازات المرضية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6e225656cfb6ca8c0ae6"
     },
     {
       "id": "law_admin_law_ch13_5",
@@ -68,7 +72,8 @@
         "بعد إتمامه خدمة لا تقل عن 10 سنوات."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4840ea50510980f42523"
     },
     {
       "id": "law_admin_law_ch13_6",
@@ -81,7 +86,8 @@
         "أن يقترن طلبه بطلب تعويض."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cdba1b5c0ca4fdb4377c"
     },
     {
       "id": "law_admin_law_ch13_7",
@@ -94,7 +100,8 @@
         "إذا كان طلب الاستقالة غير مسبب"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_508604abc813f02323c3"
     },
     {
       "id": "law_admin_law_ch13_8",
@@ -107,7 +114,8 @@
         "سنة واحدة من تاريخ تقديم الطلب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f79e26884146ab4f4b7"
     },
     {
       "id": "law_admin_law_ch13_9",
@@ -120,7 +128,8 @@
         "يتم إحالة الموظف على التقاعد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_88304e1dfb21c18e3c47"
     },
     {
       "id": "law_admin_law_ch13_10",
@@ -133,7 +142,8 @@
         "بعد مرور سنة واحدة من تاريخ القبول."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6c6082597e049c460141"
     },
     {
       "id": "law_admin_law_ch13_11",
@@ -146,7 +156,8 @@
         "أن يكون بقرار غير قابل للطعن."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f70ff4108eefbc2f01ce"
     },
     {
       "id": "law_admin_law_ch13_12",
@@ -159,7 +170,8 @@
         "استمراره في وظيفته بوصفه موظفا فعليا"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bd44d263fc270b3252eb"
     },
     {
       "id": "law_admin_law_ch13_13",
@@ -172,7 +184,8 @@
         "إذا كان يحمل مؤهلا علميا عاليا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_417053810a88c76be56a"
     },
     {
       "id": "law_admin_law_ch13_14",
@@ -185,7 +198,8 @@
         "إذا أتم خدمة لا تقل عن 20 سنة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec8bff958ffff2294c2c"
     },
     {
       "id": "law_admin_law_ch13_15",
@@ -198,7 +212,8 @@
         "من تاريخ تبليغ الموظف بالقرار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7dff5cbdc2dcfed10c75"
     },
     {
       "id": "law_admin_law_ch13_16",
@@ -211,7 +226,8 @@
         "تسعون يوما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ab6f354631f499465ef"
     },
     {
       "id": "law_admin_law_ch13_17",
@@ -224,7 +240,8 @@
         "يتم تمديد فترة التجربة له."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ea9dc33792780c660bc5"
     },
     {
       "id": "law_admin_law_ch13_18",
@@ -237,7 +254,8 @@
         "تنقله نقلا مكانيا بسيطا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2085215bd90f021db201"
     },
     {
       "id": "law_admin_law_ch13_19",
@@ -250,7 +268,8 @@
         "تسعون يوما أخرى."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb30a3ddd38c745e0c00"
     },
     {
       "id": "law_admin_law_ch13_20",
@@ -263,7 +282,8 @@
         "المطالبة بتعويض عن الفصل التعسفي من دون الاعتراض على القرار."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d278061cb511484a76bd"
     },
     {
       "id": "law_admin_law_ch13_21",
@@ -276,7 +296,8 @@
         "لا يجوز تأخير القبول لأكثر من 30 يوما."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2b3060b84c40df327067"
     },
     {
       "id": "law_admin_law_ch13_22",
@@ -289,7 +310,8 @@
         "يحق للإدارة تمديد المدة تلقائيا."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_25bab6d5d5803769c329"
     },
     {
       "id": "law_admin_law_ch13_23",
@@ -302,7 +324,8 @@
         "يرفض الموظف الاستمرار بتأدية وظيفته."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_19dd4acd99bd77a808fa"
     },
     {
       "id": "law_admin_law_ch13_24",
@@ -315,7 +338,8 @@
         "عدم الاعتراض على أي قرار يصدر بحقه. ُ ً :"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9a4e23c95567c6e21e07"
     },
     {
       "id": "law_admin_law_ch13_25",
@@ -328,7 +352,8 @@
         "إذا خالف مبدأ المحافظة على شرف وكرامة الوظيفة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bcc74dba6f2b0de7e2dd"
     },
     {
       "id": "law_admin_law_ch13_26",
@@ -341,7 +366,8 @@
         "سنتين."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_59b7665196f8b60953a3"
     },
     {
       "id": "law_admin_law_ch13_27",
@@ -354,7 +380,8 @@
         "السماح له بالجمع بين الوظيفة وأي عمل آخر دون قيود."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a59012dec2b8a052fde5"
     },
     {
       "id": "law_admin_law_ch13_28",
@@ -367,7 +394,8 @@
         "مبدأ انتهاء الخدمة لبلوغ السن القانونية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_02e0566768f8879fdecc"
     }
   ]
 }

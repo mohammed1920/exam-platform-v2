@@ -16,7 +16,8 @@
         "الجمعيات والمؤسسات"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_507f24279bac4281464e"
     },
     {
       "id": "law_admin_law_ch5_2",
@@ -29,7 +30,8 @@
         "حصر الشخصية القانونية في نطاق القانون الخاص"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4dbdd19691728636a987"
     },
     {
       "id": "law_admin_law_ch5_3",
@@ -42,7 +44,8 @@
         "الشخص العام"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d60eddb5fdc409010e3"
     },
     {
       "id": "law_admin_law_ch5_4",
@@ -55,7 +58,8 @@
         "الشخص الذي يتمتع بالشخصية القانونية في نطاق القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d098350fb17219729ac4"
     },
     {
       "id": "law_admin_law_ch5_5",
@@ -68,7 +72,8 @@
         "الدولة والوحدات المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_20ae05d951ceb4008638"
     },
     {
       "id": "law_admin_law_ch5_6",
@@ -81,7 +86,8 @@
         "الإدارات والمنشآت العامة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_21120d1aee21fedba71b"
     },
     {
       "id": "law_admin_law_ch5_7",
@@ -94,7 +100,8 @@
         "القانون الخاص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e8d430cabd4acf5ecac6"
     },
     {
       "id": "law_admin_law_ch5_8",
@@ -107,7 +114,8 @@
         "العمل تحت رقابة الأشخاص المعنوية الخاصة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64fe79d0ffef3defa80f"
     },
     {
       "id": "law_admin_law_ch5_9",
@@ -120,7 +128,8 @@
         "بتحقيق رسالته في المجتمع."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_04b43cd0be4543be6982"
     },
     {
       "id": "law_admin_law_ch5_10",
@@ -133,7 +142,8 @@
         "إلى سبعة أنواع."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c2aaa9d63aeb8f43bbac"
     },
     {
       "id": "law_admin_law_ch5_11",
@@ -146,7 +156,8 @@
         "السلطة المحلية والسلطة المركزية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b260e3d1fec63baa0bff"
     },
     {
       "id": "law_admin_law_ch5_12",
@@ -159,7 +170,8 @@
         "إدارة المرافق العامة التي تتطلب استقلالا فنيا."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1443854d05625b009319"
     },
     {
       "id": "law_admin_law_ch5_13",
@@ -172,7 +184,8 @@
         "الأشخاص المعنوية الإقليمية."
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_af747be8f1e56627b140"
     },
     {
       "id": "law_admin_law_ch5_14",
@@ -185,7 +198,8 @@
         "الجمعيات المؤسسة وفقا للقانون."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b6df5b1e0d15a731ac3"
     },
     {
       "id": "law_admin_law_ch5_15",
@@ -198,7 +212,8 @@
         "المادة ( 110 )."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4a782dc12a6e62926ba4"
     },
     {
       "id": "law_admin_law_ch5_16",
@@ -211,7 +226,8 @@
         "الدولة"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3aa1327a1dfd1ca07326"
     },
     {
       "id": "law_admin_law_ch5_17",
@@ -224,7 +240,8 @@
         "تحقيق المصلحة العامة في كافة تصرفات الدولة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_08a42db99078981060f8"
     },
     {
       "id": "law_admin_law_ch5_18",
@@ -237,7 +254,8 @@
         "رأي الأشخاص المعنوية المرفقية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37b2bb9665646b93e56d"
     },
     {
       "id": "law_admin_law_ch5_19",
@@ -250,7 +268,8 @@
         "الرأي الذي يفصل بين السلطات الثلاث للدولة."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c85b3b1f8518e9b099f3"
     },
     {
       "id": "law_admin_law_ch5_20",
@@ -263,7 +282,8 @@
         "فكرة تحقيق المصالح العامة فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0c941197226ccfe70a98"
     },
     {
       "id": "law_admin_law_ch5_21",
@@ -276,7 +296,8 @@
         "الوحدات المحلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0119e6ede0d23b76ea73"
     },
     {
       "id": "law_admin_law_ch5_22",
@@ -289,7 +310,8 @@
         "ممارسة الرقابة على الهيئات الخاصة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab4bfa9b1a51140b68db"
     },
     {
       "id": "law_admin_law_ch5_23",
@@ -302,7 +324,8 @@
         "السلطة التشريعية والتنفيذية والقضائية.."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fc12699ef7706d61c2cd"
     },
     {
       "id": "law_admin_law_ch5_24",
@@ -315,7 +338,8 @@
         "الحدود الجغرافية للإقليم الذي تمثله."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_acfee7b14c0192084458"
     },
     {
       "id": "law_admin_law_ch5_25",
@@ -328,7 +352,8 @@
         "المرفقية تتمتع بذات التنظيم القانوني والإقليمية تختلف أنظمتها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_794123d93c7db3aafc47"
     },
     {
       "id": "law_admin_law_ch5_26",
@@ -341,7 +366,8 @@
         "لا يوجد فارق، فكلاهما يتمتع بذات التنظيم القانوني."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0974f215cfd2f51c8662"
     },
     {
       "id": "law_admin_law_ch5_27",
@@ -354,7 +380,8 @@
         "الاعتماد التام على الحكومة المركزية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a623bb8a4f98be005260"
     },
     {
       "id": "law_admin_law_ch5_28",
@@ -367,7 +394,8 @@
         "الجمعيات الأهلية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3941f0fe81f8683536ea"
     },
     {
       "id": "law_admin_law_ch5_29",
@@ -380,7 +408,8 @@
         "الطوائف الدينية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_edef9aeaa36633fbcb6a"
     },
     {
       "id": "law_admin_law_ch5_30",
@@ -393,7 +422,8 @@
         "الحاجة إلى حصر السلطة في يد الحكومة المركزية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_27d43ed00f9d5eeadea6"
     },
     {
       "id": "law_admin_law_ch5_31",
@@ -406,7 +436,8 @@
         "الأشخاص المعنوية المرفقية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5b2ec090994467075203"
     },
     {
       "id": "law_admin_law_ch5_32",
@@ -419,7 +450,8 @@
         "الإشراف على الشؤون المالية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e6cf46a67065f86918e3"
     },
     {
       "id": "law_admin_law_ch5_33",
@@ -432,7 +464,8 @@
         "انعدام الأهلية القانونية تماما"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ae32f768c1a979fc824d"
     },
     {
       "id": "law_admin_law_ch5_34",
@@ -445,7 +478,8 @@
         "لا تتحمل نفقاتها بل تتحملها الدولة بالكامل"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ce081cb045066abf311d"
     },
     {
       "id": "law_admin_law_ch5_35",
@@ -458,7 +492,8 @@
         "مقيدة بالتعاقدات الإدارية"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cada4fdc5e8073dd72b4"
     },
     {
       "id": "law_admin_law_ch5_36",
@@ -471,7 +506,8 @@
         "الأشخاص المعنوية الإقليمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f55211a35084b2a71e95"
     },
     {
       "id": "law_admin_law_ch5_37",
@@ -484,7 +520,8 @@
         "حق إصدار اللوائح التأديبية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1c204c18cdd89931106c"
     },
     {
       "id": "law_admin_law_ch5_38",
@@ -497,7 +534,8 @@
         "أي مكان يختاره المشرع"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48c29460a6fe3fbf200a"
     },
     {
       "id": "law_admin_law_ch5_39",
@@ -510,7 +548,8 @@
         "المادة ( 226 )."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_eebb44e3d1b4bce0a159"
     },
     {
       "id": "law_admin_law_ch5_40",
@@ -523,7 +562,8 @@
         "تحديد إمكانية الاحتفاظ بالفائض من الإيرادات"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ea14c5a532601c98a69"
     },
     {
       "id": "law_admin_law_ch5_41",
@@ -536,7 +576,8 @@
         "حق الاحتفاظ بالذمة المالية المستقلة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_915b3a7e5239df49bff6"
     },
     {
       "id": "law_admin_law_ch5_42",
@@ -549,7 +590,8 @@
         "مقاولين ثانويين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_027434be32e46bc5244a"
     },
     {
       "id": "law_admin_law_ch5_43",
@@ -562,7 +604,8 @@
         "الإشراف الديمقراطي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_757300661ad2c7b6454c"
     },
     {
       "id": "law_admin_law_ch5_44",
@@ -575,7 +618,8 @@
         "القضاء التجاري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_106c93bcb70979bc6167"
     },
     {
       "id": "law_admin_law_ch5_45",
@@ -588,7 +632,8 @@
         "لأن ً ً جميع أمواله تع د مالا خاصا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_77698ede1591fe0c7d65"
     },
     {
       "id": "law_admin_law_ch5_46",
@@ -601,7 +646,8 @@
         "عدم جواز نزع الملكية للمنفعة العامة"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_32aac8c39312f91d5c4b"
     },
     {
       "id": "law_admin_law_ch5_47",
@@ -614,7 +660,8 @@
         "بتحقيق جميع أهدافها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c75400f31434e3f740f0"
     },
     {
       "id": "law_admin_law_ch5_48",
@@ -627,7 +674,8 @@
         "بتحقيق الديمقراطية الكاملة في الإقليم"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f74d550f86ebc19753c5"
     },
     {
       "id": "law_admin_law_ch5_49",
@@ -640,7 +688,8 @@
         "يندمج تلقائيا في الدولة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_037949953de8bba93dd3"
     },
     {
       "id": "law_admin_law_ch5_50",
@@ -653,7 +702,8 @@
         "بإلغاء مجلس إدارتها فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ec78027533683af60d3"
     },
     {
       "id": "law_admin_law_ch5_51",
@@ -666,7 +716,8 @@
         "تنتقل إلى صندوق تقاعد موظفيها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca473edf2048b2a8f1e2"
     },
     {
       "id": "law_admin_law_ch5_52",
@@ -679,7 +730,8 @@
         "عدم قابليتها لاكتساب الحقوق وتحمل الالتزامات"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ca49ccc96b6e50437915"
     },
     {
       "id": "law_admin_law_ch5_53",
@@ -692,7 +744,8 @@
         "الأوقاف"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_321ed07800a06fc863f0"
     },
     {
       "id": "law_admin_law_ch5_54",
@@ -705,7 +758,8 @@
         "نظام الحل والإلغاء بذات أداة إنشائها."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_874efce1f19468477ba9"
     }
   ]
 }

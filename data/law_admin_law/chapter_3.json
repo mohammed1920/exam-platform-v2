@@ -16,7 +16,8 @@
         "قانون صادر عن السلطة التشريعية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ab6592aa5f33a4bf9953"
     },
     {
       "id": "law_admin_law_ch3_2",
@@ -29,7 +30,8 @@
         "التشريعات الصادرة عن السلطة التشريعية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7c96ac8f140bc39733b6"
     },
     {
       "id": "law_admin_law_ch3_3",
@@ -42,7 +44,8 @@
         "خضوعه لقواعد القانون المدني"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_30af38e548402eb0949f"
     },
     {
       "id": "law_admin_law_ch3_4",
@@ -55,7 +58,8 @@
         "التعلق بالمصلحة العامة مباشرة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_179db1a344c615c1b59c"
     },
     {
       "id": "law_admin_law_ch3_5",
@@ -68,7 +72,8 @@
         "السلطة التنفيذية فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_787073749a7f42466fae"
     },
     {
       "id": "law_admin_law_ch3_6",
@@ -81,7 +86,8 @@
         "يصدر تشريعا كاملا"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_75c815a08aff98ff9ce4"
     },
     {
       "id": "law_admin_law_ch3_7",
@@ -94,7 +100,8 @@
         "خضوعه للقانون المدني"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc0d2b93a177319ce6e8"
     },
     {
       "id": "law_admin_law_ch3_8",
@@ -107,7 +114,8 @@
         "التقيد بأحكام القانون الخاص"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6b34f21e81cc081ddb36"
     },
     {
       "id": "law_admin_law_ch3_9",
@@ -120,7 +128,8 @@
         "التشريع، القرارات الإدارية، القضاء، الفقه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d25d936e1aca4402db10"
     },
     {
       "id": "law_admin_law_ch3_10",
@@ -133,7 +142,8 @@
         "اللوائح"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c57db428fe0d1822a5fe"
     },
     {
       "id": "law_admin_law_ch3_11",
@@ -146,7 +156,8 @@
         "اللوائح التنظيمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2ab8011be9b988fd5cd6"
     },
     {
       "id": "law_admin_law_ch3_12",
@@ -159,7 +170,8 @@
         "التشريع والقضاء والقرارات الإدارية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_48e9cbd471c92a093468"
     },
     {
       "id": "law_admin_law_ch3_13",
@@ -172,7 +184,8 @@
         "العرف الإداري السائد"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c335051fe64609338c21"
     },
     {
       "id": "law_admin_law_ch3_14",
@@ -185,7 +198,8 @@
         "قرار إداري تنظيمي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_95a2764df96402cfea45"
     },
     {
       "id": "law_admin_law_ch3_15",
@@ -198,7 +212,8 @@
         "لوائح الضبط"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c053b4462c66a283a79d"
     },
     {
       "id": "law_admin_law_ch3_16",
@@ -211,7 +226,8 @@
         "العرف الإداري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_612916b1f44422d729ed"
     },
     {
       "id": "law_admin_law_ch3_17",
@@ -224,7 +240,8 @@
         "لوائح الطوارئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5bb7ea9e4b805cc8db1e"
     },
     {
       "id": "law_admin_law_ch3_18",
@@ -237,7 +254,8 @@
         "لوائح الطوارئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bb247affc4118366a869"
     },
     {
       "id": "law_admin_law_ch3_19",
@@ -250,7 +268,8 @@
         "السلطة التأسيسية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e575e849ea83a06ea040"
     },
     {
       "id": "law_admin_law_ch3_20",
@@ -263,7 +282,8 @@
         "لوائح الطوارئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_99b5ceefb68eca8d63dd"
     },
     {
       "id": "law_admin_law_ch3_21",
@@ -276,7 +296,8 @@
         "تكون لها قوة القانون"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_1eaf95760c843b85d8a3"
     },
     {
       "id": "law_admin_law_ch3_22",
@@ -289,7 +310,8 @@
         "لوائح الطوارئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8193305572b69e4cf849"
     },
     {
       "id": "law_admin_law_ch3_23",
@@ -302,7 +324,8 @@
         "الثقافية والفنية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_89c424c63fe463914e68"
     },
     {
       "id": "law_admin_law_ch3_24",
@@ -315,7 +338,8 @@
         "قواعده تتسم بالثبات والاستقرار."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_658cbe981a17b1f7c486"
     },
     {
       "id": "law_admin_law_ch3_25",
@@ -328,7 +352,8 @@
         "قانون الإجراءات الجنائية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_479ca2203a86f27ed749"
     },
     {
       "id": "law_admin_law_ch3_26",
@@ -341,7 +366,8 @@
         "اللوائح التنظيمية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0d2c57e1d8f3246aa828"
     },
     {
       "id": "law_admin_law_ch3_27",
@@ -354,7 +380,8 @@
         "لا يعترف به القانون الإداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b7799e62b400ee4600e4"
     },
     {
       "id": "law_admin_law_ch3_28",
@@ -367,7 +394,8 @@
         "اللوائح الدستورية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_ec3f88ae18f29b0aef68"
     },
     {
       "id": "law_admin_law_ch3_29",
@@ -380,7 +408,8 @@
         "العرف الإداري"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_83cd786fc2f49810d65f"
     },
     {
       "id": "law_admin_law_ch3_30",
@@ -393,7 +422,8 @@
         "في مستوى العرف نفسه"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0f612243eb0fdd704a10"
     },
     {
       "id": "law_admin_law_ch3_31",
@@ -406,7 +436,8 @@
         "رئيس الجمهورية بمفرده"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3eead2480786bb76fdf2"
     },
     {
       "id": "law_admin_law_ch3_32",
@@ -419,7 +450,8 @@
         "مبدأ نسبية الآثار"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f7c0bf51d862a195781e"
     },
     {
       "id": "law_admin_law_ch3_33",
@@ -432,7 +464,8 @@
         "سمو القواعد الدستورية المكتوبة ذاتها"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d45f103923531aec5385"
     },
     {
       "id": "law_admin_law_ch3_34",
@@ -445,7 +478,8 @@
         "الإيقاف من قبل السلطة التنفيذية العليا"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9ba7291b740967cb08e7"
     },
     {
       "id": "law_admin_law_ch3_35",
@@ -458,7 +492,8 @@
         "رئيس السلطة التنفيذية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0ac931b9ccea6c8c42bc"
     },
     {
       "id": "law_admin_law_ch3_36",
@@ -471,7 +506,8 @@
         "لوائح الضبط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_db807fc10a38cbb61e11"
     },
     {
       "id": "law_admin_law_ch3_37",
@@ -484,7 +520,8 @@
         "تنظيم شؤون الوزارات الداخلية"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6edf300839e7a6056f8c"
     },
     {
       "id": "law_admin_law_ch3_38",
@@ -497,7 +534,8 @@
         "العرف الإداري"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fefdc76f34fe8d7216ce"
     },
     {
       "id": "law_admin_law_ch3_39",
@@ -510,7 +548,8 @@
         "لوائح الضبط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c522bf246a5b3fb0a0ef"
     },
     {
       "id": "law_admin_law_ch3_40",
@@ -523,7 +562,8 @@
         "لوائح الطوارئ"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6a1d6e983a31fc3669ed"
     },
     {
       "id": "law_admin_law_ch3_41",
@@ -536,7 +576,8 @@
         "أن تتعلق بالمحافظة على النظام العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d4c93f5b730f44c59ee2"
     },
     {
       "id": "law_admin_law_ch3_42",
@@ -549,7 +590,8 @@
         "لوائح القوانين"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_4cefd0f64757893fb339"
     },
     {
       "id": "law_admin_law_ch3_43",
@@ -562,7 +604,8 @@
         "تنظيم شؤون الموظفين"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_008433e55a6ac8ef1ab3"
     },
     {
       "id": "law_admin_law_ch3_44",
@@ -575,7 +618,8 @@
         "رئيس الوزراء فقط"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e1523c8eaf1ffc11f6a0"
     },
     {
       "id": "law_admin_law_ch3_45",
@@ -588,7 +632,8 @@
         "لوائح التفويض"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dd31cb6145afaa5b600d"
     },
     {
       "id": "law_admin_law_ch3_46",
@@ -601,7 +646,8 @@
         "تصدر حصريا من رئيس الجمهورية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9913d498c51cb6cf56e0"
     },
     {
       "id": "law_admin_law_ch3_47",
@@ -614,7 +660,8 @@
         "القرارات الفردية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f101bebdc22c710a4f7c"
     },
     {
       "id": "law_admin_law_ch3_48",
@@ -627,7 +674,8 @@
         "قوة التشريع الدستوري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_797098c445a581d24cbd"
     },
     {
       "id": "law_admin_law_ch3_49",
@@ -640,7 +688,8 @@
         "المحافظة على السكينة العامة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8edb1a4bd250f24ff3ce"
     },
     {
       "id": "law_admin_law_ch3_50",
@@ -653,7 +702,8 @@
         "يصبح له سلطة إصدار لوائح تنفيذية فقط"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f8b2e9f4e30af6c6406a"
     },
     {
       "id": "law_admin_law_ch3_51",
@@ -666,7 +716,8 @@
         "داخلة أصلا في نطاق القضاء"
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb775cb230f1789a7cf6"
     },
     {
       "id": "law_admin_law_ch3_52",
@@ -679,7 +730,8 @@
         "جميع أنواع اللوائح (التنفيذية، التنظيمية، الضبط، الضرورة)"
       ],
       "answer": 4,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9c4efd8258e4343bf259"
     },
     {
       "id": "law_admin_law_ch3_53",
@@ -692,7 +744,8 @@
         "المرونة الزائدة"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_07915aacd287a792c6da"
     },
     {
       "id": "law_admin_law_ch3_54",
@@ -705,7 +758,8 @@
         "أحكام القضاء"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bc554411bedb0a689bfd"
     },
     {
       "id": "law_admin_law_ch3_55",
@@ -718,7 +772,8 @@
         "غير مكتوبة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_6e3f404ab07fc96437c8"
     },
     {
       "id": "law_admin_law_ch3_56",
@@ -731,7 +786,8 @@
         "التشريع الدستوري"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_3fd12a6b7ff726b1b393"
     },
     {
       "id": "law_admin_law_ch3_57",
@@ -744,7 +800,8 @@
         "الاقتصاد والاجتماع والسياسة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d310b80bc76ecff31a0c"
     },
     {
       "id": "law_admin_law_ch3_58",
@@ -757,7 +814,8 @@
         "لوائح الضبط واللوائح التنفيذية"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8adc09d9aa45eda41058"
     },
     {
       "id": "law_admin_law_ch3_59",
@@ -770,7 +828,8 @@
         "مجلس الدولة"
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_0db7fb70d15614b4c4e4"
     },
     {
       "id": "law_admin_law_ch3_60",
@@ -783,7 +842,8 @@
         "اللوائح التفويضية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_984417089673467db2fb"
     },
     {
       "id": "law_admin_law_ch3_61",
@@ -796,7 +856,8 @@
         "عرف إداري."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_635429b93fd360a6f611"
     },
     {
       "id": "law_admin_law_ch3_62",
@@ -809,7 +870,8 @@
         "لوائح الطوارئ ولوائح العرف."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5ee937c031599bb03905"
     },
     {
       "id": "law_admin_law_ch3_63",
@@ -822,7 +884,8 @@
         "اللوائح التفويضية."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_85413d3929d9de56bdc0"
     },
     {
       "id": "law_admin_law_ch3_64",
@@ -835,7 +898,8 @@
         "المادة ( 13 )."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_64b8b34eada5dfbd981f"
     },
     {
       "id": "law_admin_law_ch3_65",
@@ -848,7 +912,8 @@
         "بلائحة تنظيمية صادرة من الوزير المختص."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a6f4cb55c58f793a8e32"
     },
     {
       "id": "law_admin_law_ch3_66",
@@ -861,7 +926,8 @@
         "قانون صادر عن البرلمان لتنفيذ أحكام الدستور"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_37c191c8e987838ee5ea"
     },
     {
       "id": "law_admin_law_ch3_67",
@@ -874,7 +940,8 @@
         "اللوائح التفويضية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_95289abdbf40605294fe"
     },
     {
       "id": "law_admin_law_ch3_68",
@@ -887,7 +954,8 @@
         "القرارات الفردية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f2d83f30a9165af5b4a0"
     },
     {
       "id": "law_admin_law_ch3_69",
@@ -900,7 +968,8 @@
         "تنظيم شؤون الموظفين الداخلية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cb733f16db068c7cfb7c"
     },
     {
       "id": "law_admin_law_ch3_70",
@@ -913,7 +982,8 @@
         "المادة ( 16 )."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_93d0f6fa21dbc77d190f"
     },
     {
       "id": "law_admin_law_ch3_71",
@@ -926,7 +996,8 @@
         "لوائح ضبط."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9e3f738b8f0b0fcf0fb1"
     },
     {
       "id": "law_admin_law_ch3_72",
@@ -939,7 +1010,8 @@
         "تقييد حقوق وحريات الأفراد بصفة مباشرة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c304f400a9834d0fe249"
     },
     {
       "id": "law_admin_law_ch3_73",
@@ -952,7 +1024,8 @@
         "يجمع عليها. الفقهاء والمختصون"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_2f9bee4e88dbd1b31cac"
     },
     {
       "id": "law_admin_law_ch3_74",
@@ -965,7 +1038,8 @@
         "أمرا داخلا في نطاق اللوائح التنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_034ac1e57aa171895830"
     },
     {
       "id": "law_admin_law_ch3_75",
@@ -978,7 +1052,8 @@
         "أن تكون متعلقة بالمحافظة على النظام العام."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_255445a0abc4773f54ee"
     },
     {
       "id": "law_admin_law_ch3_76",
@@ -991,7 +1066,8 @@
         "العرف المكتوب."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9d572ccaee91f5679a23"
     },
     {
       "id": "law_admin_law_ch3_77",
@@ -1004,7 +1080,8 @@
         "عدم جواز الطعن بالتعويض تبعا لطلب الإلغاء."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_f4933462e3e4d1600683"
     },
     {
       "id": "law_admin_law_ch3_78",
@@ -1017,7 +1094,8 @@
         "تكتسب صفة اللوائح التنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_45ca6ed31944d6c4990a"
     },
     {
       "id": "law_admin_law_ch3_79",
@@ -1030,7 +1108,8 @@
         "عندما تكون متعلقة بالمرافق العامة فقط."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bb15656368dc9c2565f6"
     },
     {
       "id": "law_admin_law_ch3_80",
@@ -1043,7 +1122,8 @@
         "تعليمات"
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5817fd47bd0f8bffe8de"
     },
     {
       "id": "law_admin_law_ch3_81",
@@ -1056,7 +1136,8 @@
         "لا يكون ملزما للإدارة."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8504fa57e0d3bc44f213"
     },
     {
       "id": "law_admin_law_ch3_82",
@@ -1069,7 +1150,8 @@
         "تقنين جميع أحكام القانون الإداري."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_5c80c0e774e61a2fe4f3"
     },
     {
       "id": "law_admin_law_ch3_83",
@@ -1082,7 +1164,8 @@
         "أن يكون العرف عاما تطبقه الإدارة بلا انقطاع."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_dc7973c46c1aa1b4cdf2"
     },
     {
       "id": "law_admin_law_ch3_84",
@@ -1095,7 +1178,8 @@
         "رأي فقهي سائد."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_12ff881a49e71d3812a2"
     },
     {
       "id": "law_admin_law_ch3_85",
@@ -1108,7 +1192,8 @@
         "الإدارة نفسها"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_bbdcdbc33dffe6b6ca2f"
     },
     {
       "id": "law_admin_law_ch3_86",
@@ -1121,7 +1206,8 @@
         "أن يكون ً العرف مفسرا لنص تشريعي."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_a019362d995534a83088"
     },
     {
       "id": "law_admin_law_ch3_87",
@@ -1134,7 +1220,8 @@
         "عندما يكون العرف غير مكتوب."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_82f160b14014fb24b415"
     },
     {
       "id": "law_admin_law_ch3_88",
@@ -1147,7 +1234,8 @@
         "حال اعتماده على أحكام مجلس الدولة الفرنسي."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_71605c4f52810726e55f"
     },
     {
       "id": "law_admin_law_ch3_89",
@@ -1160,7 +1248,8 @@
         "خضوعه التام لأحكام القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_77cf4162385bf0f3f3ef"
     },
     {
       "id": "law_admin_law_ch3_90",
@@ -1173,7 +1262,8 @@
         "قضاء أحكامه ذات طبيعة تنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8d3ef5a989045b8ac30e"
     },
     {
       "id": "law_admin_law_ch3_91",
@@ -1186,7 +1276,8 @@
         "عدم جواز الطعن فيها."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_30a28afdf45d347b9e4e"
     },
     {
       "id": "law_admin_law_ch3_92",
@@ -1199,7 +1290,8 @@
         "يعد المصدر الأصلي للقانون الإداري. ً :."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_00af6b35943319afe842"
     },
     {
       "id": "law_admin_law_ch3_93",
@@ -1212,7 +1304,8 @@
         "يطبق عليها أحكام القانون الدولي"
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_b8a70f5900c14105c85b"
     },
     {
       "id": "law_admin_law_ch3_94",
@@ -1225,7 +1318,8 @@
         "أن العرف لا يخالف التشريع."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8c7e657e75e8ecc36417"
     },
     {
       "id": "law_admin_law_ch3_95",
@@ -1238,7 +1332,8 @@
         "تكييف المنازعات بما يتفق مع القانون الخاص."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_63656edf512dfd935c4c"
     },
     {
       "id": "law_admin_law_ch3_96",
@@ -1251,7 +1346,8 @@
         "من صنع القضاء."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_9bbeaa75a77b1dd80372"
     },
     {
       "id": "law_admin_law_ch3_97",
@@ -1264,7 +1360,8 @@
         "إصدار اللوائح التنظيمية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_fb9e54950568fed04ccb"
     },
     {
       "id": "law_admin_law_ch3_98",
@@ -1277,7 +1374,8 @@
         "القرارات القضائية."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_7576126e162ce1a34756"
     },
     {
       "id": "law_admin_law_ch3_99",
@@ -1290,7 +1388,8 @@
         "صادرا عن السلطة التشريعية."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e280f142b98e3294a7c2"
     },
     {
       "id": "law_admin_law_ch3_100",
@@ -1303,7 +1402,8 @@
         "قرار غير مشمول بالركن المعنوي."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8238a5fce5e5308a7708"
     },
     {
       "id": "law_admin_law_ch3_101",
@@ -1316,7 +1416,8 @@
         "استمراره في النفاذ حتى يصدر قانون بإلغائه."
       ],
       "answer": 3,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_cc70ebe4b1f626e12fac"
     },
     {
       "id": "law_admin_law_ch3_102",
@@ -1329,7 +1430,8 @@
         "مصدرا غير ملزم للإدارة."
       ],
       "answer": 1,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_d4e658b45ae49a490846"
     },
     {
       "id": "law_admin_law_ch3_103",
@@ -1342,7 +1444,8 @@
         "أن يكون صادرا عن رئيس السلطة التنفيذية."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_c4e576c4ccabc01bf8cf"
     },
     {
       "id": "law_admin_law_ch3_104",
@@ -1355,7 +1458,8 @@
         "اقتصار نشاطه على الجانب التنظيمي."
       ],
       "answer": 0,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_708e2b7eb1a4dbb9d241"
     },
     {
       "id": "law_admin_law_ch3_105",
@@ -1368,7 +1472,8 @@
         "تقتصر على تفسير النصوص فقط."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_e47daf8c9ea5ec7cae0a"
     },
     {
       "id": "law_admin_law_ch3_106",
@@ -1381,7 +1486,8 @@
         "الامتناع عن الفصل في النزاع لحين صدور تشريع جديد."
       ],
       "answer": 2,
-      "explanation": ""
+      "explanation": "",
+      "uid": "q_8313f6057232c59da546"
     }
   ]
 }
