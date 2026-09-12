@@ -61,5 +61,12 @@
     "author": "محمد",
     "description": "",
     "chapters": 40
+  },
+  {
+    "id": "law_admin_law",
+    "title": "القانون الاداري",
+    "author": "مستشار قانوني",
+    "description": "",
+    "chapters": 0
   }
 ]
