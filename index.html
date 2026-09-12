@@ -234,6 +234,7 @@
   <header>
     <h1><span style="unicode-bidi: isolate; display: inline-block;">⚖️</span> منصة الاختبارات القانونية</h1>
     <p>أداة ذكية لاختبار وتطوير معلوماتك القانونية بأسلوب حديث</p>
+    <button id="account-btn" class="account-btn" type="button">🔐 تسجيل الدخول</button>
     <button id="install-app-btn" style="display:none; margin-top:12px; padding:8px 18px; background:var(--primary); color:var(--bg-dark); border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:14px;">
       📲 ثبّت التطبيق على جهازك
     </button>
@@ -247,7 +248,7 @@
       <div class="search-container">
         <div class="search-wrapper">
           <i class="fas fa-search"></i>
-          <input type="text" id="search-input" placeholder="ابحث عن كتاب أو اكتب نص سؤال...">
+          <input type="text" id="search-input" placeholder="ابحث عن كتاب أو فصل...">
         </div>
       </div>
       <div id="question-search-results" class="question-search-results" style="display:none;"></div>
@@ -359,8 +360,11 @@
     </div>
   </footer>
 
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="firebase-auth.js?v=1.0"></script>
   <script src="engine/examEngine.js"></script>
-  <script src="app.js?v=1.3"></script>
+  <script src="app.js?v=1.4"></script>
   <script>
     // تسجيل Service Worker لتفعيل خصائص PWA (عمل بدون إنترنت + تثبيت على الشاشة الرئيسية)
     if ('serviceWorker' in navigator) {

@@ -6,7 +6,7 @@
 // بيانات الأسئلة (data/*.json) ما تحتاج تغيير هذا الرقم، لأنها تُحدَّث تلقائيًا
 // بكل مرة (استراتيجية Network First تشرح بالأسفل).
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = `exam-platform-${CACHE_VERSION}`;
 
 // الملفات الأساسية التي يحتاجها الموقع ليعمل حتى بدون إنترنت
@@ -14,6 +14,7 @@ const STATIC_ASSETS = [
   './',
   './index.html',
   './style.css',
+  './firebase-auth.js',
   './app.js',
   './engine/examEngine.js',
   './manifest.json',
