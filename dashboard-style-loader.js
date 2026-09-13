@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  ['user-dashboard.css?v=1.1','student-sidebar.css?v=1.2','student-ui-fixes.css?v=1.3'].forEach(file => {
+  ['user-dashboard.css?v=1.1','student-sidebar.css?v=1.2','student-ui-fixes.css?v=1.4'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${basePath}/${file}`;
