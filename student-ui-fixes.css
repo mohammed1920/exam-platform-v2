@@ -1,0 +1,61 @@
+/* Student account UI refinements */
+header { position: relative; }
+
+.account-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 46px;
+  height: 46px;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 19px !important;
+  line-height: 1;
+  background: rgba(194,157,95,.10) !important;
+  border: 1px solid rgba(194,157,95,.38) !important;
+  color: var(--primary,#c29d5f) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.16);
+  z-index: 5;
+}
+
+.account-btn:hover { transform: translateY(-1px); }
+
+.student-page-menu-btn {
+  width: 100%;
+  min-height: 48px;
+  margin: 0 0 14px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(194,157,95,.32);
+  border-radius: 13px;
+  background: rgba(194,157,95,.055);
+  color: var(--primary,#c29d5f);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.student-page-menu-btn:hover {
+  background: rgba(194,157,95,.10);
+  border-color: rgba(194,157,95,.55);
+  transform: translateY(-1px);
+}
+
+.student-page-menu-btn i { font-size: 17px; }
+
+@media (max-width: 560px) {
+  .account-btn {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+}
