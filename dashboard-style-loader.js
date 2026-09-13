@@ -8,7 +8,7 @@
     document.head.appendChild(link);
   });
 
-  ['student-ui-fixes.js?v=1.1', 'student-account-patch.js?v=1.0'].forEach(src => {
+  ['student-ui-fixes.js?v=1.1', 'student-account-patch.js?v=1.1'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = false;

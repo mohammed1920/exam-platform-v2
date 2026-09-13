@@ -18,13 +18,19 @@
     const status = sidebar.querySelector('.student-sidebar-status');
     const logout = document.getElementById('student-sidebar-logout');
 
-    if (avatar) avatar.textContent = user ? name.trim().charAt(0).toUpperCase() || 'ط' : '👤';
-    if (nameEl) nameEl.textContent = name;
-    if (emailEl) emailEl.textContent = email;
-    if (status) status.innerHTML = user ? '<span></span> حساب الطالب' : '<span></span> تسجيل الدخول مطلوب';
-    if (logout) logout.innerHTML = user
+    const setText = (element, value) => {
+      if (element && element.textContent !== value) element.textContent = value;
+    };
+    const setHtml = (element, value) => {
+      if (element && element.innerHTML !== value) element.innerHTML = value;
+    };
+    setText(avatar, user ? name.trim().charAt(0).toUpperCase() || 'ط' : '👤');
+    setText(nameEl, name);
+    setText(emailEl, email);
+    setHtml(status, user ? '<span></span> حساب الطالب' : '<span></span> تسجيل الدخول مطلوب');
+    setHtml(logout, user
       ? '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>'
-      : '<i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span>';
+      : '<i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span>');
   }
 
   function openSidebarForCurrentState() {
@@ -50,12 +56,13 @@
     if (!button) return;
     const user = currentUser();
     if (user) {
-      button.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+      const desiredMarkup = '<i class="fas fa-bars" aria-hidden="true"></i>';
+      if (button.innerHTML !== desiredMarkup) button.innerHTML = desiredMarkup;
       button.setAttribute('aria-label', 'فتح قائمة حسابي');
       button.title = 'قائمة حسابي';
       button.classList.add('authenticated');
     } else {
-      button.textContent = 'سجل الدخول';
+      if (button.textContent !== 'سجل الدخول') button.textContent = 'سجل الدخول';
       button.setAttribute('aria-label', 'سجل الدخول');
       button.title = 'سجل الدخول';
       button.classList.remove('authenticated');
