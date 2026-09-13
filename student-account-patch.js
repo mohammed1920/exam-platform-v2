@@ -16,6 +16,8 @@
     const nameEl = document.getElementById('student-sidebar-name');
     const emailEl = document.getElementById('student-sidebar-email');
     const status = sidebar.querySelector('.student-sidebar-status');
+    const statusText = sidebar.querySelector('.student-sidebar-status-text');
+    const login = document.getElementById('student-sidebar-login');
     const logout = document.getElementById('student-sidebar-logout');
 
     const setText = (element, value) => {
@@ -27,10 +29,12 @@
     setText(avatar, user ? name.trim().charAt(0).toUpperCase() || 'ط' : '👤');
     setText(nameEl, name);
     setText(emailEl, email);
-    setHtml(status, user ? '<span></span> حساب الطالب' : '<span></span> تسجيل الدخول مطلوب');
-    setHtml(logout, user
-      ? '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>'
-      : '<i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span>');
+    setText(statusText, user ? 'حساب الطالب' : 'تسجيل الدخول مطلوب');
+    if (login) login.hidden = Boolean(user);
+    if (logout) {
+      logout.hidden = !user;
+      setHtml(logout, '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>');
+    }
   }
 
   function openSidebarForCurrentState() {

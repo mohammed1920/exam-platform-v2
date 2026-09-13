@@ -131,3 +131,8 @@ header { position: relative; }
   .profile-name-editor-row { flex-direction: column; }
   .profile-name-editor-row button { width: 100%; }
 }
+
+/* The sign-in action belongs beside the status badge, not at the bottom of the menu. */
+.student-sidebar-status .student-sidebar-login { display: inline-block; width: auto; min-height: 0; margin: 0 0 0 4px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #f0c98b; font-size: 12px; }
+.student-sidebar-status .student-sidebar-login:hover { background: transparent; border-color: transparent; transform: none; }
+.student-sidebar-login[hidden], .student-sidebar-logout[hidden] { display: none; }

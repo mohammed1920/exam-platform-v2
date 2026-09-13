@@ -108,8 +108,7 @@
           <div class="student-sidebar-avatar" id="student-sidebar-avatar">ط</div>
           <div><strong id="student-sidebar-name">طالب المنصة</strong><span id="student-sidebar-email"></span></div>
         </div>
-        <div class="student-sidebar-status"><span></span> حساب الطالب</div>
-        <button type="button" class="student-sidebar-item student-sidebar-login" id="student-sidebar-login"><i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span></button>
+        <div class="student-sidebar-status"><span class="student-sidebar-status-dot"></span><span class="student-sidebar-status-text">حساب الطالب</span><button type="button" class="student-sidebar-login" id="student-sidebar-login">تسجيل الدخول</button></div>
         <nav class="student-sidebar-nav" aria-label="قائمة حساب الطالب">
           <div class="student-sidebar-heading">حسابي</div>
           ${MENU.map(item => `<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>`).join('')}
