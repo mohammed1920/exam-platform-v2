@@ -109,6 +109,7 @@
           <div><strong id="student-sidebar-name">طالب المنصة</strong><span id="student-sidebar-email"></span></div>
         </div>
         <div class="student-sidebar-status"><span></span> حساب الطالب</div>
+        <button type="button" class="student-sidebar-item student-sidebar-login" id="student-sidebar-login"><i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span></button>
         <nav class="student-sidebar-nav" aria-label="قائمة حساب الطالب">
           <div class="student-sidebar-heading">حسابي</div>
           ${MENU.map(item => `<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>`).join('')}
@@ -129,6 +130,8 @@
     if (home) home.addEventListener('click', () => { closeSidebar(); window.app && window.app.backToBooks(); });
     const logout = sidebar.querySelector('#student-sidebar-logout');
     if (logout) logout.addEventListener('click', () => window.publicAuth.signOut());
+    const login = sidebar.querySelector('#student-sidebar-login');
+    if (login) login.addEventListener('click', () => { closeSidebar(); window.publicAuth.openLogin(); });
     return sidebar;
   }
 

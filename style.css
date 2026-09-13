@@ -1663,7 +1663,7 @@ header {
 /* ===== Public Firebase authentication ===== */
 .account-btn { margin-top: 12px; padding: 9px 18px; border: 1px solid var(--primary); border-radius: 999px; background: rgba(194,157,95,.1); color: var(--primary); font: inherit; font-weight: 700; cursor: pointer; }
 .account-btn:hover, .account-btn.authenticated { background: var(--primary); color: var(--bg-dark); }
-.auth-modal { display: none; position: fixed; inset: 0; z-index: 3000; align-items: center; justify-content: center; padding: 16px; background: rgba(2,6,23,.82); backdrop-filter: blur(5px); }
+.auth-modal { display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; padding: 16px; background: rgba(2,6,23,.82); backdrop-filter: blur(5px); }
 .auth-modal.active { display: flex; }
 .auth-modal-content { position: relative; width: min(100%,430px); padding: 28px 24px 24px; border: 1px solid rgba(194,157,95,.35); border-radius: 18px; background: linear-gradient(145deg,#1e293b,#111827); box-shadow: 0 24px 80px rgba(0,0,0,.55); color: var(--text-primary); }
 .auth-modal-close { position: absolute; top: 10px; left: 14px; width: 34px; height: 34px; border: 0; background: transparent; color: #cbd5e1; font-size: 28px; line-height: 1; cursor: pointer; }

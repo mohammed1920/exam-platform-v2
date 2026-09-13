@@ -75,6 +75,13 @@
   }
 
   function openModal(mode = 'login') {
+    // أغلق قائمة الحساب أولاً حتى تظهر نافذة الدخول أمام الطالب دائماً.
+    const sidebar = document.getElementById('student-account-sidebar');
+    if (sidebar) {
+      sidebar.classList.remove('is-open');
+      sidebar.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('student-sidebar-open');
     const modal = document.getElementById('login-modal');
     if (!modal) return;
     setModalMode(mode);

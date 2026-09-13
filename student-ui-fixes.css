@@ -1,6 +1,18 @@
 /* Student account UI refinements */
 header { position: relative; }
 
+/* Keep the login action at the top of the account menu and above every drawer layer. */
+.student-sidebar-login {
+  display: flex;
+  width: 100%;
+  margin: 10px 0 4px;
+  justify-content: flex-start;
+}
+.auth-modal,
+#login-modal {
+  z-index: 10000 !important;
+}
+
 .account-btn {
   position: absolute;
   top: 16px;
