@@ -6,7 +6,7 @@
     return window.publicAuth && window.publicAuth.user;
   }
 
-  function openSidebarForCurrentState() {
+  function syncSidebarUser() {
     const sidebar = document.getElementById('student-account-sidebar');
     if (!sidebar) return;
     const user = currentUser();
@@ -22,12 +22,15 @@
     if (nameEl) nameEl.textContent = name;
     if (emailEl) emailEl.textContent = email;
     if (status) status.innerHTML = user ? '<span></span> حساب الطالب' : '<span></span> تسجيل الدخول مطلوب';
-    if (logout) {
-      logout.innerHTML = user
-        ? '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>'
-        : '<i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span>';
-    }
+    if (logout) logout.innerHTML = user
+      ? '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>'
+      : '<i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span>';
+  }
 
+  function openSidebarForCurrentState() {
+    const sidebar = document.getElementById('student-account-sidebar');
+    if (!sidebar) return;
+    syncSidebarUser();
     sidebar.classList.add('is-open');
     sidebar.setAttribute('aria-hidden', 'false');
     document.body.classList.add('student-sidebar-open');
@@ -118,7 +121,7 @@
         await activeUser.reload();
         message.textContent = 'تم حفظ الاسم بنجاح.';
         updateAccountButton();
-        openSidebarForCurrentState();
+        syncSidebarUser();
         setTimeout(() => window.studentDashboard && window.studentDashboard.render('profile'), 250);
       } catch (error) {
         console.error('Profile name update failed:', error);
@@ -138,12 +141,14 @@
   function install() {
     bindAccountButton();
     updateAccountButton();
+    syncSidebarUser();
     updateSidebarLogoutAction();
     injectProfileEditor();
 
     const observer = new MutationObserver(() => {
       bindAccountButton();
       updateAccountButton();
+      syncSidebarUser();
       updateSidebarLogoutAction();
       injectProfileEditor();
     });
@@ -151,6 +156,7 @@
 
     window.addEventListener('public-auth-state-changed', event => {
       updateAccountButton();
+      syncSidebarUser();
       if (event.detail && event.detail.user === null) {
         const sidebar = document.getElementById('student-account-sidebar');
         if (sidebar) {
