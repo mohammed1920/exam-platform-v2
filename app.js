@@ -486,43 +486,13 @@ class ExamApp {
 
     const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
 
-    const chapters = await Promise.all(
-      Array.from({ length: this.currentBook.chapters }, async (_, index) => {
-        const chapterNum = index + 1;
-        let topic = `أسئلة مخصصة لـ الفصل ${chapterNum}`;
+    const chapterCount = Number(this.currentBook.chapters) || 0;
+    const chapters = Array.from({ length: chapterCount }, (_, index) => ({
+      chapterNum: index + 1,
+      topic: `أسئلة مخصصة لـ الفصل ${index + 1}`
+    }));
 
-        try {
-          const response = await fetch(
-            `${basePath}/data/${this.currentBook.id}/chapter_${chapterNum}.json?v=${Date.now()}`
-          );
-
-          if (response.ok) {
-            const chapterData = await response.json();
-
-            // الاسم المخصص من لوحة الإدارة هو title.
-            // إذا كان title مجرد "الفصل N" نعتبره غير مخصص.
-            const customTitle = String(chapterData.title || '').trim();
-            const oldTopic = String(chapterData.topic || '').trim();
-
-            if (
-              customTitle &&
-              customTitle !== `الفصل ${chapterNum}` &&
-              customTitle !== `الفصل ${this.toArabicNumber ? this.toArabicNumber(chapterNum) : chapterNum}`
-            ) {
-              topic = customTitle;
-            } else if (oldTopic) {
-              // دعم الملفات القديمة التي تستخدم topic.
-              topic = oldTopic;
-            }
-          }
-        } catch (error) {
-          // نستخدم العبارة الاحتياطية إذا تعذر تحميل ملف الفصل.
-        }
-
-        return { chapterNum, topic };
-      })
-    );
-
+    // نعرض البطاقات فوراً، ثم نقرأ العناوين المخصصة في الخلفية.
     chapters.forEach(({ chapterNum, topic }) => {
       const item = document.createElement('div');
       item.className = 'chapter-item';
@@ -530,7 +500,7 @@ class ExamApp {
       item.innerHTML = `
         <div class="chapter-info">
           <div class="chapter-number">الفصل ${chapterNum}</div>
-          <p>${this.escapeHtml(topic)}</p>
+          <p data-chapter-topic="${chapterNum}">${this.escapeHtml(topic)}</p>
         </div>
 
         <button class="exam-btn next chapter-start-btn"
@@ -543,6 +513,30 @@ class ExamApp {
 
       container.appendChild(item);
     });
+
+    // لا نؤخر ظهور الفصول بانتظار ملفات الأسئلة الكبيرة.
+    Promise.all(chapters.map(async ({ chapterNum }) => {
+      try {
+        const response = await fetch(
+          `${basePath}/data/${this.currentBook.id}/chapter_${chapterNum}.json?v=${examEngine.sessionTimestamp}`
+        );
+        if (!response.ok) return;
+        const chapterData = await response.json();
+        const customTitle = String(chapterData.title || '').trim();
+        const oldTopic = String(chapterData.topic || '').trim();
+        let topic = `أسئلة مخصصة لـ الفصل ${chapterNum}`;
+        if (
+          customTitle &&
+          customTitle !== `الفصل ${chapterNum}` &&
+          customTitle !== `الفصل ${this.toArabicNumber ? this.toArabicNumber(chapterNum) : chapterNum}`
+        ) topic = customTitle;
+        else if (oldTopic) topic = oldTopic;
+        const topicEl = container.querySelector(`[data-chapter-topic="${chapterNum}"]`);
+        if (topicEl) topicEl.textContent = topic;
+      } catch (error) {
+        // تبقى التسمية الافتراضية عند تعذر تحميل بيانات الفصل.
+      }
+    }));
   }
 
   async startExam(chapterNum) {
