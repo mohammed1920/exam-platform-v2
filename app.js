@@ -20,6 +20,7 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     try {
+      await window.publicAuth.whenReady();
       await this.loadBooks();
       await this.loadContactInfo();
       this.setupEventListeners();
@@ -33,6 +34,15 @@ class ExamApp {
       if (deepBook && deepChapter) {
         const qid = urlParams.get('qid');
         const qNumRaw = urlParams.get('q');
+        if (!window.publicAuth.user) {
+          window.publicAuth.requireAuth(() => this.openDeepLink(
+            deepBook,
+            parseInt(deepChapter, 10),
+            qid,
+            qNumRaw ? parseInt(qNumRaw, 10) : null
+          ));
+          return;
+        }
         const opened = await this.openDeepLink(
           deepBook,
           parseInt(deepChapter, 10),
@@ -48,6 +58,10 @@ class ExamApp {
       // بدل ما نرجعه دايمًا لقائمة الكتب تلقائيًا
       const savedState = history.state;
       let restored = false;
+      if (savedState && savedState.view === 'exam' && !window.publicAuth.user) {
+        window.publicAuth.requireAuth(() => this.restoreState(savedState));
+        return;
+      }
       if (savedState && savedState.view && savedState.view !== 'books' && savedState.bookId) {
         restored = await this.restoreState(savedState);
       }
@@ -102,6 +116,10 @@ class ExamApp {
 
   // فتح رابط مباشر لسؤال معين (يستخدمه زر المشاركة). يرجع true لو نجح الفتح.
   async openDeepLink(bookId, chapterNum, qid, qNum) {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.openDeepLink(bookId, chapterNum, qid, qNum));
+      return false;
+    }
     const book = this.books.find(b => b.id === bookId);
     if (!book || !chapterNum) return false;
 
@@ -363,6 +381,12 @@ class ExamApp {
       return;
     }
 
+    if (!window.publicAuth.user) {
+      resultsEl.style.display = 'none';
+      resultsEl.innerHTML = '';
+      return;
+    }
+
     clearTimeout(this._questionSearchDebounce);
     resultsEl.style.display = 'block';
     resultsEl.innerHTML = '<p class="question-search-loading">🔍 جاري البحث بالأسئلة...</p>';
@@ -411,6 +435,10 @@ class ExamApp {
   }
 
   async openSearchedQuestion(matchedQuestion) {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.openSearchedQuestion(matchedQuestion));
+      return;
+    }
     const book = this.books.find(b => b.title === matchedQuestion.sourceBook);
     if (!book) {
       alert('تعذر تحديد الكتاب المصدر لهذا السؤال.');
@@ -518,6 +546,10 @@ class ExamApp {
   }
 
   async startExam(chapterNum) {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.startExam(chapterNum));
+      return;
+    }
     this.currentChapter = chapterNum;
     const success = await examEngine.loadChapter(this.currentBook.id, chapterNum);
     if (!success) {
@@ -539,6 +571,10 @@ class ExamApp {
   // ---------- الاختبار العشوائي الشامل (من عدة كتب) ----------
 
   showCustomExamSetup() {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.showCustomExamSetup());
+      return;
+    }
     this.navigateTo('custom-exam-setup');
     this.renderCustomExamSetup();
   }
@@ -606,6 +642,10 @@ class ExamApp {
   }
 
   async startCustomExam(selectedBookIds, questionCount) {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.startCustomExam(selectedBookIds, questionCount));
+      return;
+    }
     const selectedBooks = this.books.filter(b => selectedBookIds.includes(b.id));
     if (selectedBooks.length === 0) {
       alert('اختر كتاب واحد على الأقل.');
@@ -662,6 +702,11 @@ class ExamApp {
   }
 
   renderQuestion() {
+    if (!window.publicAuth.user) {
+      this.backToBooks();
+      window.publicAuth.openLogin();
+      return;
+    }
     const container = document.getElementById('question-container');
     const title = document.getElementById('exam-book-chapter');
     const fill = document.getElementById('progress-fill');
@@ -960,6 +1005,10 @@ class ExamApp {
   }
 
   async shareQuestion() {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.shareQuestion());
+      return;
+    }
     const q = examEngine.questions[examEngine.currentQuestionIndex];
     if (!q) return;
     const btn = document.getElementById('share-question-btn');
@@ -994,6 +1043,11 @@ class ExamApp {
   }
 
   handleAnswer(optIdx, btnEl) {
+    if (!window.publicAuth.user) {
+      this.backToBooks();
+      window.publicAuth.openLogin();
+      return;
+    }
     const isCorrect = examEngine.submitAnswer(optIdx);
     const q = examEngine.questions[examEngine.currentQuestionIndex];
     
@@ -1051,6 +1105,10 @@ class ExamApp {
   }
 
   showReview() {
+    if (!window.publicAuth.user) {
+      window.publicAuth.requireAuth(() => this.showReview());
+      return;
+    }
     const wrong = examEngine.getWrongAnswers();
     if (wrong.length === 0) {
       alert('تهانينا! لا توجد لديك أي إجابات خاطئة لمراجعتها.');
@@ -1175,6 +1233,10 @@ class ExamApp {
           this.navigateTo('chapters', {}, false);
           this.renderChapters();
         } else if (view === 'exam') {
+          if (!window.publicAuth.user) {
+            window.publicAuth.requireAuth(() => this.restoreState(event.state));
+            return;
+          }
           this.navigateTo('exam', {}, false);
           this.renderQuestion();
         } else if (view === 'custom-exam-setup') {
@@ -1192,4 +1254,3 @@ class ExamApp {
 }
 
 window.app = new ExamApp();
-
