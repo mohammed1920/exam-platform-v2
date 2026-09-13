@@ -12,6 +12,7 @@ class ExamEngine {
     this.startTime = null;
     this.currentBook = null;
     this.currentChapter = null;
+    this.finishedResult = null;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
     this.sessionTimestamp = Date.now();
   }
@@ -45,6 +46,7 @@ class ExamEngine {
     this.score = 0;
     this.userAnswers = [];
     this.startTime = new Date();
+    this.finishedResult = null;
     return data;
   }
   loadCustomQuestions(questions) {
@@ -65,6 +67,7 @@ class ExamEngine {
     this.score = 0;
     this.userAnswers = [];
     this.startTime = new Date();
+    this.finishedResult = null;
   }
   getCurrentQuestion() { return this.questions[this.currentQuestionIndex] || null; }
   submitAnswer(optionIndex) {
@@ -96,15 +99,19 @@ class ExamEngine {
     return false;
   }
   finishExam() {
-    const percentage = Math.round((this.score / this.totalQuestions) * 100);
-    return {
+    if (this.finishedResult) return this.finishedResult;
+    const percentage = this.totalQuestions > 0
+      ? Math.round((this.score / this.totalQuestions) * 100)
+      : 0;
+    this.finishedResult = {
       score: this.score,
       totalQuestions: this.totalQuestions,
       percentage,
       grade: this.getGrade(percentage),
-      duration: Math.round((new Date() - this.startTime) / 1000),
-      answers: this.userAnswers
+      duration: this.startTime ? Math.max(0, Math.round((new Date() - this.startTime) / 1000)) : 0,
+      answers: this.userAnswers.slice()
     };
+    return this.finishedResult;
   }
   getGrade(percentage) {
     if (percentage >= 90) return { grade: 'ممتاز', emoji: '🏆' };
@@ -123,6 +130,7 @@ class ExamEngine {
     this.startTime = null;
     this.currentBook = null;
     this.currentChapter = null;
+    this.finishedResult = null;
   }
 }
 
