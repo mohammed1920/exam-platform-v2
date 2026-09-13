@@ -1,4 +1,4 @@
-/* Student account sidebar + dashboard */
+/* Student account sidebar + separate student pages */
 (function () {
   'use strict';
 
@@ -6,20 +6,22 @@
   const MENU = [
     { id: 'profile', icon: 'fa-user', label: 'الملف الشخصي', target: 'profile' },
     { id: 'results', icon: 'fa-chart-line', label: 'نتائجي', target: 'results' },
-    { id: 'history', icon: 'fa-clock-rotate-left', label: 'سجل الاختبارات', target: 'results' },
-    { id: 'wrong', icon: 'fa-circle-xmark', label: 'إجاباتي الخاطئة', target: 'coming' },
-    { id: 'progress', icon: 'fa-chart-pie', label: 'تقدمي في الكتب', target: 'coming' },
-    { id: 'favorites', icon: 'fa-bookmark', label: 'المفضلة', target: 'coming' }
+    { id: 'history', icon: 'fa-clock-rotate-left', label: 'سجل الاختبارات', target: 'history' },
+    { id: 'wrong', icon: 'fa-circle-xmark', label: 'إجاباتي الخاطئة', target: 'wrong' },
+    { id: 'progress', icon: 'fa-chart-pie', label: 'تقدمي في الكتب', target: 'progress' },
+    { id: 'favorites', icon: 'fa-bookmark', label: 'المفضلة', target: 'favorites' }
   ];
 
   function getUserKey() {
     const user = window.publicAuth && window.publicAuth.user;
     return user ? String(user.uid || user.email || 'user') : null;
   }
+
   function storageKey() {
     const key = getUserKey();
     return key ? `${STORAGE_PREFIX}.${key}` : null;
   }
+
   function readHistory() {
     try {
       const key = storageKey();
@@ -28,12 +30,14 @@
       return Array.isArray(data) ? data : [];
     } catch (_) { return []; }
   }
+
   function writeHistory(items) {
     try {
       const key = storageKey();
       if (key) localStorage.setItem(key, JSON.stringify(items.slice(0, 100)));
     } catch (error) { console.warn('تعذر حفظ سجل الاختبارات محلياً:', error); }
   }
+
   function saveExamResult(result, app) {
     const user = window.publicAuth && window.publicAuth.user;
     if (!user || !result) return;
@@ -58,19 +62,28 @@
     writeHistory(history);
     window.dispatchEvent(new CustomEvent('student-history-updated'));
   }
+
   function formatDate(value) {
-    try { return new Intl.DateTimeFormat('ar-IQ', { year:'numeric', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' }).format(new Date(value)); }
-    catch (_) { return value || '-'; }
+    try {
+      return new Intl.DateTimeFormat('ar-IQ', {
+        year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
+      }).format(new Date(value));
+    } catch (_) { return value || '-'; }
   }
+
   function formatDuration(seconds) {
-    const sec = Math.max(0, Number(seconds) || 0), mins = Math.floor(sec / 60), rest = sec % 60;
+    const sec = Math.max(0, Number(seconds) || 0);
+    const mins = Math.floor(sec / 60);
+    const rest = sec % 60;
     return mins ? `${mins} د ${rest} ث` : `${rest} ث`;
   }
+
   function escapeHtml(value) {
     const div = document.createElement('div');
     div.textContent = value == null ? '' : String(value);
     return div.innerHTML;
   }
+
   function getStats(history) {
     const exams = history.length;
     const questions = history.reduce((sum, x) => sum + (Number(x.totalQuestions) || 0), 0);
@@ -105,6 +118,7 @@
         <button type="button" class="student-sidebar-logout" id="student-sidebar-logout"><i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span></button>
       </div>`;
     document.body.appendChild(sidebar);
+
     sidebar.querySelectorAll('[data-sidebar-close]').forEach(el => el.addEventListener('click', closeSidebar));
     sidebar.querySelectorAll('[data-sidebar-target]').forEach(btn => btn.addEventListener('click', () => {
       const target = btn.dataset.sidebarTarget;
@@ -139,6 +153,7 @@
     sidebar.setAttribute('aria-hidden', 'false');
     document.body.classList.add('student-sidebar-open');
   }
+
   function closeSidebar() {
     const sidebar = document.getElementById('student-account-sidebar');
     if (!sidebar) return;
@@ -157,7 +172,6 @@
     section.className = 'view-section';
     section.innerHTML = `
       <button class="back-btn" id="student-dashboard-back"><i class="fas fa-arrow-right"></i> العودة للكتب</button>
-      <div class="student-dashboard-header"><span class="dashboard-kicker">حساب الطالب</span><h2>مركز الطالب</h2><p>تابع نتائجك وتقدمك في منصة الاختبارات القانونية.</p></div>
       <div id="student-dashboard-content"></div>`;
     main.appendChild(section);
     const back = section.querySelector('#student-dashboard-back');
@@ -165,46 +179,99 @@
     return section;
   }
 
-  function render(target) {
+  function pageHeader(title, description, icon) {
+    return `<div class="student-page-header"><div class="student-page-icon"><i class="fas ${icon}"></i></div><div><span>حساب الطالب</span><h2>${title}</h2><p>${description}</p></div></div>`;
+  }
+
+  function renderProfile(user) {
+    const name = escapeHtml(user.displayName || 'طالب المنصة');
+    const email = escapeHtml(user.email || '');
+    const initial = escapeHtml((user.displayName || user.email || 'ط').trim().charAt(0).toUpperCase());
+    return `${pageHeader('الملف الشخصي', 'معلومات حسابك في منصة الاختبارات القانونية.', 'fa-user')}
+      <div class="student-profile-card">
+        <div class="profile-avatar">${initial}</div>
+        <div class="profile-identity"><h3>${name}</h3><p>${email}</p><span>🎓 حساب الطالب</span></div>
+      </div>
+      <div class="student-info-grid">
+        <div><small>الاسم</small><strong>${name}</strong></div>
+        <div><small>البريد الإلكتروني</small><strong>${email || '-'}</strong></div>
+        <div><small>حالة الحساب</small><strong class="student-ok">نشط</strong></div>
+      </div>
+      <button type="button" class="profile-logout-btn" id="profile-logout-btn"><i class="fas fa-right-from-bracket"></i> تسجيل الخروج</button>`;
+  }
+
+  function renderResults(history) {
+    const stats = getStats(history);
+    return `${pageHeader('نتائجي', 'ملخص أدائك في الاختبارات التي أكملتها.', 'fa-chart-line')}
+      <div class="profile-stats-grid">
+        <div class="profile-stat-card"><span>📝</span><strong>${stats.exams}</strong><small>اختبار مكتمل</small></div>
+        <div class="profile-stat-card"><span>❓</span><strong>${stats.questions}</strong><small>سؤال</small></div>
+        <div class="profile-stat-card"><span>📊</span><strong>${stats.avg}%</strong><small>متوسط النتائج</small></div>
+        <div class="profile-stat-card"><span>🏆</span><strong>${stats.best}%</strong><small>أفضل نتيجة</small></div>
+        <div class="profile-stat-card"><span>✅</span><strong>${stats.passRate}%</strong><small>نسبة النجاح</small></div>
+      </div>
+      <div class="profile-panel student-highlight-panel"><h3>آخر نتيجة</h3>${history.length ? `<strong class="student-big-score">${Number(history[0].percentage) || 0}%</strong><p>${escapeHtml(history[0].bookTitle || 'اختبار')} · ${history[0].custom ? 'اختبار مخصص' : `الفصل ${escapeHtml(history[0].chapter || '-')}`}</p>` : '<p class="profile-empty">لم تكمل أي اختبار بعد.</p>'}</div>`;
+  }
+
+  function renderHistory(history) {
+    return `${pageHeader('سجل الاختبارات', 'جميع الاختبارات التي أكملتها مرتبة من الأحدث إلى الأقدم.', 'fa-clock-rotate-left')}
+      <div class="profile-panel">
+        <div class="profile-panel-heading"><div><h3>السجل</h3><p>${history.length} اختبار محفوظ على هذا الجهاز.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
+        <div class="exam-history-list">${history.length ? history.map(item => `<article class="history-item"><div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div><div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div><div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div></article>`).join('') : '<div class="profile-empty">لا يوجد سجل اختبارات حتى الآن.</div>'}</div>
+      </div>`;
+  }
+
+  function renderWrong(history) {
+    const wrong = [];
+    history.forEach(exam => (Array.isArray(exam.answers) ? exam.answers : []).forEach(answer => {
+      if (!answer.isCorrect) wrong.push({ ...answer, bookTitle: exam.bookTitle, createdAt: exam.createdAt });
+    }));
+    return `${pageHeader('إجاباتي الخاطئة', 'راجع الأسئلة التي أخطأت فيها أثناء اختباراتك.', 'fa-circle-xmark')}
+      <div class="profile-panel"><div class="exam-history-list">${wrong.length ? wrong.slice(0, 100).map((item, i) => `<article class="student-wrong-item"><div class="student-wrong-number">${i + 1}</div><div><strong>${escapeHtml(item.questionText || 'سؤال')}</strong><span>${escapeHtml(item.bookTitle || 'اختبار')} · إجابتك: ${escapeHtml(item.userAnswer || '-')}</span><small>الإجابة الصحيحة: ${escapeHtml(item.correctAnswer || '-')}</small></div></article>`).join('') : '<div class="profile-empty">ممتاز! لا توجد إجابات خاطئة محفوظة حتى الآن. 🎉</div>'}</div></div>`;
+  }
+
+  function renderProgress(history) {
+    const grouped = {};
+    history.forEach(item => {
+      const key = item.bookId || item.bookTitle || 'unknown';
+      if (!grouped[key]) grouped[key] = { title: item.bookTitle || 'كتاب', exams: 0, total: 0, avg: 0 };
+      grouped[key].exams += 1;
+      grouped[key].total += Number(item.totalQuestions) || 0;
+      grouped[key].avg += Number(item.percentage) || 0;
+    });
+    const rows = Object.values(grouped).map(x => ({ ...x, avg: Math.round(x.avg / x.exams) }));
+    return `${pageHeader('تقدمي في الكتب', 'ملخص تقدمك حسب الكتب التي اختبرت فيها.', 'fa-chart-pie')}
+      <div class="profile-panel"><div class="student-progress-list">${rows.length ? rows.map(row => `<div class="student-progress-item"><div class="student-progress-top"><strong>${escapeHtml(row.title)}</strong><span>${row.avg}%</span></div><div class="student-progress-bar"><i style="width:${Math.min(100, Math.max(0, row.avg))}%"></i></div><small>${row.exams} اختبار · ${row.total} سؤال</small></div>`).join('') : '<div class="profile-empty">ابدأ اختباراً في أحد الكتب ليظهر تقدمك هنا.</div>'}</div></div>`;
+  }
+
+  function renderFavorites() {
+    return `${pageHeader('المفضلة', 'الأسئلة التي تحفظها للوصول إليها بسرعة.', 'fa-bookmark')}
+      <div class="profile-panel student-empty-feature"><div class="coming-icon">🔖</div><h3>لا توجد مفضلات بعد</h3><p>عند تفعيل حفظ الأسئلة، ستظهر الأسئلة التي تضيفها للمفضلة هنا فقط.</p></div>`;
+  }
+
+  function render(target = 'profile') {
     const section = ensureSection();
     const root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
     const user = window.publicAuth && window.publicAuth.user;
     if (!user) { root.innerHTML = '<div class="profile-empty">🔐 سجّل الدخول أولاً للوصول إلى حسابك.</div>'; return; }
     const history = readHistory();
-    const stats = getStats(history);
-    const name = escapeHtml(user.displayName || 'طالب المنصة');
-    const email = escapeHtml(user.email || '');
-    const initial = escapeHtml((user.displayName || user.email || 'ط').trim().charAt(0).toUpperCase());
-    const focus = target === 'results' ? 'results' : target === 'coming' ? 'coming' : 'profile';
-
-    root.innerHTML = `
-      <div class="profile-hero" id="dashboard-profile">
-        <div class="profile-avatar">${initial}</div>
-        <div class="profile-identity"><h2>${name}</h2><p>${email}</p><span>🎓 حساب الطالب</span></div>
-        <button type="button" class="profile-logout-btn" id="profile-logout-btn">تسجيل الخروج</button>
-      </div>
-      <div class="profile-stats-grid" id="dashboard-stats">
-        <div class="profile-stat-card"><span>📝</span><strong>${stats.exams}</strong><small>اختبار مكتمل</small></div>
-        <div class="profile-stat-card"><span>❓</span><strong>${stats.questions}</strong><small>سؤال تمت الإجابة عنه</small></div>
-        <div class="profile-stat-card"><span>📊</span><strong>${stats.avg}%</strong><small>متوسط النتائج</small></div>
-        <div class="profile-stat-card"><span>🏆</span><strong>${stats.best}%</strong><small>أفضل نتيجة</small></div>
-        <div class="profile-stat-card"><span>✅</span><strong>${stats.passRate}%</strong><small>نسبة النجاح</small></div>
-      </div>
-      <div class="profile-panel" id="dashboard-results">
-        <div class="profile-panel-heading"><div><h3>📚 سجل الاختبارات</h3><p>نتائج اختبارات هذا الحساب على هذا الجهاز حالياً.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
-        <div class="exam-history-list">${history.length ? history.slice(0, 20).map(item => `
-          <article class="history-item"><div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div><div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div><div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div></article>`).join('') : '<div class="profile-empty">لم تكمل أي اختبار بعد. ابدأ أول اختبار حتى يظهر سجل النتائج هنا 🚀</div>'}</div>
-      </div>
-      <div class="profile-panel profile-coming-soon" id="dashboard-coming"><div><span class="coming-icon">🔒</span><div><h3>مزايا الطالب القادمة</h3><p>المفضلة، الأسئلة الخاطئة، تقدم كل كتاب، والاشتراكات والصلاحيات ستضاف تباعاً.</p></div></div></div>`;
+    if (target === 'results') root.innerHTML = renderResults(history);
+    else if (target === 'history') root.innerHTML = renderHistory(history);
+    else if (target === 'wrong') root.innerHTML = renderWrong(history);
+    else if (target === 'progress') root.innerHTML = renderProgress(history);
+    else if (target === 'favorites') root.innerHTML = renderFavorites();
+    else root.innerHTML = renderProfile(user);
 
     const logout = document.getElementById('profile-logout-btn');
     if (logout) logout.onclick = () => window.publicAuth.signOut();
     const clear = document.getElementById('clear-history-btn');
-    if (clear) clear.onclick = () => { if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) { writeHistory([]); render('results'); } };
-
-    if (focus === 'results') setTimeout(() => document.getElementById('dashboard-results')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
-    if (focus === 'coming') setTimeout(() => document.getElementById('dashboard-coming')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+    if (clear) clear.onclick = () => {
+      if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) {
+        writeHistory([]);
+        render('history');
+      }
+    };
   }
 
   function openDashboard(target = 'profile') {
@@ -218,22 +285,29 @@
   function install() {
     ensureSidebar();
     const account = document.getElementById('account-btn');
-    if (account) {
+    if (account && !account.dataset.studentSidebarBound) {
       const replacement = account.cloneNode(true);
       account.replaceWith(replacement);
+      replacement.dataset.studentSidebarBound = 'true';
       replacement.addEventListener('click', openSidebar);
     }
     window.addEventListener('student-history-updated', () => render());
-    window.addEventListener('public-auth-state-changed', () => { updateSidebarUser(); });
+    window.addEventListener('public-auth-state-changed', updateSidebarUser);
     updateSidebarUser();
 
-    // حفظ نتيجة الاختبار مرة واحدة؛ ExamEngine يحمي finishExam من الاستدعاء المكرر.
+    // حماية إضافية من حفظ نفس الاختبار مرتين بسبب أي استدعاء مزدوج.
     if (window.app && typeof window.app.endExam === 'function' && !window.app.__studentHistoryWrapped) {
       const originalEndExam = window.app.endExam.bind(window.app);
       window.app.endExam = function () {
-        const result = window.examEngine.finishExam();
-        saveExamResult(result, this);
-        originalEndExam();
+        if (this.__studentHistorySaving) return originalEndExam();
+        this.__studentHistorySaving = true;
+        try {
+          const result = window.examEngine.finishExam();
+          saveExamResult(result, this);
+          return originalEndExam();
+        } finally {
+          setTimeout(() => { this.__studentHistorySaving = false; }, 0);
+        }
       };
       window.app.__studentHistoryWrapped = true;
     }
