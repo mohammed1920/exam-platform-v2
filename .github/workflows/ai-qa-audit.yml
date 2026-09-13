@@ -39,12 +39,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git rebase origin/main
+
+          # أولاً نحفظ التقرير الناتج عن الفحص في commit محلي.
+          # لا يتم تعديل ملفات الأسئلة نفسها؛ فقط ملفات التقرير والحالة.
           git add reports/qa_report.json reports/qa_scan_state.json
-          if ! git diff --cached --quiet; then
-            git commit -m "🔍 تحديث تقرير فحص الجودة القانوني [auto]"
-            git push
-          else
+
+          if git diff --cached --quiet; then
             echo "لا توجد تغييرات لرفعها."
+            exit 0
           fi
+
+          git commit -m "🔍 تحديث تقرير فحص الجودة القانوني [auto]"
+
+          # بعد أن أصبحت شجرة العمل نظيفة، نحدّث من main ثم نرفع التقرير.
+          git pull --rebase origin main
+          git push origin HEAD:main
