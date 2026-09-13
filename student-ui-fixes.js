@@ -6,7 +6,10 @@
     const button = document.getElementById('account-btn');
     if (!button) return;
     const loggedIn = Boolean(window.publicAuth && window.publicAuth.user);
-    button.innerHTML = loggedIn ? '<i class="fas fa-bars" aria-hidden="true"></i>' : '<i class="fas fa-lock" aria-hidden="true"></i>';
+    const desiredMarkup = loggedIn
+      ? '<i class="fas fa-bars" aria-hidden="true"></i>'
+      : '<i class="fas fa-lock" aria-hidden="true"></i>';
+    if (button.innerHTML !== desiredMarkup) button.innerHTML = desiredMarkup;
     button.setAttribute('aria-label', loggedIn ? 'فتح قائمة حسابي' : 'تسجيل الدخول');
     button.title = loggedIn ? 'قائمة حسابي' : 'تسجيل الدخول';
     button.classList.toggle('authenticated', loggedIn);
