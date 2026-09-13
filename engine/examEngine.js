@@ -167,3 +167,13 @@ class ExamEngine {
 
 const examEngine = new ExamEngine();
 window.examEngine = examEngine;
+
+// تحميل لوحة الطالب بعد إنشاء محرك الاختبار، مع إبقاء ملفها منفصلاً عن المحرك.
+(function loadStudentDashboardModule() {
+  const script = document.createElement('script');
+  const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+  script.src = `${basePath}/user-dashboard.js?v=1.0`;
+  script.async = true;
+  script.onerror = () => console.warn('تعذر تحميل لوحة الطالب.');
+  document.head.appendChild(script);
+})();
