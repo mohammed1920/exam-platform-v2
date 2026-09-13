@@ -3,7 +3,7 @@
   'use strict';
 
   const firebaseConfig = {
-    apiKey: 'AIzaSyDDZNWGjUfcuyXHywtILZ06hnOWW-ZxGIM',
+    apiKey: 'AIzaSyDDZNWGjUfcuyXHyWtILZ06hnOWW-ZxGIM',
     authDomain: 'iraq-law-test.firebaseapp.com',
     projectId: 'iraq-law-test',
     storageBucket: 'iraq-law-test.firebasestorage.app',
@@ -38,7 +38,11 @@
   };
 
   function messageFor(error) {
-    return errorMessages[error && error.code] || 'تعذر إتمام العملية. حاول مرة أخرى.';
+    const code = error && error.code;
+    const baseMessage = errorMessages[code] || 'تعذر إتمام العملية. حاول مرة أخرى.';
+    if (!code) return baseMessage;
+    console.error('Firebase Authentication error:', code, error);
+    return `${baseMessage}\n\nرمز الخطأ: ${code}`;
   }
 
   function displayName(user) {
