@@ -11,37 +11,27 @@
     const user = window.publicAuth && window.publicAuth.user;
     return user ? String(user.uid || user.email || 'user') : null;
   }
-
   function storageKey() {
     const key = getUserKey();
     return key ? `${STORAGE_PREFIX}.${key}` : null;
   }
-
   function readHistory() {
     try {
       const key = storageKey();
       if (!key) return [];
       const data = JSON.parse(localStorage.getItem(key) || '[]');
       return Array.isArray(data) ? data : [];
-    } catch (_) {
-      return [];
-    }
+    } catch (_) { return []; }
   }
-
   function writeHistory(items) {
     try {
       const key = storageKey();
-      if (!key) return;
-      localStorage.setItem(key, JSON.stringify(items.slice(0, 100)));
-    } catch (error) {
-      console.warn('تعذر حفظ سجل الاختبارات محلياً:', error);
-    }
+      if (key) localStorage.setItem(key, JSON.stringify(items.slice(0, 100)));
+    } catch (error) { console.warn('تعذر حفظ سجل الاختبارات محلياً:', error); }
   }
-
   function saveExamResult(result, app) {
     const user = window.publicAuth && window.publicAuth.user;
     if (!user || !result) return;
-
     const book = app && app.currentBook;
     const entry = {
       id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
@@ -58,57 +48,63 @@
       wrongCount: Array.isArray(result.answers) ? result.answers.filter(a => !a.isCorrect).length : 0,
       answers: Array.isArray(result.answers) ? result.answers : []
     };
-
     const history = readHistory();
     history.unshift(entry);
     writeHistory(history);
     window.dispatchEvent(new CustomEvent('student-history-updated'));
   }
-
   function formatDate(value) {
     try {
-      return new Intl.DateTimeFormat('ar-IQ', {
-        year: 'numeric', month: 'numeric', day: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      }).format(new Date(value));
-    } catch (_) {
-      return value || '-';
-    }
+      return new Intl.DateTimeFormat('ar-IQ', { year:'numeric', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' }).format(new Date(value));
+    } catch (_) { return value || '-'; }
   }
-
   function formatDuration(seconds) {
-    const sec = Math.max(0, Number(seconds) || 0);
-    const mins = Math.floor(sec / 60);
-    const rest = sec % 60;
+    const sec = Math.max(0, Number(seconds) || 0), mins = Math.floor(sec / 60), rest = sec % 60;
     return mins ? `${mins} د ${rest} ث` : `${rest} ث`;
   }
-
   function escapeHtml(value) {
     const div = document.createElement('div');
     div.textContent = value == null ? '' : String(value);
     return div.innerHTML;
   }
-
   function getStats(history) {
     const exams = history.length;
     const questions = history.reduce((sum, x) => sum + (Number(x.totalQuestions) || 0), 0);
     const avg = exams ? Math.round(history.reduce((sum, x) => sum + (Number(x.percentage) || 0), 0) / exams) : 0;
     const best = exams ? Math.max(...history.map(x => Number(x.percentage) || 0)) : 0;
     const passed = history.filter(x => (Number(x.percentage) || 0) >= 60).length;
-    const passRate = exams ? Math.round((passed / exams) * 100) : 0;
-    return { exams, questions, avg, best, passRate };
+    return { exams, questions, avg, best, passRate: exams ? Math.round((passed / exams) * 100) : 0 };
+  }
+
+  function ensureSection() {
+    let section = document.getElementById('student-dashboard-section');
+    if (section) return section;
+    const main = document.querySelector('main.container');
+    if (!main) return null;
+    section = document.createElement('section');
+    section.id = 'student-dashboard-section';
+    section.className = 'view-section';
+    section.innerHTML = `
+      <button class="back-btn" id="student-dashboard-back"><i class="fas fa-arrow-right"></i> العودة للكتب</button>
+      <div class="student-dashboard-header">
+        <div><span class="dashboard-kicker">حساب الطالب</span><h2>مرحباً بك في حسابك 👋</h2><p>هنا تتابع نتائجك وتقدمك في منصة الاختبارات القانونية.</p></div>
+      </div>
+      <div id="student-dashboard-content"></div>
+    `;
+    main.appendChild(section);
+    section.querySelector('#student-dashboard-back').onclick = () => window.app.backToBooks();
+    return section;
   }
 
   function render() {
+    const section = ensureSection();
     const root = document.getElementById('student-dashboard-content');
-    if (!root) return;
-
+    if (!section || !root) return;
     const user = window.publicAuth && window.publicAuth.user;
     if (!user) {
       root.innerHTML = '<div class="profile-empty">🔐 سجّل الدخول أولاً للوصول إلى حسابك.</div>';
       return;
     }
-
     const history = readHistory();
     const stats = getStats(history);
     const name = escapeHtml(user.displayName || 'طالب المنصة');
@@ -118,14 +114,9 @@
     root.innerHTML = `
       <div class="profile-hero">
         <div class="profile-avatar">${initial}</div>
-        <div class="profile-identity">
-          <h2>${name}</h2>
-          <p>${email}</p>
-          <span>🎓 حساب الطالب</span>
-        </div>
+        <div class="profile-identity"><h2>${name}</h2><p>${email}</p><span>🎓 حساب الطالب</span></div>
         <button type="button" class="profile-logout-btn" id="profile-logout-btn">تسجيل الخروج</button>
       </div>
-
       <div class="profile-stats-grid">
         <div class="profile-stat-card"><span>📝</span><strong>${stats.exams}</strong><small>اختبار مكتمل</small></div>
         <div class="profile-stat-card"><span>❓</span><strong>${stats.questions}</strong><small>سؤال تمت الإجابة عنه</small></div>
@@ -133,74 +124,52 @@
         <div class="profile-stat-card"><span>🏆</span><strong>${stats.best}%</strong><small>أفضل نتيجة</small></div>
         <div class="profile-stat-card"><span>✅</span><strong>${stats.passRate}%</strong><small>نسبة النجاح</small></div>
       </div>
-
       <div class="profile-panel">
-        <div class="profile-panel-heading">
-          <div><h3>📚 سجل الاختبارات</h3><p>آخر نتائجك محفوظة لهذا الحساب على هذا الجهاز حالياً.</p></div>
-          ${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}
-        </div>
+        <div class="profile-panel-heading"><div><h3>📚 سجل الاختبارات</h3><p>نتائج اختبارات هذا الحساب على هذا الجهاز حالياً.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
         <div class="exam-history-list">
-          ${history.length ? history.slice(0, 20).map((item, index) => `
+          ${history.length ? history.slice(0, 20).map(item => `
             <article class="history-item">
               <div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div>
-              <div class="history-main">
-                <strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong>
-                <span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span>
-                <small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small>
-              </div>
-              <div class="history-score">
-                <strong>${Number(item.percentage) || 0}%</strong>
-                <span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span>
-              </div>
-            </article>
-          `).join('') : '<div class="profile-empty">لم تكمل أي اختبار بعد. ابدأ أول اختبار حتى يظهر سجل النتائج هنا 🚀</div>'}
+              <div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div>
+              <div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div>
+            </article>`).join('') : '<div class="profile-empty">لم تكمل أي اختبار بعد. ابدأ أول اختبار حتى يظهر سجل النتائج هنا 🚀</div>'}
         </div>
       </div>
-
-      <div class="profile-panel profile-coming-soon">
-        <div><span class="coming-icon">🔒</span><div><h3>المزايا القادمة</h3><p>سنضيف لاحقاً المفضلة، الأسئلة الخاطئة، تقدم كل كتاب، والاشتراكات والصلاحيات.</p></div></div>
-      </div>
+      <div class="profile-panel profile-coming-soon"><div><span class="coming-icon">🔒</span><div><h3>المزايا القادمة</h3><p>سنضيف لاحقاً المفضلة، الأسئلة الخاطئة، تقدم كل كتاب، والاشتراكات والصلاحيات.</p></div></div></div>
     `;
-
     const logout = document.getElementById('profile-logout-btn');
     if (logout) logout.onclick = () => window.publicAuth.signOut();
-
     const clear = document.getElementById('clear-history-btn');
     if (clear) clear.onclick = () => {
-      if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) {
-        writeHistory([]);
-        render();
-      }
+      if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) { writeHistory([]); render(); }
     };
   }
 
   function openDashboard() {
-    if (!window.publicAuth || !window.publicAuth.user) {
-      window.publicAuth.openLogin();
-      return;
-    }
+    if (!window.publicAuth || !window.publicAuth.user) { window.publicAuth.openLogin(); return; }
     if (window.app && window.app.examActive) return;
+    ensureSection();
     window.app.navigateTo('student-dashboard');
     render();
   }
 
   function install() {
+    ensureSection();
     const account = document.getElementById('account-btn');
     if (account) {
       const replacement = account.cloneNode(true);
       account.replaceWith(replacement);
       replacement.addEventListener('click', openDashboard);
     }
-
-    if (window.app && typeof window.app.endExam === 'function') {
+    if (window.app && typeof window.app.endExam === 'function' && !window.app.__studentHistoryWrapped) {
       const originalEndExam = window.app.endExam.bind(window.app);
       window.app.endExam = function () {
         const result = window.examEngine.finishExam();
         saveExamResult(result, this);
         originalEndExam();
       };
+      window.app.__studentHistoryWrapped = true;
     }
-
     window.addEventListener('student-history-updated', render);
     window.addEventListener('public-auth-state-changed', () => {
       const account = document.getElementById('account-btn');
@@ -208,12 +177,7 @@
     });
   }
 
-  window.studentDashboard = {
-    open: openDashboard,
-    render,
-    getHistory: readHistory
-  };
-
+  window.studentDashboard = { open: openDashboard, render, getHistory: readHistory };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();
