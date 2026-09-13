@@ -13,38 +13,25 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-    // بصمة زمنية واحدة عند تحميل الصفحة لمنع الكاش
     this.sessionTimestamp = Date.now();
   }
-
   async loadBooks() {
     try {
       const res = await fetch(`${this.basePath}/data/books.json?v=${this.sessionTimestamp}`);
       return await res.json();
-    } catch (e) {
-      console.error('Error loading books:', e);
-      return [];
-    }
+    } catch (e) { console.error('Error loading books:', e); return []; }
   }
-
   async loadChapter(bookId, chapterNum) {
-    // القراءة من الملف المنفصل chapter_X.json مباشرة
     try {
       const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`);
-      if (res.ok) {
-        const chapter = await res.json();
-        return this.initChapter(bookId, chapterNum, chapter);
-      }
+      if (res.ok) return this.initChapter(bookId, chapterNum, await res.json());
     } catch (e) {}
     return null;
   }
-
   initChapter(bookId, chapterNum, data) {
     this.currentBook = bookId;
     this.currentChapter = chapterNum;
     const qs = data.questions || (Array.isArray(data) ? data : []);
-    
-    // توحيد بنية الأسئلة عند التحميل لضمان المرونة
     this.questions = qs.map(q => ({
       id: q.id || q.uid || null,
       uid: q.uid || q.id || null,
@@ -53,7 +40,6 @@ class ExamEngine {
       answer: q.answer !== undefined ? q.answer : (q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : 0)),
       explanation: q.explanation || "لا يوجد شرح متوفر حالياً."
     }));
-    
     this.totalQuestions = this.questions.length;
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -61,13 +47,9 @@ class ExamEngine {
     this.startTime = new Date();
     return data;
   }
-
-  // يغذي المحرك بمجموعة أسئلة جاهزة من مصادر متعددة (اختبار عشوائي شامل من عدة كتب/فصول)
-  // كل سؤال قد يحمل sourceBook/sourceChapter لعرضهما أثناء الاختبار.
   loadCustomQuestions(questions) {
     this.currentBook = 'custom-exam';
     this.currentChapter = null;
-
     this.questions = (questions || []).map(q => ({
       id: q.id || q.uid || null,
       uid: q.uid || q.id || null,
@@ -78,24 +60,16 @@ class ExamEngine {
       sourceBook: q.sourceBook || null,
       sourceChapter: q.sourceChapter || null
     }));
-
     this.totalQuestions = this.questions.length;
     this.currentQuestionIndex = 0;
     this.score = 0;
     this.userAnswers = [];
     this.startTime = new Date();
   }
-
-  getCurrentQuestion() {
-    return this.questions[this.currentQuestionIndex] || null;
-  }
-
+  getCurrentQuestion() { return this.questions[this.currentQuestionIndex] || null; }
   submitAnswer(optionIndex) {
     const q = this.getCurrentQuestion();
     if (!q) return false;
-
-    // منع تسجيل الإجابة أكثر من مرة لنفس السؤال.
-    // uid هو المعرف الأساسي، وid هو البديل عند عدم وجود uid.
     const questionUid = q.uid || null;
     const questionId = q.id || null;
     const existingAnswer = this.userAnswers.find(a => {
@@ -104,43 +78,34 @@ class ExamEngine {
       return false;
     });
     if (existingAnswer) return existingAnswer.isCorrect;
-
     const isCorrect = optionIndex === q.answer;
     this.userAnswers.push({
-      questionUid: questionUid,
-      questionId: questionId,
+      questionUid,
+      questionId,
       questionText: q.question,
       userAnswer: q.options[optionIndex],
       correctAnswer: q.options[q.answer],
-      isCorrect: isCorrect,
+      isCorrect,
       explanation: q.explanation
     });
     if (isCorrect) this.score++;
     return isCorrect;
   }
-
   nextQuestion() {
-    if (this.currentQuestionIndex < this.questions.length - 1) {
-      this.currentQuestionIndex++;
-      return true;
-    }
+    if (this.currentQuestionIndex < this.questions.length - 1) { this.currentQuestionIndex++; return true; }
     return false;
   }
-
   finishExam() {
     const percentage = Math.round((this.score / this.totalQuestions) * 100);
-    const grade = this.getGrade(percentage);
-    const duration = Math.round((new Date() - this.startTime) / 1000);
     return {
       score: this.score,
       totalQuestions: this.totalQuestions,
-      percentage: percentage,
-      grade: grade,
-      duration: duration,
+      percentage,
+      grade: this.getGrade(percentage),
+      duration: Math.round((new Date() - this.startTime) / 1000),
       answers: this.userAnswers
     };
   }
-
   getGrade(percentage) {
     if (percentage >= 90) return { grade: 'ممتاز', emoji: '🏆' };
     if (percentage >= 80) return { grade: 'جيد جداً', emoji: '🥇' };
@@ -148,11 +113,7 @@ class ExamEngine {
     if (percentage >= 60) return { grade: 'مقبول', emoji: '🥉' };
     return { grade: 'راسب', emoji: '❌' };
   }
-
-  getWrongAnswers() {
-    return this.userAnswers.filter(a => !a.isCorrect);
-  }
-
+  getWrongAnswers() { return this.userAnswers.filter(a => !a.isCorrect); }
   reset() {
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -168,12 +129,13 @@ class ExamEngine {
 const examEngine = new ExamEngine();
 window.examEngine = examEngine;
 
-// تحميل لوحة الطالب بعد إنشاء محرك الاختبار، مع إبقاء ملفها منفصلاً عن المحرك.
-(function loadStudentDashboardModule() {
-  const script = document.createElement('script');
+(function loadStudentDashboardModules() {
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  script.src = `${basePath}/user-dashboard.js?v=1.0`;
-  script.async = true;
-  script.onerror = () => console.warn('تعذر تحميل لوحة الطالب.');
-  document.head.appendChild(script);
+  ['dashboard-style-loader.js?v=1.0', 'user-dashboard.js?v=1.0'].forEach(src => {
+    const script = document.createElement('script');
+    script.src = `${basePath}/${src}`;
+    script.async = true;
+    script.onerror = () => console.warn(`تعذر تحميل الوحدة: ${src}`);
+    document.head.appendChild(script);
+  });
 })();
