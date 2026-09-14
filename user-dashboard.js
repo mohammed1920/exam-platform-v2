@@ -164,6 +164,17 @@
     document.body.classList.remove('student-sidebar-open');
   }
 
+  function syncActiveMenu(target) {
+    const sidebar = document.getElementById('student-account-sidebar');
+    if (!sidebar) return;
+    sidebar.querySelectorAll('[data-sidebar-target]').forEach(button => {
+      const active = button.dataset.sidebarTarget === target;
+      button.classList.toggle('is-active', active);
+      if (active) button.setAttribute('aria-current', 'page');
+      else button.removeAttribute('aria-current');
+    });
+  }
+
   function ensureSection() {
     let section = document.getElementById('student-dashboard-section');
     if (section) return section;
@@ -255,6 +266,7 @@
     const section = ensureSection();
     const root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
+    syncActiveMenu(target);
     const user = window.publicAuth && window.publicAuth.user;
     if (!user) { root.innerHTML = '<div class="profile-empty">🔐 سجّل الدخول أولاً للوصول إلى حسابك.</div>'; return; }
     const history = readHistory();
@@ -280,7 +292,14 @@
     if (!window.publicAuth || !window.publicAuth.user) { window.publicAuth.openLogin(); return; }
     if (window.app && window.app.examActive) return;
     ensureSection();
-    window.app.navigateTo('student-dashboard');
+    window.app.navigateTo('student-dashboard', { dashboardTarget: target });
+    render(target);
+  }
+
+  function restoreDashboard(target = 'profile', pushState = false) {
+    if (!window.publicAuth || !window.publicAuth.user) return;
+    ensureSection();
+    window.app.navigateTo('student-dashboard', { dashboardTarget: target }, pushState);
     render(target);
   }
 
@@ -315,7 +334,7 @@
     }
   }
 
-  window.studentDashboard = { open: openDashboard, openSidebar, closeSidebar, render, getHistory: readHistory };
+  window.studentDashboard = { open: openDashboard, restore: restoreDashboard, openSidebar, closeSidebar, render, getHistory: readHistory };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();

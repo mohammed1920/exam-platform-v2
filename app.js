@@ -58,11 +58,17 @@ class ExamApp {
       // بدل ما نرجعه دايمًا لقائمة الكتب تلقائيًا
       const savedState = history.state;
       let restored = false;
+      if (savedState && savedState.view === 'student-dashboard' && window.publicAuth.user) {
+        if (window.studentDashboard && typeof window.studentDashboard.restore === 'function') {
+          window.studentDashboard.restore(savedState.dashboardTarget || 'profile', false);
+          restored = true;
+        }
+      }
       if (savedState && savedState.view === 'exam' && !window.publicAuth.user) {
         window.publicAuth.requireAuth(() => this.restoreState(savedState));
         return;
       }
-      if (savedState && savedState.view && savedState.view !== 'books' && savedState.bookId) {
+      if (!restored && savedState && savedState.view && savedState.view !== 'books' && savedState.bookId) {
         restored = await this.restoreState(savedState);
       }
 
@@ -1164,7 +1170,7 @@ class ExamApp {
     if (section) section.classList.add('active');
     
     if (pushState) {
-      history.pushState({ view: viewId, bookId: this.currentBook ? this.currentBook.id : null, chapter: this.currentChapter }, '');
+      history.pushState({ view: viewId, bookId: this.currentBook ? this.currentBook.id : null, chapter: this.currentChapter, ...params }, '');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -1237,6 +1243,12 @@ class ExamApp {
           this.isCustomExam = false;
           this.navigateTo('custom-exam-setup', {}, false);
           this.renderCustomExamSetup();
+        } else if (view === 'student-dashboard') {
+          if (window.studentDashboard && typeof window.studentDashboard.restore === 'function') {
+            window.studentDashboard.restore(event.state.dashboardTarget || 'profile', false);
+          } else {
+            this.navigateTo(view, {}, false);
+          }
         } else {
           this.navigateTo(view, {}, false);
         }

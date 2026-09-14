@@ -7,3 +7,5 @@
 .student-sidebar-login:hover { background: transparent; border-color: transparent; color: #fff; transform: none; }
 .student-sidebar-login[hidden], .student-sidebar-logout[hidden] { display: none; }
 .student-sidebar-status .student-sidebar-status-text { width: auto; height: auto; flex: 0 1 auto; border-radius: 0; background: transparent; box-shadow: none; }
+.student-sidebar-item.is-active { background: rgba(194,157,95,.10); border-color: rgba(194,157,95,.28); color: #f0e4ce; box-shadow: inset -3px 0 0 var(--primary,#c29d5f); }
+.student-sidebar-item.is-active i { color: var(--primary,#c29d5f); }
