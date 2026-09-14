@@ -33,7 +33,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          cp index.html app.js style.css manifest.json service-worker.js dist/
+          cp index.html app.js firebase-auth.js style.css manifest.json service-worker.js dist/
           cp -r engine icons data dist/
           # لا ننشر لوحة الأدمن، التقارير، ملفات Python، الوثائق، أو إعدادات CI.
           touch dist/.nojekyll
