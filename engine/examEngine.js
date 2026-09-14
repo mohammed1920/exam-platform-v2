@@ -139,7 +139,7 @@ window.examEngine = examEngine;
 
 (function loadStudentDashboardModules() {
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  ['dashboard-style-loader.js?v=1.1', 'user-dashboard.js?v=1.1'].forEach(src => {
+  ['dashboard-style-loader.js?v=1.2', 'user-dashboard.js?v=1.2'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = true;

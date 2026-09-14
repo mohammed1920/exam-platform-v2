@@ -82,6 +82,70 @@ class ExamApp {
     }
   }
 
+  getExamDraftKey() {
+    const user = window.publicAuth && window.publicAuth.user;
+    return user ? `lawExam.studentDraft.v1.${user.uid || user.email || 'user'}` : null;
+  }
+
+  saveExamDraft() {
+    if (!this.examActive || this.isCustomExam || !this.currentBook || !this.currentChapter) return;
+    const key = this.getExamDraftKey();
+    if (!key || !examEngine.questions.length) return;
+    try {
+      localStorage.setItem(key, JSON.stringify({
+        bookId: this.currentBook.id,
+        bookTitle: this.currentBook.title,
+        chapter: this.currentChapter,
+        questionIndex: examEngine.currentQuestionIndex,
+        totalQuestions: examEngine.totalQuestions,
+        userAnswers: examEngine.userAnswers,
+        score: examEngine.score,
+        startedAt: examEngine.startTime ? examEngine.startTime.toISOString() : new Date().toISOString(),
+        savedAt: new Date().toISOString()
+      }));
+    } catch (error) { console.warn('تعذر حفظ الاختبار غير المكتمل:', error); }
+  }
+
+  clearExamDraft() {
+    const key = this.getExamDraftKey();
+    if (key) localStorage.removeItem(key);
+  }
+
+  getExamDraftSummary() {
+    const key = this.getExamDraftKey();
+    if (!key) return null;
+    try {
+      const draft = JSON.parse(localStorage.getItem(key) || 'null');
+      if (!draft || !draft.bookId || !draft.chapter) return null;
+      return { title: `${draft.bookTitle || 'اختبار'} · الفصل ${draft.chapter}`, questionNumber: Number(draft.questionIndex || 0) + 1, totalQuestions: Number(draft.totalQuestions || 0), answered: Array.isArray(draft.userAnswers) ? draft.userAnswers.length : 0 };
+    } catch (_) { return null; }
+  }
+
+  async resumeSavedExam() {
+    if (!window.publicAuth || !window.publicAuth.user) return window.publicAuth && window.publicAuth.openLogin();
+    const key = this.getExamDraftKey();
+    let draft;
+    try { draft = key ? JSON.parse(localStorage.getItem(key) || 'null') : null; } catch (_) { draft = null; }
+    const book = draft && this.books.find(item => item.id === draft.bookId);
+    if (!draft || !book) { this.clearExamDraft(); return; }
+    const success = await examEngine.loadChapter(book.id, draft.chapter);
+    if (!success) return alert('تعذر تحميل الاختبار المحفوظ حالياً.');
+    this.currentBook = book;
+    this.currentChapter = draft.chapter;
+    this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
+    examEngine.questions = this.currentQuestions;
+    examEngine.userAnswers = Array.isArray(draft.userAnswers) ? draft.userAnswers : [];
+    examEngine.score = Number(draft.score) || examEngine.userAnswers.filter(answer => answer.isCorrect).length;
+    examEngine.currentQuestionIndex = Math.min(Number(draft.questionIndex) || 0, Math.max(0, examEngine.totalQuestions - 1));
+    examEngine.startTime = draft.startedAt ? new Date(draft.startedAt) : new Date();
+    this.isCustomExam = false;
+    this.examActive = true;
+    document.body.classList.add('exam-mode');
+    this.navigateTo('exam', { book: book.id, chapter: draft.chapter, resumed: true });
+    this.startTimer(Math.max(0, Math.round((Date.now() - examEngine.startTime.getTime()) / 1000)));
+    this.renderQuestion();
+  }
+
   async restoreState(state) {
     const book = this.books.find(b => b.id === state.bookId);
     if (!book) return false;
@@ -565,6 +629,7 @@ class ExamApp {
     document.body.classList.add('exam-mode');
     this.navigateTo('exam', { book: this.currentBook.id, chapter: chapterNum });
     this.startTimer();
+    this.saveExamDraft();
     this.renderQuestion();
   }
 
@@ -1068,12 +1133,14 @@ class ExamApp {
     const statCorrect = document.getElementById('stat-correct');
     if (statWrong) statWrong.innerText = wrongCount;
     if (statCorrect) statCorrect.innerText = correctCount;
+    this.saveExamDraft();
     // تم حذف الـ setTimeout نهائياً لمنع الانتقال التلقائي بناءً على طلبك
   }
 
   nextQuestion() {
     const hasNext = examEngine.nextQuestion();
     if (hasNext) {
+      this.saveExamDraft();
       this.renderQuestion();
     } else {
       this.endExam();
@@ -1083,6 +1150,7 @@ class ExamApp {
   prevQuestion() {
     if (examEngine.currentQuestionIndex > 0) {
       examEngine.currentQuestionIndex--;
+      this.saveExamDraft();
       this.renderQuestion();
     }
   }
@@ -1092,6 +1160,7 @@ class ExamApp {
     this.examActive = false;
     document.body.classList.remove('exam-mode');
     const res = examEngine.finishExam();
+    this.clearExamDraft();
 
     this.navigateTo('results', { book: this.currentBook.id, chapter: this.currentChapter, status: 'done' });
     
@@ -1140,6 +1209,7 @@ class ExamApp {
   }
 
   backToBooks() {
+    this.saveExamDraft();
     clearInterval(this.timerInterval);
     this.examActive = false;
     document.body.classList.remove('exam-mode');
@@ -1150,11 +1220,11 @@ class ExamApp {
     this.renderBooks(this.books);
   }
 
-  startTimer() {
+  startTimer(initialSeconds = 0) {
     clearInterval(this.timerInterval);
     const el = document.getElementById('exam-timer');
-    let sec = 0;
-    el.innerText = '00:00';
+    let sec = Math.max(0, Number(initialSeconds) || 0);
+    el.innerText = `${Math.floor(sec / 60).toString().padStart(2, '0')}:${(sec % 60).toString().padStart(2, '0')}`;
     this.timerInterval = setInterval(() => {
       sec++;
       const m = Math.floor(sec / 60).toString().padStart(2, '0');
@@ -1218,6 +1288,7 @@ class ExamApp {
         
         // إيقاف مؤقت الفحص إذا خرج من الاختبار النشط
         if (view !== 'exam' && this.timerInterval) {
+          this.saveExamDraft();
           clearInterval(this.timerInterval);
           this.examActive = false;
           document.body.classList.remove('exam-mode');

@@ -6,9 +6,8 @@
   const MENU = [
     { id: 'profile', icon: 'fa-user', label: 'الملف الشخصي', target: 'profile' },
     { id: 'results', icon: 'fa-chart-line', label: 'نتائجي', target: 'results' },
-    { id: 'history', icon: 'fa-clock-rotate-left', label: 'سجل الاختبارات', target: 'history' },
+    { id: 'history', icon: 'fa-clock-rotate-left', label: 'السجل والتقدم', target: 'history' },
     { id: 'wrong', icon: 'fa-circle-xmark', label: 'إجاباتي الخاطئة', target: 'wrong' },
-    { id: 'progress', icon: 'fa-chart-pie', label: 'تقدمي في الكتب', target: 'progress' },
     { id: 'favorites', icon: 'fa-bookmark', label: 'المفضلة', target: 'favorites' }
   ];
 
@@ -227,9 +226,23 @@
   }
 
   function renderHistory(history) {
-    return `${pageHeader('سجل الاختبارات', 'جميع الاختبارات التي أكملتها مرتبة من الأحدث إلى الأقدم.', 'fa-clock-rotate-left')}
+    const draft = window.app && typeof window.app.getExamDraftSummary === 'function' ? window.app.getExamDraftSummary() : null;
+    const grouped = {};
+    history.forEach(item => {
+      const key = item.bookId || item.bookTitle || 'unknown';
+      if (!grouped[key]) grouped[key] = { title: item.bookTitle || 'كتاب', exams: 0, total: 0, avg: 0 };
+      grouped[key].exams += 1;
+      grouped[key].total += Number(item.totalQuestions) || 0;
+      grouped[key].avg += Number(item.percentage) || 0;
+    });
+    const progressRows = Object.values(grouped).map(row => ({ ...row, avg: Math.round(row.avg / row.exams) }));
+    const draftHtml = draft ? `<div class="profile-panel resume-exam-panel"><div><span class="resume-exam-label">اختبار غير مكتمل</span><h3>${escapeHtml(draft.title)}</h3><p>وصلت إلى السؤال ${draft.questionNumber} من ${draft.totalQuestions} · ${draft.answered} إجابة محفوظة</p></div><button type="button" class="profile-resume-btn" id="resume-exam-btn"><i class="fas fa-play"></i> متابعة الاختبار</button></div>` : '';
+    const progressHtml = `<div class="profile-panel"><div class="profile-panel-heading"><div><h3>تقدمك في الكتب</h3><p>متوسط نتائجك وعدد الاختبارات لكل كتاب.</p></div></div><div class="student-progress-list">${progressRows.length ? progressRows.map(row => `<div class="student-progress-item"><div class="student-progress-top"><strong>${escapeHtml(row.title)}</strong><span>${row.avg}%</span></div><div class="student-progress-bar"><i style="width:${Math.min(100, Math.max(0, row.avg))}%"></i></div><small>${row.exams} اختبار · ${row.total} سؤال</small></div>`).join('') : '<div class="profile-empty">ابدأ اختباراً في أحد الكتب ليظهر تقدمك هنا.</div>'}</div></div>`;
+    return `${pageHeader('السجل والتقدم', 'راجع اختباراتك السابقة وتابع تقدمك أو أكمل اختباراً متوقفاً.', 'fa-clock-rotate-left')}
+      ${draftHtml}
+      ${progressHtml}
       <div class="profile-panel">
-        <div class="profile-panel-heading"><div><h3>السجل</h3><p>${history.length} اختبار محفوظ على هذا الجهاز.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
+        <div class="profile-panel-heading"><div><h3>الاختبارات المكتملة</h3><p>${history.length} اختبار محفوظ على هذا الجهاز.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
         <div class="exam-history-list">${history.length ? history.map(item => `<article class="history-item"><div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div><div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div><div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div></article>`).join('') : '<div class="profile-empty">لا يوجد سجل اختبارات حتى الآن.</div>'}</div>
       </div>`;
   }
@@ -286,11 +299,18 @@
         render('history');
       }
     };
+    const resume = document.getElementById('resume-exam-btn');
+    if (resume && window.app && typeof window.app.resumeSavedExam === 'function') resume.onclick = () => window.app.resumeSavedExam();
   }
 
   function openDashboard(target = 'profile') {
     if (!window.publicAuth || !window.publicAuth.user) { window.publicAuth.openLogin(); return; }
-    if (window.app && window.app.examActive) return;
+    if (window.app && window.app.examActive) {
+      if (typeof window.app.saveExamDraft === 'function') window.app.saveExamDraft();
+      clearInterval(window.app.timerInterval);
+      window.app.examActive = false;
+      document.body.classList.remove('exam-mode');
+    }
     ensureSection();
     window.app.navigateTo('student-dashboard', { dashboardTarget: target });
     render(target);

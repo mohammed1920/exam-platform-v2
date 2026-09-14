@@ -9,3 +9,10 @@
 .student-sidebar-status .student-sidebar-status-text { width: auto; height: auto; flex: 0 1 auto; border-radius: 0; background: transparent; box-shadow: none; }
 .student-sidebar-item.is-active { background: rgba(194,157,95,.10); border-color: rgba(194,157,95,.28); color: #f0e4ce; box-shadow: inset -3px 0 0 var(--primary,#c29d5f); }
 .student-sidebar-item.is-active i { color: var(--primary,#c29d5f); }
+.resume-exam-panel { display:flex; align-items:center; justify-content:space-between; gap:16px; border-color:rgba(66,211,161,.28); background:linear-gradient(135deg,rgba(66,211,161,.10),rgba(15,23,42,.35)); }
+.resume-exam-label { display:block; color:#72d7ad; font-size:12px; font-weight:800; margin-bottom:5px; }
+.resume-exam-panel h3 { margin:0 0 5px; }
+.resume-exam-panel p { margin:0; color:var(--text-secondary,#94a3b8); font-size:12px; }
+.profile-resume-btn { flex:0 0 auto; border:1px solid rgba(66,211,161,.35); border-radius:10px; padding:10px 13px; background:rgba(66,211,161,.12); color:#9ed7c2; cursor:pointer; font:inherit; font-weight:800; }
+.profile-resume-btn:hover { background:rgba(66,211,161,.20); }
+@media(max-width:560px){.resume-exam-panel{align-items:flex-start;flex-direction:column}.profile-resume-btn{width:100%}}
