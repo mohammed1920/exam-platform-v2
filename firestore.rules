@@ -26,9 +26,6 @@ service cloud.firestore {
     }
 
     // Student leaderboard summaries.
-    // Reads are allowed only to authenticated students.
-    // Each student can write only their own leaderboard entry.
-    // The final authoritative calculation will move server-side when the online API layer is enabled.
     match /leaderboards/{bookId}/entries/{userId} {
       allow read: if request.auth != null;
 
@@ -38,6 +35,8 @@ service cloud.firestore {
                     && request.resource.data.bookId == bookId
                     && request.resource.data.finalScore >= 0
                     && request.resource.data.finalScore <= 1000
+                    && request.resource.data.rankingScore >= -1
+                    && request.resource.data.rankingScore <= 1000
                     && request.resource.data.completedChapters >= 0;
 
       allow update: if request.auth != null
@@ -46,6 +45,8 @@ service cloud.firestore {
                     && request.resource.data.bookId == bookId
                     && request.resource.data.finalScore >= 0
                     && request.resource.data.finalScore <= 1000
+                    && request.resource.data.rankingScore >= -1
+                    && request.resource.data.rankingScore <= 1000
                     && request.resource.data.completedChapters >= 0;
 
       allow delete: if false;
