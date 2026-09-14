@@ -13,6 +13,7 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.finishedResult = null;
+    this.__firestoreResultSaved = false;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
     this.sessionTimestamp = Date.now();
   }
@@ -47,6 +48,7 @@ class ExamEngine {
     this.userAnswers = [];
     this.startTime = new Date();
     this.finishedResult = null;
+    this.__firestoreResultSaved = false;
     return data;
   }
   loadCustomQuestions(questions) {
@@ -68,6 +70,7 @@ class ExamEngine {
     this.userAnswers = [];
     this.startTime = new Date();
     this.finishedResult = null;
+    this.__firestoreResultSaved = false;
   }
   getCurrentQuestion() { return this.questions[this.currentQuestionIndex] || null; }
   submitAnswer(optionIndex) {
@@ -111,6 +114,33 @@ class ExamEngine {
       duration: this.startTime ? Math.max(0, Math.round((new Date() - this.startTime) / 1000)) : 0,
       answers: this.userAnswers.slice()
     };
+
+    // حفظ النتيجة مباشرة من نقطة إنهاء الاختبار، بدل الاعتماد على wrapper خارجي.
+    // هذا يمنع ضياع النتيجة بسبب توقيت تحميل الوحدات أو إعادة تغليف finishExam.
+    try {
+      const publicAuth = window.publicAuth;
+      if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
+        const app = window.app;
+        const book = app && app.currentBook;
+        const startedAtMs = this.startTime ? this.startTime.getTime() : Date.now();
+        this.__firestoreResultSaved = true;
+        Promise.resolve(publicAuth.saveExamResultToFirestore(this.finishedResult, {
+          bookId: app && book ? book.id : (this.currentBook !== 'custom-exam' ? this.currentBook : null),
+          bookTitle: app && book ? book.title : null,
+          chapter: this.currentChapter,
+          custom: Boolean(app && app.isCustomExam) || this.currentBook === 'custom-exam',
+          startedAt: this.startTime ? this.startTime.toISOString() : null,
+          resultId: `${publicAuth.user.uid}_${startedAtMs}`
+        })).then(saved => {
+          if (!saved) console.warn('لم يتم حفظ نتيجة الاختبار في Firestore.');
+        }).catch(error => console.error('Firestore result save failed:', error));
+      } else {
+        console.warn('تعذر حفظ نتيجة الاختبار: لا يوجد مستخدم مسجل دخول أو خدمة Firestore غير جاهزة.');
+      }
+    } catch (error) {
+      console.error('Firestore result save failed:', error);
+    }
+
     return this.finishedResult;
   }
   getGrade(percentage) {
@@ -131,6 +161,7 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.finishedResult = null;
+    this.__firestoreResultSaved = false;
   }
 }
 
