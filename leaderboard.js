@@ -1,7 +1,6 @@
 /* Student Leaderboard - Top 20 per book */
 (function () {
   'use strict';
-
   const TOP_LIMIT = 20;
   const MIN_CHAPTERS = 3;
   let initialized = false;
@@ -23,7 +22,8 @@
     const totalBookChapters = Math.max(0, Number(book.chapters) || 0);
     const coverageScore = totalBookChapters ? Math.round(Math.min(1, completedChapters / totalBookChapters) * 300 * 100) / 100 : 0;
     const finalScore = Math.round((performanceScore + coverageScore) * 100) / 100;
-    return { completedChapters, totalBookChapters, totalCorrect, totalQuestions, weightedSuccess, performanceScore, coverageScore, finalScore, eligible: completedChapters >= MIN_CHAPTERS };
+    const eligible = completedChapters >= MIN_CHAPTERS;
+    return { completedChapters, totalBookChapters, totalCorrect, totalQuestions, weightedSuccess, performanceScore, coverageScore, finalScore, eligible, rankingScore: eligible ? finalScore : -1 };
   }
 
   function bestAttempt(existing, result) {
@@ -33,9 +33,7 @@
     if (!existing) return { score, total, duration: Number(result.duration) || 0 };
     const oldRate = Number(existing.score) / Math.max(1, Number(existing.total));
     const newRate = score / total;
-    if (newRate > oldRate || (newRate === oldRate && total > Number(existing.total))) {
-      return { score, total, duration: Number(result.duration) || 0 };
-    }
+    if (newRate > oldRate || (newRate === oldRate && total > Number(existing.total))) return { score, total, duration: Number(result.duration) || 0 };
     return existing;
   }
 
@@ -60,17 +58,9 @@
       bookId: book.id,
       bookTitle: book.title || book.id,
       chapterBest,
-      completedChapters: stats.completedChapters,
-      totalBookChapters: stats.totalBookChapters,
-      totalCorrect: stats.totalCorrect,
-      totalQuestions: stats.totalQuestions,
-      weightedSuccess: stats.weightedSuccess,
-      performanceScore: stats.performanceScore,
-      coverageScore: stats.coverageScore,
-      finalScore: stats.finalScore,
-      eligible: stats.eligible,
+      ...stats,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      version: 2
+      version: 3
     };
     return ref.set(profile, { merge: true }).then(() => profile);
   }
@@ -81,7 +71,6 @@
     if (!currentUser || !firestore || !book) return null;
     const ref = firestore.collection('leaderboards').doc(book.id).collection('entries').doc(currentUser.uid);
 
-    // Normal exam completion: one document read + one write. This avoids reading all results.
     if (eventData && eventData.result && eventData.chapter != null && !eventData.custom) {
       const chapter = Number(eventData.chapter);
       if (Number.isFinite(chapter) && chapter >= 1) {
@@ -101,7 +90,7 @@
             chapterBest,
             ...stats,
             updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-            version: 2
+            version: 3
           };
           transaction.set(ref, updatedProfile, { merge: true });
         });
@@ -109,7 +98,6 @@
       }
     }
 
-    // First time only (or legacy entry without chapterBest): build it from the student's own results.
     const existing = await ref.get();
     if (existing.exists && existing.data().chapterBest) return existing.data();
     return rebuildFromOwnResults(book, currentUser, ref);
@@ -118,9 +106,9 @@
   async function loadTop20(book) {
     const firestore = db();
     if (!firestore || !book) return [];
-    // Exactly one ordered query, capped at 20 documents.
+    // Ineligible students use rankingScore=-1, so one ordered query can return only official competitors first.
     const snap = await firestore.collection('leaderboards').doc(book.id).collection('entries')
-      .orderBy('finalScore', 'desc').limit(TOP_LIMIT).get();
+      .orderBy('rankingScore', 'desc').limit(TOP_LIMIT).get();
     return snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(entry => entry.eligible).slice(0, TOP_LIMIT);
   }
 
