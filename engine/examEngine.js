@@ -85,15 +85,7 @@ class ExamEngine {
     });
     if (existingAnswer) return existingAnswer.isCorrect;
     const isCorrect = optionIndex === q.answer;
-    this.userAnswers.push({
-      questionUid,
-      questionId,
-      questionText: q.question,
-      userAnswer: q.options[optionIndex],
-      correctAnswer: q.options[q.answer],
-      isCorrect,
-      explanation: q.explanation
-    });
+    this.userAnswers.push({ questionUid, questionId, questionText: q.question, userAnswer: q.options[optionIndex], correctAnswer: q.options[q.answer], isCorrect, explanation: q.explanation });
     if (isCorrect) this.score++;
     return isCorrect;
   }
@@ -103,9 +95,7 @@ class ExamEngine {
   }
   finishExam() {
     if (this.finishedResult) return this.finishedResult;
-    const percentage = this.totalQuestions > 0
-      ? Math.round((this.score / this.totalQuestions) * 100)
-      : 0;
+    const percentage = this.totalQuestions > 0 ? Math.round((this.score / this.totalQuestions) * 100) : 0;
     this.finishedResult = {
       score: this.score,
       totalQuestions: this.totalQuestions,
@@ -115,7 +105,6 @@ class ExamEngine {
       answers: this.userAnswers.slice()
     };
 
-    // حفظ النتيجة مباشرة من نقطة إنهاء الاختبار.
     try {
       const publicAuth = window.publicAuth;
       if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
@@ -133,7 +122,7 @@ class ExamEngine {
         this.__firestoreResultSaved = true;
         Promise.resolve(publicAuth.saveExamResultToFirestore(this.finishedResult, meta)).then(saved => {
           if (saved) {
-            window.dispatchEvent(new CustomEvent('firestore-exam-result-saved', { detail: meta }));
+            window.dispatchEvent(new CustomEvent('firestore-exam-result-saved', { detail: { ...meta, result: this.finishedResult } }));
           } else {
             console.warn('لم يتم حفظ نتيجة الاختبار في Firestore.');
           }
@@ -141,10 +130,7 @@ class ExamEngine {
       } else {
         console.warn('تعذر حفظ نتيجة الاختبار: لا يوجد مستخدم مسجل دخول أو خدمة Firestore غير جاهزة.');
       }
-    } catch (error) {
-      console.error('Firestore result save failed:', error);
-    }
-
+    } catch (error) { console.error('Firestore result save failed:', error); }
     return this.finishedResult;
   }
   getGrade(percentage) {
@@ -156,16 +142,8 @@ class ExamEngine {
   }
   getWrongAnswers() { return this.userAnswers.filter(a => !a.isCorrect); }
   reset() {
-    this.currentQuestionIndex = 0;
-    this.score = 0;
-    this.totalQuestions = 0;
-    this.userAnswers = [];
-    this.questions = [];
-    this.startTime = null;
-    this.currentBook = null;
-    this.currentChapter = null;
-    this.finishedResult = null;
-    this.__firestoreResultSaved = false;
+    this.currentQuestionIndex = 0; this.score = 0; this.totalQuestions = 0; this.userAnswers = []; this.questions = [];
+    this.startTime = null; this.currentBook = null; this.currentChapter = null; this.finishedResult = null; this.__firestoreResultSaved = false;
   }
 }
 
