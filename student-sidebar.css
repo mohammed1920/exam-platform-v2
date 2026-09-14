@@ -15,4 +15,9 @@
 .resume-exam-panel p { margin:0; color:var(--text-secondary,#94a3b8); font-size:12px; }
 .profile-resume-btn { flex:0 0 auto; border:1px solid rgba(66,211,161,.35); border-radius:10px; padding:10px 13px; background:rgba(66,211,161,.12); color:#9ed7c2; cursor:pointer; font:inherit; font-weight:800; }
 .profile-resume-btn:hover { background:rgba(66,211,161,.20); }
+.resume-exam-list { display:grid; gap:10px; }
+.resume-exam-actions { display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+.profile-delete-btn { width:36px; height:36px; border:1px solid rgba(220,90,90,.22); border-radius:9px; background:rgba(220,90,90,.06); color:#d99b9b; cursor:pointer; }
+.profile-delete-btn:hover { background:rgba(220,90,90,.16); border-color:rgba(220,90,90,.38); }
+.history-item .profile-delete-btn { margin-inline-start:auto; flex:0 0 36px; }
 @media(max-width:560px){.resume-exam-panel{align-items:flex-start;flex-direction:column}.profile-resume-btn{width:100%}}

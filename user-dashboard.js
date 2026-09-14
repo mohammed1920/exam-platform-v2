@@ -226,7 +226,7 @@
   }
 
   function renderHistory(history) {
-    const draft = window.app && typeof window.app.getExamDraftSummary === 'function' ? window.app.getExamDraftSummary() : null;
+    const drafts = window.app && typeof window.app.getExamDraftSummaries === 'function' ? window.app.getExamDraftSummaries() : [];
     const grouped = {};
     history.forEach(item => {
       const key = item.bookId || item.bookTitle || 'unknown';
@@ -236,14 +236,14 @@
       grouped[key].avg += Number(item.percentage) || 0;
     });
     const progressRows = Object.values(grouped).map(row => ({ ...row, avg: Math.round(row.avg / row.exams) }));
-    const draftHtml = draft ? `<div class="profile-panel resume-exam-panel"><div><span class="resume-exam-label">اختبار غير مكتمل</span><h3>${escapeHtml(draft.title)}</h3><p>وصلت إلى السؤال ${draft.questionNumber} من ${draft.totalQuestions} · ${draft.answered} إجابة محفوظة</p></div><button type="button" class="profile-resume-btn" id="resume-exam-btn"><i class="fas fa-play"></i> متابعة الاختبار</button></div>` : '';
+    const draftHtml = drafts.length ? `<div class="resume-exam-list">${drafts.map(draft => `<div class="profile-panel resume-exam-panel"><div><span class="resume-exam-label">اختبار غير مكتمل</span><h3>${escapeHtml(draft.title)}</h3><p>وصلت إلى السؤال ${draft.questionNumber} من ${draft.totalQuestions} · ${draft.answered} إجابة محفوظة</p></div><div class="resume-exam-actions"><button type="button" class="profile-resume-btn" data-resume-exam="${escapeHtml(draft.id)}"><i class="fas fa-play"></i> متابعة</button><button type="button" class="profile-delete-btn" data-delete-draft="${escapeHtml(draft.id)}" aria-label="حذف الاختبار غير المكتمل"><i class="fas fa-trash"></i></button></div></div>`).join('')}</div>` : '';
     const progressHtml = `<div class="profile-panel"><div class="profile-panel-heading"><div><h3>تقدمك في الكتب</h3><p>متوسط نتائجك وعدد الاختبارات لكل كتاب.</p></div></div><div class="student-progress-list">${progressRows.length ? progressRows.map(row => `<div class="student-progress-item"><div class="student-progress-top"><strong>${escapeHtml(row.title)}</strong><span>${row.avg}%</span></div><div class="student-progress-bar"><i style="width:${Math.min(100, Math.max(0, row.avg))}%"></i></div><small>${row.exams} اختبار · ${row.total} سؤال</small></div>`).join('') : '<div class="profile-empty">ابدأ اختباراً في أحد الكتب ليظهر تقدمك هنا.</div>'}</div></div>`;
     return `${pageHeader('السجل والتقدم', 'راجع اختباراتك السابقة وتابع تقدمك أو أكمل اختباراً متوقفاً.', 'fa-clock-rotate-left')}
       ${draftHtml}
       ${progressHtml}
       <div class="profile-panel">
         <div class="profile-panel-heading"><div><h3>الاختبارات المكتملة</h3><p>${history.length} اختبار محفوظ على هذا الجهاز.</p></div>${history.length ? '<button type="button" id="clear-history-btn" class="profile-clear-btn">مسح السجل</button>' : ''}</div>
-        <div class="exam-history-list">${history.length ? history.map(item => `<article class="history-item"><div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div><div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div><div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div></article>`).join('') : '<div class="profile-empty">لا يوجد سجل اختبارات حتى الآن.</div>'}</div>
+        <div class="exam-history-list">${history.length ? history.map(item => `<article class="history-item"><div class="history-icon">${escapeHtml(item.grade?.emoji || '📄')}</div><div class="history-main"><strong>${escapeHtml(item.bookTitle || 'اختبار')}</strong><span>${item.custom ? 'اختبار عشوائي شامل' : `الفصل ${escapeHtml(item.chapter || '-')}`}</span><small>${formatDate(item.createdAt)} · ${formatDuration(item.duration)}</small></div><div class="history-score"><strong>${Number(item.percentage) || 0}%</strong><span>${Number(item.score) || 0} / ${Number(item.totalQuestions) || 0}</span></div><button type="button" class="profile-delete-btn" data-delete-history="${escapeHtml(item.id)}" aria-label="حذف الاختبار المكتمل"><i class="fas fa-trash"></i></button></article>`).join('') : '<div class="profile-empty">لا يوجد سجل اختبارات حتى الآن.</div>'}</div>
       </div>`;
   }
 
@@ -299,8 +299,19 @@
         render('history');
       }
     };
-    const resume = document.getElementById('resume-exam-btn');
-    if (resume && window.app && typeof window.app.resumeSavedExam === 'function') resume.onclick = () => window.app.resumeSavedExam();
+    root.querySelectorAll('[data-resume-exam]').forEach(button => button.onclick = () => window.app.resumeSavedExam(button.dataset.resumeExam));
+    root.querySelectorAll('[data-delete-draft]').forEach(button => button.onclick = () => {
+      if (confirm('هل تريد حذف هذا الاختبار غير المكتمل؟')) {
+        window.app.deleteExamDraft(button.dataset.deleteDraft);
+        render('history');
+      }
+    });
+    root.querySelectorAll('[data-delete-history]').forEach(button => button.onclick = () => {
+      if (confirm('هل تريد حذف نتيجة هذا الاختبار من السجل؟')) {
+        writeHistory(readHistory().filter(item => item.id !== button.dataset.deleteHistory));
+        render('history');
+      }
+    });
   }
 
   function openDashboard(target = 'profile') {

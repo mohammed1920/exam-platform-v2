@@ -84,15 +84,49 @@ class ExamApp {
 
   getExamDraftKey() {
     const user = window.publicAuth && window.publicAuth.user;
+    return user ? `lawExam.studentDrafts.v2.${user.uid || user.email || 'user'}` : null;
+  }
+
+  getLegacyExamDraftKey() {
+    const user = window.publicAuth && window.publicAuth.user;
     return user ? `lawExam.studentDraft.v1.${user.uid || user.email || 'user'}` : null;
+  }
+
+  readExamDrafts() {
+    const key = this.getExamDraftKey();
+    if (!key) return [];
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw !== null) {
+        const saved = JSON.parse(raw);
+        if (Array.isArray(saved)) return saved;
+        if (saved && saved.bookId) return [{ ...saved, id: `${saved.bookId}::${saved.chapter}` }];
+      }
+    } catch (_) {}
+    try {
+      const legacyKey = this.getLegacyExamDraftKey();
+      const legacy = JSON.parse(localStorage.getItem(legacyKey) || 'null');
+      if (legacy && legacy.bookId) {
+        const migrated = [{ ...legacy, id: `${legacy.bookId}::${legacy.chapter}` }];
+        localStorage.setItem(key, JSON.stringify(migrated));
+        localStorage.removeItem(legacyKey);
+        return migrated;
+      }
+    } catch (_) {}
+    return [];
+  }
+
+  writeExamDrafts(drafts) {
+    const key = this.getExamDraftKey();
+    if (key) localStorage.setItem(key, JSON.stringify(drafts.slice(0, 50)));
   }
 
   saveExamDraft() {
     if (!this.examActive || this.isCustomExam || !this.currentBook || !this.currentChapter) return;
-    const key = this.getExamDraftKey();
-    if (!key || !examEngine.questions.length) return;
+    if (!examEngine.questions.length) return;
     try {
-      localStorage.setItem(key, JSON.stringify({
+      const draft = {
+        id: `${this.currentBook.id}::${this.currentChapter}`,
         bookId: this.currentBook.id,
         bookTitle: this.currentBook.title,
         chapter: this.currentChapter,
@@ -102,32 +136,38 @@ class ExamApp {
         score: examEngine.score,
         startedAt: examEngine.startTime ? examEngine.startTime.toISOString() : new Date().toISOString(),
         savedAt: new Date().toISOString()
-      }));
+      };
+      const drafts = this.readExamDrafts().filter(item => item.id !== draft.id);
+      drafts.unshift(draft);
+      this.writeExamDrafts(drafts);
     } catch (error) { console.warn('تعذر حفظ الاختبار غير المكتمل:', error); }
   }
 
   clearExamDraft() {
-    const key = this.getExamDraftKey();
-    if (key) localStorage.removeItem(key);
+    const draftId = this.currentBook && this.currentChapter ? `${this.currentBook.id}::${this.currentChapter}` : null;
+    if (!draftId) return;
+    this.writeExamDrafts(this.readExamDrafts().filter(item => item.id !== draftId));
   }
 
-  getExamDraftSummary() {
-    const key = this.getExamDraftKey();
-    if (!key) return null;
-    try {
-      const draft = JSON.parse(localStorage.getItem(key) || 'null');
-      if (!draft || !draft.bookId || !draft.chapter) return null;
-      return { title: `${draft.bookTitle || 'اختبار'} · الفصل ${draft.chapter}`, questionNumber: Number(draft.questionIndex || 0) + 1, totalQuestions: Number(draft.totalQuestions || 0), answered: Array.isArray(draft.userAnswers) ? draft.userAnswers.length : 0 };
-    } catch (_) { return null; }
+  getExamDraftSummaries() {
+    return this.readExamDrafts().filter(draft => draft && draft.bookId && draft.chapter).map(draft => ({
+      id: draft.id || `${draft.bookId}::${draft.chapter}`,
+      title: `${draft.bookTitle || 'اختبار'} · الفصل ${draft.chapter}`,
+      questionNumber: Number(draft.questionIndex || 0) + 1,
+      totalQuestions: Number(draft.totalQuestions || 0),
+      answered: Array.isArray(draft.userAnswers) ? draft.userAnswers.length : 0
+    }));
   }
 
-  async resumeSavedExam() {
+  deleteExamDraft(draftId) {
+    this.writeExamDrafts(this.readExamDrafts().filter(draft => draft.id !== draftId));
+  }
+
+  async resumeSavedExam(draftId) {
     if (!window.publicAuth || !window.publicAuth.user) return window.publicAuth && window.publicAuth.openLogin();
-    const key = this.getExamDraftKey();
-    let draft;
-    try { draft = key ? JSON.parse(localStorage.getItem(key) || 'null') : null; } catch (_) { draft = null; }
+    const draft = this.readExamDrafts().find(item => item.id === draftId);
     const book = draft && this.books.find(item => item.id === draft.bookId);
-    if (!draft || !book) { this.clearExamDraft(); return; }
+    if (!draft || !book) return;
     const success = await examEngine.loadChapter(book.id, draft.chapter);
     if (!success) return alert('تعذر تحميل الاختبار المحفوظ حالياً.');
     this.currentBook = book;
