@@ -34,12 +34,7 @@
 
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-  const state = {
-    user: null,
-    ready: false,
-    pendingAction: null,
-    resolveReady: null
-  };
+  const state = { user: null, ready: false, pendingAction: null, resolveReady: null };
   state.readyPromise = new Promise(resolve => { state.resolveReady = resolve; });
 
   const errorMessages = {
@@ -62,9 +57,7 @@
     return code ? `${baseMessage}\n\nرمز الخطأ: ${code}` : baseMessage;
   }
 
-  function displayName(user) {
-    return (user && (user.displayName || user.email || 'المستخدم')).trim();
-  }
+  function displayName(user) { return (user && (user.displayName || user.email || 'المستخدم')).trim(); }
 
   function updateAccountButton() {
     const button = document.getElementById('account-btn');
@@ -94,10 +87,7 @@
 
   function openModal(mode = 'login') {
     const sidebar = document.getElementById('student-account-sidebar');
-    if (sidebar) {
-      sidebar.classList.remove('is-open');
-      sidebar.setAttribute('aria-hidden', 'true');
-    }
+    if (sidebar) { sidebar.classList.remove('is-open'); sidebar.setAttribute('aria-hidden', 'true'); }
     document.body.classList.remove('student-sidebar-open');
     const modal = document.getElementById('login-modal');
     if (!modal) return;
@@ -116,10 +106,7 @@
     if (clearPending) state.pendingAction = null;
   }
 
-  function setError(text) {
-    const error = document.getElementById('auth-error');
-    if (error) error.textContent = text;
-  }
+  function setError(text) { const error = document.getElementById('auth-error'); if (error) error.textContent = text; }
 
   async function withButtonBusy(button, operation) {
     if (button) button.disabled = true;
@@ -136,11 +123,7 @@
     }
   }
 
-  async function signInGoogle() {
-    await withButtonBusy(document.getElementById('google-signin-btn'), async () => {
-      await auth.signInWithPopup(googleProvider);
-    });
-  }
+  async function signInGoogle() { await withButtonBusy(document.getElementById('google-signin-btn'), async () => { await auth.signInWithPopup(googleProvider); }); }
 
   async function submitEmailAuth(event) {
     event.preventDefault();
@@ -163,9 +146,7 @@
     });
   }
 
-  async function signOut() {
-    try { await auth.signOut(); } catch (error) { console.error('Firebase logout failed:', error); }
-  }
+  async function signOut() { try { await auth.signOut(); } catch (error) { console.error('Firebase logout failed:', error); } }
 
   function requireAuth(action) {
     if (typeof action !== 'function') return false;
@@ -206,7 +187,6 @@
     await firestoreReady;
     const user = state.user;
     if (!db || !user || !result) return false;
-
     const resultId = meta.resultId || `${user.uid}_${meta.startedAt || Date.now()}`.replace(/[^a-zA-Z0-9_-]/g, '_');
     const ref = db.collection('examResults').doc(resultId);
     const data = {
@@ -224,7 +204,6 @@
       startedAt: meta.startedAt || null,
       version: 1
     };
-
     try {
       await ref.set(data, { merge: false });
       return true;
@@ -232,6 +211,38 @@
       console.error('تعذر حفظ نتيجة الاختبار في Firestore:', error);
       return false;
     }
+  }
+
+  function installExamResultHook() {
+    if (window.__firestoreExamHookInstalled) return;
+    const tryInstall = () => {
+      if (window.__firestoreExamHookInstalled) return true;
+      const engine = window.examEngine;
+      if (!engine || typeof engine.finishExam !== 'function') return false;
+      const originalFinishExam = engine.finishExam.bind(engine);
+      engine.finishExam = function () {
+        const wasFinished = Boolean(this.finishedResult);
+        const result = originalFinishExam();
+        if (!wasFinished && result && state.user) {
+          const app = window.app;
+          const book = app && app.currentBook;
+          saveExamResultToFirestore(result, {
+            bookId: app && book ? book.id : (this.currentBook !== 'custom-exam' ? this.currentBook : null),
+            bookTitle: app && book ? book.title : null,
+            chapter: this.currentChapter,
+            custom: Boolean(app && app.isCustomExam) || this.currentBook === 'custom-exam',
+            startedAt: this.startTime ? this.startTime.toISOString() : null,
+            resultId: `${state.user.uid}_${this.startTime ? this.startTime.getTime() : Date.now()}`
+          }).catch(error => console.error('Firestore result save failed:', error));
+        }
+        return result;
+      };
+      window.__firestoreExamHookInstalled = true;
+      return true;
+    };
+    if (tryInstall()) return;
+    const timer = window.setInterval(() => { if (tryInstall()) window.clearInterval(timer); }, 100);
+    window.setTimeout(() => window.clearInterval(timer), 15000);
   }
 
   function installModal() {
@@ -259,9 +270,7 @@
 
     document.getElementById('account-btn').addEventListener('click', openAccountMenu);
     document.getElementById('auth-close-btn').addEventListener('click', () => closeModal());
-    document.getElementById('login-modal').addEventListener('click', event => {
-      if (event.target.id === 'login-modal') closeModal();
-    });
+    document.getElementById('login-modal').addEventListener('click', event => { if (event.target.id === 'login-modal') closeModal(); });
     document.getElementById('google-signin-btn').addEventListener('click', signInGoogle);
     document.getElementById('auth-form').addEventListener('submit', submitEmailAuth);
     document.getElementById('auth-reset-btn').addEventListener('click', resetPassword);
@@ -300,4 +309,7 @@
     }
     window.dispatchEvent(new CustomEvent('public-auth-state-changed', { detail: { user } }));
   });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installExamResultHook);
+  else installExamResultHook();
 })();
