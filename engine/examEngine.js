@@ -116,7 +116,6 @@ class ExamEngine {
     };
 
     // حفظ النتيجة مباشرة من نقطة إنهاء الاختبار، بدل الاعتماد على wrapper خارجي.
-    // هذا يمنع ضياع النتيجة بسبب توقيت تحميل الوحدات أو إعادة تغليف finishExam.
     try {
       const publicAuth = window.publicAuth;
       if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
@@ -170,7 +169,7 @@ window.examEngine = examEngine;
 
 (function loadStudentDashboardModules() {
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  ['dashboard-style-loader.js?v=1.2', 'user-dashboard.js?v=1.2'].forEach(src => {
+  ['dashboard-style-loader.js?v=1.2', 'user-dashboard.js?v=1.2', 'student-results.js?v=1.0'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = true;
