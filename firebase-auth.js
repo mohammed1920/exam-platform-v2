@@ -1,4 +1,4 @@
-/* Public-site Firebase Authentication only. admin.html intentionally does not load this file. */
+/* Public-site Firebase Authentication + Firestore access. admin.html intentionally does not load this file. */
 (function () {
   'use strict';
 
@@ -14,6 +14,7 @@
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  const db = typeof firebase.firestore === 'function' ? firebase.firestore() : null;
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
   const state = {
@@ -75,7 +76,6 @@
   }
 
   function openModal(mode = 'login') {
-    // أغلق قائمة الحساب أولاً حتى تظهر نافذة الدخول أمام الطالب دائماً.
     const sidebar = document.getElementById('student-account-sidebar');
     if (sidebar) {
       sidebar.classList.remove('is-open');
@@ -112,8 +112,11 @@
 
   function openAccountMenu() {
     if (!state.user) { openModal(); return; }
-    const label = displayName(state.user);
-    if (window.confirm(`تم تسجيل الدخول باسم ${label}.\nهل تريد تسجيل الخروج؟`)) signOut();
+    if (window.openStudentAccountSidebar) window.openStudentAccountSidebar();
+    else {
+      const label = displayName(state.user);
+      if (window.confirm(`تم تسجيل الدخول باسم ${label}.\nهل تريد تسجيل الخروج؟`)) signOut();
+    }
   }
 
   async function signInGoogle() {
@@ -161,6 +164,26 @@
     if (state.user && typeof action === 'function') window.setTimeout(action, 0);
   }
 
+  async function saveStudentProfile(user) {
+    if (!db || !user) return false;
+    const ref = db.collection('students').doc(user.uid);
+    const data = {
+      uid: user.uid,
+      email: user.email || null,
+      displayName: user.displayName || user.email || 'طالب المنصة',
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    try {
+      const snapshot = await ref.get();
+      if (!snapshot.exists) data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+      await ref.set(data, { merge: true });
+      return true;
+    } catch (error) {
+      console.error('تعذر حفظ ملف الطالب في Firestore:', error);
+      return false;
+    }
+  }
+
   function installModal() {
     if (document.getElementById('login-modal')) return;
     document.body.insertAdjacentHTML('beforeend', `
@@ -205,11 +228,13 @@
     openLogin: openModal,
     closeLogin: closeModal,
     signOut,
-    displayName
+    displayName,
+    get firestore() { return db; },
+    saveStudentProfile
   };
 
   document.addEventListener('DOMContentLoaded', installModal);
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged(async user => {
     const wasAuthenticated = Boolean(state.user);
     state.user = user;
     state.ready = true;
@@ -217,6 +242,7 @@
     if (state.resolveReady) { state.resolveReady(user); state.resolveReady = null; }
     if (user) {
       closeModal(false);
+      await saveStudentProfile(user);
       finishPendingAction();
     } else if (wasAuthenticated && window.app?.examActive) {
       window.app.backToBooks();
