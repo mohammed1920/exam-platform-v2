@@ -14,7 +14,24 @@
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  const db = typeof firebase.firestore === 'function' ? firebase.firestore() : null;
+
+  let db = null;
+  let firestoreReady = Promise.resolve();
+  if (typeof firebase.firestore === 'function') {
+    db = firebase.firestore();
+  } else {
+    firestoreReady = new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js';
+      script.onload = () => {
+        try { db = firebase.firestore(); } catch (_) { db = null; }
+        resolve(db);
+      };
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+    });
+  }
+
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
   const state = {
@@ -165,6 +182,7 @@
   }
 
   async function saveStudentProfile(user) {
+    await firestoreReady;
     if (!db || !user) return false;
     const ref = db.collection('students').doc(user.uid);
     const data = {
@@ -180,6 +198,38 @@
       return true;
     } catch (error) {
       console.error('تعذر حفظ ملف الطالب في Firestore:', error);
+      return false;
+    }
+  }
+
+  async function saveExamResultToFirestore(result, meta = {}) {
+    await firestoreReady;
+    const user = state.user;
+    if (!db || !user || !result) return false;
+
+    const resultId = meta.resultId || `${user.uid}_${meta.startedAt || Date.now()}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+    const ref = db.collection('examResults').doc(resultId);
+    const data = {
+      uid: user.uid,
+      email: user.email || null,
+      bookId: meta.bookId || null,
+      bookTitle: meta.bookTitle || null,
+      chapter: meta.chapter == null ? null : Number(meta.chapter),
+      custom: Boolean(meta.custom),
+      score: Number(result.score) || 0,
+      totalQuestions: Number(result.totalQuestions) || 0,
+      percentage: Number(result.percentage) || 0,
+      duration: Number(result.duration) || 0,
+      completedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      startedAt: meta.startedAt || null,
+      version: 1
+    };
+
+    try {
+      await ref.set(data, { merge: false });
+      return true;
+    } catch (error) {
+      console.error('تعذر حفظ نتيجة الاختبار في Firestore:', error);
       return false;
     }
   }
@@ -230,7 +280,8 @@
     signOut,
     displayName,
     get firestore() { return db; },
-    saveStudentProfile
+    saveStudentProfile,
+    saveExamResultToFirestore
   };
 
   document.addEventListener('DOMContentLoaded', installModal);
