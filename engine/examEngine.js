@@ -115,23 +115,28 @@ class ExamEngine {
       answers: this.userAnswers.slice()
     };
 
-    // حفظ النتيجة مباشرة من نقطة إنهاء الاختبار، بدل الاعتماد على wrapper خارجي.
+    // حفظ النتيجة مباشرة من نقطة إنهاء الاختبار.
     try {
       const publicAuth = window.publicAuth;
       if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
         const app = window.app;
         const book = app && app.currentBook;
         const startedAtMs = this.startTime ? this.startTime.getTime() : Date.now();
-        this.__firestoreResultSaved = true;
-        Promise.resolve(publicAuth.saveExamResultToFirestore(this.finishedResult, {
+        const meta = {
           bookId: app && book ? book.id : (this.currentBook !== 'custom-exam' ? this.currentBook : null),
           bookTitle: app && book ? book.title : null,
           chapter: this.currentChapter,
           custom: Boolean(app && app.isCustomExam) || this.currentBook === 'custom-exam',
           startedAt: this.startTime ? this.startTime.toISOString() : null,
           resultId: `${publicAuth.user.uid}_${startedAtMs}`
-        })).then(saved => {
-          if (!saved) console.warn('لم يتم حفظ نتيجة الاختبار في Firestore.');
+        };
+        this.__firestoreResultSaved = true;
+        Promise.resolve(publicAuth.saveExamResultToFirestore(this.finishedResult, meta)).then(saved => {
+          if (saved) {
+            window.dispatchEvent(new CustomEvent('firestore-exam-result-saved', { detail: meta }));
+          } else {
+            console.warn('لم يتم حفظ نتيجة الاختبار في Firestore.');
+          }
         }).catch(error => console.error('Firestore result save failed:', error));
       } else {
         console.warn('تعذر حفظ نتيجة الاختبار: لا يوجد مستخدم مسجل دخول أو خدمة Firestore غير جاهزة.');
@@ -169,7 +174,7 @@ window.examEngine = examEngine;
 
 (function loadStudentDashboardModules() {
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  ['dashboard-style-loader.js?v=1.2', 'user-dashboard.js?v=1.2', 'student-results.js?v=1.0'].forEach(src => {
+  ['dashboard-style-loader.js?v=1.2', 'user-dashboard.js?v=1.3', 'student-results.js?v=1.0'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = true;
