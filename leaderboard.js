@@ -13,52 +13,53 @@
   function bookById(id) { return books().find(book => book.id === id) || null; }
   function esc(value) { const div = document.createElement('div'); div.textContent = value == null ? '' : String(value); return div.innerHTML; }
 
-  function scoreFromResults(results, book) {
-    const bestByChapter = {};
-    results.forEach(doc => {
+  function calculateStats(chapterBest, book) {
+    const chapters = Object.keys(chapterBest || {}).map(Number).filter(Number.isFinite);
+    const completedChapters = chapters.length;
+    const totalCorrect = chapters.reduce((sum, n) => sum + (Number(chapterBest[n].score) || 0), 0);
+    const totalQuestions = chapters.reduce((sum, n) => sum + (Number(chapterBest[n].total) || 0), 0);
+    const weightedSuccess = totalQuestions ? totalCorrect / totalQuestions : 0;
+    const performanceScore = Math.round(weightedSuccess * 700 * 100) / 100;
+    const totalBookChapters = Math.max(0, Number(book.chapters) || 0);
+    const coverageScore = totalBookChapters ? Math.round(Math.min(1, completedChapters / totalBookChapters) * 300 * 100) / 100 : 0;
+    const finalScore = Math.round((performanceScore + coverageScore) * 100) / 100;
+    return { completedChapters, totalBookChapters, totalCorrect, totalQuestions, weightedSuccess, performanceScore, coverageScore, finalScore, eligible: completedChapters >= MIN_CHAPTERS };
+  }
+
+  function bestAttempt(existing, result) {
+    const score = Number(result.score) || 0;
+    const total = Number(result.totalQuestions) || 0;
+    if (total <= 0) return existing || null;
+    if (!existing) return { score, total, duration: Number(result.duration) || 0 };
+    const oldRate = Number(existing.score) / Math.max(1, Number(existing.total));
+    const newRate = score / total;
+    if (newRate > oldRate || (newRate === oldRate && total > Number(existing.total))) {
+      return { score, total, duration: Number(result.duration) || 0 };
+    }
+    return existing;
+  }
+
+  async function rebuildFromOwnResults(book, currentUser, ref) {
+    const snapshot = await db().collection('examResults').where('uid', '==', currentUser.uid).get();
+    const chapterBest = {};
+    snapshot.docs.forEach(doc => {
       const data = doc.data() || {};
       if (data.bookId !== book.id || data.custom || data.chapter == null) return;
       const chapter = Number(data.chapter);
       if (!Number.isFinite(chapter) || chapter < 1) return;
-      const score = Number(data.score) || 0;
-      const total = Number(data.totalQuestions) || 0;
-      if (total <= 0) return;
-      const current = bestByChapter[chapter];
-      if (!current || score / total > current.score / current.total ||
-          (score / total === current.score / current.total && total > current.total)) {
-        bestByChapter[chapter] = { score, total };
-      }
+      chapterBest[chapter] = bestAttempt(chapterBest[chapter], data);
     });
-
-    const chapters = Object.keys(bestByChapter).map(Number);
-    const completedChapters = chapters.length;
-    const totalCorrect = chapters.reduce((sum, n) => sum + bestByChapter[n].score, 0);
-    const totalQuestions = chapters.reduce((sum, n) => sum + bestByChapter[n].total, 0);
-    const weightedSuccess = totalQuestions ? totalCorrect / totalQuestions : 0;
-    const performanceScore = Math.round(weightedSuccess * 700 * 100) / 100;
-    const totalBookChapters = Math.max(0, Number(book.chapters) || 0);
-    const coverageScore = totalBookChapters
-      ? Math.round(Math.min(1, completedChapters / totalBookChapters) * 300 * 100) / 100
-      : 0;
-    const finalScore = Math.round((performanceScore + coverageScore) * 100) / 100;
-
-    return { completedChapters, totalBookChapters, totalCorrect, totalQuestions,
-      weightedSuccess, performanceScore, coverageScore, finalScore,
-      eligible: completedChapters >= MIN_CHAPTERS };
+    return writeEntry(ref, book, currentUser, chapterBest);
   }
 
-  async function syncBook(book) {
-    const currentUser = user();
-    const firestore = db();
-    if (!currentUser || !firestore || !book) return null;
-
-    const snapshot = await firestore.collection('examResults').where('uid', '==', currentUser.uid).get();
-    const stats = scoreFromResults(snapshot.docs, book);
+  function writeEntry(ref, book, currentUser, chapterBest) {
+    const stats = calculateStats(chapterBest, book);
     const profile = {
       uid: currentUser.uid,
       displayName: currentUser.displayName || currentUser.email || 'طالب',
       bookId: book.id,
       bookTitle: book.title || book.id,
+      chapterBest,
       completedChapters: stats.completedChapters,
       totalBookChapters: stats.totalBookChapters,
       totalCorrect: stats.totalCorrect,
@@ -69,38 +70,64 @@
       finalScore: stats.finalScore,
       eligible: stats.eligible,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      version: 1
+      version: 2
     };
+    return ref.set(profile, { merge: true }).then(() => profile);
+  }
 
-    await firestore.collection('leaderboards').doc(book.id).collection('entries').doc(currentUser.uid)
-      .set(profile, { merge: true });
-    return profile;
+  async function syncBook(book, eventData = null) {
+    const currentUser = user();
+    const firestore = db();
+    if (!currentUser || !firestore || !book) return null;
+    const ref = firestore.collection('leaderboards').doc(book.id).collection('entries').doc(currentUser.uid);
+
+    // Normal exam completion: one document read + one write. This avoids reading all results.
+    if (eventData && eventData.result && eventData.chapter != null && !eventData.custom) {
+      const chapter = Number(eventData.chapter);
+      if (Number.isFinite(chapter) && chapter >= 1) {
+        let updatedProfile = null;
+        await firestore.runTransaction(async transaction => {
+          const snap = await transaction.get(ref);
+          const data = snap.exists ? (snap.data() || {}) : {};
+          const chapterBest = { ...(data.chapterBest || {}) };
+          const key = String(chapter);
+          chapterBest[key] = bestAttempt(chapterBest[key], eventData.result);
+          const stats = calculateStats(chapterBest, book);
+          updatedProfile = {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName || currentUser.email || 'طالب',
+            bookId: book.id,
+            bookTitle: book.title || book.id,
+            chapterBest,
+            ...stats,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+            version: 2
+          };
+          transaction.set(ref, updatedProfile, { merge: true });
+        });
+        return updatedProfile;
+      }
+    }
+
+    // First time only (or legacy entry without chapterBest): build it from the student's own results.
+    const existing = await ref.get();
+    if (existing.exists && existing.data().chapterBest) return existing.data();
+    return rebuildFromOwnResults(book, currentUser, ref);
   }
 
   async function loadTop20(book) {
     const firestore = db();
     if (!firestore || !book) return [];
-    // One ordered query, capped at 20 reads. Ineligible entries are filtered locally.
+    // Exactly one ordered query, capped at 20 documents.
     const snap = await firestore.collection('leaderboards').doc(book.id).collection('entries')
       .orderBy('finalScore', 'desc').limit(TOP_LIMIT).get();
     return snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(entry => entry.eligible).slice(0, TOP_LIMIT);
   }
 
-  function medal(rank) {
-    if (rank === 1) return '🥇';
-    if (rank === 2) return '🥈';
-    if (rank === 3) return '🥉';
-    return `<span class="leaderboard-rank-number">${rank}</span>`;
-  }
-  function pageHeader() {
-    return `<div class="student-page-header"><div class="student-page-icon"><i class="fas fa-trophy"></i></div><div><span>حساب الطالب</span><h2>🏆 المتصدرون</h2><p>أفضل 20 طالبًا في كل كتاب وفق نظام النقاط المعتمد.</p></div></div>`;
-  }
-  function renderLoading(root) {
-    root.innerHTML = `${pageHeader()}<div class="profile-panel leaderboard-loading"><div class="leaderboard-spinner"></div><p>جاري تحديث قائمة المتصدرين...</p></div>`;
-  }
-  function bookSelector(selectedId) {
-    return `<div class="leaderboard-book-picker"><label for="leaderboard-book-select">اختر الكتاب</label><select id="leaderboard-book-select">${books().map(book => `<option value="${esc(book.id)}" ${book.id === selectedId ? 'selected' : ''}>${esc(book.title || book.id)}</option>`).join('')}</select></div>`;
-  }
+  function medal(rank) { if (rank === 1) return '🥇'; if (rank === 2) return '🥈'; if (rank === 3) return '🥉'; return `<span class="leaderboard-rank-number">${rank}</span>`; }
+  function pageHeader() { return `<div class="student-page-header"><div class="student-page-icon"><i class="fas fa-trophy"></i></div><div><span>حساب الطالب</span><h2>🏆 المتصدرون</h2><p>أفضل 20 طالبًا في كل كتاب وفق نظام النقاط المعتمد.</p></div></div>`; }
+  function renderLoading(root) { root.innerHTML = `${pageHeader()}<div class="profile-panel leaderboard-loading"><div class="leaderboard-spinner"></div><p>جاري تحديث قائمة المتصدرين...</p></div>`; }
+  function bookSelector(selectedId) { return `<div class="leaderboard-book-picker"><label for="leaderboard-book-select">اختر الكتاب</label><select id="leaderboard-book-select">${books().map(book => `<option value="${esc(book.id)}" ${book.id === selectedId ? 'selected' : ''}>${esc(book.title || book.id)}</option>`).join('')}</select></div>`; }
 
   function renderTable(entries, own, book) {
     if (!entries.length) return `<div class="profile-panel leaderboard-empty"><div class="leaderboard-empty-icon">🏆</div><h3>لم تبدأ المنافسة بعد</h3><p>أكمل 3 فصول على الأقل لتدخل الترتيب الرسمي.</p></div>`;
@@ -159,13 +186,13 @@
   function install() {
     if (initialized) return;
     initialized = true;
-    const wait = setInterval(() => injectMenu(), 100);
+    const wait = setInterval(injectMenu, 100);
     setTimeout(() => clearInterval(wait), 10000);
     window.addEventListener('public-auth-state-changed', injectMenu);
     window.addEventListener('firestore-exam-result-saved', event => {
-      const bookId = event.detail && event.detail.bookId;
-      const book = bookById(bookId);
-      if (book && user()) syncBook(book).catch(error => console.warn('Leaderboard sync failed:', error));
+      const detail = event.detail || {};
+      const book = bookById(detail.bookId);
+      if (book && user()) syncBook(book, detail).catch(error => console.warn('Leaderboard sync failed:', error));
     });
     window.studentLeaderboard = { render, syncBook, loadTop20 };
   }
