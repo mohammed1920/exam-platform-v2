@@ -8,8 +8,7 @@
     document.head.appendChild(link);
   });
 
-  // لوحة إحصائيات الأدمن أصبحت صفحة مستقلة ولا تُحمّل داخل واجهة الطالب.
-  ['student-ui-fixes.js?v=1.2', 'student-account-patch.js?v=1.1', 'leaderboard.js?v=1.0', 'wrong-answers-limit.js?v=1.0', 'platform-header-fix.js?v=1.0'].forEach(src => {
+  ['student-ui-fixes.js?v=1.2', 'student-account-patch.js?v=1.1', 'leaderboard.js?v=1.0', 'wrong-answers-limit.js?v=1.0', 'platform-header-fix.js?v=1.0', 'student-admin-panel.js?v=1.0'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = false;
