@@ -3,26 +3,44 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Student Profiles
-    match /students/{userId} {
-      allow read: if request.auth != null && request.auth.uid == userId;
-      allow create: if request.auth != null
-                    && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid;
-      allow update: if request.auth != null
-                    && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid;
-      allow delete: if false;
+    function signedIn() {
+      return request.auth != null;
     }
 
-    // Exam Results - private per student
-    match /examResults/{resultId} {
-      allow create: if request.auth != null
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin'
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.enabled != false;
+    }
+
+    // Student profile: a student sees only their own profile; admins can read profiles.
+    match /students/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow create: if signedIn()
+                    && request.auth.uid == userId
                     && request.resource.data.uid == request.auth.uid;
-      allow read: if request.auth != null
-                  && resource.data.uid == request.auth.uid;
+      allow update: if signedIn()
+                    && request.auth.uid == userId
+                    && request.resource.data.uid == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    // Exam results remain private to the owner, while admins may read them later.
+    match /examResults/{resultId} {
+      allow create: if signedIn()
+                    && request.resource.data.uid == request.auth.uid;
+      allow read: if signedIn()
+                  && (resource.data.uid == request.auth.uid || isAdmin());
       allow update: if false;
-      allow delete: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Admin role documents are not listable or writable from the client.
+    // A signed-in user may read only their own role document.
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
     }
 
     // Student leaderboard summaries.
@@ -52,7 +70,6 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // Everything else
     match /{document=**} {
       allow read, write: if false;
     }
