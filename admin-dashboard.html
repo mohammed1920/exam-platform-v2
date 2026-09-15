@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إحصائيات الأدمن - منصة الاختبارات القانونية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Cairo,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}.page{width:min(1200px,94%);margin:auto;padding:28px 0}.card{background:#1e293b;border:1px solid rgba(194,157,95,.22);border-radius:18px;padding:24px;box-shadow:0 14px 40px rgba(0,0,0,.22)}.brand{color:#c29d5f;font-size:24px;font-weight:900;margin-bottom:5px}.muted{color:#94a3b8}.message{margin-top:14px;color:#c29d5f;font-size:13px}.message.error,.error{color:#f87171}.form{max-width:430px;margin:12vh auto}.label{display:block;margin:12px 0 6px;font-size:13px;color:#cbd5e1}input{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;font:inherit}button{font:inherit;cursor:pointer;border-radius:10px;padding:11px 16px;font-weight:800}.primary{width:100%;margin-top:16px;border:0;background:#c29d5f;color:#0f172a}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:22px}.actions{display:flex;gap:8px}.secondary{border:1px solid #475569;background:transparent;color:#cbd5e1}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.stat{padding:18px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.035)}.stat small{color:#94a3b8}.stat strong{display:block;font-size:28px;margin-top:5px;color:#f8fafc}.table-wrap{overflow:auto;border:1px solid rgba(255,255,255,.07);border-radius:14px}table{width:100%;min-width:650px;border-collapse:collapse}th,td{padding:13px;text-align:right;border-bottom:1px solid rgba(255,255,255,.06)}th{color:#c29d5f;background:rgba(194,157,95,.06);font-size:13px}td{font-size:13px}.status{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:800}.status.active{background:rgba(16,185,129,.13);color:#34d399}.status.suspended{background:rgba(239,68,68,.13);color:#f87171}.state{text-align:center;padding:25px;color:#94a3b8}.note{margin-top:15px;font-size:12px;color:#64748b}@media(max-width:700px){.page{padding:15px 0}.card{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.brand{font-size:20px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section id="login-view" class="card form">
+      <div class="brand">⚖️ لوحة إحصائيات الأدمن</div>
+      <p class="muted">هذه الصفحة مستقلة عن واجهة الطلاب.</p>
+      <form id="login-form">
+        <label class="label" for="email">البريد الإلكتروني</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label class="label" for="password">كلمة المرور</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button id="login-btn" class="primary" type="submit">تسجيل دخول الأدمن</button>
+      </form>
+      <div id="login-message" class="message"></div>
+    </section>
+
+    <section id="denied-view" class="card form" hidden>
+      <div class="brand">غير مصرح</div>
+      <p class="muted">هذا الحساب لا يملك صلاحية الأدمن.</p>
+      <button id="back-btn" class="secondary" type="button">العودة لتسجيل الدخول</button>
+    </section>
+
+    <section id="dashboard-view" hidden>
+      <div class="card">
+        <div class="top">
+          <div><div class="brand">لوحة إحصائيات الأدمن</div><div class="muted">حساب الأدمن: <span id="admin-email"></span></div></div>
+          <div class="actions"><button id="refresh-btn" class="secondary" type="button">↻ تحديث</button><button id="logout-btn" class="secondary" type="button">تسجيل الخروج</button></div>
+        </div>
+        <div class="stats"><div class="stat"><small>إجمالي المشتركين</small><strong id="total">0</strong></div><div class="stat"><small>الحسابات الفعالة</small><strong id="active">0</strong></div><div class="stat"><small>المسجلون هذا الشهر</small><strong id="month">0</strong></div><div class="stat"><small>الحسابات الموقوفة</small><strong id="suspended">0</strong></div></div>
+        <div id="table-root"><div class="state">جاري تحميل البيانات...</div></div>
+        <div class="note">هذه اللوحة مخصصة للأدمن فقط، ولا تُحمّل ضمن واجهة الطالب.</div>
+      </div>
+    </section>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="admin-dashboard.js?v=1.0"></script>
+</body>
+</html>
