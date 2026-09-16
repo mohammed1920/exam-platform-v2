@@ -1,143 +1,56 @@
 /* Student account UI refinements */
 header { position: relative; }
-/* Reserve the account trigger's space so the Arabic title never sits underneath it. */
-header h1 {
-  padding-inline-start: clamp(92px, 12vw, 150px);
-  padding-inline-end: 12px;
-}
-
-/* Keep the login action at the top of the account menu and above every drawer layer. */
-.student-sidebar-login {
-  display: flex;
-  width: 100%;
-  margin: 10px 0 4px;
-  justify-content: flex-start;
-}
-.auth-modal,
-#login-modal {
-  z-index: 10000 !important;
-}
-
-.account-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  min-width: 46px;
-  width: 46px;
-  height: 46px;
-  margin: 0 !important;
-  padding: 0 10px !important;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  font-size: 19px !important;
-  line-height: 1;
-  background: rgba(194,157,95,.10) !important;
-  border: 1px solid rgba(194,157,95,.38) !important;
-  color: var(--primary,#c29d5f) !important;
-  box-shadow: 0 8px 22px rgba(0,0,0,.16);
-  z-index: 5;
-}
-
-.account-btn:not(.authenticated) {
-  width: auto;
-  min-width: 108px;
-  font-size: 14px !important;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
+header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 12px; }
+.student-sidebar-login { display: flex; width: 100%; margin: 10px 0 4px; justify-content: flex-start; }
+.auth-modal, #login-modal { z-index: 10000 !important; }
+.account-btn { position: absolute; top: 16px; right: 16px; min-width: 46px; width: 46px; height: 46px; margin: 0 !important; padding: 0 10px !important; display: grid; place-items: center; border-radius: 14px; font-size: 19px !important; line-height: 1; background: rgba(194,157,95,.10) !important; border: 1px solid rgba(194,157,95,.38) !important; color: var(--primary,#c29d5f) !important; box-shadow: 0 8px 22px rgba(0,0,0,.16); z-index: 5; }
+.account-btn:not(.authenticated) { width: auto; min-width: 108px; font-size: 14px !important; font-weight: 800; white-space: nowrap; }
 .account-btn:hover { transform: translateY(-1px); }
-
-.profile-name-editor {
-  margin-top: 18px;
-  padding: 20px;
-  border: 1px solid rgba(194,157,95,.22);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(194,157,95,.045));
-  box-shadow: 0 12px 30px rgba(0,0,0,.10);
-}
-
-.profile-name-editor-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
+.profile-name-editor { margin-top: 18px; padding: 20px; border: 1px solid rgba(194,157,95,.22); border-radius: 18px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(194,157,95,.045)); box-shadow: 0 12px 30px rgba(0,0,0,.10); }
+.profile-name-editor-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
 .profile-name-editor-heading h3 { margin: 0 0 5px; }
 .profile-name-editor-heading p { margin: 0; opacity: .72; font-size: .9rem; }
 .profile-name-editor-heading > i { color: var(--primary,#c29d5f); font-size: 22px; }
-
-.profile-name-editor label {
-  display: block;
-  margin-bottom: 7px;
-  font-weight: 800;
-}
-
-.profile-name-editor-row {
-  display: flex;
-  gap: 10px;
-}
-
-.profile-name-editor-row input {
-  flex: 1;
-  min-width: 0;
-  height: 46px;
-  padding: 0 14px;
-  border: 1px solid rgba(194,157,95,.25);
-  border-radius: 12px;
-  background: rgba(255,255,255,.055);
-  color: inherit;
-  font: inherit;
-  outline: none;
-}
-
-.profile-name-editor-row input:focus {
-  border-color: rgba(194,157,95,.7);
-  box-shadow: 0 0 0 3px rgba(194,157,95,.10);
-}
-
-.profile-name-editor-row button {
-  min-width: 125px;
-  height: 46px;
-  padding: 0 15px;
-  border: 1px solid rgba(194,157,95,.45);
-  border-radius: 12px;
-  background: rgba(194,157,95,.14);
-  color: var(--primary,#c29d5f);
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-}
-
+.profile-name-editor label { display: block; margin-bottom: 7px; font-weight: 800; }
+.profile-name-editor-row { display: flex; gap: 10px; }
+.profile-name-editor-row input { flex: 1; min-width: 0; height: 46px; padding: 0 14px; border: 1px solid rgba(194,157,95,.25); border-radius: 12px; background: rgba(255,255,255,.055); color: inherit; font: inherit; outline: none; }
+.profile-name-editor-row input:focus { border-color: rgba(194,157,95,.7); box-shadow: 0 0 0 3px rgba(194,157,95,.10); }
+.profile-name-editor-row button { min-width: 125px; height: 46px; padding: 0 15px; border: 1px solid rgba(194,157,95,.45); border-radius: 12px; background: rgba(194,157,95,.14); color: var(--primary,#c29d5f); font: inherit; font-weight: 800; cursor: pointer; }
 .profile-name-editor-row button:disabled { opacity: .6; cursor: wait; }
 .profile-name-editor-message { min-height: 20px; margin: 9px 2px 0; font-size: .88rem; opacity: .8; }
-
-@media (max-width: 560px) {
-  .account-btn {
-    top: 12px;
-    right: 12px;
-    width: 42px;
-    min-width: 42px;
-    height: 42px;
-    border-radius: 12px;
-  }
-
-  .account-btn:not(.authenticated) {
-    width: auto;
-    min-width: 92px;
-    padding: 0 11px !important;
-    font-size: 13px !important;
-  }
-
-  .profile-name-editor { padding: 16px; }
-  .profile-name-editor-row { flex-direction: column; }
-  .profile-name-editor-row button { width: 100%; }
-}
-
-/* The sign-in action belongs beside the status badge, not at the bottom of the menu. */
+@media (max-width: 560px) { .account-btn { top: 12px; right: 12px; width: 42px; min-width: 42px; height: 42px; border-radius: 12px; } .account-btn:not(.authenticated) { width: auto; min-width: 92px; padding: 0 11px !important; font-size: 13px !important; } .profile-name-editor { padding: 16px; } .profile-name-editor-row { flex-direction: column; } .profile-name-editor-row button { width: 100%; } }
 .student-sidebar-status .student-sidebar-login { display: inline-block; width: auto; min-height: 0; margin: 0 0 0 4px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #f0c98b; font-size: 12px; }
 .student-sidebar-status .student-sidebar-login:hover { background: transparent; border-color: transparent; transform: none; }
 .student-sidebar-login[hidden], .student-sidebar-logout[hidden] { display: none; }
+
+/* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
+.firebase-admin-tab { position: absolute; top: 16px; right: 72px; min-width: 78px; height: 46px; padding: 0 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid rgba(194,157,95,.42); border-radius: 14px; background: rgba(194,157,95,.09); color: var(--primary,#c29d5f); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(0,0,0,.12); z-index: 5; }
+.firebase-admin-tab:hover { background: rgba(194,157,95,.17); transform: translateY(-1px); }
+.firebase-admin-tab[hidden] { display: none !important; }
+
+.firebase-admin-view { padding: 4px 0 28px; }
+.firebase-admin-head { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px; margin-bottom:16px; border:1px solid rgba(194,157,95,.22); border-radius:18px; background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(194,157,95,.045)); box-shadow:0 14px 34px rgba(0,0,0,.12); }
+.firebase-admin-kicker { color:var(--primary,#c29d5f); font-size:13px; font-weight:900; margin-bottom:5px; }
+.firebase-admin-head h2 { margin:0 0 5px; font-size:21px; }
+.firebase-admin-head p { margin:0; color:var(--text-secondary,#94a3b8); font-size:13px; }
+.firebase-admin-action,.firebase-admin-back { border:1px solid rgba(194,157,95,.35); border-radius:10px; background:rgba(194,157,95,.09); color:var(--primary,#c29d5f); padding:9px 14px; font:inherit; font-weight:800; cursor:pointer; }
+.firebase-admin-status { margin:0 0 15px; padding:11px 13px; border-radius:11px; border:1px solid rgba(194,157,95,.25); background:rgba(194,157,95,.08); color:var(--primary,#c29d5f); font-size:13px; }
+.firebase-admin-status.error { border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08); color:#fca5a5; }
+.firebase-admin-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
+.firebase-admin-stat { padding:16px; border:1px solid rgba(255,255,255,.07); border-radius:15px; background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015)); }
+.firebase-admin-stat span { display:block; color:var(--text-secondary,#94a3b8); font-size:12px; }
+.firebase-admin-stat strong { display:block; margin-top:4px; color:var(--primary,#c29d5f); font-size:25px; }
+.firebase-admin-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.firebase-admin-card { min-width:0; overflow:hidden; border:1px solid rgba(255,255,255,.07); border-radius:15px; background:rgba(255,255,255,.025); }
+.firebase-admin-card-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 15px; border-bottom:1px solid rgba(255,255,255,.07); }
+.firebase-admin-card-head h3 { margin:0; color:var(--primary,#c29d5f); font-size:15px; }
+.firebase-admin-card-head span { color:var(--text-secondary,#94a3b8); font-size:11px; }
+.firebase-admin-table-wrap { overflow:auto; max-height:440px; }
+.firebase-admin-card table { width:100%; min-width:560px; border-collapse:collapse; }
+.firebase-admin-card th,.firebase-admin-card td { padding:10px 11px; text-align:right; border-bottom:1px solid rgba(255,255,255,.055); font-size:12px; }
+.firebase-admin-card th { color:var(--primary,#c29d5f); background:rgba(15,23,42,.55); position:sticky; top:0; }
+.firebase-admin-card td { color:var(--text-primary,#cbd5e1); }
+.firebase-admin-card td[colspan] { text-align:center; color:var(--text-secondary,#94a3b8); padding:24px; }
+.firebase-admin-back { width:100%; margin-top:15px; }
+@media (max-width:800px) { .firebase-admin-stats { grid-template-columns:repeat(2,1fr); } .firebase-admin-grid { grid-template-columns:1fr; } }
+@media (max-width:560px) { .firebase-admin-tab { top:12px; right:62px; min-width:43px; width:43px; padding:0; height:42px; border-radius:12px; } .firebase-admin-tab span { display:none; } .firebase-admin-head { padding:15px; align-items:flex-start; } .firebase-admin-head h2 { font-size:18px; } .firebase-admin-stats { gap:8px; } .firebase-admin-stat { padding:12px; } .firebase-admin-stat strong { font-size:21px; } }
