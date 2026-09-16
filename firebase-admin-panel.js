@@ -1,0 +1,254 @@
+/* Firebase admin tab for the student SPA. Visible only to users listed as admins/{uid}. */
+(function () {
+  'use strict';
+
+  let isAdmin = false;
+  let panelOpen = false;
+  let lastVisibleSection = null;
+  let els = {};
+
+  const esc = (v) => String(v ?? '—').replace(/[&<>"']/g, (m) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[m]));
+
+  function dateValue(v) {
+    if (!v) return '—';
+    const d = v && typeof v.toDate === 'function' ? v.toDate() : new Date(v);
+    return Number.isNaN(d.getTime()) ? '—' : d.toLocaleDateString('ar-IQ', {
+      year: 'numeric', month: 'short', day: 'numeric'
+    });
+  }
+
+  function timeValue(v) {
+    if (!v) return '';
+    const d = v && typeof v.toDate === 'function' ? v.toDate() : new Date(v);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleTimeString('ar-IQ', {
+      hour: '2-digit', minute: '2-digit'
+    });
+  }
+
+  function buildUI() {
+    if (document.getElementById('firebase-admin-tab')) return;
+
+    const header = document.querySelector('header');
+    const account = document.getElementById('account-btn');
+    if (!header || !account) return;
+
+    const tab = document.createElement('button');
+    tab.id = 'firebase-admin-tab';
+    tab.type = 'button';
+    tab.className = 'firebase-admin-tab';
+    tab.innerHTML = '<i class="fas fa-crown" aria-hidden="true"></i><span>الإدارة</span>';
+    tab.title = 'لوحة إدارة Firebase';
+    tab.setAttribute('aria-label', 'لوحة إدارة Firebase');
+    tab.hidden = true;
+    tab.addEventListener('click', openPanel);
+    header.insertBefore(tab, account.nextSibling);
+
+    const main = document.querySelector('main.container');
+    if (!main) return;
+    const section = document.createElement('section');
+    section.id = 'firebase-admin-section';
+    section.className = 'view-section firebase-admin-view';
+    section.hidden = true;
+    section.innerHTML = `
+      <div class="firebase-admin-head">
+        <div>
+          <div class="firebase-admin-kicker">⚖️ لوحة الإدارة</div>
+          <h2>إدارة حسابات ونتائج الطلاب</h2>
+          <p id="firebase-admin-welcome">تم التحقق من صلاحية الإدارة.</p>
+        </div>
+        <button id="firebase-admin-refresh" class="firebase-admin-action" type="button">↻ تحديث</button>
+      </div>
+      <div id="firebase-admin-status" class="firebase-admin-status" hidden></div>
+      <div class="firebase-admin-stats">
+        <div class="firebase-admin-stat"><span>إجمالي الطلاب</span><strong id="fa-students-count">—</strong></div>
+        <div class="firebase-admin-stat"><span>النتائج المسجلة</span><strong id="fa-results-count">—</strong></div>
+        <div class="firebase-admin-stat"><span>طلاب لديهم نتائج</span><strong id="fa-active-count">—</strong></div>
+        <div class="firebase-admin-stat"><span>متوسط النسبة</span><strong id="fa-average-score">—</strong></div>
+      </div>
+      <div class="firebase-admin-grid">
+        <section class="firebase-admin-card">
+          <div class="firebase-admin-card-head"><h3>👥 الطلاب المسجلون</h3><span id="fa-students-updated"></span></div>
+          <div class="firebase-admin-table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>التسجيل</th></tr></thead><tbody id="fa-students-body"><tr><td colspan="3">جارٍ التحميل...</td></tr></tbody></table></div>
+        </section>
+        <section class="firebase-admin-card">
+          <div class="firebase-admin-card-head"><h3>📝 آخر النتائج</h3><span id="fa-results-updated"></span></div>
+          <div class="firebase-admin-table-wrap"><table><thead><tr><th>الطالب</th><th>الكتاب</th><th>الفصل</th><th>النتيجة</th></tr></thead><tbody id="fa-results-body"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody></table></div>
+        </section>
+      </div>
+      <button id="firebase-admin-back" class="firebase-admin-back" type="button">← العودة للموقع</button>
+    `;
+    main.appendChild(section);
+
+    els = {
+      tab,
+      section,
+      status: section.querySelector('#firebase-admin-status'),
+      welcome: section.querySelector('#firebase-admin-welcome'),
+      refresh: section.querySelector('#firebase-admin-refresh'),
+      back: section.querySelector('#firebase-admin-back'),
+      studentsCount: section.querySelector('#fa-students-count'),
+      resultsCount: section.querySelector('#fa-results-count'),
+      activeCount: section.querySelector('#fa-active-count'),
+      averageScore: section.querySelector('#fa-average-score'),
+      studentsUpdated: section.querySelector('#fa-students-updated'),
+      resultsUpdated: section.querySelector('#fa-results-updated'),
+      studentsBody: section.querySelector('#fa-students-body'),
+      resultsBody: section.querySelector('#fa-results-body')
+    };
+    els.refresh.addEventListener('click', loadDashboard);
+    els.back.addEventListener('click', closePanel);
+  }
+
+  function setStatus(text, error) {
+    if (!els.status) return;
+    els.status.textContent = text || '';
+    els.status.hidden = !text;
+    els.status.classList.toggle('error', Boolean(error));
+  }
+
+  function showTab(show) {
+    if (!els.tab) return;
+    els.tab.hidden = !show;
+    els.tab.setAttribute('aria-hidden', show ? 'false' : 'true');
+  }
+
+  async function checkAdmin(user) {
+    if (!user || !window.publicAuth || !window.publicAuth.firestore) return false;
+    try {
+      const snap = await window.publicAuth.firestore.collection('admins').doc(user.uid).get();
+      const data = snap.exists ? snap.data() : null;
+      return Boolean(data && data.role === 'admin' && data.enabled !== false);
+    } catch (error) {
+      console.warn('تعذر التحقق من صلاحية admin:', error);
+      return false;
+    }
+  }
+
+  function rememberCurrentSection() {
+    const sections = Array.from(document.querySelectorAll('main.container > .view-section'));
+    lastVisibleSection = sections.find((s) => !s.hidden && s.classList.contains('active')) ||
+      sections.find((s) => !s.hidden && s.id !== 'firebase-admin-section') || null;
+  }
+
+  function hideStudentSections() {
+    document.querySelectorAll('main.container > .view-section').forEach((section) => {
+      if (section.id === 'firebase-admin-section') return;
+      section.dataset.firebaseAdminWasHidden = section.hidden ? '1' : '0';
+      section.hidden = true;
+      section.classList.remove('active');
+    });
+  }
+
+  function restoreStudentSections() {
+    document.querySelectorAll('main.container > .view-section').forEach((section) => {
+      if (section.id === 'firebase-admin-section') return;
+      section.hidden = section.dataset.firebaseAdminWasHidden === '1';
+      delete section.dataset.firebaseAdminWasHidden;
+    });
+    if (lastVisibleSection) {
+      lastVisibleSection.hidden = false;
+      lastVisibleSection.classList.add('active');
+    } else {
+      const books = document.getElementById('books-section');
+      if (books) { books.hidden = false; books.classList.add('active'); }
+    }
+  }
+
+  function openPanel() {
+    if (!isAdmin || !els.section) return;
+    rememberCurrentSection();
+    hideStudentSections();
+    els.section.hidden = false;
+    els.section.classList.add('active');
+    panelOpen = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    loadDashboard();
+  }
+
+  function closePanel() {
+    if (!panelOpen) return;
+    els.section.hidden = true;
+    els.section.classList.remove('active');
+    restoreStudentSections();
+    panelOpen = false;
+  }
+
+  async function loadDashboard() {
+    if (!isAdmin || !window.publicAuth || !window.publicAuth.firestore) return;
+    setStatus('جارٍ تحميل إحصائيات Firebase...');
+    try {
+      const db = window.publicAuth.firestore;
+      const [studentsSnap, resultsSnap] = await Promise.all([
+        db.collection('students').get(),
+        db.collection('examResults').get()
+      ]);
+      const students = studentsSnap.docs.map((d) => d.data());
+      const results = resultsSnap.docs.map((d) => d.data());
+
+      els.studentsCount.textContent = students.length;
+      els.resultsCount.textContent = results.length;
+      els.activeCount.textContent = new Set(results.map((r) => r.uid).filter(Boolean)).size;
+      const average = results.length
+        ? results.reduce((sum, r) => sum + (Number(r.percentage) || 0), 0) / results.length
+        : 0;
+      els.averageScore.textContent = results.length ? `${average.toFixed(1)}%` : '—';
+
+      students.sort((a, b) => String(a.email || '').localeCompare(String(b.email || '')));
+      els.studentsBody.innerHTML = students.length
+        ? students.map((s) => `<tr><td>${esc(s.displayName || '—')}</td><td>${esc(s.email || '—')}</td><td>${dateValue(s.createdAt)}</td></tr>`).join('')
+        : '<tr><td colspan="3">لا يوجد طلاب مسجلون.</td></tr>';
+
+      results.sort((a, b) => {
+        const ad = a.completedAt && typeof a.completedAt.toMillis === 'function' ? a.completedAt.toMillis() : 0;
+        const bd = b.completedAt && typeof b.completedAt.toMillis === 'function' ? b.completedAt.toMillis() : 0;
+        return bd - ad;
+      });
+      els.resultsBody.innerHTML = results.slice(0, 100).map((r) =>
+        `<tr><td>${esc(r.email || r.uid || '—')}</td><td>${esc(r.bookTitle || r.bookId || '—')}</td><td>${r.chapter == null ? 'اختبار مخصص' : esc(r.chapter)}</td><td>${Number(r.score) || 0}/${Number(r.totalQuestions) || 0} (${(Number(r.percentage) || 0).toFixed(1)}%)</td></tr>`
+      ).join('') || '<tr><td colspan="4">لا توجد نتائج بعد.</td></tr>';
+
+      const now = timeValue(new Date());
+      els.studentsUpdated.textContent = now;
+      els.resultsUpdated.textContent = now;
+      setStatus('');
+    } catch (error) {
+      console.error(error);
+      setStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.', true);
+    }
+  }
+
+  async function syncAdminState() {
+    buildUI();
+    if (!window.publicAuth || !window.publicAuth.user) {
+      isAdmin = false;
+      if (panelOpen) closePanel();
+      showTab(false);
+      return;
+    }
+
+    const user = window.publicAuth.user;
+    const allowed = await checkAdmin(user);
+    isAdmin = allowed;
+    showTab(allowed);
+    if (!allowed && panelOpen) closePanel();
+    if (allowed && els.welcome) {
+      els.welcome.textContent = `مرحباً ${user.displayName || user.email || 'المدير'} — تم التحقق من صلاحية الإدارة.`;
+    }
+  }
+
+  function install() {
+    buildUI();
+    if (!window.publicAuth) return;
+    if (typeof window.publicAuth.whenReady === 'function') {
+      window.publicAuth.whenReady(() => syncAdminState());
+    } else {
+      syncAdminState();
+    }
+    window.addEventListener('public-auth-state-changed', syncAdminState);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
+  else install();
+})();
