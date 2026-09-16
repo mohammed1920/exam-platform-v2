@@ -1,6 +1,9 @@
 (function () {
   'use strict';
   const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+
+  // Student-only UI assets. The Firebase admin/student-management panel is
+  // intentionally NOT loaded here; it belongs to the separate admin dashboard.
   ['user-dashboard.css?v=1.1','student-sidebar.css?v=1.3','student-ui-fixes.css?v=1.4','leaderboard.css?v=1.0'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -8,7 +11,7 @@
     document.head.appendChild(link);
   });
 
-  ['student-ui-fixes.js?v=1.2', 'student-account-patch.js?v=1.1', 'leaderboard.js?v=1.0', 'wrong-answers-limit.js?v=1.0', 'platform-header-fix.js?v=1.0', 'student-admin-panel.js?v=1.0'].forEach(src => {
+  ['student-ui-fixes.js?v=1.2', 'student-account-patch.js?v=1.1', 'leaderboard.js?v=1.0', 'wrong-answers-limit.js?v=1.0', 'platform-header-fix.js?v=1.0'].forEach(src => {
     const script = document.createElement('script');
     script.src = `${basePath}/${src}`;
     script.async = false;
