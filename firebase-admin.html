@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة Firebase - المنصة القانونية</title>
+  <style>
+    :root{--bg:#0b1220;--card:#111c2f;--card2:#17243a;--border:#263752;--gold:#c9a15b;--text:#e8edf5;--muted:#93a4bd;--green:#19b77a;--red:#e05252;--radius:16px}
+    *{box-sizing:border-box}body{margin:0;font-family:Cairo,Tahoma,Arial,sans-serif;background:radial-gradient(circle at top,#16243b 0,#0b1220 45%);color:var(--text);min-height:100vh}
+    button,input{font:inherit}.hidden{display:none!important}.container{width:min(1180px,calc(100% - 28px));margin:auto}
+    .top{padding:18px 0;border-bottom:1px solid var(--border);background:rgba(11,18,32,.88);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+    .top-row{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-weight:900;color:var(--gold);font-size:20px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:600;margin-top:2px}
+    .actions{display:flex;gap:8px}.btn{border:1px solid var(--border);background:var(--card2);color:var(--text);padding:9px 14px;border-radius:10px;cursor:pointer;font-weight:700}.btn:hover{border-color:var(--gold)}.btn.gold{background:var(--gold);color:#111827;border-color:var(--gold)}.btn.red{border-color:rgba(224,82,82,.45);color:#ffb0b0}
+    main{padding:28px 0 45px}.notice{padding:12px 14px;border-radius:12px;background:rgba(201,161,91,.09);border:1px solid rgba(201,161,91,.25);color:#e9d5aa;margin-bottom:18px}.error{background:rgba(224,82,82,.1);border-color:rgba(224,82,82,.35);color:#ffc1c1}
+    .auth-card{max-width:460px;margin:55px auto;background:rgba(17,28,47,.96);border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:0 22px 70px rgba(0,0,0,.35)}
+    h1,h2,h3{margin-top:0}.auth-card h1{text-align:center;color:var(--gold);font-size:23px}.subtitle{text-align:center;color:var(--muted);line-height:1.7;font-size:13px;margin-bottom:22px}
+    label{display:block;color:var(--gold);font-weight:800;font-size:13px;margin:12px 0 6px}input{width:100%;background:#0b1424;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:11px;outline:none}input:focus{border-color:var(--gold)}
+    .full{width:100%;margin-top:14px}.divider{display:flex;align-items:center;gap:10px;color:var(--muted);margin:18px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--border);flex:1}.google{width:100%}
+    .status{text-align:center;min-height:22px;color:var(--muted);font-size:12px;margin-top:10px}.status.bad{color:#ff9b9b}.status.ok{color:#86efac}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}.stat{background:linear-gradient(145deg,var(--card),#0e192b);border:1px solid var(--border);border-radius:var(--radius);padding:18px}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;color:var(--gold);font-size:28px;margin-top:5px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:rgba(17,28,47,.92);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}.panel-head{padding:15px 17px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px}.panel-head h2{font-size:16px;color:var(--gold);margin:0}.panel-body{padding:0;overflow:auto;max-height:470px}
+    table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:right;padding:11px 13px;border-bottom:1px solid rgba(38,55,82,.65);font-size:12px}th{color:var(--gold);background:#0d1829;position:sticky;top:0}td{color:#d9e1ed}.muted{color:var(--muted)}.empty{padding:25px;text-align:center;color:var(--muted)}
+    @media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.brand{font-size:17px}.top-row{align-items:flex-start}}
+    @media(max-width:480px){.container{width:min(100% - 18px,1180px)}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:23px}.actions .btn{padding:8px 10px;font-size:12px}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container top-row">
+      <div class="brand">⚖️ إدارة Firebase<small>لوحة الإدارة المنفصلة — المنصة القانونية</small></div>
+      <div class="actions"><button id="refreshBtn" class="btn hidden">↻ تحديث</button><button id="logoutBtn" class="btn red hidden">🚪 خروج</button></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="loginView" class="auth-card">
+      <h1>دخول مدير Firebase</h1>
+      <p class="subtitle">هذه الصفحة منفصلة عن موقع الطالب وعن لوحة <b>admin.html</b>. لا تظهر بيانات الإدارة إلا بعد التحقق من حسابك وصلاحية admin.</p>
+      <button id="googleBtn" class="btn google">G&nbsp; تسجيل الدخول بواسطة Google</button>
+      <div class="divider">أو</div>
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" type="email" autocomplete="email" placeholder="admin@example.com">
+      <label for="password">كلمة المرور</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button id="loginBtn" class="btn gold full">تسجيل الدخول</button>
+      <div id="authStatus" class="status"></div>
+    </section>
+
+    <section id="adminView" class="hidden">
+      <div id="welcome" class="notice"></div>
+      <div id="pageStatus" class="notice hidden"></div>
+      <div class="stats">
+        <div class="stat"><span>إجمالي الطلاب</span><strong id="studentsCount">—</strong></div>
+        <div class="stat"><span>النتائج المسجلة</span><strong id="resultsCount">—</strong></div>
+        <div class="stat"><span>الطلاب النشطون بالنتائج</span><strong id="activeCount">—</strong></div>
+        <div class="stat"><span>متوسط النسبة</span><strong id="averageScore">—</strong></div>
+      </div>
+      <div class="grid">
+        <section class="panel"><div class="panel-head"><h2>👥 الطلاب المسجلون</h2><span id="studentsUpdated" class="muted"></span></div><div class="panel-body"><table><thead><tr><th>الاسم</th><th>البريد</th><th>تاريخ التسجيل</th></tr></thead><tbody id="studentsBody"><tr><td colspan="3" class="empty">جارٍ التحميل...</td></tr></tbody></table></div></section>
+        <section class="panel"><div class="panel-head"><h2>📝 آخر النتائج</h2><span id="resultsUpdated" class="muted"></span></div><div class="panel-body"><table><thead><tr><th>الطالب</th><th>الكتاب</th><th>الفصل</th><th>النتيجة</th></tr></thead><tbody id="resultsBody"><tr><td colspan="4" class="empty">جارٍ التحميل...</td></tr></tbody></table></div></section>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig={apiKey:'AIzaSyDDZNWGjUfcuyXHyWtILZ06hnOWW-ZxGIM',authDomain:'iraq-law-test.firebaseapp.com',projectId:'iraq-law-test',storageBucket:'iraq-law-test.firebasestorage.app',messagingSenderId:'1081689116785',appId:'1:1081689116785:web:272ef3aa864e5d1c40cbd0',measurementId:'G-DL2T4Y7HVB'};
+    firebase.initializeApp(firebaseConfig);
+    const auth=firebase.auth(),db=firebase.firestore(),googleProvider=new firebase.auth.GoogleAuthProvider();
+    const $=id=>document.getElementById(id);
+    function setStatus(text,bad=false){$('authStatus').textContent=text||'';$('authStatus').className='status'+(bad?' bad':'');}
+    function pageStatus(text,bad=false){$('pageStatus').textContent=text||'';$('pageStatus').className='notice'+(bad?' error':'')+(text?'':' hidden');}
+    function dateValue(v){if(!v)return '—';const d=v.toDate?v.toDate():new Date(v);return isNaN(d)?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
+    function safe(v){return String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+    async function ensureAdmin(user){const snap=await db.collection('admins').doc(user.uid).get();return snap.exists&&snap.data().role==='admin'&&snap.data().enabled!==false;}
+    async function showDashboard(user){
+      $('loginView').classList.add('hidden');$('adminView').classList.remove('hidden');$('logoutBtn').classList.remove('hidden');$('refreshBtn').classList.remove('hidden');
+      $('welcome').textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;
+      await loadDashboard();
+    }
+    async function loadDashboard(){
+      pageStatus('جارٍ تحميل إحصائيات Firebase...');
+      try{
+        const [studentsSnap,resultsSnap]=await Promise.all([db.collection('students').get(),db.collection('examResults').get()]);
+        const students=studentsSnap.docs.map(d=>d.data()),results=resultsSnap.docs.map(d=>d.data());
+        $('studentsCount').textContent=students.length;$('resultsCount').textContent=results.length;
+        const active=new Set(results.map(r=>r.uid).filter(Boolean));$('activeCount').textContent=active.size;
+        const avg=results.length?results.reduce((s,r)=>s+(Number(r.percentage)||0),0)/results.length:0;$('averageScore').textContent=results.length?`${avg.toFixed(1)}%`:'—';
+        $('studentsBody').innerHTML=students.length?students.sort((a,b)=>String(a.email||'').localeCompare(String(b.email||''))).map(s=>`<tr><td>${safe(s.displayName||'—')}</td><td>${safe(s.email||'—')}</td><td>${dateValue(s.createdAt)}</td></tr>`).join(''):'<tr><td colspan="3" class="empty">لا يوجد طلاب مسجلون.</td></tr>';
+        $('resultsBody').innerHTML=results.length?results.sort((a,b)=>{const ad=a.completedAt?.toMillis?a.completedAt.toMillis():0,bd=b.completedAt?.toMillis?b.completedAt.toMillis():0;return bd-ad}).slice(0,100).map(r=>`<tr><td>${safe(r.email||r.uid||'—')}</td><td>${safe(r.bookTitle||r.bookId||'—')}</td><td>${r.chapter==null?'اختبار مخصص':safe(r.chapter)}</td><td>${Number(r.score)||0}/${Number(r.totalQuestions)||0} (${(Number(r.percentage)||0).toFixed(1)}%)</td></tr>`).join(''):'<tr><td colspan="4" class="empty">لا توجد نتائج بعد.</td></tr>';
+        const now=new Date().toLocaleTimeString('ar-IQ',{hour:'2-digit',minute:'2-digit'});$('studentsUpdated').textContent=now;$('resultsUpdated').textContent=now;pageStatus('');
+      }catch(error){console.error(error);pageStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.',true);}
+    }
+    async function login(operation){try{setStatus('جارٍ تسجيل الدخول...');await operation();}catch(e){console.error(e);setStatus(e.code==='auth/invalid-credential'?'بيانات الدخول غير صحيحة.':`تعذر تسجيل الدخول: ${e.message||e.code||'خطأ غير معروف'}`,true);}}
+    $('googleBtn').onclick=()=>login(()=>auth.signInWithPopup(googleProvider));
+    $('loginBtn').onclick=()=>login(()=>auth.signInWithEmailAndPassword($('email').value.trim(),$('password').value));
+    $('logoutBtn').onclick=()=>auth.signOut();$('refreshBtn').onclick=()=>loadDashboard();
+    auth.onAuthStateChanged(async user=>{
+      if(!user){$('loginView').classList.remove('hidden');$('adminView').classList.add('hidden');$('logoutBtn').classList.add('hidden');$('refreshBtn').classList.add('hidden');setStatus('');return;}
+      try{const allowed=await ensureAdmin(user);if(!allowed){await auth.signOut();setStatus('هذا الحساب مسجل الدخول لكنه لا يملك صلاحية admin.',true);return;}setStatus('');await showDashboard(user);}catch(e){console.error(e);await auth.signOut();setStatus('تعذر التحقق من صلاحية المدير.',true);}
+    });
+  </script>
+</body>
+</html>
