@@ -14,6 +14,7 @@ class ExamEngine {
     this.currentChapter = null;
     this.finishedResult = null;
     this.__firestoreResultSaved = false;
+    this.__skipFirestoreResultSave = false;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
     this.sessionTimestamp = Date.now();
   }
@@ -42,6 +43,7 @@ class ExamEngine {
     this.startTime = new Date();
     this.finishedResult = null;
     this.__firestoreResultSaved = false;
+    this.__skipFirestoreResultSave = false;
     return data;
   }
   loadCustomQuestions(questions) {
@@ -55,6 +57,7 @@ class ExamEngine {
     this.startTime = new Date();
     this.finishedResult = null;
     this.__firestoreResultSaved = false;
+    this.__skipFirestoreResultSave = false;
   }
   getCurrentQuestion() { return this.questions[this.currentQuestionIndex] || null; }
   submitAnswer(optionIndex) {
@@ -74,6 +77,7 @@ class ExamEngine {
     if (this.finishedResult) return this.finishedResult;
     const percentage = this.totalQuestions > 0 ? Math.round((this.score / this.totalQuestions) * 100) : 0;
     this.finishedResult = { score: this.score, totalQuestions: this.totalQuestions, percentage, grade: this.getGrade(percentage), duration: this.startTime ? Math.max(0, Math.round((new Date() - this.startTime) / 1000)) : 0, answers: this.userAnswers.slice() };
+    if (this.__skipFirestoreResultSave) return this.finishedResult;
     try {
       const publicAuth = window.publicAuth;
       if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
@@ -92,7 +96,7 @@ class ExamEngine {
   }
   getGrade(percentage) { if (percentage >= 90) return { grade: 'ممتاز', emoji: '🏆' }; if (percentage >= 80) return { grade: 'جيد جداً', emoji: '🥇' }; if (percentage >= 70) return { grade: 'جيد', emoji: '🥈' }; if (percentage >= 60) return { grade: 'مقبول', emoji: '🥉' }; return { grade: 'راسب', emoji: '❌' }; }
   getWrongAnswers() { return this.userAnswers.filter(a => !a.isCorrect); }
-  reset() { this.currentQuestionIndex = 0; this.score = 0; this.totalQuestions = 0; this.userAnswers = []; this.questions = []; this.startTime = null; this.currentBook = null; this.currentChapter = null; this.finishedResult = null; this.__firestoreResultSaved = false; }
+  reset() { this.currentQuestionIndex = 0; this.score = 0; this.totalQuestions = 0; this.userAnswers = []; this.questions = []; this.startTime = null; this.currentBook = null; this.currentChapter = null; this.finishedResult = null; this.__firestoreResultSaved = false; this.__skipFirestoreResultSave = false; }
 }
 
 const examEngine = new ExamEngine();
