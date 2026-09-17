@@ -9,25 +9,17 @@
   const BUTTON_ID = 'wrong-answers-retest-btn';
   const STATE_KEY = '__wrongRetestState';
 
-  function getApp() {
-    return window.app || null;
-  }
-
-  function getResultsSection() {
-    return document.getElementById('results-section');
-  }
-
+  function getApp() { return window.app || null; }
+  function getResultsSection() { return document.getElementById('results-section'); }
   function isResultsVisible() {
     const section = getResultsSection();
     if (!section) return false;
     return section.classList.contains('active') || getComputedStyle(section).display !== 'none';
   }
-
   function removeButton() {
     const button = document.getElementById(BUTTON_ID);
     if (button) button.remove();
   }
-
   function clearTemporaryState() {
     const state = window[STATE_KEY];
     if (state) {
@@ -36,6 +28,17 @@
       state.sourceQuestions = [];
     }
     window[STATE_KEY] = null;
+  }
+  function cleanupFinishedRetest() {
+    const state = window[STATE_KEY];
+    if (!state || !state.active || state.cleaned) return;
+    state.cleaned = true;
+    state.questions = [];
+    state.wrongAnswers = [];
+    state.sourceQuestions = [];
+    // بعد ظهور النتيجة لا تبقى نسخة الأسئلة داخل محرك الاختبار.
+    if (window.examEngine) window.examEngine.questions = [];
+    removeButton();
   }
 
   function collectWrongQuestions() {
@@ -60,7 +63,6 @@
       let q = answer.questionUid != null ? byUid.get(String(answer.questionUid)) : null;
       if (!q && answer.questionId != null) q = byId.get(String(answer.questionId));
       if (!q) return null;
-
       return {
         ...JSON.parse(JSON.stringify(q)),
         sourceBook: q.sourceBook || fallbackBookId,
@@ -71,9 +73,7 @@
 
   function prepareQuestions(questions) {
     const app = getApp();
-    if (app && typeof app.prepareChapterQuestions === 'function') {
-      return app.prepareChapterQuestions(questions);
-    }
+    if (app && typeof app.prepareChapterQuestions === 'function') return app.prepareChapterQuestions(questions);
 
     return questions.map(q => {
       const copy = { ...q, options: Array.isArray(q.options) ? q.options.slice() : [] };
@@ -94,22 +94,18 @@
     if (!engine || !app) return;
 
     const wrongQuestions = collectWrongQuestions();
-    if (!wrongQuestions.length) {
-      removeButton();
-      return;
-    }
+    if (!wrongQuestions.length) { removeButton(); return; }
 
     const prepared = prepareQuestions(wrongQuestions);
     if (!prepared.length) return;
 
-    // نخزنها بالذاكرة فقط أثناء الانتقال للاختبار، ولا نستخدم localStorage.
+    // الذاكرة المؤقتة فقط: لا localStorage ولا ملفات ولا قاعدة بيانات للأسئلة.
     window[STATE_KEY] = {
+      active: true,
+      cleaned: false,
       questions: prepared.slice(),
       wrongAnswers: wrongQuestions.slice(),
-      sourceQuestions: engine.questions.slice(),
-      originalBook: app.currentBook,
-      originalChapter: app.currentChapter,
-      wasCustomExam: Boolean(app.isCustomExam)
+      sourceQuestions: engine.questions.slice()
     };
 
     engine.loadCustomQuestions(prepared);
@@ -118,19 +114,22 @@
     app.currentChapter = null;
     document.body.classList.add('exam-mode');
 
-    if (typeof app.navigateTo === 'function') {
-      app.navigateTo('exam', { wrongRetest: true });
-    }
+    if (typeof app.navigateTo === 'function') app.navigateTo('exam', { wrongRetest: true });
     if (typeof app.startTimer === 'function') app.startTimer();
     if (typeof app.renderQuestion === 'function') app.renderQuestion();
-
     removeButton();
   }
 
   function addButtonIfNeeded() {
     const results = getResultsSection();
     const engine = window.examEngine;
+    const state = window[STATE_KEY];
     if (!results || !engine || !isResultsVisible()) return;
+
+    if (state && state.active) {
+      cleanupFinishedRetest();
+      return;
+    }
 
     const wrongAnswers = engine.getWrongAnswers ? engine.getWrongAnswers() : [];
     if (!wrongAnswers.length || document.getElementById(BUTTON_ID)) return;
@@ -152,9 +151,7 @@
     const results = getResultsSection();
     if (!results) return false;
 
-    const observer = new MutationObserver(() => {
-      window.setTimeout(addButtonIfNeeded, 0);
-    });
+    const observer = new MutationObserver(() => window.setTimeout(addButtonIfNeeded, 0));
     observer.observe(results, { attributes: true, attributeFilter: ['class', 'style'] });
 
     document.addEventListener('click', event => {
@@ -162,7 +159,6 @@
       if (target) clearTemporaryState();
     }, true);
 
-    // فحص أولي، ثم إعادة الفحص عند تغير واجهة النتائج.
     window.setTimeout(addButtonIfNeeded, 300);
     window.setInterval(addButtonIfNeeded, 700);
     return true;
