@@ -36,7 +36,6 @@
     state.questions = [];
     state.wrongAnswers = [];
     state.sourceQuestions = [];
-    // بعد ظهور النتيجة لا تبقى نسخة الأسئلة داخل محرك الاختبار.
     if (window.examEngine) window.examEngine.questions = [];
     removeButton();
   }
@@ -99,7 +98,6 @@
     const prepared = prepareQuestions(wrongQuestions);
     if (!prepared.length) return;
 
-    // الذاكرة المؤقتة فقط: لا localStorage ولا ملفات ولا قاعدة بيانات للأسئلة.
     window[STATE_KEY] = {
       active: true,
       cleaned: false,
@@ -109,6 +107,8 @@
     };
 
     engine.loadCustomQuestions(prepared);
+    // هذا الاختبار مؤقت: لا تُرسل إجاباته/نصوص أسئلته إلى Firestore.
+    engine.__skipFirestoreResultSave = true;
     app.isCustomExam = true;
     app.examActive = true;
     app.currentChapter = null;
