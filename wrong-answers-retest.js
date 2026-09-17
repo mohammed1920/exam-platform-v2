@@ -28,16 +28,7 @@
       state.sourceQuestions = [];
     }
     window[STATE_KEY] = null;
-  }
-  function cleanupFinishedRetest() {
-    const state = window[STATE_KEY];
-    if (!state || !state.active || state.cleaned) return;
-    state.cleaned = true;
-    state.questions = [];
-    state.wrongAnswers = [];
-    state.sourceQuestions = [];
-    if (window.examEngine) window.examEngine.questions = [];
-    removeButton();
+    if (window.examEngine) window.examEngine.__skipFirestoreResultSave = false;
   }
 
   function collectWrongQuestions() {
@@ -93,28 +84,33 @@
     if (!engine || !app) return;
 
     const wrongQuestions = collectWrongQuestions();
-    if (!wrongQuestions.length) { removeButton(); return; }
+    if (!wrongQuestions.length) {
+      removeButton();
+      return;
+    }
 
     const prepared = prepareQuestions(wrongQuestions);
     if (!prepared.length) return;
 
+    const previousState = window[STATE_KEY];
     window[STATE_KEY] = {
       active: true,
       cleaned: false,
+      round: previousState && previousState.active ? (previousState.round || 1) + 1 : 1,
       questions: prepared.slice(),
       wrongAnswers: wrongQuestions.slice(),
       sourceQuestions: engine.questions.slice()
     };
 
     engine.loadCustomQuestions(prepared);
-    // هذا الاختبار مؤقت: لا تُرسل إجاباته/نصوص أسئلته إلى Firestore.
+    // هذا الاختبار مؤقت: لا تُرسل نتيجته أو نصوص أسئلته إلى Firestore.
     engine.__skipFirestoreResultSave = true;
     app.isCustomExam = true;
     app.examActive = true;
     app.currentChapter = null;
     document.body.classList.add('exam-mode');
 
-    if (typeof app.navigateTo === 'function') app.navigateTo('exam', { wrongRetest: true });
+    if (typeof app.navigateTo === 'function') app.navigateTo('exam', { wrongRetest: true, round: window[STATE_KEY].round });
     if (typeof app.startTimer === 'function') app.startTimer();
     if (typeof app.renderQuestion === 'function') app.renderQuestion();
     removeButton();
@@ -126,11 +122,8 @@
     const state = window[STATE_KEY];
     if (!results || !engine || !isResultsVisible()) return;
 
-    if (state && state.active) {
-      cleanupFinishedRetest();
-      return;
-    }
-
+    // في اختبار الأخطاء: لا نمسح الأسئلة عند ظهور النتيجة مباشرة.
+    // نستخدم نتيجة هذه الجولة لتكوين جولة أخطاء جديدة عند الحاجة.
     const wrongAnswers = engine.getWrongAnswers ? engine.getWrongAnswers() : [];
     if (!wrongAnswers.length || document.getElementById(BUTTON_ID)) return;
 
@@ -142,7 +135,9 @@
     button.type = 'button';
     button.className = 'back-btn';
     button.style.cssText = 'margin-top:10px;width:100%;border-color:var(--primary,#c29d5f);color:var(--primary,#c29d5f);';
-    button.textContent = `🔄 اختبرني بالأخطاء (${wrongAnswers.length})`;
+    button.textContent = state && state.active
+      ? `🔄 أعد اختبار الأخطاء (${wrongAnswers.length})`
+      : `🔄 اختبرني بالأخطاء (${wrongAnswers.length})`;
     button.addEventListener('click', startWrongRetest);
     reviewButton.parentNode.insertBefore(button, reviewButton);
   }
