@@ -5,7 +5,8 @@
     "author": "د. وسام صبار",
     "description": "دراسة الرقابة القضائية على أعمال الإدارة ودعوى الإلغاء والتعويض.",
     "chapters": 11,
-    "color": "#8e44ad"
+    "color": "#8e44ad",
+    "icon": "scale"
   },
   {
     "id": "law_constitutional",
@@ -13,7 +14,8 @@
     "author": "د. حميد حنون خالد",
     "description": "دراسة النظرية العامة للدولة والدستور والنظم السياسية.",
     "chapters": 9,
-    "color": "#e74c3c"
+    "color": "#e74c3c",
+    "icon": "pillar"
   },
   {
     "id": "law_general_penalties",
@@ -21,7 +23,8 @@
     "author": "مستشار قانوني",
     "description": "مجموعة اختبارات شاملة في قانون العقوبات العام والقواعد العامة للجريمة والعقاب.",
     "chapters": 7,
-    "color": "#c29d5f"
+    "color": "#c29d5f",
+    "icon": "gavel"
   },
   {
     "id": "law_international",
@@ -29,7 +32,8 @@
     "author": "مستشار قانوني",
     "description": "دراسة شاملة واختبارات في law_international.",
     "chapters": 5,
-    "color": "#c29d5f"
+    "color": "#c29d5f",
+    "icon": "globe"
   },
   {
     "id": "law_international_humanitarian",
@@ -37,7 +41,8 @@
     "author": "مستشار قانوني",
     "description": "قواعد حماية ضحايا النزاعات المسلحة والحد من وسائل وأساليب القتال.",
     "chapters": 8,
-    "color": "#27ae60"
+    "color": "#27ae60",
+    "icon": "shield"
   },
   {
     "id": "law_organizations",
@@ -45,7 +50,8 @@
     "author": "مستشار قانوني",
     "description": "دراسة التنظيم الدولي المعاصر والأمم المتحدة والوكالات المتخصصة.",
     "chapters": 18,
-    "color": "#2980b9"
+    "color": "#2980b9",
+    "icon": "flag"
   },
   {
     "id": "law_special_sanctions",
@@ -53,20 +59,23 @@
     "author": "مستشار قانوني",
     "description": "دراسة تفصيلية للجرائم الواقعة على الأشخاص والأموال والمصلحة العامة.",
     "chapters": 22,
-    "color": "#e67e22"
+    "color": "#e67e22",
+    "icon": "handcuffs"
   },
   {
     "id": "law_Named_contracts",
     "title": "العقود المسماة",
     "author": "محمد",
     "description": "",
-    "chapters": 40
+    "chapters": 40,
+    "icon": "handshake"
   },
   {
     "id": "law_admin_law",
     "title": "القانون الاداري",
     "author": "مستشار قانوني",
     "description": "",
-    "chapters": 26
+    "chapters": 26,
+    "icon": "courthouse"
   }
 ]
