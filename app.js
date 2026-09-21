@@ -1326,7 +1326,7 @@ class ExamApp {
     if (customExamEntryBtn) customExamEntryBtn.onclick = () => this.showCustomExamSetup();
 
     const customExamBackBtn = document.getElementById('custom-exam-back-btn');
-    if (customExamBackBtn) customExamBackBtn.onclick = () => this.backToBooks();
+    if (customExamBackBtn) customExamBackBtn.onclick = () => this.navigateTo('home');
 
     const customExamStartBtn = document.getElementById('custom-exam-start-btn');
     if (customExamStartBtn) customExamStartBtn.onclick = () => this.handleCustomExamStart();
