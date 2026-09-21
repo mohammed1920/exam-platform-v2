@@ -190,11 +190,11 @@
     section.id = 'student-dashboard-section';
     section.className = 'view-section';
     section.innerHTML = `
-      <button class="back-btn" id="student-dashboard-back"><i class="fas fa-arrow-right"></i> العودة للكتب</button>
+      <button class="back-btn" id="student-dashboard-back"><i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية</button>
       <div id="student-dashboard-content"></div>`;
     main.appendChild(section);
     const back = section.querySelector('#student-dashboard-back');
-    if (back) back.onclick = () => window.app.backToBooks();
+    if (back) back.onclick = () => window.app.navigateTo('home');
     return section;
   }
 
