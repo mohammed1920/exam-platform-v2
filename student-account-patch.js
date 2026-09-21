@@ -38,6 +38,11 @@
   }
 
   function openSidebarForCurrentState() {
+    const user = currentUser();
+    if (!user) {
+      if (window.publicAuth?.openLogin) window.publicAuth.openLogin();
+      return;
+    }
     const sidebar = document.getElementById('student-account-sidebar');
     if (!sidebar) return;
     syncSidebarUser();
@@ -66,7 +71,7 @@
       button.title = 'قائمة حسابي';
       button.classList.add('authenticated');
     } else {
-      if (button.textContent !== 'سجل الدخول') button.textContent = 'سجل الدخول';
+      if (button.textContent !== '🔐 تسجيل الدخول') button.textContent = '🔐 تسجيل الدخول';
       button.setAttribute('aria-label', 'سجل الدخول');
       button.title = 'سجل الدخول';
       button.classList.remove('authenticated');
