@@ -18,8 +18,7 @@
 
   function run(action) {
     if (action === 'books') {
-      const target = document.getElementById('books-section');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('books');
       return;
     }
     if (action === 'random') {
@@ -59,7 +58,9 @@
     const home = document.querySelector('.platform-home');
     const books = document.getElementById('books-section');
     if (!home || !books) return;
-    home.style.display = books.classList.contains('active') ? '' : 'none';
+    // app.js هو المسؤول عن تحديد الشاشة الحالية؛ لا نعيد إظهار الكتب فوق الصفحة الرئيسية.
+    if (books.classList.contains('active')) home.style.display = 'none';
+    else if (history.state && history.state.view === 'home') home.style.display = '';
   }
 
   window.app = window.app || {};
