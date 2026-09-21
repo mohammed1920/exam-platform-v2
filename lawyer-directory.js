@@ -5,7 +5,7 @@
   // هوية نقابة المحامي لا تُرفع أو تُخزّن داخل Firebase Storage.
   // يرسلها المتقدم يدويًا للأدمن عبر واتساب أو تلغرام.
   const WHATSAPP_NUMBER = '9647738511899';
-  const TELEGRAM_USERNAME = 'lawyer_Th1';
+  const TELEGRAM_USERNAME = 'Mo7m7med';
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, m => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
