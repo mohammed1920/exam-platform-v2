@@ -158,7 +158,14 @@
     return div.innerHTML;
   }
 
+  function removeLegacySidebar() {
+    const legacy = document.getElementById('student-account-sidebar');
+    if (legacy) legacy.remove();
+    document.body.classList.remove('student-sidebar-open');
+  }
+
   function install() {
+    removeLegacySidebar();
     bindAccountButton();
     updateAccountButton();
     syncSidebarUser();
@@ -180,6 +187,7 @@
         document.body.classList.remove('student-sidebar-open');
         if (window.app && typeof window.app.backToBooks === 'function') window.app.backToBooks();
       }
+      removeLegacySidebar();
       updateSidebarLogoutAction();
     });
   }
