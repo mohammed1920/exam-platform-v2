@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="student-ui-fixes.css?v=1.5">
   <link rel="stylesheet" href="home.css?v=1.0">
   <link rel="stylesheet" href="platform-sidebar.css?v=1.0">
+  <link rel="stylesheet" href="user-dashboard.css?v=1.1">
+  <link rel="stylesheet" href="student-sidebar.css?v=1.3">
+  <link rel="stylesheet" href="leaderboard.css?v=1.0">
   <style>
     .exam-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .share-question-btn { flex-shrink:0; background:transparent; border:2px solid #c29d5f; color:#c29d5f; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:6px 14px; border-radius:12px; transition:all .25s ease; }
@@ -139,6 +142,10 @@
   <script src="app.js?v=1.7"></script>
   <script src="home.js?v=1.0"></script>
   <script src="platform-sidebar.js?v=1.0"></script>
+  <script src="user-dashboard.js?v=1.0"></script>
+  <script src="leaderboard.js?v=1.0"></script>
+  <script src="student-results.js?v=1.0"></script>
+  <script src="student-account-patch.js?v=1.1"></script>
   <script src="firebase-admin-panel.js?v=1.0"></script>
   <script>
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('service-worker.js').then((reg) => { const REFRESH_INTERVAL=24*60*60*1000; const lastRefresh=Number(localStorage.getItem('lastDataRefresh')||0); const now=Date.now(); if(navigator.onLine&&reg.active&&(now-lastRefresh>REFRESH_INTERVAL)){reg.active.postMessage({type:'REFRESH_DATA'});localStorage.setItem('lastDataRefresh',String(now));} }).catch((err)=>console.warn('فشل تسجيل Service Worker:',err)); }
