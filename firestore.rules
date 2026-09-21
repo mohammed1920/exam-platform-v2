@@ -58,7 +58,7 @@ service cloud.firestore {
 
     // Public lawyer profiles contain only fields intended for publication.
     match /lawyerProfiles/{profileId} {
-      allow read: if resource.data.published == true;
+      allow read: if isAdmin() || resource.data.published == true;
       allow create, update, delete: if isAdmin();
     }
 
