@@ -40,3 +40,10 @@
 .exam-dashboard-actions button span{font-weight:800}.exam-dashboard-actions button small{color:#8295a4;font-size:10px;margin-top:2px}
 @media(max-width:900px){.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero{grid-template-columns:1fr}.home-hero-seal{display:none}}
 @media(max-width:600px){.platform-home{padding:10px 12px}.home-hero{padding:28px 22px;border-radius:22px}.home-hero p{font-size:13px}.home-section-heading{margin-top:28px}.home-category-grid{gap:9px}.home-category-card{min-height:150px;padding:15px;border-radius:16px}.home-category-card strong{font-size:13px}.home-category-card small{font-size:10px}.home-feature-strip{grid-template-columns:1fr}.exam-dashboard-actions{grid-template-columns:1fr}}
+
+/* تحسينات تنظيم الصفحة: حدود واضحة بين مناطق المحتوى */
+.platform-home + .view-section{border-top:0}
+.student-sidebar-quick-links{display:grid;gap:5px}
+.student-sidebar-quick-links .student-sidebar-item{min-height:46px;font-size:14px}
+footer{margin-top:42px}
+footer .container{max-width:1200px}
