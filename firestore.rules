@@ -53,7 +53,7 @@ service cloud.firestore {
                     && request.resource.data.storagePath.matches('lawyerApplications/' + request.auth.uid + '/' + applicationId + '/bar-id');
       allow read: if isAdmin() || (signedIn() && resource.data.applicantUid == request.auth.uid);
       allow update: if isAdmin();
-      allow delete: if isAdmin();
+      allow delete: if isAdmin() || (signedIn() && resource.data.applicantUid == request.auth.uid && resource.data.status == 'pending');
     }
 
     // Public lawyer profiles contain only fields intended for publication.
