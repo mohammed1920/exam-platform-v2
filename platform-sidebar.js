@@ -54,6 +54,15 @@
       if(window.studentDashboard) window.studentDashboard.open('profile');
       return;
     }
+    if(action==='admin'){
+      if(window.firebaseAdminPanel?.open) window.firebaseAdminPanel.open();
+      return;
+    }
+    if(action==='profile'){
+      if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth?.openLogin(); return; }
+      if(window.studentDashboard) window.studentDashboard.open('profile');
+      return;
+    }
     if(action==='leaderboard'){
       if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth && window.publicAuth.openLogin(); return; }
       if(window.app) window.app.navigateTo('student-dashboard',{dashboardTarget:'leaderboard'});
@@ -114,6 +123,7 @@
           <button class="platform-sidebar-item" data-platform-action="dashboard"><i class="fas fa-chart-line"></i><span>لوحة الاختبارات</span></button>
           <button class="platform-sidebar-item" data-platform-action="leaderboard"><i class="fas fa-trophy"></i><span>المتصدرون</span></button>
           <button class="platform-sidebar-item" data-platform-action="profile"><i class="fas fa-user"></i><span>الملف الشخصي</span></button>
+          <button class="platform-sidebar-item platform-sidebar-admin-item" data-platform-action="admin" hidden><i class="fas fa-crown"></i><span>لوحة الإدارة</span></button>
         </div>
 
         <div class="platform-sidebar-account" id="platform-sidebar-account">
@@ -149,7 +159,15 @@
     updateAccountState();
   }
 
+  function updateAdminEntry(){
+    const el=document.querySelector('#platform-sidebar .platform-sidebar-admin-item');
+    if(!el) return;
+    const admin=window.firebaseAdminPanel && window.firebaseAdminPanel.isAdmin === true;
+    el.hidden=!admin;
+  }
+
   function updateAccountState(){
+    updateAdminEntry();
     const wrap=document.getElementById('platform-sidebar');
     if(!wrap) return;
     const user=window.publicAuth && window.publicAuth.user;
@@ -186,6 +204,7 @@
   }
 
   window.addEventListener('public-auth-state-changed',updateAccountState);
-  window.platformNavigation={open,close,run,ensure,updateAccountState};
+  window.addEventListener('firebase-admin-state-changed',updateAdminEntry);
+  window.platformNavigation={open,close,run,ensure,updateAccountState,updateAdminEntry};
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install); else install();
 })();
