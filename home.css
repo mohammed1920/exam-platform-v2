@@ -1,16 +1,5 @@
 /* الصفحة الرئيسية الجديدة - مستقلة عن تنسيقات محرك الاختبارات */
 .platform-home{max-width:1200px;margin:0 auto;padding:18px 20px 8px}
-.home-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:center;gap:28px;padding:42px 42px;border:1px solid rgba(194,157,95,.24);border-radius:28px;overflow:hidden;background:radial-gradient(circle at 12% 20%,rgba(194,157,95,.16),transparent 35%),linear-gradient(135deg,#12243a,#0b1524 68%,#101d2f);box-shadow:0 24px 70px rgba(0,0,0,.28)}
-.home-hero:after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.04);border-radius:20px;pointer-events:none}
-.home-eyebrow{display:inline-flex;align-items:center;gap:8px;color:#d8bd86;font-size:13px;font-weight:800;margin-bottom:10px}
-.home-hero h2{font-size:clamp(28px,4vw,48px);line-height:1.25;margin:0 0 12px;color:#f8fafc}
-.home-hero p{max-width:680px;margin:0;color:#aebdca;font-size:16px;line-height:1.9}
-.home-hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.home-hero-actions button{border:1px solid transparent;border-radius:13px;padding:12px 18px;background:linear-gradient(135deg,#d0ad70,#a98449);color:#101a27;font:inherit;font-weight:900;cursor:pointer}
-.home-hero-actions button.secondary{background:rgba(255,255,255,.04);border-color:rgba(194,157,95,.35);color:#e5c98f}
-.home-hero-seal{justify-self:center;width:150px;height:150px;border:1px solid rgba(194,157,95,.35);border-radius:50%;display:grid;place-items:center;align-content:center;background:radial-gradient(circle,rgba(194,157,95,.16),transparent 68%);box-shadow:0 0 55px rgba(194,157,95,.10)}
-.home-hero-seal span{font-size:64px;filter:drop-shadow(0 0 15px rgba(194,157,95,.25))}
-.home-hero-seal small{color:#c9a866;letter-spacing:5px;font-weight:900}
 .home-section-heading{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:38px 2px 16px}
 .home-section-heading span{color:#c29d5f;font-size:12px;font-weight:900}
 .home-section-heading h2{margin:0;font-size:23px}
@@ -38,8 +27,8 @@
 .exam-dashboard-actions button{display:grid;grid-template-columns:38px 1fr;column-gap:10px;align-items:center;text-align:right;padding:15px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025);color:#f2f5f7;cursor:pointer;font-family:inherit}
 .exam-dashboard-actions button i{grid-row:1/3;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:rgba(194,157,95,.1);color:#d3b36f}
 .exam-dashboard-actions button span{font-weight:800}.exam-dashboard-actions button small{color:#8295a4;font-size:10px;margin-top:2px}
-@media(max-width:900px){.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero{grid-template-columns:1fr}.home-hero-seal{display:none}}
-@media(max-width:600px){.platform-home{padding:10px 12px}.home-hero{padding:28px 22px;border-radius:22px}.home-hero p{font-size:13px}.home-section-heading{margin-top:28px}.home-category-grid{gap:9px}.home-category-card{min-height:150px;padding:15px;border-radius:16px}.home-category-card strong{font-size:13px}.home-category-card small{font-size:10px}.home-feature-strip{grid-template-columns:1fr}.exam-dashboard-actions{grid-template-columns:1fr}}
+@media(max-width:900px){.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.platform-home{padding:10px 12px}.home-section-heading{margin-top:28px}.home-category-grid{gap:9px}.home-category-card{min-height:150px;padding:15px;border-radius:16px}.home-category-card strong{font-size:13px}.home-category-card small{font-size:10px}.home-feature-strip{grid-template-columns:1fr}.exam-dashboard-actions{grid-template-columns:1fr}}
 
 /* تحسينات تنظيم الصفحة: حدود واضحة بين مناطق المحتوى */
 .platform-home + .view-section{border-top:0}
