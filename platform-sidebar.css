@@ -1,0 +1,28 @@
+/* Main platform navigation - مستقل عن محرك الاختبارات */
+.platform-menu-trigger{position:fixed;top:18px;right:18px;z-index:9000;width:46px;height:46px;border:1px solid rgba(194,157,95,.45);border-radius:13px;background:rgba(15,23,42,.92);color:#d8bd86;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.25);backdrop-filter:blur(10px)}
+.platform-menu-trigger:hover{border-color:#d8bd86;transform:translateY(-1px)}
+.platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
+.platform-sidebar.is-open{pointer-events:auto;visibility:visible}
+.platform-sidebar-backdrop{position:absolute;inset:0;background:rgba(2,8,18,.68);opacity:0;transition:.25s;backdrop-filter:blur(3px)}
+.platform-sidebar.is-open .platform-sidebar-backdrop{opacity:1}
+.platform-sidebar-panel{position:absolute;top:0;right:0;width:min(360px,92vw);height:100%;overflow-y:auto;background:linear-gradient(180deg,#101e31,#0a1422 72%,#08111d);border-left:1px solid rgba(194,157,95,.2);box-shadow:-20px 0 60px rgba(0,0,0,.35);transform:translateX(105%);transition:transform .3s ease;padding:22px 16px 28px}
+.platform-sidebar.is-open .platform-sidebar-panel{transform:translateX(0)}
+.platform-sidebar-close{position:absolute;top:16px;left:16px;width:38px;height:38px;border:1px solid rgba(255,255,255,.08);border-radius:11px;background:rgba(255,255,255,.04);color:#aebdca;cursor:pointer}
+.platform-sidebar-brand{padding:8px 8px 20px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:16px}
+.platform-sidebar-brand strong{display:block;color:#f5f7fa;font-size:18px}
+.platform-sidebar-brand span{display:block;color:#8397a9;font-size:11px;margin-top:5px;line-height:1.7}
+.platform-sidebar-heading{color:#c29d5f;font-size:11px;font-weight:900;margin:18px 8px 7px}
+.platform-sidebar-nav{display:grid;gap:5px}
+.platform-sidebar-item{width:100%;display:flex;align-items:center;gap:11px;text-align:right;padding:11px 12px;border:1px solid transparent;border-radius:12px;background:transparent;color:#d8e0e7;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+.platform-sidebar-item i{width:22px;text-align:center;color:#9fb0be;font-size:15px}
+.platform-sidebar-item:hover{background:rgba(194,157,95,.07);border-color:rgba(194,157,95,.18);color:#f2d49a}
+.platform-sidebar-item:hover i,.platform-sidebar-item.is-active i{color:#d2b36f}
+.platform-sidebar-item.is-active{background:rgba(194,157,95,.10);border-color:rgba(194,157,95,.22);color:#efd397}
+.platform-sidebar-sub{display:grid;gap:4px;margin-right:16px;padding-right:10px;border-right:1px solid rgba(194,157,95,.15)}
+.platform-sidebar-sub .platform-sidebar-item{font-size:12px;padding:9px 10px}
+.platform-sidebar-divider{height:1px;background:rgba(255,255,255,.06);margin:17px 6px}
+.platform-sidebar-note{margin:18px 4px 0;padding:14px;border:1px solid rgba(194,157,95,.15);border-radius:14px;background:rgba(194,157,95,.045);color:#8397a9;font-size:11px;line-height:1.8}
+.platform-sidebar-note strong{display:block;color:#d7bc82;margin-bottom:4px}
+.platform-sidebar-account{display:grid;gap:7px;margin-top:10px}
+@media(max-width:600px){.platform-menu-trigger{top:12px;right:12px;width:42px;height:42px}.platform-sidebar-panel{width:min(340px,94vw)}}
+body.platform-sidebar-open{overflow:hidden}
