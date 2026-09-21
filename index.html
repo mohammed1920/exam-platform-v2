@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="style.css?v=2.0">
   <link rel="stylesheet" href="student-ui-fixes.css?v=1.5">
   <link rel="stylesheet" href="home.css?v=1.0">
+  <link rel="stylesheet" href="platform-sidebar.css?v=1.0">
   <style>
     .exam-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .share-question-btn { flex-shrink:0; background:transparent; border:2px solid #c29d5f; color:#c29d5f; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:6px 14px; border-radius:12px; transition:all .25s ease; }
@@ -134,7 +135,7 @@
     <section id="review-section" class="view-section"><button class="back-btn" id="back-from-review"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><h2 style="margin-bottom:20px;">📄 مراجعة الإجابات الخاطئة</h2><div id="review-content"></div></section>
   </main>
 
-  <footer><div class="container"><div class="footer-links" id="footerSocialButtons"></div><div class="footer-bottom"><p class="footer-contact-info" id="footerContactDetails"></p><p>© 2026 منصة الاختبارات القانونية V2. جميع الحقوق محفوظة.</p><p class="visitor-counter">👥 عدد الزيارات: <span id="visitor-count">...</span></p></div></div></footer>
+  <footer><div class="container"><div class="footer-links" id="footerSocialButtons"></div><div class="footer-about"><strong>⚖️ المنصة القانونية العراقية</strong><p>منصة تعليمية ومعرفية تجمع الاختبارات والمحتوى والخدمات القانونية في واجهة واحدة منظمة.</p></div><div class="footer-disclaimer"><strong>تنبيه مهم</strong><p>هذه المنصة غير تابعة لأي جهة حكومية أو مؤسسة رسمية، ولا تمثل وزارة أو محكمة أو نقابة أو أي جهة رسمية في جمهورية العراق. المحتوى المنشور في المنصة مقدم لأغراض المعرفة والتعلم والاستفادة العلمية، ولا يُعد مرجعاً حكومياً أو رسمياً، ولا يغني عن الرجوع إلى المصادر الرسمية والتشريعات والجهات المختصة عند الحاجة.</p></div><div class="footer-bottom"><p class="footer-contact-info" id="footerContactDetails"></p><p>© 2026 المنصة القانونية العراقية. جميع الحقوق محفوظة.</p><p class="visitor-counter">👥 عدد الزيارات: <span id="visitor-count">...</span></p></div></div></footer>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
@@ -143,6 +144,7 @@
   <script src="book-icons.js?v=1"></script>
   <script src="app.js?v=1.7"></script>
   <script src="home.js?v=1.0"></script>
+  <script src="platform-sidebar.js?v=1.0"></script>
   <script src="firebase-admin-panel.js?v=1.0"></script>
   <script>
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('service-worker.js').then((reg) => { const REFRESH_INTERVAL=24*60*60*1000; const lastRefresh=Number(localStorage.getItem('lastDataRefresh')||0); const now=Date.now(); if(navigator.onLine&&reg.active&&(now-lastRefresh>REFRESH_INTERVAL)){reg.active.postMessage({type:'REFRESH_DATA'});localStorage.setItem('lastDataRefresh',String(now));} }).catch((err)=>console.warn('فشل تسجيل Service Worker:',err)); }
