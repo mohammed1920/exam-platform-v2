@@ -307,43 +307,40 @@ class ExamApp {
 
   renderContactInfo(data) {
     if (!data) return;
-    const footerContact = document.getElementById('footerContactDetails');
-    const footerLinks = document.getElementById('footerSocialButtons');
+    const container = document.getElementById('contactInfoCards');
+    if (!container) return;
 
-    if (footerContact) {
-      footerContact.innerHTML = '';
-      if (data.phone) {
-        const a = document.createElement('a');
-        a.href = `tel:${encodeURIComponent(String(data.phone))}`;
-        a.innerHTML = '<i class="fas fa-phone"></i> ';
-        a.appendChild(document.createTextNode(String(data.phone)));
-        footerContact.appendChild(a);
-      }
-      if (data.email) {
-        if (data.phone) footerContact.appendChild(document.createTextNode(' | '));
-        const a = document.createElement('a');
-        a.href = `mailto:${encodeURIComponent(String(data.email))}`;
-        a.innerHTML = '<i class="fas fa-envelope"></i> ';
-        a.appendChild(document.createTextNode(String(data.email)));
-        footerContact.appendChild(a);
-      }
+    container.innerHTML = '';
+
+    if (data.phone) {
+      const card = document.createElement('a');
+      card.className = 'contact-card';
+      card.href = `tel:${encodeURIComponent(String(data.phone))}`;
+      card.innerHTML = '<i class="fas fa-phone"></i><span><strong>رقم الهاتف</strong><small></small></span>';
+      card.querySelector('small').textContent = String(data.phone);
+      container.appendChild(card);
     }
 
-    if (footerLinks) {
-      footerLinks.innerHTML = '';
-      (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
-        const href = this.safeExternalUrl(link.url);
-        if (href === '#') return;
-        const a = document.createElement('a');
-        a.href = href;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.className = 'footer-link-btn';
-        a.innerHTML = '<i class="fab fa-telegram-plane"></i> ';
-        a.appendChild(document.createTextNode(String(link.label || 'رابط')));
-        footerLinks.appendChild(a);
-      });
+    if (data.email) {
+      const card = document.createElement('div');
+      card.className = 'contact-card';
+      card.innerHTML = '<i class="fas fa-envelope"></i><span><strong>البريد الإلكتروني</strong><small></small></span>';
+      card.querySelector('small').textContent = String(data.email);
+      container.appendChild(card);
     }
+
+    (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
+      const href = this.safeExternalUrl(link.url);
+      if (href === '#') return;
+      const card = document.createElement('a');
+      card.className = 'contact-card';
+      card.href = href;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+      card.innerHTML = '<i class="fab fa-telegram-plane"></i><span><strong></strong><small>فتح الصفحة</small></span>';
+      card.querySelector('strong').textContent = String(link.label || 'تليغرام');
+      container.appendChild(card);
+    });
   }
 
   renderBooks(booksList) {
