@@ -74,8 +74,8 @@ class ExamApp {
 
       if (!restored) {
         // ما فيه حالة محفوظة صالحة: نبدأ من قائمة الكتب كالمعتاد
-        history.replaceState({ view: 'books' }, '');
-        this.navigateTo('books', {}, false);
+        history.replaceState({ view: 'home' }, '');
+        this.navigateTo('home', {}, false);
       }
     } catch (error) {
       console.error('Initialization error:', error);
@@ -1289,6 +1289,8 @@ class ExamApp {
   // دالة الملاحة المحسنة لدعم أزرار الرجوع للهواتف بدون الخروج من الموقع
   navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    const home = document.querySelector('.platform-home');
+    if (home) home.style.display = viewId === 'home' ? '' : 'none';
     const section = document.getElementById(`${viewId}-section`);
     if (section) section.classList.add('active');
     
@@ -1347,7 +1349,11 @@ class ExamApp {
           document.body.classList.remove('exam-mode');
         }
 
-        if (view === 'books') {
+        if (view === 'home') {
+          this.currentBook = null;
+          this.currentChapter = null;
+          this.navigateTo('home', {}, false);
+        } else if (view === 'books') {
           this.currentBook = null;
           this.currentChapter = null;
           this.navigateTo('books', {}, false);
