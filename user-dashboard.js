@@ -90,6 +90,10 @@
   }
 
   function ensureSidebar() {
+    if (window.platformNavigation && typeof window.platformNavigation.ensure === 'function') {
+      window.platformNavigation.ensure();
+      return document.getElementById('platform-sidebar');
+    }
     let sidebar = document.getElementById('student-account-sidebar');
     if (sidebar) return sidebar;
     sidebar = document.createElement('aside');
@@ -155,6 +159,10 @@
 
   function openSidebar() {
     if (!window.publicAuth || !window.publicAuth.user) { window.publicAuth.openLogin(); return; }
+    if (window.platformNavigation && typeof window.platformNavigation.open === 'function') {
+      window.platformNavigation.open();
+      return;
+    }
     const sidebar = ensureSidebar();
     updateSidebarUser();
     sidebar.classList.add('is-open');
@@ -369,7 +377,8 @@
   }
 
   function install() {
-    ensureSidebar();
+    if (window.platformNavigation && typeof window.platformNavigation.ensure === 'function') window.platformNavigation.ensure();
+    else ensureSidebar();
     const account = document.getElementById('account-btn');
     if (account && !account.dataset.studentSidebarBound) {
       const replacement = account.cloneNode(true);
