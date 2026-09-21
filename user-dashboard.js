@@ -106,11 +106,16 @@
         </div>
         <div class="student-sidebar-status"><span class="student-sidebar-status-dot"></span><span class="student-sidebar-status-text">حساب الطالب</span><button type="button" class="student-sidebar-login" id="student-sidebar-login">تسجيل الدخول</button></div>
         <nav class="student-sidebar-nav" aria-label="قائمة حساب الطالب">
-          <div class="student-sidebar-heading">حسابي</div>
-          ${MENU.map(item => `<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>`).join('')}
+          <div class="student-sidebar-heading">الحساب والاختبارات</div>
+          ${MENU.map(item => \`<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>\`).join('')}
+          <button type="button" class="student-sidebar-item" data-sidebar-home><i class="fas fa-house"></i><span>الرئيسية</span></button>
         </nav>
         <div class="student-sidebar-divider"></div>
-        <button type="button" class="student-sidebar-item student-sidebar-home" data-sidebar-home><i class="fas fa-house"></i><span>الصفحة الرئيسية</span></button>
+        <div class="student-sidebar-heading">التنقل</div>
+        <div class="student-sidebar-quick-links">
+          <button type="button" class="student-sidebar-item" data-sidebar-placeholder="help"><i class="fas fa-circle-question"></i><span>المساعدة</span></button>
+          <button type="button" class="student-sidebar-item" data-sidebar-placeholder="contact"><i class="fas fa-headset"></i><span>تواصل معنا</span></button>
+        </div>
         <button type="button" class="student-sidebar-logout" id="student-sidebar-logout"><i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span></button>
       </div>`;
     document.body.appendChild(sidebar);
@@ -123,6 +128,11 @@
     }));
     const home = sidebar.querySelector('[data-sidebar-home]');
     if (home) home.addEventListener('click', () => { closeSidebar(); window.app && window.app.backToBooks(); });
+    sidebar.querySelectorAll('[data-sidebar-placeholder]').forEach(btn => btn.addEventListener('click', () => {
+      closeSidebar();
+      if (btn.dataset.sidebarPlaceholder === 'contact') document.querySelector('footer')?.scrollIntoView({behavior:'smooth',block:'start'});
+      else if (window.app?.showHomeNotice) window.app.showHomeNotice('المساعدة', 'سيتم تجهيز مركز المساعدة ضمن أقسام المنصة القادمة.');
+    }));
     const logout = sidebar.querySelector('#student-sidebar-logout');
     if (logout) logout.addEventListener('click', () => window.publicAuth.signOut());
     const login = sidebar.querySelector('#student-sidebar-login');
