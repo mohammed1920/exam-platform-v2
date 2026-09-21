@@ -108,6 +108,19 @@
         <div class="platform-sidebar-nav">
           <button class="platform-sidebar-item" data-platform-action="dashboard"><i class="fas fa-chart-line"></i><span>لوحة الاختبارات</span></button>
           <button class="platform-sidebar-item" data-platform-action="leaderboard"><i class="fas fa-trophy"></i><span>المتصدرون</span></button>
+          <button class="platform-sidebar-item" data-platform-action="profile"><i class="fas fa-user"></i><span>الملف الشخصي</span></button>
+        </div>
+
+        <div class="platform-sidebar-account" id="platform-sidebar-account">
+          <div class="platform-sidebar-account-user">
+            <div class="platform-sidebar-account-avatar" id="platform-sidebar-avatar">👤</div>
+            <div>
+              <strong id="platform-sidebar-name">زائر</strong>
+              <span id="platform-sidebar-email">سجّل الدخول للوصول إلى حسابك</span>
+            </div>
+          </div>
+          <button type="button" class="platform-sidebar-account-action" id="platform-sidebar-login"><i class="fas fa-right-to-bracket"></i><span>تسجيل الدخول</span></button>
+          <button type="button" class="platform-sidebar-account-action" id="platform-sidebar-logout" hidden><i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span></button>
         </div>
 
         <div class="platform-sidebar-divider"></div>
@@ -124,9 +137,30 @@
     document.body.appendChild(wrap);
     wrap.querySelectorAll('[data-platform-close]').forEach(el=>el.addEventListener('click',close));
     wrap.querySelectorAll('[data-platform-action]').forEach(btn=>btn.addEventListener('click',()=>run(btn.dataset.platformAction)));
+    const loginBtn=wrap.querySelector('#platform-sidebar-login');
+    const logoutBtn=wrap.querySelector('#platform-sidebar-logout');
+    if(loginBtn) loginBtn.addEventListener('click',()=>{ close(); window.publicAuth?.openLogin(); });
+    if(logoutBtn) logoutBtn.addEventListener('click',()=>window.publicAuth?.signOut());
+    updateAccountState();
   }
 
-  function open(){ ensure(); const el=document.getElementById('platform-sidebar'); el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); document.body.classList.add('platform-sidebar-open'); }
+  function updateAccountState(){
+    const wrap=document.getElementById('platform-sidebar');
+    if(!wrap) return;
+    const user=window.publicAuth && window.publicAuth.user;
+    const avatar=wrap.querySelector('#platform-sidebar-avatar');
+    const name=wrap.querySelector('#platform-sidebar-name');
+    const email=wrap.querySelector('#platform-sidebar-email');
+    const login=wrap.querySelector('#platform-sidebar-login');
+    const logout=wrap.querySelector('#platform-sidebar-logout');
+    if(avatar) avatar.textContent=user ? ((user.displayName||user.email||'ط').trim().charAt(0).toUpperCase()||'ط') : '👤';
+    if(name) name.textContent=user ? (user.displayName||user.email||'طالب المنصة') : 'زائر';
+    if(email) email.textContent=user ? (user.email||'حساب الطالب') : 'سجّل الدخول للوصول إلى حسابك';
+    if(login) login.hidden=Boolean(user);
+    if(logout) logout.hidden=!user;
+  }
+
+  function open(){ ensure(); updateAccountState(); const el=document.getElementById('platform-sidebar'); el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); document.body.classList.add('platform-sidebar-open'); }
   function close(){ const el=document.getElementById('platform-sidebar'); if(!el)return; el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); document.body.classList.remove('platform-sidebar-open'); }
 
   function install(){
@@ -146,6 +180,7 @@
     }
   }
 
-  window.platformNavigation={open,close,run,ensure};
+  window.addEventListener('public-auth-state-changed',updateAccountState);
+  window.platformNavigation={open,close,run,ensure,updateAccountState};
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install); else install();
 })();
