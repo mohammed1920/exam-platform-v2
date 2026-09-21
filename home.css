@@ -45,3 +45,21 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
 .footer-bottom{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 .footer-bottom p{margin:0}
 @media(max-width:600px){.footer-disclaimer{margin-left:12px;margin-right:12px}.footer-about{padding:0 12px}.footer-bottom{font-size:10px;gap:7px}}
+
+
+/* قسم تواصل معنا */
+.contact-section{max-width:1000px;margin:0 auto;padding:34px 20px 20px}
+.contact-box{padding:28px;border:1px solid rgba(194,157,95,.16);border-radius:24px;background:linear-gradient(145deg,rgba(20,32,48,.96),rgba(10,20,33,.98));box-shadow:0 18px 45px rgba(0,0,0,.16)}
+.contact-heading{text-align:center;margin-bottom:24px}
+.contact-heading span{display:block;color:#c29d5f;font-size:12px;font-weight:900;margin-bottom:5px}
+.contact-heading h2{margin:0 0 7px;font-size:25px}
+.contact-heading p{margin:0;color:#8498a9;font-size:12px;line-height:1.8}
+.contact-info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.contact-card{display:flex;align-items:center;gap:14px;min-height:82px;padding:16px 18px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025);color:#f2f5f7;text-decoration:none;transition:.25s}
+.contact-card:hover{transform:translateY(-3px);border-color:rgba(194,157,95,.38);background:rgba(194,157,95,.05)}
+.contact-card>i{display:grid;place-items:center;width:45px;height:45px;flex:0 0 45px;border-radius:13px;background:rgba(194,157,95,.1);color:#d4b675;font-size:19px}
+.contact-card span{min-width:0}
+.contact-card strong,.contact-card small{display:block}
+.contact-card strong{font-size:14px;margin-bottom:5px}
+.contact-card small{color:#8da0ae;font-size:11px;line-height:1.6;word-break:break-word}
+@media(max-width:600px){.contact-section{padding:24px 12px 12px}.contact-box{padding:20px 14px;border-radius:19px}.contact-info-grid{grid-template-columns:1fr}.contact-heading h2{font-size:22px}}
