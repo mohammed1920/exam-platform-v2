@@ -62,6 +62,9 @@
     home.style.display = books.classList.contains('active') ? '' : 'none';
   }
 
+  window.app = window.app || {};
+  window.app.showHomeNotice = showNotice;
+
   function install() {
     syncVisibility();
     const observer = new MutationObserver(syncVisibility);
