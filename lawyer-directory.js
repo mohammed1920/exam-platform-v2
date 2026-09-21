@@ -130,8 +130,6 @@
       const ref = db.collection('lawyerApplications').doc();
       const applicationId = ref.id;
       const storagePath = `lawyerApplications/${user.uid}/${applicationId}/bar-id`;
-      const storageRef = firebase.storage().ref(storagePath);
-      await storageRef.put(file, {contentType: file.type, customMetadata: {applicationId, ownerUid: user.uid}});
 
       const specializations = String(fd.get('specializations') || '')
         .split(/[،,]/).map(v => v.trim()).filter(Boolean).slice(0, 10);
@@ -154,6 +152,14 @@
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
+
+      try {
+        const storageRef = firebase.storage().ref(storagePath);
+        await storageRef.put(file, {contentType: file.type, customMetadata: {applicationId, ownerUid: user.uid}});
+      } catch (uploadError) {
+        try { await ref.delete(); } catch (_) {}
+        throw uploadError;
+      }
 
       form.reset();
       closeApplication();
