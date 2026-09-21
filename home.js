@@ -40,8 +40,7 @@
       return;
     }
     if (action === 'contact') {
-      const footer = document.querySelector('footer');
-      if (footer) footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
       return;
     }
     const names = {
