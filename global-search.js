@@ -98,6 +98,24 @@
         });
       } catch (_) {}
     }
+    if (window.publicAuth?.firestore) {
+      try {
+        const snap = await window.publicAuth.firestore.collection('lawyerProfiles').where('published','==',true).get();
+        snap.docs.forEach(d => {
+          const p = d.data();
+          results.push({
+            type: 'lawyers',
+            title: p.name || 'محامٍ',
+            subtitle: [p.governorate,p.district,(p.specializations||[]).join('، ')].filter(Boolean).join(' — '),
+            icon: '👨‍⚖️',
+            action: 'lawyers',
+            item: p,
+            text: normalize([p.name,p.governorate,p.district,p.office,p.address,(p.specializations||[]).join(' ')].filter(Boolean).join(' '))
+          });
+        });
+      } catch (_) {}
+    }
+
     const datasets = await Promise.all(DATASETS.map(loadDataset));
     datasets.flat().forEach(item => {
       results.push({
