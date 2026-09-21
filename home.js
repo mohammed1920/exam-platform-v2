@@ -55,7 +55,17 @@
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
 
+  function syncVisibility() {
+    const home = document.querySelector('.platform-home');
+    const books = document.getElementById('books-section');
+    if (!home || !books) return;
+    home.style.display = books.classList.contains('active') ? '' : 'none';
+  }
+
   function install() {
+    syncVisibility();
+    const observer = new MutationObserver(syncVisibility);
+    document.querySelectorAll('.view-section').forEach(section => observer.observe(section, { attributes: true, attributeFilter: ['class'] }));
     document.addEventListener('click', event => {
       const trigger = event.target.closest('[data-home-action]');
       if (trigger) run(trigger.dataset.homeAction);
