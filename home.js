@@ -65,7 +65,23 @@
   window.app = window.app || {};
   window.app.showHomeNotice = showNotice;
 
+  function loadLawyerDirectory() {
+    if (window.lawyerDirectory || document.querySelector('script[data-lawyer-directory]')) return;
+    const storage = document.createElement('script');
+    storage.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js';
+    storage.onload = () => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = 'lawyer-directory.css?v=1.0'; css.dataset.lawyerDirectoryCss = '1';
+      document.head.appendChild(css);
+      const script = document.createElement('script');
+      script.src = 'lawyer-directory.js?v=1.0'; script.dataset.lawyerDirectory = '1';
+      document.body.appendChild(script);
+    };
+    document.head.appendChild(storage);
+  }
+
   function install() {
+    loadLawyerDirectory();
     syncVisibility();
     const observer = new MutationObserver(syncVisibility);
     document.querySelectorAll('.view-section').forEach(section => observer.observe(section, { attributes: true, attributeFilter: ['class'] }));
