@@ -361,98 +361,111 @@ class ExamApp {
       return;
     }
 
-    // يعمل محلياً وكذلك على GitHub Pages داخل /exam-platform-v2
-    const basePath = window.location.pathname.startsWith('/exam-platform-v2')
-      ? '/exam-platform-v2'
-      : '';
+    // تعريف تدرج الذهب المشترك مرة واحدة فقط لكل الصفحة (تستخدمه كل الأيقونات)
+    if (!document.getElementById('bk-gold-grad-defs')) {
+      const svgDefs = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svgDefs.id = 'bk-gold-grad-defs';
+      svgDefs.setAttribute('style', 'width:0;height:0;position:absolute;');
+      svgDefs.setAttribute('aria-hidden', 'true');
+      svgDefs.innerHTML = `
+        <defs>
+          <linearGradient id="bkGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff0aa" />
+            <stop offset="50%" stop-color="#d4af37" />
+            <stop offset="100%" stop-color="#aa820a" />
+          </linearGradient>
+        </defs>
+      `;
+      document.body.appendChild(svgDefs);
+    }
 
     booksList.forEach(book => {
       const card = document.createElement('div');
       card.className = 'book-card';
 
-      // إذا كان cover_image موجوداً نستخدمه، وإلا نحاول تلقائياً:
-      // data/images/books/{book.id}.webp
-      const coverPath = book.cover_image
-        ? String(book.cover_image)
-        : `data/images/books/${book.id}.webp`;
+      // اللون: تلقائي وثابت حسب معرّف الكتاب (نفس المعرف = نفس اللون دائماً)
+      const theme = (typeof getBookTheme === 'function') ? getBookTheme(book.id) : 'blue';
+      // الأيقونة: من books.json إن وُجدت (book.icon)، وإلا افتراضية
+      const iconSvg = (typeof getBookIconSvg === 'function')
+        ? getBookIconSvg(book.icon)
+        : '<path d="M12 3V7 M4 8H20 M6 8L3 15 M6 8L9 15 M18 8L15 15 M18 8L21 15 M3 15A3 3 0 0 0 9 15 M15 15A3 3 0 0 0 21 15 M12 7V20 M9 21H15"/>';
 
-      const normalizedCoverPath =
-        coverPath.startsWith('http://') ||
-        coverPath.startsWith('https://') ||
-        coverPath.startsWith('/') ||
-        coverPath.startsWith('data:') ||
-        coverPath.startsWith('blob:')
-          ? coverPath
-          : `${basePath}/${coverPath.replace(/^\.\/+/, '')}`;
-
-      const imageHtml = `
-        <div class="book-cover" data-book-cover="${this.escapeHtml(book.id)}" aria-label="غلاف الكتاب">
-          <div class="book-cover-glow" aria-hidden="true"></div>
-          <div class="book-cover-floor-light" aria-hidden="true"></div>
-          <img
-            src="${this.escapeHtml(normalizedCoverPath)}"
-            alt="غلاف ${this.escapeHtml(book.title)}"
-            loading="lazy"
-            decoding="async"
-            data-fallback-step="0"
-          >
-          <div class="book-cover-fallback" aria-hidden="true">
-            <i class="fas fa-gavel"></i>
-          </div>
-        </div>
-      `;
+      const title = this.escapeHtml(book.title);
+      const author = this.escapeHtml(book.author || 'مستشار قانوني');
 
       card.innerHTML = `
-        <div class="book-card-content">
-          ${imageHtml}
-          <div class="book-title">${this.escapeHtml(book.title)}</div>
-          <div class="book-author">${this.escapeHtml(book.author || 'مستشار قانوني')}</div>
+        <div class="stage">
+          <div class="bg-watermark"><svg viewBox="0 0 24 24">${iconSvg}</svg></div>
+          <div class="top-gold-glow"></div>
+          <div class="side-gold-glow"></div>
+          <div class="shadow-base"></div>
+
+          <div class="book book-${theme}">
+            <div class="front-cover-wrapper">
+              <div class="top-ribbon-bookmark"></div>
+              <div class="front">
+                <div class="gold-frame"></div>
+                <div class="gold-frame-inner"></div>
+                <div class="corner-ornament c-tl"></div>
+                <div class="corner-ornament c-tr"></div>
+                <div class="corner-ornament c-bl"></div>
+                <div class="corner-ornament c-br"></div>
+                <div class="emblem-container">
+                  <div class="emblem-ring"></div>
+                  <svg class="emblem-icon" viewBox="0 0 24 24">${iconSvg}</svg>
+                </div>
+                <div class="book-title-front">${title}</div>
+              </div>
+              <div class="front-inside">
+                <div class="front-inside-pattern">منصة الاختبارات القانونية<br>حقوق الطبع محفوظة</div>
+              </div>
+            </div>
+
+            <div class="flipping-page"></div>
+
+            <div class="inside-page-body">
+              <div class="page-border-frame"></div>
+              <div class="page-corner p-c-tl"></div>
+              <div class="page-corner p-c-tr"></div>
+              <div class="page-corner p-c-bl"></div>
+              <div class="page-corner p-c-br"></div>
+              <div class="inside-page-title">${title}</div>
+              <div class="inside-page-text">جاهز للبدء بالاختبار والتحدي؟</div>
+            </div>
+
+            <div class="face back"></div>
+            <div class="face spine">
+              <div class="spine-rib"></div>
+              <div class="spine-text">${title}</div>
+              <div class="spine-rib"></div>
+            </div>
+            <div class="face fore-edge"></div>
+            <div class="face pages-top"></div>
+            <div class="face pages-bottom"></div>
+          </div>
         </div>
 
-        <div class="book-card-footer">
-          <div class="book-meta">
-            <span class="chapters-badge">⏳ ${book.chapters || 0} فصل</span>
-          </div>
-          <button type="button" data-book-id="${this.escapeHtml(book.id)}">
-            <span>دخول الاختبار</span>
-            <span class="btn-arrow" aria-hidden="true">←</span>
-          </button>
-        </div>
+        <div class="card-title">${title}</div>
+        <div class="card-author">${author}</div>
+        <div class="chapters-badge">⏳ ${book.chapters || 0} فصل</div>
+        <button type="button" class="test-btn" data-book-id="${this.escapeHtml(book.id)}">
+          <span>دخول الاختبار</span>
+          <span class="btn-arrow" aria-hidden="true">←</span>
+        </button>
       `;
 
-      const enterButton = card.querySelector('button[data-book-id]');
+      // النقر على أي مكان في البطاقة (عدا الزر) يفتح/يغلق الغلاف
+      // فتح/إغلاق الغلاف عند الضغط في أي مكان بالبطاقة (عدا زر الدخول للاختبار)
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.test-btn')) return;
+        card.classList.toggle('is-open');
+      });
+
+      const enterButton = card.querySelector('.test-btn');
       if (enterButton) {
-        enterButton.addEventListener('click', () => {
+        enterButton.addEventListener('click', (e) => {
+          e.stopPropagation();
           this.selectBook(book.id);
-        });
-      }
-
-      // إذا لم يوجد WEBP، نجرب PNG ثم JPG ثم JPEG.
-      const image = card.querySelector('.book-cover img');
-      const fallback = card.querySelector('.book-cover-fallback');
-
-      if (image) {
-        image.addEventListener('error', () => {
-          const currentStep = Number(image.dataset.fallbackStep || 0);
-          const fallbackExtensions = ['.png', '.jpg', '.jpeg'];
-
-          if (
-            !coverPath.toLowerCase().endsWith('.webp') ||
-            currentStep >= fallbackExtensions.length
-          ) {
-            image.style.display = 'none';
-            if (fallback) fallback.classList.add('visible');
-            return;
-          }
-
-          const originalPath = normalizedCoverPath.replace(/\.webp$/i, '');
-          image.dataset.fallbackStep = String(currentStep + 1);
-          image.src = `${originalPath}${fallbackExtensions[currentStep]}`;
-        });
-
-        image.addEventListener('load', () => {
-          image.style.display = 'block';
-          if (fallback) fallback.classList.remove('visible');
         });
       }
 

@@ -257,6 +257,10 @@
                         <label>المؤلف</label>
                         <input type="text" id="bookAuthorInput" placeholder="ادخل اسم المؤلف">
                     </div>
+                    <div class="form-group">
+                        <label>أيقونة الكتاب</label>
+                        <select id="bookIconInput"></select>
+                    </div>
                     <button class="btn btn-primary" onclick="guardedOp(updateBookDetails)">💾 حفظ مسميات الكتاب</button>
                 </div>
 
@@ -333,6 +337,7 @@
 
     <div id="modal" class="modal"><div class="modal-content" id="modal-body"></div></div>
 
+    <script src="book-icons.js?v=1"></script>
     <script>
         // ===== المتغيرات العامة =====
         let books = [];
@@ -557,6 +562,8 @@
             document.getElementById('bookTitleInput').value = currentBook.title || '';
             document.getElementById('bookDescriptionInput').value = currentBook.description || '';
             document.getElementById('bookAuthorInput').value = currentBook.author || '';
+            const iconSelect = document.getElementById('bookIconInput');
+            if (iconSelect) iconSelect.innerHTML = buildIconOptionsHtml(currentBook.icon || 'scale');
 
             renderBooks();
             toggleBookPanel(false);
@@ -1217,6 +1224,7 @@
             const newTitle = document.getElementById('bookTitleInput').value.trim();
             const newDescription = document.getElementById('bookDescriptionInput').value.trim();
             const newAuthor = document.getElementById('bookAuthorInput').value.trim();
+            const newIcon = document.getElementById('bookIconInput') ? document.getElementById('bookIconInput').value : (currentBook.icon || 'scale');
 
             if (!newTitle) {
                 showAlert('يرجى إدخال اسم الكتاب', 'error');
@@ -1230,6 +1238,7 @@
                     book.title = newTitle;
                     book.description = newDescription;
                     book.author = newAuthor;
+                    book.icon = newIcon;
                     return latest;
                 }, `تحديث بيانات كتاب: ${newTitle}`);
                 currentBook = books.find(b => b.id === currentBook.id);
@@ -1263,6 +1272,7 @@
                     <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil" pattern="[a-z0-9_-]+" autocomplete="off"></div>
                     <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
                     <div class="form-group"><label>الوصف</label><textarea id="m-desc" rows="3" placeholder="وصف الكتاب"></textarea></div>
+                    <div class="form-group"><label>أيقونة الكتاب</label><select id="m-icon">${buildIconOptionsHtml()}</select></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
@@ -1338,11 +1348,21 @@
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
+        // يبني خيارات قائمة اختيار الأيقونة من مكتبة book-icons.js
+        function buildIconOptionsHtml(selectedKey) {
+            if (typeof BOOK_ICONS !== 'object' || !BOOK_ICONS) return '<option value="scale">ميزان العدالة</option>';
+            return Object.keys(BOOK_ICONS).map(key => {
+                const sel = key === selectedKey ? ' selected' : '';
+                return `<option value="${key}"${sel}>${BOOK_ICONS[key].label}</option>`;
+            }).join('');
+        }
+
         async function saveBook() {
             const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_').toLowerCase();
             const title = document.getElementById('m-title').value.trim();
             const author = document.getElementById('m-author').value.trim();
             const desc = document.getElementById('m-desc').value.trim();
+            const icon = document.getElementById('m-icon') ? document.getElementById('m-icon').value : 'scale';
             if (!id || !title) { showAlert('يرجى إدخال اسم الكتاب والمعرف', 'error'); return; }
             if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) {
                 showAlert('معرف الكتاب يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام و _ أو - فقط', 'error'); return;
@@ -1350,7 +1370,7 @@
             try {
                 await saveBooks(latest => {
                     if (latest.some(b => b.id === id)) throw new Error('هذا المعرف مستخدم مسبقاً، اختر معرفاً آخر');
-                    latest.push({ id, title, author, description: desc, chapters: 0 });
+                    latest.push({ id, title, author, description: desc, icon, chapters: 0 });
                     return latest;
                 }, `إضافة كتاب: ${title}`);
                 currentBook = books.find(b => b.id === id) || null;
