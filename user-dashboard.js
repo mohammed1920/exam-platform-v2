@@ -107,7 +107,7 @@
         <div class="student-sidebar-status"><span class="student-sidebar-status-dot"></span><span class="student-sidebar-status-text">حساب الطالب</span><button type="button" class="student-sidebar-login" id="student-sidebar-login">تسجيل الدخول</button></div>
         <nav class="student-sidebar-nav" aria-label="قائمة حساب الطالب">
           <div class="student-sidebar-heading">الحساب والاختبارات</div>
-          ${MENU.map(item => \`<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>\`).join('')}
+          ${MENU.map(item => `<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>`).join('')}
           <button type="button" class="student-sidebar-item" data-sidebar-home><i class="fas fa-house"></i><span>الرئيسية</span></button>
         </nav>
         <div class="student-sidebar-divider"></div>
