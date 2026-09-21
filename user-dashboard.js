@@ -94,54 +94,7 @@
       window.platformNavigation.ensure();
       return document.getElementById('platform-sidebar');
     }
-    let sidebar = document.getElementById('student-account-sidebar');
-    if (sidebar) return sidebar;
-    sidebar = document.createElement('aside');
-    sidebar.id = 'student-account-sidebar';
-    sidebar.className = 'student-account-sidebar';
-    sidebar.setAttribute('aria-hidden', 'true');
-    sidebar.innerHTML = `
-      <div class="student-sidebar-backdrop" data-sidebar-close></div>
-      <div class="student-sidebar-panel" role="dialog" aria-modal="true" aria-label="حساب الطالب">
-        <button type="button" class="student-sidebar-close" data-sidebar-close aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
-        <div class="student-sidebar-brand">
-          <div class="student-sidebar-avatar" id="student-sidebar-avatar">ط</div>
-          <div><strong id="student-sidebar-name">طالب المنصة</strong><span id="student-sidebar-email"></span></div>
-        </div>
-        <div class="student-sidebar-status"><span class="student-sidebar-status-dot"></span><span class="student-sidebar-status-text">حساب الطالب</span><button type="button" class="student-sidebar-login" id="student-sidebar-login">تسجيل الدخول</button></div>
-        <nav class="student-sidebar-nav" aria-label="قائمة حساب الطالب">
-          <div class="student-sidebar-heading">الحساب والاختبارات</div>
-          ${MENU.map(item => `<button type="button" class="student-sidebar-item" data-sidebar-target="${item.target}"><i class="fas ${item.icon}"></i><span>${item.label}</span></button>`).join('')}
-          <button type="button" class="student-sidebar-item" data-sidebar-home><i class="fas fa-house"></i><span>الرئيسية</span></button>
-        </nav>
-        <div class="student-sidebar-divider"></div>
-        <div class="student-sidebar-heading">التنقل</div>
-        <div class="student-sidebar-quick-links">
-          <button type="button" class="student-sidebar-item" data-sidebar-placeholder="help"><i class="fas fa-circle-question"></i><span>المساعدة</span></button>
-          <button type="button" class="student-sidebar-item" data-sidebar-placeholder="contact"><i class="fas fa-headset"></i><span>تواصل معنا</span></button>
-        </div>
-        <button type="button" class="student-sidebar-logout" id="student-sidebar-logout"><i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span></button>
-      </div>`;
-    document.body.appendChild(sidebar);
-
-    sidebar.querySelectorAll('[data-sidebar-close]').forEach(el => el.addEventListener('click', closeSidebar));
-    sidebar.querySelectorAll('[data-sidebar-target]').forEach(btn => btn.addEventListener('click', () => {
-      const target = btn.dataset.sidebarTarget;
-      closeSidebar();
-      openDashboard(target);
-    }));
-    const home = sidebar.querySelector('[data-sidebar-home]');
-    if (home) home.addEventListener('click', () => { closeSidebar(); window.app && window.app.backToBooks(); });
-    sidebar.querySelectorAll('[data-sidebar-placeholder]').forEach(btn => btn.addEventListener('click', () => {
-      closeSidebar();
-      if (btn.dataset.sidebarPlaceholder === 'contact') document.querySelector('footer')?.scrollIntoView({behavior:'smooth',block:'start'});
-      else if (window.app?.showHomeNotice) window.app.showHomeNotice('المساعدة', 'سيتم تجهيز مركز المساعدة ضمن أقسام المنصة القادمة.');
-    }));
-    const logout = sidebar.querySelector('#student-sidebar-logout');
-    if (logout) logout.addEventListener('click', () => window.publicAuth.signOut());
-    const login = sidebar.querySelector('#student-sidebar-login');
-    if (login) login.addEventListener('click', () => { closeSidebar(); window.publicAuth.openLogin(); });
-    return sidebar;
+    return null;
   }
 
   function updateSidebarUser() {
@@ -171,7 +124,7 @@
   }
 
   function closeSidebar() {
-    const sidebar = document.getElementById('student-account-sidebar');
+    const sidebar = document.getElementById('platform-sidebar') || document.getElementById('student-account-sidebar');
     if (!sidebar) return;
     sidebar.classList.remove('is-open');
     sidebar.setAttribute('aria-hidden', 'true');
@@ -378,7 +331,6 @@
 
   function install() {
     if (window.platformNavigation && typeof window.platformNavigation.ensure === 'function') window.platformNavigation.ensure();
-    else ensureSidebar();
     const account = document.getElementById('account-btn');
     if (account && !account.dataset.studentSidebarBound) {
       const replacement = account.cloneNode(true);
