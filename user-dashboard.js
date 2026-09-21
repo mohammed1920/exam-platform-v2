@@ -303,6 +303,15 @@
   function render(target = 'profile') {
     const section = ensureSection(), root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
+    if (target === 'leaderboard') {
+      syncActiveMenu('');
+      if (window.studentLeaderboard && typeof window.studentLeaderboard.render === 'function') {
+        window.studentLeaderboard.render();
+      } else {
+        root.innerHTML = '<div class="profile-empty">جاري تحميل قسم المتصدرين...</div>';
+      }
+      return;
+    }
     const normalized = ['results','history','wrong','progress','favorites'].includes(target) ? target : target === 'exam-dashboard' ? 'overview' : target;
     syncActiveMenu(normalized === 'profile' ? 'profile' : 'exam-dashboard');
     const user = window.publicAuth && window.publicAuth.user;
