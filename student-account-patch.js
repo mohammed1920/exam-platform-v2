@@ -161,15 +161,9 @@
     updateSidebarLogoutAction();
     injectProfileEditor();
 
-    const observer = new MutationObserver(() => {
-      bindAccountButton();
-      updateAccountButton();
-      syncSidebarUser();
-      updateSidebarLogoutAction();
-      injectProfileEditor();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
+    // لا نراقب document.body بالكامل؛ هذا كان يعيد تشغيل التحديثات مع كل تغيير DOM
+    // وقد يسبب حلقة تحديث/تجمّد للواجهة. التحديثات هنا تُدار عند بدء الصفحة
+    // وعند تغيّر حالة تسجيل الدخول فقط.
     window.addEventListener('public-auth-state-changed', event => {
       updateAccountButton();
       syncSidebarUser();
