@@ -59,6 +59,11 @@
       if(window.app) window.app.navigateTo('contact');
       return;
     }
+    if(action==='lawyers'){
+      if(!window.lawyerDirectory){ window.setTimeout(()=>run('lawyers'),250); return; }
+      window.app?.navigateTo('lawyers');
+      return;
+    }
     notice(action);
   }
 
