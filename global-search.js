@@ -83,20 +83,21 @@
       });
     });
 
-    try {
-      const questions = state.questionIndex || await window.app.buildQuestionIndex();
-      state.questionIndex = questions;
-      questions.forEach(q => {
-        results.push({
-          type: 'question',
-          title: q.question || 'سؤال',
-          subtitle: '📘 ' + (q.sourceBook || '') + (q.sourceChapter ? ' — الفصل ' + q.sourceChapter : ''),
-          icon: '⚖️', action: 'question', question: q,
-          text: normalize((q.question || '') + ' ' + (q.sourceBook || '') + ' ' + (q.sourceChapter || ''))
+    if (window.publicAuth?.user) {
+      try {
+        const questions = state.questionIndex || await window.app.buildQuestionIndex();
+        state.questionIndex = questions;
+        questions.forEach(q => {
+          results.push({
+            type: 'question',
+            title: q.question || 'سؤال',
+            subtitle: '📘 ' + (q.sourceBook || '') + (q.sourceChapter ? ' — الفصل ' + q.sourceChapter : ''),
+            icon: '⚖️', action: 'question', question: q,
+            text: normalize((q.question || '') + ' ' + (q.sourceBook || '') + ' ' + (q.sourceChapter || ''))
+          });
         });
-      });
-    } catch (_) {}
-
+      } catch (_) {}
+    }
     const datasets = await Promise.all(DATASETS.map(loadDataset));
     datasets.flat().forEach(item => {
       results.push({
