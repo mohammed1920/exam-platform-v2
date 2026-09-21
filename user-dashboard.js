@@ -5,10 +5,7 @@
   const STORAGE_PREFIX = 'lawExam.studentHistory.v1';
   const MENU = [
     { id: 'profile', icon: 'fa-user', label: 'الملف الشخصي', target: 'profile' },
-    { id: 'results', icon: 'fa-chart-line', label: 'نتائجي', target: 'results' },
-    { id: 'history', icon: 'fa-clock-rotate-left', label: 'السجل والتقدم', target: 'history' },
-    { id: 'wrong', icon: 'fa-circle-xmark', label: 'إجاباتي الخاطئة', target: 'wrong' },
-    { id: 'favorites', icon: 'fa-bookmark', label: 'المفضلة', target: 'favorites' }
+    { id: 'exam-dashboard', icon: 'fa-chart-line', label: 'لوحة الاختبارات', target: 'exam-dashboard' }
   ];
 
   function getUserKey() {
@@ -275,42 +272,52 @@
       <div class="profile-panel student-empty-feature"><div class="coming-icon">🔖</div><h3>لا توجد مفضلات بعد</h3><p>عند تفعيل حفظ الأسئلة، ستظهر الأسئلة التي تضيفها للمفضلة هنا فقط.</p></div>`;
   }
 
+  function renderExamDashboard(history, activeTab = 'overview') {
+    const stats = getStats(history);
+    const tab = ['overview','results','history','wrong','progress','favorites'].includes(activeTab) ? activeTab : 'overview';
+    const tabs = [['overview','نظرة عامة','fa-gauge-high'],['results','نتائجي','fa-chart-line'],['history','سجل الاختبارات','fa-clock-rotate-left'],['wrong','إجاباتي الخاطئة','fa-circle-xmark'],['progress','تقدمي','fa-chart-pie'],['favorites','المفضلة','fa-bookmark']];
+    let body = '';
+    if (tab === 'overview') body = `<div class="exam-dashboard-stats">
+      <div class="profile-stat-card"><span>📝</span><strong>${stats.exams}</strong><small>اختبار مكتمل</small></div>
+      <div class="profile-stat-card"><span>📊</span><strong>${stats.avg}%</strong><small>متوسط النتائج</small></div>
+      <div class="profile-stat-card"><span>🏆</span><strong>${stats.best}%</strong><small>أفضل نتيجة</small></div>
+      <div class="profile-stat-card"><span>❓</span><strong>${stats.questions}</strong><small>سؤال محلول</small></div>
+    </div>
+    <div class="exam-dashboard-actions">
+      <button type="button" data-exam-tab="results"><i class="fas fa-chart-line"></i><span>نتائجي</span><small>تفاصيل النتائج</small></button>
+      <button type="button" data-exam-tab="history"><i class="fas fa-clock-rotate-left"></i><span>سجل الاختبارات</span><small>المكتملة والمتوقفة</small></button>
+      <button type="button" data-exam-tab="progress"><i class="fas fa-chart-pie"></i><span>تقدمي</span><small>حسب الكتب</small></button>
+      <button type="button" data-exam-tab="wrong"><i class="fas fa-circle-xmark"></i><span>الإجابات الخاطئة</span><small>راجع نقاط الضعف</small></button>
+    </div>
+    <div class="profile-panel student-highlight-panel"><h3>آخر نتيجة</h3>${history.length ? `<strong class="student-big-score">${Number(history[0].percentage)||0}%</strong><p>${escapeHtml(history[0].bookTitle||'اختبار')} · ${history[0].custom?'اختبار مخصص':`الفصل ${escapeHtml(history[0].chapter||'-')}`}</p>` : '<p class="profile-empty">لم تكمل أي اختبار بعد. ابدأ اختبارك الأول من قسم الاختبارات.</p>'}</div>`;
+    else if (tab === 'results') body = renderResults(history);
+    else if (tab === 'history') body = renderHistory(history);
+    else if (tab === 'wrong') body = renderWrong(history);
+    else if (tab === 'progress') body = renderProgress(history);
+    else body = renderFavorites();
+    return `${pageHeader('لوحة الاختبارات', 'كل نتائجك وسجلك وتقدمك ومراجعتك في مكان واحد.', 'fa-chart-line')}
+      <div class="exam-dashboard-tabs" role="tablist">${tabs.map(([id,label,icon]) => `<button type="button" class="${id===tab?'is-active':''}" data-exam-tab="${id}"><i class="fas ${icon}"></i><span>${label}</span></button>`).join('')}</div>
+      <div class="exam-dashboard-body">${body}</div>`;
+  }
+
   function render(target = 'profile') {
-    const section = ensureSection();
-    const root = document.getElementById('student-dashboard-content');
+    const section = ensureSection(), root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
-    syncActiveMenu(target);
+    const normalized = ['results','history','wrong','progress','favorites'].includes(target) ? target : target === 'exam-dashboard' ? 'overview' : target;
+    syncActiveMenu(normalized === 'profile' ? 'profile' : 'exam-dashboard');
     const user = window.publicAuth && window.publicAuth.user;
     if (!user) { root.innerHTML = '<div class="profile-empty">🔐 سجّل الدخول أولاً للوصول إلى حسابك.</div>'; return; }
     const history = readHistory();
-    if (target === 'results') root.innerHTML = renderResults(history);
-    else if (target === 'history') root.innerHTML = renderHistory(history);
-    else if (target === 'wrong') root.innerHTML = renderWrong(history);
-    else if (target === 'progress') root.innerHTML = renderProgress(history);
-    else if (target === 'favorites') root.innerHTML = renderFavorites();
-    else root.innerHTML = renderProfile(user);
-
+    root.innerHTML = normalized === 'profile' ? renderProfile(user) : renderExamDashboard(history, normalized);
     const logout = document.getElementById('profile-logout-btn');
     if (logout) logout.onclick = () => window.publicAuth.signOut();
     const clear = document.getElementById('clear-history-btn');
-    if (clear) clear.onclick = () => {
-      if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) {
-        writeHistory([]);
-        render('history');
-      }
-    };
+    if (clear) clear.onclick = () => { if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) { writeHistory([]); render('history'); } };
+    root.querySelectorAll('[data-exam-tab]').forEach(button => button.onclick = () => render(button.dataset.examTab));
     root.querySelectorAll('[data-resume-exam]').forEach(button => button.onclick = () => window.app.resumeSavedExam(button.dataset.resumeExam));
-    root.querySelectorAll('[data-delete-draft]').forEach(button => button.onclick = () => {
-      if (confirm('هل تريد حذف هذا الاختبار غير المكتمل؟')) {
-        window.app.deleteExamDraft(button.dataset.deleteDraft);
-        render('history');
-      }
-    });
+    root.querySelectorAll('[data-delete-draft]').forEach(button => button.onclick = () => { if (confirm('هل تريد حذف هذا الاختبار غير المكتمل؟')) { window.app.deleteExamDraft(button.dataset.deleteDraft); render('history'); } });
     root.querySelectorAll('[data-delete-history]').forEach(button => button.onclick = () => {
-      if (confirm('هل تريد حذف نتيجة هذا الاختبار من السجل؟')) {
-        writeHistory(readHistory().filter(item => item.id !== button.dataset.deleteHistory));
-        render('history');
-      }
+      if (confirm('هل تريد حذف نتيجة هذا الاختبار من السجل؟')) { writeHistory(readHistory().filter(item => item.id !== button.dataset.deleteHistory)); render('history'); }
     });
   }
 
