@@ -56,7 +56,7 @@
       return;
     }
     if(action==='contact'){
-      document.querySelector('footer')?.scrollIntoView({behavior:'smooth',block:'start'});
+      if(window.app) window.app.navigateTo('contact');
       return;
     }
     notice(action);
