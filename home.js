@@ -50,6 +50,13 @@
       petitions: 'العرائض والطلبات',
       lawyers: 'دليل المحامين'
     };
+    if (action === 'lawyers') {
+      loadLawyerDirectory();
+      const open = () => window.app?.navigateTo('lawyers');
+      if (window.lawyerDirectory) open();
+      else window.setTimeout(open, 250);
+      return;
+    }
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
 
