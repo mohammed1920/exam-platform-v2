@@ -43,7 +43,11 @@
       if (window.publicAuth?.openLogin) window.publicAuth.openLogin();
       return;
     }
-    const sidebar = document.getElementById('student-account-sidebar') || document.getElementById('platform-sidebar');
+    if (window.platformNavigation && typeof window.platformNavigation.open === 'function') {
+      window.platformNavigation.open();
+      return;
+    }
+    const sidebar = document.getElementById('student-account-sidebar');
     if (!sidebar) return;
     syncSidebarUser();
     sidebar.classList.add('is-open');
