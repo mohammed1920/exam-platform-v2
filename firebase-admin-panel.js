@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   let isAdmin=false,panelOpen=false,lastVisibleSection=null,els={};
+  function publishAdminState(){ window.firebaseAdminPanel={open:openPanel,isAdmin}; window.dispatchEvent(new CustomEvent('firebase-admin-state-changed',{detail:{isAdmin}})); }
   const esc=v=>String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
   function timeValue(v){const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleTimeString('ar-IQ',{hour:'2-digit',minute:'2-digit'});}
@@ -130,7 +131,7 @@ section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener
     try{await window.publicAuth.firestore.collection('lawyerApplications').doc(app.id).update({status:'rejected',rejectedBy:window.publicAuth.user.uid,rejectedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadLawyerApplications();setStatus('تم رفض الطلب ولم تُنشر بياناته.',false);}
     catch(e){console.error(e);setStatus('تعذر رفض الطلب.',true);}
   }
-  async function syncAdminState(){buildUI();if(!window.publicAuth||!window.publicAuth.user){isAdmin=false;if(panelOpen)closePanel();showTab(false);return;}const user=window.publicAuth.user;const allowed=await checkAdmin(user);isAdmin=allowed;showTab(allowed);if(!allowed&&panelOpen)closePanel();if(allowed&&els.welcome)els.welcome.textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;}
-  function install(){buildUI();if(!window.publicAuth)return;window.publicAuth.whenReady().then(syncAdminState).catch(syncAdminState);window.addEventListener('public-auth-state-changed',syncAdminState);}
+  async function syncAdminState(){buildUI();if(!window.publicAuth||!window.publicAuth.user){isAdmin=false;if(panelOpen)closePanel();showTab(false);return;}const user=window.publicAuth.user;const allowed=await checkAdmin(user);isAdmin=allowed;showTab(allowed);publishAdminState();if(!allowed&&panelOpen)closePanel();if(allowed&&els.welcome)els.welcome.textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;}
+  function install(){buildUI();publishAdminState();if(!window.publicAuth)return;window.publicAuth.whenReady().then(syncAdminState).catch(syncAdminState);window.addEventListener('public-auth-state-changed',syncAdminState);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
