@@ -42,8 +42,8 @@
 
   function run(action){
     close();
-    if(action==='home'){ if(window.app) window.app.backToBooks(); return; }
-    if(action==='books'){ if(window.app) window.app.backToBooks(); return; }
+    if(action==='home'){ if(window.app) window.app.navigateTo('home'); return; }
+    if(action==='books'){ if(window.app) window.app.navigateTo('books'); return; }
     if(action==='random'){ if(window.app) window.app.showCustomExamSetup(); return; }
     if(action==='dashboard'){
       if(window.studentDashboard) window.studentDashboard.open('exam-dashboard');
