@@ -2,8 +2,10 @@
 (function () {
   'use strict';
 
-  const MAX_FILE = 5 * 1024 * 1024;
-  const ALLOWED = ['image/jpeg','image/png','image/webp','application/pdf'];
+  // هوية نقابة المحامي لا تُرفع أو تُخزّن داخل Firebase Storage.
+  // يرسلها المتقدم يدويًا للأدمن عبر واتساب أو تلغرام.
+  const WHATSAPP_NUMBER = '9647738511899';
+  const TELEGRAM_USERNAME = 'lawyer_Th1';
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, m => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
@@ -26,7 +28,7 @@
       <div class="lawyers-hero">
         <span>👨‍⚖️ دليل المحامين</span>
         <h2>دليل المحامين العراقيين</h2>
-        <p>اعثر على المحامين الذين وافقوا على نشر بياناتهم في الدليل، أو قدّم طلبك لإضافة ملفك بعد التحقق من بطاقة النقابة.</p>
+        <p>اعثر على المحامين الذين وافقوا على نشر بياناتهم في الدليل، أو قدّم طلبك لإضافة ملفك بعد التحقق من بياناتك.</p>
       </div>
 
       <div class="lawyers-toolbar">
@@ -36,6 +38,15 @@
 
       <div id="lawyers-apply-panel" class="lawyer-apply-panel" hidden>
         <div class="lawyer-form-head"><div><span>طلب جديد</span><h3>أرسل بياناتك للمراجعة</h3><p>لن تُنشر البيانات أو بطاقة النقابة قبل مراجعة الأدمن والموافقة عليها.</p></div><button id="lawyer-form-close" type="button" aria-label="إغلاق">×</button></div>
+        <div class="lawyer-identity-notice">
+          <strong><i class="fas fa-id-card"></i> التحقق من هوية النقابة</strong>
+          <span>لا نرفع أو نخزن صورة الهوية داخل المنصة. بعد إرسال الطلب، أرسل صورة بطاقة/هوية نقابة المحامين يدويًا للأدمن عبر واتساب أو تلغرام.</span>
+          <div class="lawyer-identity-actions">
+            <a class="lawyer-identity-btn whatsapp" href="https://wa.me/\${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> إرسال الهوية عبر واتساب</a>
+            <a class="lawyer-identity-btn telegram" href="https://t.me/\${TELEGRAM_USERNAME}" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> إرسال الهوية عبر تلغرام</a>
+          </div>
+        </div>
+
         <form id="lawyer-application-form" class="lawyer-form">
           <div class="lawyer-form-grid">
             <label>الاسم الكامل<input name="name" required maxlength="120" autocomplete="name"></label>
@@ -47,10 +58,6 @@
             <label class="full">الاختصاصات <input name="specializations" required maxlength="180" placeholder="مثال: مدني، أحوال شخصية، تجاري"></label>
             <label class="full">أوقات الدوام <input name="workingHours" maxlength="180" placeholder="مثال: السبت–الخميس 4م–9م"></label>
             <label class="full">نبذة مختصرة<textarea name="description" rows="4" maxlength="600"></textarea></label>
-            <label class="full file-field">بطاقة / هوية نقابة المحامين
-              <input id="lawyer-bar-id" name="barId" type="file" required accept=".jpg,.jpeg,.png,.webp,.pdf">
-              <small>تُحفظ في مساحة تخزين خاصة ولا تظهر للطلاب. الحد الأقصى 5MB.</small>
-            </label>
           </div>
           <label class="lawyer-consent"><input name="consent" type="checkbox" required> أقر بأن البيانات تخصني، وأوافق على نشر البيانات العامة فقط في الدليل عند الموافقة على الطلب.</label>
           <button class="lawyers-primary-btn" id="lawyer-submit-btn" type="submit"><i class="fas fa-paper-plane"></i> إرسال الطلب للمراجعة</button>
@@ -104,32 +111,13 @@
 
     const form = event.currentTarget;
     const fd = new FormData(form);
-    const file = fd.get('barId');
-    if (!(file instanceof File) || !file.size) {
-      setFormStatus('يرجى رفع بطاقة/هوية النقابة.', true);
-      return;
-    }
-    if (!ALLOWED.includes(file.type)) {
-      setFormStatus('الملف يجب أن يكون JPG أو PNG أو WEBP أو PDF.', true);
-      return;
-    }
-    if (file.size > MAX_FILE) {
-      setFormStatus('حجم الملف أكبر من 5MB.', true);
-      return;
-    }
-
     const submit = document.getElementById('lawyer-submit-btn');
     submit.disabled = true;
-    setFormStatus('جارٍ حفظ الطلب والوثيقة بشكل آمن...');
+    setFormStatus('جارٍ حفظ الطلب...');
 
     try {
-      if (typeof firebase === 'undefined' || typeof firebase.storage !== 'function') {
-        throw new Error('Firebase Storage غير متاح.');
-      }
-
       const ref = db.collection('lawyerApplications').doc();
       const applicationId = ref.id;
-      const storagePath = `lawyerApplications/${user.uid}/${applicationId}/bar-id`;
 
       const specializations = String(fd.get('specializations') || '')
         .split(/[،,]/).map(v => v.trim()).filter(Boolean).slice(0, 10);
@@ -147,23 +135,15 @@
         specializations,
         workingHours: String(fd.get('workingHours') || '').trim(),
         description: String(fd.get('description') || '').trim(),
-        storagePath,
+        identityVerification: 'external_whatsapp_or_telegram',
         status: 'pending',
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
 
-      try {
-        const storageRef = firebase.storage().ref(storagePath);
-        await storageRef.put(file, {contentType: file.type, customMetadata: {applicationId, ownerUid: user.uid}});
-      } catch (uploadError) {
-        try { await ref.delete(); } catch (_) {}
-        throw uploadError;
-      }
-
       form.reset();
       closeApplication();
-      notify('تم إرسال الطلب', 'تم استلام طلبك. سيظهر في الدليل فقط بعد مراجعة الأدمن والموافقة عليه.');
+      notify('تم إرسال الطلب', 'تم استلام بياناتك. أرسل الآن صورة هوية نقابة المحامين للأدمن عبر واتساب أو تلغرام حتى يكتمل التحقق، ثم تتم مراجعة الطلب.');
     } catch (error) {
       console.error('Lawyer application failed:', error);
       setFormStatus('تعذر إرسال الطلب. حاول مرة أخرى.', true);
