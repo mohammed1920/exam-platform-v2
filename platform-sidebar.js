@@ -49,6 +49,11 @@
       if(window.studentDashboard) window.studentDashboard.open('exam-dashboard');
       return;
     }
+    if(action==='profile'){
+      if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth?.openLogin(); return; }
+      if(window.studentDashboard) window.studentDashboard.open('profile');
+      return;
+    }
     if(action==='leaderboard'){
       if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth && window.publicAuth.openLogin(); return; }
       if(window.app) window.app.navigateTo('student-dashboard',{dashboardTarget:'leaderboard'});
