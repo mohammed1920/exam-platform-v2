@@ -272,6 +272,14 @@
       <div class="profile-panel student-empty-feature"><div class="coming-icon">🔖</div><h3>لا توجد مفضلات بعد</h3><p>عند تفعيل حفظ الأسئلة، ستظهر الأسئلة التي تضيفها للمفضلة هنا فقط.</p></div>`;
   }
 
+  function renderDashboardTab(content) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = content;
+    const header = wrapper.querySelector('.student-page-header');
+    if (header) header.remove();
+    return wrapper.innerHTML;
+  }
+
   function renderExamDashboard(history, activeTab = 'overview') {
     const stats = getStats(history);
     const tab = ['overview','results','history','wrong','progress','favorites'].includes(activeTab) ? activeTab : 'overview';
