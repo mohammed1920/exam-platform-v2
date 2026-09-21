@@ -7,7 +7,7 @@
   }
 
   function syncSidebarUser() {
-    const sidebar = document.getElementById('student-account-sidebar');
+    const sidebar = document.getElementById('student-account-sidebar') || document.getElementById('platform-sidebar');
     if (!sidebar) return;
     const user = currentUser();
     const name = user && (user.displayName || user.email) ? (user.displayName || user.email) : 'زائر';
@@ -43,7 +43,7 @@
       if (window.publicAuth?.openLogin) window.publicAuth.openLogin();
       return;
     }
-    const sidebar = document.getElementById('student-account-sidebar');
+    const sidebar = document.getElementById('student-account-sidebar') || document.getElementById('platform-sidebar');
     if (!sidebar) return;
     syncSidebarUser();
     sidebar.classList.add('is-open');
@@ -168,7 +168,7 @@
       updateAccountButton();
       syncSidebarUser();
       if (event.detail && event.detail.user === null) {
-        const sidebar = document.getElementById('student-account-sidebar');
+        const sidebar = document.getElementById('student-account-sidebar') || document.getElementById('platform-sidebar');
         if (sidebar) {
           sidebar.classList.remove('is-open');
           sidebar.setAttribute('aria-hidden', 'true');
