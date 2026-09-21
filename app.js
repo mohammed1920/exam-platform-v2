@@ -1320,7 +1320,7 @@ class ExamApp {
     if (examHomeBtn) examHomeBtn.onclick = () => this.backToBooks();
     document.getElementById('restart-exam-btn').onclick = () => this.restartExam();
     document.getElementById('review-exam-btn').onclick = () => this.showReview();
-    document.getElementById('search-input').oninput = () => this.filterBooks();
+    document.getElementById('search-input').oninput = () => { if (window.globalSearch && typeof window.globalSearch.search === 'function') window.globalSearch.search(document.getElementById('search-input').value); else this.filterBooks(); };
 
     const customExamEntryBtn = document.getElementById('custom-exam-entry-btn');
     if (customExamEntryBtn) customExamEntryBtn.onclick = () => this.showCustomExamSetup();
