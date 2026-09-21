@@ -43,6 +43,25 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Lawyer applications: applicants may create/read only their own pending application.
+    // Admins can review all applications and publish a separate public profile.
+    match /lawyerApplications/{applicationId} {
+      allow create: if signedIn()
+                    && request.resource.data.applicantUid == request.auth.uid
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.id == applicationId
+                    && request.resource.data.storagePath.matches('lawyerApplications/' + request.auth.uid + '/' + applicationId + '/bar-id');
+      allow read: if isAdmin() || (signedIn() && resource.data.applicantUid == request.auth.uid);
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Public lawyer profiles contain only fields intended for publication.
+    match /lawyerProfiles/{profileId} {
+      allow read: if resource.data.published == true;
+      allow create, update, delete: if isAdmin();
+    }
+
     // Student leaderboard summaries.
     match /leaderboards/{bookId}/entries/{userId} {
       allow read: if request.auth != null;
