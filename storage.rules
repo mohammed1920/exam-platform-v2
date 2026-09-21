@@ -12,12 +12,13 @@ service firebase.storage {
     // Sensitive Bar Association ID documents are private by default.
     // The applicant may upload/read only their own file; admins may review it.
     match /lawyerApplications/{uid}/{applicationId}/bar-id {
-      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid && firestore.get(/databases/(default)/documents/lawyerApplications/$(applicationId)).data.status == 'pending');
       allow write: if signedIn()
                    && request.auth.uid == uid
+                   && firestore.get(/databases/(default)/documents/lawyerApplications/$(applicationId)).data.status == 'pending'
                    && request.resource.size <= 5 * 1024 * 1024
                    && request.resource.contentType in ['image/jpeg','image/png','image/webp','application/pdf'];
-      allow delete: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow delete: if isAdmin() || (signedIn() && request.auth.uid == uid && firestore.get(/databases/(default)/documents/lawyerApplications/$(applicationId)).data.status == 'pending');
     }
 
     match /{allPaths=**} {
