@@ -58,7 +58,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function switchLawyerView(view){
     const pending=view==='pending';
     els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.classList.toggle('active',(btn.dataset.lawyerView==='pending')===pending));
-    const p=section.querySelector('#fa-lawyers-pending-panel'),pub=section.querySelector('#fa-lawyers-published-panel');
+    const p=els.section.querySelector('#fa-lawyers-pending-panel'),pub=els.section.querySelector('#fa-lawyers-published-panel');
     if(p)p.hidden=!pending;if(pub)pub.hidden=pending;
     if(els.lawyerEdit&&!pending)closeLawyerEdit();
   }
