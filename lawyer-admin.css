@@ -11,5 +11,8 @@
 .firebase-admin-subviews{min-height:180px}
 .firebase-admin-subview{display:none}
 .firebase-admin-subview.active{display:block}
+.firebase-admin-subview-back{border:1px solid rgba(194,157,95,.25);background:rgba(255,255,255,.025);color:#c9a45b;border-radius:9px;padding:9px 13px;margin-bottom:14px;cursor:pointer;font:inherit;font-size:11px}
+.firebase-admin-subview-back:hover{border-color:rgba(194,157,95,.55);background:rgba(194,157,95,.07)}
+#fa-admin-home[hidden]{display:none}
 .firebase-admin-subview>.firebase-admin-card{margin-top:0}
 @media(max-width:700px){.firebase-admin-menu{grid-template-columns:1fr}.firebase-admin-menu-card{padding:14px}}
