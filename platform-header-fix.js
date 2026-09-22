@@ -10,16 +10,7 @@
       text-align: center;
     }
 
-    /* زر القائمة يأخذ الصف العلوي ولا يحجز مكاناً بجانب اسم المنصة */
-    header > #account-btn {
-      position: absolute !important;
-      top: 24px !important;
-      right: 24px !important;
-      z-index: 10;
-      margin: 0 !important;
-    }
-
-    /* اسم المنصة ينزل تحت زر القائمة ويبقى في المنتصف */
+    /* اسم المنصة يبقى في المنتصف */
     header > h1 {
       display: block;
       width: 100%;
@@ -50,11 +41,6 @@
     @media (max-width: 560px) {
       header {
         padding: 76px 14px 24px !important;
-      }
-
-      header > #account-btn {
-        top: 16px !important;
-        right: 16px !important;
       }
 
       header > h1 {

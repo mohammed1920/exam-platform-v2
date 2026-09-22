@@ -268,7 +268,8 @@
         </div>
       </div>`);
 
-    document.getElementById('account-btn').addEventListener('click', openAccountMenu);
+    const accountButton = document.getElementById('account-btn');
+    if (accountButton) accountButton.addEventListener('click', openAccountMenu);
     document.getElementById('auth-close-btn').addEventListener('click', () => closeModal());
     document.getElementById('login-modal').addEventListener('click', event => { if (event.target.id === 'login-modal') closeModal(); });
     document.getElementById('google-signin-btn').addEventListener('click', signInGoogle);
