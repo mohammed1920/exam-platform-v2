@@ -10,8 +10,8 @@
 
   function applyTheme(theme){
     const light = theme === 'light';
-    document.documentElement.toggleAttribute('data-theme', light);
-    if (!light) document.documentElement.removeAttribute('data-theme');
+    if (light) document.documentElement.setAttribute('data-theme','light');
+    else document.documentElement.removeAttribute('data-theme');
 
     const button = document.getElementById('theme-toggle');
     if (button) {
