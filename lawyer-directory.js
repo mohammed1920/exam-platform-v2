@@ -66,6 +66,7 @@
         </form>
       </div>
 
+      <div id="lawyer-my-application" class="lawyer-my-application" hidden></div>
       <div id="lawyers-list" class="lawyers-list"><div class="lawyers-empty">جاري تحميل دليل المحامين...</div></div>
       <div id="lawyer-details-modal" class="lawyer-details-modal" hidden aria-hidden="true">
         <div class="lawyer-details-backdrop" data-lawyer-close></div>
@@ -117,6 +118,31 @@
     el.className = 'lawyer-form-status' + (error ? ' error' : '');
   }
 
+  function applicationStatusLabel(application) {
+    const status = String(application?.status || 'pending').toLowerCase();
+    if (status === 'approved') return {label:'تم اعتماد الطلب', className:'approved', icon:'fa-circle-check'};
+    if (status === 'rejected') return {label:'لم يتم اعتماد الطلب', className:'rejected', icon:'fa-circle-xmark'};
+    return {label:'قيد التحقق — بانتظار تأكيد الهوية', className:'pending', icon:'fa-hourglass-half'};
+  }
+
+  async function loadMyApplication() {
+    const db = window.publicAuth?.firestore;
+    const user = window.publicAuth?.user;
+    const box = document.getElementById('lawyer-my-application');
+    if (!db || !user || !box) return;
+    try {
+      const snap = await db.collection('lawyerApplications').where('applicantUid','==',user.uid).get();
+      const apps = snap.docs.map(d => ({id:d.id, ...d.data()})).sort((a,b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+      const active = apps.find(a => ['pending','approved'].includes(String(a.status || '').toLowerCase()));
+      if (!active) { box.hidden = true; return; }
+      const state = applicationStatusLabel(active);
+      const message = state.className === 'pending' ? 'لا تحتاج إلى إعادة إرسال النموذج. إذا لم ترسل هوية نقابة المحامين بعد، أرسلها للإدارة لإكمال التحقق.' : 'تم اعتماد طلبك، وسيظهر ملفك في دليل المحامين حسب حالة النشر.';
+      box.innerHTML = '<div class="lawyer-my-application-head"><i class="fas '+state.icon+'"></i><div><span>طلبك في دليل المحامين</span><h3>'+esc(active.name || 'المحامي')+'</h3></div><strong class="'+state.className+'">'+esc(state.label)+'</strong></div><p>'+message+'</p>' + (state.className === 'pending' ? '<div class="lawyer-identity-actions"><a class="lawyer-identity-btn whatsapp" href="https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> واتساب</a><a class="lawyer-identity-btn telegram" href="https://t.me/'+TELEGRAM_USERNAME+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> تلغرام</a></div>' : '');
+      box.hidden = false;
+      document.getElementById('lawyer-apply-btn').hidden = true;
+      document.getElementById('lawyers-apply-panel').hidden = true;
+    } catch (error) { console.error('My lawyer application load failed:', error); }
+  }
   async function submitApplication(event) {
     event.preventDefault();
     const user = window.publicAuth?.user;
@@ -159,6 +185,7 @@
       });
 
       form.reset();
+      await loadMyApplication();
       document.getElementById('lawyers-apply-panel').scrollIntoView({behavior:'smooth', block:'start'});
     } catch (error) {
       console.error('Lawyer application failed:', error);
@@ -172,6 +199,7 @@
 
   async function loadProfiles() {
     buildSection();
+    await loadMyApplication();
     const list = document.getElementById('lawyers-list');
     if (!list) return;
     const db = window.publicAuth?.firestore;
