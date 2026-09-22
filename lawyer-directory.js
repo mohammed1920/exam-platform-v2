@@ -66,6 +66,13 @@
       </div>
 
       <div id="lawyers-list" class="lawyers-list"><div class="lawyers-empty">جاري تحميل دليل المحامين...</div></div>
+      <div id="lawyer-details-modal" class="lawyer-details-modal" hidden aria-hidden="true">
+        <div class="lawyer-details-backdrop" data-lawyer-close></div>
+        <div class="lawyer-details-dialog" role="dialog" aria-modal="true" aria-labelledby="lawyer-details-title">
+          <button class="lawyer-details-close" type="button" data-lawyer-close aria-label="إغلاق">×</button>
+          <div id="lawyer-details-content"></div>
+        </div>
+      </div>
     `;
     main.appendChild(section);
 
@@ -74,6 +81,8 @@
     document.getElementById('lawyer-form-close').onclick = () => closeApplication();
     document.getElementById('lawyer-application-form').addEventListener('submit', submitApplication);
     document.getElementById('lawyers-search-input').addEventListener('input', renderProfiles);
+    document.querySelectorAll('[data-lawyer-close]').forEach(el => el.addEventListener('click', closeLawyerDetails));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLawyerDetails(); });
   }
 
   function openApplication() {
@@ -186,19 +195,73 @@
       return;
     }
     list.innerHTML = rows.map(p => `
-      <article class="lawyer-card">
+      <article class="lawyer-card" tabindex="0" role="button" data-lawyer-details="${esc(p.id)}" aria-label="عرض تفاصيل ${esc(p.name)}">
         <div class="lawyer-card-icon"><i class="fas fa-user-tie"></i></div>
         <div class="lawyer-card-main">
-          <h3>${esc(p.name)}</h3>
-          <div class="lawyer-verified">✓ بيانات معتمدة من الإدارة</div>
-          <p><i class="fas fa-location-dot"></i> ${esc([p.governorate,p.district].filter(Boolean).join(' — ') || 'العنوان غير متوفر')}</p>
-          <div class="lawyer-tags">${(p.specializations||[]).slice(0,4).map(s => '<span>'+esc(s)+'</span>').join('')}</div>
+          <div class="lawyer-card-topline">
+            <h3>${esc(p.name)}</h3>
+            <span class="lawyer-verified">✓ معتمد</span>
+          </div>
+          <p class="lawyer-card-location"><i class="fas fa-location-dot"></i> ${esc([p.governorate,p.district].filter(Boolean).join(' — ') || 'الموقع غير متوفر')}</p>
+          ${p.office ? '<p class="lawyer-card-office"><i class="fas fa-building"></i> '+esc(p.office)+'</p>' : ''}
+          ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
+          <div class="lawyer-tags">${(p.specializations||[]).slice(0,3).map(s => '<span>'+esc(s)+'</span>').join('')}${(p.specializations||[]).length>3?'<span>+'+((p.specializations||[]).length-3)+'</span>':''}</div>
           <div class="lawyer-card-actions">
-            ${p.phone ? '<a href="tel:'+esc(p.phone)+'"><i class="fas fa-phone"></i> اتصال</a>' : ''}
-            ${p.mapUrl ? '<a href="'+esc(p.mapUrl)+'" target="_blank" rel="noopener"><i class="fas fa-map-location-dot"></i> الخريطة</a>' : ''}
+            ${p.phone ? '<a href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
+            <span class="lawyer-details-link"><i class="fas fa-circle-info"></i> عرض التفاصيل</span>
           </div>
         </div>
       </article>`).join('');
+    list.querySelectorAll('[data-lawyer-details]').forEach(card => {
+      card.addEventListener('click', event => {
+        if (event.target.closest('a[data-lawyer-call]')) return;
+        openLawyerDetails(profiles.find(p => p.id === card.dataset.lawyerDetails));
+      });
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLawyerDetails(profiles.find(p => p.id === card.dataset.lawyerDetails));
+        }
+      });
+    });
+  }
+
+  function openLawyerDetails(profile) {
+    if (!profile) return;
+    const modal = document.getElementById('lawyer-details-modal');
+    const content = document.getElementById('lawyer-details-content');
+    if (!modal || !content) return;
+    const location = [profile.governorate, profile.district].filter(Boolean).join(' — ');
+    const specializations = Array.isArray(profile.specializations) ? profile.specializations : [];
+    content.innerHTML = `
+      <div class="lawyer-details-head">
+        <div class="lawyer-details-icon"><i class="fas fa-user-tie"></i></div>
+        <div><span>بيانات محامٍ معتمدة</span><h2 id="lawyer-details-title">${esc(profile.name || 'المحامي')}</h2></div>
+      </div>
+      <div class="lawyer-details-grid">
+        ${location ? '<div class="lawyer-detail-item"><span>الموقع</span><strong><i class="fas fa-location-dot"></i> '+esc(location)+'</strong></div>' : ''}
+        ${profile.office ? '<div class="lawyer-detail-item"><span>اسم المكتب</span><strong><i class="fas fa-building"></i> '+esc(profile.office)+'</strong></div>' : ''}
+        ${profile.address ? '<div class="lawyer-detail-item full"><span>عنوان المكتب</span><strong><i class="fas fa-map-pin"></i> '+esc(profile.address)+'</strong></div>' : ''}
+        ${profile.phone ? '<div class="lawyer-detail-item"><span>رقم الهاتف</span><strong><i class="fas fa-phone"></i> '+esc(profile.phone)+'</strong></div>' : ''}
+        ${profile.workingHours ? '<div class="lawyer-detail-item"><span>أوقات الدوام</span><strong><i class="fas fa-clock"></i> '+esc(profile.workingHours)+'</strong></div>' : ''}
+      </div>
+      ${specializations.length ? '<div class="lawyer-details-section"><span>الاختصاصات</span><div class="lawyer-tags lawyer-details-tags">'+specializations.map(s=>'<span>'+esc(s)+'</span>').join('')+'</div></div>' : ''}
+      ${profile.description ? '<div class="lawyer-details-section"><span>نبذة عن المحامي</span><p>'+esc(profile.description)+'</p></div>' : ''}
+      <div class="lawyer-details-actions">
+        ${profile.phone ? '<a href="tel:'+esc(profile.phone)+'"><i class="fas fa-phone"></i> الاتصال بالمحامي</a>' : ''}
+        ${profile.mapUrl ? '<a href="'+esc(profile.mapUrl)+'" target="_blank" rel="noopener"><i class="fas fa-map-location-dot"></i> فتح الموقع</a>' : ''}
+      </div>`;
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('lawyer-modal-open');
+  }
+
+  function closeLawyerDetails() {
+    const modal = document.getElementById('lawyer-details-modal');
+    if (!modal) return;
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('lawyer-modal-open');
   }
 
   function install() {
