@@ -58,11 +58,6 @@
       if(window.firebaseAdminPanel?.open) window.firebaseAdminPanel.open();
       return;
     }
-    if(action==='profile'){
-      if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth?.openLogin(); return; }
-      if(window.studentDashboard) window.studentDashboard.open('profile');
-      return;
-    }
     if(action==='leaderboard'){
       if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth && window.publicAuth.openLogin(); return; }
       if(window.app) window.app.navigateTo('student-dashboard',{dashboardTarget:'leaderboard'});
@@ -143,10 +138,6 @@
           <button class="platform-sidebar-item" data-platform-action="about"><i class="fas fa-circle-info"></i><span>عن المنصة</span></button>
           <button class="platform-sidebar-item" data-platform-action="contact"><i class="fas fa-headset"></i><span>تواصل معنا</span></button>
           <button class="platform-sidebar-item" data-platform-action="help"><i class="fas fa-circle-question"></i><span>المساعدة</span></button>
-        </div>
-        <div class="platform-sidebar-note">
-          <strong>تنظيم المنصة</strong>
-          نتائج الطالب وسجله وتقدمه والإجابات الخاطئة والمفضلة كلها داخل لوحة الاختبارات، حتى تبقى القائمة الرئيسية مختصرة وواضحة.
         </div>
       </div>`;
     document.body.appendChild(wrap);
