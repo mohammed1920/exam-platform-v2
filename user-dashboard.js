@@ -177,6 +177,18 @@
         <div><small>البريد الإلكتروني</small><strong>${email || '-'}</strong></div>
         <div><small>حالة الحساب</small><strong class="student-ok">نشط</strong></div>
       </div>
+      <div class="profile-panel profile-name-editor" id="profile-name-editor">
+        <div class="profile-panel-heading">
+          <div><h3>تعديل الاسم الشخصي</h3><p>غيّر الاسم الذي يظهر في حسابك وقائمة الطالب.</p></div>
+          <i class="fas fa-pen"></i>
+        </div>
+        <label for="profile-display-name">الاسم الشخصي</label>
+        <div class="profile-name-editor-row">
+          <input id="profile-display-name" type="text" maxlength="80" autocomplete="name" value="${name}" placeholder="اكتب اسمك هنا">
+          <button type="button" id="profile-save-name"><i class="fas fa-check"></i> حفظ الاسم</button>
+        </div>
+        <p class="profile-name-editor-message" id="profile-name-editor-message" role="status"></p>
+      </div>
       <button type="button" class="profile-logout-btn" id="profile-logout-btn"><i class="fas fa-right-from-bracket"></i> تسجيل الخروج</button>`;
   }
 
@@ -299,6 +311,40 @@
     root.innerHTML = normalized === 'profile' ? renderProfile(user) : renderExamDashboard(history, normalized);
     const logout = document.getElementById('profile-logout-btn');
     if (logout) logout.onclick = () => window.publicAuth.signOut();
+
+    const nameInput = document.getElementById('profile-display-name');
+    const nameSave = document.getElementById('profile-save-name');
+    const nameMessage = document.getElementById('profile-name-editor-message');
+    if (nameInput && nameSave && nameMessage) {
+      nameSave.onclick = async () => {
+        const newName = nameInput.value.trim();
+        if (newName.length < 2) {
+          nameMessage.textContent = 'اكتب اسماً مكوّناً من حرفين على الأقل.';
+          return;
+        }
+        const auth = window.firebase?.auth ? window.firebase.auth() : null;
+        const activeUser = auth?.currentUser || window.publicAuth?.user;
+        if (!activeUser) {
+          window.publicAuth?.openLogin();
+          return;
+        }
+        nameSave.disabled = true;
+        nameMessage.textContent = 'جاري حفظ الاسم...';
+        try {
+          await activeUser.updateProfile({ displayName: newName });
+          await activeUser.reload();
+          if (window.publicAuth?.saveStudentProfile) await window.publicAuth.saveStudentProfile(activeUser);
+          nameMessage.textContent = 'تم حفظ الاسم بنجاح.';
+          window.dispatchEvent(new CustomEvent('public-auth-state-changed', { detail: { user: activeUser } }));
+          window.setTimeout(() => render('profile'), 250);
+        } catch (error) {
+          console.error('Profile name update failed:', error);
+          nameMessage.textContent = 'تعذر حفظ الاسم. حاول مرة أخرى.';
+        } finally {
+          nameSave.disabled = false;
+        }
+      };
+    }
     const clear = document.getElementById('clear-history-btn');
     if (clear) clear.onclick = () => { if (confirm('هل تريد مسح سجل نتائج اختباراتك من هذا الجهاز؟')) { writeHistory([]); render('history'); } };
     root.querySelectorAll('[data-exam-tab]').forEach(button => button.onclick = () => render(button.dataset.examTab));
