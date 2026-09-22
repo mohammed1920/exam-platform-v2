@@ -312,63 +312,114 @@ class ExamApp {
 
     container.innerHTML = '';
 
-    const makeExternalCard = ({ href, icon, title, text, className = '' }) => {
+    const makeCard = ({ href, icon, title, text, className = '', external = false }) => {
       const card = document.createElement('a');
       card.className = `contact-card ${className}`.trim();
       card.href = href;
-      card.target = '_blank';
-      card.rel = 'noopener noreferrer';
-      card.innerHTML = `<i class="${icon}"></i><span><strong></strong><small></small></span><b class="contact-card-action">فتح</b>`;
+      if (external) {
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+      }
+      card.innerHTML = `<i class="${icon}"></i><span><strong></strong><small></small></span><b class="contact-card-action">${external ? 'فتح' : 'اتصال'}</b>`;
       card.querySelector('strong').textContent = title;
       card.querySelector('small').textContent = text;
       return card;
     };
 
-    const whatsappNumber = String(data.whatsapp_number || '').replace(/\\D/g, '');
+    // رقم الهاتف: يبقى ظاهراً كبطاقة مستقلة، والضغط عليه يفتح لوحة الاتصال.
+    if (data.phone) {
+      container.appendChild(makeCard({
+        href: `tel:${encodeURIComponent(String(data.phone))}`,
+        icon: 'fas fa-phone',
+        title: 'رقم الهاتف',
+        text: String(data.phone),
+        className: 'contact-card-phone'
+      }));
+    }
+
+    if (data.email) {
+      container.appendChild(makeCard({
+        href: `mailto:${encodeURIComponent(String(data.email))}`,
+        icon: 'fas fa-envelope',
+        title: 'البريد الإلكتروني',
+        text: String(data.email),
+        className: 'contact-card-email'
+      }));
+    }
+
+    const whatsappNumber = String(data.whatsapp_number || '').replace(/\D/g, '');
     if (whatsappNumber) {
-      container.appendChild(makeExternalCard({
+      container.appendChild(makeCard({
         href: `https://wa.me/${whatsappNumber}`,
         icon: 'fab fa-whatsapp',
         title: 'واتساب',
-        text: 'للتواصل المباشر مع إدارة المنصة',
-        className: 'contact-card-whatsapp'
+        text: 'تواصل مباشر مع إدارة المنصة',
+        className: 'contact-card-whatsapp',
+        external: true
       }));
     }
 
     const telegramUsername = String(data.telegram_username || '').replace(/^@/, '').trim();
     if (telegramUsername) {
-      container.appendChild(makeExternalCard({
+      container.appendChild(makeCard({
         href: `https://t.me/${encodeURIComponent(telegramUsername)}`,
         icon: 'fab fa-telegram-plane',
         title: 'تليغرام',
-        text: 'للتواصل المباشر مع إدارة المنصة',
-        className: 'contact-card-telegram'
+        text: 'تواصل مباشر مع إدارة المنصة',
+        className: 'contact-card-telegram',
+        external: true
       }));
     }
 
-    if (data.phone && !whatsappNumber) {
-      const card = document.createElement('a');
-      card.className = 'contact-card';
-      card.href = `tel:${encodeURIComponent(String(data.phone))}`;
-      card.innerHTML = '<i class="fas fa-phone"></i><span><strong>اتصال مباشر</strong><small></small></span><b class="contact-card-action">اتصال</b>';
-      card.querySelector('small').textContent = String(data.phone);
-      container.appendChild(card);
+    const instagramValue = String(data.instagram || '').trim();
+    if (instagramValue) {
+      const instagramUrl = /^https?:\/\//i.test(instagramValue)
+        ? instagramValue
+        : `https://instagram.com/${encodeURIComponent(instagramValue.replace(/^@/, ''))}`;
+      const href = this.safeExternalUrl(instagramUrl);
+      if (href !== '#') {
+        container.appendChild(makeCard({
+          href,
+          icon: 'fab fa-instagram',
+          title: 'تابعنا على إنستغرام',
+          text: instagramValue.startsWith('@') ? instagramValue : `@${instagramValue.replace(/^https?:\/\//i, '').replace(/^www\\.instagram\\.com\\//i, '').replace(/\/$/, '')}`,
+          className: 'contact-card-instagram',
+          external: true
+        }));
+      }
+    }
+
+    const facebookValue = String(data.facebook || '').trim();
+    if (facebookValue) {
+      const facebookUrl = /^https?:\/\//i.test(facebookValue)
+        ? facebookValue
+        : `https://facebook.com/${facebookValue.replace(/^@/, '')}`;
+      const href = this.safeExternalUrl(facebookUrl);
+      if (href !== '#') {
+        container.appendChild(makeCard({
+          href,
+          icon: 'fab fa-facebook-f',
+          title: 'تابع صفحتنا على فيسبوك',
+          text: 'صفحتنا الرسمية',
+          className: 'contact-card-facebook',
+          external: true
+        }));
+      }
     }
 
     (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
       const href = this.safeExternalUrl(link.url);
       if (href === '#') return;
-      const card = makeExternalCard({
+      container.appendChild(makeCard({
         href,
-        icon: 'fab fa-telegram-plane',
-        title: String(link.label || 'تليغرام'),
-        text: 'فتح القناة أو المجموعة',
-        className: 'contact-card-secondary'
-      });
-      container.appendChild(card);
+        icon: 'fas fa-link',
+        title: String(link.label || 'رابط إضافي'),
+        text: 'فتح الرابط',
+        className: 'contact-card-secondary',
+        external: true
+      }));
     });
   }
-
   renderBooks(booksList) {
     const container = document.getElementById('books-container');
     if (!container) return;
