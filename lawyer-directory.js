@@ -189,8 +189,8 @@
       let pendingEdit = null;
       if (String(active.status || '').toLowerCase() === 'approved') {
         try {
-          const editSnap = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).where('status','==','pending').get();
-          pendingEdit = editSnap.docs.map(d => ({id:d.id, ...d.data()})).sort((a,b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0))[0] || null;
+          const editSnap = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).get();
+          pendingEdit = editSnap.docs.map(d => ({id:d.id, ...d.data()})).filter(a => String(a.status || '').toLowerCase() === 'pending').sort((a,b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0))[0] || null;
         } catch (editError) {
           console.warn('Lawyer edit request load failed:', editError);
         }
