@@ -42,7 +42,7 @@
           <strong><i class="fas fa-id-card"></i> التحقق من هوية النقابة</strong>
           <span>لا نرفع أو نخزن صورة الهوية داخل المنصة. بعد إرسال الطلب، أرسل صورة بطاقة/هوية نقابة المحامين يدويًا للأدمن عبر واتساب أو تلغرام.</span>
           <div class="lawyer-identity-actions">
-            <a class="lawyer-identity-btn whatsapp" href="https://wa.me/\${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> إرسال الهوية عبر واتساب</a>
+            <a class="lawyer-identity-btn whatsapp" href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> إرسال الهوية عبر واتساب</a>
             <a class="lawyer-identity-btn telegram" href="https://t.me/\${TELEGRAM_USERNAME}" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> إرسال الهوية عبر تلغرام</a>
           </div>
         </div>
