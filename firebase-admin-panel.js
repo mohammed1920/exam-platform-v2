@@ -81,7 +81,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
 
   async function loadLawyerManagement(){
-    await Promise.all([loadLawyerApplications(),loadLawyerProfiles(),loadLawyerEditRequests()]);
+    await Promise.all([loadLawyerApplications(),loadLawyerProfiles()]);
+    await loadLawyerEditRequests();
   }
 
   async function loadLawyerEditRequests(){
