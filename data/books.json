@@ -77,5 +77,13 @@
     "description": "",
     "chapters": 26,
     "icon": "courthouse"
+  },
+  {
+    "id": "law__ofreal_rights",
+    "title": "الحقوق العينية",
+    "author": "مستشار قانوني",
+    "description": "",
+    "icon": "scale",
+    "chapters": 0
   }
 ]
