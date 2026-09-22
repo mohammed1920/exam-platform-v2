@@ -20,6 +20,20 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     try {
+      // تنظيف أي Service Worker أو Cache قديم من نسخ الـOffline السابقة.
+      try {
+        if ('serviceWorker' in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map(reg => reg.unregister()));
+        }
+        if ('caches' in window) {
+          const cacheKeys = await caches.keys();
+          await Promise.all(cacheKeys.map(key => caches.delete(key)));
+        }
+      } catch (cacheError) {
+        console.warn('تعذر تنظيف التخزين المؤقت القديم:', cacheError);
+      }
+
       await window.publicAuth.whenReady();
       await this.loadBooks();
       await this.loadContactInfo();
@@ -295,9 +309,10 @@ class ExamApp {
   async loadContactInfo() {
     try {
       const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-      const res = await fetch(`${basePath}/data/contact.json?v=${Date.now()}`);
+      const res = await fetch(`${basePath}/data/contact.json?contact_version=3&ts=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
+        console.log('Contact data loaded:', data);
         this.renderContactInfo(data);
       }
     } catch (e) {
