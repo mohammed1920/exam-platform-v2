@@ -155,7 +155,10 @@
     const loginBtn=wrap.querySelector('#platform-sidebar-login');
     const logoutBtn=wrap.querySelector('#platform-sidebar-logout');
     if(loginBtn) loginBtn.addEventListener('click',()=>{ close(); window.publicAuth?.openLogin(); });
-    if(logoutBtn) logoutBtn.addEventListener('click',()=>window.publicAuth?.signOut());
+    if(logoutBtn) logoutBtn.addEventListener('click',()=>{
+      close();
+      window.publicAuth?.signOut();
+    });
     updateAccountState();
   }
 

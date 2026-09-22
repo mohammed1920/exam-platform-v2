@@ -1270,6 +1270,18 @@ class ExamApp {
     this.renderBooks(this.books);
   }
 
+  backToHome() {
+    this.saveExamDraft();
+    clearInterval(this.timerInterval);
+    this.timerInterval = null;
+    this.examActive = false;
+    document.body.classList.remove('exam-mode');
+    this.isCustomExam = false;
+    this.currentBook = null;
+    this.currentChapter = null;
+    this.navigateTo('home');
+  }
+
   startTimer(initialSeconds = 0) {
     clearInterval(this.timerInterval);
     const el = document.getElementById('exam-timer');

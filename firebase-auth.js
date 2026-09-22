@@ -305,8 +305,12 @@
       closeModal(false);
       await saveStudentProfile(user);
       finishPendingAction();
-    } else if (wasAuthenticated && window.app?.examActive) {
-      window.app.backToBooks();
+    } else if (wasAuthenticated) {
+      // تسجيل الخروج يعيد المستخدم دائماً إلى الرئيسية، ولا يتركه داخل قائمة الكتب أو الاختبار.
+      window.platformNavigation?.close();
+      window.closeStudentAccountSidebar?.();
+      if (window.app?.backToHome) window.app.backToHome();
+      else window.app?.navigateTo('home');
     }
     window.dispatchEvent(new CustomEvent('public-auth-state-changed', { detail: { user } }));
   });
