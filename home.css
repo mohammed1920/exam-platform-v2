@@ -71,6 +71,18 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
 .contact-card-telegram>i{background:rgba(42,171,238,.12);color:#4fc3f7}
 .contact-card-telegram .contact-card-action{background:rgba(42,171,238,.10);color:#66ccf7}
 .contact-card-telegram:hover{border-color:rgba(42,171,238,.55);box-shadow:0 12px 30px rgba(42,171,238,.10)}
+.contact-card-phone{border-color:rgba(194,157,95,.3)}
+.contact-card-phone>i{background:rgba(194,157,95,.12);color:#d8bd86}
+.contact-card-email{border-color:rgba(180,160,210,.22)}
+.contact-card-email>i{background:rgba(180,160,210,.10);color:#c9b8e6}
+.contact-card-instagram{border-color:rgba(225,48,108,.28);background:linear-gradient(145deg,rgba(91,35,61,.42),rgba(10,24,34,.92))}
+.contact-card-instagram>i{background:rgba(225,48,108,.11);color:#f47aa7}
+.contact-card-instagram .contact-card-action{background:rgba(225,48,108,.10);color:#f48aac}
+.contact-card-instagram:hover{border-color:rgba(225,48,108,.52);box-shadow:0 12px 30px rgba(225,48,108,.10)}
+.contact-card-facebook{border-color:rgba(24,119,242,.28);background:linear-gradient(145deg,rgba(25,57,92,.44),rgba(10,24,34,.92))}
+.contact-card-facebook>i{background:rgba(24,119,242,.11);color:#5fa5ff}
+.contact-card-facebook .contact-card-action{background:rgba(24,119,242,.10);color:#6aaeff}
+.contact-card-facebook:hover{border-color:rgba(24,119,242,.52);box-shadow:0 12px 30px rgba(24,119,242,.10)}
 .contact-card-secondary{min-height:78px}
 @media(max-width:600px){.contact-section{padding:24px 12px 12px}.contact-box{padding:20px 14px;border-radius:19px}.contact-info-grid{grid-template-columns:1fr}.contact-heading h2{font-size:22px}.contact-card{min-height:86px;padding:15px}.contact-card-action{display:none}}
 
