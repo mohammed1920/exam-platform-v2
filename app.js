@@ -409,7 +409,7 @@ class ExamApp {
           href,
           icon: 'fab fa-instagram',
           title: 'تابعنا على إنستغرام',
-          text: instagramValue.startsWith('@') ? instagramValue : `@${instagramValue.replace(/^https?:\/\//i, '').replace(/^www\\.instagram\\.com\\//i, '').replace(/\/$/, '')}`,
+          text: instagramValue.startsWith('@') ? instagramValue : `@${instagramValue.replace(/^https?:\/\//i, '').replace(/^www\.instagram\.com\//i, '').replace(/\/$/, '')}`,
           className: 'contact-card-instagram',
           external: true
         }));
