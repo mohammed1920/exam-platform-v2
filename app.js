@@ -312,33 +312,59 @@ class ExamApp {
 
     container.innerHTML = '';
 
-    if (data.phone) {
+    const makeExternalCard = ({ href, icon, title, text, className = '' }) => {
+      const card = document.createElement('a');
+      card.className = `contact-card ${className}`.trim();
+      card.href = href;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+      card.innerHTML = `<i class="${icon}"></i><span><strong></strong><small></small></span><b class="contact-card-action">فتح</b>`;
+      card.querySelector('strong').textContent = title;
+      card.querySelector('small').textContent = text;
+      return card;
+    };
+
+    const whatsappNumber = String(data.whatsapp_number || '').replace(/\\D/g, '');
+    if (whatsappNumber) {
+      container.appendChild(makeExternalCard({
+        href: `https://wa.me/${whatsappNumber}`,
+        icon: 'fab fa-whatsapp',
+        title: 'واتساب',
+        text: 'للتواصل المباشر مع إدارة المنصة',
+        className: 'contact-card-whatsapp'
+      }));
+    }
+
+    const telegramUsername = String(data.telegram_username || '').replace(/^@/, '').trim();
+    if (telegramUsername) {
+      container.appendChild(makeExternalCard({
+        href: `https://t.me/${encodeURIComponent(telegramUsername)}`,
+        icon: 'fab fa-telegram-plane',
+        title: 'تليغرام',
+        text: 'للتواصل المباشر مع إدارة المنصة',
+        className: 'contact-card-telegram'
+      }));
+    }
+
+    if (data.phone && !whatsappNumber) {
       const card = document.createElement('a');
       card.className = 'contact-card';
       card.href = `tel:${encodeURIComponent(String(data.phone))}`;
-      card.innerHTML = '<i class="fas fa-phone"></i><span><strong>رقم الهاتف</strong><small></small></span>';
+      card.innerHTML = '<i class="fas fa-phone"></i><span><strong>اتصال مباشر</strong><small></small></span><b class="contact-card-action">اتصال</b>';
       card.querySelector('small').textContent = String(data.phone);
-      container.appendChild(card);
-    }
-
-    if (data.email) {
-      const card = document.createElement('div');
-      card.className = 'contact-card';
-      card.innerHTML = '<i class="fas fa-envelope"></i><span><strong>البريد الإلكتروني</strong><small></small></span>';
-      card.querySelector('small').textContent = String(data.email);
       container.appendChild(card);
     }
 
     (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
       const href = this.safeExternalUrl(link.url);
       if (href === '#') return;
-      const card = document.createElement('a');
-      card.className = 'contact-card';
-      card.href = href;
-      card.target = '_blank';
-      card.rel = 'noopener noreferrer';
-      card.innerHTML = '<i class="fab fa-telegram-plane"></i><span><strong></strong><small>فتح الصفحة</small></span>';
-      card.querySelector('strong').textContent = String(link.label || 'تليغرام');
+      const card = makeExternalCard({
+        href,
+        icon: 'fab fa-telegram-plane',
+        title: String(link.label || 'تليغرام'),
+        text: 'فتح القناة أو المجموعة',
+        className: 'contact-card-secondary'
+      });
       container.appendChild(card);
     });
   }
