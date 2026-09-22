@@ -22,6 +22,10 @@
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>التقديم</th><th>الهوية</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyers-body"><tr><td colspan="6">جارٍ التحميل...</td></tr></tbody></table></div>
       </div>
       <div id="fa-lawyers-published-panel" hidden>
+        <div class="lawyer-admin-edit-requests">
+          <div class="firebase-admin-card-head"><h3>✎ طلبات تعديل البيانات</h3><span id="fa-lawyer-edit-requests-count">0</span></div>
+          <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>التعديلات</th><th>التاريخ</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyer-edit-requests-body"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody></table></div>
+        </div>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyers-published-body"><tr><td colspan="5">جارٍ التحميل...</td></tr></tbody></table></div>
       </div>
       <div id="fa-lawyer-edit" class="lawyer-admin-edit" hidden>
@@ -38,7 +42,7 @@
     </section></div>
     <button id="firebase-admin-back" class="firebase-admin-back" type="button">← العودة للموقع</button>`
     main.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),resultsCount:section.querySelector('#fa-results-count'),activeCount:section.querySelector('#fa-active-count'),averageScore:section.querySelector('#fa-average-score'),studentsUpdated:section.querySelector('#fa-students-updated'),resultsUpdated:section.querySelector('#fa-results-updated'),studentsBody:section.querySelector('#fa-students-body'),resultsBody:section.querySelector('#fa-results-body'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),resultsCount:section.querySelector('#fa-results-count'),activeCount:section.querySelector('#fa-active-count'),averageScore:section.querySelector('#fa-average-score'),studentsUpdated:section.querySelector('#fa-students-updated'),resultsUpdated:section.querySelector('#fa-results-updated'),studentsBody:section.querySelector('#fa-students-body'),resultsBody:section.querySelector('#fa-results-body'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
     els.section.querySelectorAll('[data-admin-home]').forEach(btn=>btn.addEventListener('click',showAdminHome));
@@ -77,7 +81,27 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
 
   async function loadLawyerManagement(){
-    await Promise.all([loadLawyerApplications(),loadLawyerProfiles()]);
+    await Promise.all([loadLawyerApplications(),loadLawyerProfiles(),loadLawyerEditRequests()]);
+  }
+
+  async function loadLawyerEditRequests(){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.lawyerEditRequestsBody)return;
+    try{
+      const snap=await window.publicAuth.firestore.collection('lawyerEditRequests').where('status','==','pending').get();
+      const requests=snap.docs.map(d=>({id:d.id,...d.data()}));
+      requests.sort((a,b)=>{const av=a.createdAt&&typeof a.createdAt.toMillis==='function'?a.createdAt.toMillis():0,bv=b.createdAt&&typeof b.createdAt.toMillis==='function'?b.createdAt.toMillis():0;return bv-av;});
+      if(els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=requests.length;
+      const profilesById=new Map(lawyerProfiles.map(p=>[p.id,p]));
+      els.lawyerEditRequestsBody.innerHTML=requests.length?requests.map(r=>{
+        const p=profilesById.get(r.profileId)||{};
+        const d=r.data||{};
+        const changes=['phone','address','office','workingHours','specializations','governorate','district','name'].filter(k=>String(d[k]??'')!==String(p[k]??''));
+        const labels={phone:'الهاتف',address:'العنوان',office:'المكتب',workingHours:'الدوام',specializations:'الاختصاصات',governorate:'المحافظة',district:'القضاء/المنطقة',name:'الاسم'};
+        return '<tr><td><strong>'+esc(p.name||d.name||'المحامي')+'</strong><div class="lawyer-admin-status">'+esc(r.applicantEmail||'')+'</div></td><td>'+esc(changes.map(k=>labels[k]).join('، ')||'تحديث بيانات')+'</td><td>'+esc(dateValue(r.createdAt))+'</td><td><div class="lawyer-admin-actions"><button class="approve" data-lawyer-edit-approve="'+esc(r.id)+'">✓ اعتماد التعديل</button><button class="reject" data-lawyer-edit-reject="'+esc(r.id)+'">✕ رفض</button></div></td></tr>';
+      }).join(''):'<tr><td colspan="4">لا توجد طلبات تعديل قيد المراجعة.</td></tr>';
+      els.lawyerEditRequestsBody.querySelectorAll('[data-lawyer-edit-approve]').forEach(el=>el.onclick=()=>approveLawyerEditRequest(requests.find(x=>x.id===el.dataset.lawyerEditApprove)));
+      els.lawyerEditRequestsBody.querySelectorAll('[data-lawyer-edit-reject]').forEach(el=>el.onclick=()=>rejectLawyerEditRequest(requests.find(x=>x.id===el.dataset.lawyerEditReject)));
+    }catch(e){console.error('Lawyer edit requests load failed:',e);els.lawyerEditRequestsBody.innerHTML='<tr><td colspan="4">تعذر تحميل طلبات التعديل.</td></tr>';}
   }
 
   async function loadLawyerApplications(){
@@ -130,6 +154,28 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       if(type==='profile'){const appId=lawyerProfiles.find(p=>p.id===id)?.applicationId;if(appId)await db.collection('lawyerApplications').doc(appId).update({...data,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});}
       closeLawyerEdit();await loadLawyerManagement();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم حفظ تعديلات المحامي.',false);
     }catch(e){console.error(e);setStatus('تعذر حفظ تعديلات المحامي. تحقق من الصلاحيات.',true);}
+  }
+
+  async function approveLawyerEditRequest(request){
+    if(!request||!confirm('هل تريد اعتماد تعديلات بيانات هذا المحامي ونشرها؟'))return;
+    try{
+      const db=window.publicAuth.firestore, data=request.data||{};
+      const profile=lawyerProfiles.find(p=>p.id===request.profileId);
+      if(!profile)throw new Error('ملف المحامي غير موجود.');
+      const updateData={...data,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+      await db.collection('lawyerProfiles').doc(request.profileId).update(updateData);
+      if(request.applicationId)await db.collection('lawyerApplications').doc(request.applicationId).update(updateData);
+      await db.collection('lawyerEditRequests').doc(request.id).update({status:'approved',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      await loadLawyerManagement();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم اعتماد تعديل بيانات المحامي.',false);
+    }catch(e){console.error(e);setStatus('تعذر اعتماد التعديل.',true);}
+  }
+
+  async function rejectLawyerEditRequest(request){
+    if(!request||!confirm('هل تريد رفض طلب تعديل بيانات هذا المحامي؟'))return;
+    try{
+      await window.publicAuth.firestore.collection('lawyerEditRequests').doc(request.id).update({status:'rejected',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      await loadLawyerEditRequests();setStatus('تم رفض طلب التعديل.',false);
+    }catch(e){console.error(e);setStatus('تعذر رفض التعديل.',true);}
   }
 
   async function deleteLawyerApplication(app){
