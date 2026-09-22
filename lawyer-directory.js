@@ -47,16 +47,7 @@
           </div>
         </div>
 
-        <div id="lawyer-submit-success" class="lawyer-submit-success" hidden>
-          <div class="lawyer-success-icon"><i class="fas fa-check"></i></div>
-          <h3>تم إرسال بياناتك بنجاح</h3>
-          <p>تم استلام بياناتك. لإكمال طلب الإضافة، ارفع هوية نقابة المحامين للإدارة لتأكيد بياناتك والموافقة على نشر ملفك.</p>
-          <div class="lawyer-success-actions">
-            <a class="lawyer-identity-btn whatsapp" href="https://wa.me/\${WHATSAPP_NUMBER}?text=\${encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> إرسال الهوية عبر واتساب</a>
-            <a class="lawyer-identity-btn telegram" href="https://t.me/\${TELEGRAM_USERNAME}?text=\${encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')}" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> إرسال الهوية عبر تلغرام</a>
-          </div>
-          <p class="lawyer-success-note"><i class="fas fa-circle-info"></i> اختر إحدى الطريقتين ثم أرفق صورة الهوية وأرسلها للإدارة.</p>
-        </div>
+/div>
 
         <form id="lawyer-application-form" class="lawyer-form">
           <div class="lawyer-form-grid">
@@ -103,6 +94,7 @@
     }
     document.getElementById('lawyers-apply-panel').hidden = false;
     document.getElementById('lawyer-apply-btn').hidden = true;
+    document.getElementById('lawyers-list').hidden = true;
     document.getElementById('lawyers-apply-panel').scrollIntoView({behavior:'smooth', block:'start'});
   }
 
@@ -113,10 +105,10 @@
     if (btn) btn.hidden = false;
     const form = document.getElementById('lawyer-application-form');
     const notice = document.querySelector('.lawyer-identity-notice');
-    const success = document.getElementById('lawyer-submit-success');
     if (form) form.hidden = false;
     if (notice) notice.hidden = false;
-    if (success) success.hidden = true;
+    const list = document.getElementById('lawyers-list');
+    if (list) list.hidden = false;
   }
 
   function setFormStatus(text, error) {
@@ -168,9 +160,6 @@
       });
 
       form.reset();
-      document.querySelector('.lawyer-identity-notice')?.setAttribute('hidden', '');
-      form.hidden = true;
-      document.getElementById('lawyer-submit-success').hidden = false;
       document.getElementById('lawyers-apply-panel').scrollIntoView({behavior:'smooth', block:'start'});
     } catch (error) {
       console.error('Lawyer application failed:', error);
