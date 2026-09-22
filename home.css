@@ -225,3 +225,27 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   position:relative;
   z-index:2;
 }
+
+
+/* روابط ومحتوى Footer */
+.footer-links{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 auto 20px;text-align:center}
+.footer-links button{border:0;background:none;padding:3px 2px;color:#9aabb8;font:inherit;font-size:11px;cursor:pointer;transition:.2s}
+.footer-links button:hover{color:#d8bd86}
+.footer-links span{color:rgba(194,157,95,.45);font-size:10px}
+.footer-info-section{max-width:900px;margin:0 auto;padding:34px 20px 24px}
+.footer-info-box{padding:28px;border:1px solid rgba(194,157,95,.16);border-radius:24px;background:linear-gradient(145deg,rgba(20,32,48,.96),rgba(10,20,33,.98));box-shadow:0 18px 45px rgba(0,0,0,.16)}
+.footer-info-back{margin-bottom:22px}
+.footer-info-heading{text-align:center;margin-bottom:22px}
+.footer-info-heading span{display:block;color:#c29d5f;font-size:12px;font-weight:900;margin-bottom:5px}
+.footer-info-heading h2{margin:0 0 8px;font-size:24px}
+.footer-info-heading p{margin:0;color:#8498a9;font-size:12px;line-height:1.9}
+.footer-info-content{color:#a5b3be;font-size:12px;line-height:2;text-align:right}
+.footer-info-content p{margin:0 0 13px}
+.footer-faq-list{display:grid;gap:9px}
+.footer-faq-list details{border:1px solid rgba(255,255,255,.07);border-radius:13px;background:rgba(255,255,255,.025);overflow:hidden}
+.footer-faq-list summary{padding:14px 16px;color:#e5edf2;font-size:12px;font-weight:800;cursor:pointer;list-style:none}
+.footer-faq-list summary::-webkit-details-marker{display:none}
+.footer-faq-list summary:before{content:'+';display:inline-grid;place-items:center;width:22px;height:22px;margin-left:8px;border-radius:7px;background:rgba(194,157,95,.1);color:#c29d5f;font-size:15px;vertical-align:middle}
+.footer-faq-list details[open] summary:before{content:'−'}
+.footer-faq-list p{margin:0;padding:0 16px 15px;color:#8fa1ae;font-size:11px;line-height:1.9}
+@media(max-width:600px){.footer-info-section{padding:24px 12px 12px}.footer-info-box{padding:20px 14px;border-radius:19px}.footer-links{gap:7px}.footer-links button{font-size:10px}}
