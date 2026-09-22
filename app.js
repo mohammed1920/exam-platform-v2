@@ -422,12 +422,13 @@ class ExamApp {
     (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
       const href = normalizeExternalUrl(link.url);
       if (href === '#') return;
+      const isTelegramLink = /(^|\/)t\.me\//i.test(href);
       container.appendChild(makeCard({
         href,
-        icon: 'fas fa-link',
-        title: String(link.label || 'رابط إضافي'),
-        text: 'فتح الرابط',
-        className: 'contact-card-secondary',
+        icon: isTelegramLink ? 'fab fa-telegram-plane' : 'fas fa-link',
+        title: String(link.label || (isTelegramLink ? 'قناة تليغرام' : 'رابط إضافي')),
+        text: isTelegramLink ? 'فتح القناة أو المجموعة' : 'فتح الرابط',
+        className: isTelegramLink ? 'contact-card-telegram contact-card-secondary' : 'contact-card-secondary',
         external: true
       }));
     });
