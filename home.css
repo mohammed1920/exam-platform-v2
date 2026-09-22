@@ -155,3 +155,73 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
 .home-category-card[data-home-action="books"].featured{
   border-color:rgba(194,157,95,.48);
 }
+
+
+/* بطاقات الشريط السفلي — ألوان مستقلة عن بطاقات الأقسام */
+.home-feature-strip>div{
+  position:relative;
+  overflow:hidden;
+}
+.home-feature-strip>div:first-child{
+  border-color:rgba(96,145,214,.24);
+  background:
+    radial-gradient(circle at 88% 20%,rgba(96,145,214,.12),transparent 42%),
+    linear-gradient(145deg,rgba(28,49,76,.78),rgba(11,23,38,.97));
+}
+.home-feature-strip>div:first-child>i{
+  color:#78a9e5;
+  background:rgba(96,145,214,.10);
+  border-radius:10px;
+  padding:7px;
+  width:40px;
+}
+.home-feature-strip>div:first-child button{
+  color:#8db9ed;
+}
+.home-feature-strip>div:first-child:hover{
+  border-color:rgba(96,145,214,.48);
+  box-shadow:0 12px 30px rgba(54,105,171,.10);
+}
+
+.home-feature-strip>div:last-child{
+  border-color:rgba(67,194,184,.28);
+  background:
+    radial-gradient(circle at 88% 20%,rgba(67,194,184,.14),transparent 42%),
+    linear-gradient(145deg,rgba(23,62,63,.82),rgba(9,27,34,.98));
+}
+.home-feature-strip>div:last-child>i{
+  color:#62d2c5;
+  background:rgba(67,194,184,.11);
+  border-radius:10px;
+  padding:7px;
+  width:40px;
+}
+.home-feature-strip>div:last-child button{
+  color:#78d8cd;
+}
+.home-feature-strip>div:last-child:hover{
+  border-color:rgba(67,194,184,.55);
+  box-shadow:0 12px 32px rgba(43,166,157,.12);
+}
+
+/* تواصل معنا — بطاقة أكثر دفئاً ووضوحاً */
+.home-feature-strip>div:last-child:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  left:-65px;
+  bottom:-105px;
+  border-radius:50%;
+  background:rgba(67,194,184,.07);
+  filter:blur(2px);
+  pointer-events:none;
+}
+.home-feature-strip>div:last-child span{
+  position:relative;
+  z-index:1;
+}
+.home-feature-strip>div:last-child button{
+  position:relative;
+  z-index:2;
+}
