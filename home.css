@@ -54,15 +54,25 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
 .contact-heading span{display:block;color:#c29d5f;font-size:12px;font-weight:900;margin-bottom:5px}
 .contact-heading h2{margin:0 0 7px;font-size:25px}
 .contact-heading p{margin:0;color:#8498a9;font-size:12px;line-height:1.8}
-.contact-info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.contact-card{display:flex;align-items:center;gap:14px;min-height:82px;padding:16px 18px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025);color:#f2f5f7;text-decoration:none;transition:.25s}
-.contact-card:hover{transform:translateY(-3px);border-color:rgba(194,157,95,.38);background:rgba(194,157,95,.05)}
-.contact-card>i{display:grid;place-items:center;width:45px;height:45px;flex:0 0 45px;border-radius:13px;background:rgba(194,157,95,.1);color:#d4b675;font-size:19px}
-.contact-card span{min-width:0}
+.contact-info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.contact-card{position:relative;display:flex;align-items:center;gap:14px;min-height:92px;padding:17px 18px;border:1px solid rgba(255,255,255,.07);border-radius:17px;background:rgba(255,255,255,.025);color:#f2f5f7;text-decoration:none;transition:.25s;overflow:hidden}
+.contact-card:hover{transform:translateY(-3px);border-color:rgba(194,157,95,.38);background:rgba(194,157,95,.05);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.contact-card>i{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border-radius:14px;background:rgba(194,157,95,.1);color:#d4b675;font-size:21px}
+.contact-card span{min-width:0;flex:1}
 .contact-card strong,.contact-card small{display:block}
-.contact-card strong{font-size:14px;margin-bottom:5px}
+.contact-card strong{font-size:15px;margin-bottom:5px}
 .contact-card small{color:#8da0ae;font-size:11px;line-height:1.6;word-break:break-word}
-@media(max-width:600px){.contact-section{padding:24px 12px 12px}.contact-box{padding:20px 14px;border-radius:19px}.contact-info-grid{grid-template-columns:1fr}.contact-heading h2{font-size:22px}}
+.contact-card-action{font-size:10px;font-weight:800;padding:7px 10px;border-radius:9px;white-space:nowrap;background:rgba(194,157,95,.09);color:#d8bd86}
+.contact-card-whatsapp{border-color:rgba(37,211,102,.28);background:linear-gradient(145deg,rgba(22,64,47,.45),rgba(10,24,34,.92))}
+.contact-card-whatsapp>i{background:rgba(37,211,102,.12);color:#52df86}
+.contact-card-whatsapp .contact-card-action{background:rgba(37,211,102,.10);color:#68e796}
+.contact-card-whatsapp:hover{border-color:rgba(37,211,102,.55);box-shadow:0 12px 30px rgba(37,211,102,.10)}
+.contact-card-telegram{border-color:rgba(42,171,238,.28);background:linear-gradient(145deg,rgba(24,59,82,.48),rgba(10,24,34,.92))}
+.contact-card-telegram>i{background:rgba(42,171,238,.12);color:#4fc3f7}
+.contact-card-telegram .contact-card-action{background:rgba(42,171,238,.10);color:#66ccf7}
+.contact-card-telegram:hover{border-color:rgba(42,171,238,.55);box-shadow:0 12px 30px rgba(42,171,238,.10)}
+.contact-card-secondary{min-height:78px}
+@media(max-width:600px){.contact-section{padding:24px 12px 12px}.contact-box{padding:20px 14px;border-radius:19px}.contact-info-grid{grid-template-columns:1fr}.contact-heading h2{font-size:22px}.contact-card{min-height:86px;padding:15px}.contact-card-action{display:none}}
 
 
 /* البحث الشامل */
