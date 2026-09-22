@@ -159,9 +159,8 @@ html[data-theme="light"] .home-feature-strip small{
   color:#667085;
 }
 html[data-theme="light"] .home-category-card{
-  background:linear-gradient(145deg,#fff,#f7f9fc);
-  border-color:#dfe4ec;
-  box-shadow:0 8px 24px rgba(15,23,42,.05);
+  /* بطاقات الأقسام تحتفظ بألوانها الأصلية؛ يتغير فقط محيط الصفحة */
+  color:#f8fafc;
 }
 html[data-theme="light"] .home-category-card:hover{
   background:#fff;
