@@ -266,18 +266,44 @@
 
                 <div class="panel">
                     <h3>📄 إدارة معلومات التواصل</h3>
+                    <p style="color:var(--text-dim);font-size:12px;line-height:1.8;margin-bottom:14px;">
+                        جميع وسائل التواصل الظاهرة في صفحة «تواصل معنا» تُدار من هنا، ويمكن تعديلها لاحقاً دون الحاجة إلى تعديل ملفات الموقع.
+                    </p>
+
                     <div class="form-group">
-                        <label>رقم الهاتف</label>
+                        <label>📞 رقم الهاتف</label>
                         <input type="text" id="contactPhone" placeholder="مثال: 07700000000">
                     </div>
+
                     <div class="form-group">
-                        <label>البريد الإلكتروني</label>
+                        <label>✉️ البريد الإلكتروني</label>
                         <input type="email" id="contactEmail" placeholder="مثال: info@example.com">
                     </div>
 
-                    <label style="margin-top: 10px;">🔗 الروابط الاجتماعية</label>
-                    <div id="contactLinksContainer" style="margin-bottom: 12px;"></div>
-                    <button class="btn btn-secondary btn-block" onclick="addContactLink()" style="margin-bottom: 12px;">➕ إضافة رابط جديد</button>
+                    <div class="form-group">
+                        <label>🟢 رقم واتساب</label>
+                        <input type="text" id="contactWhatsapp" inputmode="tel" placeholder="مثال: 9647738511899">
+                        <small style="display:block;margin-top:5px;color:var(--text-dim);">اكتب الرقم بصيغة دولية بدون + أو مسافات.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🔵 معرف تليغرام</label>
+                        <input type="text" id="contactTelegram" placeholder="مثال: Mo7m7med">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📸 رابط/معرف إنستغرام</label>
+                        <input type="text" id="contactInstagram" placeholder="مثال: m7.7me أو https://instagram.com/m7.7me">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📘 رابط صفحة فيسبوك</label>
+                        <input type="url" id="contactFacebook" placeholder="https://facebook.com/...">
+                    </div>
+
+                    <label style="margin-top:10px;">🔗 روابط إضافية</label>
+                    <div id="contactLinksContainer" style="margin-bottom:12px;"></div>
+                    <button class="btn btn-secondary btn-block" onclick="addContactLink()" style="margin-bottom:12px;">➕ إضافة رابط إضافي</button>
 
                     <button class="btn btn-primary" onclick="guardedOp(saveContactData)">💾 حفظ معلومات التواصل</button>
                 </div>
@@ -1126,7 +1152,15 @@
         }
 
         // ===== إدارة معلومات التواصل =====
-        let contactData = { phone: '', email: '', social_links: [] };
+        let contactData = {
+            phone: '',
+            email: '',
+            whatsapp_number: '',
+            telegram_username: '',
+            instagram: '',
+            facebook: '',
+            social_links: []
+        };
 
         async function loadContactData() {
             try {
@@ -1143,10 +1177,18 @@
         function renderContactForm() {
             const phone = document.getElementById('contactPhone');
             const email = document.getElementById('contactEmail');
+            const whatsapp = document.getElementById('contactWhatsapp');
+            const telegram = document.getElementById('contactTelegram');
+            const instagram = document.getElementById('contactInstagram');
+            const facebook = document.getElementById('contactFacebook');
             const linksContainer = document.getElementById('contactLinksContainer');
 
             if (phone) phone.value = contactData.phone || '';
             if (email) email.value = contactData.email || '';
+            if (whatsapp) whatsapp.value = contactData.whatsapp_number || '';
+            if (telegram) telegram.value = contactData.telegram_username || '';
+            if (instagram) instagram.value = contactData.instagram || '';
+            if (facebook) facebook.value = contactData.facebook || '';
 
             if (linksContainer) {
                 linksContainer.innerHTML = '';
@@ -1182,25 +1224,35 @@
         async function saveContactData() {
             const phone = document.getElementById('contactPhone')?.value.trim() || '';
             const email = document.getElementById('contactEmail')?.value.trim() || '';
+            const whatsappNumber = document.getElementById('contactWhatsapp')?.value.trim().replace(/\D/g, '') || '';
+            const telegramUsername = document.getElementById('contactTelegram')?.value.trim().replace(/^@/, '') || '';
+            const instagram = document.getElementById('contactInstagram')?.value.trim() || '';
+            const facebook = document.getElementById('contactFacebook')?.value.trim() || '';
 
             const socialLinks = [];
             document.querySelectorAll('[class^="link-label-"]').forEach((el, idx) => {
                 const label = el.value.trim();
                 const url = document.querySelector(`.link-url-${idx}`)?.value.trim() || '';
-                if (label && url) {
-                    socialLinks.push({ label, url });
-                }
+                if (label && url) socialLinks.push({ label, url });
             });
 
-            const newContactData = { phone, email, social_links: socialLinks };
+            const newContactData = {
+                phone,
+                email,
+                whatsapp_number: whatsappNumber,
+                telegram_username: telegramUsername,
+                instagram,
+                facebook,
+                social_links: socialLinks
+            };
 
             try {
                 await commitFiles([
                     { path: 'data/contact.json', content: JSON.stringify(newContactData, null, 2) }
-                ], 'تحديث معلومات التواصل والروابط من لوحة التحكم');
+                ], 'تحديث جميع معلومات التواصل من لوحة التحكم');
 
                 contactData = newContactData;
-                showAlert('✅ تم حفظ معلومات التواصل بنجاح!');
+                showAlert('✅ تم حفظ جميع معلومات التواصل بنجاح!');
             } catch (e) {
                 showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
             }
