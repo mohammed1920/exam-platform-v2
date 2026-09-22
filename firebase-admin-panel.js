@@ -57,7 +57,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
 
   function switchLawyerView(view){
     const pending=view==='pending';
-    section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.classList.toggle('active',(btn.dataset.lawyerView==='pending')===pending));
+    els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.classList.toggle('active',(btn.dataset.lawyerView==='pending')===pending));
     const p=section.querySelector('#fa-lawyers-pending-panel'),pub=section.querySelector('#fa-lawyers-published-panel');
     if(p)p.hidden=!pending;if(pub)pub.hidden=pending;
     if(els.lawyerEdit&&!pending)closeLawyerEdit();
@@ -148,7 +148,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const db=window.publicAuth.firestore;
       await db.collection('lawyerProfiles').doc(app.id).set({name:app.name,governorate:app.governorate||'',district:app.district||'',phone:app.phone||'',office:app.office||'',address:app.address||'',specializations:Array.isArray(app.specializations)?app.specializations:[],workingHours:app.workingHours||'',description:app.description||'',published:true,applicationId:app.id,approvedAt:firebase.firestore.FieldValue.serverTimestamp()});
       await db.collection('lawyerApplications').doc(app.id).update({status:'approved',approvedBy:window.publicAuth.user.uid,approvedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
-      await loadLawyerApplications();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم اعتماد المحامي ونشر بياناته العامة.',false);
+      await loadLawyerManagement();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم اعتماد المحامي ونشر بياناته العامة.',false);
     }catch(e){console.error(e);setStatus('تعذر اعتماد الطلب.',true);}
   }
   async function rejectLawyer(app){
