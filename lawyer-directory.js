@@ -242,8 +242,9 @@
         const applicationId = form.dataset.applicationId;
         const profileId = form.dataset.profileId;
         if (!applicationId || !profileId) throw new Error('بيانات ملف المحامي غير مكتملة.');
-        const existing = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).where('status','==','pending').get();
-        if (!existing.empty) {
+        const existing = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).get();
+        const hasPending = existing.docs.some(d => String(d.data().status || '').toLowerCase() === 'pending');
+        if (hasPending) {
           setFormStatus('لديك تعديل قيد المراجعة بالفعل. انتظر قرار الإدارة قبل إرسال تعديل جديد.', true);
           return;
         }
