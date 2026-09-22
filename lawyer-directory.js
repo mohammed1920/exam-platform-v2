@@ -105,7 +105,7 @@
     if (btn) btn.hidden = false;
     const form = document.getElementById('lawyer-application-form');
     const notice = document.querySelector('.lawyer-identity-notice');
-    if (form) form.hidden = false;
+    if (form) { form.hidden = false; resetLawyerFormMode(); }
     if (notice) notice.hidden = false;
     const list = document.getElementById('lawyers-list');
     if (list) list.hidden = false;
@@ -125,6 +125,56 @@
     return {label:'قيد التحقق — بانتظار تأكيد الهوية', className:'pending', icon:'fa-hourglass-half'};
   }
 
+  function fillLawyerForm(data) {
+    const form = document.getElementById('lawyer-application-form');
+    if (!form) return;
+    form.elements.name.value = data?.name || '';
+    form.elements.governorate.value = data?.governorate || '';
+    form.elements.district.value = data?.district || '';
+    form.elements.phone.value = data?.phone || '';
+    form.elements.office.value = data?.office || '';
+    form.elements.address.value = data?.address || '';
+    form.elements.specializations.value = Array.isArray(data?.specializations) ? data.specializations.join('، ') : String(data?.specializations || '');
+    form.elements.workingHours.value = data?.workingHours || '';
+    form.elements.description.value = data?.description || '';
+    form.elements.consent.checked = true;
+  }
+
+  function openLawyerEditForm(application, profile, pendingEdit) {
+    const panel = document.getElementById('lawyers-apply-panel');
+    const list = document.getElementById('lawyers-list');
+    const btn = document.getElementById('lawyer-apply-btn');
+    const form = document.getElementById('lawyer-application-form');
+    if (!panel || !form) return;
+    form.dataset.mode = 'edit';
+    form.dataset.applicationId = application?.id || '';
+    form.dataset.profileId = profile?.id || '';
+    panel.querySelector('.lawyer-form-head h3').textContent = 'تعديل بيانات ملفي';
+    panel.querySelector('.lawyer-form-head > div > span').textContent = 'تعديل البيانات';
+    panel.querySelector('.lawyer-form-head p').textContent = 'يمكنك تعديل بياناتك. لن تظهر التعديلات في الدليل إلا بعد مراجعة الإدارة والموافقة عليها.';
+    document.querySelector('.lawyer-identity-notice').hidden = true;
+    document.getElementById('lawyer-submit-btn').innerHTML = '<i class="fas fa-paper-plane"></i> إرسال التعديل للمراجعة';
+    fillLawyerForm(pendingEdit || profile || application);
+    panel.hidden = false;
+    btn.hidden = true;
+    list.hidden = true;
+    panel.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function resetLawyerFormMode() {
+    const form = document.getElementById('lawyer-application-form');
+    const panel = document.getElementById('lawyers-apply-panel');
+    if (!form || !panel) return;
+    delete form.dataset.mode;
+    delete form.dataset.applicationId;
+    delete form.dataset.profileId;
+    panel.querySelector('.lawyer-form-head h3').textContent = 'أرسل بياناتك للمراجعة';
+    panel.querySelector('.lawyer-form-head > div > span').textContent = 'طلب جديد';
+    panel.querySelector('.lawyer-form-head p').textContent = 'لن تُنشر البيانات أو بطاقة النقابة قبل مراجعة الأدمن والموافقة عليها.';
+    document.querySelector('.lawyer-identity-notice').hidden = false;
+    document.getElementById('lawyer-submit-btn').innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب للمراجعة';
+  }
+
   async function loadMyApplication() {
     const db = window.publicAuth?.firestore;
     const user = window.publicAuth?.user;
@@ -136,11 +186,28 @@
       const active = apps.find(a => ['pending','approved'].includes(String(a.status || '').toLowerCase()));
       if (!active) { box.hidden = true; return; }
       const state = applicationStatusLabel(active);
-      const message = state.className === 'pending' ? 'لا تحتاج إلى إعادة إرسال النموذج. إذا لم ترسل هوية نقابة المحامين بعد، أرسلها للإدارة لإكمال التحقق.' : 'تم اعتماد طلبك، وسيظهر ملفك في دليل المحامين حسب حالة النشر.';
-      box.innerHTML = '<div class="lawyer-my-application-head"><i class="fas '+state.icon+'"></i><div><span>طلبك في دليل المحامين</span><h3>'+esc(active.name || 'المحامي')+'</h3></div><strong class="'+state.className+'">'+esc(state.label)+'</strong></div><p>'+message+'</p>' + (state.className === 'pending' ? '<div class="lawyer-identity-actions"><a class="lawyer-identity-btn whatsapp" href="https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> واتساب</a><a class="lawyer-identity-btn telegram" href="https://t.me/'+TELEGRAM_USERNAME+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> تلغرام</a></div>' : '');
+      let pendingEdit = null;
+      if (String(active.status || '').toLowerCase() === 'approved') {
+        try {
+          const editSnap = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).where('status','==','pending').get();
+          pendingEdit = editSnap.docs.map(d => ({id:d.id, ...d.data()})).sort((a,b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0))[0] || null;
+        } catch (editError) {
+          console.warn('Lawyer edit request load failed:', editError);
+        }
+      }
+      const profileSnap = String(active.status || '').toLowerCase() === 'approved' ? await db.collection('lawyerProfiles').doc(active.id).get() : null;
+      const profile = profileSnap?.exists ? {id:profileSnap.id, ...profileSnap.data()} : active;
+      const message = state.className === 'pending'
+        ? 'لا تحتاج إلى إعادة إرسال النموذج. إذا لم ترسل هوية نقابة المحامين بعد، أرسلها للإدارة لإكمال التحقق.'
+        : (pendingEdit ? 'لديك تعديل مرسل إلى الإدارة وهو الآن قيد المراجعة. ستظهر البيانات الجديدة في الدليل بعد الموافقة.' : 'تم اعتماد ملفك. يمكنك طلب تعديل رقم الهاتف أو العنوان أو أي بيانات أخرى، وسيتم تحديثها بعد مراجعة الإدارة.');
+      const editButton = state.className === 'approved' && !pendingEdit
+        ? '<button type="button" class="lawyer-my-application-edit" id="lawyer-edit-my-data"><i class="fas fa-pen"></i> تعديل بياناتي</button>'
+        : '';
+      box.innerHTML = '<div class="lawyer-my-application-head"><i class="fas '+state.icon+'"></i><div><span>ملفك في دليل المحامين</span><h3>'+esc(profile.name || active.name || 'المحامي')+'</h3></div><strong class="'+state.className+'">'+esc(state.label)+'</strong></div><p>'+message+'</p>' + (state.className === 'pending' ? '<div class="lawyer-identity-actions"><a class="lawyer-identity-btn whatsapp" href="https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> واتساب</a><a class="lawyer-identity-btn telegram" href="https://t.me/'+TELEGRAM_USERNAME+'?text='+encodeURIComponent('السلام عليكم، أريد إرسال هوية نقابة المحامين الخاصة بطلب إضافة ملفي إلى دليل المحامين في المنصة القانونية.')+'" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> تلغرام</a></div>' : '') + editButton;
       box.hidden = false;
       document.getElementById('lawyer-apply-btn').hidden = true;
       document.getElementById('lawyers-apply-panel').hidden = true;
+      document.getElementById('lawyer-edit-my-data')?.addEventListener('click', () => openLawyerEditForm(active, profile, pendingEdit?.data || null));
     } catch (error) { console.error('My lawyer application load failed:', error); }
   }
   async function submitApplication(event) {
@@ -159,25 +226,52 @@
     setFormStatus('جارٍ حفظ الطلب...');
 
     try {
-      const ref = db.collection('lawyerApplications').doc();
-      const applicationId = ref.id;
-
-      const specializations = String(fd.get('specializations') || '')
-        .split(/[،,]/).map(v => v.trim()).filter(Boolean).slice(0, 10);
-
-      await ref.set({
-        id: applicationId,
-        applicantUid: user.uid,
-        applicantEmail: user.email || null,
+      const data = {
         name: String(fd.get('name') || '').trim(),
         governorate: String(fd.get('governorate') || '').trim(),
         district: String(fd.get('district') || '').trim(),
         phone: String(fd.get('phone') || '').trim(),
         office: String(fd.get('office') || '').trim(),
         address: String(fd.get('address') || '').trim(),
-        specializations,
+        specializations: String(fd.get('specializations') || '').split(/[،,]/).map(v => v.trim()).filter(Boolean).slice(0, 10),
         workingHours: String(fd.get('workingHours') || '').trim(),
-        description: String(fd.get('description') || '').trim(),
+        description: String(fd.get('description') || '').trim()
+      };
+
+      if (form.dataset.mode === 'edit') {
+        const applicationId = form.dataset.applicationId;
+        const profileId = form.dataset.profileId;
+        if (!applicationId || !profileId) throw new Error('بيانات ملف المحامي غير مكتملة.');
+        const existing = await db.collection('lawyerEditRequests').where('applicantUid','==',user.uid).where('status','==','pending').get();
+        if (!existing.empty) {
+          setFormStatus('لديك تعديل قيد المراجعة بالفعل. انتظر قرار الإدارة قبل إرسال تعديل جديد.', true);
+          return;
+        }
+        await db.collection('lawyerEditRequests').add({
+          applicantUid: user.uid,
+          applicantEmail: user.email || null,
+          applicationId,
+          profileId,
+          data,
+          status: 'pending',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        form.reset();
+        resetLawyerFormMode();
+        await loadMyApplication();
+        setFormStatus('');
+        document.getElementById('lawyer-my-application')?.scrollIntoView({behavior:'smooth', block:'start'});
+        return;
+      }
+
+      const ref = db.collection('lawyerApplications').doc();
+      const applicationId = ref.id;
+      await ref.set({
+        id: applicationId,
+        applicantUid: user.uid,
+        applicantEmail: user.email || null,
+        ...data,
         identityVerification: 'external_whatsapp_or_telegram',
         status: 'pending',
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -189,7 +283,7 @@
       document.getElementById('lawyers-apply-panel').scrollIntoView({behavior:'smooth', block:'start'});
     } catch (error) {
       console.error('Lawyer application failed:', error);
-      setFormStatus('تعذر إرسال الطلب. حاول مرة أخرى.', true);
+      setFormStatus('تعذر حفظ العملية. تحقق من اتصالك وحاول مرة أخرى.', true);
     } finally {
       submit.disabled = false;
     }
