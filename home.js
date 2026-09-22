@@ -101,3 +101,23 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();
+
+
+(function setupFooterLinks(){
+  const routes = {about:'about',terms:'terms',privacy:'privacy',disclaimer:'disclaimer',faq:'faq'};
+  function installFooter(){
+    document.addEventListener('click', event => {
+      const link = event.target.closest('[data-footer-action]');
+      if(link){
+        const view = routes[link.dataset.footerAction];
+        if(view && window.app?.navigateTo) window.app.navigateTo(view);
+        return;
+      }
+      if(event.target.closest('[data-footer-back]') && window.app?.navigateTo){
+        window.app.navigateTo('home');
+      }
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installFooter);
+  else installFooter();
+})();
