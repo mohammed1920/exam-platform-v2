@@ -17,15 +17,15 @@
       <div class="lawyer-admin-tabs">
         <button type="button" class="lawyer-admin-tab active" data-lawyer-view="pending">الطلبات <span id="fa-lawyers-pending-count">0</span></button>
         <button type="button" class="lawyer-admin-tab" data-lawyer-view="published">المحامون المنشورون <span id="fa-lawyers-published-count">0</span></button>
+        <button type="button" class="lawyer-admin-tab" data-lawyer-view="edits">طلبات التعديل <span id="fa-lawyer-edit-requests-count">0</span></button>
       </div>
       <div id="fa-lawyers-pending-panel">
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>التقديم</th><th>الهوية</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyers-body"><tr><td colspan="6">جارٍ التحميل...</td></tr></tbody></table></div>
       </div>
+      <div id="fa-lawyers-edit-requests-panel" hidden>
+        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>التعديلات</th><th>التاريخ</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyer-edit-requests-body"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody></table></div>
+      </div>
       <div id="fa-lawyers-published-panel" hidden>
-        <div class="lawyer-admin-edit-requests">
-          <div class="firebase-admin-card-head"><h3>✎ طلبات تعديل البيانات</h3><span id="fa-lawyer-edit-requests-count">0</span></div>
-          <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>التعديلات</th><th>التاريخ</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyer-edit-requests-body"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody></table></div>
-        </div>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="fa-lawyers-published-body"><tr><td colspan="5">جارٍ التحميل...</td></tr></tbody></table></div>
       </div>
       <div id="fa-lawyer-edit" class="lawyer-admin-edit" hidden>
@@ -73,11 +73,11 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   let lawyerApplications=[],lawyerProfiles=[];
 
   function switchLawyerView(view){
-    const pending=view==='pending';
-    els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.classList.toggle('active',(btn.dataset.lawyerView==='pending')===pending));
-    const p=els.section.querySelector('#fa-lawyers-pending-panel'),pub=els.section.querySelector('#fa-lawyers-published-panel');
-    if(p)p.hidden=!pending;if(pub)pub.hidden=pending;
-    if(els.lawyerEdit&&!pending)closeLawyerEdit();
+    const pending=view==='pending', published=view==='published', edits=view==='edits';
+    els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.classList.toggle('active',btn.dataset.lawyerView===view));
+    const p=els.section.querySelector('#fa-lawyers-pending-panel'),pub=els.section.querySelector('#fa-lawyers-published-panel'),ed=els.section.querySelector('#fa-lawyers-edit-requests-panel');
+    if(p)p.hidden=!pending;if(pub)pub.hidden=!published;if(ed)ed.hidden=!edits;
+    if(els.lawyerEdit&&!published)closeLawyerEdit();
   }
 
   async function loadLawyerManagement(){
@@ -88,8 +88,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   async function loadLawyerEditRequests(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.lawyerEditRequestsBody)return;
     try{
-      const snap=await window.publicAuth.firestore.collection('lawyerEditRequests').where('status','==','pending').get();
-      const requests=snap.docs.map(d=>({id:d.id,...d.data()}));
+      const snap=await window.publicAuth.firestore.collection('lawyerEditRequests').get();
+      const requests=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.status||'').toLowerCase()==='pending');
       requests.sort((a,b)=>{const av=a.createdAt&&typeof a.createdAt.toMillis==='function'?a.createdAt.toMillis():0,bv=b.createdAt&&typeof b.createdAt.toMillis==='function'?b.createdAt.toMillis():0;return bv-av;});
       if(els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=requests.length;
       const profilesById=new Map(lawyerProfiles.map(p=>[p.id,p]));
