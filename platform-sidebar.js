@@ -123,7 +123,7 @@
           <button class="platform-sidebar-item" data-platform-action="dashboard"><i class="fas fa-chart-line"></i><span>لوحة الاختبارات</span></button>
           <button class="platform-sidebar-item" data-platform-action="leaderboard"><i class="fas fa-trophy"></i><span>المتصدرون</span></button>
           <button class="platform-sidebar-item" data-platform-action="profile"><i class="fas fa-user"></i><span>الملف الشخصي</span></button>
-          <button class="platform-sidebar-item platform-sidebar-admin-item" data-platform-action="admin" hidden><i class="fas fa-crown"></i><span>لوحة الإدارة</span></button>
+          
         </div>
 
         <div class="platform-sidebar-account" id="platform-sidebar-account">
