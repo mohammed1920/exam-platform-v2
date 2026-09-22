@@ -47,7 +47,6 @@
           </div>
         </div>
 
-/div>
 
         <form id="lawyer-application-form" class="lawyer-form">
           <div class="lawyer-form-grid">
