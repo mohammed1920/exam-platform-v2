@@ -122,3 +122,18 @@
   .history-item { align-items: flex-start; }
   .history-score { margin-inline-start: auto; }
 }
+
+
+/* Student profile name editor */
+.profile-name-editor{margin-top:16px}
+.profile-name-editor .profile-panel-heading{align-items:center}
+.profile-name-editor .profile-panel-heading>i{color:var(--primary,#c29d5f);font-size:18px}
+.profile-name-editor label{display:block;margin:0 0 8px;color:#c7d1d9;font-size:13px;font-weight:700}
+.profile-name-editor-row{display:flex;align-items:stretch;gap:9px}
+.profile-name-editor-row input{flex:1;min-width:0;border:1px solid rgba(194,157,95,.22);border-radius:11px;background:rgba(0,0,0,.16);color:#f1f4f7;padding:11px 13px;font:inherit;outline:none;direction:rtl}
+.profile-name-editor-row input:focus{border-color:rgba(194,157,95,.62);box-shadow:0 0 0 3px rgba(194,157,95,.08)}
+.profile-name-editor-row button{border:1px solid rgba(194,157,95,.38);border-radius:11px;background:rgba(194,157,95,.10);color:#e8d2aa;padding:10px 15px;cursor:pointer;font:inherit;font-weight:800;white-space:nowrap}
+.profile-name-editor-row button:hover{background:rgba(194,157,95,.18)}
+.profile-name-editor-row button:disabled{opacity:.55;cursor:wait}
+.profile-name-editor-message{min-height:20px;margin:8px 0 0;color:#9ed7c2;font-size:12px}
+@media(max-width:560px){.profile-name-editor-row{flex-direction:column}.profile-name-editor-row button{width:100%}}
