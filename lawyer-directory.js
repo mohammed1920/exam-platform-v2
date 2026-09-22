@@ -378,7 +378,6 @@
       ${profile.description ? '<div class="lawyer-details-section"><span>نبذة عن المحامي</span><p>'+esc(profile.description)+'</p></div>' : ''}
       <div class="lawyer-details-actions">
         ${profile.phone ? '<a href="tel:'+esc(profile.phone)+'"><i class="fas fa-phone"></i> الاتصال بالمحامي</a>' : ''}
-        ${profile.mapUrl ? '<a href="'+esc(profile.mapUrl)+'" target="_blank" rel="noopener"><i class="fas fa-map-location-dot"></i> فتح الموقع</a>' : ''}
       </div>`;
     modal.hidden = false;
     modal.setAttribute('aria-hidden','false');
