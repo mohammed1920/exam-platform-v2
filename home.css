@@ -85,3 +85,73 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   .global-search-item{padding:10px 11px}
   .global-search-icon{width:35px;height:35px;flex-basis:35px}
 }
+
+
+/* ألوان بطاقات أقسام الصفحة الرئيسية — كل قسم له هوية لونية مستقلة مع الحفاظ على طابع المنصة */
+.home-category-card[data-home-action="books"]{
+  --card-accent:#c29d5f;
+  --card-bg:rgba(58,47,30,.78);
+}
+.home-category-card[data-home-action="judicial"]{
+  --card-accent:#9b8cff;
+  --card-bg:rgba(52,43,78,.72);
+}
+.home-category-card[data-home-action="random"]{
+  --card-accent:#5da9e9;
+  --card-bg:rgba(29,55,78,.76);
+}
+.home-category-card[data-home-action="laws"]{
+  --card-accent:#5fc39a;
+  --card-bg:rgba(27,61,53,.74);
+}
+.home-category-card[data-home-action="procedures"]{
+  --card-accent:#58c4c9;
+  --card-bg:rgba(24,62,66,.74);
+}
+.home-category-card[data-home-action="petitions"]{
+  --card-accent:#d8a85f;
+  --card-bg:rgba(69,51,29,.74);
+}
+.home-category-card[data-home-action="lawyers"]{
+  --card-accent:#d7798d;
+  --card-bg:rgba(68,38,49,.74);
+}
+.home-category-card[data-home-action="leaderboard"]{
+  --card-accent:#62b8d9;
+  --card-bg:rgba(29,54,69,.76);
+}
+
+.home-category-card[data-home-action]{
+  border-color:color-mix(in srgb,var(--card-accent) 30%,transparent);
+  background:
+    radial-gradient(circle at 88% 18%,color-mix(in srgb,var(--card-accent) 13%,transparent),transparent 38%),
+    linear-gradient(145deg,var(--card-bg),rgba(12,23,37,.97));
+}
+
+.home-category-card[data-home-action]:before{
+  background:color-mix(in srgb,var(--card-accent) 10%,transparent);
+}
+
+.home-category-card[data-home-action] i{
+  background:color-mix(in srgb,var(--card-accent) 13%,transparent);
+  color:var(--card-accent);
+}
+
+.home-category-card[data-home-action] b{
+  color:var(--card-accent);
+}
+
+.home-category-card[data-home-action]:hover{
+  border-color:color-mix(in srgb,var(--card-accent) 58%,transparent);
+  box-shadow:0 14px 35px color-mix(in srgb,var(--card-accent) 12%,rgba(0,0,0,.2));
+}
+
+.home-category-card[data-home-action]:focus-visible{
+  outline:2px solid color-mix(in srgb,var(--card-accent) 70%,transparent);
+  outline-offset:2px;
+}
+
+/* بطاقة الاختبارات تبقى مميزة، لكن ضمن نفس النظام اللوني */
+.home-category-card[data-home-action="books"].featured{
+  border-color:rgba(194,157,95,.48);
+}
