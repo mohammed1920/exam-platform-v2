@@ -7,3 +7,41 @@
 .lawyer-identity-btn.whatsapp{background:rgba(37,211,102,.10);border:1px solid rgba(37,211,102,.24);color:#73e6a0}
 .lawyer-identity-btn.telegram{background:rgba(42,171,238,.10);border:1px solid rgba(42,171,238,.24);color:#75c9ee}
 .lawyer-identity-btn:hover{transform:translateY(-1px)}
+
+/* تحسين بطاقة المحامي ونافذة التفاصيل */
+.lawyer-card{cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.lawyer-card:hover,.lawyer-card:focus-visible{transform:translateY(-2px);border-color:rgba(201,164,91,.38);box-shadow:0 12px 28px rgba(0,0,0,.16);outline:none}
+.lawyer-card-topline{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lawyer-card-topline h3{min-width:0}
+.lawyer-card-location,.lawyer-card-office,.lawyer-card-address{display:flex;align-items:flex-start;gap:7px}
+.lawyer-card-location i,.lawyer-card-office i,.lawyer-card-address i{color:#c9a45b;margin-top:2px;flex:0 0 auto}
+.lawyer-card-address{color:#b5c0cb!important;line-height:1.7}
+.lawyer-details-link{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border-radius:9px;background:rgba(201,164,91,.08);border:1px solid rgba(201,164,91,.18);color:#d7b86f;font-size:10px;font-weight:800}
+.lawyer-details-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:18px}
+.lawyer-details-modal[hidden]{display:none}
+.lawyer-details-backdrop{position:absolute;inset:0;background:rgba(3,8,17,.78);backdrop-filter:blur(5px)}
+.lawyer-details-dialog{position:relative;width:min(680px,100%);max-height:min(88vh,760px);overflow:auto;border:1px solid rgba(201,164,91,.28);border-radius:22px;background:linear-gradient(145deg,#182438,#0d1727);box-shadow:0 24px 70px rgba(0,0,0,.4);padding:24px}
+.lawyer-details-close{position:absolute;left:14px;top:12px;width:34px;height:34px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.04);color:#cbd5e1;font-size:22px;cursor:pointer}
+.lawyer-details-head{display:flex;align-items:center;gap:14px;padding:4px 40px 18px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.lawyer-details-icon{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;border-radius:16px;background:rgba(201,164,91,.10);color:#d7b86f;font-size:25px}
+.lawyer-details-head span{color:#67d5a6;font-size:10px;font-weight:800}
+.lawyer-details-head h2{margin:4px 0 0;font-size:21px}
+.lawyer-details-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.lawyer-detail-item{padding:12px;border:1px solid rgba(255,255,255,.06);border-radius:12px;background:rgba(255,255,255,.025)}
+.lawyer-detail-item.full{grid-column:1/-1}
+.lawyer-detail-item span,.lawyer-details-section>span{display:block;color:#8fa0b1;font-size:10px;margin-bottom:6px}
+.lawyer-detail-item strong{display:flex;align-items:flex-start;gap:7px;color:#e7edf3;font-size:12px;line-height:1.7}
+.lawyer-detail-item i{color:#c9a45b;margin-top:3px}
+.lawyer-details-section{margin-top:16px}
+.lawyer-details-section p{margin:0;color:#c4ced8;font-size:12px;line-height:2;background:rgba(255,255,255,.025);padding:12px;border-radius:12px}
+.lawyer-details-tags{gap:7px}
+.lawyer-details-tags span{padding:6px 10px}
+.lawyer-details-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.lawyer-details-actions a{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:10px;background:rgba(201,164,91,.10);border:1px solid rgba(201,164,91,.22);color:#e0c77f;text-decoration:none;font-size:11px;font-weight:800}
+body.lawyer-modal-open{overflow:hidden}
+@media(max-width:700px){
+  .lawyer-details-dialog{padding:19px;border-radius:18px}
+  .lawyer-details-grid{grid-template-columns:1fr}
+  .lawyer-detail-item.full{grid-column:auto}
+  .lawyer-details-head h2{font-size:18px}
+}
