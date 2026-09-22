@@ -371,12 +371,24 @@ class ExamApp {
       }));
     }
 
+    const normalizeExternalUrl = (value) => {
+      const raw = String(value || '').trim();
+      if (!raw) return '#';
+      const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+      try {
+        const parsed = new URL(url);
+        return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : '#';
+      } catch (_) {
+        return '#';
+      }
+    };
+
     const instagramValue = String(data.instagram || '').trim();
     if (instagramValue) {
       const instagramUrl = /^https?:\/\//i.test(instagramValue)
         ? instagramValue
         : `https://instagram.com/${encodeURIComponent(instagramValue.replace(/^@/, ''))}`;
-      const href = this.safeExternalUrl(instagramUrl);
+      const href = normalizeExternalUrl(instagramUrl);
       if (href !== '#') {
         container.appendChild(makeCard({
           href,
@@ -394,7 +406,7 @@ class ExamApp {
       const facebookUrl = /^https?:\/\//i.test(facebookValue)
         ? facebookValue
         : `https://facebook.com/${facebookValue.replace(/^@/, '')}`;
-      const href = this.safeExternalUrl(facebookUrl);
+      const href = normalizeExternalUrl(facebookUrl);
       if (href !== '#') {
         container.appendChild(makeCard({
           href,
@@ -408,7 +420,7 @@ class ExamApp {
     }
 
     (Array.isArray(data.social_links) ? data.social_links : []).forEach(link => {
-      const href = this.safeExternalUrl(link.url);
+      const href = normalizeExternalUrl(link.url);
       if (href === '#') return;
       container.appendChild(makeCard({
         href,
