@@ -2003,3 +2003,14 @@ header {
     padding: 5px 5px !important;
     font-size: 10px !important;
   }
+
+
+/* عدد أسئلة الفصل - بيانات خفيفة من فهرس الأسئلة */
+.chapter-question-count {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  opacity: 0.95;
+}
