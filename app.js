@@ -590,38 +590,48 @@ class ExamApp {
   async loadBookQuestionCount(book, card) {
     if (!book || !card) return;
 
+    const countEl = card.querySelector('.question-count');
+    if (!countEl) return;
+
     try {
       if (Number.isFinite(book._questionCount)) {
-        const countEl = card.querySelector('.question-count');
-        if (countEl) countEl.textContent = String(book._questionCount);
+        countEl.textContent = String(book._questionCount);
         return;
       }
 
-      if (!book._questionCountPromise) {
-        book._questionCountPromise = this.fetchAllBookQuestions(book)
-          .then(questions => {
-            book._questionCount = Array.isArray(questions) ? questions.length : 0;
-            return book._questionCount;
-          })
-          .catch(error => {
-            console.warn(`تعذر حساب عدد أسئلة الكتاب: ${book.id}`, error);
-            book._questionCount = 0;
-            return 0;
-          })
-          .finally(() => {
-            delete book._questionCountPromise;
-          });
+      // نحسب الأسئلة فصلًا بعد فصل حتى لا نرسل عشرات الطلبات دفعة واحدة.
+      let totalQuestions = 0;
+      const totalChapters = Number(book.chapters) || 0;
+      const basePath = examEngine.basePath;
+
+      for (let chapterNum = 1; chapterNum <= totalChapters; chapterNum++) {
+        try {
+          const response = await fetch(
+            `${basePath}/data/${encodeURIComponent(book.id)}/chapter_${chapterNum}.json?v=${examEngine.sessionTimestamp}`
+          );
+
+          if (!response.ok) continue;
+
+          const chapterData = await response.json();
+          const questions = chapterData?.questions || (Array.isArray(chapterData) ? chapterData : []);
+          if (Array.isArray(questions)) {
+            totalQuestions += questions.length;
+            countEl.textContent = String(totalQuestions);
+          }
+        } catch (chapterError) {
+          console.warn(`تعذر قراءة الفصل ${chapterNum} من الكتاب ${book.id}`, chapterError);
+        }
       }
 
-      const count = await book._questionCountPromise;
-      const countEl = card.querySelector('.question-count');
-      if (countEl) countEl.textContent = String(count);
+      book._questionCount = totalQuestions;
+      countEl.textContent = String(totalQuestions);
     } catch (error) {
       console.warn(`تعذر عرض عدد أسئلة الكتاب: ${book.id}`, error);
-      const countEl = card.querySelector('.question-count');
-      if (countEl) countEl.textContent = '0';
+      countEl.textContent = '0';
+      book._questionCount = 0;
     }
   }
+
   escapeHtml(str) {
     const div = document.createElement('div');
     div.innerText = str || '';
