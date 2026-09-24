@@ -20,9 +20,35 @@ class ExamEngine {
   }
   async loadBooks() {
     try {
-      const res = await fetch(`${this.basePath}/data/books.json?v=${this.sessionTimestamp}`);
-      return await res.json();
-    } catch (e) { console.error('Error loading books:', e); return []; }
+      const [booksRes, metadataRes] = await Promise.all([
+        fetch(`${this.basePath}/data/books.json`),
+        fetch(`${this.basePath}/data/question-metadata.json`)
+      ]);
+
+      if (!booksRes.ok) throw new Error('تعذر تحميل بيانات الكتب');
+      const books = await booksRes.json();
+
+      let metadata = {};
+      if (metadataRes.ok) {
+        try {
+          metadata = await metadataRes.json();
+        } catch (_) {
+          metadata = {};
+        }
+      }
+
+      return books.map(book => {
+        const meta = metadata && metadata.books ? metadata.books[book.id] : null;
+        if (meta) {
+          book._questionCount = Number(meta.questionCount) || 0;
+          book._chapterMeta = Array.isArray(meta.chapters) ? meta.chapters : [];
+        }
+        return book;
+      });
+    } catch (e) {
+      console.error('Error loading books:', e);
+      return [];
+    }
   }
   async loadChapter(bookId, chapterNum) {
     try {
