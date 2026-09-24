@@ -1935,10 +1935,44 @@ header {
 
 .book-card .card-title { font-family: 'Tajawal', sans-serif !important; font-size: 17px !important; font-weight: 800 !important; color: #ffffff !important; text-align: center !important; margin-top: 10px !important; }
 .book-card .card-author { font-size: 12px !important; color: #8397b5 !important; margin-top: 4px !important; text-align: center !important; }
-.book-card .chapters-badge {
-  background: #14213a !important; border: 1px solid #1e3359 !important; border-radius: 12px !important;
-  padding: 4px 14px !important; font-size: 12px !important; color: #d1e0f5 !important; margin-top: 10px !important;
-  display: flex !important; align-items: center !important; gap: 5px !important; width: auto !important;
+.book-card .book-stats {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+.book-card .book-stat-badge {
+  min-width: 78px !important;
+  box-sizing: border-box !important;
+  background: #14213a !important;
+  border: 1px solid #1e3359 !important;
+  border-radius: 12px !important;
+  padding: 5px 8px !important;
+  font-size: 11px !important;
+  color: #d1e0f5 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+.book-card .book-stat-icon {
+  font-size: 11px !important;
+  line-height: 1 !important;
+}
+.book-card .book-stat-value {
+  font-weight: 800 !important;
+  color: #f0d38a !important;
+}
+.book-card .book-stat-label {
+  color: #c8d7e8 !important;
+}
+.book-card .questions-stat {
+  border-color: #28456f !important;
+  background: #11233d !important;
 }
 .book-card .test-btn {
   width: 100% !important; background: var(--bk-btn-gold) !important; color: #0d0d0d !important;
@@ -1962,4 +1996,10 @@ header {
   .book-card .top-ribbon-bookmark { height: 26px; left: 16px; width: 7px; }
   .book-card .inside-page-title { font-size: 11px; }
   .book-card .inside-page-text { font-size: 8.5px; }
-}
+  .book-card .book-stats { gap: 5px !important; }
+  .book-card .book-stat-badge {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
+    padding: 5px 5px !important;
+    font-size: 10px !important;
+  }
