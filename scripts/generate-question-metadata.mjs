@@ -50,3 +50,4 @@ for (const book of books) {
 
 fs.writeFileSync(outputPath, JSON.stringify(metadata, null, 2) + '\\n', 'utf8');
 console.log(`تم تحديث بيانات أعداد الأسئلة: ${outputPath}`);
+
