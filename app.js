@@ -583,53 +583,7 @@ class ExamApp {
       }
 
       container.appendChild(card);
-      this.loadBookQuestionCount(book, card);
     });
-  }
-
-  async loadBookQuestionCount(book, card) {
-    if (!book || !card) return;
-
-    const countEl = card.querySelector('.question-count');
-    if (!countEl) return;
-
-    try {
-      if (Number.isFinite(book._questionCount)) {
-        countEl.textContent = String(book._questionCount);
-        return;
-      }
-
-      // نحسب الأسئلة فصلًا بعد فصل حتى لا نرسل عشرات الطلبات دفعة واحدة.
-      let totalQuestions = 0;
-      const totalChapters = Number(book.chapters) || 0;
-      const basePath = examEngine.basePath;
-
-      for (let chapterNum = 1; chapterNum <= totalChapters; chapterNum++) {
-        try {
-          const response = await fetch(
-            `${basePath}/data/${encodeURIComponent(book.id)}/chapter_${chapterNum}.json?v=${examEngine.sessionTimestamp}`
-          );
-
-          if (!response.ok) continue;
-
-          const chapterData = await response.json();
-          const questions = chapterData?.questions || (Array.isArray(chapterData) ? chapterData : []);
-          if (Array.isArray(questions)) {
-            totalQuestions += questions.length;
-            countEl.textContent = String(totalQuestions);
-          }
-        } catch (chapterError) {
-          console.warn(`تعذر قراءة الفصل ${chapterNum} من الكتاب ${book.id}`, chapterError);
-        }
-      }
-
-      book._questionCount = totalQuestions;
-      countEl.textContent = String(totalQuestions);
-    } catch (error) {
-      console.warn(`تعذر عرض عدد أسئلة الكتاب: ${book.id}`, error);
-      countEl.textContent = '0';
-      book._questionCount = 0;
-    }
   }
 
   escapeHtml(str) {
@@ -758,7 +712,7 @@ class ExamApp {
     this.renderChapters();
   }
 
-  async renderChapters() {
+  renderChapters() {
     const header = document.getElementById('chapters-header');
     const container = document.getElementById('chapters-container');
     if (!header || !container) return;
@@ -766,23 +720,32 @@ class ExamApp {
     header.innerHTML = `<h2>${this.escapeHtml(this.currentBook.title)}</h2><p>اختر الفصل الذي تريد بدء امتحانه:</p>`;
     container.innerHTML = '';
 
-    const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-
     const chapterCount = Number(this.currentBook.chapters) || 0;
-    const chapters = Array.from({ length: chapterCount }, (_, index) => ({
-      chapterNum: index + 1,
-      topic: `أسئلة مخصصة لـ الفصل ${index + 1}`
-    }));
+    const chapterMeta = Array.isArray(this.currentBook._chapterMeta)
+      ? this.currentBook._chapterMeta
+      : [];
 
-    // نعرض البطاقات فوراً، ثم نقرأ العناوين المخصصة في الخلفية.
-    chapters.forEach(({ chapterNum, topic }) => {
+    const chapters = Array.from({ length: chapterCount }, (_, index) => {
+      const chapterNum = index + 1;
+      const meta = chapterMeta.find(item => Number(item.number) === chapterNum) || {};
+      return {
+        chapterNum,
+        topic: String(meta.title || meta.topic || `أسئلة مخصصة لـ الفصل ${chapterNum}`),
+        questionCount: Number.isFinite(Number(meta.questionCount)) ? Number(meta.questionCount) : null
+      };
+    });
+
+    chapters.forEach(({ chapterNum, topic, questionCount }) => {
       const item = document.createElement('div');
       item.className = 'chapter-item';
+
+      const countText = questionCount === null ? '— سؤال' : `${questionCount} سؤال`;
 
       item.innerHTML = `
         <div class="chapter-info">
           <div class="chapter-number">الفصل ${chapterNum}</div>
           <p data-chapter-topic="${chapterNum}">${this.escapeHtml(topic)}</p>
+          <span class="chapter-question-count" aria-label="عدد أسئلة الفصل">${countText}</span>
         </div>
 
         <button class="exam-btn next chapter-start-btn"
@@ -795,30 +758,6 @@ class ExamApp {
 
       container.appendChild(item);
     });
-
-    // لا نؤخر ظهور الفصول بانتظار ملفات الأسئلة الكبيرة.
-    Promise.all(chapters.map(async ({ chapterNum }) => {
-      try {
-        const response = await fetch(
-          `${basePath}/data/${this.currentBook.id}/chapter_${chapterNum}.json?v=${examEngine.sessionTimestamp}`
-        );
-        if (!response.ok) return;
-        const chapterData = await response.json();
-        const customTitle = String(chapterData.title || '').trim();
-        const oldTopic = String(chapterData.topic || '').trim();
-        let topic = `أسئلة مخصصة لـ الفصل ${chapterNum}`;
-        if (
-          customTitle &&
-          customTitle !== `الفصل ${chapterNum}` &&
-          customTitle !== `الفصل ${this.toArabicNumber ? this.toArabicNumber(chapterNum) : chapterNum}`
-        ) topic = customTitle;
-        else if (oldTopic) topic = oldTopic;
-        const topicEl = container.querySelector(`[data-chapter-topic="${chapterNum}"]`);
-        if (topicEl) topicEl.textContent = topic;
-      } catch (error) {
-        // تبقى التسمية الافتراضية عند تعذر تحميل بيانات الفصل.
-      }
-    }));
   }
 
   async startExam(chapterNum) {
