@@ -70,7 +70,7 @@
     }
   }
 
-  async function buildIndex() {
+  async function buildIndex(query) {
     const books = Array.isArray(window.app?.books) ? window.app.books : [];
     const results = [];
 
@@ -87,7 +87,7 @@
       try {
         // لا نحمل فهرس/ملفات الأسئلة كاملة. البحث عن الأسئلة يتم بطلب واحد
         // إلى API يعيد فقط النتائج المطابقة.
-        const questions = await window.app.searchQuestions(normalized, 25);
+        const questions = await window.app.searchQuestions(query, 25);
         questions.forEach(q => {
           results.push({
             type: 'question',
@@ -221,7 +221,7 @@
       el.innerHTML = '<p class="question-search-loading">🔍 جاري البحث في أقسام المنصة...</p>';
     }
 
-    const index = await buildIndex();
+    const index = await buildIndex(normalized);
     const matches = index
       .map(item => ({ item, score: score(item, normalized) }))
       .filter(x => x.score > 0)
