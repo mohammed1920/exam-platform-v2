@@ -1469,7 +1469,45 @@ class ExamApp {
     }, 1000);
   }
 
-  // إدارة تاريخ التطبيق على شكل مسارات منطقية، وليس كسجل لكل نقرة داخل الموقع
+  // شجرة التنقل: الرئيسية هي الجذر، وكل قسم رئيسي يبدأ مساراً جديداً.
+  // الأقسام الفرعية ترجع دائماً إلى الأب المباشر فقط.
+  getNavigationParent(viewId) {
+    const parents = {
+      chapters: 'books',
+      exam: 'books',
+      results: 'home',
+      review: 'home',
+      'custom-exam-setup': 'home',
+      leaderboard: 'home',
+      'student-dashboard': 'home',
+      lawyers: 'home',
+      contact: 'home',
+      about: 'home',
+      terms: 'home',
+      privacy: 'home',
+      disclaimer: 'home',
+      faq: 'home'
+    };
+    return parents[viewId] || null;
+  }
+
+  isTopLevelView(viewId) {
+    return new Set([
+      'home',
+      'books',
+      'custom-exam-setup',
+      'leaderboard',
+      'student-dashboard',
+      'lawyers',
+      'contact',
+      'about',
+      'terms',
+      'privacy',
+      'disclaimer',
+      'faq'
+    ]).has(viewId);
+  }
+
   navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const home = document.querySelector('.platform-home');
@@ -1485,31 +1523,16 @@ class ExamApp {
         ...params
       };
 
-      const currentView = history.state && history.state.view ? history.state.view : 'home';
+      const currentView = history.state?.view || 'home';
+      const parentView = this.getNavigationParent(viewId);
 
-      // الصفحات الرئيسية لا تحفظ الصفحة السابقة التي دخل منها المستخدم.
-      // إذا كنا من الرئيسية إلى قسم رئيسي: نضيف القسم حتى يرجع للهوم.
-      // وإذا كنا داخل أي قسم آخر: نستبدل الصفحة الحالية بالقسم حتى لا يتراكم السجل.
-      const topLevelViews = new Set([
-        'home',
-        'books',
-        'leaderboard',
-        'student-dashboard',
-        'contact',
-        'custom-exam-setup'
-      ]);
-
-      // صفحات النتائج والمراجعة تُعامل كصفحات فرعية من الرئيسية.
-      const parentView =
-        viewId === 'chapters' ? 'books' :
-        viewId === 'exam' ? 'books' :
-        viewId === 'results' || viewId === 'review' ? 'home' :
-        null;
-
-      if (parentView) {
-        // نستبدل الصفحة الحالية بالأب ثم نضيف الصفحة الحالية.
-        // مثال: الاختبار => [الكتب] -> [الاختبار]
-        // زر الرجوع سيعود للكتب مباشرة.
+      if (viewId === 'home') {
+        // الرئيسية دائماً جذر: لا نسمح بتراكم صفحات خلفها.
+        history.replaceState(state, '', window.location.href);
+      } else if (parentView && !this.isTopLevelView(viewId)) {
+        // قسم فرعي:
+        // مثال الكتب -> الفصول، ثم الفصول -> الاختبار.
+        // نضع الأب في مكان الصفحة الحالية ثم نضيف الفرعي.
         const parentState = {
           view: parentView,
           bookId: parentView === 'books' && this.currentBook ? this.currentBook.id : null,
@@ -1517,13 +1540,13 @@ class ExamApp {
         };
         history.replaceState(parentState, '', window.location.href);
         history.pushState(state, '', window.location.href);
-      } else if (topLevelViews.has(viewId)) {
-        if (viewId === 'books' && currentView === 'home') {
-          // الرئيسية -> الكتب: نحتاج إدخالاً واحداً حتى يرجع للهوم.
+      } else if (this.isTopLevelView(viewId)) {
+        if (currentView === 'home') {
+          // الرئيسية -> قسم رئيسي: زر الرجوع يرجع للرئيسية.
           history.pushState(state, '', window.location.href);
         } else {
-          // أي انتقال من قسم/صفحة إلى قسم رئيسي يبدأ مساراً جديداً.
-          // مثال: النتائج -> المتصدرين، ثم الرجوع = الرئيسية فقط.
+          // من أي قسم إلى قسم رئيسي آخر:
+          // نبدأ مساراً جديداً، لذلك الرجوع يكون للرئيسية وليس للقسم السابق.
           history.replaceState(state, '', window.location.href);
         }
       } else {
@@ -1533,6 +1556,7 @@ class ExamApp {
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
 
   setupEventListeners() {
     document.getElementById('back-to-books').onclick = () => this.backToBooks();
