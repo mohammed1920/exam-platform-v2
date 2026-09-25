@@ -638,19 +638,19 @@ class ExamApp {
     }, 350);
   }
 
-  async buildQuestionIndex() {
-    if (this._questionIndex && this._questionIndex.length) return this._questionIndex;
+  async searchQuestions(query, limit = 25) {
+    const normalized = String(query || '').trim();
+    if (normalized.length < 2) return [];
 
-    const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-    const res = await fetch(`${basePath}/data/question-search-index.json?v=1`, {
-      cache: 'force-cache'
+    const response = await fetch(`/api/search-questions?q=${encodeURIComponent(normalized)}&limit=${Math.min(25, Math.max(1, Number(limit) || 25))}`, {
+      headers: { 'Accept': 'application/json' },
+      cache: 'no-store'
     });
-    if (!res.ok) throw new Error('تعذر تحميل فهرس البحث');
-    
-    const data = await res.json();
-    const questions = Array.isArray(data) ? data : (Array.isArray(data.questions) ? data.questions : []);
 
-    this._questionIndex = questions.map(q => ({
+    if (!response.ok) throw new Error('تعذر البحث في الأسئلة');
+    const data = await response.json();
+
+    return (Array.isArray(data.questions) ? data.questions : []).map(q => ({
       id: q.id || null,
       uid: q.uid || q.id || null,
       question: q.question || '',
@@ -658,8 +658,11 @@ class ExamApp {
       sourceBookId: q.bookId || null,
       sourceChapter: Number(q.chapter) || 0
     }));
+  }
 
-    return this._questionIndex;
+  async buildQuestionIndex() {
+    // توافق مع الوحدات القديمة: البحث الفعلي أصبح عبر API ولا يحمل ملفات الفصول.
+    return [];
   }
 
   renderQuestionSearchResults(matches) {
