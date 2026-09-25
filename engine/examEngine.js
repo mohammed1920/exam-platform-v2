@@ -17,6 +17,9 @@ class ExamEngine {
     this.__skipFirestoreResultSave = false;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
     this.sessionTimestamp = Date.now();
+    // ذاكرة مؤقتة صغيرة داخل الجلسة فقط: تمنع إعادة طلب نفس الفصل دون الاحتفاظ بكل الفصول.
+    this.chapterCache = new Map();
+    this.chapterCacheLimit = 3;
   }
   async loadBooks() {
     try {
@@ -50,11 +53,33 @@ class ExamEngine {
       return [];
     }
   }
-  async loadChapter(bookId, chapterNum) {
+  async fetchChapterData(bookId, chapterNum) {
+    const key = `${bookId}::${chapterNum}`;
+    if (this.chapterCache.has(key)) {
+      const cached = this.chapterCache.get(key);
+      this.chapterCache.delete(key);
+      this.chapterCache.set(key, cached);
+      return cached;
+    }
+
     try {
       const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`);
-      if (res.ok) return this.initChapter(bookId, chapterNum, await res.json());
-    } catch (e) {}
+      if (!res.ok) return null;
+      const data = await res.json();
+      this.chapterCache.set(key, data);
+      while (this.chapterCache.size > this.chapterCacheLimit) {
+        const oldestKey = this.chapterCache.keys().next().value;
+        this.chapterCache.delete(oldestKey);
+      }
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async loadChapter(bookId, chapterNum) {
+    const data = await this.fetchChapterData(bookId, chapterNum);
+    if (data) return this.initChapter(bookId, chapterNum, data);
     return null;
   }
   initChapter(bookId, chapterNum, data) {
