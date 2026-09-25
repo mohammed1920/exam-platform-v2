@@ -1469,7 +1469,7 @@ class ExamApp {
     }, 1000);
   }
 
-  // تنقل داخلي مبسط: يمنع تراكم صفحات الموقع في زر رجوع الهاتف
+  // إدارة تاريخ التطبيق على شكل مسارات منطقية، وليس كسجل لكل نقرة داخل الموقع
   navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const home = document.querySelector('.platform-home');
@@ -1485,18 +1485,47 @@ class ExamApp {
         ...params
       };
 
-      // النتائج والمتصدرون ولوحة الطالب تعتبر صفحات مستقلة من الرئيسية،
-      // فلا نريد الاحتفاظ بكل الصفحات التي سبقتها في سجل الهاتف.
-      const topLevelViews = new Set(['home', 'books', 'leaderboard', 'student-dashboard', 'contact']);
-      const parentView = viewId === 'chapters' ? 'books'
-        : viewId === 'exam' ? 'books'
-        : viewId === 'results' || viewId === 'review' ? 'home'
-        : viewId === 'custom-exam-setup' ? 'home'
-        : null;
+      const currentView = history.state && history.state.view ? history.state.view : 'home';
 
-      if (topLevelViews.has(viewId) || parentView) {
-        history.replaceState(state, '', window.location.href);
+      // الصفحات الرئيسية لا تحفظ الصفحة السابقة التي دخل منها المستخدم.
+      // إذا كنا من الرئيسية إلى قسم رئيسي: نضيف القسم حتى يرجع للهوم.
+      // وإذا كنا داخل أي قسم آخر: نستبدل الصفحة الحالية بالقسم حتى لا يتراكم السجل.
+      const topLevelViews = new Set([
+        'home',
+        'books',
+        'leaderboard',
+        'student-dashboard',
+        'contact',
+        'custom-exam-setup'
+      ]);
+
+      // صفحات النتائج والمراجعة تُعامل كصفحات فرعية من الرئيسية.
+      const parentView =
+        viewId === 'chapters' ? 'books' :
+        viewId === 'exam' ? 'books' :
+        viewId === 'results' || viewId === 'review' ? 'home' :
+        null;
+
+      if (parentView) {
+        // نستبدل الصفحة الحالية بالأب ثم نضيف الصفحة الحالية.
+        // مثال: الاختبار => [الكتب] -> [الاختبار]
+        // زر الرجوع سيعود للكتب مباشرة.
+        const parentState = {
+          view: parentView,
+          bookId: parentView === 'books' && this.currentBook ? this.currentBook.id : null,
+          chapter: parentView === 'books' ? this.currentChapter : null
+        };
+        history.replaceState(parentState, '', window.location.href);
         history.pushState(state, '', window.location.href);
+      } else if (topLevelViews.has(viewId)) {
+        if (viewId === 'books' && currentView === 'home') {
+          // الرئيسية -> الكتب: نحتاج إدخالاً واحداً حتى يرجع للهوم.
+          history.pushState(state, '', window.location.href);
+        } else {
+          // أي انتقال من قسم/صفحة إلى قسم رئيسي يبدأ مساراً جديداً.
+          // مثال: النتائج -> المتصدرين، ثم الرجوع = الرئيسية فقط.
+          history.replaceState(state, '', window.location.href);
+        }
       } else {
         history.pushState(state, '', window.location.href);
       }
