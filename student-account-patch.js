@@ -15,7 +15,6 @@
     const avatar = document.getElementById('student-sidebar-avatar');
     const nameEl = document.getElementById('student-sidebar-name');
     const emailEl = document.getElementById('student-sidebar-email');
-    const status = sidebar.querySelector('.student-sidebar-status');
     const statusText = sidebar.querySelector('.student-sidebar-status-text');
     const login = document.getElementById('student-sidebar-login');
     const logout = document.getElementById('student-sidebar-logout');
@@ -94,12 +93,6 @@
     }, true);
   }
 
-  function escapeHtml(value) {
-    const div = document.createElement('div');
-    div.textContent = value == null ? '' : String(value);
-    return div.innerHTML;
-  }
-
   function removeLegacySidebar() {
     const legacy = document.getElementById('student-account-sidebar');
     if (legacy) legacy.remove();
@@ -113,12 +106,10 @@
     syncSidebarUser();
     updateSidebarLogoutAction();
 
-    // لا نراقب document.body بالكامل؛ هذا كان يعيد تشغيل التحديثات مع كل تغيير DOM
-    // وقد يسبب حلقة تحديث/تجمّد للواجهة. التحديثات هنا تُدار عند بدء الصفحة
-    // وعند تغيّر حالة تسجيل الدخول فقط.
     window.addEventListener('public-auth-state-changed', event => {
       updateAccountButton();
       syncSidebarUser();
+
       if (event.detail && event.detail.user === null) {
         const sidebar = document.getElementById('student-account-sidebar') || document.getElementById('platform-sidebar');
         if (sidebar) {
@@ -126,8 +117,15 @@
           sidebar.setAttribute('aria-hidden', 'true');
         }
         document.body.classList.remove('student-sidebar-open');
-        if (window.app && typeof window.app.backToBooks === 'function') window.app.backToBooks();
+
+        // بعد تسجيل الخروج نرجع دائماً للرئيسية، وليس لقسم الكتب.
+        if (window.app && typeof window.app.backToHome === 'function') {
+          window.app.backToHome();
+        } else if (window.app && typeof window.app.navigateTo === 'function') {
+          window.app.navigateTo('home');
+        }
       }
+
       removeLegacySidebar();
       updateSidebarLogoutAction();
     });
