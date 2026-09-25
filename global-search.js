@@ -85,8 +85,9 @@
 
     if (window.publicAuth?.user) {
       try {
-        const questions = state.questionIndex || await window.app.buildQuestionIndex();
-        state.questionIndex = questions;
+        // لا نحمل فهرس/ملفات الأسئلة كاملة. البحث عن الأسئلة يتم بطلب واحد
+        // إلى API يعيد فقط النتائج المطابقة.
+        const questions = await window.app.searchQuestions(normalized, 25);
         questions.forEach(q => {
           results.push({
             type: 'question',
