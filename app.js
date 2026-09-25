@@ -1640,8 +1640,19 @@ class ExamApp {
         } else {
           this.navigateTo(view, {}, false);
         }
-      } else {
-        this.navigateTo('books', {}, false);
+      } else if (view === 'results' || view === 'review') {
+          // النتائج والمراجعة صفحة مستقلة من الرئيسية.
+          this.navigateTo(view, {}, false);
+        } else if (view === 'lawyers' || view === 'contact' || view === 'about' ||
+                   view === 'terms' || view === 'privacy' || view === 'disclaimer' || view === 'faq') {
+          // الأقسام الرئيسية الأخرى.
+          this.navigateTo(view, {}, false);
+        } else {
+          // أي حالة غير معروفة تعود إلى جذر التطبيق، وليس إلى الكتب.
+          this.currentBook = null;
+          this.currentChapter = null;
+          this.navigateTo('home', {}, false);
+        }
       }
     };
   }
