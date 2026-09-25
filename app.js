@@ -1469,17 +1469,39 @@ class ExamApp {
     }, 1000);
   }
 
-  // دالة الملاحة المحسنة لدعم أزرار الرجوع للهواتف بدون الخروج من الموقع
+  // تنقل داخلي مبسط: يمنع تراكم صفحات الموقع في زر رجوع الهاتف
   navigateTo(viewId, params = {}, pushState = true) {
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const home = document.querySelector('.platform-home');
     if (home) home.style.display = viewId === 'home' ? '' : 'none';
     const section = document.getElementById(`${viewId}-section`);
     if (section) section.classList.add('active');
-    
+
     if (pushState) {
-      history.pushState({ view: viewId, bookId: this.currentBook ? this.currentBook.id : null, chapter: this.currentChapter, ...params }, '');
+      const state = {
+        view: viewId,
+        bookId: this.currentBook ? this.currentBook.id : null,
+        chapter: this.currentChapter,
+        ...params
+      };
+
+      // النتائج والمتصدرون ولوحة الطالب تعتبر صفحات مستقلة من الرئيسية،
+      // فلا نريد الاحتفاظ بكل الصفحات التي سبقتها في سجل الهاتف.
+      const topLevelViews = new Set(['home', 'books', 'leaderboard', 'student-dashboard', 'contact']);
+      const parentView = viewId === 'chapters' ? 'books'
+        : viewId === 'exam' ? 'books'
+        : viewId === 'results' || viewId === 'review' ? 'home'
+        : viewId === 'custom-exam-setup' ? 'home'
+        : null;
+
+      if (topLevelViews.has(viewId) || parentView) {
+        history.replaceState(state, '', window.location.href);
+        history.pushState(state, '', window.location.href);
+      } else {
+        history.pushState(state, '', window.location.href);
+      }
     }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
