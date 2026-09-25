@@ -640,8 +640,25 @@ class ExamApp {
 
   async buildQuestionIndex() {
     if (this._questionIndex && this._questionIndex.length) return this._questionIndex;
-    const poolsPerBook = await Promise.all(this.books.map(b => this.fetchAllBookQuestions(b)));
-    this._questionIndex = poolsPerBook.flat();
+
+    const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+    const res = await fetch(`${basePath}/data/question-search-index.json?v=1`, {
+      cache: 'force-cache'
+    });
+    if (!res.ok) throw new Error('تعذر تحميل فهرس البحث');
+    
+    const data = await res.json();
+    const questions = Array.isArray(data) ? data : (Array.isArray(data.questions) ? data.questions : []);
+
+    this._questionIndex = questions.map(q => ({
+      id: q.id || null,
+      uid: q.uid || q.id || null,
+      question: q.question || '',
+      sourceBook: q.bookTitle || '',
+      sourceBookId: q.bookId || null,
+      sourceChapter: Number(q.chapter) || 0
+    }));
+
     return this._questionIndex;
   }
 
@@ -675,7 +692,9 @@ class ExamApp {
       window.publicAuth.requireAuth(() => this.openSearchedQuestion(matchedQuestion));
       return;
     }
-    const book = this.books.find(b => b.title === matchedQuestion.sourceBook);
+    const book = matchedQuestion.sourceBookId
+      ? this.books.find(b => b.id === matchedQuestion.sourceBookId)
+      : this.books.find(b => b.title === matchedQuestion.sourceBook);
     if (!book) {
       alert('تعذر تحديد الكتاب المصدر لهذا السؤال.');
       return;
