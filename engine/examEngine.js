@@ -152,14 +152,3 @@ class ExamEngine {
 
 const examEngine = new ExamEngine();
 window.examEngine = examEngine;
-
-(function loadStudentDashboardModules() {
-  const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  ['dashboard-style-loader.js?v=1.3', 'user-dashboard.js?v=1.3', 'student-results.js?v=1.0', 'wrong-answers-retest.js?v=1.0'].forEach(src => {
-    const script = document.createElement('script');
-    script.src = `${basePath}/${src}`;
-    script.async = true;
-    script.onerror = () => console.warn(`تعذر تحميل الوحدة: ${src}`);
-    document.head.appendChild(script);
-  });
-})();

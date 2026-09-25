@@ -213,38 +213,6 @@
     }
   }
 
-  function installExamResultHook() {
-    if (window.__firestoreExamHookInstalled) return;
-    const tryInstall = () => {
-      if (window.__firestoreExamHookInstalled) return true;
-      const engine = window.examEngine;
-      if (!engine || typeof engine.finishExam !== 'function') return false;
-      const originalFinishExam = engine.finishExam.bind(engine);
-      engine.finishExam = function () {
-        const wasFinished = Boolean(this.finishedResult);
-        const result = originalFinishExam();
-        if (!wasFinished && result && state.user) {
-          const app = window.app;
-          const book = app && app.currentBook;
-          saveExamResultToFirestore(result, {
-            bookId: app && book ? book.id : (this.currentBook !== 'custom-exam' ? this.currentBook : null),
-            bookTitle: app && book ? book.title : null,
-            chapter: this.currentChapter,
-            custom: Boolean(app && app.isCustomExam) || this.currentBook === 'custom-exam',
-            startedAt: this.startTime ? this.startTime.toISOString() : null,
-            resultId: `${state.user.uid}_${this.startTime ? this.startTime.getTime() : Date.now()}`
-          }).catch(error => console.error('Firestore result save failed:', error));
-        }
-        return result;
-      };
-      window.__firestoreExamHookInstalled = true;
-      return true;
-    };
-    if (tryInstall()) return;
-    const timer = window.setInterval(() => { if (tryInstall()) window.clearInterval(timer); }, 100);
-    window.setTimeout(() => window.clearInterval(timer), 15000);
-  }
-
   function installModal() {
     if (document.getElementById('login-modal')) return;
     document.body.insertAdjacentHTML('beforeend', `
@@ -315,6 +283,4 @@
     window.dispatchEvent(new CustomEvent('public-auth-state-changed', { detail: { user } }));
   });
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installExamResultHook);
-  else installExamResultHook();
 })();
