@@ -36,5 +36,6 @@ body.platform-sidebar-open{overflow:hidden}
 .platform-sidebar-account-user span{font-size:10px;color:#8397a9;margin-top:2px}
 .platform-sidebar-account-action{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;border:1px solid rgba(194,157,95,.25);border-radius:10px;background:rgba(255,255,255,.03);color:#d8e0e7;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
 .platform-sidebar-account-action:hover{background:rgba(194,157,95,.09);color:#efd397;border-color:rgba(194,157,95,.4)}
+.platform-sidebar-account-action[hidden]{display:none !important;}
 
 .platform-sidebar-item[hidden]{display:none !important;}
