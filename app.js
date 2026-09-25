@@ -1596,63 +1596,68 @@ class ExamApp {
   // مستمع أحداث زر الرجوع الفيزيائي للهاتف
   setupHistoryListener() {
     window.onpopstate = (event) => {
-      if (event.state && event.state.view) {
-        const view = event.state.view;
-        
-        // إيقاف مؤقت الفحص إذا خرج من الاختبار النشط
-        if (view !== 'exam' && this.timerInterval) {
-          this.saveExamDraft();
-          clearInterval(this.timerInterval);
-          this.examActive = false;
-          document.body.classList.remove('exam-mode');
-        }
+      const state = event.state;
+      const view = state && state.view;
 
-        if (view === 'home') {
-          this.currentBook = null;
-          this.currentChapter = null;
-          this.navigateTo('home', {}, false);
-        } else if (view === 'books') {
-          this.currentBook = null;
-          this.currentChapter = null;
-          this.navigateTo('books', {}, false);
-          this.renderBooks(this.books);
-        } else if (view === 'chapters') {
-          this.currentChapter = null;
-          this.navigateTo('chapters', {}, false);
-          this.renderChapters();
-        } else if (view === 'exam') {
-          if (!window.publicAuth.user) {
-            window.publicAuth.requireAuth(() => this.restoreState(event.state));
-            return;
-          }
-          this.navigateTo('exam', {}, false);
-          this.renderQuestion();
-        } else if (view === 'custom-exam-setup') {
-          this.isCustomExam = false;
-          this.navigateTo('custom-exam-setup', {}, false);
-          this.renderCustomExamSetup();
-        } else if (view === 'student-dashboard') {
-          if (window.studentDashboard && typeof window.studentDashboard.restore === 'function') {
-            window.studentDashboard.restore(event.state.dashboardTarget || 'profile', false);
-          } else {
-            this.navigateTo(view, {}, false);
-          }
+      // إذا خرجنا من الاختبار، نوقف المؤقت ونحفظ المسودة.
+      if (view !== 'exam' && this.timerInterval) {
+        this.saveExamDraft();
+        clearInterval(this.timerInterval);
+        this.timerInterval = null;
+        this.examActive = false;
+        document.body.classList.remove('exam-mode');
+      }
+
+      if (view === 'home') {
+        this.currentBook = null;
+        this.currentChapter = null;
+        this.navigateTo('home', {}, false);
+      } else if (view === 'books') {
+        this.currentBook = null;
+        this.currentChapter = null;
+        this.navigateTo('books', {}, false);
+        this.renderBooks(this.books);
+      } else if (view === 'chapters') {
+        if (state.bookId) {
+          this.currentBook = this.books.find(b => b.id === state.bookId) || this.currentBook;
+        }
+        this.currentChapter = null;
+        this.navigateTo('chapters', {}, false);
+        this.renderChapters();
+      } else if (view === 'exam') {
+        if (!window.publicAuth.user) {
+          window.publicAuth.requireAuth(() => this.restoreState(state));
+          return;
+        }
+        this.navigateTo('exam', {}, false);
+        this.renderQuestion();
+      } else if (view === 'custom-exam-setup') {
+        this.isCustomExam = false;
+        this.navigateTo('custom-exam-setup', {}, false);
+        this.renderCustomExamSetup();
+      } else if (view === 'student-dashboard') {
+        if (window.studentDashboard && typeof window.studentDashboard.restore === 'function') {
+          window.studentDashboard.restore(state.dashboardTarget || 'profile', false);
         } else {
-          this.navigateTo(view, {}, false);
+          this.navigateTo('student-dashboard', {}, false);
         }
       } else if (view === 'results' || view === 'review') {
-          // النتائج والمراجعة صفحة مستقلة من الرئيسية.
-          this.navigateTo(view, {}, false);
-        } else if (view === 'lawyers' || view === 'contact' || view === 'about' ||
-                   view === 'terms' || view === 'privacy' || view === 'disclaimer' || view === 'faq') {
-          // الأقسام الرئيسية الأخرى.
-          this.navigateTo(view, {}, false);
-        } else {
-          // أي حالة غير معروفة تعود إلى جذر التطبيق، وليس إلى الكتب.
-          this.currentBook = null;
-          this.currentChapter = null;
-          this.navigateTo('home', {}, false);
-        }
+        this.navigateTo(view, {}, false);
+      } else if (
+        view === 'lawyers' ||
+        view === 'contact' ||
+        view === 'about' ||
+        view === 'terms' ||
+        view === 'privacy' ||
+        view === 'disclaimer' ||
+        view === 'faq'
+      ) {
+        this.navigateTo(view, {}, false);
+      } else {
+        // أي حالة غير معروفة ترجع إلى الرئيسية.
+        this.currentBook = null;
+        this.currentChapter = null;
+        this.navigateTo('home', {}, false);
       }
     };
   }
