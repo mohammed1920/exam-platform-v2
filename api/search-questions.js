@@ -17,42 +17,9 @@ function normalize(value) {
 function loadQuestionIndex() {
   if (questionIndex) return questionIndex;
 
-  const dataRoot = path.join(process.cwd(), 'data');
-  const books = JSON.parse(fs.readFileSync(path.join(dataRoot, 'books.json'), 'utf8'));
-  const index = [];
-
-  for (const book of books) {
-    const bookId = String(book.id);
-    const bookTitle = String(book.title || book.name || book.id);
-    const chapterCount = Number(book.chapters) || 0;
-
-    for (let chapter = 1; chapter <= chapterCount; chapter++) {
-      const filePath = path.join(dataRoot, bookId, `chapter_${chapter}.json`);
-      try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const questions = Array.isArray(data?.questions)
-          ? data.questions
-          : Array.isArray(data) ? data : [];
-
-        for (const q of questions) {
-          const question = String(q?.question || q?.q || q?.text || '').trim();
-          if (!question) continue;
-
-          index.push({
-            id: q?.id != null ? String(q.id) : null,
-            uid: q?.uid != null ? String(q.uid) : (q?.id != null ? String(q.id) : null),
-            question,
-            bookId,
-            bookTitle,
-            chapter
-          });
-        }
-      } catch (_) {}
-    }
-  }
-
-  questionIndex = index;
-  return index;
+  const indexPath = path.join(process.cwd(), 'data', 'search-index.json');
+  questionIndex = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+  return questionIndex;
 }
 
 module.exports = async function handler(req, res) {
