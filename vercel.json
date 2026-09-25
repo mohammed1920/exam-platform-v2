@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "node scripts/build-search-index.js",
   "functions": {
     "api/search-questions.js": {
       "includeFiles": "data/search-index.json"
