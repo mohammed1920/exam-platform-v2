@@ -804,38 +804,80 @@ class ExamApp {
       return;
     }
 
-    container.innerHTML = this.books.map(book => `
-      <label class="custom-exam-book-option">
-        <input type="checkbox" value="${this.escapeHtml(book.id)}" class="custom-exam-book-checkbox">
-        <span>${this.escapeHtml(book.title)} <small>(${Number(book.chapters) || 0} فصل)</small></span>
-      </label>
-    `).join('');
+    container.innerHTML = this.books.map(book => {
+      const chapterCount = Number(book.chapters) || (Array.isArray(book._chapterMeta) ? book._chapterMeta.length : 0);
+      const questionCount = Number(book._questionCount) || 0;
+      return `
+        <label class="custom-exam-book-option">
+          <input type="checkbox" value="${this.escapeHtml(book.id)}" class="custom-exam-book-checkbox">
+          <span>${this.escapeHtml(book.title)}
+            <small>(${chapterCount} فصل • ${questionCount.toLocaleString('ar-IQ')} سؤال)</small>
+          </span>
+        </label>
+      `;
+    }).join('');
   }
 
-  async fetchAllBookQuestions(book) {
-    const basePath = examEngine.basePath;
-    const total = book.chapters || 0;
-    const requests = [];
+  // يجلب أقل عدد ممكن من الفصول اللازمة للاختبار العشوائي.
+  // الاختيار يتم من خلال فهرس خفيف، ثم تُحمّل الفصول المختارة فقط وبشكل متسلسل.
+  async fetchRandomBookQuestions(selectedBooks, questionCount) {
+    const candidates = [];
 
-    for (let i = 1; i <= total; i++) {
-      requests.push(
-        fetch(`${basePath}/data/${book.id}/chapter_${i}.json?v=${examEngine.sessionTimestamp}`)
-          .then(res => (res.ok ? res.json() : null))
-          .catch(() => null)
-      );
-    }
-
-    const chaptersData = await Promise.all(requests);
-    const pool = [];
-
-    chaptersData.forEach((chapterData, idx) => {
-      if (!chapterData) return;
-      const chapterNum = idx + 1;
-      const qs = chapterData.questions || (Array.isArray(chapterData) ? chapterData : []);
-      qs.forEach(q => {
-        pool.push({ ...q, sourceBook: book.title, sourceChapter: chapterNum });
+    selectedBooks.forEach(book => {
+      const chapters = Array.isArray(book._chapterMeta) ? book._chapterMeta : [];
+      chapters.forEach(meta => {
+        const number = Number(meta.number);
+        const count = Number(meta.questionCount) || 0;
+        if (number > 0 && count > 0) {
+          candidates.push({ book, chapter: number, questionCount: count });
+        }
       });
     });
+
+    // احتياط للبيانات القديمة: إذا لم يتوفر فهرس الفصل، نستخدم أرقام الفصول فقط.
+    if (candidates.length === 0) {
+      selectedBooks.forEach(book => {
+        const totalChapters = Number(book.chapters) || 0;
+        for (let chapter = 1; chapter <= totalChapters; chapter++) {
+          candidates.push({ book, chapter, questionCount: 1 });
+        }
+      });
+    }
+
+    let remaining = candidates.slice();
+    const plan = [];
+
+    // اختيار موزون حسب عدد أسئلة الفصل: الفصل الأكبر لديه فرصة أكبر أن يغطي الطلب
+    // وبالتالي نقلل عدد الملفات المطلوبة دون التضحية بالعشوائية.
+    while (remaining.length && plan.reduce((sum, item) => sum + item.questionCount, 0) < questionCount) {
+      const totalWeight = remaining.reduce((sum, item) => sum + Math.max(1, item.questionCount), 0);
+      let cursor = Math.random() * totalWeight;
+      let selectedIndex = remaining.length - 1;
+      for (let i = 0; i < remaining.length; i++) {
+        cursor -= Math.max(1, remaining[i].questionCount);
+        if (cursor <= 0) {
+          selectedIndex = i;
+          break;
+        }
+      }
+      plan.push(remaining[selectedIndex]);
+      remaining.splice(selectedIndex, 1);
+    }
+
+    const pool = [];
+    const seen = new Set();
+    for (const item of plan) {
+      const data = await examEngine.fetchChapterData(item.book.id, item.chapter);
+      if (!data) continue;
+      const questions = data.questions || (Array.isArray(data) ? data : []);
+      questions.forEach(q => {
+        const key = q.uid || q.id || `${item.book.id}::${item.chapter}::${q.question || q.q || ''}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+        pool.push({ ...q, sourceBook: item.book.title, sourceChapter: item.chapter });
+      });
+      if (pool.length >= questionCount) break;
+    }
 
     return pool;
   }
@@ -875,23 +917,32 @@ class ExamApp {
     }
 
     try {
-      const poolsPerBook = await Promise.all(selectedBooks.map(b => this.fetchAllBookQuestions(b)));
-      let pool = poolsPerBook.flat();
-
-      if (pool.length === 0) {
-        alert('عذراً، لم يتم العثور على أي أسئلة بالكتب المختارة.');
+      const availableCount = selectedBooks.reduce((sum, book) => sum + (Number(book._questionCount) || 0), 0);
+      if (availableCount < 1) {
+        alert('عذراً، لا تتوفر بيانات أسئلة للكتب المختارة حالياً.');
         return;
       }
 
-      // خلط عشوائي كامل لترتيب الأسئلة (Fisher-Yates)
+      const requestedCount = Math.min(questionCount, availableCount);
+      if (requestedCount < questionCount) {
+        alert(`تنبيه: الكتب المختارة تحتوي ${availableCount.toLocaleString('ar-IQ')} سؤال فقط، سيتم استخدام ${requestedCount.toLocaleString('ar-IQ')} سؤال.`);
+      }
+
+      const pool = await this.fetchRandomBookQuestions(selectedBooks, requestedCount);
+      if (pool.length === 0) {
+        alert('عذراً، تعذر تحميل الأسئلة المطلوبة حالياً.');
+        return;
+      }
+
+      // خلط عشوائي كامل للأسئلة التي تم تحميلها فقط، وليس لكل كتب المنصة.
       for (let i = pool.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [pool[i], pool[j]] = [pool[j], pool[i]];
       }
 
-      const finalCount = Math.min(questionCount, pool.length);
-      if (finalCount < questionCount) {
-        alert(`تنبيه: الكتب المختارة تحتوي ${pool.length} سؤال فقط، سيتم استخدام كل الأسئلة المتاحة.`);
+      const finalCount = Math.min(requestedCount, pool.length);
+      if (finalCount < requestedCount) {
+        alert(`تعذر تحميل العدد الكامل بسبب ملفات غير متاحة. سيتم استخدام ${finalCount} سؤال.`);
       }
       const selectedQuestions = pool.slice(0, finalCount);
 
