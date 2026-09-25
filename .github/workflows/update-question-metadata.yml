@@ -22,12 +22,12 @@ jobs:
 
       - name: Commit metadata if changed
         run: |
-          if git diff --quiet -- data/question-metadata.json data/question-search-index.json; then
+          if git diff --quiet -- data/question-metadata.json; then
             echo "No metadata changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/question-metadata.json data/question-search-index.json
+          git add data/question-metadata.json
           git commit -m "chore: update question metadata"
           git push
