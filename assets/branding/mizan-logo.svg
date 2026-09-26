@@ -1,23 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="شعار ميزان">
-<defs>
-  <linearGradient id="mzGold" x1="20" y1="20" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-    <stop offset="0" stop-color="#fff0b0"/><stop offset=".28" stop-color="#e6bd69"/>
-    <stop offset=".58" stop-color="#b8893f"/><stop offset=".82" stop-color="#f0cf80"/><stop offset="1" stop-color="#9a6d32"/>
-  </linearGradient>
-  <filter id="mzShadow" x="-30%" y="-30%" width="160%" height="170%">
-    <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".42"/>
-  </filter>
-</defs>
-<g filter="url(#mzShadow)">
-  <path d="M90 27v105" stroke="url(#mzGold)" stroke-width="8" stroke-linecap="round"/>
-  <path d="M90 39L43 57M90 39l47 18" fill="none" stroke="url(#mzGold)" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="90" cy="29" r="9" fill="url(#mzGold)" stroke="#0a1425" stroke-width="3"/>
-  <path d="M40 57h100" stroke="#e6bd69" stroke-width="6" stroke-linecap="round"/>
-  <path d="M44 60v13M136 60v13" stroke="url(#mzGold)" stroke-width="3.5" stroke-linecap="round"/>
-  <path d="M28 73Q43 91 58 73" fill="none" stroke="url(#mzGold)" stroke-width="4" stroke-linecap="round"/>
-  <path d="M122 73Q137 91 152 73" fill="none" stroke="url(#mzGold)" stroke-width="4" stroke-linecap="round"/>
-  <path d="M53 132h74" stroke="url(#mzGold)" stroke-width="7" stroke-linecap="round"/>
-  <path d="M66 143h48" stroke="#d2ad62" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M75 132l-9 11M105 132l9 11" stroke="url(#mzGold)" stroke-width="3.5" stroke-linecap="round"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#1a2942"/><stop offset="50%" stop-color="#0b1326"/><stop offset="100%" stop-color="#050811"/>
+    </radialGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a6baf"/><stop offset="30%" stop-color="#1e325c"/><stop offset="70%" stop-color="#0a1224"/><stop offset="100%" stop-color="#2c477a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE599"/><stop offset="25%" stop-color="#D4AF37"/><stop offset="50%" stop-color="#AA7C11"/><stop offset="75%" stop-color="#E6CA65"/><stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8DC"/><stop offset="50%" stop-color="#DAA520"/><stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <radialGradient id="purpleBowl" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#6B21A8"/><stop offset="40%" stop-color="#3B0764"/><stop offset="85%" stop-color="#1E0038"/><stop offset="100%" stop-color="#0D001A"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect x="25" y="25" width="450" height="450" rx="90" ry="90" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="8" filter="url(#shadow)"/>
+  <rect x="33" y="33" width="434" height="434" rx="82" ry="82" fill="none" stroke="#5c7cfa" stroke-opacity="0.15" stroke-width="3"/>
+  <g filter="url(#shadow)">
+    <polygon points="170,415 330,415 345,430 155,430" fill="url(#goldGrad)"/>
+    <polygon points="185,400 315,400 325,415 175,415" fill="url(#goldLight)"/>
+    <rect x="200" y="390" width="100" height="10" rx="2" fill="url(#goldGrad)"/>
+    <polygon points="210,403 290,403 285,412 215,412" fill="#1e1b4b"/>
+    <rect x="242" y="160" width="16" height="230" fill="url(#goldGrad)"/>
+    <path d="M242 230L200 260L200 320L218 335L218 275L242 258Z" fill="url(#goldLight)"/>
+    <path d="M218 275L242 295L242 365L218 348Z" fill="url(#goldGrad)"/>
+    <path d="M200 320L175 340L175 370L242 400L242 380L192 358L192 342L200 335Z" fill="url(#goldLight)"/>
+    <path d="M258 220C295 220 325 240 325 270C325 300 295 315 270 320L270 300C288 295 305 285 305 270C305 255 285 238 258 238Z" fill="url(#goldGrad)"/>
+    <path d="M258 290L280 290L280 365L258 380Z" fill="url(#goldLight)"/>
+    <polygon points="250,90 263,110 250,130 237,110" fill="url(#goldLight)"/>
+    <polygon points="250,98 257,110 250,122 243,110" fill="#4c1d95"/>
+    <circle cx="250" cy="110" r="2" fill="#a78bfa"/>
+    <path d="M110 180C170 180 210 135 250 135C290 135 330 180 390 180C400 180 405 170 395 165C340 135 295 120 250 120C205 120 160 135 105 165C95 170 100 180 110 180Z" fill="url(#goldGrad)"/>
+    <circle cx="250" cy="130" r="12" fill="url(#goldLight)"/><circle cx="250" cy="130" r="6" fill="#0b1326"/>
+    <circle cx="110" cy="178" r="8" fill="url(#goldLight)"/>
+    <line x1="110" y1="186" x2="65" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/><line x1="110" y1="186" x2="110" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/><line x1="110" y1="186" x2="155" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/>
+    <path d="M60 280C60 325 160 325 160 280Z" fill="url(#purpleBowl)"/><ellipse cx="110" cy="280" rx="50" ry="8" fill="url(#goldGrad)"/><ellipse cx="110" cy="280" rx="46" ry="5" fill="#2e1065"/><path d="M75 298C90 318 130 318 145 298C130 312 90 312 75 298Z" fill="url(#goldLight)" opacity=".8"/>
+    <circle cx="390" cy="178" r="8" fill="url(#goldLight)"/>
+    <line x1="390" y1="186" x2="345" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/><line x1="390" y1="186" x2="390" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/><line x1="390" y1="186" x2="435" y2="280" stroke="url(#goldGrad)" stroke-width="2.5"/>
+    <path d="M340 280C340 325 440 325 440 280Z" fill="url(#purpleBowl)"/><ellipse cx="390" cy="280" rx="50" ry="8" fill="url(#goldGrad)"/><ellipse cx="390" cy="280" rx="46" ry="5" fill="#2e1065"/><path d="M355 298C370 318 410 318 425 298C410 312 370 312 355 298Z" fill="url(#goldLight)" opacity=".8"/>
+  </g>
 </svg>
