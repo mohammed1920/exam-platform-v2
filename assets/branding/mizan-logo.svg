@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="شعار ميزان">
+<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2d18b"/><stop offset=".5" stop-color="#c29d5f"/><stop offset="1" stop-color="#9a743c"/></linearGradient></defs>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M90 25v104" stroke="#0f172a" stroke-width="10"/><path d="M70 143h40" stroke="#c29d5f" stroke-width="9"/><path d="M53 143h74" stroke="#0f172a" stroke-width="6"/>
+<path d="M42 51h96" stroke="url(#gold)" stroke-width="8"/><circle cx="90" cy="34" r="12" fill="url(#gold)" stroke="#0f172a" stroke-width="5"/>
+<path d="M42 51 25 91h34L42 51Zm96 0-17 40h34l-17-40Z" fill="#0f172a" stroke="url(#gold)" stroke-width="5"/><path d="M25 91h34M104 91h34" stroke="url(#gold)" stroke-width="5"/>
+</g></svg>
