@@ -10,12 +10,30 @@
       text-align: center;
     }
 
+    /* الترتيب المطلوب: الشعار يمين — اسم ميزان يسار */
+    .mizan-brand {
+      direction: ltr !important;
+      grid-template-columns: auto auto !important;
+      grid-template-rows: auto auto !important;
+    }
+
+    .mizan-logo-animation {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+    }
+
+    .mizan-brand-copy {
+      display: contents !important;
+    }
+
     .mizan-brand-copy h1 {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
       display: block;
       width: auto;
       max-width: none;
-      margin: 0 0 7px !important;
-      text-align: right;
+      margin: 0 !important;
+      text-align: left !important;
       white-space: nowrap;
       overflow: visible;
       line-height: 1.1;
@@ -28,9 +46,12 @@
     }
 
     .mizan-brand-copy p {
+      grid-column: 1 / -1 !important;
+      grid-row: 2 !important;
       margin: 0 !important;
-      text-align: right;
+      text-align: center !important;
       max-width: 900px;
+      direction: rtl !important;
     }
 
     @media (max-width: 560px) {
