@@ -74,12 +74,17 @@
   <link rel="stylesheet" href="theme.css?v=1.0">
 </head>
 <body>
-  <header>
+  <header class="mizan-header">
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="تفعيل الوضع النهاري" title="الوضع النهاري">
       <i class="fas fa-sun" aria-hidden="true"></i>
     </button>
-    <h1>ميزان</h1>
-    <p>حيث يُقاس الفهم القانوني بدقة.</p>
+    <div class="mizan-brand" aria-label="ميزان">
+      <div id="mizan-logo-animation" class="mizan-logo-animation" aria-hidden="true"></div>
+      <div class="mizan-brand-copy">
+        <h1>ميزان</h1>
+        <p>حيث يُقاس الفهم القانوني بدقة.</p>
+      </div>
+    </div>
     <button id="install-app-btn" style="display:none;margin-top:12px;padding:8px 18px;background:var(--primary);color:var(--bg-dark);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">📲 ثبّت التطبيق على جهازك</button>
     <p id="ios-install-hint" style="display:none;margin-top:10px;font-size:13px;color:var(--text-primary);opacity:.85;">📲 لتثبيت التطبيق: اضغط زر المشاركة <strong>⬆️</strong> بالأسفل، ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p>
   </header>
@@ -125,6 +130,7 @@
       <span>•</span>
       <button type="button" data-footer-action="faq">الأسئلة الشائعة</button>
     </nav><div class="footer-bottom"><p>© 2026 ميزان. جميع الحقوق محفوظة.</p><p class="visitor-counter">👥 عدد الزيارات: <span id="visitor-count">...</span></p></div></div></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
   <script src="firebase-auth.js?v=1.0"></script>
@@ -141,7 +147,8 @@
   <script src="student-ui-fixes.js?v=1.2"></script>
   <script src="wrong-answers-limit.js?v=1.0"></script>
   <script src="wrong-answers-retest.js?v=1.0"></script>
-  <script src="platform-header-fix.js?v=1.0"></script>
+  <script src="platform-header-fix.js?v=2.0"></script>
+  <script src="mizan-brand.js?v=1.0"></script>
   <script src="theme.js?v=1.0"></script>
   <script src="firebase-admin-panel.js?v=1.1"></script>
   <script>
