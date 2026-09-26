@@ -87,8 +87,8 @@
       <div class="platform-sidebar-panel" role="dialog" aria-modal="true" aria-label="التنقل في المنصة">
         <button type="button" class="platform-sidebar-close" data-platform-close aria-label="إغلاق"><i class="fas fa-times"></i></button>
         <div class="platform-sidebar-brand">
-          <strong>⚖️ المنصة القانونية العراقية</strong>
-          <span>تنقل منظم بين الاختبارات والمكتبة والأقسام القانونية.</span>
+          <strong>ميزان</strong>
+          <span>حيث يُقاس الفهم القانوني بدقة.</span>
         </div>
 
         <div class="platform-sidebar-heading">الرئيسية</div>
