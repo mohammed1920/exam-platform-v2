@@ -2016,27 +2016,39 @@ header {
 }
 
 
-/* Mizan homepage header — logo-only refinement */
+/* Mizan homepage header — centered brand lockup */
 .mizan-header {
-  min-height: 142px;
-  padding: 20px 64px 22px !important;
+  min-height: 160px;
+  padding: 18px 52px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+  text-align: center;
 }
 .mizan-brand {
-  gap: 16px;
-  transform: translateY(-1px);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 18px;
+  margin: 0 auto !important;
+  transform: none !important;
+  direction: ltr;
 }
 .mizan-logo-animation {
-  width: 78px;
-  height: 78px;
-  flex: 0 0 78px;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
   position: relative;
 }
 .mizan-logo-animation::after {
   content: "";
   position: absolute;
-  inset: 12%;
+  inset: 10%;
   border-radius: 50%;
-  box-shadow: 0 0 28px rgba(201,164,91,.14);
+  box-shadow: 0 0 32px rgba(201,164,91,.18);
   pointer-events: none;
 }
 .mizan-logo-fallback,
@@ -2047,41 +2059,58 @@ header {
   display: block;
 }
 .mizan-brand-copy {
-  text-align: right;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  text-align: right !important;
   direction: rtl;
 }
 .mizan-brand-copy h1 {
   color: #d8b66d;
-  font-size: clamp(2rem, 5vw, 2.55rem);
+  font-size: clamp(2.35rem, 6vw, 3.25rem);
   line-height: 1;
-  margin: 0 0 8px;
+  margin: 0 0 7px !important;
   font-weight: 900;
-  letter-spacing: -.8px;
-  text-shadow: 0 2px 16px rgba(201,164,91,.12);
+  letter-spacing: -1px;
+  text-shadow: 0 2px 18px rgba(201,164,91,.14);
 }
 .mizan-brand-copy p {
-  color: #9ba8b9;
-  font-size: clamp(.78rem, 2.3vw, .94rem);
+  color: #aab4c3;
+  font-size: clamp(.82rem, 2.4vw, 1rem);
   line-height: 1.5;
-  margin: 0;
+  margin: 0 !important;
+  white-space: nowrap;
 }
+.mizan-header > #install-app-btn,
+.mizan-header > #ios-install-hint {
+  position: absolute;
+  right: 52px;
+}
+.mizan-header > #install-app-btn { top: 18px; }
+.mizan-header > #ios-install-hint { top: 64px; }
 @media (max-width: 560px) {
   .mizan-header {
-    min-height: 126px;
-    padding: 17px 50px 19px !important;
+    min-height: 145px;
+    padding: 15px 50px 18px !important;
   }
-  .mizan-brand { gap: 10px; }
+  .mizan-brand {
+    gap: 11px;
+  }
   .mizan-logo-animation {
-    width: 62px;
-    height: 62px;
-    flex-basis: 62px;
+    width: 78px;
+    height: 78px;
+    flex-basis: 78px;
   }
   .mizan-brand-copy h1 {
-    font-size: clamp(1.55rem, 8vw, 1.95rem);
-    margin-bottom: 5px;
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+    margin-bottom: 5px !important;
   }
   .mizan-brand-copy p {
-    font-size: .71rem;
-    max-width: 195px;
+    font-size: .7rem;
+  }
+  .mizan-header > #install-app-btn,
+  .mizan-header > #ios-install-hint {
+    right: 50px;
   }
 }
