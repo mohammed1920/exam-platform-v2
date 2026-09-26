@@ -2016,37 +2016,34 @@ header {
 }
 
 
-/* =========================================================
-   Mizan Brand Header
-   شعار ميزان — Vector + Lottie
-   ========================================================= */
+/* Mizan homepage header — logo-only refinement */
 .mizan-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 150px;
-  padding: 22px 64px 24px !important;
+  min-height: 142px;
+  padding: 20px 64px 22px !important;
 }
 .mizan-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  direction: rtl;
+  gap: 16px;
+  transform: translateY(-1px);
 }
 .mizan-logo-animation {
-  width: 72px;
-  height: 72px;
-  flex: 0 0 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  position: relative;
 }
-.mizan-logo-animation svg,
-.mizan-logo-fallback {
+.mizan-logo-animation::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(201,164,91,.14);
+  pointer-events: none;
+}
+.mizan-logo-fallback,
+.mizan-logo-static {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   display: block;
 }
 .mizan-brand-copy {
@@ -2054,39 +2051,37 @@ header {
   direction: rtl;
 }
 .mizan-brand-copy h1 {
-  color: var(--primary);
-  font-size: clamp(1.8rem, 5vw, 2.35rem);
-  line-height: 1.1;
-  margin: 0 0 7px;
+  color: #d8b66d;
+  font-size: clamp(2rem, 5vw, 2.55rem);
+  line-height: 1;
+  margin: 0 0 8px;
   font-weight: 900;
-  letter-spacing: -.5px;
+  letter-spacing: -.8px;
+  text-shadow: 0 2px 16px rgba(201,164,91,.12);
 }
 .mizan-brand-copy p {
-  color: var(--text-secondary);
-  font-size: clamp(.78rem, 2.3vw, .95rem);
+  color: #9ba8b9;
+  font-size: clamp(.78rem, 2.3vw, .94rem);
   line-height: 1.5;
   margin: 0;
 }
 @media (max-width: 560px) {
   .mizan-header {
-    min-height: 132px;
-    padding: 18px 52px 20px !important;
+    min-height: 126px;
+    padding: 17px 50px 19px !important;
   }
-  .mizan-brand { gap: 9px; }
+  .mizan-brand { gap: 10px; }
   .mizan-logo-animation {
-    width: 58px;
-    height: 58px;
-    flex-basis: 58px;
+    width: 62px;
+    height: 62px;
+    flex-basis: 62px;
   }
   .mizan-brand-copy h1 {
-    font-size: clamp(1.45rem, 8vw, 1.9rem);
+    font-size: clamp(1.55rem, 8vw, 1.95rem);
     margin-bottom: 5px;
   }
   .mizan-brand-copy p {
-    font-size: .72rem;
-    max-width: 190px;
+    font-size: .71rem;
+    max-width: 195px;
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .mizan-logo-animation { opacity: .98; }
 }
