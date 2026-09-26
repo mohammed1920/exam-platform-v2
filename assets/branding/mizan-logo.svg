@@ -1,7 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="شعار ميزان">
-<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2d18b"/><stop offset=".5" stop-color="#c29d5f"/><stop offset="1" stop-color="#9a743c"/></linearGradient></defs>
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path d="M90 25v104" stroke="#0f172a" stroke-width="10"/><path d="M70 143h40" stroke="#c29d5f" stroke-width="9"/><path d="M53 143h74" stroke="#0f172a" stroke-width="6"/>
-<path d="M42 51h96" stroke="url(#gold)" stroke-width="8"/><circle cx="90" cy="34" r="12" fill="url(#gold)" stroke="#0f172a" stroke-width="5"/>
-<path d="M42 51 25 91h34L42 51Zm96 0-17 40h34l-17-40Z" fill="#0f172a" stroke="url(#gold)" stroke-width="5"/><path d="M25 91h34M104 91h34" stroke="url(#gold)" stroke-width="5"/>
-</g></svg>
+<defs>
+  <linearGradient id="mzGold" x1="20" y1="20" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#fff0b0"/><stop offset=".28" stop-color="#e6bd69"/>
+    <stop offset=".58" stop-color="#b8893f"/><stop offset=".82" stop-color="#f0cf80"/><stop offset="1" stop-color="#9a6d32"/>
+  </linearGradient>
+  <linearGradient id="mzNavy" x1="45" y1="35" x2="135" y2="150" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#223554"/><stop offset=".5" stop-color="#0f1b30"/><stop offset="1" stop-color="#07101f"/>
+  </linearGradient>
+  <filter id="mzShadow" x="-30%" y="-30%" width="160%" height="170%">
+    <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".42"/>
+  </filter>
+</defs>
+<g filter="url(#mzShadow)">
+  <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(201,164,91,.18)" stroke-width="2"/>
+  <circle cx="90" cy="90" r="64" fill="url(#mzNavy)" stroke="url(#mzGold)" stroke-width="3"/>
+  <path d="M90 38v88" stroke="url(#mzGold)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M90 48L48 63M90 48l42 15" fill="none" stroke="url(#mzGold)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="90" cy="39" r="8" fill="url(#mzGold)" stroke="#0a1425" stroke-width="3"/>
+  <path d="M45 62h90" stroke="#e6bd69" stroke-width="5" stroke-linecap="round"/>
+  <path d="M48 65v11M132 65v11" stroke="url(#mzGold)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M35 76Q48 91 61 76" fill="#0b1629" stroke="url(#mzGold)" stroke-width="3"/>
+  <path d="M119 76Q132 91 145 76" fill="#0b1629" stroke="url(#mzGold)" stroke-width="3"/>
+  <path d="M54 127h72" stroke="url(#mzGold)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M68 137h44" stroke="#d2ad62" stroke-width="4" stroke-linecap="round"/>
+  <path d="M76 127l-8 10M104 127l8 10" stroke="url(#mzGold)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M57 49a45 45 0 0 1 66 0" fill="none" stroke="rgba(255,240,176,.32)" stroke-width="2"/>
+</g>
+</svg>
