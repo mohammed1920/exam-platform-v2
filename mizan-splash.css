@@ -1,0 +1,92 @@
+/* شاشة الترحيب الخاصة بميزان */
+#mizan-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  color: #fff;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+
+#mizan-splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mizan-splash-content {
+  width: min(88vw, 420px);
+  text-align: center;
+  transform: translateY(8px);
+}
+
+.mizan-splash-logo {
+  width: clamp(120px, 30vw, 170px);
+  height: clamp(120px, 30vw, 170px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+  opacity: 0;
+  transform: scale(.82);
+  animation: mizanSplashLogo 1s cubic-bezier(.2,.75,.2,1) .08s forwards;
+}
+
+.mizan-splash-name {
+  margin: 0;
+  color: #d8b66d;
+  font-family: "Cairo", sans-serif;
+  font-size: clamp(2.2rem, 9vw, 3.25rem);
+  font-weight: 900;
+  line-height: 1.05;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: mizanSplashText .7s ease .55s forwards;
+}
+
+.mizan-splash-tagline {
+  margin: 12px 0 0;
+  color: #aab4c3;
+  font-family: "Cairo", sans-serif;
+  font-size: clamp(.82rem, 3.2vw, 1rem);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: mizanSplashText .7s ease .9s forwards;
+}
+
+.mizan-splash-subtitle {
+  margin: 34px 0 0;
+  color: #718096;
+  font-family: "Cairo", sans-serif;
+  font-size: .72rem;
+  opacity: 0;
+  animation: mizanSplashFade .7s ease 1.25s forwards;
+}
+
+@keyframes mizanSplashLogo {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes mizanSplashText {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mizanSplashFade {
+  to { opacity: .9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mizan-splash-logo,
+  .mizan-splash-name,
+  .mizan-splash-tagline,
+  .mizan-splash-subtitle {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
