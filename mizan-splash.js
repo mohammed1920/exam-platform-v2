@@ -10,7 +10,7 @@
       window.setTimeout(function () {
         splash.remove();
       }, 600);
-    }, 2200);
+    }, 900);
   }
 
   if (document.readyState === 'loading') {
