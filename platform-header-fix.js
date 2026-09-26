@@ -3,48 +3,39 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    /* الهيدر: القائمة أولاً بالأعلى، ثم اسم المنصة والشرح تحته */
-    header {
+    /* توافق الهيدر مع هوية ميزان الجديدة */
+    .mizan-header {
       position: relative;
-      padding: 82px 20px 28px !important;
+      padding: 22px 64px 24px !important;
       text-align: center;
     }
 
-    /* اسم المنصة يبقى في المنتصف */
-    header > h1 {
+    .mizan-brand-copy h1 {
       display: block;
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto 7px !important;
-      text-align: center;
+      width: auto;
+      max-width: none;
+      margin: 0 0 7px !important;
+      text-align: right;
       white-space: nowrap;
       overflow: visible;
-      font-size: clamp(1rem, 5.2vw, 1.8rem);
-      line-height: 1.35;
-      letter-spacing: 0;
+      line-height: 1.1;
     }
 
-    header > h1 span {
+    .mizan-brand-copy h1 span {
       display: inline-block !important;
       vertical-align: middle;
       white-space: nowrap;
     }
 
-    /* شرح المنصة يبقى أسفل الاسم ومتمركزاً */
-    header > p {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
+    .mizan-brand-copy p {
+      margin: 0 !important;
+      text-align: right;
       max-width: 900px;
     }
 
     @media (max-width: 560px) {
-      header {
-        padding: 76px 14px 24px !important;
-      }
-
-      header > h1 {
-        font-size: clamp(0.95rem, 5vw, 1.5rem);
+      .mizan-header {
+        padding: 18px 52px 20px !important;
       }
     }
   `;
