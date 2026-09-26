@@ -5,31 +5,18 @@
     const container = document.getElementById('mizan-logo-animation');
     if (!container) return;
 
-    const fallback = () => {
-      container.innerHTML = '<img src="assets/branding/mizan-logo.svg" alt="شعار ميزان" class="mizan-logo-fallback">';
-    };
+    // SVG is the single source of truth for the Mizan brand mark.
+    // Do not load the experimental Lottie file here; malformed Lottie
+    // geometry was causing random/incomplete symbols on some renderers.
+    container.innerHTML =
+      '<img src="assets/branding/mizan-logo.svg" alt="شعار ميزان" class="mizan-logo-fallback mizan-logo-static">';
 
-    if (!window.lottie) {
-      fallback();
-      return;
-    }
+    const logo = container.querySelector('img');
+    if (!logo) return;
 
-    try {
-      const animation = window.lottie.loadAnimation({
-        container,
-        renderer: 'svg',
-        loop: false,
-        autoplay: !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-        path: 'assets/branding/mizan-logo.json',
-        rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
-      });
-      animation.addEventListener('data_failed', fallback);
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        animation.goToAndStop(89, true);
-      }
-    } catch (_) {
-      fallback();
-    }
+    logo.addEventListener('load', function () {
+      logo.classList.add('mizan-logo-ready');
+    }, { once: true });
   }
 
   if (document.readyState === 'loading') {
