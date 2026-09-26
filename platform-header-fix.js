@@ -6,7 +6,7 @@
     /* توافق الهيدر مع هوية ميزان الجديدة */
     .mizan-header {
       position: relative;
-      padding: 42px 64px 24px !important;
+      padding: 78px 64px 28px !important;
       text-align: center;
     }
 
@@ -56,7 +56,7 @@
 
     @media (max-width: 560px) {
       .mizan-header {
-        padding: 32px 52px 20px !important;
+        padding: 58px 52px 22px !important;
       }
     }
   `;
