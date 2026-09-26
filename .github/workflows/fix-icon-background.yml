@@ -1,0 +1,97 @@
+name: Fix app icon backgrounds
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-icons:
+    if: ${{ !contains(github.event.head_commit.message, 'chore: finalize transparent app icons') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Remove outside background from app icons
+        run: |
+          python -m pip install --quiet pillow
+          python <<'PY'
+          from PIL import Image
+          from collections import deque
+          from pathlib import Path
+
+          paths = [
+              Path("icons/icon-192.png"),
+              Path("icons/icon-512.png"),
+              Path("icons/apple-touch-icon.png"),
+          ]
+
+          def distance(a, b):
+              return sum((a[i] - b[i]) ** 2 for i in range(3)) ** 0.5
+
+          for path in paths:
+              if not path.exists():
+                  continue
+
+              im = Image.open(path).convert("RGBA")
+              w, h = im.size
+              px = im.load()
+
+              # Use the corner pixels as samples of the outer background.
+              samples = [
+                  px[0, 0][:3],
+                  px[w - 1, 0][:3],
+                  px[0, h - 1][:3],
+                  px[w - 1, h - 1][:3],
+              ]
+              bg = tuple(sum(s[i] for s in samples) // len(samples) for i in range(3))
+
+              # Flood-fill only the background connected to the canvas edges.
+              # This preserves the D3 box/logo even when similar colors occur inside it.
+              q = deque()
+              seen = bytearray(w * h)
+
+              def add(x, y):
+                  if x < 0 or y < 0 or x >= w or y >= h:
+                      return
+                  idx = y * w + x
+                  if seen[idx]:
+                      return
+                  rgb = px[x, y][:3]
+                  if distance(rgb, bg) <= 28:
+                      seen[idx] = 1
+                      q.append((x, y))
+
+              for x in range(w):
+                  add(x, 0)
+                  add(x, h - 1)
+              for y in range(h):
+                  add(0, y)
+                  add(w - 1, y)
+
+              while q:
+                  x, y = q.popleft()
+                  px[x, y] = (px[x, y][0], px[x, y][1], px[x, y][2], 0)
+                  add(x + 1, y)
+                  add(x - 1, y)
+                  add(x, y + 1)
+                  add(x, y - 1)
+
+              im.save(path, "PNG", optimize=True)
+              print(f"Processed {path} ({w}x{h})")
+
+          PY
+
+      - name: Commit transparent icons and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons/icon-192.png icons/icon-512.png icons/apple-touch-icon.png
+          git commit -m "chore: finalize transparent app icons" || true
+          git push
+
+          git rm .github/workflows/fix-icon-background.yml
+          git commit -m "chore: remove temporary icon workflow"
+          git push
