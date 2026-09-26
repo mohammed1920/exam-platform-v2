@@ -2014,3 +2014,79 @@ header {
   color: var(--text-secondary);
   opacity: 0.95;
 }
+
+
+/* =========================================================
+   Mizan Brand Header
+   شعار ميزان — Vector + Lottie
+   ========================================================= */
+.mizan-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  padding: 22px 64px 24px !important;
+}
+.mizan-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  direction: rtl;
+}
+.mizan-logo-animation {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mizan-logo-animation svg,
+.mizan-logo-fallback {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.mizan-brand-copy {
+  text-align: right;
+  direction: rtl;
+}
+.mizan-brand-copy h1 {
+  color: var(--primary);
+  font-size: clamp(1.8rem, 5vw, 2.35rem);
+  line-height: 1.1;
+  margin: 0 0 7px;
+  font-weight: 900;
+  letter-spacing: -.5px;
+}
+.mizan-brand-copy p {
+  color: var(--text-secondary);
+  font-size: clamp(.78rem, 2.3vw, .95rem);
+  line-height: 1.5;
+  margin: 0;
+}
+@media (max-width: 560px) {
+  .mizan-header {
+    min-height: 132px;
+    padding: 18px 52px 20px !important;
+  }
+  .mizan-brand { gap: 9px; }
+  .mizan-logo-animation {
+    width: 58px;
+    height: 58px;
+    flex-basis: 58px;
+  }
+  .mizan-brand-copy h1 {
+    font-size: clamp(1.45rem, 8vw, 1.9rem);
+    margin-bottom: 5px;
+  }
+  .mizan-brand-copy p {
+    font-size: .72rem;
+    max-width: 190px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mizan-logo-animation { opacity: .98; }
+}
