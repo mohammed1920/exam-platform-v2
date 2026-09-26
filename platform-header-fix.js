@@ -10,11 +10,13 @@
       text-align: center;
     }
 
-    /* الترتيب المطلوب: الشعار يمين — اسم ميزان يسار */
+    /* نقل هوية ميزان قليلاً لليسار حتى تتمركز بصرياً مع مساحة المحتوى */
     .mizan-brand {
       direction: ltr !important;
       grid-template-columns: auto auto !important;
       grid-template-rows: auto auto !important;
+      position: relative;
+      left: -90px;
     }
 
     .mizan-logo-animation {
@@ -57,6 +59,10 @@
     @media (max-width: 560px) {
       .mizan-header {
         padding: 58px 52px 22px !important;
+      }
+
+      .mizan-brand {
+        left: -45px;
       }
     }
   `;
