@@ -45,7 +45,7 @@
   line-height: 1.05;
   opacity: 0;
   transform: translateY(12px);
-  animation: mizanSplashText .7s ease .55s forwards;
+  animation: mizanSplashText .65s ease .32s forwards;
 }
 
 .mizan-splash-tagline {
@@ -56,16 +56,16 @@
   line-height: 1.6;
   opacity: 0;
   transform: translateY(10px);
-  animation: mizanSplashText .7s ease .9s forwards;
+  animation: mizanSplashText .65s ease .62s forwards;
 }
 
 .mizan-splash-subtitle {
-  margin: 34px 0 0;
+  margin: 24px 0 0;
   color: #718096;
   font-family: "Cairo", sans-serif;
   font-size: .72rem;
   opacity: 0;
-  animation: mizanSplashFade .7s ease 1.25s forwards;
+  animation: mizanSplashFade .6s ease .94s forwards;
 }
 
 @keyframes mizanSplashLogo {
