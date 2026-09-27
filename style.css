@@ -2026,6 +2026,24 @@ header {
   position: relative;
   text-align: center;
 }
+.mizan-header-art {
+  width: min(100%, 760px);
+  aspect-ratio: 1536 / 857;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 0;
+}
+.mizan-header-art-image {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
 .mizan-brand {
   display: grid !important;
   grid-template-columns: auto auto;
@@ -2094,6 +2112,12 @@ header {
   .mizan-header {
     min-height: 118px;
     padding: 9px 50px 13px !important;
+  }
+  .mizan-header-art {
+    width: min(100%, 620px);
+  }
+  .mizan-header-art-image {
+    width: 100%;
   }
   .mizan-brand {
     column-gap: 10px;
