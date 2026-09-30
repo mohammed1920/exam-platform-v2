@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-30T00:09:32+00:00",
+  "generated_at": "2026-09-30T00:11:18+00:00",
   "summary": {
     "books": 11,
-    "questions": 13595,
-    "issues": 16
+    "questions": 14792,
+    "issues": 17
   },
   "items": [
     {
@@ -133,6 +133,13 @@
       "question_index": 38,
       "options_count": 1,
       "message": "يحتاج مراجعة بشرية؛ لم يتم تعديل السؤال تلقائياً."
+    },
+    {
+      "type": "chapter_gap",
+      "book_id": "law_commercial_papers",
+      "missing": [
+        1
+      ]
     }
   ]
 }
