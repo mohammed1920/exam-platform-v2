@@ -837,12 +837,77 @@
       ]
     },
     "law_commercial_papers": {
-      "questionCount": 0,
+      "questionCount": 1334,
       "chapters": [
         {
           "number": 1,
-          "title": "الفصل الخامس عشر",
-          "questionCount": 0
+          "title": "أحكام عامة ومبادئ الأوراق التجارية",
+          "questionCount": 137
+        },
+        {
+          "number": 2,
+          "title": "الأهلية والنيابة",
+          "questionCount": 70
+        },
+        {
+          "number": 3,
+          "title": "إنشاء الحوالة (الشروط والبيانات)",
+          "questionCount": 128
+        },
+        {
+          "number": 4,
+          "title": "القبول",
+          "questionCount": 82
+        },
+        {
+          "number": 5,
+          "title": "التظهير (الجزء الأول)",
+          "questionCount": 104
+        },
+        {
+          "number": 6,
+          "title": "التظهير (الجزء الثاني)",
+          "questionCount": 104
+        },
+        {
+          "number": 7,
+          "title": "الضمان الاحتياطي (الأفال)",
+          "questionCount": 61
+        },
+        {
+          "number": 8,
+          "title": "الوفاء والمعارضة فيه",
+          "questionCount": 121
+        },
+        {
+          "number": 9,
+          "title": "الاحتجاج والرجوع والتقادم",
+          "questionCount": 104
+        },
+        {
+          "number": 10,
+          "title": "القوة القاهرة والتدخل",
+          "questionCount": 52
+        },
+        {
+          "number": 11,
+          "title": "حوالة الرجوع والنسخ والصور",
+          "questionCount": 48
+        },
+        {
+          "number": 12,
+          "title": "السند لأمر (الكمبيالة)",
+          "questionCount": 112
+        },
+        {
+          "number": 13,
+          "title": "الصك (الشيك) (الجزء الأول)",
+          "questionCount": 106
+        },
+        {
+          "number": 14,
+          "title": "الصك (الشيك) (الجزء الثاني)",
+          "questionCount": 105
         }
       ]
     }
