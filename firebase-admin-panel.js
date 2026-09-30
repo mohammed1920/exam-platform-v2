@@ -33,7 +33,7 @@
         <form id="fa-lawyer-edit-form">
           <input type="hidden" name="id">
           <div class="lawyer-admin-form-grid">
-            <label>الاسم<input name="name" required></label><label>المحافظة<input name="governorate" required></label><label>القضاء/المنطقة<input name="district"></label><label>الهاتف<input name="phone"></label><label>المكتب<input name="office"></label><label>العنوان<input name="address"></label><label>الاختصاصات<input name="specializations"></label><label>ساعات العمل<input name="workingHours"></label><label class="full">الوصف<textarea name="description"></textarea></label>
+            <label>الاسم<input name="name" required></label><label>المحافظة<input name="governorate" required></label><label>القضاء/المنطقة<input name="district"></label><label>الهاتف<input name="phone"></label><label>المكتب<input name="office"></label><label>العنوان<input name="address"></label><label>الاختصاصات<input name="specializations"></label><label>ساعات العمل<input name="workingHours"></label><label class="full">الوصف<textarea name="description"></textarea></label><label class="full">رابط شعار المحامي<input name="logoUrl" placeholder="https://.../logo.png"></label>
           </div>
           <div class="lawyer-admin-form-actions"><button type="submit" class="approve">حفظ</button><button id="fa-lawyer-edit-cancel" type="button">إلغاء</button></div>
         </form>
