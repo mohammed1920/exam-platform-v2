@@ -363,7 +363,7 @@
 
     <div id="modal" class="modal"><div class="modal-content" id="modal-body"></div></div>
 
-    <script src="book-icons.js?v=1"></script>
+    <script src="book-icons.js?v=2.0"></script>
     <script>
         // ===== المتغيرات العامة =====
         let books = [];
@@ -1402,10 +1402,27 @@
 
         // يبني خيارات قائمة اختيار الأيقونة من مكتبة book-icons.js
         function buildIconOptionsHtml(selectedKey) {
-            if (typeof BOOK_ICONS !== 'object' || !BOOK_ICONS) return '<option value="scale">ميزان العدالة</option>';
-            return Object.keys(BOOK_ICONS).map(key => {
-                const sel = key === selectedKey ? ' selected' : '';
-                return `<option value="${key}"${sel}>${BOOK_ICONS[key].label}</option>`;
+            // book-icons.js يحتوي المكتبة الكاملة. نستخدم القائمة الاحتياطية فقط إذا لم تُحمّل المكتبة.
+            const fallback = {
+                scale:'ميزان العدالة', gavel:'مطرقة القاضي', globe:'القانون الدولي',
+                pillar:'عمود الدستور', shield:'درع الحماية', scroll:'الوثيقة القانونية',
+                bookOpen:'كتاب مفتوح', document:'مستند', stamp:'الختم الرسمي',
+                crown:'التاج / السيادة', key:'المفتاح', lock:'القفل / الأمان',
+                flag:'العلم / الدولة', star:'نجمة التميز', compass:'البوصلة',
+                anchor:'المرساة', feather:'ريشة التوقيع', handshake:'الاتفاق / العقد',
+                linkChain:'الالتزام القانوني', briefcase:'الحقيبة المهنية',
+                awardRibbon:'شهادة تقدير', courthouse:'مبنى المحكمة',
+                penSignature:'التوقيع', family:'الأحوال الشخصية', percent:'الضرائب والرسوم',
+                handcuffs:'القانون الجنائي', magnifier:'التحقيق', fingerprint:'البصمة',
+                clipboardCheck:'قائمة تحقق', bank:'البنك / المال', emblem:'الشعار الوطني',
+                torch:'شعلة العدالة', map:'الحدود الجغرافية', buildingColumns:'مبنى حكومي'
+            };
+            const source = (typeof BOOK_ICONS === 'object' && BOOK_ICONS)
+                ? Object.fromEntries(Object.keys(BOOK_ICONS).map(k => [k, BOOK_ICONS[k].label]))
+                : fallback;
+            return Object.keys(source).map(key => {
+                const sel = key === (selectedKey || 'scale') ? ' selected' : '';
+                return `<option value="${key}"${sel}>${source[key]}</option>`;
             }).join('');
         }
 
