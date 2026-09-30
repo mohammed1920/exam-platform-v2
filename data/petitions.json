@@ -1,4 +1,486 @@
 [
-  {"uid":"petition-claim-termination","name":"عريضة دعوى مطالبة مالية","category":"دعاوى مدنية","description":"نموذج أولي قابل للتعبئة والتحرير مع بيانات الأطراف والمحكمة وموضوع المطالبة.","icon":"fas fa-file-invoice-dollar","fields":[{"key":"court","label":"اسم المحكمة","placeholder":"محكمة بداءة ...","required":true},{"key":"plaintiff","label":"اسم المدعي","placeholder":"الاسم الكامل","required":true},{"key":"defendant","label":"اسم المدعى عليه","placeholder":"الاسم الكامل","required":true},{"key":"lawyerName","label":"اسم المحامي","placeholder":"يظهر في التصميم عند اختياره","required":false},{"key":"caseNumber","label":"رقم الدعوى","placeholder":"إن وجد","required":false},{"key":"amount","label":"مبلغ المطالبة","placeholder":"مثلاً: 5,000,000 دينار","required":false},{"key":"date","label":"التاريخ","placeholder":"اليوم / الشهر / السنة","required":false},{"key":"subject","label":"موضوع العريضة","placeholder":"عنوان مختصر للعريضة","required":true}],"body":"السيد قاضي محكمة [المحكمة] المحترم\\n\\nتحية طيبة...\\n\\nأنا [اسم المدعي]، بصفتي مدعياً، أتقدم بهذه العريضة ضد [اسم المدعى عليه] بشأن [موضوع العريضة].\\n\\nوتتلخص الوقائع والطلبات في أن [اذكر الوقائع بالتفصيل هنا].\\n\\nوأطلب من محكمتكم الموقرة اتخاذ ما يلزم قانوناً بشأن [موضوع العريضة]، مع حفظ سائر الحقوق.\\n\\nالمبلغ المطالب به: [مبلغ المطالبة]\\nرقم الدعوى إن وجد: [رقم الدعوى]\\n\\nمع التقدير."},
-  {"uid":"petition-general-request","name":"طلب قانوني عام","category":"طلبات","description":"قالب مرن لطلب موجه إلى جهة أو محكمة، مع إمكانية تعديل النص بالكامل.","icon":"fas fa-file-signature","fields":[{"key":"court","label":"الجهة / المحكمة","placeholder":"اسم الجهة","required":true},{"key":"plaintiff","label":"اسم مقدم الطلب","placeholder":"الاسم الكامل","required":true},{"key":"defendant","label":"الجهة المقابلة","placeholder":"إن وجدت","required":false},{"key":"lawyerName","label":"اسم المحامي","placeholder":"اسم المحامي","required":false},{"key":"date","label":"التاريخ","placeholder":"اليوم / الشهر / السنة","required":false},{"key":"subject","label":"موضوع الطلب","placeholder":"مثلاً: طلب ...","required":true}],"body":"السيد/السادة [المحكمة] المحترم\\n\\nمقدم الطلب: [اسم مقدم الطلب]\\nالجهة المقابلة: [الجهة المقابلة]\\n\\nالموضوع: [موضوع الطلب]\\n\\nأتقدم إليكم بهذا الطلب راجياً النظر فيه واتخاذ ما ترونه مناسباً وفقاً للقانون، وذلك للأسباب والوقائع الآتية:\\n\\n[اكتب الوقائع والأسباب هنا]\\n\\nالطلب:\\n[اكتب الطلبات النهائية هنا]\\n\\nمع التقدير والاحترام."}
+  {
+    "uid": "petition-claim-termination",
+    "name": "عريضة دعوى مطالبة مالية",
+    "category": "دعاوى مدنية",
+    "description": "نموذج أولي قابل للتعبئة والتحرير مع بيانات الأطراف والمحكمة وموضوع المطالبة.",
+    "icon": "fas fa-file-invoice-dollar",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم المحكمة",
+        "placeholder": "محكمة بداءة ...",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم المدعي",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المدعى عليه",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "يظهر في التصميم عند اختياره",
+        "required": false
+      },
+      {
+        "key": "caseNumber",
+        "label": "رقم الدعوى",
+        "placeholder": "إن وجد",
+        "required": false
+      },
+      {
+        "key": "amount",
+        "label": "مبلغ المطالبة",
+        "placeholder": "مثلاً: 5,000,000 دينار",
+        "required": false
+      },
+      {
+        "key": "date",
+        "label": "التاريخ",
+        "placeholder": "اليوم / الشهر / السنة",
+        "required": false
+      },
+      {
+        "key": "subject",
+        "label": "موضوع العريضة",
+        "placeholder": "عنوان مختصر للعريضة",
+        "required": true
+      }
+    ],
+    "body": "السيد قاضي محكمة [المحكمة] المحترم\\n\\nتحية طيبة...\\n\\nأنا [اسم المدعي]، بصفتي مدعياً، أتقدم بهذه العريضة ضد [اسم المدعى عليه] بشأن [موضوع العريضة].\\n\\nوتتلخص الوقائع والطلبات في أن [اذكر الوقائع بالتفصيل هنا].\\n\\nوأطلب من محكمتكم الموقرة اتخاذ ما يلزم قانوناً بشأن [موضوع العريضة]، مع حفظ سائر الحقوق.\\n\\nالمبلغ المطالب به: [مبلغ المطالبة]\\nرقم الدعوى إن وجد: [رقم الدعوى]\\n\\nمع التقدير."
+  },
+  {
+    "uid": "petition-general-request",
+    "name": "طلب قانوني عام",
+    "category": "طلبات",
+    "description": "قالب مرن لطلب موجه إلى جهة أو محكمة، مع إمكانية تعديل النص بالكامل.",
+    "icon": "fas fa-file-signature",
+    "fields": [
+      {
+        "key": "court",
+        "label": "الجهة / المحكمة",
+        "placeholder": "اسم الجهة",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم مقدم الطلب",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "الجهة المقابلة",
+        "placeholder": "إن وجدت",
+        "required": false
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      },
+      {
+        "key": "date",
+        "label": "التاريخ",
+        "placeholder": "اليوم / الشهر / السنة",
+        "required": false
+      },
+      {
+        "key": "subject",
+        "label": "موضوع الطلب",
+        "placeholder": "مثلاً: طلب ...",
+        "required": true
+      }
+    ],
+    "body": "السيد/السادة [المحكمة] المحترم\\n\\nمقدم الطلب: [اسم مقدم الطلب]\\nالجهة المقابلة: [الجهة المقابلة]\\n\\nالموضوع: [موضوع الطلب]\\n\\nأتقدم إليكم بهذا الطلب راجياً النظر فيه واتخاذ ما ترونه مناسباً وفقاً للقانون، وذلك للأسباب والوقائع الآتية:\\n\\n[اكتب الوقائع والأسباب هنا]\\n\\nالطلب:\\n[اكتب الطلبات النهائية هنا]\\n\\nمع التقدير والاحترام."
+  },
+  {
+    "uid": "petition-external-divorce-ratification",
+    "name": "عريضة دعوى تصديق الطلاق الخارجي",
+    "category": "دعاوى الأحوال الشخصية",
+    "description": "دعوى لتصديق الطلاق الواقع خارج المحكمة وفق البيانات الواردة في النموذج.",
+    "icon": "fas fa-ring",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم محكمة الأحوال الشخصية",
+        "placeholder": "محكمة الأحوال الشخصية في ...",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم المدعية الثلاثي",
+        "placeholder": "الاسم الثلاثي",
+        "required": true
+      },
+      {
+        "key": "plaintiffAddress",
+        "label": "عنوان المدعية الكامل",
+        "placeholder": "العنوان الكامل",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المدعى عليه الثلاثي",
+        "placeholder": "الاسم الثلاثي",
+        "required": true
+      },
+      {
+        "key": "defendantAddress",
+        "label": "عنوان المدعى عليه الكامل",
+        "placeholder": "العنوان الكامل",
+        "required": true
+      },
+      {
+        "key": "marriageNumber",
+        "label": "رقم عقد الزواج",
+        "placeholder": "رقم العقد",
+        "required": true
+      },
+      {
+        "key": "marriageDate",
+        "label": "تاريخ عقد الزواج",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "divorceDate",
+        "label": "تاريخ الطلاق الخارجي",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "religiousMan",
+        "label": "اسم رجل الدين",
+        "placeholder": "اسم رجل الدين",
+        "required": true
+      },
+      {
+        "key": "witness1",
+        "label": "الشاهد الأول",
+        "placeholder": "اسم الشاهد الأول",
+        "required": true
+      },
+      {
+        "key": "witness2",
+        "label": "الشاهد الثاني",
+        "placeholder": "اسم الشاهد الثاني",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      },
+      {
+        "key": "powerNumber",
+        "label": "رقم الوكالة",
+        "placeholder": "رقم الوكالة",
+        "required": false
+      }
+    ],
+    "body": "السيد قاضي محكمة الأحوال الشخصية في [court] المحترم\n\nالمدعية: [plaintiff] / [plaintiffAddress]\nالمدعى عليه: [defendant] / [defendantAddress]\n\nإن المدعى عليه هو زوج موكلتي الداخل بها شرعاً وقانوناً بموجب عقد الزواج المرقم [marriageNumber] بتاريخ [marriageDate] والصادر من محكمتكم الموقرة، وقد طلقها خارج المحكمة بتاريخ [divorceDate] أمام رجل الدين [religiousMan] وبحضور الشهود [witness1] و[witness2].\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليه للمرافعة بعد تبليغه بنسخة من عريضة الدعوى والحكم بتصديق الطلاق، وتحميله كافة الرسوم والمصاريف وأتعاب المحاماة.\n\nولكم الشكر والاحترام\n\nالمحامي\nوكيل المدعية\nبموجب الوكالة المرقمة [powerNumber]"
+  },
+  {
+    "uid": "petition-marital-furniture-return",
+    "name": "عريضة دعوى إعادة أثاث الزوجية",
+    "category": "دعاوى الأحوال الشخصية",
+    "description": "دعوى مطالبة بإعادة أثاث الزوجية عيناً، وعند التعذر المطالبة بقيمته وفق القائمة المرفقة.",
+    "icon": "fas fa-house",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم محكمة الأحوال الشخصية",
+        "placeholder": "محكمة الأحوال الشخصية في ...",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم المدعية",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "plaintiffAddress",
+        "label": "عنوان المدعية",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المدعى عليه",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "defendantAddress",
+        "label": "عنوان المدعى عليه",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "marriageNumber",
+        "label": "رقم عقد الزواج",
+        "placeholder": "رقم العقد",
+        "required": true
+      },
+      {
+        "key": "marriageDate",
+        "label": "تاريخ عقد الزواج",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "divorceNumber",
+        "label": "رقم عقد الطلاق",
+        "placeholder": "رقم العقد",
+        "required": true
+      },
+      {
+        "key": "divorceDate",
+        "label": "تاريخ عقد الطلاق",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "furnitureAmount",
+        "label": "قيمة الأثاث",
+        "placeholder": "المبلغ بالدينار العراقي",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      }
+    ],
+    "body": "السيد قاضي محكمة الأحوال الشخصية في [court] المحترم\n\nالمدعية: [plaintiff] عنوانها [plaintiffAddress]\nالمدعى عليه: [defendant] عنوانه [defendantAddress]\n\nإن المدعى عليه هو زوجي والداخل بي شرعاً وقانوناً بموجب عقد الزواج المرقم [marriageNumber] بتاريخ [marriageDate] الصادر من محكمتكم الموقرة، وقد طلقني بموجب عقد الطلاق المرقم [divorceNumber] بتاريخ [divorceDate]، وقد غصب أثاث الزوجية العائد لي والمدرج تفاصيله في الجدول المرفق باللائحة وأقيامها [furnitureAmount] دينار عراقي، وقد امتنع عن إعادتها لي رغم المطالبة بها.\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليه للمرافعة بعد تبليغه بنسخة من عريضة الدعوى والحكم عليه بإعادة الأثاث عيناً، وإن تعذر ذلك فالحكم بأقيامها المذكورة في القائمة المرفقة بعريضة الدعوى، مع تحميله كافة الرسوم والمصاريف وأتعاب المحاماة.\n\nمع الشكر والتقدير\n\nالمدعية\nوكيلها المحامي\nبموجب الوكالة المرفقة"
+  },
+  {
+    "uid": "petition-deferred-dower",
+    "name": "عريضة دعوى المطالبة بالمهر المؤجل",
+    "category": "دعاوى الأحوال الشخصية",
+    "description": "دعوى مطالبة بالمهر المؤجل غير المقبوض بعد الطلاق.",
+    "icon": "fas fa-coins",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم محكمة الأحوال الشخصية",
+        "placeholder": "محكمة الأحوال الشخصية في ...",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم المدعية",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "plaintiffAddress",
+        "label": "عنوان المدعية",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المدعى عليه",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "defendantAddress",
+        "label": "عنوان المدعى عليه",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "divorceDecisionNumber",
+        "label": "رقم قرار الحكم بالطلاق",
+        "placeholder": "رقم القرار",
+        "required": true
+      },
+      {
+        "key": "divorceDecisionDate",
+        "label": "تاريخ قرار الحكم بالطلاق",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "deferredDower",
+        "label": "مقدار المهر المؤجل",
+        "placeholder": "المبلغ بالدينار العراقي",
+        "required": true
+      },
+      {
+        "key": "marriageNumber",
+        "label": "رقم عقد الزواج",
+        "placeholder": "رقم العقد",
+        "required": true
+      },
+      {
+        "key": "marriageDate",
+        "label": "تاريخ عقد الزواج",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      }
+    ],
+    "body": "السيد قاضي محكمة الأحوال الشخصية في [court] المحترم\n\nالمدعية: [plaintiff] عنوانها [plaintiffAddress]\nالمدعى عليه: [defendant] عنوانه [defendantAddress]\n\nإن المدعى عليه قد طلق موكلتي بموجب قرار الحكم [divorceDecisionNumber] بتاريخ [divorceDecisionDate] والصادر من محكمتكم الموقرة، وبذمته المهر المؤجل وقدره [deferredDower] دينار غير مقبوض بموجب عقد الزواج المرقم [marriageNumber] بتاريخ [marriageDate] الصادر من محكمتكم الموقرة.\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليه للمرافعة بعد تبليغه بنسخة من عريضة الدعوى والحكم بإلزامه بالمهر المؤجل، مع تحميله كافة الرسوم والمصاريف وأتعاب المحاماة.\n\nمع الشكر والتقدير\n\nالمدعية\nوكيلها المحامي\nبموجب الوكالة المرفقة"
+  },
+  {
+    "uid": "petition-external-marriage-ratification",
+    "name": "عريضة دعوى تصديق الزواج الخارجي",
+    "category": "دعاوى الأحوال الشخصية",
+    "description": "طلب تصديق الزواج الواقع خارج المحكمة مع بيانات وثيقة الزواج ورجل الدين والشهود والمهر.",
+    "icon": "fas fa-heart",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم محكمة الأحوال الشخصية",
+        "placeholder": "محكمة الأحوال الشخصية في ...",
+        "required": true
+      },
+      {
+        "key": "plaintiff",
+        "label": "اسم المدعي",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "plaintiffAddress",
+        "label": "عنوان المدعي",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المدعى عليها",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "defendantAddress",
+        "label": "عنوان المدعى عليها",
+        "placeholder": "العنوان",
+        "required": true
+      },
+      {
+        "key": "religiousMan",
+        "label": "اسم رجل الدين",
+        "placeholder": "اسم رجل الدين",
+        "required": true
+      },
+      {
+        "key": "marriageDocumentDate",
+        "label": "تاريخ وثيقة الزواج",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "witness1",
+        "label": "الشاهد الأول",
+        "placeholder": "اسم الشاهد الأول",
+        "required": true
+      },
+      {
+        "key": "witness2",
+        "label": "الشاهد الثاني",
+        "placeholder": "اسم الشاهد الثاني",
+        "required": true
+      },
+      {
+        "key": "immediateDower",
+        "label": "المهر المعجل",
+        "placeholder": "المبلغ بالدينار العراقي",
+        "required": true
+      },
+      {
+        "key": "deferredDower",
+        "label": "المهر المؤجل",
+        "placeholder": "المبلغ بالدينار العراقي",
+        "required": true
+      },
+      {
+        "key": "deferredCondition",
+        "label": "استحقاق المهر المؤجل",
+        "placeholder": "أقرب الأجلين / حين الطلب أو الميسرة",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      }
+    ],
+    "body": "السيد قاضي الأحوال الشخصية في [court] المحترم\n\nالمدعي: [plaintiff] عنوانه [plaintiffAddress]\nالمدعى عليها: [defendant] عنوانها [defendantAddress]\n\nإن المدعى عليها هي زوجتي والداخل بي شرعاً بموجب وثيقة الزواج الصادرة من رجل الدين [religiousMan] بتاريخ [marriageDocumentDate] وبحضور الشاهدين [witness1] و[witness2]، بمهر معجله [immediateDower] دينار مقبوض ومؤجله [deferredDower] دينار تستحقه عند [deferredCondition].\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليها للمرافعة وتصديق الزواج الخارجي.\n\nمع الشكر والتقدير\n\nالمدعي\nوكيله المحامي\nبموجب الوكالة المرفقة"
+  },
+  {
+    "uid": "petition-release-on-bail",
+    "name": "طلب إخلاء سبيل المتهم بكفالة مالية",
+    "category": "طلبات جزائية",
+    "description": "طلب موجه إلى قاضي محكمة التحقيق لإخلاء سبيل المتهم بكفالة مالية.",
+    "icon": "fas fa-scale-balanced",
+    "fields": [
+      {
+        "key": "court",
+        "label": "اسم محكمة التحقيق",
+        "placeholder": "محكمة التحقيق في ...",
+        "required": true
+      },
+      {
+        "key": "defendant",
+        "label": "اسم المتهم / الموكل",
+        "placeholder": "الاسم الكامل",
+        "required": true
+      },
+      {
+        "key": "policeStation",
+        "label": "مركز الشرطة",
+        "placeholder": "اسم مركز الشرطة",
+        "required": true
+      },
+      {
+        "key": "arrestDate",
+        "label": "تاريخ التوقيف",
+        "placeholder": "التاريخ",
+        "required": true
+      },
+      {
+        "key": "article",
+        "label": "المادة القانونية",
+        "placeholder": "المادة من قانون العقوبات العراقي",
+        "required": true
+      },
+      {
+        "key": "lawyerName",
+        "label": "اسم المحامي",
+        "placeholder": "اسم المحامي",
+        "required": false
+      },
+      {
+        "key": "guarantor",
+        "label": "اسم الشخص الضامن",
+        "placeholder": "اسم الضامن إن وجد",
+        "required": false
+      }
+    ],
+    "body": "السيد قاضي محكمة التحقيق في [court] المحترم\n\nم/ إخلاء سبيل موكلي المتهم بكفالة مالية\n\nتحية طيبة\n\nسبق وأن تم توقيف موكلي [defendant] بتاريخ [arrestDate] في مركز شرطة [policeStation] وفق أحكام المادة [article] من قانون العقوبات العراقي، ونظراً لانتهاء التحقيق وكون موكلي شخصاً معروفاً ومن عائلة معروفة ولا يُخشى هروبه، وللجواز القانوني بموجب أحكام المادة (110) من قانون أصول المحاكمات الجزائية، أطلب من محكمتكم الموافقة على إخلاء سبيل موكلي مقابل كفالة مالية لشخص ضامن تقدّرها محكمتكم الموقرة.\n\nولكم وافر الشكر والتقدير"
+  }
 ]
