@@ -1481,6 +1481,7 @@ class ExamApp {
       leaderboard: 'home',
       'student-dashboard': 'home',
       lawyers: 'home',
+      petitions: 'home',
       contact: 'home',
       about: 'home',
       terms: 'home',
@@ -1499,6 +1500,7 @@ class ExamApp {
       'leaderboard',
       'student-dashboard',
       'lawyers',
+      'petitions',
       'contact',
       'about',
       'terms',
@@ -1631,6 +1633,9 @@ class ExamApp {
         }
         this.navigateTo('exam', {}, false);
         this.renderQuestion();
+      } else if (view === 'petitions') {
+        if (window.petitions && typeof window.petitions.open === 'function') window.petitions.open();
+        else this.navigateTo('petitions', {}, false);
       } else if (view === 'custom-exam-setup') {
         this.isCustomExam = false;
         this.navigateTo('custom-exam-setup', {}, false);
@@ -1645,6 +1650,7 @@ class ExamApp {
         this.navigateTo(view, {}, false);
       } else if (
         view === 'lawyers' ||
+        view === 'petitions' ||
         view === 'contact' ||
         view === 'about' ||
         view === 'terms' ||
