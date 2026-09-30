@@ -10,6 +10,11 @@ on:
 permissions:
   contents: write
 
+# نفس مجموعة صيانة محتوى الكتب لمنع تعارض أكثر من workflow يكتب على main.
+concurrency:
+  group: content-maintenance
+  cancel-in-progress: false
+
 jobs:
   update-metadata:
     runs-on: ubuntu-latest
@@ -30,4 +35,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/question-metadata.json
           git commit -m "chore: update question metadata"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
