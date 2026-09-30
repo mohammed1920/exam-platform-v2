@@ -140,7 +140,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     els.lawyerEditTitle.textContent='تعديل بيانات '+(item.name||'المحامي');
     const f=els.lawyerEditForm;
     f.elements.id.value=item.id||'';
-    f.elements.name.value=item.name||'';f.elements.governorate.value=item.governorate||'';f.elements.district.value=item.district||'';f.elements.phone.value=item.phone||'';f.elements.office.value=item.office||'';f.elements.address.value=item.address||'';f.elements.specializations.value=Array.isArray(item.specializations)?item.specializations.join('، '):String(item.specializations||'');f.elements.workingHours.value=item.workingHours||'';f.elements.description.value=item.description||'';
+    f.elements.name.value=item.name||'';f.elements.governorate.value=item.governorate||'';f.elements.district.value=item.district||'';f.elements.phone.value=item.phone||'';f.elements.office.value=item.office||'';f.elements.address.value=item.address||'';f.elements.specializations.value=Array.isArray(item.specializations)?item.specializations.join('، '):String(item.specializations||'');f.elements.workingHours.value=item.workingHours||'';f.elements.description.value=item.description||'';f.elements.logoUrl.value=item.logoUrl||'';
     els.lawyerEdit.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function closeLawyerEdit(){if(els.lawyerEdit)els.lawyerEdit.hidden=true;}
