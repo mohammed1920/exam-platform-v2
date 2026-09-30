@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470">
+<rect width="400" height="470" rx="28" fill="#111"/>
+<path d="M200 22 350 58v205c0 92-62 151-150 183C112 414 50 355 50 263V58z" fill="#d6ad55" stroke="#8c6825" stroke-width="7"/>
+<path d="M72 82 200 52l128 30v54H72z" fill="#073916"/>
+<text x="200" y="80" text-anchor="middle" font-size="24" font-family="Arial,Tahoma,sans-serif" font-weight="700" fill="#fff">الله أكبر</text>
+<path d="M200 145v115M145 160h110M160 160l-30 58M240 160l30 58M118 218h48M234 218h48" stroke="#111" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M118 218q24 17 48 0M234 218q24 17 48 0" stroke="#111" stroke-width="7" fill="none"/>
+<circle cx="200" cy="145" r="7" fill="#111"/>
+<text x="200" y="295" text-anchor="middle" font-size="25" font-family="Arial,Tahoma,sans-serif" font-weight="700" fill="#111">نقابة المحامين العراقيين</text>
+<text x="200" y="326" text-anchor="middle" font-size="18" font-family="Georgia,serif" font-weight="700" fill="#111">IRAQI BAR ASSOCIATION</text>
+<path d="M118 346h164" stroke="#111" stroke-width="4"/>
+<text x="200" y="382" text-anchor="middle" font-size="27" font-family="Georgia,serif" font-weight="700" fill="#111">1933</text>
+</svg>
