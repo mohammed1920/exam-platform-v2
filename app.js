@@ -1634,8 +1634,8 @@ class ExamApp {
         this.navigateTo('exam', {}, false);
         this.renderQuestion();
       } else if (view === 'petitions') {
-        if (window.petitions && typeof window.petitions.open === 'function') window.petitions.open();
-        else this.navigateTo('petitions', {}, false);
+        this.navigateTo('petitions', {}, false);
+        if (window.petitions && typeof window.petitions.renderHome === 'function') window.petitions.renderHome();
       } else if (view === 'custom-exam-setup') {
         this.isCustomExam = false;
         this.navigateTo('custom-exam-setup', {}, false);
