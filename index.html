@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="petitions.css?v=1.0">
   <link rel="stylesheet" href="style.css?v=2.1">
   <link rel="stylesheet" href="student-ui-fixes.css?v=1.5">
   <link rel="stylesheet" href="home.css?v=1.0">
@@ -102,6 +103,7 @@
         <div data-home-action="contact"><i class="fas fa-headset"></i><span><strong>تواصل معنا</strong></span><button type="button">معلومات التواصل ←</button></div>
       </div>
     </section>
+    <section id="petitions-section" class="view-section"></section>
     <section id="books-section" class="view-section"><button class="custom-exam-entry-btn" id="custom-exam-entry-btn">🎲 اختبار عشوائي شامل</button><div class="books-grid" id="books-container"></div></section>
     <section id="custom-exam-setup-section" class="view-section"><button class="back-btn" id="custom-exam-back-btn"><i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية</button><h2 class="custom-exam-title">🎲 اختبار عشوائي شامل</h2><p class="custom-exam-desc">اختر الكتب اللي تريد تختبر نفسك فيها، وحدد عدد الأسئلة.</p><div id="custom-exam-books-list" class="custom-exam-books-list"></div><div class="custom-exam-count-row"><label for="custom-exam-count">عدد الأسئلة</label><input type="number" id="custom-exam-count" min="1" value="20"></div><button class="custom-exam-start-btn" id="custom-exam-start-btn">🚀 ابدأ الاختبار</button></section>
     <section id="chapters-section" class="view-section"><button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button><div id="chapters-header" style="margin-bottom:25px;"></div><div class="chapters-list" id="chapters-container"></div></section>
@@ -133,6 +135,7 @@
   <script src="engine/examEngine.js"></script>
   <script src="book-icons.js?v=1"></script>
   <script src="app.js?v=2.1"></script>
+  <script src="petitions.js?v=1.0"></script>
   <script src="global-search.js?v=1.0"></script>
   <script src="home.js?v=1.0"></script>
   <script src="platform-sidebar.js?v=1.0"></script>
