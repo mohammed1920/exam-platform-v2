@@ -85,5 +85,13 @@
     "description": "",
     "icon": "scale",
     "chapters": 11
+  },
+  {
+    "id": "law_commercial_papers",
+    "title": "الاوراق التجارية",
+    "author": "جاهز",
+    "description": "",
+    "icon": "scale",
+    "chapters": 0
   }
 ]
