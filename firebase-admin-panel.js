@@ -147,7 +147,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
 
   async function saveLawyerEdit(e){
     e.preventDefault();const f=e.currentTarget,id=f.elements.id.value,type=els.lawyerEdit.dataset.type;if(!id||!type)return;
-    const data={name:String(f.elements.name.value||'').trim(),governorate:String(f.elements.governorate.value||'').trim(),district:String(f.elements.district.value||'').trim(),phone:String(f.elements.phone.value||'').trim(),office:String(f.elements.office.value||'').trim(),address:String(f.elements.address.value||'').trim(),specializations:String(f.elements.specializations.value||'').split(/[،,]/).map(v=>v.trim()).filter(Boolean).slice(0,10),workingHours:String(f.elements.workingHours.value||'').trim(),description:String(f.elements.description.value||'').trim(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+    const data={name:String(f.elements.name.value||'').trim(),governorate:String(f.elements.governorate.value||'').trim(),district:String(f.elements.district.value||'').trim(),phone:String(f.elements.phone.value||'').trim(),office:String(f.elements.office.value||'').trim(),address:String(f.elements.address.value||'').trim(),specializations:String(f.elements.specializations.value||'').split(/[،,]/).map(v=>v.trim()).filter(Boolean).slice(0,10),workingHours:String(f.elements.workingHours.value||'').trim(),description:String(f.elements.description.value||'').trim(),logoUrl:String(f.elements.logoUrl?.value||'').trim(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
     if(!data.name||!data.governorate){setStatus('الاسم والمحافظة مطلوبان.',true);return;}
     try{
       const db=window.publicAuth.firestore;
@@ -206,7 +206,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!app||!confirm('هل تمت مراجعة بيانات المحامي وهوية النقابة المرسلة عبر واتساب/تلغرام والموافقة على نشر الملف؟'))return;
     try{
       const db=window.publicAuth.firestore;
-      await db.collection('lawyerProfiles').doc(app.id).set({name:app.name,governorate:app.governorate||'',district:app.district||'',phone:app.phone||'',office:app.office||'',address:app.address||'',specializations:Array.isArray(app.specializations)?app.specializations:[],workingHours:app.workingHours||'',description:app.description||'',published:true,applicationId:app.id,approvedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      await db.collection('lawyerProfiles').doc(app.id).set({name:app.name,governorate:app.governorate||'',district:app.district||'',phone:app.phone||'',office:app.office||'',address:app.address||'',specializations:Array.isArray(app.specializations)?app.specializations:[],workingHours:app.workingHours||'',description:app.description||'',logoUrl:app.logoUrl||'',published:true,applicationId:app.id,applicantUid:app.applicantUid||'',approvedAt:firebase.firestore.FieldValue.serverTimestamp()});
       await db.collection('lawyerApplications').doc(app.id).update({status:'approved',approvedBy:window.publicAuth.user.uid,approvedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
       await loadLawyerManagement();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم اعتماد المحامي ونشر بياناته العامة.',false);
     }catch(e){console.error(e);setStatus('تعذر اعتماد الطلب.',true);}
