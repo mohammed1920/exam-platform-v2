@@ -57,6 +57,7 @@
       else window.setTimeout(open, 250);
       return;
     }
+    if (action === 'petitions') { if (window.petitions && typeof window.petitions.open === 'function') window.petitions.open(); else showNotice('العرائض والطلبات','جارٍ تحميل القسم، حاول مرة أخرى.'); return; }
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
 
