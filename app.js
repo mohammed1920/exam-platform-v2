@@ -1474,7 +1474,7 @@ class ExamApp {
   getNavigationParent(viewId) {
     const parents = {
       chapters: 'books',
-      exam: 'books',
+      exam: 'chapters',
       results: 'home',
       review: 'home',
       'custom-exam-setup': 'home',
@@ -1535,8 +1535,8 @@ class ExamApp {
         // نضع الأب في مكان الصفحة الحالية ثم نضيف الفرعي.
         const parentState = {
           view: parentView,
-          bookId: parentView === 'books' && this.currentBook ? this.currentBook.id : null,
-          chapter: parentView === 'books' ? this.currentChapter : null
+          bookId: (parentView === 'books' || parentView === 'chapters') && this.currentBook ? this.currentBook.id : null,
+          chapter: parentView === 'chapters' ? null : (parentView === 'books' ? this.currentChapter : null)
         };
         history.replaceState(parentState, '', window.location.href);
         history.pushState(state, '', window.location.href);
