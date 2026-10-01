@@ -57,7 +57,28 @@
       else window.setTimeout(open, 250);
       return;
     }
-    if (action === 'petitions') { if (window.petitions && typeof window.petitions.open === 'function') window.petitions.open(); else showNotice('العرائض والطلبات','جارٍ تحميل القسم، حاول مرة أخرى.'); return; }
+    if (action === 'petitions') {
+      const openPetitions = () => {
+        if (window.petitions && typeof window.petitions.open === 'function') {
+          window.petitions.open();
+          return;
+        }
+        showNotice('العرائض والطلبات', 'تعذر تجهيز القسم، أعد المحاولة.');
+      };
+      if (window.petitions && typeof window.petitions.open === 'function') {
+        openPetitions();
+      } else if (!document.querySelector('script[data-petitions-loader]')) {
+        const script = document.createElement('script');
+        script.src = 'petitions.js?v=1.7';
+        script.dataset.petitionsLoader = '1';
+        script.onload = openPetitions;
+        script.onerror = () => showNotice('العرائض والطلبات', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.');
+        document.body.appendChild(script);
+      } else {
+        showNotice('العرائض والطلبات', 'جاري تجهيز القسم، أعد المحاولة بعد لحظة.');
+      }
+      return;
+    }
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
 
