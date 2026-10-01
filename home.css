@@ -373,3 +373,6 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   .home-coming-soon span{font-size:12px}
   .home-coming-soon b{font-size:8px;padding:5px 7px}
 }
+
+.home-category-card[data-home-action="mizan-pulpit"]{--card-accent:#b88cff;--card-bg:rgba(55,40,78,.76);border-color:rgba(184,140,255,.3);background:radial-gradient(circle at 88% 18%,rgba(184,140,255,.13),transparent 38%),linear-gradient(145deg,rgba(55,40,78,.76),rgba(12,23,37,.97))}
+.home-category-card[data-home-action="mizan-pulpit"] i{background:rgba(184,140,255,.13);color:#b88cff}.home-category-card[data-home-action="mizan-pulpit"] b{color:#b88cff}
