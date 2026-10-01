@@ -25,3 +25,26 @@
 /* شعار نقابة المحامين داخل عريضة الدعوى */
 .petition-bar-logo{width:42mm;height:45mm;margin:auto;position:relative;display:flex;justify-content:center;align-items:center;border:0;background:transparent;box-shadow:none;clip-path:none}
 .petition-bar-logo img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Final lawsuit letter styling */
+.petition-a4.is-branded{padding:12mm 14mm 17mm;background:#fffdf8}
+.petition-letterhead{grid-template-columns:minmax(0,1fr) 34mm minmax(0,1fr)!important;gap:7mm!important;align-items:center!important;padding:1mm 2mm 6mm!important;margin:0 0 8mm!important}
+.petition-head-side{line-height:1.25!important}
+.petition-head-side strong{font-size:17px!important}
+.petition-head-side b{font-size:11px!important;margin-top:1.5mm!important}
+.petition-head-right strong{font-size:19px!important}
+.petition-bar-logo{width:34mm!important;height:38mm!important;border:0!important;background:transparent!important;box-shadow:none!important;clip-path:none!important}
+.petition-bar-logo img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+.petition-doc-body{font-size:13.6px!important;line-height:2.05!important;padding:0 2mm!important}
+.petition-a4 footer{margin-top:15mm!important;border-top:.25mm solid #d7d0c0!important;padding-top:6mm!important}
+.petition-template-logo,.petition-template-icon.has-template-logo{display:none!important}
+@media(max-width:600px){
+ .petition-a4.is-branded{padding:9mm 7mm 13mm!important}
+ .petition-letterhead{grid-template-columns:minmax(0,1fr) 25mm minmax(0,1fr)!important;gap:2mm!important;padding-bottom:5mm!important}
+ .petition-bar-logo{width:25mm!important;height:30mm!important}
+ .petition-head-side strong{font-size:11px!important}
+ .petition-head-side b{font-size:7.5px!important}
+ .petition-head-side small{font-size:6px!important}
+ .petition-head-right strong{font-size:13px!important}
+ .petition-doc-body{font-size:11.5px!important;line-height:1.9!important}
+}
