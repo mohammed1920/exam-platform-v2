@@ -45,3 +45,21 @@
 .mizan-profile-section h3{margin:0 0 7px;color:#d7bd84;font-size:13px}
 .mizan-profile-section p{margin:0;color:#c0cbd2;font-size:12px;line-height:2}
 @media(max-width:600px){.mizan-profile-modal-box{padding:24px 16px}.mizan-profile-stats{grid-template-columns:1fr}}
+
+/* صفحة قراءة المقال — صفحة مستقلة داخل منبر ميزان */
+.mizan-article-section{max-width:100%;padding:0 20px 40px}
+.mizan-article-page{max-width:900px;margin:0 auto}
+.mizan-article-page-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 14px}
+.mizan-article-back{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(194,157,95,.28);border-radius:11px;background:rgba(194,157,95,.06);color:#d8bd86;padding:10px 14px;font:inherit;font-size:11px;font-weight:800;cursor:pointer;transition:.2s}
+.mizan-article-back:hover{background:rgba(194,157,95,.13);transform:translateY(-1px)}
+.mizan-article-page-label{color:#8c9dab;font-size:11px;display:inline-flex;align-items:center;gap:7px}.mizan-article-page-label i{color:#c29d5f}
+.mizan-article-reading{border:1px solid rgba(194,157,95,.22);border-radius:24px;background:linear-gradient(145deg,#162538,#0b1725);box-shadow:0 24px 70px rgba(0,0,0,.28);padding:34px clamp(20px,5vw,54px) 28px;overflow:hidden}
+.mizan-article-reading-meta{display:flex;justify-content:space-between;gap:15px;color:#c29d5f;font-size:10px;margin-bottom:18px}.mizan-article-reading-meta time{color:#748797}
+.mizan-article-reading h1{margin:0 0 20px;color:#f1eee7;font-size:clamp(25px,4vw,38px);line-height:1.65;font-weight:900}
+.mizan-article-reading-author{display:flex;align-items:center;gap:12px;padding:14px 0 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.mizan-article-reading-avatar{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:rgba(194,157,95,.1);border:1px solid rgba(194,157,95,.22);color:#d8bd86}.mizan-article-reading-author strong,.mizan-article-reading-author span{display:block}.mizan-article-reading-author strong{font-size:12px;color:#e5e8ea}.mizan-article-reading-author span{margin-top:3px;color:#7f93a3;font-size:10px}
+.mizan-article-reading-excerpt{margin:24px 0;padding:16px 18px;border-right:3px solid #c29d5f;border-radius:12px;background:rgba(194,157,95,.055);color:#b9c5cc;font-size:13px;line-height:2.1}
+.mizan-article-reading-content{padding:24px 0;color:#d0d7dc;font-size:14px;line-height:2.35;word-break:break-word}.mizan-article-reading-content br{content:'';display:block;margin-bottom:8px}
+.mizan-article-reading-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);color:#718596;font-size:10px}
+.mizan-article-page-loading,.mizan-article-page-error{min-height:55vh;display:grid;place-items:center;align-content:center;gap:12px;color:#8295a5;text-align:center}.mizan-article-page-loading i,.mizan-article-page-error i{font-size:30px;color:#c29d5f}.mizan-article-page-error strong{color:#c7d0d6;font-size:14px}
+@media(max-width:600px){.mizan-article-section{padding:0 12px 30px}.mizan-article-page-topbar{padding-top:12px}.mizan-article-reading{padding:24px 17px 20px;border-radius:19px}.mizan-article-reading h1{font-size:23px}.mizan-article-reading-content{font-size:13px;line-height:2.25}.mizan-article-reading-footer{align-items:flex-start;flex-direction:column}.mizan-article-page-label{display:none}}
