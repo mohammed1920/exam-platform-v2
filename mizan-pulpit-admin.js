@@ -23,7 +23,6 @@
 
   function build(){
     if(ready)return;
-    ready=true;
 
     if(!document.getElementById('mizan-admin-management-style')){
       const style=document.createElement('style');
@@ -68,6 +67,8 @@
     const section=document.getElementById('firebase-admin-section');
     const menu=document.getElementById('fa-admin-home');
     if(!section||!menu)return;
+
+    ready=true;
 
     if(!document.querySelector('[data-mizan-admin-card]')){
       const card=document.createElement('button');
