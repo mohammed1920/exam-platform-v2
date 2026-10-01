@@ -14,7 +14,6 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.enabled != false;
     }
 
-    // Student profile: a student sees only their own profile; admins can read profiles.
     match /students/{userId} {
       allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
       allow create: if signedIn()
@@ -26,7 +25,6 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Exam results remain private to the owner, while admins may read them later.
     match /examResults/{resultId} {
       allow create: if signedIn()
                     && request.resource.data.uid == request.auth.uid;
@@ -36,15 +34,11 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Admin role documents are not listable or writable from the client.
-    // A signed-in user may read only their own role document.
     match /admins/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;
       allow write: if false;
     }
 
-    // Lawyer applications: applicants may create/read only their own pending application.
-    // Admins can review all applications and publish a separate public profile.
     match /lawyerApplications/{applicationId} {
       allow create: if signedIn()
                     && request.resource.data.applicantUid == request.auth.uid
@@ -56,7 +50,6 @@ service cloud.firestore {
       allow delete: if isAdmin() || (signedIn() && resource.data.applicantUid == request.auth.uid && resource.data.status == 'pending');
     }
 
-    // Lawyer profile edit requests: an approved lawyer may submit a change request for their own profile.
     match /lawyerEditRequests/{requestId} {
       allow create: if signedIn()
                     && request.resource.data.applicantUid == request.auth.uid
@@ -69,17 +62,15 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Public lawyer profiles contain only fields intended for publication.
     match /lawyerProfiles/{profileId} {
       allow read: if isAdmin() || resource.data.published == true;
       allow create, update, delete: if isAdmin();
     }
 
-    // Student leaderboard summaries.
     match /leaderboards/{bookId}/entries/{userId} {
-      allow read: if request.auth != null;
+      allow read: if signedIn();
 
-      allow create: if request.auth != null
+      allow create: if signedIn()
                     && request.auth.uid == userId
                     && request.resource.data.uid == request.auth.uid
                     && request.resource.data.bookId == bookId
@@ -89,7 +80,7 @@ service cloud.firestore {
                     && request.resource.data.rankingScore <= 1000
                     && request.resource.data.completedChapters >= 0;
 
-      allow update: if request.auth != null
+      allow update: if signedIn()
                     && request.auth.uid == userId
                     && request.resource.data.uid == request.auth.uid
                     && request.resource.data.bookId == bookId
@@ -100,6 +91,42 @@ service cloud.firestore {
                     && request.resource.data.completedChapters >= 0;
 
       allow delete: if false;
+    }
+
+    match /mizanArticles/{articleId} {
+      allow read: if isAdmin()
+                  || resource.data.status == 'published';
+
+      allow create: if isAdmin()
+                    || (
+                      signedIn()
+                      && exists(/databases/$(database)/documents/mizanContributors/$(request.auth.uid))
+                      && get(/databases/$(database)/documents/mizanContributors/$(request.auth.uid)).data.status == 'approved'
+                      && request.resource.data.authorUid == request.auth.uid
+                      && request.resource.data.status == 'pending'
+                    );
+
+      allow update, delete: if isAdmin();
+    }
+
+    match /mizanContributors/{userId} {
+      allow read: if isAdmin()
+                  || (signedIn() && request.auth.uid == userId);
+
+      allow create: if signedIn()
+                    && request.auth.uid == userId
+                    && request.resource.data.userUid == request.auth.uid
+                    && request.resource.data.status == 'pending';
+
+      allow update: if isAdmin()
+                    || (
+                      signedIn()
+                      && request.auth.uid == userId
+                      && request.resource.data.userUid == request.auth.uid
+                      && request.resource.data.status == resource.data.status
+                    );
+
+      allow delete: if isAdmin();
     }
 
     match /mizanContributorPublic/{userId} {
