@@ -22,7 +22,14 @@
       else state.lawyer=approved;
     }catch(e){console.warn('تعذر تحميل بيانات المحامي للعريضة',e);}
   }
-  async function open(){await loadTemplates();await loadLawyerBranding();window.app.navigateTo('petitions');renderHome();}
+  async function open(){
+    window.app.navigateTo('petitions');
+    renderHome();
+    renderCards('');
+    const templatesPromise=loadTemplates().then(()=>{renderCards('');}).catch(()=>{renderCards('');});
+    loadLawyerBranding().catch(()=>{});
+    await templatesPromise;
+  }
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;
     root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petitions-back"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><div class="petitions-hero"><span>ميزان • العرائض والطلبات</span><h2>أنشئ عريضتك القانونية بطريقة منظمة</h2><p>اختر نموذجاً، عبّئ البيانات مرة واحدة، ثم عدّل النص وعاينه على ورقة A4 قبل الطباعة أو التصدير.</p></div><div class="petition-tools"><label><i class="fas fa-search"></i><input id="petition-search" placeholder="ابحث عن عريضة أو طلب..."></label><span id="petition-count"></span></div><div id="petition-template-grid" class="petition-template-grid"></div></div>';
@@ -58,7 +65,7 @@
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const logoUrl=logoBase+LAWSUIT_LOGO_PATH;
     const attachmentHtml=attachments.length?attachments.map((x,i)=>'<div class="attachment-item">'+(i+1)+'- '+esc(x)+'</div>').join(''):'<div class="attachment-item">1- </div><div class="attachment-item">2- </div>';
-    document.getElementById('petition-a4-wrap').innerHTML='<article class="petition-a4 '+(state.branded?'is-branded':'')+'">'+(state.branded?'<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+logoUrl+'" alt="شعار نقابة المحامين العراقيين" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-modern.svg';"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name)+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>':'')+'<div class="petition-doc-body">'+body+'</div><footer><div class="petition-signature"><strong>المدعي</strong><small>'+esc(plaintiff)+'</small></div><div class="petition-attachments"><strong>المرفقات</strong><div class="attachments-line"></div>'+attachmentHtml+'</div></footer></article>';
+    document.getElementById('petition-a4-wrap').innerHTML='<article class="petition-a4 '+(state.branded?'is-branded':'')+'">'+(state.branded?'<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+logoUrl+'" alt="شعار نقابة المحامين العراقيين" onerror="this.onerror=null;this.src=\"https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-modern.svg\";"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name)+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>':'')+'<div class="petition-doc-body">'+body+'</div><footer><div class="petition-signature"><strong>المدعي</strong><small>'+esc(plaintiff)+'</small></div><div class="petition-attachments"><strong>المرفقات</strong><div class="attachments-line"></div>'+attachmentHtml+'</div></footer></article>';
     const logo=document.querySelector('.petition-bar-logo img');
     if(logo){logo.loading='eager';logo.addEventListener('error',()=>{logo.onerror=null;logo.src='https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-modern.svg';},{once:true});}
   }
