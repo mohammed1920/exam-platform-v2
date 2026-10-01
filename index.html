@@ -126,13 +126,29 @@
         <h2>منبر ميزان</h2>
         <p>مساحة مفتوحة للأساتذة والمحامين والباحثين وأصحاب المحتوى القانوني لنشر المقالات والأبحاث والأفكار والتجارب المهنية، بعد مراجعة إدارة المنصة.</p>
         <div class="mizan-pulpit-hero-actions">
-          <button type="button" class="mizan-pulpit-primary" data-mizan-submit><i class="fas fa-pen-nib"></i> أرسل مشاركتك</button>
+          <button type="button" class="mizan-pulpit-primary" data-mizan-submit><i class="fas fa-pen-nib"></i> النشر في منبر ميزان</button>
           <button type="button" class="mizan-pulpit-secondary" onclick="document.getElementById('mizan-pulpit-list')?.scrollIntoView({behavior:'smooth'})">تصفح المشاركات</button>
         </div>
       </div>
       <div class="mizan-pulpit-toolbar"><h3>أحدث المشاركات</h3><span>محتوى قانوني من أهل الاختصاص</span></div>
       <div id="mizan-pulpit-list" class="mizan-pulpit-list"></div>
     </section>
+    <div id="mizan-contributor-modal" class="mizan-modal" aria-hidden="true">
+      <div class="mizan-modal-box">
+        <div class="mizan-modal-head"><h3>الانضمام إلى منبر ميزان</h3><button type="button" class="mizan-modal-close" data-mizan-close aria-label="إغلاق">×</button></div>
+        <p class="mizan-form-help" data-contributor-message>سجّل بياناتك كمساهم ليتم اعتماد حسابك من إدارة المنصة.</p>
+        <form id="mizan-contributor-form">
+          <div class="mizan-form-grid">
+            <label>الاسم الكامل<input name="fullName" required placeholder="د. أحمد محمد"></label>
+            <label>الصفة<select name="role"><option>أستاذ جامعي</option><option>باحث</option><option>محامٍ</option><option>قاضٍ سابق/متقاعد</option><option>طالب دراسات عليا</option><option>كاتب ومهتم بالشأن القانوني</option><option>أخرى</option></select></label>
+            <label>التخصص<input name="specialization" required placeholder="القانون المدني / القانون الدستوري..."></label>
+            <label>الجامعة أو جهة العمل<input name="affiliation" placeholder="الجامعة أو المؤسسة أو المكتب"></label>
+            <label class="full">نبذة مهنية مختصرة<textarea name="bio" required rows="4" placeholder="عرّف بنفسك وخبرتك واهتماماتك القانونية..."></textarea></label>
+          </div>
+          <button class="mizan-form-submit" type="submit">إرسال طلب الاعتماد</button>
+        </form>
+      </div>
+    </div>
     <div id="mizan-submit-modal" class="mizan-modal" aria-hidden="true">
       <div class="mizan-modal-box">
         <div class="mizan-modal-head"><h3>إرسال مشاركة إلى منبر ميزان</h3><button type="button" class="mizan-modal-close" data-mizan-close aria-label="إغلاق">×</button></div>
