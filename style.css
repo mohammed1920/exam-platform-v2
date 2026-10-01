@@ -93,12 +93,7 @@ header p {
   box-shadow: 0 0 10px rgba(194, 157, 95, 0.2);
 }
 
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 10px;
-}
+
 
 .book-card {
   background: var(--card-bg);
@@ -504,10 +499,6 @@ footer {
 @media (max-width: 600px) {
   .question-text {
     font-size: 1.1rem;
-  }
-  .books-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
   }
   .book-title {
     font-size: 1rem;
@@ -1511,6 +1502,7 @@ header {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 24px !important;
+  margin-top: 10px;
 }
 @media (max-width: 900px) { .books-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 480px) { .books-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; } }
