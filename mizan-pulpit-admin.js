@@ -1,0 +1,27 @@
+/* إدارة منبر ميزان — مرتبطة بصلاحيات الإدارة الحالية. */
+(function(){
+  'use strict';
+  const COLLECTION='mizanArticles';
+  let ready=false;
+  const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
+  function build(){
+    if(ready)return; ready=true;
+    const section=document.getElementById('firebase-admin-section'); const menu=document.getElementById('fa-admin-home');
+    if(!section||!menu)return;
+    const card=document.createElement('button'); card.type='button'; card.className='firebase-admin-menu-card mizan-admin-menu-card'; card.innerHTML='<i class="fas fa-feather-pointed"></i><strong>منبر ميزان</strong><span>مراجعة المقالات والأبحاث والمساهمات</span>'; card.dataset.mizanAdmin='1'; menu.querySelector('.firebase-admin-menu')?.appendChild(card);
+    const view=document.createElement('section'); view.id='mizan-admin-view'; view.className='firebase-admin-subview'; view.hidden=true;
+    view.innerHTML='<button type="button" class="firebase-admin-subview-back" data-mizan-admin-back>← العودة لأقسام الإدارة</button><div class="firebase-admin-card"><div class="firebase-admin-card-head"><h3>منبر ميزان</h3><span>المراجعة والنشر</span></div><div class="mizan-admin-tabs"><button class="active" data-mizan-status="pending">قيد المراجعة</button><button data-mizan-status="published">منشور</button><button data-mizan-status="rejected">مرفوض</button></div><div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المشاركة</th><th>الكاتب</th><th>النوع</th><th>التاريخ</th><th>الإجراء</th></tr></thead><tbody id="mizan-admin-body"><tr><td colspan="5">جارٍ التحميل...</td></tr></tbody></table></div></div>';
+    section.querySelector('.firebase-admin-subviews')?.appendChild(view);
+    card.onclick=()=>open();
+    view.querySelector('[data-mizan-admin-back]').onclick=close;
+    view.querySelectorAll('[data-mizan-status]').forEach(b=>b.onclick=()=>{view.querySelectorAll('[data-mizan-status]').forEach(x=>x.classList.remove('active'));b.classList.add('active');load(b.dataset.mizanStatus);});
+    section.addEventListener('click',e=>{const a=e.target.closest('[data-mizan-action]');if(a)act(a.dataset.mizanAction,a.dataset.id);});
+  }
+  function open(){build();const section=document.getElementById('firebase-admin-section');if(!section)return;section.querySelectorAll('.firebase-admin-subview').forEach(v=>v.hidden=true);document.getElementById('fa-admin-home').hidden=true;document.getElementById('mizan-admin-view').hidden=false;load('pending');}
+  function close(){const section=document.getElementById('firebase-admin-section');if(!section)return;document.getElementById('mizan-admin-view').hidden=true;document.querySelectorAll('.firebase-admin-subview').forEach(v=>{if(v.id!=='mizan-admin-view')v.hidden=true});document.getElementById('fa-admin-home').hidden=false;}
+  async function load(status){const body=document.getElementById('mizan-admin-body'),db=window.publicAuth?.firestore;if(!body||!db)return;body.innerHTML='<tr><td colspan="5">جارٍ التحميل...</td></tr>';try{const snap=await db.collection(COLLECTION).where('status','==',status).orderBy('createdAt','desc').limit(100).get();if(snap.empty){body.innerHTML='<tr><td colspan="5">لا توجد مشاركات في هذه القائمة.</td></tr>';return;}body.innerHTML=snap.docs.map(d=>{const a=d.data()||{};const buttons=status==='pending'?'<button class="btn btn-sm btn-green" data-mizan-action="publish" data-id="'+d.id+'">نشر</button><button class="btn btn-sm btn-red" data-mizan-action="reject" data-id="'+d.id+'">رفض</button>':'<button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>';return '<tr><td><strong>'+esc(a.title)+'</strong><br><small>'+esc(a.excerpt||'').slice(0,90)+'</small></td><td>'+esc(a.authorName)+'</td><td>'+esc(a.type)+'</td><td>'+esc(dateValue(a.createdAt))+'</td><td><div class="btn-row">'+buttons+'</div></td></tr>';}).join('');}catch(e){console.error(e);body.innerHTML='<tr><td colspan="5">تعذر تحميل المشاركات. قد تحتاج قواعد Firestore إلى السماح لمجموعة المنبر.</td></tr>';}}
+  async function act(action,id){const db=window.publicAuth?.firestore;if(!db||!id)return;const ref=db.collection(COLLECTION).doc(id);try{if(action==='publish')await ref.update({status:'published',publishedAt:firebase.firestore.FieldValue.serverTimestamp()});else if(action==='reject')await ref.update({status:'rejected',rejectedAt:firebase.firestore.FieldValue.serverTimestamp()});else if(action==='delete'&&confirm('حذف هذه المشاركة نهائياً؟'))await ref.delete();load(document.querySelector('#mizan-admin-view [data-mizan-status].active')?.dataset.mizanStatus||'pending');}catch(e){console.error(e);alert('تعذر تنفيذ الإجراء. تحقق من صلاحيات Firestore.');}}
+  window.addEventListener('firebase-admin-state-changed',e=>{if(e.detail?.isAdmin)setTimeout(build,0);});
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(build,400));
+})();
