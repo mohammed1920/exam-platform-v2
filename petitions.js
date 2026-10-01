@@ -58,6 +58,8 @@
     const logoUrl=LAWSUIT_LOGO_URL;
     const attachmentHtml=attachments.length?attachments.map((x,i)=>'<div class="attachment-item">'+(i+1)+'- '+esc(x)+'</div>').join(''):'<div class="attachment-item">1- </div><div class="attachment-item">2- </div>';
     document.getElementById('petition-a4-wrap').innerHTML='<article class="petition-a4 '+(state.branded?'is-branded':'')+'">'+(state.branded?'<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+logoUrl+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name)+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>':'')+'<div class="petition-doc-body">'+body+'</div><footer><div class="petition-signature"><strong>المدعي</strong><small>'+esc(plaintiff)+'</small></div><div class="petition-attachments"><strong>المرفقات</strong><div class="attachments-line"></div>'+attachmentHtml+'</div></footer></article>';
+    const logo=document.querySelector('.petition-bar-logo img');
+    if(logo){logo.loading='eager';logo.addEventListener('error',()=>{logo.onerror=null;logo.src='/assets/iraqi-bar-association-modern.svg';},{once:true});}
   }
   function buildPrintHtml(){
     const a4=document.querySelector('.petition-a4');if(!a4)return '';
