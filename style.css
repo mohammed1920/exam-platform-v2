@@ -159,23 +159,6 @@ header p {
   font-weight: 600;
 }
 
-/* توحيد وإجبار أزرار الكتب على الحواف الدائرية الفاخرة */
-.book-card button, .card button, .start-exam-btn {
-  width: 100%;
-  padding: 10px 20px;
-  background: var(--primary);
-  color: var(--bg-dark);
-  border: none !important;
-  border-radius: 12px !important;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.book-card button:hover, .start-exam-btn:hover {
-  background: var(--primary-hover);
-}
-
 .back-btn {
   background: none;
   border: 1px solid var(--border);
