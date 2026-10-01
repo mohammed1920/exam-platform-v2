@@ -103,7 +103,7 @@ service cloud.firestore {
     }
 
     match /mizanContributorPublic/{userId} {
-      allow read: if resource.data.fullName is string;
+      allow read: if resource.data.status == 'approved' && resource.data.fullName is string;
       allow create, update: if signedIn()
                             && request.auth.uid == userId
                             && request.resource.data.fullName is string
