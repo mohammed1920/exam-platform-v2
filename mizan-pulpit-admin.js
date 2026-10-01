@@ -209,9 +209,11 @@
     build();
     const section=document.getElementById('firebase-admin-section');
     if(!section)return;
-    section.querySelectorAll('.firebase-admin-subview').forEach(v=>v.hidden=true);
+    section.querySelectorAll('.firebase-admin-subview').forEach(v=>{v.hidden=true;v.classList.remove('active');});
     document.getElementById('fa-admin-home').hidden=true;
-    document.getElementById('mizan-admin-view').hidden=false;
+    const mizanView=document.getElementById('mizan-admin-view');
+    mizanView.hidden=false;
+    mizanView.classList.add('active');
     setTab('overview');
     load('overview');
   }
@@ -220,8 +222,10 @@
     const section=document.getElementById('firebase-admin-section');
     if(!section)return;
     closeAllModals();
-    document.getElementById('mizan-admin-view').hidden=true;
-    document.querySelectorAll('.firebase-admin-subview').forEach(v=>{if(v.id!=='mizan-admin-view')v.hidden=true});
+    const mizanView=document.getElementById('mizan-admin-view');
+    mizanView.hidden=true;
+    mizanView.classList.remove('active');
+    document.querySelectorAll('.firebase-admin-subview').forEach(v=>{if(v.id!=='mizan-admin-view'){v.hidden=true;v.classList.remove('active');}});
     document.getElementById('fa-admin-home').hidden=false;
   }
 
