@@ -1488,7 +1488,8 @@ class ExamApp {
       privacy: 'home',
       disclaimer: 'home',
       faq: 'home',
-      'mizan-pulpit': 'home'
+      'mizan-pulpit': 'home',
+      'mizan-article': 'mizan-pulpit'
     };
     return parents[viewId] || null;
   }
