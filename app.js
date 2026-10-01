@@ -1487,7 +1487,8 @@ class ExamApp {
       terms: 'home',
       privacy: 'home',
       disclaimer: 'home',
-      faq: 'home'
+      faq: 'home',
+      'mizan-pulpit': 'home'
     };
     return parents[viewId] || null;
   }
@@ -1506,7 +1507,8 @@ class ExamApp {
       'terms',
       'privacy',
       'disclaimer',
-      'faq'
+      'faq',
+      'mizan-pulpit'
     ]).has(viewId);
   }
 
