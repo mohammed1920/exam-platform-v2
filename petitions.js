@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   const state={templates:[],template:null,values:{},branded:true,lawyer:{}};
-  const LAWSUIT_LOGO_URL='https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-lawsuits.webp';
+  const LAWSUIT_LOGO_URL=(location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'')+'/assets/iraqi-bar-association-lawsuits.webp';
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const val=k=>state.values[k]||'';
   const placeholderKeys={'المحكمة':'court','اسم المحكمة':'court','اسم المدعي':'plaintiff','اسم مقدم الطلب':'plaintiff','اسم المدعى عليه':'defendant','الجهة المقابلة':'defendant','موضوع العريضة':'subject','موضوع الطلب':'subject','مبلغ المطالبة':'amount','رقم الدعوى':'caseNumber','التاريخ':'date','اسم المحامي':'lawyerName'};
