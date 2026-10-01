@@ -54,3 +54,32 @@ header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 
 .firebase-admin-back { width:100%; margin-top:15px; }
 @media (max-width:800px) { .firebase-admin-stats { grid-template-columns:repeat(2,1fr); } .firebase-admin-grid { grid-template-columns:1fr; } }
 @media (max-width:560px) { .firebase-admin-tab { top:12px; right:62px; min-width:43px; width:43px; padding:0; height:42px; border-radius:12px; } .firebase-admin-tab span { display:none; } .firebase-admin-head { padding:15px; align-items:flex-start; } .firebase-admin-head h2 { font-size:18px; } .firebase-admin-stats { gap:8px; } .firebase-admin-stat { padding:12px; } .firebase-admin-stat strong { font-size:21px; } }
+
+/* Global auth/modal visibility — overlays must never render as normal page content. */
+.auth-modal,
+#login-modal {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  align-items: center;
+  justify-content: center;
+}
+.auth-modal.active,
+#login-modal.active {
+  display: flex !important;
+}
+.auth-modal[aria-hidden="true"],
+#login-modal[aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Account access is provided from the platform sidebar, not as page content. */
+#account-btn,
+.account-btn {
+  display: none !important;
+}
+
+/* Legacy student dashboard/sidebar must never leak into the home document flow. */
+#student-account-sidebar:not(.is-open) {
+  display: none !important;
+}
