@@ -417,10 +417,21 @@
     if(action==='block-contributor'){
       if(!confirm('حظر هذا المساهم من نشر مشاركات جديدة؟'))return;
       await firestore.collection(CONTRIBUTORS).doc(id).update({status:'blocked',blockedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      await firestore.collection('mizanContributorPublic').doc(id).delete().catch(()=>{});
       alert('تم حظر المساهم من النشر.'); setTab('approved-contributors'); load('approved-contributors'); return;
     }
     if(action==='unblock-contributor'){
+      const contributorSnap=await firestore.collection(CONTRIBUTORS).doc(id).get();
+      const contributorData=contributorSnap.exists ? (contributorSnap.data()||{}) : {};
       await firestore.collection(CONTRIBUTORS).doc(id).update({status:'approved',unblockedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      await firestore.collection('mizanContributorPublic').doc(id).set({
+        fullName:contributorData.fullName||'',
+        role:contributorData.role||'',
+        specialization:contributorData.specialization||'',
+        bio:contributorData.bio||'',
+        status:'approved',
+        updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+      },{merge:true});
       alert('تم إلغاء حظر المساهم.'); setTab('approved-contributors'); load('approved-contributors'); return;
     }
     if(action==='delete-contributor'&&confirm('حذف حساب هذا المساهم نهائياً؟')){
