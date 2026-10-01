@@ -67,6 +67,49 @@ html[data-theme="light"] #search-input::placeholder {
   color: #98a2b3;
 }
 
+/* ---------- Header controls ---------- */
+/* Keep the theme toggle in the same top utility row as the menu trigger. */
+#theme-toggle.theme-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 9000;
+  width: 46px;
+  height: 46px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(194, 157, 95, 0.45);
+  border-radius: 13px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #d8bd86;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+#theme-toggle.theme-toggle:hover {
+  border-color: #d8bd86;
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] #theme-toggle.theme-toggle {
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--mizan-gold-dark);
+  border-color: var(--mizan-light-border);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 600px) {
+  #theme-toggle.theme-toggle {
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* ---------- Exam / content surfaces ---------- */
 
 html[data-theme="light"] .book-card,
