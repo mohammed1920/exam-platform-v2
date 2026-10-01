@@ -17,3 +17,7 @@
 .petition-bar-logo{border:0!important;clip-path:none!important;background:transparent!important;box-shadow:none!important;width:36mm;height:42mm}.petition-bar-logo img{width:100%;height:100%;object-fit:contain;display:block}.petition-bar-logo:before{display:none}@media(max-width:600px){.petition-bar-logo{width:25mm;height:30mm}}
 /* Petition document cleanup: no court/date row, no visible petition title. */
 .petition-a4 .petition-doc-meta{display:none!important}
+
+/* شعار الدعاوى */
+.petition-template-icon.has-template-logo{background:rgba(216,168,95,.07);padding:5px;overflow:hidden}
+.petition-template-logo{width:100%;height:100%;object-fit:contain;display:block;border-radius:9px}
