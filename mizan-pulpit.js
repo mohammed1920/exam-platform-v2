@@ -75,25 +75,43 @@
     }
   }
 
-  function openArticle(id) {
+  async function openArticle(id) {
     const db = window.publicAuth?.firestore;
-    if (!db) return;
-    db.collection(COLLECTION).doc(id).get().then(doc => {
-      if (!doc.exists || doc.data().status !== 'published') return;
-      const a = doc.data();
-      const modal = document.getElementById('mizan-article-modal');
-      if (!modal) return;
-      modal.innerHTML =
-        '<div class="mizan-article-modal-box">' +
-        '<button type="button" class="mizan-article-close" aria-label="إغلاق">×</button>' +
-        '<div class="mizan-article-modal-meta">' + esc(a.type || 'مقالة قانونية') + ' · ' + esc(formatDate(a.publishedAt || a.createdAt)) + '</div>' +
-        '<h2>' + esc(a.title || '') + '</h2>' +
-        '<div class="mizan-article-modal-author"><strong>' + esc(a.authorName || '') + '</strong><span>' + esc(a.authorTitle || '') + '</span></div>' +
-        '<div class="mizan-article-body">' + esc(a.content || '').replace(/\n/g, '<br>') + '</div>' +
+    const page = document.getElementById('mizan-article-section');
+    if (!db || !page) return;
+    page.innerHTML = '<div class="mizan-article-page-loading"><i class="fas fa-spinner fa-spin"></i><span>جارٍ فتح المقال...</span></div>';
+    if (window.app?.navigateTo) window.app.navigateTo('mizan-article');
+    try {
+      const doc = await db.collection(COLLECTION).doc(id).get();
+      if (!doc.exists || doc.data().status !== 'published') {
+        page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+        return;
+      }
+      const a = doc.data() || {};
+      page.innerHTML =
+        '<div class="mizan-article-page">' +
+          '<div class="mizan-article-page-topbar">' +
+            '<button type="button" class="mizan-article-back" data-mizan-article-back><i class="fas fa-arrow-right"></i><span>العودة إلى المشاركات</span></button>' +
+            '<span class="mizan-article-page-label"><i class="fas fa-feather-pointed"></i> منبر ميزان</span>' +
+          '</div>' +
+          '<article class="mizan-article-reading">' +
+            '<div class="mizan-article-reading-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
+            '<h1>' + esc(a.title || 'مشاركة قانونية') + '</h1>' +
+            '<div class="mizan-article-reading-author"><div class="mizan-article-reading-avatar"><i class="fas fa-user-tie"></i></div><div><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><span>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</span></div></div>' +
+            (a.excerpt ? '<div class="mizan-article-reading-excerpt">' + esc(a.excerpt) + '</div>' : '') +
+            '<div class="mizan-article-reading-content">' + esc(a.content || '').replace(/\n/g, '<br>') + '</div>' +
+            '<div class="mizan-article-reading-footer"><span>نُشر في منبر ميزان</span><button type="button" class="mizan-article-back" data-mizan-article-back><i class="fas fa-arrow-right"></i> العودة إلى المشاركات</button></div>' +
+          '</article>' +
         '</div>';
-      modal.classList.add('is-open');
-      modal.querySelector('.mizan-article-close').onclick = () => modal.classList.remove('is-open');
-    }).catch(() => {});
+      page.querySelectorAll('[data-mizan-article-back]').forEach(btn => {
+        btn.onclick = () => window.mizanPulpit?.open();
+      });
+      window.scrollTo({top:0, behavior:'smooth'});
+    } catch (error) {
+      console.error('Mizan article open error:', error);
+      page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر تحميل المقال حالياً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+      page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
+    }
   }
 
   const CONTRIBUTORS = 'mizanContributors';
