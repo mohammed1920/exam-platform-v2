@@ -80,6 +80,42 @@
     }
   }
 
+  function populateContributorForm(contributor) {
+    const form=document.getElementById('mizan-contributor-form');
+    if(!form||!contributor)return;
+    if(form.fullName) form.fullName.value=contributor.fullName||'';
+    if(form.role) form.role.value=contributor.role||'أخرى';
+    if(form.specialization) form.specialization.value=contributor.specialization||'';
+    if(form.affiliation) form.affiliation.value=contributor.affiliation||'';
+    if(form.bio) form.bio.value=contributor.bio||'';
+  }
+
+  async function openContributorEdit() {
+    const auth=window.publicAuth;
+    if(!auth?.user){ auth?.openLogin(); return; }
+    const contributor=await getContributor();
+    if(!contributor){ showContributorModal('لا توجد بيانات مساهم محفوظة. يمكنك تعبئة الطلب للانضمام إلى منبر ميزان.'); return; }
+    populateContributorForm(contributor);
+    const modal=document.getElementById('mizan-contributor-modal');
+    const title=modal?.querySelector('.mizan-modal-head h3');
+    const submit=modal?.querySelector('button[type="submit"]');
+    if(title) title.textContent='تحديث بيانات المساهم';
+    if(submit) submit.textContent='حفظ التعديلات';
+    const msg=modal?.querySelector('[data-contributor-message]');
+    if(msg) msg.textContent=contributor.status==='approved'?'يمكنك تحديث بياناتك الشخصية والمهنية. حالة اعتمادك ستبقى كما هي.':contributor.status==='blocked'?'يمكنك تحديث بياناتك، لكن حالة حظر النشر ستبقى كما هي.':'حدّث بياناتك ثم احفظ التعديلات.';
+    modal?.classList.add('is-open');
+  }
+
+  function resetContributorModalForNew() {
+    const form=document.getElementById('mizan-contributor-form');
+    const modal=document.getElementById('mizan-contributor-modal');
+    if(form) form.reset();
+    const title=modal?.querySelector('.mizan-modal-head h3');
+    const submit=modal?.querySelector('button[type="submit"]');
+    if(title) title.textContent='الانضمام إلى منبر ميزان';
+    if(submit) submit.textContent='إرسال طلب الاعتماد';
+  }
+
   function showContributorModal(message) {
     const modal = document.getElementById('mizan-contributor-modal');
     if (!modal) return;
@@ -120,17 +156,14 @@
     button.disabled = true;
     try {
       const existing = await getContributor();
-      if (existing?.status === 'approved') {
-        showContributorModal('حسابك كمساهم معتمد بالفعل. يمكنك إرسال مشاركاتك من زر النشر.');
-        return;
-      }
+      const nextStatus = existing?.status === 'approved' || existing?.status === 'blocked' ? existing.status : 'pending';
       const data = {
         fullName: form.fullName.value.trim(),
         role: form.role.value,
         specialization: form.specialization.value.trim(),
         affiliation: form.affiliation.value.trim(),
         bio: form.bio.value.trim(),
-        status: 'pending',
+        status: nextStatus,
         userUid: user.uid,
         email: user.email || null,
         createdAt: existing?.createdAt || firebase.firestore.FieldValue.serverTimestamp(),
@@ -139,8 +172,10 @@
       if (!data.fullName || !data.specialization || !data.bio) throw new Error('missing');
       await db.collection(CONTRIBUTORS).doc(user.uid).set(data, {merge:true});
       document.getElementById('mizan-contributor-modal')?.classList.remove('is-open');
-      window.app?.showHomeNotice?.('تم إرسال طلب الانضمام', 'سيتم مراجعة بياناتك من إدارة منبر ميزان.');
+      const isUpdate=!!existing;
+      window.app?.showHomeNotice?.(isUpdate?'تم تحديث بياناتك':'تم إرسال طلب الانضمام', isUpdate?'تم حفظ بيانات المساهم بنجاح.':'سيتم مراجعة بياناتك من إدارة منبر ميزان.');
       form.reset();
+      resetContributorModalForNew();
     } catch (error) {
       console.error('Mizan contributor submit error:', error);
       alert('تعذر إرسال طلب الانضمام حالياً. حاول مرة أخرى.');
@@ -197,11 +232,12 @@
       const read = event.target.closest('[data-article-id]');
       if (read) openArticle(read.dataset.articleId);
       if (event.target.closest('[data-mizan-submit]')) openSubmit();
+      if (event.target.closest('[data-mizan-edit-contributor]')) openContributorEdit();
       if (event.target.closest('[data-mizan-close]')) document.querySelectorAll('.mizan-modal').forEach(m => m.classList.remove('is-open'));
     });
     document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
-    window.mizanPulpit = { open, loadPublished, openSubmit, getContributor };
+    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, getContributor };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
