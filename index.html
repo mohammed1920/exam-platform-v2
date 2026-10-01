@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="style.css?v=2.1">
   <link rel="stylesheet" href="student-ui-fixes.css?v=1.5">
   <link rel="stylesheet" href="home.css?v=1.0">
+  <link rel="stylesheet" href="mizan-pulpit.css?v=1.0">
   <link rel="stylesheet" href="platform-sidebar.css?v=1.0">
   <link rel="stylesheet" href="user-dashboard.css?v=1.1">
   <link rel="stylesheet" href="student-sidebar.css?v=1.3">
@@ -94,6 +95,7 @@
         <button class="home-category-card featured" data-home-action="books"><i class="fas fa-book-open"></i><strong>اختبارات كتب القانون</strong><small>الكتب والفصول والأسئلة التفاعلية</small><b>الدخول ←</b></button>
         <button class="home-category-card" data-home-action="petitions"><i class="fas fa-file-lines"></i><strong>عرائض وطلبات</strong><small>نماذج قانونية قابلة للتطوير</small><b>إنشاء عريضة ←</b></button>
         <button class="home-category-card" data-home-action="lawyers"><i class="fas fa-user-tie"></i><strong>دليل المحامين</strong><small>بيانات المحامين وخدمات الدليل</small><b>تصفح الدليل ←</b></button>
+        <button class="home-category-card" data-home-action="mizan-pulpit"><i class="fas fa-feather-pointed"></i><strong>منبر ميزان</strong><small>مقالات وأبحاث وأفكار أهل الاختصاص</small><b>استكشف المنبر ←</b></button>
       </div>
       <div class="home-coming-soon-list" aria-label="الأقسام القادمة">
         <div class="home-coming-soon" aria-label="اختبارات المعهد القضائي - قادم قريباً">
@@ -117,6 +119,38 @@
         <div data-home-action="contact"><i class="fas fa-headset"></i><span><strong>تواصل معنا</strong></span><button type="button">معلومات التواصل ←</button></div>
       </div>
     </section>
+    
+    <section id="mizan-pulpit-section" class="view-section mizan-pulpit-section">
+      <div class="mizan-pulpit-hero">
+        <div class="mizan-pulpit-kicker">منبر المعرفة القانونية</div>
+        <h2>منبر ميزان</h2>
+        <p>مساحة مفتوحة للأساتذة والمحامين والباحثين وأصحاب المحتوى القانوني لنشر المقالات والأبحاث والأفكار والتجارب المهنية، بعد مراجعة إدارة المنصة.</p>
+        <div class="mizan-pulpit-hero-actions">
+          <button type="button" class="mizan-pulpit-primary" data-mizan-submit><i class="fas fa-pen-nib"></i> أرسل مشاركتك</button>
+          <button type="button" class="mizan-pulpit-secondary" onclick="document.getElementById('mizan-pulpit-list')?.scrollIntoView({behavior:'smooth'})">تصفح المشاركات</button>
+        </div>
+      </div>
+      <div class="mizan-pulpit-toolbar"><h3>أحدث المشاركات</h3><span>محتوى قانوني من أهل الاختصاص</span></div>
+      <div id="mizan-pulpit-list" class="mizan-pulpit-list"></div>
+    </section>
+    <div id="mizan-submit-modal" class="mizan-modal" aria-hidden="true">
+      <div class="mizan-modal-box">
+        <div class="mizan-modal-head"><h3>إرسال مشاركة إلى منبر ميزان</h3><button type="button" class="mizan-modal-close" data-mizan-close aria-label="إغلاق">×</button></div>
+        <p class="mizan-form-help">أرسل مقالة أو بحثاً أو فكرة قانونية. تبقى المشاركة قيد المراجعة ولا تُنشر إلا بعد اعتمادها.</p>
+        <form id="mizan-submit-form">
+          <div class="mizan-form-grid">
+            <label>نوع المشاركة<select name="type"><option>مقالة قانونية</option><option>بحث ودراسة</option><option>فكرة ورأي قانوني</option><option>تجربة مهنية</option><option>قراءة في تشريع أو حكم</option></select></label>
+            <label>اسم الكاتب<input name="authorName" required placeholder="د. أحمد محمد"></label>
+            <label>الصفة أو الاختصاص<input name="authorTitle" placeholder="أستاذ القانون المدني / محامٍ وباحث"></label>
+            <label>عنوان المشاركة<input name="title" required placeholder="عنوان المقال أو البحث"></label>
+            <label class="full">نبذة مختصرة<textarea name="excerpt" rows="3" placeholder="ملخص قصير يظهر في بطاقة المقال"></textarea></label>
+            <label class="full">المحتوى<textarea name="content" required placeholder="اكتب النص الكامل للمشاركة هنا..."></textarea></label>
+          </div>
+          <button class="mizan-form-submit" type="submit">إرسال للمراجعة</button>
+        </form>
+      </div>
+    </div>
+    <div id="mizan-article-modal" class="mizan-modal" aria-hidden="true"></div>
     <section id="petitions-section" class="view-section"></section>
     <section id="books-section" class="view-section"><button class="custom-exam-entry-btn" id="custom-exam-entry-btn">🎲 اختبار عشوائي شامل</button><div class="books-grid" id="books-container"></div></section>
     <section id="custom-exam-setup-section" class="view-section"><button class="back-btn" id="custom-exam-back-btn"><i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية</button><h2 class="custom-exam-title">🎲 اختبار عشوائي شامل</h2><p class="custom-exam-desc">اختر الكتب اللي تريد تختبر نفسك فيها، وحدد عدد الأسئلة.</p><div id="custom-exam-books-list" class="custom-exam-books-list"></div><div class="custom-exam-count-row"><label for="custom-exam-count">عدد الأسئلة</label><input type="number" id="custom-exam-count" min="1" value="20"></div><button class="custom-exam-start-btn" id="custom-exam-start-btn">🚀 ابدأ الاختبار</button></section>
@@ -152,6 +186,8 @@
   <script src="petitions.js?v=1.6"></script>
   <script src="global-search.js?v=1.0"></script>
   <script src="home.js?v=1.0"></script>
+  <script src="mizan-pulpit.js?v=1.0"></script>
+  <script src="mizan-pulpit-admin.js?v=1.0"></script>
   <script src="platform-sidebar.js?v=1.0"></script>
   <script src="user-dashboard.js?v=1.0"></script>
   <script src="leaderboard.js?v=1.0"></script>
