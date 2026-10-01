@@ -102,6 +102,17 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    match /mizanContributorPublic/{userId} {
+      allow read: if resource.data.fullName is string;
+      allow create, update: if signedIn()
+                            && request.auth.uid == userId
+                            && request.resource.data.fullName is string
+                            && request.resource.data.role is string
+                            && request.resource.data.specialization is string
+                            && request.resource.data.bio is string;
+      allow delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
