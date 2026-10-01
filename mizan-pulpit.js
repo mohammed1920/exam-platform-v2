@@ -12,32 +12,54 @@
     return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('ar-IQ', {year:'numeric', month:'long', day:'numeric'});
   }
 
+  let publishedArticlesCache = null;
+
+  function renderPublishedArticles(list, docs) {
+    if (!docs.length) {
+      list.innerHTML = '<div class="mizan-pulpit-empty"><i class="fas fa-feather-pointed"></i><strong>لم تُنشر مشاركات بعد</strong><span>كن من أوائل المساهمين في منبر ميزان.</span></div>';
+      return;
+    }
+
+    list.innerHTML = docs.map(doc => {
+      const a = doc.data() || {};
+      return '<article class="mizan-article-card">' +
+        '<div class="mizan-article-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
+        '<h3>' + esc(a.title || 'مشاركة قانونية') + '</h3>' +
+        '<p>' + esc(a.excerpt || '') + '</p>' +
+        '<button type="button" class="mizan-article-author" data-contributor-id="' + esc(a.authorUid || '') + '" ' + (a.authorUid ? '' : 'disabled') + '><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></span></button>' +
+        '<div class="mizan-article-card-footer"><button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '"><i class="fas fa-book-open"></i> قراءة المقال</button></div>' +
+        '</article>';
+    }).join('');
+  }
+
   async function loadPublished() {
     const db = window.publicAuth?.firestore;
     const list = document.getElementById('mizan-pulpit-list');
     if (!list) return;
+
+    if (publishedArticlesCache !== null) {
+      renderPublishedArticles(list, publishedArticlesCache);
+      return;
+    }
+
     if (!db) {
       list.innerHTML = '<div class="mizan-pulpit-empty">يتعذر تحميل المنبر حالياً.</div>';
       return;
     }
+
     list.innerHTML = '<div class="mizan-pulpit-loading"><i class="fas fa-spinner fa-spin"></i> جارٍ تحميل المشاركات...</div>';
+
     try {
       const snap = await db.collection(COLLECTION).where('status','==','published').limit(50).get();
-      const docs = snap.docs.sort((a,b) => { const av=a.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; const bv=b.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; return bv-av; }).slice(0,30);
-      if (!docs.length) {
-        list.innerHTML = '<div class="mizan-pulpit-empty"><i class="fas fa-feather-pointed"></i><strong>لم تُنشر مشاركات بعد</strong><span>كن من أوائل المساهمين في منبر ميزان.</span></div>';
-        return;
-      }
-      list.innerHTML = docs.map(doc => {
-        const a = doc.data() || {};
-        return '<article class="mizan-article-card">' +
-          '<div class="mizan-article-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
-          '<h3>' + esc(a.title || 'مشاركة قانونية') + '</h3>' +
-          '<p>' + esc(a.excerpt || '') + '</p>' +
-          '<button type="button" class="mizan-article-author" data-contributor-id="' + esc(a.authorUid || '') + '" ' + (a.authorUid ? '' : 'disabled') + '><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></button>' +
-          '<div class="mizan-article-card-footer"><button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '"><i class="fas fa-book-open"></i> قراءة المقال</button></div>' +
-          '</article>';
-      }).join('');
+      publishedArticlesCache = snap.docs
+        .sort((a,b) => {
+          const av = a.data()?.publishedAt?.toDate?.()?.getTime?.() || 0;
+          const bv = b.data()?.publishedAt?.toDate?.()?.getTime?.() || 0;
+          return bv - av;
+        })
+        .slice(0,30);
+
+      renderPublishedArticles(list, publishedArticlesCache);
     } catch (error) {
       console.error('Mizan Pulpit load error:', error);
       list.innerHTML = '<div class="mizan-pulpit-empty">تعذر تحميل المشاركات حالياً. حاول مرة أخرى.</div>';
