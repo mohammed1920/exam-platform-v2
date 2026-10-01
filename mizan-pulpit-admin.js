@@ -450,6 +450,7 @@
           role:contributorData.role||'',
           specialization:contributorData.specialization||'',
           bio:contributorData.bio||'',
+          status:'approved',
           updatedAt:firebase.firestore.FieldValue.serverTimestamp()
         },{merge:true});
         closeModal('mizan-contributor-view-modal');alert('تم اعتماد المساهم.');
