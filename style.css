@@ -176,14 +176,6 @@ header p {
   background: var(--primary-hover);
 }
 
-.view-section {
-  display: none;
-}
-
-.view-section.active {
-  display: block;
-}
-
 .back-btn {
   background: none;
   border: 1px solid var(--border);
