@@ -63,3 +63,10 @@
 .mizan-article-reading-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);color:#718596;font-size:10px}
 .mizan-article-page-loading,.mizan-article-page-error{min-height:55vh;display:grid;place-items:center;align-content:center;gap:12px;color:#8295a5;text-align:center}.mizan-article-page-loading i,.mizan-article-page-error i{font-size:30px;color:#c29d5f}.mizan-article-page-error strong{color:#c7d0d6;font-size:14px}
 @media(max-width:600px){.mizan-article-section{padding:0 12px 30px}.mizan-article-page-topbar{padding-top:12px}.mizan-article-reading{padding:24px 17px 20px;border-radius:19px}.mizan-article-reading h1{font-size:23px}.mizan-article-reading-content{font-size:13px;line-height:2.25}.mizan-article-reading-footer{align-items:flex-start;flex-direction:column}.mizan-article-page-label{display:none}}
+
+
+/* اسم المساهم في صفحة المقال قابل للضغط لفتح البروفايل */
+.mizan-article-reading-author{width:100%;border:0;background:transparent;color:inherit;text-align:right;font:inherit;cursor:pointer;position:relative;padding-left:28px;transition:.2s}
+.mizan-article-reading-author:hover{opacity:.92}
+.mizan-article-reading-author:disabled{cursor:default}
+.mizan-author-profile-arrow{position:absolute;left:4px;top:50%;transform:translateY(-50%);color:#c29d5f;font-size:10px;opacity:.8}
