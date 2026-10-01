@@ -100,6 +100,7 @@
         <div class="mizan-admin-tabs">
           <button class="active" data-mizan-status="overview">الرئيسية</button>
           <button data-mizan-status="contributors">طلبات اعتماد المساهمين</button>
+          <button data-mizan-status="approved-contributors">المساهمون</button>
           <button data-mizan-status="pending">قيد المراجعة</button>
           <button data-mizan-status="published">المنشورات</button>
           <button data-mizan-status="rejected">المرفوضة</button>
@@ -272,7 +273,8 @@
     body.innerHTML='<tr><td colspan="6">جارٍ التحميل...</td></tr>';
 
     if(status==='overview'){await loadOverview();return;}
-    if(status==='contributors'){await loadContributors();return;}
+    if(status==='contributors'){await loadContributors('pending');return;}
+    if(status==='approved-contributors'){await loadContributors('approved');return;}
 
     if(head)head.innerHTML='<tr><th>المشاركة</th><th>الكاتب</th><th>النوع</th><th>الحالة</th><th>التاريخ</th><th>الإجراء</th></tr>';
     try{
@@ -320,18 +322,26 @@
     }catch(e){console.error(e);body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">تعذر تحميل إحصائيات المنبر.</td></tr>';}
   }
 
-  async function loadContributors(){
+  async function loadContributors(filterStatus='pending'){
     const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
     if(!body||!firestore)return;
     if(head)head.innerHTML='<tr><th>المساهم</th><th>الصفة</th><th>التخصص</th><th>جهة العمل</th><th>التاريخ</th><th>الإجراء</th></tr>';
     body.innerHTML='<tr><td colspan="6">جارٍ التحميل...</td></tr>';
     try{
-      const snap=await firestore.collection(CONTRIBUTORS).where('status','==','pending').limit(150).get();
+      const snap=filterStatus==='pending'
+        ? await firestore.collection(CONTRIBUTORS).where('status','==','pending').limit(150).get()
+        : await firestore.collection(CONTRIBUTORS).where('status','in',['approved','blocked']).limit(150).get();
       const docs=snap.docs.sort((a,b)=>(b.data()?.createdAt?.toDate?.()?.getTime?.()||0)-(a.data()?.createdAt?.toDate?.()?.getTime?.()||0));
-      if(!docs.length){body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">لا توجد طلبات اعتماد معلقة.</td></tr>';return;}
+      if(!docs.length){body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">'+(filterStatus==='pending'?'لا توجد طلبات اعتماد معلقة.':'لا يوجد مساهمون معتمدون أو محظورون.')+'</td></tr>';return;}
       body.innerHTML=docs.map(d=>{
         const a=d.data()||{};
-        return '<tr><td><strong>'+esc(a.fullName)+'</strong><br><small>'+esc(a.email||'')+'</small></td><td>'+esc(a.role)+'</td><td>'+esc(a.specialization)+'</td><td>'+esc(a.affiliation||'—')+'</td><td>'+esc(dateValue(a.createdAt))+'</td><td><div class="btn-row"><button class="btn btn-sm" data-mizan-action="view-contributor" data-id="'+d.id+'">عرض التفاصيل</button><button class="btn btn-sm btn-green" data-mizan-action="approve-contributor" data-id="'+d.id+'">اعتماد</button><button class="btn btn-sm btn-red" data-mizan-action="reject-contributor" data-id="'+d.id+'">رفض</button></div></td></tr>';
+        const statusLabel=a.status==='approved'?'معتمد':a.status==='blocked'?'محظور':'قيد المراجعة';
+        const buttons=a.status==='pending'
+          ? '<button class="btn btn-sm btn-green" data-mizan-action="approve-contributor" data-id="'+d.id+'">اعتماد</button><button class="btn btn-sm btn-red" data-mizan-action="reject-contributor" data-id="'+d.id+'">رفض</button>'
+          : a.status==='approved'
+            ? '<button class="btn btn-sm" data-mizan-action="block-contributor" data-id="'+d.id+'">حظر النشر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>'
+            : '<button class="btn btn-sm btn-green" data-mizan-action="unblock-contributor" data-id="'+d.id+'">إلغاء الحظر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>';
+        return '<tr><td><strong>'+esc(a.fullName)+'</strong><br><small>'+esc(a.email||'')+'</small></td><td>'+esc(a.role)+'</td><td>'+esc(a.specialization)+'</td><td>'+esc(a.affiliation||'—')+'</td><td>'+esc(statusLabel)+'<br><small>'+esc(dateValue(a.createdAt))+'</small></td><td><div class="btn-row"><button class="btn btn-sm" data-mizan-action="view-contributor" data-id="'+d.id+'">عرض التفاصيل</button>'+buttons+'</div></td></tr>';
       }).join('');
     }catch(e){console.error(e);body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">تعذر تحميل طلبات الاعتماد.</td></tr>';}
   }
@@ -404,6 +414,19 @@
     const firestore=db();if(!firestore||!id)return;
     if(action==='view'){await showArticle(id);return;}
     if(action==='view-contributor'){await showContributor(id);return;}
+    if(action==='block-contributor'){
+      if(!confirm('حظر هذا المساهم من نشر مشاركات جديدة؟'))return;
+      await firestore.collection(CONTRIBUTORS).doc(id).update({status:'blocked',blockedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      alert('تم حظر المساهم من النشر.'); setTab('approved-contributors'); load('approved-contributors'); return;
+    }
+    if(action==='unblock-contributor'){
+      await firestore.collection(CONTRIBUTORS).doc(id).update({status:'approved',unblockedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      alert('تم إلغاء حظر المساهم.'); setTab('approved-contributors'); load('approved-contributors'); return;
+    }
+    if(action==='delete-contributor'&&confirm('حذف حساب هذا المساهم نهائياً؟')){
+      await firestore.collection(CONTRIBUTORS).doc(id).delete();
+      alert('تم حذف المساهم.'); setTab('approved-contributors'); load('approved-contributors'); return;
+    }
     try{
       const ref=firestore.collection(COLLECTION).doc(id);
       if(action==='approve-contributor'){
