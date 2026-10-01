@@ -131,12 +131,13 @@ service cloud.firestore {
 
     match /mizanContributorPublic/{userId} {
       allow read: if resource.data.status == 'approved' && resource.data.fullName is string;
-      allow create, update: if signedIn()
+      allow create, update: if isAdmin()
+                            || (signedIn()
                             && request.auth.uid == userId
                             && request.resource.data.fullName is string
                             && request.resource.data.role is string
                             && request.resource.data.specialization is string
-                            && request.resource.data.bio is string;
+                            && request.resource.data.bio is string);
       allow delete: if isAdmin();
     }
 
