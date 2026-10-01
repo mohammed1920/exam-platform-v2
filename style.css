@@ -95,42 +95,6 @@ header p {
 
 
 
-.book-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.3s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.book-icon {
-  font-size: 1.8rem;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-
-.book-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: var(--text-primary);
-}
-
-.book-author {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-}
-
 .book-desc {
   font-size: 0.85rem;
   color: var(--text-secondary);
