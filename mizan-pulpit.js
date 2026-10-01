@@ -23,7 +23,8 @@
     list.innerHTML = '<div class="mizan-pulpit-loading"><i class="fas fa-spinner fa-spin"></i> جارٍ تحميل المشاركات...</div>';
     try {
       const snap = await db.collection(COLLECTION).where('status','==','published').limit(50).get();
-      const docs = snap.docs.sort((a,b) => { const av=a.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; const bv=b.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; return bv-av; }).slice(0,30);\n      if (!docs.length) {
+      const docs = snap.docs.sort((a,b) => { const av=a.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; const bv=b.data()?.publishedAt?.toDate?.()?.getTime?.() || 0; return bv-av; }).slice(0,30);
+      if (!docs.length) {
         list.innerHTML = '<div class="mizan-pulpit-empty"><i class="fas fa-feather-pointed"></i><strong>لم تُنشر مشاركات بعد</strong><span>كن من أوائل المساهمين في منبر ميزان.</span></div>';
         return;
       }
