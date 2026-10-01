@@ -34,3 +34,2108 @@ body.exam-mode footer {
 header {
   background: var(--header-bg);
   padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  font-weight: 900;
+}
+
+header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-container {
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-wrapper i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(194, 157, 95, 0.2);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.book-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-icon {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.book-author {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.book-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.book-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chapters-badge {
+  background: rgba(194, 157, 95, 0.1);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* توحيد وإجبار أزرار الكتب على الحواف الدائرية الفاخرة */
+.book-card button, .card button, .start-exam-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-card button:hover, .start-exam-btn:hover {
+  background: var(--primary-hover);
+}
+
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: var(--card-bg);
+  border-color: var(--text-secondary);
+}
+
+.chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chapter-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.chapter-item:hover {
+  border-color: var(--primary);
+}
+
+.chapter-info h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.chapter-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.exam-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.exam-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.stat-wrong .stat-value { color: #ef4444; }
+.stat-wrong { border-color: rgba(239, 68, 68, 0.3); }
+
+.stat-correct .stat-value { color: #10b981; }
+.stat-correct { border-color: rgba(16, 185, 129, 0.3); }
+
+.stat-progress .stat-value { color: var(--text-primary); }
+
+.stat-time .stat-value { color: var(--primary); }
+.stat-time { border-color: rgba(194, 157, 95, 0.35); }
+
+.exam-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.exam-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.exam-timer {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.progress-bar-container {
+  background: var(--bg-dark);
+  height: 6px;
+  border-radius: 3px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background: var(--primary);
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.question-container {
+  margin-bottom: 25px;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: right;
+  padding: 14px 20px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: rgba(194, 157, 95, 0.05);
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.exam-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.exam-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.exam-btn.prev {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.exam-btn.next {
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+.results-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.result-emoji {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.result-grade {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.result-score {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.result-details {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.detail-label {
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-weight: 700;
+}
+
+.results-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.results-actions button {
+  flex: 1;
+}
+
+.review-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.review-question {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.review-answer {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.review-answer.incorrect {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.review-answer.correct {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.review-explanation {
+  background: var(--bg-dark);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-right: 3px solid var(--primary);
+  margin-top: 10px;
+}
+
+footer {
+  background: var(--card-bg);
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: 50px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-btn, .footer-link-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(194, 157, 95, 0.1);
+  border: 1.5px solid var(--primary);
+  border-radius: 25px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.footer-btn:hover, .footer-link-btn:hover {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 12px rgba(194, 157, 95, 0.3);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.footer-contact-info a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  margin: 0 8px;
+}
+
+.footer-contact-info a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom p {
+  margin: 6px 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .question-text {
+    font-size: 1.1rem;
+  }
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .book-title {
+    font-size: 1rem;
+  }
+  .exam-box, .results-box {
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   أغلفة الكتب
+   يدعم الصور الموجودة في data/images/books/
+   ========================================================= */
+
+.book-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.book-card-content {
+  min-width: 0;
+}
+
+.book-cover {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  margin: -2px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #111827, #0b1220);
+  border: 1px solid rgba(194, 157, 95, 0.16);
+}
+
+.book-cover img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.book-card:hover .book-cover img {
+  transform: scale(1.025);
+}
+
+.book-cover-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 3rem;
+}
+
+.book-cover-fallback.visible {
+  display: flex;
+}
+
+.book-card-footer {
+  margin-top: auto;
+}
+
+.book-card button {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .book-cover {
+    height: 200px;
+  }
+
+  .book-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cover {
+    height: 175px;
+  }
+
+  .book-title {
+    font-size: 0.95rem;
+  }
+
+  .book-author {
+    font-size: 0.75rem;
+  }
+
+  .chapters-badge {
+    font-size: 0.72rem;
+  }
+
+  .book-card button {
+    padding: 9px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   Premium Book Cover — Seamless Integration
+   الغلاف جزء من البطاقة وليس صندوقاً داخلها
+   ========================================================= */
+
+.book-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.book-card-content {
+  position: relative;
+  min-width: 0;
+}
+
+/*
+ * المنطقة أصبحت شفافة بالكامل.
+ * لا خلفية، لا border، لا صندوق حول الصورة.
+ */
+.book-cover {
+  --gold: #c9a45b;
+
+  position: relative;
+  width: calc(100% + 22px);
+  height: 230px;
+  margin: -8px -11px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+  isolation: isolate;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+
+  /* يترك الإضاءة داخل البطاقة */
+  filter: none;
+}
+
+/*
+ * هالة خلف الكتاب.
+ * أهم شيء: لا يوجد مستطيل خلف الصورة.
+ */
+.book-cover-glow {
+  position: absolute;
+  z-index: 0;
+
+  width: 72%;
+  height: 72%;
+  left: 14%;
+  top: 12%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 205, 105, 0.34) 0%,
+      rgba(201, 164, 91, 0.20) 18%,
+      rgba(201, 164, 91, 0.08) 42%,
+      transparent 72%
+    );
+
+  filter: blur(22px);
+  opacity: 0.72;
+
+  transform: scale(1.05);
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+/*
+ * شعاع ضوء خفيف أسفل الكتاب.
+ */
+.book-cover-floor-light {
+  position: absolute;
+  z-index: 1;
+
+  width: 58%;
+  height: 30px;
+  left: 21%;
+  bottom: 10px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 210, 112, 0.48) 0%,
+      rgba(201, 164, 91, 0.20) 34%,
+      transparent 74%
+    );
+
+  filter: blur(10px);
+  opacity: 0.68;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+/*
+ * الصورة هي العنصر الرئيسي.
+ *
+ * mix-blend-mode: screen:
+ * يجعل الخلفية السوداء/الداكنة للصورة تندمج مع
+ * خلفية الصفحة بدلاً من ظهورها كصندوق منفصل.
+ *
+ * mask-image:
+ * يخفف أطراف الصورة تدريجياً حتى لا يظهر حد المستطيل.
+ */
+.book-cover img {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+
+  /*
+   * دمج الخلفية الداكنة للصورة مع خلفية البطاقة.
+   */
+  mix-blend-mode: screen;
+
+  /*
+   * تلاشي الأطراف.
+   * - المتصفحات الحديثة تستخدم -webkit-mask-image أيضاً.
+   */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 64% 70% at center,
+      #000 48%,
+      rgba(0,0,0,0.96) 60%,
+      rgba(0,0,0,0.58) 76%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 64% 70% at center,
+      #000 48%,
+      rgba(0,0,0,0.96) 60%,
+      rgba(0,0,0,0.58) 76%,
+      transparent 100%
+    );
+
+  filter:
+    drop-shadow(0 17px 15px rgba(0, 0, 0, 0.46))
+    drop-shadow(0 0 12px rgba(201, 164, 91, 0.20));
+
+  transform: translateY(-1px);
+
+  transition:
+    transform 0.42s cubic-bezier(.2,.7,.2,1),
+    filter 0.42s ease,
+    opacity 0.25s ease;
+}
+
+/*
+ * طبقة توهج ذهبي ناعمة فوق منطقة الكتاب.
+ * شفافة بالكامل وليست صندوقاً.
+ */
+.book-cover::before {
+  content: "";
+
+  position: absolute;
+  z-index: 2;
+
+  width: 66%;
+  height: 76%;
+  left: 17%;
+  top: 10%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 211, 112, 0.11) 0%,
+      rgba(201, 164, 91, 0.045) 38%,
+      transparent 72%
+    );
+
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/*
+ * لا نستخدم أي overlay مستطيل فوق الصورة.
+ * هذه الطبقة فقط تساعد على دمج الضوء في الأطراف.
+ */
+.book-cover::after {
+  content: "";
+
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 55%,
+      transparent 42%,
+      rgba(5, 13, 25, 0.08) 70%,
+      rgba(5, 13, 25, 0.20) 100%
+    );
+
+  opacity: 0.7;
+}
+
+/* عند تمرير المؤشر */
+.book-card:hover .book-cover-glow {
+  opacity: 0.98;
+  transform: scale(1.16);
+  filter: blur(25px);
+}
+
+.book-card:hover .book-cover-floor-light {
+  opacity: 0.92;
+  transform: scaleX(1.14);
+}
+
+.book-card:hover .book-cover img {
+  transform: translateY(-5px) scale(1.035);
+
+  filter:
+    drop-shadow(0 21px 18px rgba(0, 0, 0, 0.52))
+    drop-shadow(0 0 19px rgba(201, 164, 91, 0.28));
+}
+
+/* =========================================================
+   حالة عدم وجود صورة
+   ========================================================= */
+
+.book-cover-fallback {
+  position: absolute;
+  z-index: 5;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #c9a45b;
+  font-size: 3.1rem;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 91, 0.12) 0%,
+      transparent 54%
+    );
+
+  filter:
+    drop-shadow(0 9px 10px rgba(0,0,0,0.45))
+    drop-shadow(0 0 17px rgba(201,164,91,0.25));
+}
+
+.book-cover-fallback.visible {
+  display: flex;
+}
+
+/*
+ * عند ظهور المطرقة لا نعرض أي إطار للصورة.
+ */
+.book-cover:has(.book-cover-fallback.visible) img {
+  display: none !important;
+}
+
+.book-cover:has(.book-cover-fallback.visible) .book-cover-glow {
+  opacity: 0.55;
+}
+
+.book-cover:has(.book-cover-fallback.visible) .book-cover-floor-light {
+  opacity: 0.40;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .book-cover {
+    width: calc(100% + 18px);
+    height: 205px;
+    margin: -6px -9px 7px;
+  }
+
+  .book-cover img {
+    filter:
+      drop-shadow(0 14px 13px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 0 10px rgba(201, 164, 91, 0.18));
+  }
+
+  .book-cover-glow {
+    filter: blur(18px);
+  }
+
+  .book-cover-floor-light {
+    bottom: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cover {
+    height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-cover img,
+  .book-cover-glow,
+  .book-cover-floor-light {
+    transition: none;
+  }
+
+  .book-card:hover .book-cover img {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   FINAL DESIGN POLISH — لمسة فاخرة متناسقة مع الكتب
+   ========================================================= */
+
+/* لوحة ألوان أعمق وأكثر فخامة */
+:root {
+  --primary: #c9a45b;
+  --primary-hover: #e0bb70;
+  --gold-light: #e8c77f;
+  --gold-soft: rgba(201, 164, 91, 0.16);
+  --bg-dark: #09111f;
+  --card-bg: #182438;
+  --text-primary: #f8f7f2;
+  --text-secondary: #9ba8b9;
+  --border: #2d3b50;
+  --header-bg: rgba(12, 19, 32, 0.88);
+}
+
+/* خلفية الصفحة: عمق خفيف جداً خلف البطاقات */
+body {
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(201, 164, 91, 0.075),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 0% 50%,
+      rgba(38, 83, 125, 0.075),
+      transparent 28%
+    ),
+    var(--bg-dark);
+}
+
+/* الهيدر أكثر هدوءاً واحترافية */
+header {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(19, 28, 43, 0.94),
+      rgba(9, 16, 29, 0.88)
+    );
+  border-bottom-color: rgba(201, 164, 91, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* شبكة الكتب */
+.books-grid {
+  gap: 18px;
+}
+
+/* البطاقة نفسها: تدرج داخلي وحافة ذهبية شبه مخفية */
+.book-card {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 50% 5%,
+      rgba(201, 164, 91, 0.045),
+      transparent 35%
+    ),
+    linear-gradient(
+      155deg,
+      #1d2a3e 0%,
+      #172337 54%,
+      #142033 100%
+    );
+
+  border: 1px solid rgba(122, 143, 166, 0.24);
+  border-radius: 16px;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 0.35s cubic-bezier(.2,.7,.2,1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* خط ذهبي دقيق جداً أعلى البطاقة */
+.book-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 164, 91, 0.48),
+    transparent
+  );
+
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 164, 91, 0.42);
+
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(201, 164, 91, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+/* العنوان */
+.book-title {
+  position: relative;
+  z-index: 6;
+
+  font-size: 1.12rem;
+  line-height: 1.65;
+  letter-spacing: -0.15px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+}
+
+/* اسم المؤلف */
+.book-author {
+  color: #aab4c2;
+  font-size: 0.82rem;
+}
+
+/* شارة الفصول بشكل زجاجي */
+.chapters-badge {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201, 164, 91, 0.15),
+      rgba(201, 164, 91, 0.075)
+    );
+
+  border: 1px solid rgba(201, 164, 91, 0.14);
+  border-radius: 9px;
+
+  color: var(--gold-light);
+  padding: 5px 10px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.025),
+    0 4px 12px rgba(0,0,0,0.10);
+}
+
+/* الأزرار: ذهب مطفأ مع إضاءة راقية */
+.book-card button,
+.card button,
+.start-exam-btn {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8b46d 0%,
+      #c29d5f 48%,
+      #b68e4f 100%
+    );
+
+  color: #101722;
+
+  border-radius: 13px !important;
+
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.22);
+
+  text-shadow: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* لمعة تمر على الزر */
+.book-card button::before,
+.card button::before,
+.start-exam-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 45%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.22),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.book-card button:hover,
+.card button:hover,
+.start-exam-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #e4c27c 0%,
+      #d1aa66 50%,
+      #bd9654 100%
+    );
+
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.24),
+    0 0 18px rgba(201, 164, 91, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+.book-card button:hover::before,
+.card button:hover::before,
+.start-exam-btn:hover::before {
+  left: 125%;
+}
+
+/* التركيز بالكيبورد */
+.book-card button:focus-visible,
+.card button:focus-visible,
+.start-exam-btn:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+/* البحث بنفس لغة التصميم */
+#search-input {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(29, 42, 62, 0.96),
+      rgba(18, 30, 47, 0.96)
+    );
+
+  border-color: rgba(122, 143, 166, 0.25);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+#search-input:focus {
+  border-color: rgba(201, 164, 91, 0.68);
+
+  box-shadow:
+    0 0 0 3px rgba(201, 164, 91, 0.08),
+    0 10px 28px rgba(0,0,0,0.14);
+}
+
+/* منع التصاق محتوى البطاقة بالحواف بعد دمج الغلاف */
+.book-card-content {
+  padding-top: 2px;
+}
+
+/* تحسين ارتفاع زر الدخول على الهاتف */
+@media (max-width: 600px) {
+  .books-grid {
+    gap: 13px;
+  }
+
+  .book-card {
+    border-radius: 15px;
+    padding: 13px;
+  }
+
+  .book-title {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .book-author {
+    margin-bottom: 12px;
+  }
+
+  .chapters-badge {
+    padding: 5px 8px;
+  }
+
+  .book-card button {
+    min-height: 48px;
+  }
+}
+
+/* الشاشات الصغيرة جداً: لا نبالغ في الإضاءة */
+@media (max-width: 380px) {
+  .book-card {
+    padding: 11px;
+  }
+
+  .book-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* تقليل الحركة لمن يفضل ذلك */
+@media (prefers-reduced-motion: reduce) {
+  .book-card,
+  .book-card button,
+  .card button,
+  .start-exam-btn {
+    transition: none;
+  }
+
+  .book-card:hover,
+  .book-card button:hover,
+  .card button:hover,
+  .start-exam-btn:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   تنسيق البطاقات حسب التصميم المعتمد (الشبكي المضغوط)
+   - غلاف أقصر لا يقصّ الصورة من الأعلى
+   - أزرار أصغر ومتناسقة مع حجم البطاقة + سهم اتجاه
+   ========================================================= */
+
+.book-cover {
+  height: 168px;
+  margin: -6px -9px 10px;
+}
+
+.book-card-content {
+  padding-top: 0;
+}
+
+.book-title {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+.book-author {
+  font-size: 0.76rem;
+  margin-bottom: 10px;
+}
+
+.book-card {
+  padding: 12px;
+}
+
+.book-meta {
+  margin-bottom: 10px;
+}
+
+.chapters-badge {
+  padding: 3px 9px;
+  font-size: 0.74rem;
+}
+
+.book-card button,
+.card button,
+.start-exam-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 14px;
+  font-size: 0.86rem;
+  min-height: 40px;
+}
+
+.btn-arrow {
+  font-size: 0.9em;
+  transition: transform 0.25s ease;
+}
+
+.book-card button:hover .btn-arrow {
+  transform: translateX(-3px);
+}
+
+@media (max-width: 600px) {
+  .book-cover {
+    height: 148px;
+  }
+  .book-card button {
+    min-height: 40px;
+    padding: 9px 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-cover {
+    height: 130px;
+  }
+}
+
+/* =========================================================
+   بطاقة السؤال — تبرز بوضوح فوق الخيارات
+   ========================================================= */
+
+.question-card {
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(201, 164, 91, 0.10), transparent 55%),
+    linear-gradient(155deg, #212f47 0%, #1a2740 55%, #16223a 100%);
+  border: 1px solid rgba(201, 164, 91, 0.30);
+  border-right: 4px solid var(--primary);
+  border-radius: 14px;
+  padding: 20px 20px 18px;
+  margin-bottom: 22px;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.question-label {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--gold-light, var(--primary));
+  background: rgba(201, 164, 91, 0.14);
+  border: 1px solid rgba(201, 164, 91, 0.22);
+  padding: 4px 11px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+.question-card .question-text {
+  font-size: 1.32rem;
+  font-weight: 800;
+  line-height: 1.7;
+  color: var(--text-primary);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .question-card {
+    padding: 16px 16px 15px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+  }
+  .question-card .question-text {
+    font-size: 1.12rem;
+    line-height: 1.6;
+  }
+  .question-label {
+    font-size: 0.7rem;
+    padding: 3px 9px;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL CHAPTER CARDS — بطاقات الفصول
+   تصميم متجاوب وأنيق للنصوص الطويلة على الهاتف
+   ========================================================= */
+
+.chapters-list {
+  gap: 16px;
+}
+
+.chapter-item {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+
+  padding: 18px 20px;
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      circle at 88% 15%,
+      rgba(201, 164, 91, 0.075),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(28, 43, 64, 0.98),
+      rgba(20, 34, 53, 0.98)
+    );
+
+  border: 1px solid rgba(122, 143, 166, 0.24);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.chapter-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 164, 91, 0.38);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.24),
+    0 0 20px rgba(201, 164, 91, 0.045);
+}
+
+.chapter-info {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: right;
+}
+
+.chapter-number {
+  position: relative;
+  display: inline-block;
+
+  color: var(--text-primary);
+  font-size: 1.22rem;
+  font-weight: 800;
+  line-height: 1.35;
+
+  margin-bottom: 7px;
+  padding-right: 12px;
+}
+
+.chapter-number::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 4px;
+  background: var(--primary);
+  opacity: 0.9;
+}
+
+.chapter-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.75;
+  font-weight: 500;
+
+  /* يمنع العنوان الطويل من دفع الزر أو كسره */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.chapter-start-btn {
+  flex: 0 0 122px;
+  width: 122px !important;
+  min-width: 122px;
+  min-height: 52px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 11px 16px !important;
+  margin: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 13px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--primary-hover),
+      var(--primary)
+    ) !important;
+
+  color: var(--bg-dark) !important;
+  font-size: 1rem;
+  font-weight: 800;
+
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chapter-start-btn:hover {
+  transform: translateY(-1px);
+  background:
+    linear-gradient(
+      145deg,
+      #ebca82,
+      var(--primary-hover)
+    ) !important;
+}
+
+.chapter-start-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .chapters-list {
+    gap: 13px;
+  }
+
+  .chapter-item {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 13px;
+
+    padding: 17px 16px 15px;
+    border-radius: 17px;
+  }
+
+  .chapter-info {
+    width: 100%;
+  }
+
+  .chapter-number {
+    font-size: 1.16rem;
+    margin-bottom: 6px;
+  }
+
+  .chapter-info p {
+    font-size: 0.91rem;
+    line-height: 1.7;
+  }
+
+  .chapter-start-btn {
+    flex: 0 0 auto;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 48px;
+
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .chapter-item {
+    padding: 15px 14px 14px;
+  }
+
+  .chapter-number {
+    font-size: 1.1rem;
+  }
+
+  .chapter-info p {
+    font-size: 0.88rem;
+  }
+}
+
+/* ===== Public Firebase authentication ===== */
+.account-btn { margin-top: 12px; padding: 9px 18px; border: 1px solid var(--primary); border-radius: 999px; background: rgba(194,157,95,.1); color: var(--primary); font: inherit; font-weight: 700; cursor: pointer; }
+.account-btn:hover, .account-btn.authenticated { background: var(--primary); color: var(--bg-dark); }
+.auth-modal { display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; padding: 16px; background: rgba(2,6,23,.82); backdrop-filter: blur(5px); }
+.auth-modal.active { display: flex; }
+.auth-modal-content { position: relative; width: min(100%,430px); padding: 28px 24px 24px; border: 1px solid rgba(194,157,95,.35); border-radius: 18px; background: linear-gradient(145deg,#1e293b,#111827); box-shadow: 0 24px 80px rgba(0,0,0,.55); color: var(--text-primary); }
+.auth-modal-close { position: absolute; top: 10px; left: 14px; width: 34px; height: 34px; border: 0; background: transparent; color: #cbd5e1; font-size: 28px; line-height: 1; cursor: pointer; }
+.auth-modal-heading { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--primary); }
+.auth-modal-heading h2 { margin: 0; font-size: 22px; }
+.auth-modal-subtitle { margin: 8px 0 20px; color: var(--text-secondary); text-align: center; font-size: 14px; }
+.google-signin-btn, .auth-submit-btn { width: 100%; min-height: 46px; border: 0; border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; }
+.google-signin-btn { background: #fff; color: #1f2937; }
+.auth-submit-btn { margin-top: 12px; background: linear-gradient(135deg,#c29d5f,#a67f45); color: #0f172a; }
+.google-signin-btn:disabled, .auth-submit-btn:disabled { opacity: .6; cursor: wait; }
+.auth-divider { display: flex; align-items: center; gap: 10px; margin: 18px 0; color: #64748b; font-size: 13px; }
+.auth-divider::before, .auth-divider::after { content: ''; height: 1px; flex: 1; background: rgba(148,163,184,.25); }
+.auth-modal-content label { display: block; margin: 12px 0 6px; color: #cbd5e1; font-size: 13px; font-weight: 700; }
+.auth-modal-content input { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #475569; border-radius: 9px; background: #0f172a; color: #f8fafc; font: inherit; direction: ltr; text-align: left; }
+.auth-modal-content input:focus { outline: 2px solid rgba(194,157,95,.45); border-color: var(--primary); }
+.auth-error { min-height: 22px; margin: 10px 0 0; color: #fca5a5; font-size: 13px; text-align: center; }
+.auth-reset-btn, .auth-switch button { border: 0; background: transparent; color: #d9bd8a; font: inherit; cursor: pointer; }
+.auth-reset-btn { display: block; margin: 13px auto 0; font-size: 13px; }
+.auth-switch { margin-top: 18px; color: var(--text-secondary); text-align: center; font-size: 13px; }
+.auth-switch button { font-weight: 700; }
+@media (max-width: 480px) { .auth-modal { align-items: flex-end; padding: 0; } .auth-modal-content { border-radius: 18px 18px 0 0; padding: 26px 18px 22px; } }
+
+/* =========================================================
+   GENERATION 5 — تصميم الكتاب ثلاثي الأبعاد (نهائي)
+   يُلغي كل تصاميم .book-card / .books-grid السابقة في هذا الملف
+   عبر الترتيب المتأخر في الملف (لم تُحذف الأجيال القديمة تفادياً
+   لكسر محددات مشتركة مثل .start-exam-btn / .card button)
+   ========================================================= */
+:root {
+  --bk-gold-primary: #d4af37;
+  --bk-gold-light: #fff0aa;
+  --bk-gold-dark: #aa820a;
+  --bk-gold-shimmer: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  --bk-btn-gold: linear-gradient(180deg, #e5be6b 0%, #ba8e31 100%);
+  --bk-btn-gold-hover: linear-gradient(180deg, #f0cc7b 0%, #ca9b3b 100%);
+  --bk-paper-cream: #f4eaad;
+  --bk-paper-edge: #d8c382;
+  --bk-paper-dark: #b8a05c;
+}
+
+.books-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+}
+@media (max-width: 900px) { .books-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 480px) { .books-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; } }
+
+.book-card {
+  background: #0e172a !important;
+  border: 1px solid #1a2a4a !important;
+  border-radius: 20px !important;
+  padding: 24px 14px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+.book-card::after { content: none !important; } /* يلغي أي زخرفة قديمة كانت تُضاف بـ ::after */
+.book-card:hover {
+  border-color: rgba(212, 175, 55, 0.45) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.85), 0 0 25px rgba(212, 175, 55, 0.15);
+}
+
+.book-card .stage {
+  position: relative; width: 100%; height: 245px;
+  display: flex; justify-content: center; align-items: center;
+  perspective: 1200px; perspective-origin: 50% 35%;
+}
+.book-card .bg-watermark {
+  position: absolute; width: 170px; height: 170px; top: 45%; left: 50%;
+  transform: translate(-50%, -50%); opacity: 0.06; pointer-events: none; z-index: 0;
+  transition: opacity 0.4s ease;
+}
+.book-card:hover .bg-watermark { opacity: 0.12; }
+.book-card .bg-watermark svg { width: 100%; height: 100%; stroke: var(--bk-gold-light); fill: none; stroke-width: 1; }
+
+.book-card .top-gold-glow {
+  position: absolute; width: 150px; height: 80px; top: 10px; left: 50%; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.28) 0%, transparent 70%);
+  filter: blur(14px); pointer-events: none; z-index: 0;
+}
+.book-card .side-gold-glow {
+  position: absolute; width: 190px; height: 40px; bottom: 8px; left: 50%; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.08) 50%, transparent 80%);
+  filter: blur(12px); pointer-events: none; z-index: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.book-card:hover .side-gold-glow { transform: translateX(-50%) scale(1.2); opacity: 0.9; }
+.book-card .shadow-base {
+  position: absolute; width: 150px; height: 22px; bottom: 12px; left: 50%;
+  transform: translateX(-50%) rotateX(75deg);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 80%);
+  filter: blur(6px); pointer-events: none; z-index: 0;
+}
+
+.book-card .book {
+  --w: 135px; --h: 185px; --d: 42px;
+  position: relative; width: var(--w); height: var(--h);
+  transform-style: preserve-3d;
+  transform: rotateX(15deg) rotateY(-32deg) rotateZ(2deg);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+.book-card.is-open .book { transform: rotateX(5deg) rotateY(0deg) translateX(28px) translateY(-4px) translateZ(0); }
+.book-card .face { position: absolute; transform-style: preserve-3d; }
+
+.book-card .front-cover-wrapper {
+  position: absolute; width: var(--w); height: var(--h); left: 0; top: 0;
+  transform-origin: left center; transform-style: preserve-3d;
+  transform: translateZ(calc(var(--d) / 2));
+  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 8;
+}
+.book-card.is-open .front-cover-wrapper { transform: translateZ(calc(var(--d) / 2)) rotateY(-115deg); }
+
+.book-card .front {
+  position: absolute; inset: 0;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow: inset 2px 0 4px rgba(255, 255, 255, 0.3), inset -3px 0 5px rgba(0,0,0,0.8);
+  overflow: hidden; padding: 18px 10px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px;
+  backface-visibility: hidden;
+}
+.book-card .front::before {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px);
+  opacity: 0.7;
+}
+
+/* ---- الثيمات اللونية الخمسة (توزَّع تلقائياً عبر getBookTheme في book-icons.js) ---- */
+.book-card .book.book-blue .front,
+.book-card .book:not([class*="book-"]) .front {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.4) 100%),
+              linear-gradient(150deg, #182842 0%, #0a1324 60%, #040914 100%);
+}
+.book-card .book.book-blue .spine {
+  background: linear-gradient(90deg, #03070f 0%, #111e33 25%, #1d3254 50%, #0f1a2c 75%, #03060c 100%);
+}
+
+.book-card .book.book-burgundy .front {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(150deg, #3d0e17 0%, #22080e 60%, #0d0205 100%);
+}
+.book-card .book.book-burgundy .spine {
+  background: linear-gradient(90deg, #080103 0%, #21070d 25%, #3b0e18 50%, #21070d 75%, #080103 100%);
+}
+
+.book-card .book.book-emerald .front {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(150deg, #092e1e 0%, #041a10 60%, #010a06 100%);
+}
+.book-card .book.book-emerald .spine {
+  background: linear-gradient(90deg, #010805 0%, #092619 25%, #103d29 50%, #092619 75%, #010805 100%);
+}
+
+.book-card .book.book-brown .front {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(150deg, #331d0d 0%, #1c0e05 60%, #0a0401 100%);
+}
+.book-card .book.book-brown .spine {
+  background: linear-gradient(90deg, #080300 0%, #241307 25%, #3d220e 50%, #241307 75%, #080300 100%);
+}
+
+.book-card .book.book-purple .front {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(150deg, #231238 0%, #12081f 60%, #06020c 100%);
+}
+.book-card .book.book-purple .spine {
+  background: linear-gradient(90deg, #040108 0%, #180b29 25%, #2a1445 50%, #180b29 75%, #040108 100%);
+}
+/* ---- نهاية الثيمات ---- */
+
+.book-card .front-inside {
+  position: absolute; inset: 0; background: #0d1728; border-radius: 6px 2px 2px 6px;
+  transform: rotateY(180deg); backface-visibility: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex; justify-content: center; align-items: center; padding: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+.book-card .front-inside-pattern {
+  width: 100%; height: 100%; border: 1px dashed rgba(212, 175, 55, 0.3);
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'Amiri', serif; font-size: 11px; color: #a3b8d7; text-align: center;
+}
+
+.book-card .flipping-page {
+  position: absolute; width: calc(var(--w) - 6px); height: calc(var(--h) - 6px); top: 3px; left: 3px;
+  background: linear-gradient(90deg, #e8da9b 0%, #f4eaad 100%);
+  transform-origin: left center; transform-style: preserve-3d;
+  transform: translateZ(calc((var(--d) / 2) - 3px));
+  transition: transform 0.8s cubic-bezier(0.35, 0, 0.25, 1) 0.12s;
+  border-radius: 2px 4px 4px 2px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  z-index: 6; backface-visibility: hidden;
+}
+.book-card.is-open .flipping-page { transform: translateZ(calc((var(--d) / 2) - 3px)) rotateY(-100deg); }
+
+.book-card .inside-page-body {
+  position: absolute; width: calc(var(--w) - 6px); height: calc(var(--h) - 6px); top: 3px; left: 3px;
+  background: radial-gradient(ellipse at center, #fbf7db 0%, #ebd899 100%);
+  transform: translateZ(0); border-radius: 2px 4px 4px 2px; padding: 8px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  color: #2b2106; text-align: center; z-index: 2;
+  box-shadow: inset 6px 0 12px rgba(0,0,0,0.3); overflow: hidden;
+}
+.book-card .page-border-frame { position: absolute; inset: 5px; border: 1px solid #917235; outline: 1px solid #c2a35d; outline-offset: -3px; pointer-events: none; z-index: 1; }
+.book-card .page-corner { position: absolute; width: 8px; height: 8px; border: 1.5px solid #70541e; z-index: 2; pointer-events: none; }
+.book-card .p-c-tl { top: 3px; left: 3px; border-right: none; border-bottom: none; }
+.book-card .p-c-tr { top: 3px; right: 3px; border-left: none; border-bottom: none; }
+.book-card .p-c-bl { bottom: 3px; left: 3px; border-right: none; border-top: none; }
+.book-card .p-c-br { bottom: 3px; right: 3px; border-left: none; border-top: none; }
+.book-card .inside-page-title { font-family: 'Aref Ruqaa', serif; font-size: 13px; font-weight: 700; color: #4a3608; margin-bottom: 6px; border-bottom: 1px double #8a6a27; padding-bottom: 4px; position: relative; z-index: 3; }
+.book-card .inside-page-text { font-size: 10px; font-weight: 700; line-height: 1.4; color: #3b2f0a; position: relative; z-index: 3; padding: 0 4px; }
+
+.book-card .gold-frame { position: absolute; inset: 7px; border: 1.5px solid transparent; border-image: var(--bk-gold-shimmer) 1; border-radius: 2px; box-shadow: inset 0 0 4px rgba(212, 175, 55, 0.3), 0 0 6px rgba(0,0,0,0.8); }
+.book-card .gold-frame-inner { position: absolute; inset: 11px; border: 1px solid rgba(212, 175, 55, 0.45); }
+.book-card .corner-ornament { position: absolute; width: 12px; height: 12px; border: 1.5px solid var(--bk-gold-primary); z-index: 3; }
+.book-card .c-tl { top: 9px; left: 9px; border-right: none; border-bottom: none; }
+.book-card .c-tr { top: 9px; right: 9px; border-left: none; border-bottom: none; }
+.book-card .c-bl { bottom: 9px; left: 9px; border-right: none; border-top: none; }
+.book-card .c-br { bottom: 9px; right: 9px; border-left: none; border-top: none; }
+
+.book-card .emblem-container { position: relative; width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; z-index: 2; }
+.book-card .emblem-ring { position: absolute; inset: 0; border: 1.2px dashed var(--bk-gold-primary); border-radius: 50%; animation: bkRotateRing 30s linear infinite; box-shadow: 0 0 6px rgba(212, 175, 55, 0.3); }
+@keyframes bkRotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.book-card .emblem-icon { width: 28px; height: 28px; fill: none; stroke: url(#bkGoldGrad); stroke-width: 1.3; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.9)); }
+
+.book-card .book-title-front {
+  font-family: 'Aref Ruqaa', 'Amiri', serif; font-size: 14px; font-weight: 700;
+  background: var(--bk-gold-shimmer); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-align: center; z-index: 2; line-height: 1.3;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.9)); max-width: 90%;
+}
+.book-card .top-ribbon-bookmark {
+  position: absolute; top: -4px; left: 28px; width: 9px; height: 38px;
+  background: var(--bk-gold-shimmer); z-index: 10; box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%); pointer-events: none;
+}
+
+.book-card .spine {
+  width: var(--d); height: var(--h); left: calc(0px - (var(--d) / 2)); top: 0;
+  transform: rotateY(-90deg) translateZ(0); border-radius: 3px 0 0 3px;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 14px 0;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.9); transition: opacity 0.5s ease;
+}
+.book-card.is-open .spine { opacity: 0; }
+.book-card .spine-rib { width: 100%; height: 5px; background: linear-gradient(90deg, var(--bk-gold-dark), var(--bk-gold-light), var(--bk-gold-dark)); box-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+.book-card .spine-text {
+  writing-mode: vertical-rl; font-family: 'Amiri', serif; font-size: 11px; font-weight: 700;
+  background: var(--bk-gold-shimmer); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.5px;
+}
+
+.book-card .fore-edge {
+  width: var(--d); height: calc(var(--h) - 8px); left: calc(var(--w) - (var(--d) / 2) - 3px); top: 4px;
+  transform: rotateY(90deg) translateZ(0);
+  background: repeating-linear-gradient(90deg, var(--bk-paper-cream) 0px, var(--bk-paper-cream) 1px, var(--bk-paper-edge) 2px, var(--bk-paper-dark) 3px);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.5); border-radius: 2px;
+}
+.book-card .pages-top { width: calc(var(--w) - 6px); height: var(--d); left: 3px; top: calc(0px - (var(--d) / 2) + 3px); transform: rotateX(90deg) translateZ(0); background: var(--bk-paper-edge); box-shadow: inset 0 0 6px rgba(0,0,0,0.6); }
+.book-card .pages-bottom { width: calc(var(--w) - 6px); height: var(--d); left: 3px; bottom: calc(0px - (var(--d) / 2) + 3px); transform: rotateX(-90deg) translateZ(0); background: var(--bk-paper-dark); }
+.book-card .back { width: var(--w); height: var(--h); left: 0; top: 0; transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); background: #050914; }
+
+.book-card .card-title { font-family: 'Tajawal', sans-serif !important; font-size: 17px !important; font-weight: 800 !important; color: #ffffff !important; text-align: center !important; margin-top: 10px !important; }
+.book-card .card-author { font-size: 12px !important; color: #8397b5 !important; margin-top: 4px !important; text-align: center !important; }
+.book-card .book-stats {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+.book-card .book-stat-badge {
+  min-width: 78px !important;
+  box-sizing: border-box !important;
+  background: #14213a !important;
+  border: 1px solid #1e3359 !important;
+  border-radius: 12px !important;
+  padding: 5px 8px !important;
+  font-size: 11px !important;
+  color: #d1e0f5 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+.book-card .book-stat-icon {
+  font-size: 11px !important;
+  line-height: 1 !important;
+}
+.book-card .book-stat-value {
+  font-weight: 800 !important;
+  color: #f0d38a !important;
+}
+.book-card .book-stat-label {
+  color: #c8d7e8 !important;
+}
+.book-card .questions-stat {
+  border-color: #28456f !important;
+  background: #11233d !important;
+}
+.book-card .test-btn {
+  width: 100% !important; background: var(--bk-btn-gold) !important; color: #0d0d0d !important;
+  font-family: 'Tajawal', sans-serif !important; font-size: 14px !important; font-weight: 800 !important;
+  border: none !important; border-radius: 12px !important; padding: 10px 0 !important; margin-top: 14px !important;
+  cursor: pointer; transition: background 0.2s, transform 0.1s;
+  display: flex !important; justify-content: center !important; align-items: center !important; gap: 6px !important;
+  box-shadow: 0 4px 12px rgba(186, 142, 49, 0.25);
+}
+.book-card .test-btn:hover { background: var(--bk-btn-gold-hover) !important; }
+
+@media (max-width: 480px) {
+  .book-card { padding: 14px 6px 12px !important; }
+  .book-card .card-title { font-size: 14px !important; }
+  .book-card .card-author { font-size: 10px !important; }
+  .book-card .book { --w: 92px; --h: 135px; --d: 28px; }
+  .book-card .stage { height: 175px; }
+  .book-card.is-open .book { transform: rotateX(5deg) rotateY(0deg) translateX(22px) translateY(-3px) translateZ(0); }
+  .book-card.is-open .front-cover-wrapper { transform: translateZ(calc(var(--d) / 2)) rotateY(-110deg); }
+  .book-card.is-open .flipping-page { transform: translateZ(calc((var(--d) / 2) - 3px)) rotateY(-95deg); }
+  .book-card .top-ribbon-bookmark { height: 26px; left: 16px; width: 7px; }
+  .book-card .inside-page-title { font-size: 11px; }
+  .book-card .inside-page-text { font-size: 8.5px; }
+  .book-card .book-stats { gap: 5px !important; }
+  .book-card .book-stat-badge {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
+    padding: 5px 5px !important;
+    font-size: 10px !important;
+  }
+
+
+/* عدد أسئلة الفصل - بيانات خفيفة من فهرس الأسئلة */
+.chapter-question-count {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  opacity: 0.95;
+}
+
+
+/* Mizan homepage header — centered brand lockup */
+.mizan-header {
+  min-height: 132px;
+  padding: 12px 52px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+  text-align: center;
+}
+.mizan-header-art {
+  width: min(100%, 760px);
+  aspect-ratio: 1536 / 857;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 0;
+}
+.mizan-header-art-image {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.mizan-brand {
+  display: grid !important;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center !important;
+  justify-content: center !important;
+  column-gap: 16px;
+  row-gap: 5px;
+  margin: 0 auto !important;
+  transform: none !important;
+  direction: rtl;
+}
+.mizan-logo-animation {
+  grid-column: 2;
+  grid-row: 1;
+  width: 92px;
+  height: 92px;
+  position: relative;
+}
+.mizan-logo-animation::after {
+  content: none;
+}
+.mizan-logo-fallback,
+.mizan-logo-static {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.mizan-brand-copy {
+  display: contents !important;
+}
+.mizan-brand-copy h1 {
+  grid-column: 1;
+  grid-row: 1;
+  color: #d8b66d;
+  font-size: clamp(2.35rem, 6vw, 3.25rem);
+  line-height: 1;
+  margin: 0 !important;
+  align-self: center;
+  justify-self: start;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 18px rgba(201,164,91,.14);
+}
+.mizan-brand-copy p {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: #aab4c3;
+  font-size: clamp(.82rem, 2.4vw, 1rem);
+  line-height: 1.4;
+  margin: 0 !important;
+  white-space: nowrap;
+  justify-self: center;
+  text-align: center;
+}
+.mizan-header > #install-app-btn,
+.mizan-header > #ios-install-hint {
+  position: absolute;
+  right: 52px;
+}
+.mizan-header > #install-app-btn { top: 12px; }
+.mizan-header > #ios-install-hint { top: 58px; }
+
+@media (max-width: 560px) {
+  .mizan-header {
+    min-height: 118px;
+    padding: 9px 50px 13px !important;
+  }
+  .mizan-header-art {
+    width: min(100%, 620px);
+  }
+  .mizan-header-art-image {
+    width: 100%;
+  }
+  .mizan-brand {
+    column-gap: 10px;
+    row-gap: 4px;
+  }
+  .mizan-logo-animation {
+    width: 78px;
+    height: 78px;
+  }
+  .mizan-brand-copy h1 {
+    font-size: clamp(1.9rem, 9vw, 2.35rem);
+  }
+  .mizan-brand-copy p {
+    font-size: .68rem;
+  }
+  .mizan-header > #install-app-btn,
+  .mizan-header > #ios-install-hint {
+    right: 50px;
+  }
+}
