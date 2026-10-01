@@ -39,6 +39,7 @@
       if (window.studentLeaderboard) window.studentLeaderboard.render();
       return;
     }
+    if (action === 'mizan-pulpit') { if (window.mizanPulpit) window.mizanPulpit.open(); return; }
     if (action === 'contact') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
       return;
