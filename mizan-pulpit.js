@@ -34,13 +34,45 @@
           '<div class="mizan-article-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
           '<h3>' + esc(a.title || 'مشاركة قانونية') + '</h3>' +
           '<p>' + esc(a.excerpt || '') + '</p>' +
-          '<div class="mizan-article-author"><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></span></div>' +
-          '<button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '">قراءة المقال ←</button>' +
+          '<button type="button" class="mizan-article-author" data-contributor-id="' + esc(a.authorUid || '') + '" ' + (a.authorUid ? '' : 'disabled') + '><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></button>' +
+          '<div class="mizan-article-card-footer"><button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '"><i class="fas fa-book-open"></i> قراءة المقال</button></div>' +
           '</article>';
       }).join('');
     } catch (error) {
       console.error('Mizan Pulpit load error:', error);
       list.innerHTML = '<div class="mizan-pulpit-empty">تعذر تحميل المشاركات حالياً. حاول مرة أخرى.</div>';
+    }
+  }
+
+  async function openContributorProfile(uid) {
+    if (!uid) return;
+    const db = window.publicAuth?.firestore;
+    if (!db) return;
+    try {
+      const snap = await db.collection('mizanContributorPublic').doc(uid).get();
+      if (!snap.exists) return;
+      const p = snap.data() || {};
+      const countSnap = await db.collection(COLLECTION)
+        .where('authorUid','==',uid)
+        .where('status','==','published')
+        .limit(100).get();
+      const count = countSnap.size;
+      const modal = document.getElementById('mizan-contributor-profile-modal');
+      if (!modal) return;
+      modal.innerHTML =
+        '<div class="mizan-profile-modal-box">' +
+          '<button type="button" class="mizan-profile-close" aria-label="إغلاق">×</button>' +
+          '<div class="mizan-profile-avatar"><i class="fas fa-user-tie"></i></div>' +
+          '<div class="mizan-profile-kicker">مساهم في منبر ميزان</div>' +
+          '<h2>' + esc(p.fullName || 'مساهم قانوني') + '</h2>' +
+          '<div class="mizan-profile-role">' + esc(p.role || 'مساهم') + '</div>' +
+          '<div class="mizan-profile-stats"><div><strong>' + count + '</strong><span>مساهمة منشورة</span></div><div><strong>' + esc(p.specialization || '—') + '</strong><span>التخصص</span></div></div>' +
+          '<div class="mizan-profile-section"><h3>النبذة المهنية</h3><p>' + esc(p.bio || 'لم تتم إضافة نبذة مهنية.') + '</p></div>' +
+        '</div>';
+      modal.classList.add('is-open');
+      modal.querySelector('.mizan-profile-close').onclick = () => modal.classList.remove('is-open');
+    } catch (error) {
+      console.error('Mizan contributor profile error:', error);
     }
   }
 
@@ -171,6 +203,15 @@
       };
       if (!data.fullName || !data.specialization || !data.bio) throw new Error('missing');
       await db.collection(CONTRIBUTORS).doc(user.uid).set(data, {merge:true});
+      if (nextStatus === 'approved') {
+        await db.collection('mizanContributorPublic').doc(user.uid).set({
+          fullName:data.fullName,
+          role:data.role,
+          specialization:data.specialization,
+          bio:data.bio,
+          updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+        }, {merge:true});
+      }
       document.getElementById('mizan-contributor-modal')?.classList.remove('is-open');
       const isUpdate=!!existing;
       window.app?.showHomeNotice?.(isUpdate?'تم تحديث بياناتك':'تم إرسال طلب الانضمام', isUpdate?'تم حفظ بيانات المساهم بنجاح.':'سيتم مراجعة بياناتك من إدارة منبر ميزان.');
@@ -231,13 +272,15 @@
     document.addEventListener('click', event => {
       const read = event.target.closest('[data-article-id]');
       if (read) openArticle(read.dataset.articleId);
+      const contributor = event.target.closest('[data-contributor-id]');
+      if (contributor && contributor.dataset.contributorId) openContributorProfile(contributor.dataset.contributorId);
       if (event.target.closest('[data-mizan-submit]')) openSubmit();
       if (event.target.closest('[data-mizan-edit-contributor]')) openContributorEdit();
       if (event.target.closest('[data-mizan-close]')) document.querySelectorAll('.mizan-modal').forEach(m => m.classList.remove('is-open'));
     });
     document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
-    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, getContributor };
+    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, openContributorProfile, getContributor };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
