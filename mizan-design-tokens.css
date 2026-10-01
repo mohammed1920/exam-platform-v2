@@ -1,0 +1,90 @@
+/* Mizan Design System — foundational tokens
+   المرحلة الأولى: توحيد الهوية البصرية دون تغيير الشكل الحالي.
+   تعتمد الملفات الحالية تدريجياً على هذه المتغيرات في مراحل التنظيف القادمة.
+*/
+:root{
+  /* Brand */
+  --mizan-gold:#c29d5f;
+  --mizan-gold-light:#d8bd86;
+  --mizan-gold-dark:#8f6b34;
+
+  /* Dark surfaces */
+  --mizan-navy-950:#081521;
+  --mizan-navy-900:#0f172a;
+  --mizan-navy-850:#101d2d;
+  --mizan-navy-800:#172b45;
+  --mizan-slate-800:#1e293b;
+  --mizan-slate-700:#334155;
+
+  /* Text */
+  --mizan-text:#f8fafc;
+  --mizan-text-soft:#d8e0e7;
+  --mizan-text-muted:#94a3b8;
+  --mizan-text-subtle:#7f93a4;
+
+  /* Semantic */
+  --mizan-success:#10b981;
+  --mizan-error:#ef4444;
+  --mizan-warning:#d8bd86;
+  --mizan-info:#4fc3f7;
+
+  /* Light surfaces */
+  --mizan-light-bg:#f5f7fb;
+  --mizan-light-surface:#ffffff;
+  --mizan-light-surface-2:#f8fafc;
+  --mizan-light-border:#d8dee8;
+  --mizan-light-text:#1f2937;
+  --mizan-light-muted:#667085;
+
+  /* Borders / overlays */
+  --mizan-border-soft:rgba(255,255,255,.07);
+  --mizan-gold-border:rgba(194,157,95,.25);
+  --mizan-gold-soft:rgba(194,157,95,.10);
+
+  /* Radius */
+  --mizan-radius-sm:10px;
+  --mizan-radius-md:14px;
+  --mizan-radius-lg:18px;
+  --mizan-radius-xl:24px;
+  --mizan-radius-pill:999px;
+
+  /* Shadows */
+  --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
+  --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
+  --mizan-shadow-lg:0 18px 50px rgba(0,0,0,.24);
+
+  /* Spacing */
+  --mizan-space-1:4px;
+  --mizan-space-2:8px;
+  --mizan-space-3:12px;
+  --mizan-space-4:16px;
+  --mizan-space-5:20px;
+  --mizan-space-6:24px;
+  --mizan-space-7:32px;
+  --mizan-space-8:40px;
+  --mizan-space-9:48px;
+  --mizan-space-10:64px;
+
+  /* Layout */
+  --mizan-content-width:1200px;
+  --mizan-content-padding:20px;
+}
+
+/* Tokens that intentionally follow the active theme. */
+html[data-theme="light"]{
+  --mizan-bg:var(--mizan-light-bg);
+  --mizan-surface:var(--mizan-light-surface);
+  --mizan-surface-2:var(--mizan-light-surface-2);
+  --mizan-border:var(--mizan-light-border);
+  --mizan-text-active:var(--mizan-light-text);
+  --mizan-muted-active:var(--mizan-light-muted);
+}
+
+:root{
+  --mizan-bg:var(--mizan-navy-900);
+  --mizan-surface:var(--mizan-slate-800);
+  --mizan-surface-2:var(--mizan-navy-850);
+  --mizan-border:var(--mizan-slate-700);
+  --mizan-text-active:var(--mizan-text);
+  --mizan-muted-active:var(--mizan-text-muted);
+}
