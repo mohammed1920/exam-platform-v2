@@ -156,8 +156,9 @@
         <form id="mizan-submit-form">
           <div class="mizan-form-grid">
             <label>نوع المشاركة<select name="type"><option>مقالة قانونية</option><option>بحث ودراسة</option><option>فكرة ورأي قانوني</option><option>تجربة مهنية</option><option>قراءة في تشريع أو حكم</option></select></label>
-            <label>اسم الكاتب<input name="authorName" required placeholder="د. أحمد محمد"></label>
-            <label>الصفة أو الاختصاص<input name="authorTitle" placeholder="أستاذ القانون المدني / محامٍ وباحث"></label>
+            <label>اسم الكاتب<input name="authorName" readonly></label>
+            <label>الصفة المهنية<input name="authorTitle" readonly></label>
+            <label>التخصص<input name="authorSpecialization" readonly></label>
             <label>عنوان المشاركة<input name="title" required placeholder="عنوان المقال أو البحث"></label>
             <label class="full">نبذة مختصرة<textarea name="excerpt" rows="3" placeholder="ملخص قصير يظهر في بطاقة المقال"></textarea></label>
             <label class="full">المحتوى<textarea name="content" required placeholder="اكتب النص الكامل للمشاركة هنا..."></textarea></label>
