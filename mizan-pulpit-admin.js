@@ -425,12 +425,22 @@
     }
     if(action==='delete-contributor'&&confirm('حذف حساب هذا المساهم نهائياً؟')){
       await firestore.collection(CONTRIBUTORS).doc(id).delete();
+      await firestore.collection('mizanContributorPublic').doc(id).delete().catch(()=>{});
       alert('تم حذف المساهم.'); setTab('approved-contributors'); load('approved-contributors'); return;
     }
     try{
       const ref=firestore.collection(COLLECTION).doc(id);
       if(action==='approve-contributor'){
+        const contributorSnap=await firestore.collection(CONTRIBUTORS).doc(id).get();
+        const contributorData=contributorSnap.exists ? (contributorSnap.data()||{}) : {};
         await firestore.collection(CONTRIBUTORS).doc(id).update({status:'approved',approvedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        await firestore.collection('mizanContributorPublic').doc(id).set({
+          fullName:contributorData.fullName||'',
+          role:contributorData.role||'',
+          specialization:contributorData.specialization||'',
+          bio:contributorData.bio||'',
+          updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+        },{merge:true});
         closeModal('mizan-contributor-view-modal');alert('تم اعتماد المساهم.');
         setTab('contributors');load('contributors');return;
       }
