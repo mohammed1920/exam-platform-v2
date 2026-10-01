@@ -11,6 +11,7 @@
     procedures:{label:'إجراءات الدعاوى',icon:'fa-file-signature'},
     petitions:{label:'عرائض وطلبات',icon:'fa-file-lines'},
     lawyers:{label:'دليل المحامين',icon:'fa-user-tie'},
+    'mizan-pulpit':{label:'منبر ميزان',icon:'fa-feather-pointed'},
     dashboard:{label:'لوحة الاختبارات',icon:'fa-chart-line'},
     leaderboard:{label:'المتصدرون',icon:'fa-trophy'},
     about:{label:'عن المنصة',icon:'fa-circle-info'},
@@ -73,6 +74,10 @@
       window.app?.navigateTo('lawyers');
       return;
     }
+    if(action==='mizan-pulpit'){
+      window.app?.navigateTo('mizan-pulpit');
+      return;
+    }
     notice(action);
   }
 
@@ -111,6 +116,7 @@
           <button class="platform-sidebar-item" data-platform-action="procedures"><i class="fas fa-file-signature"></i><span>إجراءات الدعاوى</span></button>
           <button class="platform-sidebar-item" data-platform-action="petitions"><i class="fas fa-file-lines"></i><span>عرائض وطلبات</span></button>
           <button class="platform-sidebar-item" data-platform-action="lawyers"><i class="fas fa-user-tie"></i><span>دليل المحامين</span></button>
+          <button class="platform-sidebar-item" data-platform-action="mizan-pulpit"><i class="fas fa-feather-pointed"></i><span>منبر ميزان</span></button>
         </div>
 
         <div class="platform-sidebar-heading">الطالب</div>
