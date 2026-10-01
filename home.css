@@ -110,6 +110,53 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
 
 
 /* ألوان بطاقات أقسام الصفحة الرئيسية — كل قسم له هوية لونية مستقلة مع الحفاظ على طابع المنصة */
+/* الأقسام غير الجاهزة — عناصر صغيرة ومختصرة */
+.home-coming-soon{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:58px;
+  padding:9px 13px;
+  border:1px solid rgba(194,157,95,.16);
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(25,35,48,.72),rgba(12,23,37,.9));
+  color:#d9e0e5;
+  cursor:default;
+}
+.home-coming-soon i{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  border-radius:10px;
+  background:rgba(194,157,95,.08);
+  color:#b99a61;
+  font-size:14px;
+}
+.home-coming-soon span{
+  flex:1;
+  min-width:0;
+  font-size:12px;
+  font-weight:800;
+}
+.home-coming-soon b{
+  flex:0 0 auto;
+  padding:5px 8px;
+  border:1px solid rgba(194,157,95,.2);
+  border-radius:8px;
+  background:rgba(194,157,95,.07);
+  color:#c8aa6e;
+  font-size:9px;
+  white-space:nowrap;
+}
+@media(max-width:600px){
+  .home-coming-soon{min-height:52px;padding:8px 10px;gap:8px;border-radius:12px}
+  .home-coming-soon i{width:30px;height:30px;flex-basis:30px;font-size:12px}
+  .home-coming-soon span{font-size:11px}
+  .home-coming-soon b{font-size:8px;padding:4px 6px}
+}
+
 .home-category-card[data-home-action="books"]{
   --card-accent:#c29d5f;
   --card-bg:rgba(58,47,30,.78);
