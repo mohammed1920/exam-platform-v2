@@ -53,10 +53,9 @@
       if (!snap.exists) return;
       const p = snap.data() || {};
       const countSnap = await db.collection(COLLECTION)
-        .where('authorUid','==',uid)
         .where('status','==','published')
-        .limit(100).get();
-      const count = countSnap.size;
+        .limit(200).get();
+      const count = countSnap.docs.filter(d => d.data()?.authorUid === uid).length;
       const modal = document.getElementById('mizan-contributor-profile-modal');
       if (!modal) return;
       modal.innerHTML =
@@ -209,6 +208,7 @@
           role:data.role,
           specialization:data.specialization,
           bio:data.bio,
+          status:'approved',
           updatedAt:firebase.firestore.FieldValue.serverTimestamp()
         }, {merge:true});
       }
