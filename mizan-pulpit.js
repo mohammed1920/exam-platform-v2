@@ -99,7 +99,15 @@
       return;
     }
     const modal = document.getElementById('mizan-submit-modal');
-    if (modal) modal.classList.add('is-open');
+    if (modal) {
+      const form=document.getElementById('mizan-submit-form');
+      if(form){
+        if(form.authorName) form.authorName.value=contributor.fullName||auth.user.displayName||'';
+        if(form.authorTitle) form.authorTitle.value=contributor.role||'';
+        if(form.authorSpecialization) form.authorSpecialization.value=contributor.specialization||'';
+      }
+      modal.classList.add('is-open');
+    }
   }
 
   async function submitContributor(event) {
