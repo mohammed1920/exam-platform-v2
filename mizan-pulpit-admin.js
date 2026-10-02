@@ -28,6 +28,13 @@
       const style=document.createElement('style');
       style.id='mizan-admin-management-style';
       style.textContent=`
+        html[data-theme="light"] .mizan-admin-tabs button{background:#f8fafc;color:#344054;border-color:#d8dee8}
+        html[data-theme="light"] .mizan-admin-tabs button.active{background:#fff8eb;border-color:#d8b66a}
+        html[data-theme="light"] .mizan-admin-stat{background:#fff;border-color:#e2d4b6}
+        html[data-theme="light"] .mizan-admin-modal{background:rgba(15,23,42,.42)}
+        html[data-theme="light"] .mizan-admin-modal-box{background:#fff;color:#1f2937;border-color:#d8dee8;box-shadow:0 20px 60px rgba(15,23,42,.18)}
+        html[data-theme="light"] .mizan-admin-grid input,html[data-theme="light"] .mizan-admin-grid select,html[data-theme="light"] .mizan-admin-grid textarea{background:#fff;color:#1f2937;border-color:#d8dee8}
+        html[data-theme="light"] .mizan-admin-content,html[data-theme="light"] .mizan-admin-detail-item{background:#f8fafc}
         .mizan-admin-head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
         .mizan-admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
         .mizan-admin-tabs button{border:1px solid rgba(212,175,55,.25);background:rgba(255,255,255,.04);color:inherit;border-radius:10px;padding:9px 12px;cursor:pointer;font:inherit}
