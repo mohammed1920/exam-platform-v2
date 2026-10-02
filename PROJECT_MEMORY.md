@@ -148,3 +148,11 @@
 - Moved all three modal containers inside `#mizan-pulpit-section`. No functions or files were deleted.
 - This preserves the existing flow: unauthenticated users are sent to login; unapproved contributors are shown the join form/status message; approved contributors get the submission form; contributor editing continues to use the same modal.
 - Commit: `701d98d9abd247d52ec67bf4891652e062a9be5d` — `fix: scope Mizan Pulpit modals to their section`.
+
+
+## Mizan contributor profile over article view — 2026-10-02
+- Inspected the article/profile flow in `mizan-pulpit.js` before changing it.
+- Root cause: `mizan-contributor-profile-modal` had been moved inside `#mizan-pulpit-section` during modal scoping. When an article is opened, `app.navigateTo('mizan-article')` hides the Pulpit section, so the profile modal was rendered inside a hidden parent and appeared only after leaving the article.
+- Fix: keep the contributor profile modal outside all `.view-section` containers while retaining `.mizan-modal` closed-by-default behavior. This allows it to open above both the Pulpit list and the standalone article view without reintroducing the previous form visibility issue.
+- No functions or files were deleted.
+- Commit: `13928be18bef9067ed439b4c4eaf4ab14e820fac` — `fix: keep Mizan contributor profile above article view`.
