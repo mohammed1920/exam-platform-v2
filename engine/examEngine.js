@@ -13,8 +13,6 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.finishedResult = null;
-    this.__firestoreResultSaved = false;
-    this.__skipFirestoreResultSave = false;
     this.basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
     this.sessionTimestamp = Date.now();
     // ذاكرة مؤقتة صغيرة داخل الجلسة فقط: تمنع إعادة طلب نفس الفصل دون الاحتفاظ بكل الفصول.
@@ -93,8 +91,6 @@ class ExamEngine {
     this.userAnswers = [];
     this.startTime = new Date();
     this.finishedResult = null;
-    this.__firestoreResultSaved = false;
-    this.__skipFirestoreResultSave = false;
     return data;
   }
   loadCustomQuestions(questions) {
@@ -107,8 +103,6 @@ class ExamEngine {
     this.userAnswers = [];
     this.startTime = new Date();
     this.finishedResult = null;
-    this.__firestoreResultSaved = false;
-    this.__skipFirestoreResultSave = false;
   }
   getCurrentQuestion() { return this.questions[this.currentQuestionIndex] || null; }
   submitAnswer(optionIndex) {
@@ -128,21 +122,6 @@ class ExamEngine {
     if (this.finishedResult) return this.finishedResult;
     const percentage = this.totalQuestions > 0 ? Math.round((this.score / this.totalQuestions) * 100) : 0;
     this.finishedResult = { score: this.score, totalQuestions: this.totalQuestions, percentage, grade: this.getGrade(percentage), duration: this.startTime ? Math.max(0, Math.round((new Date() - this.startTime) / 1000)) : 0, answers: this.userAnswers.slice() };
-    if (this.__skipFirestoreResultSave) return this.finishedResult;
-    try {
-      const publicAuth = window.publicAuth;
-      if (publicAuth && publicAuth.user && typeof publicAuth.saveExamResultToFirestore === 'function') {
-        const app = window.app;
-        const book = app && app.currentBook;
-        const startedAtMs = this.startTime ? this.startTime.getTime() : Date.now();
-        const meta = { bookId: app && book ? book.id : (this.currentBook !== 'custom-exam' ? this.currentBook : null), bookTitle: app && book ? book.title : null, chapter: this.currentChapter, custom: Boolean(app && app.isCustomExam) || this.currentBook === 'custom-exam', startedAt: this.startTime ? this.startTime.toISOString() : null, resultId: `${publicAuth.user.uid}_${startedAtMs}` };
-        this.__firestoreResultSaved = true;
-        Promise.resolve(publicAuth.saveExamResultToFirestore(this.finishedResult, meta)).then(saved => {
-          if (saved) window.dispatchEvent(new CustomEvent('firestore-exam-result-saved', { detail: { ...meta, result: this.finishedResult } }));
-          else console.warn('لم يتم حفظ نتيجة الاختبار في Firestore.');
-        }).catch(error => console.error('Firestore result save failed:', error));
-      } else console.warn('تعذر حفظ نتيجة الاختبار: لا يوجد مستخدم مسجل دخول أو خدمة Firestore غير جاهزة.');
-    } catch (error) { console.error('Firestore result save failed:', error); }
     return this.finishedResult;
   }
   getGrade(percentage) { if (percentage >= 90) return { grade: 'ممتاز', emoji: '🏆' }; if (percentage >= 80) return { grade: 'جيد جداً', emoji: '🥇' }; if (percentage >= 70) return { grade: 'جيد', emoji: '🥈' }; if (percentage >= 60) return { grade: 'مقبول', emoji: '🥉' }; return { grade: 'راسب', emoji: '❌' }; }
