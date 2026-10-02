@@ -676,30 +676,6 @@ header {
     0 10px 28px rgba(0,0,0,0.14);
 }
 
-/* تحسينات الهاتف المشتركة */
-@media (max-width: 600px) {
-  .books-grid {
-    gap: 13px;
-  }
-
-  .book-title {
-    font-size: 1rem;
-    line-height: 1.58;
-  }
-
-  .book-author {
-    margin-bottom: 12px;
-  }
-
-  .chapters-badge {
-    padding: 5px 8px;
-  }
-
-  .book-card button {
-    min-height: 48px;
-  }
-}
-
 /* تقليل الحركة لمن يفضل ذلك */
 @media (prefers-reduced-motion: reduce) {
   .book-card,
