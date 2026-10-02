@@ -481,11 +481,6 @@ footer {
    الغلاف جزء من البطاقة وليس صندوقاً داخلها
    ========================================================= */
 
-.book-card {
-  position: relative;
-  overflow: hidden;
-}
-
 .book-card-content {
   position: relative;
   min-width: 0;
