@@ -518,43 +518,6 @@ header {
 /* خط ذهبي دقيق جداً أعلى البطاقة */
 
 
-/* العنوان */
-.book-title {
-  position: relative;
-  z-index: 6;
-
-  font-size: 1.12rem;
-  line-height: 1.65;
-  letter-spacing: -0.15px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
-}
-
-/* اسم المؤلف */
-.book-author {
-  color: #aab4c2;
-  font-size: 0.82rem;
-}
-
-/* شارة الفصول بشكل زجاجي */
-.chapters-badge {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(201, 164, 91, 0.15),
-      rgba(201, 164, 91, 0.075)
-    );
-
-  border: 1px solid rgba(201, 164, 91, 0.14);
-  border-radius: 9px;
-
-  color: var(--gold-light);
-  padding: 5px 10px;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.025),
-    0 4px 12px rgba(0,0,0,0.10);
-}
-
 /* الأزرار: ذهب مطفأ مع إضاءة راقية */
 .book-card button,
 .card button,
