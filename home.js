@@ -83,39 +83,15 @@
       lawyers: 'دليل المحامين'
     };
     if (action === 'lawyers') {
-      loadLawyerDirectory();
-      const open = () => window.app?.navigateTo('lawyers');
-      if (window.lawyerDirectory) open();
-      else window.setTimeout(open, 250);
+      loadLawyerDirectory()
+        .then(() => window.app?.navigateTo('lawyers'))
+        .catch(() => showNotice('دليل المحامين', 'تعذر تحميل الدليل. تحقق من الاتصال ثم أعد المحاولة.'));
       return;
     }
     if (action === 'petitions') {
-      const openPetitions = () => {
-        if (window.petitions && typeof window.petitions.open === 'function') {
-          window.petitions.open();
-          return;
-        }
-        showNotice('العرائض والطلبات', 'تعذر تجهيز القسم، أعد المحاولة.');
-      };
-      if (window.petitions && typeof window.petitions.open === 'function') {
-        openPetitions();
-      } else if (!document.querySelector('script[data-petitions-loader]')) {
-        if (!document.querySelector('link[data-petitions-css]')) {
-          const css = document.createElement('link');
-          css.rel = 'stylesheet';
-          css.href = 'petitions.css?v=1.6';
-          css.dataset.petitionsCss = '1';
-          document.head.appendChild(css);
-        }
-        const script = document.createElement('script');
-        script.src = 'petitions.js?v=1.7';
-        script.dataset.petitionsLoader = '1';
-        script.onload = openPetitions;
-        script.onerror = () => showNotice('العرائض والطلبات', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.');
-        document.body.appendChild(script);
-      } else {
-        showNotice('العرائض والطلبات', 'جاري تجهيز القسم، أعد المحاولة بعد لحظة.');
-      }
+      loadPetitions()
+        .then(api => api?.open?.())
+        .catch(() => showNotice('العرائض والطلبات', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.'));
       return;
     }
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
@@ -133,20 +109,86 @@
   window.app = window.app || {};
   window.app.showHomeNotice = showNotice;
 
+  let lawyerDirectoryLoadPromise = null;
   function loadLawyerDirectory() {
-    if (window.lawyerDirectory || document.querySelector('script[data-lawyer-directory]')) return;
-    const storage = document.createElement('script');
-    storage.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js';
-    storage.onload = () => {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet'; css.href = 'lawyer-directory.css?v=1.0'; css.dataset.lawyerDirectoryCss = '1';
-      document.head.appendChild(css);
-      const script = document.createElement('script');
-      script.src = 'lawyer-directory.js?v=1.0'; script.dataset.lawyerDirectory = '1';
-      document.body.appendChild(script);
-    };
-    document.head.appendChild(storage);
+    if (window.lawyerDirectory) return Promise.resolve(window.lawyerDirectory);
+    if (lawyerDirectoryLoadPromise) return lawyerDirectoryLoadPromise;
+    lawyerDirectoryLoadPromise = new Promise((resolve, reject) => {
+      const finish = () => window.lawyerDirectory ? resolve(window.lawyerDirectory) : reject(new Error('تعذر تحميل دليل المحامين'));
+      const injectDirectory = () => {
+        if (!document.querySelector('link[data-lawyer-directory-css]')) {
+          const css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = 'lawyer-directory.css?v=1.0';
+          css.dataset.lawyerDirectoryCss = '1';
+          document.head.appendChild(css);
+        }
+        const existing = document.querySelector('script[data-lawyer-directory]');
+        if (existing) {
+          existing.addEventListener('load', finish, { once: true });
+          existing.addEventListener('error', () => reject(new Error('تعذر تحميل دليل المحامين')), { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'lawyer-directory.js?v=1.0';
+        script.dataset.lawyerDirectory = '1';
+        script.onload = finish;
+        script.onerror = () => reject(new Error('تعذر تحميل دليل المحامين'));
+        document.body.appendChild(script);
+      };
+      const existingStorage = document.querySelector('script[data-lawyer-storage-loader]');
+      if (existingStorage) {
+        existingStorage.addEventListener('load', injectDirectory, { once: true });
+        existingStorage.addEventListener('error', () => reject(new Error('تعذر تحميل خدمات دليل المحامين')), { once: true });
+        return;
+      }
+      const storage = document.createElement('script');
+      storage.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js';
+      storage.dataset.lawyerStorageLoader = '1';
+      storage.onload = injectDirectory;
+      storage.onerror = () => reject(new Error('تعذر تحميل خدمات دليل المحامين'));
+      document.head.appendChild(storage);
+    }).catch(error => {
+      lawyerDirectoryLoadPromise = null;
+      throw error;
+    });
+    return lawyerDirectoryLoadPromise;
   }
+
+  window.loadLawyerDirectory = loadLawyerDirectory;
+
+  let petitionsLoadPromise = null;
+  function loadPetitions() {
+    if (window.petitions && typeof window.petitions.open === 'function') return Promise.resolve(window.petitions);
+    if (petitionsLoadPromise) return petitionsLoadPromise;
+    if (!document.querySelector('link[data-petitions-css]')) {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'petitions.css?v=1.7';
+      css.dataset.petitionsCss = '1';
+      document.head.appendChild(css);
+    }
+    petitionsLoadPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-petitions-loader]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.petitions), { once: true });
+        existing.addEventListener('error', () => reject(new Error('تعذر تحميل قسم العرائض والطلبات')), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'petitions.js?v=1.7';
+      script.dataset.petitionsLoader = '1';
+      script.onload = () => resolve(window.petitions);
+      script.onerror = () => reject(new Error('تعذر تحميل قسم العرائض والطلبات'));
+      document.body.appendChild(script);
+    }).catch(error => {
+      petitionsLoadPromise = null;
+      throw error;
+    });
+    return petitionsLoadPromise;
+  }
+
+  window.loadPetitions = loadPetitions;
 
   function install() {
     syncVisibility();
