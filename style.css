@@ -1246,90 +1246,7 @@ header {
 }
 
 
-/* Mizan homepage header — centered brand lockup */
-.mizan-header {
-  min-height: 132px;
-  padding: 12px 52px 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative;
-  text-align: center;
-}
-.mizan-header-art {
-  width: min(100%, 760px);
-  aspect-ratio: 1536 / 857;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  left: 0;
-}
-.mizan-header-art-image {
-  display: block;
-  width: 100%;
-  max-width: 760px;
-  height: auto;
-  margin: 0 auto;
-  object-fit: contain;
-}
-.mizan-brand {
-  display: grid !important;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  align-items: center !important;
-  justify-content: center !important;
-  column-gap: 16px;
-  row-gap: 5px;
-  margin: 0 auto !important;
-  transform: none !important;
-  direction: rtl;
-}
-.mizan-logo-animation {
-  grid-column: 2;
-  grid-row: 1;
-  width: 92px;
-  height: 92px;
-  position: relative;
-}
-.mizan-logo-animation::after {
-  content: none;
-}
-.mizan-logo-fallback,
-.mizan-logo-static {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.mizan-brand-copy {
-  display: contents !important;
-}
-.mizan-brand-copy h1 {
-  grid-column: 1;
-  grid-row: 1;
-  color: #d8b66d;
-  font-size: clamp(2.35rem, 6vw, 3.25rem);
-  line-height: 1;
-  margin: 0 !important;
-  align-self: center;
-  justify-self: start;
-  font-weight: 900;
-  letter-spacing: -1px;
-  text-shadow: 0 2px 18px rgba(201,164,91,.14);
-}
-.mizan-brand-copy p {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  color: #aab4c3;
-  font-size: clamp(.82rem, 2.4vw, 1rem);
-  line-height: 1.4;
-  margin: 0 !important;
-  white-space: nowrap;
-  justify-self: center;
-  text-align: center;
-}
+/* Mizan homepage header */
 .mizan-header > #install-app-btn,
 .mizan-header > #ios-install-hint {
   position: absolute;
@@ -1348,20 +1265,6 @@ header {
   }
   .mizan-header-art-image {
     width: 100%;
-  }
-  .mizan-brand {
-    column-gap: 10px;
-    row-gap: 4px;
-  }
-  .mizan-logo-animation {
-    width: 78px;
-    height: 78px;
-  }
-  .mizan-brand-copy h1 {
-    font-size: clamp(1.9rem, 9vw, 2.35rem);
-  }
-  .mizan-brand-copy p {
-    font-size: .68rem;
   }
   .mizan-header > #install-app-btn,
   .mizan-header > #ios-install-hint {
