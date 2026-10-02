@@ -33,7 +33,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          cp index.html app.js firebase-auth.js style.css manifest.json service-worker.js dist/
+          cp index.html app.js firebase-auth.js style.css manifest.json dist/
           cp admin.html dist/
           cp -r engine icons data dist/
           # ننشر لوحة الأدمن القديمة كما كانت سابقاً؛ لا ننشر التقارير أو ملفات Python أو الوثائق أو إعدادات CI.
