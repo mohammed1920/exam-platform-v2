@@ -137,3 +137,7 @@
 .profile-name-editor-row button:disabled{opacity:.55;cursor:wait}
 .profile-name-editor-message{min-height:20px;margin:8px 0 0;color:#9ed7c2;font-size:12px}
 @media(max-width:560px){.profile-name-editor-row{flex-direction:column}.profile-name-editor-row button{width:100%}}
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .profile-hero{background:linear-gradient(135deg,#fffaf0,#f8fafc);border-color:#e2d4b6;box-shadow:0 12px 35px rgba(15,23,42,.08)}html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:#fff;border-color:#e2e8f0}html[data-theme="light"] .history-item{background:#f8fafc;border-color:#e2e8f0}
