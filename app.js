@@ -20,20 +20,6 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     try {
-      // تنظيف أي Service Worker أو Cache قديم من نسخ الـOffline السابقة.
-      try {
-        if ('serviceWorker' in navigator) {
-          const registrations = await navigator.serviceWorker.getRegistrations();
-          await Promise.all(registrations.map(reg => reg.unregister()));
-        }
-        if ('caches' in window) {
-          const cacheKeys = await caches.keys();
-          await Promise.all(cacheKeys.map(key => caches.delete(key)));
-        }
-      } catch (cacheError) {
-        console.warn('تعذر تنظيف التخزين المؤقت القديم:', cacheError);
-      }
-
       await window.publicAuth.whenReady();
       await this.loadBooks();
       await this.loadContactInfo();
