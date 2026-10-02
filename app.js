@@ -22,7 +22,7 @@ class ExamApp {
     try {
       await window.publicAuth.whenReady();
       await this.loadBooks();
-      await this.loadContactInfo();
+      this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
 
