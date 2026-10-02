@@ -1271,3 +1271,12 @@ header {
     right: 50px;
   }
 }
+
+/* Light theme audit repair */
+html[data-theme="light"] .auth-modal{background:rgba(15,23,42,.38)}
+html[data-theme="light"] .auth-modal-content{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937;box-shadow:0 24px 80px rgba(15,23,42,.18)}
+html[data-theme="light"] .auth-modal-close{color:#475467}
+html[data-theme="light"] .auth-modal-content label{color:#344054}
+html[data-theme="light"] .auth-modal-content input{background:#fff;color:#1f2937;border-color:#d8dee8}
+html[data-theme="light"] .auth-divider{color:#667085}
+html[data-theme="light"] .auth-reset-btn,html[data-theme="light"] .auth-switch button{color:#8f6b34}
