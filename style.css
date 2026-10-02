@@ -95,29 +95,6 @@ header p {
 
 
 
-.book-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-  flex-grow: 1;
-}
-
-.book-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.chapters-badge {
-  background: rgba(194, 157, 95, 0.1);
-  color: var(--primary);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
 .back-btn {
   background: none;
   border: 1px solid var(--border);
@@ -453,16 +430,9 @@ footer {
   .question-text {
     font-size: 1.1rem;
   }
-  .book-title {
-    font-size: 1rem;
-  }
-  .exam-box, .results-box {
+    .exam-box, .results-box {
     padding: 16px;
   }
-}
-
-.book-card-footer {
-  margin-top: auto;
 }
 
 /* =========================================================
