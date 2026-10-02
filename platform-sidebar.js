@@ -13,7 +13,6 @@
     lawyers:{label:'دليل المحامين',icon:'fa-user-tie'},
     'mizan-pulpit':{label:'منبر ميزان',icon:'fa-feather-pointed'},
     dashboard:{label:'لوحة الاختبارات',icon:'fa-chart-line'},
-    leaderboard:{label:'المتصدرون',icon:'fa-trophy'},
     about:{label:'عن المنصة',icon:'fa-circle-info'},
     contact:{label:'تواصل معنا',icon:'fa-headset'},
     help:{label:'المساعدة',icon:'fa-circle-question'}
@@ -57,12 +56,6 @@
     }
     if(action==='admin'){
       if(window.firebaseAdminPanel?.open) window.firebaseAdminPanel.open();
-      return;
-    }
-    if(action==='leaderboard'){
-      if(!window.publicAuth || !window.publicAuth.user){ window.publicAuth && window.publicAuth.openLogin(); return; }
-      if(window.app) window.app.navigateTo('student-dashboard',{dashboardTarget:'leaderboard'});
-      if(window.studentLeaderboard) window.studentLeaderboard.render();
       return;
     }
     if(action==='contact'){
@@ -149,7 +142,6 @@
         <div class="platform-sidebar-heading">الطالب</div>
         <div class="platform-sidebar-nav">
           <button class="platform-sidebar-item" data-platform-action="dashboard"><i class="fas fa-chart-line"></i><span>لوحة الاختبارات</span></button>
-          <button class="platform-sidebar-item" data-platform-action="leaderboard"><i class="fas fa-trophy"></i><span>المتصدرون</span></button>
           <button class="platform-sidebar-item" data-platform-action="profile"><i class="fas fa-user"></i><span>الملف الشخصي</span></button>
           
         </div>
