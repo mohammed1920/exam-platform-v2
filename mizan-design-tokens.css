@@ -106,3 +106,7 @@ html[data-theme="light"]{
   --mizan-gold-soft:rgba(143,107,52,.08);
 }
 
+
+
+/* Light theme audit repair */
+html[data-theme="light"]{--mizan-border-soft:rgba(15,23,42,.10);--mizan-gold-border:rgba(143,107,52,.28);--mizan-gold-soft:rgba(143,107,52,.08)}
