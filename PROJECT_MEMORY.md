@@ -140,3 +140,11 @@
 - تم رفع إصدارات الأصول في index.html: home.js?v=1.3 وplatform-sidebar.js?v=1.1.
 - التعديلات البرمجية: 52b398e7fcf314081e1679f9f682c5d0d049e885، df02924324c38d7dd1eddd240da7c1988cfdfb43، 401cd9537be1287a7d4d2ee7db6cf5ade0d680ff.
 - الأقسام التي لا تملك صفحات فعلية حتى الآن — «اختبارات المعهد القضائي»، «القوانين العراقية»، «إجراءات الدعاوى» — بقيت دون ربط وهمي، وتحتاج بناء صفحاتها قبل تحويلها إلى تنقل فعلي.
+
+
+## Mizan Pulpit modal scoping fix — 2026-10-02
+- Verified `mizan-pulpit.js` before changing anything: contributor registration/edit uses `mizan-contributor-modal`; article submission uses `mizan-submit-modal`; contributor profile uses `mizan-contributor-profile-modal`.
+- Root cause of the contributor/join and submission forms appearing outside the Mizan Pulpit screen: the three Mizan modal elements were siblings of `mizan-pulpit-section`, so they were not scoped to the section controlled by `.view-section.active`.
+- Moved all three modal containers inside `#mizan-pulpit-section`. No functions or files were deleted.
+- This preserves the existing flow: unauthenticated users are sent to login; unapproved contributors are shown the join form/status message; approved contributors get the submission form; contributor editing continues to use the same modal.
+- Commit: `701d98d9abd247d52ec67bf4891652e062a9be5d` — `fix: scope Mizan Pulpit modals to their section`.
