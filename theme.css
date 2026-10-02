@@ -147,3 +147,27 @@ html[data-theme="light"] .exam-btn.prev {
   background: #e4e8ee;
   color: #344054;
 }
+
+/* ---------- Polish: shared interaction primitives ---------- */
+:root{
+  --mizan-ease-out:cubic-bezier(.22,1,.36,1);
+  --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
+}
+button,a,input,select,textarea{ -webkit-tap-highlight-color:transparent; }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid rgba(194,157,95,.72);
+  outline-offset:3px;
+}
+button:not(:disabled),a{transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease,box-shadow 200ms ease,transform 180ms var(--mizan-ease-out)}
+button:active:not(:disabled){transform:translateY(1px)}
+#theme-toggle.theme-toggle{transition:transform 180ms var(--mizan-ease-out),border-color 160ms ease,background 160ms ease,box-shadow 200ms ease}
+#theme-toggle.theme-toggle:active{transform:scale(.94)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  button:active:not(:disabled),#theme-toggle.theme-toggle:active{transform:none!important}
+}
