@@ -73,3 +73,46 @@
 
 
 
+
+
+
+/* ===== Light theme coverage ===== */
+html[data-theme="light"] .mizan-pulpit-hero{
+  background:radial-gradient(circle at 12% 20%,rgba(194,157,95,.10),transparent 36%),linear-gradient(145deg,#fff,#f5f8fb);
+  border-color:#d8dee8;color:#1f2937;
+}
+html[data-theme="light"] .mizan-pulpit-hero p,
+html[data-theme="light"] .mizan-pulpit-toolbar span,
+html[data-theme="light"] .mizan-article-card>p,
+html[data-theme="light"] .mizan-article-author small,
+html[data-theme="light"] .mizan-pulpit-empty,
+html[data-theme="light"] .mizan-pulpit-loading{color:#667085}
+html[data-theme="light"] .mizan-pulpit-secondary{
+  background:#fff;color:#8f6b34;border-color:#d8dee8;
+}
+html[data-theme="light"] .mizan-article-card{
+  background:linear-gradient(145deg,#fff,#f6f8fb);
+  border-color:#d8dee8;color:#1f2937;
+  box-shadow:0 8px 24px rgba(15,23,42,.05);
+}
+html[data-theme="light"] .mizan-article-author,
+html[data-theme="light"] .mizan-article-card-footer{border-color:#e2e8f0}
+html[data-theme="light"] .mizan-modal{background:rgba(15,23,42,.42)}
+html[data-theme="light"] .mizan-modal-box,
+html[data-theme="light"] .mizan-article-modal-box,
+html[data-theme="light"] .mizan-profile-modal-box,
+html[data-theme="light"] .mizan-article-reading{
+  background:linear-gradient(145deg,#fff,#f6f8fb);
+  border-color:#d8dee8;color:#1f2937;
+  box-shadow:0 24px 70px rgba(15,23,42,.16);
+}
+html[data-theme="light"] .mizan-article-modal-author,
+html[data-theme="light"] .mizan-article-reading-author,
+html[data-theme="light"] .mizan-article-reading-footer{border-color:#e2e8f0}
+html[data-theme="light"] .mizan-article-reading h1{color:#172b45}
+html[data-theme="light"] .mizan-article-reading-content{color:#344054}
+html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:#fffaf0}
+html[data-theme="light"] .mizan-profile-stats>div,
+html[data-theme="light"] .mizan-profile-section{background:#f8fafc;border-color:#e2e8f0}
+html[data-theme="light"] .mizan-profile-modal-box h2{color:#172b45}
+
