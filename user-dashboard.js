@@ -291,6 +291,41 @@
       <div class="exam-dashboard-body">${body}</div>`;
   }
 
+  let leaderboardLoadPromise = null;
+
+  function ensureLeaderboardLoaded() {
+    if (window.studentLeaderboard && typeof window.studentLeaderboard.render === 'function') return Promise.resolve();
+    if (leaderboardLoadPromise) return leaderboardLoadPromise;
+
+    if (!document.getElementById('leaderboard-lazy-style')) {
+      const link = document.createElement('link');
+      link.id = 'leaderboard-lazy-style';
+      link.rel = 'stylesheet';
+      link.href = 'leaderboard.css?v=1.1';
+      document.head.appendChild(link);
+    }
+
+    leaderboardLoadPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-lazy-leaderboard]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(), { once: true });
+        existing.addEventListener('error', () => reject(new Error('تعذر تحميل قسم المتصدرين')), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'leaderboard.js?v=1.1';
+      script.dataset.lazyLeaderboard = 'true';
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('تعذر تحميل قسم المتصدرين'));
+      document.body.appendChild(script);
+    }).catch(error => {
+      leaderboardLoadPromise = null;
+      throw error;
+    });
+
+    return leaderboardLoadPromise;
+  }
+
   function render(target = 'profile') {
     const section = ensureSection(), root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
@@ -300,6 +335,11 @@
         window.studentLeaderboard.render();
       } else {
         root.innerHTML = '<div class="profile-empty">جاري تحميل قسم المتصدرين...</div>';
+        ensureLeaderboardLoaded()
+          .then(() => window.studentLeaderboard?.render?.())
+          .catch(() => {
+            root.innerHTML = '<div class="profile-empty">تعذر تحميل قسم المتصدرين. حاول مرة أخرى.</div>';
+          });
       }
       return;
     }
