@@ -163,3 +163,10 @@
 - Removed an exact duplicated contributor-profile style block from `mizan-pulpit.css`; active profile/article styles remain intact.
 - Commits: `c2280f4b2c6ed7ce92954426ae50234a2677bf20` (petitions CSS), `b10357d24b9866c8e1d23f91381acc514fb42ee1` (Mizan Pulpit CSS).
 - No JS files were deleted. `style.css` was not pruned mechanically because its historical book-layout generations and shared selectors require broader runtime tracing before removal.
+
+
+## CSS audit correction — 2026-10-02
+- A proposed `style.css` cleanup was tested against repository-wide runtime references and found unsafe: legacy-looking selectors such as `search-container`, `exam-box`, `exam-stats-bar`, `option-btn`, `results-box`, `review-item`, and `footer-links` are still referenced by the current HTML/JS.
+- The cleanup commit `fa2480c5d91aa182cb5732f2421a71160d6b00f6` was therefore reverted by restoring `style.css` exactly from its verified parent state, commit `0b8ac0cda8a7c6248235db1dd40f8cf57cdc3f9b`.
+- Restoration commit: `920b70e01eebd5514f0fec03aa52d8f80db11c06`.
+- Rule reinforced: CSS cleanup must verify references in HTML/JS before removal; repository search alone is not sufficient when the search backend does not index CSS/runtime-generated references consistently.
