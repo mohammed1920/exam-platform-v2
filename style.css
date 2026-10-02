@@ -135,17 +135,6 @@ header p {
   border-color: var(--text-secondary);
 }
 
-.chapter-info h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.chapter-info p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
 .exam-box {
   background: var(--card-bg);
   border: 1px solid var(--border);
