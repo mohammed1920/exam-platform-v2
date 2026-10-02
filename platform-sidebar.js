@@ -69,9 +69,32 @@
       if(window.app) window.app.navigateTo('contact');
       return;
     }
+    if(action==='about'){
+      if(window.app) window.app.navigateTo('about');
+      return;
+    }
+    if(action==='help'){
+      if(window.app) window.app.navigateTo('faq');
+      return;
+    }
     if(action==='lawyers'){
-      if(!window.lawyerDirectory){ window.setTimeout(()=>run('lawyers'),250); return; }
-      window.app?.navigateTo('lawyers');
+      if(typeof window.loadLawyerDirectory === 'function'){
+        window.loadLawyerDirectory()
+          .then(()=>window.app?.navigateTo('lawyers'))
+          .catch(()=>window.app?.showHomeNotice?.('دليل المحامين','تعذر تحميل الدليل. تحقق من الاتصال ثم أعد المحاولة.'));
+      } else {
+        window.app?.showHomeNotice?.('دليل المحامين','جارٍ تجهيز الدليل، أعد المحاولة بعد لحظة.');
+      }
+      return;
+    }
+    if(action==='petitions'){
+      if(typeof window.loadPetitions === 'function'){
+        window.loadPetitions()
+          .then(api => api?.open?.())
+          .catch(()=>window.app?.showHomeNotice?.('العرائض والطلبات','تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.'));
+      } else {
+        window.app?.showHomeNotice?.('العرائض والطلبات','جارٍ تجهيز القسم، أعد المحاولة بعد لحظة.');
+      }
       return;
     }
     if(action==='mizan-pulpit'){
