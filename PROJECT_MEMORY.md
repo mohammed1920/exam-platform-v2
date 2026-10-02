@@ -93,3 +93,5 @@
 - تمت مزامنة أرقام version لملفات الواجهة التي تغيرت مؤخراً: `app.js`, `home.js`, `petitions.js`, `mizan-pulpit.js`, و`mizan-pulpit-admin.js`، لتقليل احتمال تقديم نسخة قديمة من المتصفح بعد النشر.
 - `loadContactInfo()` في `app.js` أصبح تحميله غير حاجب لبدء المنصة، حتى لا تتأخر تهيئة الواجهة بسبب `contact.json`.
 - أضيف version query إلى `engine/examEngine.js` في `index.html` لتقليل احتمال بقاء نسخة قديمة من ملف المحرك بعد النشر.
+
+- `service-worker.js` حُذف نهائياً؛ لم تعد المنصة تعتمد على Service Worker أو Offline Cache، وتم تحديث workflow النشر حتى لا يحاول نسخه.
