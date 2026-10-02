@@ -1280,3 +1280,13 @@ html[data-theme="light"] .auth-modal-content label{color:#344054}
 html[data-theme="light"] .auth-modal-content input{background:#fff;color:#1f2937;border-color:#d8dee8}
 html[data-theme="light"] .auth-divider{color:#667085}
 html[data-theme="light"] .auth-reset-btn,html[data-theme="light"] .auth-switch button{color:#8f6b34}
+
+
+
+/* ===== Light mode: exam question readability ===== */
+html[data-theme="light"] .question-card .question-text{color:#f8fafc!important;text-shadow:0 1px 8px rgba(0,0,0,.22)}
+html[data-theme="light"] .question-card .question-label{color:#e8c77f;background:rgba(194,157,95,.16);border-color:rgba(194,157,95,.28)}
+html[data-theme="light"] .question-card{background:radial-gradient(circle at 15% 0%,rgba(201,164,91,.12),transparent 55%),linear-gradient(155deg,#1f2d45 0%,#19263e 55%,#152137 100%);border-color:rgba(201,164,91,.34)}
+html[data-theme="light"] .chapter-item .chapter-number{color:#1f2937}
+html[data-theme="light"] .chapter-item .chapter-info p{color:#667085}
+
