@@ -88,3 +88,12 @@ html[data-theme="light"]{
   --mizan-text-active:var(--mizan-text);
   --mizan-muted-active:var(--mizan-text-muted);
 }
+
+/* Interaction tokens */
+:root{
+  --mizan-ease-out:cubic-bezier(.22,1,.36,1);
+  --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
+  --mizan-duration-fast:160ms;
+  --mizan-duration-ui:220ms;
+  --mizan-duration-slow:320ms;
+}
