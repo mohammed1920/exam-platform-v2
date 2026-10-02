@@ -16,6 +16,37 @@
     box._timer = setTimeout(() => box.classList.remove('is-visible'), 2600);
   }
 
+  let mizanPulpitLoadPromise = null;
+
+  function loadMizanPulpit() {
+    if (window.mizanPulpit && typeof window.mizanPulpit.open === 'function') return Promise.resolve(window.mizanPulpit);
+    if (mizanPulpitLoadPromise) return mizanPulpitLoadPromise;
+    if (!document.querySelector('link[data-mizan-pulpit-css]')) {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'mizan-pulpit.css?v=1.1';
+      css.dataset.mizanPulpitCss = '1';
+      document.head.appendChild(css);
+    }
+    mizanPulpitLoadPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-mizan-pulpit-loader]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.mizanPulpit), { once: true });
+        existing.addEventListener('error', () => reject(new Error('تعذر تحميل منبر ميزان')), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'mizan-pulpit.js?v=1.2';
+      script.dataset.mizanPulpitLoader = '1';
+      script.onload = () => resolve(window.mizanPulpit);
+      script.onerror = () => reject(new Error('تعذر تحميل منبر ميزان'));
+      document.body.appendChild(script);
+    }).catch(error => { mizanPulpitLoadPromise = null; throw error; });
+    return mizanPulpitLoadPromise;
+  }
+
+  window.loadMizanPulpit = loadMizanPulpit;
+
   function run(action) {
     if (action === 'books') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('books');
@@ -39,7 +70,7 @@
       if (window.studentLeaderboard) window.studentLeaderboard.render();
       return;
     }
-    if (action === 'mizan-pulpit') { if (window.mizanPulpit) window.mizanPulpit.open(); return; }
+    if (action === 'mizan-pulpit') { loadMizanPulpit().then(api => api?.open?.()).catch(() => showNotice('منبر ميزان', 'تعذر تحميل المنبر. تحقق من الاتصال ثم أعد المحاولة.')); return; }
     if (action === 'contact') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
       return;
