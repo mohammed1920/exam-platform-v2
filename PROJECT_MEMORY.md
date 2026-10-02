@@ -58,6 +58,9 @@
 6. حذف أنماط الهوية القديمة الخاصة بـ `.mizan-logo-animation` و`.mizan-brand-copy`.
 7. حذف ملف Lottie القديم `assets/branding/mizan-logo.json`.
 8. الهوية الحالية تعتمد على SVG الثابت، وليس Lottie.
+9. حذف `auto_sync_data.py` بعد فحص وظيفته ومسار تشغيله؛ كان مجرد wrapper توافق قديم يستدعي `update_questions.py`، ولم يعد هناك workflow أو مسار تشغيل حالي يحتاجه.
+10. حذف `split_chapters.py` بعد فحص وظيفته؛ كان أداة ترحيل قديمة لتحويل `chapters.json` إلى `chapter_N.json`، بينما بنية المشروع الحالية تعتمد فقط على ملفات `chapter_N.json` ولا توجد ملفات `chapters.json` في البيانات الحالية.
+- commits التنظيف الأخير: `b99ec057db8d7168bd440028ead75b1564548d7e` و`e3a07e43349b8c998600f9367daf9695c3861c55`.
 
 ## قاعدة إلزامية قبل حذف أي ملف — 2026-10-02
 **ممنوع حذف أي ملف اعتماداً على عدم وجود مرجع مباشر فقط.**
@@ -90,8 +93,11 @@
 - `update_questions.py` لإصلاح هويات الأسئلة وتحديث بيانات الكتب.
 - `validate_project.py` للفحص البنيوي.
 - `integrity_check.py` لتقرير سلامة البيانات.
+- `qa_audit.py` لتدقيق جودة الأسئلة عبر AI دون تعديل الأسئلة.
+- `spellcheck_ai.py` للفحص الإملائي الدوري عبر AI دون تعديل الأسئلة.
 - `scripts/build-search-index.js` لبناء فهرس البحث.
-- GitHub Actions موجودة للصيانة، تحديث metadata، بناء فهرس البحث، والنشر.
+- `scripts/generate-question-metadata.mjs` لتوليد بيانات أعداد الأسئلة والفصول.
+- GitHub Actions موجودة للصيانة، تحديث metadata، بناء فهرس البحث، التدقيق الإملائي/الجودة، والنشر.
 
 ## ملاحظة صيانة
 عند كل تغيير هيكلي كبير، يجب تحديث هذا الملف وإضافة ما تغيّر، خصوصاً:
@@ -111,48 +117,42 @@
 - `service-worker.js` حُذف نهائياً؛ لم تعد المنصة تعتمد على Service Worker أو Offline Cache، وتم تحديث workflow النشر حتى لا يحاول نسخه.
 
 ## Mizan Pulpit admin restoration — 2026-10-02
-- Investigated disappearance of the Mizan Pulpit admin options.
-- Root cause: `mizan-pulpit-admin.js` had been incorrectly classified as unused and deleted in commit `ee44eb8c9501b8fef95809fd20b8844d163168f3`.
-- The deleted module is operational: it creates the `منبر ميزان` admin card and management view, including contributor approval requests, approved/blocked contributors, pending/published/rejected/hidden articles, direct publishing, editing, rejection reasons, hide/republish/delete, and contributor public-profile sync.
-- Restored the exact working module from its parent commit and re-added it to `index.html` after `firebase-admin-panel.js`.
-- Restore commits: `c04a1de7f1a1ea809c53d686a60880ffb088b170` and `01c2908f813a8f67484fbf337d5d1177fb5a4a10`.
-- Do not delete `mizan-pulpit-admin.js` again unless its functionality is first migrated into another verified module.
+- تم استعادة `mizan-pulpit-admin.js` بعد التحقق من أنه يوفر وظائف إدارة مساهمي ومشاركات منبر ميزان.
+- commits الاستعادة: `c04a1de7f1a1ea809c53d686a60880ffb088b170` و`01c2908f813a8f67484fbf337d5d1177fb5a4a10`.
+- لا يُحذف مجدداً إلا بعد نقل وظائفه فعلياً إلى بديل تم التحقق منه.
 
 ## Leaderboard lazy loading — 2026-10-02
-- تم فحص مسار تشغيل `leaderboard.js` قبل التغيير: يعتمد على `window.app.books` و`publicAuth` وFirestore، ويُستدعى من مسار لوحة الطالب/الشريط الجانبي، كما يستمع إلى `firestore-exam-result-saved` لمزامنة نتائج الطالب.
-- لم يتم حذف الملف أو وظيفته.
-- تم نقل تحميل `leaderboard.js` و`leaderboard.css` من التحميل الأولي في `index.html` إلى تحميل كسول عند فتح قسم المتصدرين فقط.
-- `user-dashboard.js` أصبح مسؤولاً عن تحميل الوحدة عند الحاجة ثم تشغيل `window.studentLeaderboard.render()`، مع معالجة فشل التحميل.
+- تم فحص مسار تشغيل `leaderboard.js` قبل التغيير، ولم يتم حذف الملف أو وظيفته.
+- تم نقل تحميل `leaderboard.js` و`leaderboard.css` إلى التحميل عند فتح قسم المتصدرين فقط.
+- `user-dashboard.js` يحمل الوحدة عند الحاجة ثم يشغّل `window.studentLeaderboard.render()`.
 - الإصلاحات: `026da13dbde7965f8a04bbb771125d690595c050` و`02f985ad063f6b0507fad010fe0837867ddd11a4`.
 
 ## Mizan Pulpit lazy loading — 2026-10-02
-- تم فحص `mizan-pulpit.js` قبل التغيير: الملف مسؤول عن تحميل المقالات المنشورة، فتح المقال، بروفايل المساهم، طلب/تعديل بيانات المساهم، وإرسال المقالات، ويرتبط مباشرة بعناصر HTML في قسم المنبر.
-- لم يتم حذف الملف أو وظائفه.
-- تم نقل تحميل `mizan-pulpit.js` و`mizan-pulpit.css` من التحميل الأولي إلى التحميل عند فتح «منبر ميزان» فقط.
-- `home.js` يوفر `loadMizanPulpit()` ويستخدمه فتح القسم، و`platform-sidebar.js` يستخدم نفس المسار عند فتح المنبر من الشريط الجانبي.
+- تم فحص `mizan-pulpit.js` قبل التغيير: الملف مسؤول عن المقالات المنشورة، المقال، بروفايل المساهم، طلب/تعديل المساهم، وإرسال المقالات.
+- تم نقل تحميل `mizan-pulpit.js` و`mizan-pulpit.css` إلى التحميل عند فتح المنبر فقط.
+- `home.js` يوفر `loadMizanPulpit()` و`platform-sidebar.js` يستخدم نفس المسار.
 - الإصلاحات: `6a1c9bdaee42c519f12f03fa0f4269f7ce719c18`، `571a465719b9e21ad1960582eabe7e1fffd26a5d`، `7e7e5dcd4a967373d289b829124de8e81896cc22`.
 
 ## Navigation audit fixes — 2026-10-02
 - تم تدقيق أزرار القائمة الجانبية والصفحة الرئيسية والفوتر قبل التعديل، ولم يتم حذف أي ملف.
-- تبين أن «عن المنصة» و«المساعدة» في القائمة الجانبية لم يكونا مربوطين فعلياً؛ تم ربطهما مباشرة بـ about وfaq.
-- تبين أيضاً أن «عرائض وطلبات» و«دليل المحامين» من القائمة الجانبية كانا يحاولان الفتح قبل تشغيل محمل الوحدة الكسول؛ تم توحيد المسار مع محمل home.js حتى يتم تحميل الوحدة أولاً ثم فتحها.
-- أضيفت window.loadPetitions وwindow.loadLawyerDirectory كواجهات تحميل مشتركة، مع Promises لمعالجة التحميل المتزامن وفشل الشبكة.
-- تم رفع إصدارات الأصول في index.html: home.js?v=1.3 وplatform-sidebar.js?v=1.1.
-- التعديلات البرمجية: 52b398e7fcf314081e1679f9f682c5d0d049e885، df02924324c38d7dd1eddd240da7c1988cfdfb43، 401cd9537be1287a7d4d2ee7db6cf5ade0d680ff.
-- الأقسام التي لا تملك صفحات فعلية حتى الآن — «اختبارات المعهد القضائي»، «القوانين العراقية»، «إجراءات الدعاوى» — بقيت دون ربط وهمي، وتحتاج بناء صفحاتها قبل تحويلها إلى تنقل فعلي.
-
+- تم ربط «عن المنصة» بـ `about` و«المساعدة» بـ `faq`.
+- تم توحيد فتح «عرائض وطلبات» و«دليل المحامين» مع الـlazy loaders في `home.js`.
+- الأقسام التي لا تملك صفحات فعلية حتى الآن — «اختبارات المعهد القضائي»، «القوانين العراقية»، «إجراءات الدعاوى» — بقيت دون ربط وهمي.
+- التعديلات: `52b398e7fcf314081e1679f9f682c5d0d049e885`، `df02924324c38d7dd1eddd240da7c1988cfdfb43`، `401cd9537be1287a7d4d2ee7db6cf5ade0d680ff`.
 
 ## Mizan Pulpit modal scoping fix — 2026-10-02
-- Verified `mizan-pulpit.js` before changing anything: contributor registration/edit uses `mizan-contributor-modal`; article submission uses `mizan-submit-modal`; contributor profile uses `mizan-contributor-profile-modal`.
-- Root cause of the contributor/join and submission forms appearing outside the Mizan Pulpit screen: the three Mizan modal elements were siblings of `mizan-pulpit-section`, so they were not scoped to the section controlled by `.view-section.active`.
-- Moved all three modal containers inside `#mizan-pulpit-section`. No functions or files were deleted.
-- This preserves the existing flow: unauthenticated users are sent to login; unapproved contributors are shown the join form/status message; approved contributors get the submission form; contributor editing continues to use the same modal.
-- Commit: `701d98d9abd247d52ec67bf4891652e062a9be5d` — `fix: scope Mizan Pulpit modals to their section`.
-
+- تم نقل نماذج الانضمام/التعديل والإرسال داخل قسم منبر ميزان حتى لا تظهر خارج القسم.
+- commit: `701d98d9abd247d52ec67bf4891652e062a9be5d`.
 
 ## Mizan contributor profile over article view — 2026-10-02
-- Inspected the article/profile flow in `mizan-pulpit.js` before changing it.
-- Root cause: `mizan-contributor-profile-modal` had been moved inside `#mizan-pulpit-section` during modal scoping. When an article is opened, `app.navigateTo('mizan-article')` hides the Pulpit section, so the profile modal was rendered inside a hidden parent and appeared only after leaving the article.
-- Fix: keep the contributor profile modal outside all `.view-section` containers while retaining `.mizan-modal` closed-by-default behavior. This allows it to open above both the Pulpit list and the standalone article view without reintroducing the previous form visibility issue.
-- No functions or files were deleted.
-- Commit: `13928be18bef9067ed439b4c4eaf4ab14e820fac` — `fix: keep Mizan contributor profile above article view`.
+- السبب كان أن نافذة بروفايل المساهم أصبحت داخل قسم المنبر المخفي عند فتح المقال.
+- تم إبقاء `mizan-contributor-profile-modal` خارج جميع `.view-section` حتى تظهر فوق المقال.
+- commit: `13928be18bef9067ed439b4c4eaf4ab14e820fac`.
+
+## Cleanup audit — 2026-10-02
+- تم تدقيق أدوات الصيانة القديمة قبل الحذف، وليس اعتماداً على غياب `script src` فقط.
+- `auto_sync_data.py` كان wrapper توافقياً قديماً يستدعي `update_questions.py` فقط، ولم يعد مستخدماً في GitHub Actions أو مسار تشغيل المنصة؛ حُذف.
+- `split_chapters.py` كان أداة ترحيل لمرة واحدة لتحويل `chapters.json` إلى `chapter_N.json`، ولم تعد هناك ملفات `chapters.json` في شجرة البيانات الحالية؛ حُذف.
+- تم الإبقاء على أدوات الصيانة الفعلية المستخدمة حالياً مثل `update_questions.py`, `validate_project.py`, `integrity_check.py`, `qa_audit.py`, و`spellcheck_ai.py`.
+- تم الإبقاء على `platform-header-fix.js` و`student-ui-fixes.css` لأنهما مرتبطان بالواجهة الحالية، ولم يتم حذفهما.
+- commits الحذف: `b99ec057db8d7168bd440028ead75b1564548d7e` و`e3a07e43349b8c998600f9367daf9695c3861c55`.
