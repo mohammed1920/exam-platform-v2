@@ -717,50 +717,7 @@ header {
   }
 }
 
-/* =========================================================
-   تنسيق البطاقات حسب التصميم المعتمد (الشبكي المضغوط)
-   - غلاف أقصر لا يقصّ الصورة من الأعلى
-   - أزرار أصغر ومتناسقة مع حجم البطاقة + سهم اتجاه
-   ========================================================= */
-
-.book-cover {
-  height: 168px;
-  margin: -6px -9px 10px;
-}
-
-.book-title {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 2px;
-}
-
-.book-author {
-  font-size: 0.76rem;
-  margin-bottom: 10px;
-}
-
-.book-meta {
-  margin-bottom: 10px;
-}
-
-.chapters-badge {
-  padding: 3px 9px;
-  font-size: 0.74rem;
-}
-
-.book-card button,
-.card button,
-.start-exam-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  padding: 9px 14px;
-  font-size: 0.86rem;
-  min-height: 40px;
-}
-
+/* سهم زر عام */
 .btn-arrow {
   font-size: 0.9em;
   transition: transform 0.25s ease;
@@ -768,22 +725,6 @@ header {
 
 .book-card button:hover .btn-arrow {
   transform: translateX(-3px);
-}
-
-@media (max-width: 600px) {
-  .book-cover {
-    height: 148px;
-  }
-  .book-card button {
-    min-height: 40px;
-    padding: 9px 10px;
-  }
-}
-
-@media (max-width: 380px) {
-  .book-cover {
-    height: 130px;
-  }
 }
 
 /* =========================================================
