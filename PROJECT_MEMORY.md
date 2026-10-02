@@ -170,3 +170,13 @@
 - The cleanup commit `fa2480c5d91aa182cb5732f2421a71160d6b00f6` was therefore reverted by restoring `style.css` exactly from its verified parent state, commit `0b8ac0cda8a7c6248235db1dd40f8cf57cdc3f9b`.
 - Restoration commit: `920b70e01eebd5514f0fec03aa52d8f80db11c06`.
 - Rule reinforced: CSS cleanup must verify references in HTML/JS before removal; repository search alone is not sufficient when the search backend does not index CSS/runtime-generated references consistently.
+
+
+## تمييز إلزامي: لوحة التاج vs admin.html — 2026-10-02
+- **firebase-admin-panel.js** = لوحة التاج 👑 الخاصة بإدارة المستخدمين داخل المنصة: الطلاب، النتائج، المحامين، المساهمين والوظائف الإدارية المرتبطة بـ Firebase/Firestore. هذه هي اللوحة التي تظهر للمستخدم الإداري عبر أيقونة التاج في واجهة المنصة.
+- **admin.html** = لوحة إدارة المحتوى، مخصصة لإدارة الكتب والفصول والأسئلة والبيانات والمحتوى عبر نظام إدارة المحتوى الحالي (ومن ضمنه GitHub API/token عند الحاجة).
+- الملفان **نظامان منفصلان تماماً** ولا يجوز اعتبار أحدهما بديلاً عن الآخر.
+- عند طلب تعديل **لوحة التاج** يجب العمل على `firebase-admin-panel.js` ومسار التنقل/الملفات المرتبطة بها فقط، وعدم تحويل الطلب إلى `admin.html`.
+- عند طلب تعديل **إدارة الكتب/الفصول/الأسئلة/المحتوى** يجب استخدام `admin.html` وملفاته المرتبطة، وعدم نقل الوظائف إلى لوحة التاج.
+- **قاعدة تنقل لوحة التاج الحالية:** المستخدم يريد أن تبقى لوحة التاج بمكانها ووظائفها الحالية، لكن عند الضغط عليها تُفتح كقسم/صفحة مستقلة مثل بقية أقسام المنصة، بحيث يظهر محتواها في واجهة مستقلة ولا يُعرض أسفل الصفحة الرئيسية. لا يعني ذلك إنشاء نظام إدارة ثالث أو صفحة Firebase Admin جديدة.
+- **ممنوع الخلط بين النظامين عند أي تعديل مستقبلي.** قبل تنفيذ أي طلب إداري، يجب تحديد هل المقصود `firebase-admin-panel.js` (التاج) أم `admin.html` (إدارة المحتوى).
