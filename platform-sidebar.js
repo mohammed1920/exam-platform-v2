@@ -75,7 +75,11 @@
       return;
     }
     if(action==='mizan-pulpit'){
-      window.app?.navigateTo('mizan-pulpit');
+      if (typeof window.loadMizanPulpit === 'function') {
+        window.loadMizanPulpit().then(api => api?.open?.()).catch(() => window.app?.showHomeNotice?.('منبر ميزان','تعذر تحميل المنبر. تحقق من الاتصال ثم أعد المحاولة.'));
+      } else {
+        window.app?.navigateTo('mizan-pulpit');
+      }
       return;
     }
     notice(action);
