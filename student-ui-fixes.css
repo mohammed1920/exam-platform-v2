@@ -83,3 +83,8 @@ header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 
 #student-account-sidebar:not(.is-open) {
   display: none !important;
 }
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .profile-name-editor{background:linear-gradient(145deg,#fff,#fffaf0);border-color:#e2d4b6;box-shadow:0 12px 30px rgba(15,23,42,.06)}html[data-theme="light"] .profile-name-editor-row input{background:#fff;color:#1f2937;border-color:#d8dee8}
+html[data-theme="light"] .firebase-admin-head,html[data-theme="light"] .firebase-admin-stat,html[data-theme="light"] .firebase-admin-card{background:#fff;border-color:#e2e8f0;color:#1f2937}html[data-theme="light"] .firebase-admin-card-head{border-color:#e2e8f0}html[data-theme="light"] .firebase-admin-card th{background:#f8fafc}html[data-theme="light"] .firebase-admin-card td{color:#344054}html[data-theme="light"] .firebase-admin-status{background:#fffaf0;border-color:#e2d4b6}html[data-theme="light"] .firebase-admin-status.error{background:#fff1f2}
