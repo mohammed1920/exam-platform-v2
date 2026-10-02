@@ -67,8 +67,40 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function rememberMainView(){const main=document.querySelector('main.container');if(!main)return;mainViewState=[...main.children].filter(el=>el.id!=='firebase-admin-section').map(el=>({el,hidden:el.hidden,active:el.classList.contains('active')}));}
   function hideMainViews(){const main=document.querySelector('main.container');if(!main)return;[...main.children].forEach(el=>{if(el.id==='firebase-admin-section')return;el.hidden=true;el.classList.remove('active');});}
   function restoreMainViews(){mainViewState.forEach(({el,hidden,active})=>{if(!el)return;el.hidden=hidden;el.classList.toggle('active',active);});mainViewState=[];}
-  function openPanel(){if(!isAdmin||!els.section)return;rememberMainView();hideMainViews();panelOpen=true;els.section.hidden=false;els.section.classList.add('active');els.section.scrollIntoView({behavior:'smooth',block:'start'});loadDashboard();}
-  function closePanel(){if(!panelOpen)return;els.section.hidden=true;els.section.classList.remove('active');restoreMainViews();panelOpen=false;}
+  function openPanel(){
+    if(!isAdmin||!els.section)return;
+    const currentView=history.state?.view||'home';
+    // من داخل أي قسم آخر: افتح لوحة التاج كقسم مستقل عبر نظام التنقل،
+    // ولا تُلحق محتواها بالقسم المفتوح حالياً.
+    if(currentView!=='home'&&window.app?.navigateTo){
+      panelOpen=true;
+      window.app.navigateTo('firebase-admin');
+      els.section.hidden=false;
+      els.section.classList.add('active');
+      loadDashboard();
+      return;
+    }
+    // من الرئيسية نحافظ على السلوك الحالي: اللوحة تظهر مكان محتوى الرئيسية.
+    rememberMainView();
+    hideMainViews();
+    panelOpen=true;
+    els.section.hidden=false;
+    els.section.classList.add('active');
+    els.section.scrollIntoView({behavior:'smooth',block:'start'});
+    loadDashboard();
+  }
+  function closePanel(){
+    if(!panelOpen)return;
+    const routed=history.state?.view==='firebase-admin';
+    els.section.hidden=true;
+    els.section.classList.remove('active');
+    panelOpen=false;
+    if(routed&&window.app?.navigateTo){
+      window.app.navigateTo('home');
+      return;
+    }
+    restoreMainViews();
+  }
   async function loadDashboard(){if(!isAdmin||!window.publicAuth?.firestore)return;setStatus('جارٍ تحميل إحصائيات Firebase...');try{const db=window.publicAuth.firestore;const [studentsSnap,resultsSnap]=await Promise.all([db.collection('students').get(),db.collection('examResults').get()]);const students=studentsSnap.docs.map(d=>d.data()),results=resultsSnap.docs.map(d=>d.data());els.studentsCount.textContent=students.length;els.resultsCount.textContent=results.length;els.activeCount.textContent=new Set(results.map(r=>r.uid).filter(Boolean)).size;const avg=results.length?results.reduce((s,r)=>s+(Number(r.percentage)||0),0)/results.length:0;els.averageScore.textContent=results.length?`${avg.toFixed(1)}%`:'—';students.sort((a,b)=>String(a.email||'').localeCompare(String(b.email||'')));els.studentsBody.innerHTML=students.length?students.map(s=>`<tr><td>${esc(s.displayName||'—')}</td><td>${esc(s.email||'—')}</td><td>${dateValue(s.createdAt)}</td></tr>`).join(''):'<tr><td colspan="3">لا يوجد طلاب مسجلون.</td></tr>';results.sort((a,b)=>{const ad=a.completedAt&&typeof a.completedAt.toMillis==='function'?a.completedAt.toMillis():0,bd=b.completedAt&&typeof b.completedAt.toMillis==='function'?b.completedAt.toMillis():0;return bd-ad;});els.resultsBody.innerHTML=results.slice(0,100).map(r=>`<tr><td>${esc(r.email||r.uid||'—')}</td><td>${esc(r.bookTitle||r.bookId||'—')}</td><td>${r.chapter==null?'اختبار مخصص':esc(r.chapter)}</td><td>${Number(r.score)||0}/${Number(r.totalQuestions)||0} (${(Number(r.percentage)||0).toFixed(1)}%)</td></tr>`).join('')||'<tr><td colspan="4">لا توجد نتائج بعد.</td></tr>';const now=timeValue(new Date());els.studentsUpdated.textContent=now;els.resultsUpdated.textContent=now;await loadLawyerManagement();setStatus('');}catch(e){console.error(e);setStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.',true);}}
   let lawyerApplications=[],lawyerProfiles=[];
 
