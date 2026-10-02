@@ -69,3 +69,16 @@ html[data-theme="light"] .profile-name-editor-row input{
   background:#fff;color:#1f2937;border-color:#d8dee8;
 }
 
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .student-sidebar-backdrop{background:rgba(15,23,42,.38)}
+html[data-theme="light"] .student-sidebar-panel{background:linear-gradient(180deg,#fff,#f5f7fb);border-left-color:#d8dee8;box-shadow:-18px 0 55px rgba(15,23,42,.16)}
+html[data-theme="light"] .student-sidebar-close{background:#f8fafc;border-color:#d8dee8;color:#475467}
+html[data-theme="light"] .student-sidebar-brand strong,html[data-theme="light"] .profile-identity h3{color:#172b45}
+html[data-theme="light"] .student-sidebar-brand span,html[data-theme="light"] .student-sidebar-heading,html[data-theme="light"] .profile-identity p,html[data-theme="light"] .student-info-grid small,html[data-theme="light"] .profile-stat-card small,html[data-theme="light"] .profile-panel-heading p,html[data-theme="light"] .history-main small,html[data-theme="light"] .history-score span,html[data-theme="light"] .profile-empty,html[data-theme="light"] .student-wrong-item span,html[data-theme="light"] .student-wrong-item small,html[data-theme="light"] .student-progress-item small{color:#667085}
+html[data-theme="light"] .student-sidebar-item{color:#344054}html[data-theme="light"] .student-sidebar-item:hover,html[data-theme="light"] .student-sidebar-item.is-active{background:#fff8eb;border-color:#ead9b8;color:#7f5d2a}
+html[data-theme="light"] .student-info-grid>div,html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:#fff;border-color:#e2e8f0}
+html[data-theme="light"] .student-profile-card,html[data-theme="light"] .resume-exam-panel{background:linear-gradient(135deg,#fffaf0,#f8fafc);border-color:#e2d4b6}
+html[data-theme="light"] .history-item,html[data-theme="light"] .student-wrong-item{background:#f8fafc;border-color:#e2e8f0}
+html[data-theme="light"] .student-page-header{border-color:#e2e8f0}html[data-theme="light"] .profile-name-editor-row input{background:#fff;color:#1f2937;border-color:#d8dee8}
