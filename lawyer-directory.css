@@ -86,3 +86,15 @@ html[data-theme="light"] .lawyer-details-head,
 html[data-theme="light"] .lawyer-detail-item{border-color:#d8dee8}
 html[data-theme="light"] .lawyer-detail-item{background:#f8fafc}
 
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .lawyers-hero p,html[data-theme="light"] .lawyer-form-head p,html[data-theme="light"] .lawyers-search i,html[data-theme="light"] .lawyer-card p,html[data-theme="light"] .lawyers-empty,html[data-theme="light"] .lawyer-form-status,html[data-theme="light"] .lawyer-identity-notice span{color:#667085}
+html[data-theme="light"] .lawyers-search input,html[data-theme="light"] .lawyer-form input,html[data-theme="light"] .lawyer-form textarea{background:#fff;color:#1f2937;border-color:#d8dee8}
+html[data-theme="light"] .lawyers-apply-panel,html[data-theme="light"] .lawyer-card{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+html[data-theme="light"] .lawyer-card-actions a{background:#f8fafc;border-color:#d8dee8;color:#344054}
+html[data-theme="light"] .lawyers-empty{border-color:#cbd5e1}
+html[data-theme="light"] .lawyer-details-backdrop{background:rgba(15,23,42,.42)}
+html[data-theme="light"] .lawyer-details-dialog{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937;box-shadow:0 24px 70px rgba(15,23,42,.18)}
+html[data-theme="light"] .lawyer-details-head,html[data-theme="light"] .lawyer-detail-item{border-color:#d8dee8}
+html[data-theme="light"] .lawyer-detail-item{background:#f8fafc}
