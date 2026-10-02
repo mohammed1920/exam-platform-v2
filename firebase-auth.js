@@ -183,36 +183,6 @@
     }
   }
 
-  async function saveExamResultToFirestore(result, meta = {}) {
-    await firestoreReady;
-    const user = state.user;
-    if (!db || !user || !result) return false;
-    const resultId = meta.resultId || `${user.uid}_${meta.startedAt || Date.now()}`.replace(/[^a-zA-Z0-9_-]/g, '_');
-    const ref = db.collection('examResults').doc(resultId);
-    const data = {
-      uid: user.uid,
-      email: user.email || null,
-      bookId: meta.bookId || null,
-      bookTitle: meta.bookTitle || null,
-      chapter: meta.chapter == null ? null : Number(meta.chapter),
-      custom: Boolean(meta.custom),
-      score: Number(result.score) || 0,
-      totalQuestions: Number(result.totalQuestions) || 0,
-      percentage: Number(result.percentage) || 0,
-      duration: Number(result.duration) || 0,
-      completedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      startedAt: meta.startedAt || null,
-      version: 1
-    };
-    try {
-      await ref.set(data, { merge: false });
-      return true;
-    } catch (error) {
-      console.error('تعذر حفظ نتيجة الاختبار في Firestore:', error);
-      return false;
-    }
-  }
-
   function installModal() {
     if (document.getElementById('login-modal')) return;
     document.body.insertAdjacentHTML('beforeend', `
@@ -258,8 +228,7 @@
     signOut,
     displayName,
     get firestore() { return db; },
-    saveStudentProfile,
-    saveExamResultToFirestore
+    saveStudentProfile
   };
 
   document.addEventListener('DOMContentLoaded', installModal);
