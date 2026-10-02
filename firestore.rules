@@ -25,15 +25,6 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    match /examResults/{resultId} {
-      allow create: if signedIn()
-                    && request.resource.data.uid == request.auth.uid;
-      allow read: if signedIn()
-                  && (resource.data.uid == request.auth.uid || isAdmin());
-      allow update: if false;
-      allow delete: if isAdmin();
-    }
-
     match /admins/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;
       allow write: if false;
@@ -65,32 +56,6 @@ service cloud.firestore {
     match /lawyerProfiles/{profileId} {
       allow read: if isAdmin() || resource.data.published == true;
       allow create, update, delete: if isAdmin();
-    }
-
-    match /leaderboards/{bookId}/entries/{userId} {
-      allow read: if signedIn();
-
-      allow create: if signedIn()
-                    && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.bookId == bookId
-                    && request.resource.data.finalScore >= 0
-                    && request.resource.data.finalScore <= 1000
-                    && request.resource.data.rankingScore >= -1
-                    && request.resource.data.rankingScore <= 1000
-                    && request.resource.data.completedChapters >= 0;
-
-      allow update: if signedIn()
-                    && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.bookId == bookId
-                    && request.resource.data.finalScore >= 0
-                    && request.resource.data.finalScore <= 1000
-                    && request.resource.data.rankingScore >= -1
-                    && request.resource.data.rankingScore <= 1000
-                    && request.resource.data.completedChapters >= 0;
-
-      allow delete: if false;
     }
 
     match /mizanArticles/{articleId} {
