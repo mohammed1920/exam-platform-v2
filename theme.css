@@ -202,3 +202,13 @@ html[data-theme="light"] .question-search-item:active{background:#fff8eb}
 html[data-theme="light"] .question-search-source,
 html[data-theme="light"] .custom-exam-book-option small{color:var(--mizan-light-muted)}
 
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .mizan-header-art{background:linear-gradient(145deg,#0f172a,#172b45);border:1px solid rgba(194,157,95,.22);border-radius:18px;padding:8px 12px;box-shadow:0 10px 28px rgba(15,23,42,.10)}
+html[data-theme="light"] .mizan-header-art-image{filter:brightness(.98) contrast(1.05)}
+html[data-theme="light"] .custom-exam-book-option,html[data-theme="light"] .custom-exam-count-row,html[data-theme="light"] .question-search-results{background:var(--mizan-light-surface);border-color:var(--mizan-light-border);color:var(--mizan-light-text);box-shadow:0 6px 20px rgba(15,23,42,.04)}
+html[data-theme="light"] .custom-exam-count-row input{background:var(--mizan-light-surface-2);border-color:var(--mizan-light-border);color:var(--mizan-light-text)}
+html[data-theme="light"] .question-search-header,html[data-theme="light"] .question-search-item{border-color:var(--mizan-light-border)}
+html[data-theme="light"] .question-search-item:active{background:#fff8eb}
+html[data-theme="light"] .question-search-source,html[data-theme="light"] .custom-exam-book-option small{color:var(--mizan-light-muted)}
