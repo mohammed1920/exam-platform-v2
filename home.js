@@ -69,6 +69,13 @@
       if (window.petitions && typeof window.petitions.open === 'function') {
         openPetitions();
       } else if (!document.querySelector('script[data-petitions-loader]')) {
+        if (!document.querySelector('link[data-petitions-css]')) {
+          const css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = 'petitions.css?v=1.6';
+          css.dataset.petitionsCss = '1';
+          document.head.appendChild(css);
+        }
         const script = document.createElement('script');
         script.src = 'petitions.js?v=1.7';
         script.dataset.petitionsLoader = '1';
