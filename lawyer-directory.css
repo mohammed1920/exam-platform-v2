@@ -98,3 +98,22 @@ html[data-theme="light"] .lawyer-details-backdrop{background:rgba(15,23,42,.42)}
 html[data-theme="light"] .lawyer-details-dialog{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937;box-shadow:0 24px 70px rgba(15,23,42,.18)}
 html[data-theme="light"] .lawyer-details-head,html[data-theme="light"] .lawyer-detail-item{border-color:#d8dee8}
 html[data-theme="light"] .lawyer-detail-item{background:#f8fafc}
+
+
+
+/* ===== Light mode: lawyer application/edit visibility ===== */
+html[data-theme="light"] .lawyer-my-application{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+html[data-theme="light"] .lawyer-my-application-head span,html[data-theme="light"] .lawyer-my-application p{color:#667085}
+html[data-theme="light"] .lawyer-my-application-head h3{color:#172b45}
+html[data-theme="light"] .lawyer-my-application-edit{background:#fff8eb;border-color:#d8b66a;color:#7f5d2a}
+html[data-theme="light"] .lawyer-my-application-edit:hover{background:#fff3d6;border-color:#c9a45b}
+html[data-theme="light"] .lawyer-identity-notice{background:#fffaf0;border-color:#e2d4b6}
+html[data-theme="light"] .lawyer-identity-notice strong{color:#8f6b34}
+html[data-theme="light"] .lawyer-identity-btn.whatsapp{color:#15803d;background:#f0fdf4;border-color:#86efac}
+html[data-theme="light"] .lawyer-identity-btn.telegram{color:#0369a1;background:#f0f9ff;border-color:#7dd3fc}
+html[data-theme="light"] .lawyer-card h3,html[data-theme="light"] .lawyer-details-head h2{color:#172b45}
+html[data-theme="light"] .lawyer-card-address{color:#475467!important}
+html[data-theme="light"] .lawyer-detail-item strong{color:#344054}
+html[data-theme="light"] .lawyer-detail-item span,html[data-theme="light"] .lawyer-details-section>span{color:#667085}
+html[data-theme="light"] .lawyer-details-section p{color:#475467;background:#f8fafc}
+
