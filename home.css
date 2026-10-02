@@ -157,38 +157,14 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   .home-coming-soon b{font-size:8px;padding:4px 6px}
 }
 
-.home-category-card[data-home-action="books"]{
-  --card-accent:#c29d5f;
-  --card-bg:rgba(58,47,30,.78);
-}
-.home-category-card[data-home-action="judicial"]{
-  --card-accent:#9b8cff;
-  --card-bg:rgba(52,43,78,.72);
-}
-.home-category-card[data-home-action="random"]{
-  --card-accent:#5da9e9;
-  --card-bg:rgba(29,55,78,.76);
-}
-.home-category-card[data-home-action="laws"]{
-  --card-accent:#5fc39a;
-  --card-bg:rgba(27,61,53,.74);
-}
-.home-category-card[data-home-action="procedures"]{
-  --card-accent:#58c4c9;
-  --card-bg:rgba(24,62,66,.74);
-}
-.home-category-card[data-home-action="petitions"]{
-  --card-accent:#d8a85f;
-  --card-bg:rgba(69,51,29,.74);
-}
-.home-category-card[data-home-action="lawyers"]{
-  --card-accent:#d7798d;
-  --card-bg:rgba(68,38,49,.74);
-}
-.home-category-card[data-home-action="leaderboard"]{
-  --card-accent:#62b8d9;
-  --card-bg:rgba(29,54,69,.76);
-}
+.home-category-card[data-home-action="books"]{--card-accent:#b8a16a;--card-bg:rgba(58,52,39,.62);}
+.home-category-card[data-home-action="judicial"]{--card-accent:#8998a8;--card-bg:rgba(45,55,66,.64);}
+.home-category-card[data-home-action="random"]{--card-accent:#7896a9;--card-bg:rgba(38,57,69,.64);}
+.home-category-card[data-home-action="laws"]{--card-accent:#7fa493;--card-bg:rgba(38,58,51,.64);}
+.home-category-card[data-home-action="procedures"]{--card-accent:#7fa6a7;--card-bg:rgba(39,59,61,.64);}
+.home-category-card[data-home-action="petitions"]{--card-accent:#b49a72;--card-bg:rgba(59,50,39,.64);}
+.home-category-card[data-home-action="lawyers"]{--card-accent:#aa7f88;--card-bg:rgba(58,43,48,.64);}
+.home-category-card[data-home-action="leaderboard"]{--card-accent:#789aaa;--card-bg:rgba(39,55,64,.64);}
 
 .home-category-card[data-home-action]{
   border-color:color-mix(in srgb,var(--card-accent) 30%,transparent);
@@ -374,5 +350,17 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   .home-coming-soon b{font-size:8px;padding:5px 7px}
 }
 
-.home-category-card[data-home-action="mizan-pulpit"]{--card-accent:#b88cff;--card-bg:rgba(55,40,78,.76);border-color:rgba(184,140,255,.3);background:radial-gradient(circle at 88% 18%,rgba(184,140,255,.13),transparent 38%),linear-gradient(145deg,rgba(55,40,78,.76),rgba(12,23,37,.97))}
-.home-category-card[data-home-action="mizan-pulpit"] i{background:rgba(184,140,255,.13);color:#b88cff}.home-category-card[data-home-action="mizan-pulpit"] b{color:#b88cff}
+.home-category-card[data-home-action="mizan-pulpit"]{--card-accent:#a28fae;--card-bg:rgba(54,47,61,.64);border-color:rgba(162,143,174,.26);background:radial-gradient(circle at 88% 18%,rgba(162,143,174,.09),transparent 38%),linear-gradient(145deg,rgba(54,47,61,.64),rgba(12,23,37,.97))}
+.home-category-card[data-home-action="mizan-pulpit"] i{background:rgba(162,143,174,.10);color:#b7a8bf}.home-category-card[data-home-action="mizan-pulpit"] b{color:#b7a8bf}
+
+
+/* ألوان هادئة للأقسام القادمة */
+.home-coming-soon:nth-child(1){border-color:rgba(137,152,168,.18);background:linear-gradient(145deg,rgba(45,55,66,.58),rgba(12,23,37,.92))}
+.home-coming-soon:nth-child(1) i{background:rgba(137,152,168,.08);color:#9aa9b7}
+.home-coming-soon:nth-child(1) b{border-color:rgba(137,152,168,.18);background:rgba(137,152,168,.06);color:#9aa9b7}
+.home-coming-soon:nth-child(2){border-color:rgba(127,164,147,.18);background:linear-gradient(145deg,rgba(38,58,51,.58),rgba(12,23,37,.92))}
+.home-coming-soon:nth-child(2) i{background:rgba(127,164,147,.08);color:#8eae9f}
+.home-coming-soon:nth-child(2) b{border-color:rgba(127,164,147,.18);background:rgba(127,164,147,.06);color:#8eae9f}
+.home-coming-soon:nth-child(3){border-color:rgba(127,166,167,.18);background:linear-gradient(145deg,rgba(39,59,61,.58),rgba(12,23,37,.92))}
+.home-coming-soon:nth-child(3) i{background:rgba(127,166,167,.08);color:#91b1b2}
+.home-coming-soon:nth-child(3) b{border-color:rgba(127,166,167,.18);background:rgba(127,166,167,.06);color:#91b1b2}
