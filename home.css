@@ -444,3 +444,37 @@ footer{border-top:1px solid rgba(194,157,95,.12);padding:28px 0 20px;background:
   .home-category-card:hover,.home-feature-strip>div:hover,.home-coming-soon:hover,.contact-card:hover{transform:none!important}
   .home-category-card:after{display:none}
 }
+
+
+
+/* ===== Light mode: About / FAQ / footer ===== */
+html[data-theme="light"] footer{
+  background:linear-gradient(180deg,#f8fafc,#eef2f7);
+  border-top-color:#d8dee8;
+  color:#344054;
+}
+html[data-theme="light"] .footer-links button{color:#475467}
+html[data-theme="light"] .footer-links button:hover{color:#8f6b34}
+html[data-theme="light"] .footer-links span{color:rgba(143,107,52,.45)}
+html[data-theme="light"] .footer-about strong{color:#8f6b34}
+html[data-theme="light"] .footer-about p{color:#667085}
+html[data-theme="light"] .footer-disclaimer{background:#fff;border-color:#e2d4b6}
+html[data-theme="light"] .footer-disclaimer strong{color:#8f6b34}
+html[data-theme="light"] .footer-disclaimer p{color:#667085}
+html[data-theme="light"] .footer-bottom{border-top-color:#d8dee8}
+html[data-theme="light"] .footer-bottom p,html[data-theme="light"] .footer-contact-info a{color:#667085}
+html[data-theme="light"] .footer-contact-info a:hover{color:#8f6b34}
+html[data-theme="light"] .footer-info-box{
+  background:linear-gradient(145deg,#fff,#f6f8fb);
+  border-color:#d8dee8;
+  box-shadow:0 18px 45px rgba(15,23,42,.08);
+}
+html[data-theme="light"] .footer-info-heading span{color:#8f6b34}
+html[data-theme="light"] .footer-info-heading h2{color:#172b45}
+html[data-theme="light"] .footer-info-heading p{color:#667085}
+html[data-theme="light"] .footer-info-content{color:#344054}
+html[data-theme="light"] .footer-faq-list details{background:#fff;border-color:#d8dee8}
+html[data-theme="light"] .footer-faq-list summary{color:#172b45}
+html[data-theme="light"] .footer-faq-list summary:before{background:#fff8eb;color:#8f6b34}
+html[data-theme="light"] .footer-faq-list p{color:#475467}
+
