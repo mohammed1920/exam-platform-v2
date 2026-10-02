@@ -117,3 +117,10 @@
 - Restored the exact working module from its parent commit and re-added it to `index.html` after `firebase-admin-panel.js`.
 - Restore commits: `c04a1de7f1a1ea809c53d686a60880ffb088b170` and `01c2908f813a8f67484fbf337d5d1177fb5a4a10`.
 - Do not delete `mizan-pulpit-admin.js` again unless its functionality is first migrated into another verified module.
+
+## Leaderboard lazy loading — 2026-10-02
+- تم فحص مسار تشغيل `leaderboard.js` قبل التغيير: يعتمد على `window.app.books` و`publicAuth` وFirestore، ويُستدعى من مسار لوحة الطالب/الشريط الجانبي، كما يستمع إلى `firestore-exam-result-saved` لمزامنة نتائج الطالب.
+- لم يتم حذف الملف أو وظيفته.
+- تم نقل تحميل `leaderboard.js` و`leaderboard.css` من التحميل الأولي في `index.html` إلى تحميل كسول عند فتح قسم المتصدرين فقط.
+- `user-dashboard.js` أصبح مسؤولاً عن تحميل الوحدة عند الحاجة ثم تشغيل `window.studentLeaderboard.render()`، مع معالجة فشل التحميل.
+- الإصلاحات: `026da13dbde7965f8a04bbb771125d690595c050` و`02f985ad063f6b0507fad010fe0837867ddd11a4`.
