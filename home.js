@@ -111,7 +111,6 @@
   }
 
   function install() {
-    loadLawyerDirectory();
     syncVisibility();
     const observer = new MutationObserver(syncVisibility);
     document.querySelectorAll('.view-section').forEach(section => observer.observe(section, { attributes: true, attributeFilter: ['class'] }));
