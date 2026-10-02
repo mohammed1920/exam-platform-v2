@@ -1475,7 +1475,8 @@ class ExamApp {
       disclaimer: 'home',
       faq: 'home',
       'mizan-pulpit': 'home',
-      'mizan-article': 'mizan-pulpit'
+      'mizan-article': 'mizan-pulpit',
+      'firebase-admin': 'home'
     };
     return parents[viewId] || null;
   }
@@ -1495,7 +1496,8 @@ class ExamApp {
       'privacy',
       'disclaimer',
       'faq',
-      'mizan-pulpit'
+      'mizan-pulpit',
+      'firebase-admin'
     ]).has(viewId);
   }
 
@@ -1634,6 +1636,13 @@ class ExamApp {
           window.studentDashboard.restore(state.dashboardTarget || 'profile', false);
         } else {
           this.navigateTo('student-dashboard', {}, false);
+        }
+      } else if (view === 'firebase-admin') {
+        if (window.firebaseAdminPanel?.isAdmin === true) {
+          this.navigateTo('firebase-admin', {}, false);
+          window.firebaseAdminPanel.open();
+        } else {
+          this.navigateTo('home', {}, false);
         }
       } else if (view === 'results' || view === 'review') {
         this.navigateTo(view, {}, false);
