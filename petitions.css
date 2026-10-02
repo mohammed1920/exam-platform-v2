@@ -132,3 +132,12 @@ html[data-theme="light"] .petition-status{color:#667085}
 html[data-theme="light"] .petition-status{border-color:#d8dee8;background:#fff}
 html[data-theme="light"] .petition-template-card b{color:#8f6b34}
 
+
+
+/* Light theme audit repair */
+html[data-theme="light"] .petitions-hero,html[data-theme="light"] .petition-builder-head{background:linear-gradient(145deg,#fff,#f6f8fb);border-color:#d8dee8;color:#1f2937}
+html[data-theme="light"] .petitions-hero p,html[data-theme="light"] .petition-builder-head p{color:#667085}
+html[data-theme="light"] .petitions-hero span,html[data-theme="light"] .petition-builder-head span{color:#8f6b34}
+html[data-theme="light"] .petition-tools>span,html[data-theme="light"] .petition-status{color:#667085}
+html[data-theme="light"] .petition-status{border-color:#d8dee8;background:#fff}
+html[data-theme="light"] .petition-template-card b{color:#8f6b34}
