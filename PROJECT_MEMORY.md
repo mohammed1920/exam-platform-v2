@@ -95,3 +95,12 @@
 - أضيف version query إلى `engine/examEngine.js` في `index.html` لتقليل احتمال بقاء نسخة قديمة من ملف المحرك بعد النشر.
 
 - `service-worker.js` حُذف نهائياً؛ لم تعد المنصة تعتمد على Service Worker أو Offline Cache، وتم تحديث workflow النشر حتى لا يحاول نسخه.
+
+
+## Mizan Pulpit admin restoration — 2026-10-02
+- Investigated disappearance of the Mizan Pulpit admin options.
+- Root cause: `mizan-pulpit-admin.js` had been incorrectly classified as unused and deleted in commit `ee44eb8c9501b8fef95809fd20b8844d163168f3`.
+- The deleted module is operational: it creates the `منبر ميزان` admin card and management view, including contributor approval requests, approved/blocked contributors, pending/published/rejected/hidden articles, direct publishing, editing, rejection reasons, hide/republish/delete, and contributor public-profile sync.
+- Restored the exact working module from its parent commit and re-added it to `index.html` after `firebase-admin-panel.js`.
+- Restore commits: `c04a1de7f1a1ea809c53d686a60880ffb088b170` and `01c2908f813a8f67484fbf337d5d1177fb5a4a10`.
+- Do not delete `mizan-pulpit-admin.js` again unless its functionality is first migrated into another verified module.
