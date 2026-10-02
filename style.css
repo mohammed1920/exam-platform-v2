@@ -1012,20 +1012,10 @@ header {
     0 10px 28px rgba(0,0,0,0.14);
 }
 
-/* منع التصاق محتوى البطاقة بالحواف بعد دمج الغلاف */
-.book-card-content {
-  padding-top: 2px;
-}
-
-/* تحسين ارتفاع زر الدخول على الهاتف */
+/* تحسينات الهاتف المشتركة */
 @media (max-width: 600px) {
   .books-grid {
     gap: 13px;
-  }
-
-  .book-card {
-    border-radius: 15px;
-    padding: 13px;
   }
 
   .book-title {
@@ -1043,17 +1033,6 @@ header {
 
   .book-card button {
     min-height: 48px;
-  }
-}
-
-/* الشاشات الصغيرة جداً: لا نبالغ في الإضاءة */
-@media (max-width: 380px) {
-  .book-card {
-    padding: 11px;
-  }
-
-  .book-card:hover {
-    transform: translateY(-2px);
   }
 }
 
@@ -1085,10 +1064,6 @@ header {
   margin: -6px -9px 10px;
 }
 
-.book-card-content {
-  padding-top: 0;
-}
-
 .book-title {
   font-size: 1rem;
   line-height: 1.5;
@@ -1098,10 +1073,6 @@ header {
 .book-author {
   font-size: 0.76rem;
   margin-bottom: 10px;
-}
-
-.book-card {
-  padding: 12px;
 }
 
 .book-meta {
