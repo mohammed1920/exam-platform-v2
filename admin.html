@@ -200,16 +200,16 @@
     
 /* ===== Admin light theme (shares platform-theme localStorage key) ===== */
 html[data-admin-theme="light"]{color-scheme:light}
-html[data-admin-theme="light"] body{background:#f5f7fb;color:#1f2937}
-html[data-admin-theme="light"] .topbar,html[data-admin-theme="light"] .book-bar,html[data-admin-theme="light"] .content-area,html[data-admin-theme="light"] .sidebar{background:#fff;border-color:#d8dee8}
-html[data-admin-theme="light"] .layout .content-area,html[data-admin-theme="light"] .panel,html[data-admin-theme="light"] .item-card,html[data-admin-theme="light"] .book-item{background:#fff;border-color:#e2e8f0}
-html[data-admin-theme="light"] .book-item.active{background:#fff8eb;border-color:#d8b66a}
-html[data-admin-theme="light"] input,html[data-admin-theme="light"] textarea,html[data-admin-theme="light"] select{background:#fff;color:#1f2937;border-color:#d8dee8}
+html[data-admin-theme="light"] body{background:var(--mizan-bg-light);color:var(--mizan-text-light)}
+html[data-admin-theme="light"] .topbar,html[data-admin-theme="light"] .book-bar,html[data-admin-theme="light"] .content-area,html[data-admin-theme="light"] .sidebar{background:#fff;border-color:var(--mizan-border-light)}
+html[data-admin-theme="light"] .layout .content-area,html[data-admin-theme="light"] .panel,html[data-admin-theme="light"] .item-card,html[data-admin-theme="light"] .book-item{background:#fff;border-color:var(--mizan-text-dark)}
+html[data-admin-theme="light"] .book-item.active{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-light)}
+html[data-admin-theme="light"] input,html[data-admin-theme="light"] textarea,html[data-admin-theme="light"] select{background:#fff;color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
 html[data-admin-theme="light"] .modal{background:rgba(15,23,42,.42)}
-html[data-admin-theme="light"] .modal-content{background:#fff;color:#1f2937}
-html[data-admin-theme="light"] .panel-header-row p,html[data-admin-theme="light"] .loading{color:#667085}
-html[data-admin-theme="light"] .icon-btn{background:#f8fafc;color:#344054;border-color:#d8dee8}
-html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6b34;border-color:#d8dee8}
+html[data-admin-theme="light"] .modal-content{background:#fff;color:var(--mizan-text-light)}
+html[data-admin-theme="light"] .panel-header-row p,html[data-admin-theme="light"] .loading{color:var(--mizan-muted-light)}
+html[data-admin-theme="light"] .icon-btn{background:var(--mizan-ice);color:#344054;border-color:var(--mizan-border-light)}
+html[data-admin-theme="light"] .theme-admin-toggle{background:var(--mizan-ice);color:var(--mizan-gold-dark);border-color:var(--mizan-border-light)}
 .theme-admin-toggle{background:var(--bg);border:1px solid var(--border);color:var(--gold);width:38px;height:38px;border-radius:9px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
@@ -844,7 +844,7 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
                 summaryEl.textContent = `آخر فحص: ${report.generated_at || '—'} | عدد الملاحظات: ${spellingItems.length}`;
                 renderSpellingReport();
             } catch (e) {
-                listEl.innerHTML = `<p style="color:#ef4444;">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
+                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
                 summaryEl.textContent = '';
             }
         }
@@ -862,7 +862,7 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
                 if (origWords[i] !== corrWords[i]) {
                     const wordOriginal = escapeHtml(origWords[i] || '');
                     const wordCorrected = escapeHtml(corrWords[i] || '');
-                    return `<span style="color:#ef4444; text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:#10b981; font-weight:700;">(الصواب: ${wordCorrected})</span>`;
+                    return `<span style="color:var(--mizan-danger); text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:var(--mizan-success); font-weight:700;">(الصواب: ${wordCorrected})</span>`;
                 }
             }
             return '—';
@@ -890,8 +890,8 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')} — الحقل: ${escapeHtml(item.field)}
                         </div>
                         <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
-                        <div style="margin-bottom:6px; color:#ef4444; font-size:13px;"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
-                        <div style="margin-bottom:10px; color:#10b981; font-size:13px;"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
+                        <div style="margin-bottom:6px; color:var(--mizan-danger); font-size:13px;"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
+                        <div style="margin-bottom:10px; color:var(--mizan-success); font-size:13px;"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
                         <div class="btn-row">
                             <button class="btn btn-green btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
                             <button class="btn btn-red btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
@@ -1005,10 +1005,10 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
         let qaItems = [];
 
         const QA_ISSUE_LABELS = {
-            'اجابة_غير_صحيحة': { label: '❌ إجابة غير صحيحة', color: '#ef4444' },
-            'خيارات_متشابهة': { label: '🔁 خيارات متشابهة', color: '#f59e0b' },
-            'صياغة_غير_واضحة': { label: '❓ صياغة غير واضحة', color: '#f59e0b' },
-            'لا_يوجد_اجابة_واحدة_صحيحة': { label: '⚠️ لا توجد إجابة واحدة صحيحة', color: '#ef4444' }
+            'اجابة_غير_صحيحة': { label: '❌ إجابة غير صحيحة', color: 'var(--mizan-danger)' },
+            'خيارات_متشابهة': { label: '🔁 خيارات متشابهة', color: 'var(--mizan-warning)' },
+            'صياغة_غير_واضحة': { label: '❓ صياغة غير واضحة', color: 'var(--mizan-warning)' },
+            'لا_يوجد_اجابة_واحدة_صحيحة': { label: '⚠️ لا توجد إجابة واحدة صحيحة', color: 'var(--mizan-danger)' }
         };
 
         async function loadQaReport() {
@@ -1030,7 +1030,7 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
                 }
                 renderQaReport();
             } catch (e) {
-                listEl.innerHTML = `<p style="color:#ef4444;">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/qa_report.json.</p>`;
+                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/qa_report.json.</p>`;
                 summaryEl.textContent = '';
             }
         }
@@ -1049,7 +1049,7 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:#f8fafc;color:#8f6
             } else {
                 listEl.innerHTML = pendingItems.map((item) => {
                     const idx = qaItems.indexOf(item);
-                    const issueInfo = QA_ISSUE_LABELS[item.issue_type] || { label: item.issue_type, color: '#94a3b8' };
+                    const issueInfo = QA_ISSUE_LABELS[item.issue_type] || { label: item.issue_type, color: 'var(--mizan-muted-dark)' };
                     const opts = item.options || [];
 
                     const optionsHtml = opts.map((o, oi) => {
