@@ -199,3 +199,20 @@ html[data-theme="light"] {
   --mizan-white-soft: rgba(255,255,255,.07);
   --mizan-black-soft: rgba(0,0,0,.16);
 }
+
+
+/* =========================================================
+   Component compatibility / legacy neutrals
+   ========================================================= */
+:root {
+  --mizan-ink-soft: #101D2D;
+  --mizan-ink-deep: #0D1727;
+  --mizan-slate-900: #10151D;
+  --mizan-slate-blue: #182438;
+  --mizan-slate-blue-deep: #0C1826;
+  --mizan-text-dim-blue: #7F93A4;
+  --mizan-text-muted-blue: #8FA0B1;
+  --mizan-text-light-blue: #DCE4EC;
+  --mizan-paper-white: #F7F8FA;
+  --mizan-gold-pale-text: #E0C77F;
+}
