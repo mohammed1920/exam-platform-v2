@@ -140,4 +140,4 @@
 
 
 /* Light theme audit repair */
-html[data-theme="light"] .profile-hero{background:linear-gradient(135deg,var(--mizan-white)af0,var(--mizan-ice));border-color:var(--mizan-gold-paper);box-shadow:0 12px 35px rgba(15,23,42,.08)}html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:var(--mizan-white);border-color:var(--mizan-text-dark)}html[data-theme="light"] .history-item{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}
+html[data-theme="light"] .profile-hero{background:linear-gradient(135deg,var(--mizan-white),var(--mizan-ice));border-color:var(--mizan-gold-paper);box-shadow:0 12px 35px rgba(15,23,42,.08)}html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:var(--mizan-white);border-color:var(--mizan-text-dark)}html[data-theme="light"] .history-item{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}
