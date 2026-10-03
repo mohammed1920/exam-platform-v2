@@ -59,8 +59,8 @@ html[data-theme="light"] .platform-sidebar-item i,
 html[data-theme="light"] .platform-sidebar-note,
 html[data-theme="light"] .platform-sidebar-account-user span{color:var(--mizan-muted-light)}
 html[data-theme="light"] .platform-sidebar-item{color:var(--mizan-text-strong-legacy)}
-html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-white)8eb;border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
-html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-gold-pale);border-color:#e4d2ad;color:var(--mizan-gold-text)}
 html[data-theme="light"] .platform-sidebar-note,
 html[data-theme="light"] .platform-sidebar-account{background:var(--mizan-white);border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}
@@ -75,7 +75,7 @@ html[data-theme="light"] .platform-sidebar-panel{background:linear-gradient(180d
 html[data-theme="light"] .platform-sidebar-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467}
 html[data-theme="light"] .platform-sidebar-brand{border-color:var(--mizan-text-dark)}html[data-theme="light"] .platform-sidebar-brand strong{color:#172b45}
 html[data-theme="light"] .platform-sidebar-brand span,html[data-theme="light"] .platform-sidebar-item i,html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account-user span{color:var(--mizan-muted-light)}
-html[data-theme="light"] .platform-sidebar-item{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-white)8eb;border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-item{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-gold-pale);border-color:#e4d2ad;color:var(--mizan-gold-text)}
 html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account{background:var(--mizan-white);border-color:var(--mizan-text-dark)}html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}html[data-theme="light"] .platform-sidebar-account-action{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .platform-sidebar-divider{background:var(--mizan-text-dark)}
 
 /* Mizan top utility controls — shared container */
