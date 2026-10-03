@@ -155,7 +155,7 @@
         .question-option-radio { display: flex; align-items: center; padding: 10px 8px; margin: 6px 0; border-radius: 8px; cursor: pointer; transition: .2s; }
         .question-option-radio input[type="radio"] { margin-left: 10px; cursor: pointer; width: 18px; height: 18px; accent-color: var(--gold); }
         .question-option-radio:hover { background: rgba(194, 157, 95, 0.1); }
-        .question-option-radio.selected { background: rgba(194, 157, 95, 0.2); border-left: 3px solid var(--gold); }
+        .question-option-radio.selected { background: color-mix(in srgb,var(--mizan-warning-500) 20%,transparent); border-left: 3px solid var(--gold); }
 
         /* ===== نافذة منبثقة (ورقة سفلية على الموبايل) ===== */
         .modal {
@@ -1064,7 +1064,7 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:var(--mizan-ice);c
                             style += 'background: rgba(239,68,68,0.12); border-left:3px solid var(--red);';
                             tag = ' <span style="color:var(--red); font-weight:700;">(الحالية)</span>';
                         } else if (isSuggested) {
-                            style += 'background: rgba(194,157,95,0.15); border-left:3px solid var(--gold);';
+                            style += 'background: color-mix(in srgb,var(--mizan-warning-500) 15%,transparent); border-left:3px solid var(--gold);';
                             tag = ' <span style="color:var(--gold); font-weight:700;">(مقترحة)</span>';
                         }
                         return `<div style="${style}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
