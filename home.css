@@ -475,6 +475,6 @@ html[data-theme="light"] .footer-info-heading p{color:var(--mizan-muted-light)}
 html[data-theme="light"] .footer-info-content{color:var(--mizan-text-strong-legacy)}
 html[data-theme="light"] .footer-faq-list details{background:var(--mizan-white);border-color:var(--mizan-border-light)}
 html[data-theme="light"] .footer-faq-list summary{color:#172b45}
-html[data-theme="light"] .footer-faq-list summary:before{background:var(--mizan-white)8eb;color:var(--mizan-gold-text)}
+html[data-theme="light"] .footer-faq-list summary:before{background:var(--mizan-gold-pale);color:var(--mizan-gold-text)}
 html[data-theme="light"] .footer-faq-list p{color:#475467}
 
