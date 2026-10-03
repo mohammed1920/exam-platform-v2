@@ -135,7 +135,7 @@
 .profile-name-editor-row button{border:1px solid var(--mizan-gold-border);border-radius:11px;background:var(--mizan-gold-soft);color:var(--mizan-gold-pale);padding:10px 15px;cursor:pointer;font:inherit;font-weight:800;white-space:nowrap}
 .profile-name-editor-row button:hover{background:var(--mizan-gold-border)}
 .profile-name-editor-row button:disabled{opacity:.55;cursor:wait}
-.profile-name-editor-message{min-height:20px;margin:8px 0 0;color:#9ed7c2;font-size:12px}
+.profile-name-editor-message{min-height:20px;margin:8px 0 0;color:var(--mizan-success);font-size:12px}
 @media(max-width:560px){.profile-name-editor-row{flex-direction:column}.profile-name-editor-row button{width:100%}}
 
 
