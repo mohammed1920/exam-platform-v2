@@ -1,0 +1,27 @@
+/* Mizan Unified Theme — one palette across the site; book artwork is excluded. */
+:root{--mu-bg:#0F172A;--mu-card:#1E293B;--mu-border:#334155;--mu-text:#E2E8F0;--mu-muted:#94A3B8;--mu-blue:#1E40AF;--mu-blue-hover:#2563EB;--mu-gold:#F59E0B}
+html[data-theme="light"]{--mu-bg:#F8FAFC;--mu-card:#F0F9FF;--mu-border:#E2E8F0;--mu-text:#334155;--mu-muted:#64748B;--mu-blue:#2563EB;--mu-blue-hover:#1D4ED8;--mu-gold:#D97706}
+html body{background:var(--mu-bg)!important;color:var(--mu-text)!important}
+html body header{background:#0F172A!important;color:#F1F5F9!important;border-color:var(--mu-border)!important}
+html[data-theme="light"] body header{background:#0F172A!important;color:#F1F5F9!important}
+header p{color:var(--mu-muted)!important}
+.exam-box,.results-box,.review-item,.profile-panel,.profile-stat-card,.student-info-grid>div,.student-profile-card,.custom-exam-book-option,.custom-exam-count-row,.question-search-results,.question-search-item,.firebase-admin-card,.firebase-admin-stat,.firebase-admin-head,.resume-exam-panel,.contact-card,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
+.stat-item,.option-btn,.progress-bar-container,.result-details,.history-item,.student-wrong-item{background:var(--mu-bg)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
+.question-text,.exam-title,.review-question,.detail-value,.profile-identity h3,.profile-panel-heading h3,.firebase-admin-head h2{color:var(--mu-text)!important}
+.stat-label,.detail-label,.review-explanation,.profile-identity p,.profile-panel-heading p,.history-main small,.history-score span,.student-highlight-panel p,.profile-empty,.question-search-source{color:var(--mu-muted)!important}
+.exam-btn.next,.primary-btn,.btn-primary,.cta-button,.firebase-admin-action,.firebase-admin-back{background:var(--mu-blue)!important;color:#fff!important;border-color:var(--mu-blue)!important}
+.exam-btn.next:hover,.primary-btn:hover,.btn-primary:hover,.cta-button:hover,.firebase-admin-action:hover,.firebase-admin-back:hover{background:var(--mu-blue-hover)!important}
+input:not(.book-card input),select:not(.book-card select),textarea:not(.book-card textarea),#search-input{background:var(--mu-card)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important}
+input::placeholder,textarea::placeholder{color:var(--mu-muted)!important}
+.home-category-card[data-home-action],.home-coming-soon{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
+html[data-theme="light"] .home-category-card[data-home-action],html[data-theme="light"] .home-coming-soon{background:#F0F9FF!important;border-color:#E2E8F0!important}
+.home-category-card[data-home-action] strong{color:var(--mu-text)!important}.home-category-card[data-home-action] small{color:var(--mu-muted)!important}
+.home-category-card[data-home-action] i,.home-category-card[data-home-action] b,.home-coming-soon i,.home-coming-soon b,.home-section-heading span,.student-page-header span,.student-page-icon,.profile-stat-card strong,.student-big-score,.history-score strong,.firebase-admin-card-head h3,.firebase-admin-kicker{color:var(--mu-gold)!important}
+.home-category-card[data-home-action] i,.student-page-icon,.account-btn,.firebase-admin-tab{background:rgba(245,158,11,.10)!important;border-color:rgba(245,158,11,.28)!important}
+.home-category-card[data-home-action]:before{background:rgba(245,158,11,.10)!important}
+.mizan-header-tools,.platform-sidebar,.student-sidebar-panel{background:var(--mu-bg)!important;border-color:var(--mu-border)!important}
+.student-sidebar-item{color:var(--mu-text)!important}.student-sidebar-item:hover,.student-sidebar-item.is-active{background:rgba(37,99,235,.12)!important;border-color:rgba(37,99,235,.28)!important;color:var(--mu-text)!important}.student-sidebar-item i{color:var(--mu-gold)!important}
+footer,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
+.footer-bottom,.footer-faq-list summary,.footer-info-content{color:var(--mu-text)!important}.footer-bottom p,.footer-contact-info a,.footer-faq-list p{color:var(--mu-muted)!important}
+.contact-card-whatsapp,.contact-card-telegram,.contact-card-instagram,.contact-card-facebook{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
+/* Book cards, book artwork and chapter visuals intentionally receive no overrides here. */
