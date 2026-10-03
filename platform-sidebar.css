@@ -29,13 +29,13 @@ body.platform-sidebar-open{overflow:hidden}
 
 .platform-sidebar-account{margin-top:12px;padding:12px;border:1px solid var(--mizan-gold-border);border-radius:14px;background:var(--mizan-gold-soft)}
 .platform-sidebar-account-user{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
-.platform-sidebar-account-avatar{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--mizan-gold),#8d6b37);color:#0f172a;font-weight:900}
+.platform-sidebar-account-avatar{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--mizan-gold),#8d6b37);color:var(--mizan-navy);font-weight:900}
 .platform-sidebar-account-user>div:last-child{min-width:0}
 .platform-sidebar-account-user strong,.platform-sidebar-account-user span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .platform-sidebar-account-user strong{font-size:13px;color:#f5f7fa}
 .platform-sidebar-account-user span{font-size:10px;color:#8397a9;margin-top:2px}
 .platform-sidebar-account-action{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;border:1px solid var(--mizan-gold-border);border-radius:10px;background:rgba(255,255,255,.03);color:#d8e0e7;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
-.platform-sidebar-account-action:hover{background:rgba(194,157,95,.09);color:var(--mizan-gold-light);border-color:var(--mizan-gold-border)}
+.platform-sidebar-account-action:hover{background:var(--mizan-gold-soft);color:var(--mizan-gold-light);border-color:var(--mizan-gold-border)}
 .platform-sidebar-account-action[hidden]{display:none !important;}
 
 .platform-sidebar-item[hidden]{display:none !important;}
@@ -45,38 +45,38 @@ body.platform-sidebar-open{overflow:hidden}
 /* ===== Light theme coverage ===== */
 html[data-theme="light"] .platform-sidebar-backdrop{background:rgba(15,23,42,.38)}
 html[data-theme="light"] .platform-sidebar-panel{
-  background:linear-gradient(180deg,#fff,#f5f7fb 72%,#eef2f7);
-  border-left-color:#d8dee8;
+  background:linear-gradient(180deg,var(--mizan-white),#f5f7fb 72%,#eef2f7);
+  border-left-color:var(--mizan-border-light);
   box-shadow:-20px 0 60px rgba(15,23,42,.16);
 }
 html[data-theme="light"] .platform-sidebar-close{
-  background:#f8fafc;border-color:#d8dee8;color:#475467;
+  background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467;
 }
-html[data-theme="light"] .platform-sidebar-brand{border-color:#e2e8f0}
+html[data-theme="light"] .platform-sidebar-brand{border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .platform-sidebar-brand strong{color:#172b45}
 html[data-theme="light"] .platform-sidebar-brand span,
 html[data-theme="light"] .platform-sidebar-item i,
 html[data-theme="light"] .platform-sidebar-note,
-html[data-theme="light"] .platform-sidebar-account-user span{color:#667085}
+html[data-theme="light"] .platform-sidebar-account-user span{color:var(--mizan-muted-light)}
 html[data-theme="light"] .platform-sidebar-item{color:#344054}
-html[data-theme="light"] .platform-sidebar-item:hover{background:#fff8eb;border-color:#ead9b8;color:var(--mizan-gold-text)}
-html[data-theme="light"] .platform-sidebar-item.is-active{background:#fff8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-white)8eb;border-color:#ead9b8;color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
 html[data-theme="light"] .platform-sidebar-note,
-html[data-theme="light"] .platform-sidebar-account{background:#fff;border-color:#e2e8f0}
+html[data-theme="light"] .platform-sidebar-account{background:var(--mizan-white);border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}
-html[data-theme="light"] .platform-sidebar-account-action{background:#f8fafc;border-color:#d8dee8;color:#344054}
-html[data-theme="light"] .platform-sidebar-divider{background:#e2e8f0}
+html[data-theme="light"] .platform-sidebar-account-action{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#344054}
+html[data-theme="light"] .platform-sidebar-divider{background:var(--mizan-text-dark)}
 
 
 
 /* Light theme audit repair */
 html[data-theme="light"] .platform-sidebar-backdrop{background:rgba(15,23,42,.38)}
-html[data-theme="light"] .platform-sidebar-panel{background:linear-gradient(180deg,#fff,#f5f7fb 72%,#eef2f7);border-left-color:#d8dee8;box-shadow:-20px 0 60px rgba(15,23,42,.16)}
-html[data-theme="light"] .platform-sidebar-close{background:#f8fafc;border-color:#d8dee8;color:#475467}
-html[data-theme="light"] .platform-sidebar-brand{border-color:#e2e8f0}html[data-theme="light"] .platform-sidebar-brand strong{color:#172b45}
-html[data-theme="light"] .platform-sidebar-brand span,html[data-theme="light"] .platform-sidebar-item i,html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account-user span{color:#667085}
-html[data-theme="light"] .platform-sidebar-item{color:#344054}html[data-theme="light"] .platform-sidebar-item:hover{background:#fff8eb;border-color:#ead9b8;color:var(--mizan-gold-text)}html[data-theme="light"] .platform-sidebar-item.is-active{background:#fff8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
-html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account{background:#fff;border-color:#e2e8f0}html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}html[data-theme="light"] .platform-sidebar-account-action{background:#f8fafc;border-color:#d8dee8;color:#344054}html[data-theme="light"] .platform-sidebar-divider{background:#e2e8f0}
+html[data-theme="light"] .platform-sidebar-panel{background:linear-gradient(180deg,var(--mizan-white),#f5f7fb 72%,#eef2f7);border-left-color:var(--mizan-border-light);box-shadow:-20px 0 60px rgba(15,23,42,.16)}
+html[data-theme="light"] .platform-sidebar-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467}
+html[data-theme="light"] .platform-sidebar-brand{border-color:var(--mizan-text-dark)}html[data-theme="light"] .platform-sidebar-brand strong{color:#172b45}
+html[data-theme="light"] .platform-sidebar-brand span,html[data-theme="light"] .platform-sidebar-item i,html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account-user span{color:var(--mizan-muted-light)}
+html[data-theme="light"] .platform-sidebar-item{color:#344054}html[data-theme="light"] .platform-sidebar-item:hover{background:var(--mizan-white)8eb;border-color:#ead9b8;color:var(--mizan-gold-text)}html[data-theme="light"] .platform-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:#e4d2ad;color:var(--mizan-gold-text)}
+html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account{background:var(--mizan-white);border-color:var(--mizan-text-dark)}html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}html[data-theme="light"] .platform-sidebar-account-action{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#344054}html[data-theme="light"] .platform-sidebar-divider{background:var(--mizan-text-dark)}
 
 /* Mizan top utility controls — shared container */
 html[data-theme="light"] .mizan-header-tools{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(248,250,252,.92));border-color:rgba(143,107,52,.22);box-shadow:0 10px 30px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.8)}
@@ -87,7 +87,7 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 .mizan-header-tools .platform-menu-trigger{
   display:grid!important;
   place-items:center;
-  border:1px solid rgba(194,157,95,.32)!important;
+  border:1px solid var(--mizan-gold-border)!important;
   border-radius:12px!important;
   background:linear-gradient(145deg,var(--mizan-gold-soft),rgba(255,255,255,.035))!important;
   color:var(--mizan-gold-light)!important;
@@ -101,7 +101,7 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 
 /* App installation prompt — sits above the home search without affecting the header */
 .install-slot{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:0 0 10px;padding:0 2px;position:relative;z-index:2}
-#install-app-btn{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;z-index:2!important;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0!important;padding:7px 11px!important;border:1px solid rgba(194,157,95,.5)!important;border-radius:11px!important;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(25,39,57,.94))!important;color:#e8cf9a!important;box-shadow:0 5px 16px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.06);font:inherit;font-size:11px!important;font-weight:800!important;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#install-app-btn{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;z-index:2!important;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0!important;padding:7px 11px!important;border:1px solid var(--mizan-gold-border)!important;border-radius:11px!important;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(25,39,57,.94))!important;color:#e8cf9a!important;box-shadow:0 5px 16px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.06);font:inherit;font-size:11px!important;font-weight:800!important;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 #install-app-btn:hover{transform:translateY(-1px);border-color:var(--mizan-gold-light)!important}
 #ios-install-hint{position:absolute;top:calc(100% + 7px);right:0;z-index:3;max-width:min(340px,calc(100vw - 24px));margin:0!important;padding:9px 12px!important;border:1px solid var(--mizan-gold-border);border-radius:11px;background:rgba(15,23,42,.96);color:#d8e0e7!important;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:11px!important;line-height:1.7;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 #ios-install-hint strong{color:#e8cf9a}
