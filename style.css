@@ -488,92 +488,39 @@ header {
 /* خط ذهبي دقيق جداً أعلى البطاقة */
 
 
-/* الأزرار: ذهب مطفأ مع إضاءة راقية */
+/* أزرار المنصة — مرتبطة بالنظام المركزي (تصميم غلاف الكتاب مستثنى) */
 .book-card button,
 .card button,
 .start-exam-btn {
   position: relative;
   overflow: hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--mizan-primary-300) 0%,
-      var(--mizan-primary-500) 48%,
-      var(--mizan-primary-700) 100%
-    );
-
-  color: var(--mizan-primary-900);
-
-  border-radius: 13px !important;
-
-  box-shadow:
-    0 7px 16px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255,255,255,0.22);
-
-  text-shadow: none;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+  background: linear-gradient(135deg,var(--mizan-primary-400) 0%,var(--mizan-primary-500) 48%,var(--mizan-primary-600) 100%);
+  color:#FFFFFF;
+  border-radius:13px !important;
+  box-shadow:0 7px 16px rgba(37,99,235,.18),inset 0 1px 0 rgba(255,255,255,.22);
+  text-shadow:none;
+  transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
 }
-
-/* لمعة تمر على الزر */
 .book-card button::before,
 .card button::before,
 .start-exam-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -70%;
-  width: 45%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.22),
-    transparent
-  );
-
-  transform: skewX(-20deg);
-  transition: left 0.55s ease;
-  pointer-events: none;
+  content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
 }
-
 .book-card button:hover,
 .card button:hover,
 .start-exam-btn:hover {
-  background:
-    linear-gradient(
-      135deg,
-      var(--mizan-primary-300) 0%,
-      var(--mizan-primary-500) 50%,
-      var(--mizan-primary-700) 100%
-    );
-
-  filter: brightness(1.04);
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.24),
-    0 0 18px rgba(37,99,235,.14),
-    inset 0 1px 0 rgba(255,255,255,0.28);
+  background:linear-gradient(135deg,var(--mizan-primary-500) 0%,var(--mizan-primary-600) 50%,var(--mizan-primary-700) 100%);
+  filter:brightness(1.04);transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(37,99,235,.24),0 0 18px rgba(37,99,235,.14),inset 0 1px 0 rgba(255,255,255,.28);
 }
-
 .book-card button:hover::before,
 .card button:hover::before,
-.start-exam-btn:hover::before {
-  left: 125%;
-}
-
-/* التركيز بالكيبورد */
+.start-exam-btn:hover::before {left:125%}
 .book-card button:focus-visible,
 .card button:focus-visible,
-.start-exam-btn:focus-visible {
-  outline: 2px solid var(--mizan-primary-400);
-  outline-offset: 3px;
-}
+.start-exam-btn:focus-visible {outline:2px solid var(--mizan-primary-300);outline-offset:3px}
 
 /* البحث بنفس لغة التصميم */
 #search-input {
@@ -924,8 +871,6 @@ header {
   --bk-gold-light: var(--mizan-gold-metal-2);
   --bk-gold-dark: var(--mizan-gold-metal-3);
   --bk-gold-shimmer: var(--mizan-gold-metal-gradient);
-  --bk-btn-gold: var(--mizan-gold-button-gradient);
-  --bk-btn-gold-hover: var(--mizan-gold-button-hover-gradient);
   --bk-paper-cream: var(--mizan-paper-cream);
   --bk-paper-edge: var(--mizan-paper-edge);
   --bk-paper-dark: var(--mizan-paper-dark);
@@ -1200,14 +1145,23 @@ header {
   background: var(--mizan-bg-dark) !important;
 }
 .book-card .test-btn {
-  width: 100% !important; background: var(--mizan-primary-500) !important; color: #FFFFFF !important;
-  font-family: 'Tajawal', sans-serif !important; font-size: 14px !important; font-weight: 800 !important;
-  border: none !important; border-radius: 12px !important; padding: 10px 0 !important; margin-top: 14px !important;
-  cursor: pointer; transition: background 0.2s, transform 0.1s;
-  display: flex !important; justify-content: center !important; align-items: center !important; gap: 6px !important;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.20);
+  width:100% !important;
+  background:var(--mizan-primary-500) !important;
+  color:#FFFFFF !important;
+  font-family:'Tajawal',sans-serif !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  border:1px solid var(--mizan-primary-500) !important;
+  border-radius:12px !important;
+  padding:10px 0 !important;
+  margin-top:14px !important;
+  cursor:pointer;
+  transition:background .2s,transform .1s;
+  display:flex !important;justify-content:center !important;align-items:center !important;gap:6px !important;
+  box-shadow:0 4px 12px rgba(37,99,235,.20) !important;
 }
-.book-card .test-btn:hover { background: var(--mizan-primary-600) !important; color: #FFFFFF !important; }
+.book-card .test-btn:hover {background:var(--mizan-primary-600) !important;color:#FFFFFF !important;}
+
 
 @media (max-width: 480px) {
   .book-card { padding: 14px 6px 12px !important; }
