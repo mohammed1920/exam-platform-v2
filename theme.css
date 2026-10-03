@@ -26,8 +26,8 @@ html[data-theme="light"] {
   color-scheme: light;
 
   /* Legacy variables -> centralized Mizan tokens */
-  --primary: var(--mizan-gold-dark);
-  --primary-hover: var(--mizan-gold-text);
+  --primary: var(--mizan-blue);
+  --primary-hover: var(--mizan-blue-hover);
   --bg-dark: var(--mizan-bg-light);
   --card-bg: var(--mizan-surface-light);
   --text-primary: var(--mizan-text-light);
@@ -45,7 +45,7 @@ html[data-theme="light"] body {
 
 html[data-theme="light"] header {
   position: relative;
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--mizan-white);
   border-bottom-color: var(--mizan-border-light);
   box-shadow: 0 4px 22px rgba(15, 23, 42, 0.06);
 }
@@ -80,12 +80,12 @@ html[data-theme="light"] #search-input::placeholder {
   padding: 0;
   border: 1px solid rgba(194, 157, 95, 0.45);
   border-radius: 13px;
-  background: rgba(15, 23, 42, 0.92);
+  background: var(--mizan-navy);
   color: var(--mizan-gold-light);
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--mizan-shadow-md);
   backdrop-filter: blur(10px);
 }
 
@@ -96,9 +96,9 @@ html[data-theme="light"] #search-input::placeholder {
 
 html[data-theme="light"] #theme-toggle.theme-toggle {
   background: rgba(255, 255, 255, 0.94);
-  color: var(--mizan-gold-dark);
+  color: var(--mizan-gold-text);
   border-color: var(--mizan-border-light);
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 8px 25px rgba(15,23,42,.12);
 }
 
 @media (max-width: 600px) {
@@ -135,7 +135,7 @@ html[data-theme="light"] .option-btn {
 }
 
 html[data-theme="light"] .option-btn:hover:not(:disabled) {
-  background: #fff8eb;
+  background: var(--mizan-gold-pale);
 }
 
 html[data-theme="light"] .exam-home-btn {
@@ -144,7 +144,7 @@ html[data-theme="light"] .exam-home-btn {
 }
 
 html[data-theme="light"] .exam-btn.prev {
-  background: #e4e8ee;
+  background: #E2E8F0;
   color: #344054;
 }
 
@@ -155,7 +155,7 @@ html[data-theme="light"] .exam-btn.prev {
 }
 button,a,input,select,textarea{ -webkit-tap-highlight-color:transparent; }
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
-  outline:2px solid rgba(194,157,95,.72);
+  outline:2px solid var(--mizan-focus);
   outline-offset:3px;
 }
 button:not(:disabled),a{transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease,box-shadow 200ms ease,transform 180ms var(--mizan-ease-out)}
