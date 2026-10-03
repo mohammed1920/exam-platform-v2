@@ -216,3 +216,146 @@ html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *
   --text-secondary:var(--mu-muted);
   --border:var(--mu-border);
 }
+
+
+/* ===== v2.1 contrast + CTA + contact repair ===== */
+
+/* Top utility icons must remain clearly visible in light mode. */
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger,
+html[data-theme="light"] .mizan-header-tools .theme-toggle{
+  background:#FFFFFF!important;
+  color:#0F172A!important;
+  border:1px solid #CBD5E1!important;
+  box-shadow:0 3px 12px rgba(15,23,42,.12),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger i,
+html[data-theme="light"] .mizan-header-tools .theme-toggle i,
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger svg,
+html[data-theme="light"] .mizan-header-tools .theme-toggle svg,
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger .menu-lines i{
+  color:#0F172A!important;
+  background-color:currentColor!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover,
+html[data-theme="light"] .mizan-header-tools .theme-toggle:hover{
+  background:#F1F5F9!important;
+  border-color:#2563EB!important;
+  color:#1D4ED8!important;
+}
+html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover .menu-lines i,
+html[data-theme="light"] .mizan-header-tools .theme-toggle:hover i,
+html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
+  color:#1D4ED8!important;
+  background-color:currentColor!important;
+}
+
+/* Contact cards: restore individual visual identity instead of flattening all
+   cards into one generic surface. */
+.contact-info-grid .contact-card{
+  background:var(--mu-card)!important;
+  color:var(--mu-text)!important;
+  border-width:1px!important;
+}
+html[data-theme="light"] .contact-info-grid .contact-card{
+  box-shadow:0 8px 24px rgba(15,23,42,.06);
+}
+.contact-info-grid .contact-card-whatsapp{
+  border-color:rgba(16,185,129,.38)!important;
+  background:linear-gradient(145deg,#FFFFFF,#F0FDF4)!important;
+}
+.contact-info-grid .contact-card-whatsapp>i{
+  background:#D1FAE5!important;color:#047857!important;
+}
+.contact-info-grid .contact-card-whatsapp .contact-card-action{
+  background:#D1FAE5!important;color:#047857!important;
+}
+.contact-info-grid .contact-card-telegram{
+  border-color:rgba(2,132,199,.34)!important;
+  background:linear-gradient(145deg,#FFFFFF,#F0F9FF)!important;
+}
+.contact-info-grid .contact-card-telegram>i{
+  background:#E0F2FE!important;color:#0369A1!important;
+}
+.contact-info-grid .contact-card-telegram .contact-card-action{
+  background:#E0F2FE!important;color:#0369A1!important;
+}
+.contact-info-grid .contact-card-phone{
+  border-color:#FDE68A!important;
+  background:linear-gradient(145deg,#FFFFFF,#FFFBEB)!important;
+}
+.contact-info-grid .contact-card-phone>i{
+  background:#FEF3C7!important;color:#B45309!important;
+}
+.contact-info-grid .contact-card-email{
+  border-color:#CBD5E1!important;
+  background:linear-gradient(145deg,#FFFFFF,#F8FAFC)!important;
+}
+.contact-info-grid .contact-card-email>i{
+  background:#E2E8F0!important;color:#475569!important;
+}
+.contact-info-grid .contact-card-instagram{
+  border-color:rgba(225,48,108,.28)!important;
+  background:linear-gradient(145deg,#FFFFFF,#FFF1F6)!important;
+}
+.contact-info-grid .contact-card-instagram>i{
+  background:#FCE7F3!important;color:#BE185D!important;
+}
+.contact-info-grid .contact-card-instagram .contact-card-action{
+  background:#FCE7F3!important;color:#BE185D!important;
+}
+.contact-info-grid .contact-card-facebook{
+  border-color:rgba(24,119,242,.28)!important;
+  background:linear-gradient(145deg,#FFFFFF,#EFF6FF)!important;
+}
+.contact-info-grid .contact-card-facebook>i{
+  background:#DBEAFE!important;color:#1D4ED8!important;
+}
+.contact-info-grid .contact-card-facebook .contact-card-action{
+  background:#DBEAFE!important;color:#1D4ED8!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
+  background:linear-gradient(145deg,#172F28,#0F211C)!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
+  background:linear-gradient(145deg,#173247,#0F2433)!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
+  background:linear-gradient(145deg,#3A311B,#251F12)!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-email{
+  background:linear-gradient(145deg,#27313D,#1B2430)!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
+  background:linear-gradient(145deg,#3D2331,#281923)!important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
+  background:linear-gradient(145deg,#172E49,#102238)!important;
+}
+
+/* CTA text: apply the accent/gradient to the complete phrase, not a partial
+   fragment caused by inline background clipping. */
+.home-feature-strip button,
+.home-feature-strip a,
+.home-coming-soon b,
+.home-category-card[data-home-action] b,
+.contact-card-action{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+.home-feature-strip button,
+.home-feature-strip a{
+  background-image:linear-gradient(90deg,#1D4ED8 0%,#2563EB 48%,#0284C7 100%)!important;
+  background-size:100% 100%!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+}
+html:not([data-theme="light"]) .home-feature-strip button,
+html:not([data-theme="light"]) .home-feature-strip a{
+  background-image:linear-gradient(90deg,#60A5FA 0%,#93C5FD 48%,#38BDF8 100%)!important;
+}
