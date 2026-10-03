@@ -430,3 +430,20 @@ input:not(.book-card input),select:not(.book-card select),textarea:not(.book-car
 
 /* Any remaining generic non-book card action */
 .start-exam-btn,.card:not(.book-card) button{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.start-exam-btn:hover,.card:not(.book-card) button:hover{background:var(--mizan-primary-600)!important}
+
+
+/* FINAL BUTTON COLOR LOCK — book artwork excluded */
+.book-card .test-btn,
+.book-card>.test-btn{
+  background:var(--mizan-primary-500)!important;
+  background-image:none!important;
+  color:#FFFFFF!important;
+  border-color:var(--mizan-primary-500)!important;
+  box-shadow:0 7px 16px rgba(37,99,235,.18)!important;
+}
+.book-card .test-btn:hover,
+.book-card>.test-btn:hover{
+  background:var(--mizan-primary-600)!important;
+  background-image:none!important;
+  color:#FFFFFF!important;
+}
