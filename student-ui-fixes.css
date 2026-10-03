@@ -19,7 +19,7 @@ header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 
 .profile-name-editor-row button:disabled { opacity: .6; cursor: wait; }
 .profile-name-editor-message { min-height: 20px; margin: 9px 2px 0; font-size: .88rem; opacity: .8; }
 @media (max-width: 560px) { .account-btn { top: 12px; right: 12px; width: 42px; min-width: 42px; height: 42px; border-radius: 12px; } .account-btn:not(.authenticated) { width: auto; min-width: 92px; padding: 0 11px !important; font-size: 13px !important; } .profile-name-editor { padding: 16px; } .profile-name-editor-row { flex-direction: column; } .profile-name-editor-row button { width: 100%; } }
-.student-sidebar-status .student-sidebar-login { display: inline-block; width: auto; min-height: 0; margin: 0 0 0 4px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #f0c98b; font-size: 12px; }
+.student-sidebar-status .student-sidebar-login { display: inline-block; width: auto; min-height: 0; margin: 0 0 0 4px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--mizan-gold-light); font-size: 12px; }
 .student-sidebar-status .student-sidebar-login:hover { background: transparent; border-color: transparent; transform: none; }
 .student-sidebar-login[hidden], .student-sidebar-logout[hidden] { display: none; }
 
@@ -35,7 +35,7 @@ header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 
 .firebase-admin-head p { margin:0; color:var(--text-secondary,var(--mizan-muted-dark)); font-size:13px; }
 .firebase-admin-action,.firebase-admin-back { border:1px solid var(--mizan-gold-border); border-radius:10px; background:var(--mizan-gold-soft); color:var(--primary,var(--mizan-gold)); padding:9px 14px; font:inherit; font-weight:800; cursor:pointer; }
 .firebase-admin-status { margin:0 0 15px; padding:11px 13px; border-radius:11px; border:1px solid var(--mizan-gold-border); background:var(--mizan-gold-soft); color:var(--primary,var(--mizan-gold)); font-size:13px; }
-.firebase-admin-status.error { border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08); color:#fca5a5; }
+.firebase-admin-status.error { border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08); color:var(--mizan-danger); }
 .firebase-admin-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
 .firebase-admin-stat { padding:16px; border:1px solid rgba(255,255,255,.07); border-radius:15px; background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015)); }
 .firebase-admin-stat span { display:block; color:var(--text-secondary,var(--mizan-muted-dark)); font-size:12px; }
