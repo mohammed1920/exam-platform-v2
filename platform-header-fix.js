@@ -34,7 +34,7 @@
     }
 
     .mizan-header-copy {
-      transform: translateX(6px);
+      transform: translateX(16px);
     }
 
     .mizan-header-logo {
@@ -89,7 +89,7 @@
       .mizan-header { padding: 25px 56px 18px 14px !important; }
       .mizan-header-brand { gap: 5px; min-height: 104px; margin-top: 26px; }
       .mizan-header-identity { gap: 0; }
-      .mizan-header-copy { transform: translateX(4px); }
+      .mizan-header-copy { transform: translateX(12px); }
       .mizan-header-logo { width: 86px; height: 86px; flex-basis: 86px; }
     }
 
@@ -97,7 +97,7 @@
       .mizan-header { padding: 22px 50px 16px 8px !important; }
       .mizan-header-brand { margin-top: 20px; }
       .mizan-header-identity { gap: 0; }
-      .mizan-header-copy { transform: translateX(3px); }
+      .mizan-header-copy { transform: translateX(9px); }
       .mizan-header-logo { width: 70px; height: 70px; flex-basis: 70px; }
       .mizan-header-copy h1 { font-size: 2.3rem; }
       .mizan-header-tagline { font-size: .74rem; }
