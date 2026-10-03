@@ -406,9 +406,9 @@ footer{border-top:1px solid var(--mizan-primary-100);padding:28px 0 20px;backgro
 .home-coming-soon{
   transition:border-color 180ms ease,background 180ms ease,transform 180ms ease;
 }
-.home-coming-soon:hover{border-color:rgba(194,157,95,.26);transform:translateY(-1px)}
+.home-coming-soon:hover{border-color:color-mix(in srgb,var(--mizan-warning-500) 26%,transparent);transform:translateY(-1px)}
 .home-coming-soon b{transition:background 160ms ease,color 160ms ease}
-.home-coming-soon:hover b{background:rgba(194,157,95,.11);color:var(--mizan-primary-300)}
+.home-coming-soon:hover b{background:color-mix(in srgb,var(--mizan-warning-500) 11%,transparent);color:var(--mizan-primary-300)}
 .home-notice{transition:opacity 180ms ease,transform 220ms cubic-bezier(.22,1,.36,1)}
 .search-wrapper{transition:border-color 180ms ease,box-shadow 220ms ease,transform 180ms ease}
 .search-wrapper:focus-within{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
