@@ -218,28 +218,3 @@ html[data-theme="light"] {
 }
 
 
-/* =========================================================
-   Section theme palette — shared identities with light/dark variants
-   ========================================================= */
-:root {
-  --mizan-section-books-accent:#B8A16A; --mizan-section-books-bg:rgba(58,52,39,.62); --mizan-section-books-end:#0C1725;
-  --mizan-section-judicial-accent:#8998A8; --mizan-section-judicial-bg:rgba(45,55,66,.64); --mizan-section-judicial-end:#0C1725;
-  --mizan-section-random-accent:#7896A9; --mizan-section-random-bg:rgba(38,57,69,.64); --mizan-section-random-end:#0C1725;
-  --mizan-section-laws-accent:#7FA493; --mizan-section-laws-bg:rgba(38,58,51,.64); --mizan-section-laws-end:#0C1725;
-  --mizan-section-procedures-accent:#7FA6A7; --mizan-section-procedures-bg:rgba(39,59,61,.64); --mizan-section-procedures-end:#0C1725;
-  --mizan-section-petitions-accent:#B49A72; --mizan-section-petitions-bg:rgba(59,50,39,.64); --mizan-section-petitions-end:#0C1725;
-  --mizan-section-lawyers-accent:#AA7F88; --mizan-section-lawyers-bg:rgba(58,43,48,.64); --mizan-section-lawyers-end:#0C1725;
-  --mizan-section-leaderboard-accent:#789AAA; --mizan-section-leaderboard-bg:rgba(39,55,64,.64); --mizan-section-leaderboard-end:#0C1725;
-  --mizan-section-pulpit-accent:#A28FAE; --mizan-section-pulpit-bg:rgba(54,47,61,.64); --mizan-section-pulpit-end:#0C1725;
-}
-html[data-theme="light"] {
-  --mizan-section-books-accent:#9A6F18; --mizan-section-books-bg:#FFF8E7; --mizan-section-books-end:#FFFDF7;
-  --mizan-section-judicial-accent:#52667D; --mizan-section-judicial-bg:#EEF2F6; --mizan-section-judicial-end:#F8FAFC;
-  --mizan-section-random-accent:#356B91; --mizan-section-random-bg:#EDF6FC; --mizan-section-random-end:#F8FAFC;
-  --mizan-section-laws-accent:#276A55; --mizan-section-laws-bg:#ECF8F3; --mizan-section-laws-end:#F8FCFA;
-  --mizan-section-procedures-accent:#287078; --mizan-section-procedures-bg:#EAF7F8; --mizan-section-procedures-end:#F8FCFC;
-  --mizan-section-petitions-accent:#8A641F; --mizan-section-petitions-bg:#FFF7E8; --mizan-section-petitions-end:#FFFDF8;
-  --mizan-section-lawyers-accent:#7A4352; --mizan-section-lawyers-bg:#FCF0F3; --mizan-section-lawyers-end:#FFFAFB;
-  --mizan-section-leaderboard-accent:#2F6880; --mizan-section-leaderboard-bg:#EDF7FA; --mizan-section-leaderboard-end:#F8FCFD;
-  --mizan-section-pulpit-accent:#6D587B; --mizan-section-pulpit-bg:#F5EFF8; --mizan-section-pulpit-end:#FCF9FD;
-}
