@@ -178,8 +178,18 @@
     updateAccountState();
   }
 
+  function placeAdminTab(){
+    const adminTab=document.getElementById('firebase-admin-tab');
+    const toolsWrap=document.getElementById('mizan-header-tools');
+    const theme=document.getElementById('theme-toggle');
+    if(adminTab && toolsWrap && adminTab.parentElement!==toolsWrap){
+      toolsWrap.insertBefore(adminTab,theme||null);
+    }
+  }
+
   function updateAdminEntry(){
-    const el=document.querySelector('#platform-sidebar .platform-sidebar-admin-item');
+    placeAdminTab();
+    const el=document.getElementById('firebase-admin-tab');
     if(!el) return;
     const admin=window.firebaseAdminPanel && window.firebaseAdminPanel.isAdmin === true;
     el.hidden=!admin;
@@ -231,9 +241,8 @@
       tools.appendChild(menu);
       tools.appendChild(theme);
     }
-    const adminTab=document.getElementById('firebase-admin-tab');
-    const toolsWrap=document.getElementById('mizan-header-tools');
-    if(adminTab && toolsWrap && adminTab.parentElement!==toolsWrap) toolsWrap.insertBefore(adminTab,theme||null);
+    placeAdminTab();
+    updateAdminEntry();
   }
 
   window.addEventListener('public-auth-state-changed',updateAccountState);
