@@ -45,7 +45,7 @@ body.platform-sidebar-open{overflow:hidden}
 /* ===== Light theme coverage ===== */
 html[data-theme="light"] .platform-sidebar-backdrop{background:rgba(15,23,42,.38)}
 html[data-theme="light"] .platform-sidebar-panel{
-  background:linear-gradient(180deg,var(--mizan-white),#f5f7fb 72%,#eef2f7);
+  background:linear-gradient(180deg,var(--mizan-white),var(--mizan-bg-light) 72%,#eef2f7);
   border-left-color:var(--mizan-border-light);
   box-shadow:-20px 0 60px rgba(15,23,42,.16);
 }
@@ -71,7 +71,7 @@ html[data-theme="light"] .platform-sidebar-divider{background:var(--mizan-text-d
 
 /* Light theme audit repair */
 html[data-theme="light"] .platform-sidebar-backdrop{background:rgba(15,23,42,.38)}
-html[data-theme="light"] .platform-sidebar-panel{background:linear-gradient(180deg,var(--mizan-white),#f5f7fb 72%,#eef2f7);border-left-color:var(--mizan-border-light);box-shadow:-20px 0 60px rgba(15,23,42,.16)}
+html[data-theme="light"] .platform-sidebar-panel{background:linear-gradient(180deg,var(--mizan-white),var(--mizan-bg-light) 72%,#eef2f7);border-left-color:var(--mizan-border-light);box-shadow:-20px 0 60px rgba(15,23,42,.16)}
 html[data-theme="light"] .platform-sidebar-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467}
 html[data-theme="light"] .platform-sidebar-brand{border-color:var(--mizan-text-dark)}html[data-theme="light"] .platform-sidebar-brand strong{color:#172b45}
 html[data-theme="light"] .platform-sidebar-brand span,html[data-theme="light"] .platform-sidebar-item i,html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account-user span{color:var(--mizan-muted-light)}
