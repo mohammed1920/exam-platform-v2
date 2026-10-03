@@ -1246,7 +1246,7 @@ header {
 }
 
 
-/* Mizan homepage header */
+/* Mizan homepage header controls */
 .mizan-header > #install-app-btn,
 .mizan-header > #ios-install-hint {
   position: absolute;
@@ -1257,14 +1257,7 @@ header {
 
 @media (max-width: 560px) {
   .mizan-header {
-    min-height: 118px;
-    padding: 9px 50px 13px !important;
-  }
-  .mizan-header-art {
-    width: min(100%, 620px);
-  }
-  .mizan-header-art-image {
-    width: 100%;
+    min-height: 108px;
   }
   .mizan-header > #install-app-btn,
   .mizan-header > #ios-install-hint {
@@ -1289,4 +1282,3 @@ html[data-theme="light"] .question-card .question-label{color:#e8c77f;background
 html[data-theme="light"] .question-card{background:radial-gradient(circle at 15% 0%,rgba(201,164,91,.12),transparent 55%),linear-gradient(155deg,#1f2d45 0%,#19263e 55%,#152137 100%);border-color:rgba(201,164,91,.34)}
 html[data-theme="light"] .chapter-item .chapter-number{color:#1f2937}
 html[data-theme="light"] .chapter-item .chapter-info p{color:#667085}
-
