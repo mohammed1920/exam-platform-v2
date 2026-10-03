@@ -24,8 +24,8 @@ header h1 { padding-inline-start: clamp(92px, 12vw, 150px); padding-inline-end: 
 .student-sidebar-login[hidden], .student-sidebar-logout[hidden] { display: none; }
 
 /* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
-.firebase-admin-tab { position: absolute; top: 16px; right: 72px; min-width: 78px; height: 46px; padding: 0 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid rgba(217,119,6,.42); border-radius: 14px; background: var(--mizan-primary-100); color: var(--primary,var(--mizan-primary-500)); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(0,0,0,.12); z-index: 5; }
-.firebase-admin-tab:hover { background: rgba(217,119,6,.17); transform: translateY(-1px); }
+.firebase-admin-tab { position: absolute; top: 16px; right: 72px; min-width: 78px; height: 46px; padding: 0 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid rgba(37,99,235,.42); border-radius: 14px; background: var(--mizan-primary-100); color: var(--primary,var(--mizan-primary-500)); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(0,0,0,.12); z-index: 5; }
+.firebase-admin-tab:hover { background: rgba(37,99,235,.17); transform: translateY(-1px); }
 .firebase-admin-tab[hidden] { display: none !important; }
 
 .firebase-admin-view { padding: 4px 0 28px; }
