@@ -61,7 +61,9 @@
   --mizan-warning: #F59E0B;
   --mizan-info: #38BDF8;
   --mizan-success-soft: rgba(16,185,129,.10);
+  --mizan-success-border: rgba(16,185,129,.28);
   --mizan-danger-soft: rgba(239,68,68,.10);
+  --mizan-danger-border: rgba(239,68,68,.28);
   --mizan-warning-soft: rgba(245,158,11,.10);
   --mizan-info-soft: rgba(56,189,248,.10);
   --mizan-info-light: #4FC3F7;
