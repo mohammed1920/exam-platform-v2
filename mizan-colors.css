@@ -1,220 +1,144 @@
-/* =========================================================
-   Mizan Color System — مصدر الألوان المركزي
-   كل ألوان الهوية الرئيسية تُعرّف هنا وتُستدعى عبر var().
-   لا نضع ألواناً خاصة بالمكوّنات هنا؛ هذا الملف للـ palette فقط.
-   ========================================================= */
+/* Mizan Legal Platform — Central Color System v2.0
+   Palette supplied by the Mizan design specification.
+   Book artwork tokens remain separate and are intentionally not used by the
+   unified site theme so the existing book design stays unchanged.
+*/
+:root{
+  /* Primary */
+  --mizan-primary-100:#C7DCFE;
+  --mizan-primary-200:#93C5FD;
+  --mizan-primary-300:#60A5FA;
+  --mizan-primary-400:#3B82F6;
+  --mizan-primary-500:#2563EB;
+  --mizan-primary-600:#1D4ED8;
+  --mizan-primary-700:#1E40AF;
+  --mizan-primary-800:#1E3A8A;
+  --mizan-primary-900:#0F172A;
 
-:root {
-  /* Brand */
-  --mizan-navy: #0F172A;
-  --mizan-navy-deep: #09111F;
-  --mizan-white: #FFFFFF;
-  --mizan-ice: #F1F5F9;
+  /* Semantic */
+  --mizan-success-100:#D1FAE5;
+  --mizan-success-200:#A7F3D0;
+  --mizan-success-500:#10B981;
+  --mizan-success-700:#047857;
+  --mizan-warning-100:#FEF3C7;
+  --mizan-warning-200:#FDE68A;
+  --mizan-warning-500:#D97706;
+  --mizan-warning-700:#B45309;
+  --mizan-danger-100:#FEE2E2;
+  --mizan-danger-200:#FECACA;
+  --mizan-danger-500:#EF4444;
+  --mizan-danger-700:#B91C1C;
+  --mizan-info-100:#E0F2FE;
+  --mizan-info-500:#0284C7;
+  --mizan-info-700:#0369A1;
 
-  /* Primary action — Royal Blue */
-  --mizan-blue: #2563EB;
-  --mizan-blue-hover: #1D4ED8;
-  --mizan-blue-soft: rgba(37, 99, 235, .10);
-  --mizan-blue-border: rgba(37, 99, 235, .28);
+  /* Light mode */
+  --mizan-bg-light:#F8FAFC;
+  --mizan-surface-light:#FFFFFF;
+  --mizan-card-light:#FFFFFF;
+  --mizan-border-light:#E2E8F0;
+  --mizan-heading-light:#0F172A;
+  --mizan-section-heading-light:#1E293B;
+  --mizan-text-light:#334155;
+  --mizan-muted-light:#64748B;
+  --mizan-subtle-light:#94A3B8;
 
-  /* Gold / Amber accent */
-  --mizan-gold: #D97706;
-  --mizan-gold-light: #F59E0B;
-  --mizan-gold-pale: #FEF3C7;
-  --mizan-gold-text: #B45309;
-  /* Compatibility alias for older component styles. */
-  --mizan-gold-dark: var(--mizan-gold-text);
-  --mizan-gold-soft: rgba(217, 119, 6, .10);
-  --mizan-gold-border: rgba(217, 119, 6, .28);
+  /* Dark mode */
+  --mizan-bg-dark:#0F172A;
+  --mizan-surface-dark:#1E293B;
+  --mizan-card-dark:#1E293B;
+  --mizan-border-dark:#334155;
+  --mizan-heading-dark:#F8FAFC;
+  --mizan-section-heading-dark:#E2E8F0;
+  --mizan-text-dark:#CBD5E1;
+  --mizan-muted-dark:#94A3B8;
+  --mizan-subtle-dark:#64748B;
 
-  /* Light theme */
-  --mizan-bg-light: #F8FAFC;
-  --mizan-card-light: #F0F9FF;
-  --mizan-surface-light: #FFFFFF;
-  --mizan-surface-2-light: #F8FAFC;
-  --mizan-border-light: #E2E8F0;
-  --mizan-heading-light: #0F172A;
-  --mizan-text-light: #334155;
-  --mizan-muted-light: #64748B;
+  /* Theme-facing aliases */
+  --mizan-bg:var(--mizan-bg-dark);
+  --mizan-surface:var(--mizan-surface-dark);
+  --mizan-card:var(--mizan-card-dark);
+  --mizan-border:var(--mizan-border-dark);
+  --mizan-heading:var(--mizan-heading-dark);
+  --mizan-section-heading:var(--mizan-section-heading-dark);
+  --mizan-text:var(--mizan-text-dark);
+  --mizan-muted:var(--mizan-muted-dark);
+  --mizan-subtle:var(--mizan-subtle-dark);
 
-  /* Dark theme */
-  --mizan-bg-dark: #0F172A;
-  --mizan-card-dark: #1E293B;
-  --mizan-surface-dark: #1E293B;
-  --mizan-surface-2-dark: #172B45;
-  --mizan-border-dark: #334155;
-  --mizan-heading-dark: #F8FAFC;
-  --mizan-text-dark: #E2E8F0;
-  --mizan-muted-dark: #94A3B8;
+  /* Legacy aliases */
+  --mizan-navy:var(--mizan-primary-900);
+  --mizan-navy-deep:#020617;
+  --mizan-white:#FFFFFF;
+  --mizan-ice:#F1F5F9;
+  --mizan-blue:var(--mizan-primary-500);
+  --mizan-blue-hover:var(--mizan-primary-600);
+  --mizan-blue-soft:rgba(37,99,235,.10);
+  --mizan-blue-border:rgba(37,99,235,.28);
+  --mizan-success:var(--mizan-success-500);
+  --mizan-danger:var(--mizan-danger-500);
+  --mizan-warning:var(--mizan-warning-500);
+  --mizan-info:var(--mizan-info-500);
+  --mizan-error:var(--mizan-danger-500);
+  --mizan-focus:rgba(37,99,235,.72);
+  --primary:var(--mizan-primary-500);
+  --primary-hover:var(--mizan-primary-600);
+  --bg-dark:var(--mizan-bg);
+  --card-bg:var(--mizan-card);
+  --text-primary:var(--mizan-heading);
+  --text-secondary:var(--mizan-muted);
+  --border:var(--mizan-border);
+  --success:var(--mizan-success-500);
+  --error:var(--mizan-danger-500);
+  --header-bg:var(--mizan-primary-900);
 
-  /* Social / channel colors */
-  --mizan-whatsapp: var(--mizan-blue);
-  --mizan-telegram: var(--mizan-blue);
-  --mizan-instagram: var(--mizan-gold);
-  --mizan-facebook: var(--mizan-blue);
+  /* Keep existing metallic/book-only artwork untouched. */
+  --mizan-gold-metal-1:#D4AF37;
+  --mizan-gold-metal-2:#FFF0AA;
+  --mizan-gold-metal-3:#AA820A;
+  --mizan-gold-metal-4:#BF953F;
+  --mizan-gold-metal-5:#FCF6BA;
+  --mizan-gold-metal-6:#B38728;
+  --mizan-gold-metal-7:#FBF5B7;
+  --mizan-gold-metal-8:#AA771C;
+  --mizan-gold-metal-gradient:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);
+  --mizan-gold-button-gradient:linear-gradient(180deg,#E5BE6B 0%,#BA8E31 100%);
+  --mizan-gold-button-hover-gradient:linear-gradient(180deg,#F0CC7B 0%,#CA9B3B 100%);
+  --mizan-paper-cream:#F4EAAD;
+  --mizan-paper-edge:#D8C382;
+  --mizan-paper-dark:#B8A05C;
+  --mizan-book-blue-1:#182842;
+  --mizan-book-blue-2:#0A1324;
+  --mizan-book-blue-3:#040914;
+  --mizan-book-blue-spine-1:#03070F;
+  --mizan-book-blue-spine-2:#111E33;
+  --mizan-book-blue-spine-3:#1D3254;
+  --mizan-book-blue-spine-4:#0F1A2C;
 
-  /* Semantic states */
-  --mizan-success: #10B981;
-  --mizan-success-dark: #059669;
-  --mizan-danger: #EF4444;
-  --mizan-danger-dark: #DC2626;
-  --mizan-warning: #F59E0B;
-  --mizan-info: #38BDF8;
-  --mizan-success-soft: rgba(16,185,129,.10);
-  --mizan-success-border: rgba(16,185,129,.28);
-  --mizan-danger-soft: rgba(239,68,68,.10);
-  --mizan-danger-border: rgba(239,68,68,.28);
-  --mizan-warning-soft: rgba(245,158,11,.10);
-  --mizan-info-soft: rgba(56,189,248,.10);
-  --mizan-info-light: #4FC3F7;
-  --mizan-focus: rgba(217,119,6,.72);
-  --mizan-info-light: #4FC3F7;
-  --mizan-focus: rgba(217,119,6,.72);
-
-  /* Compatibility aliases for the original design-token palette. */
-  --mizan-navy-950: var(--mizan-navy-deep);
-  --mizan-navy-900: var(--mizan-navy);
-  --mizan-navy-850: #101D2D;
-  --mizan-navy-800: #172B45;
-  --mizan-slate-800: var(--mizan-card-dark);
-  --mizan-slate-700: var(--mizan-border-dark);
-  --mizan-text-soft: var(--mizan-text-dark);
-  --mizan-text-muted: var(--mizan-muted-dark);
-  --mizan-text-subtle: #7F93A4;
-  --mizan-error: var(--mizan-danger);
-  --mizan-light-bg: var(--mizan-bg-light);
-  --mizan-light-surface: var(--mizan-surface-light);
-  --mizan-light-surface-2: var(--mizan-surface-2-light);
-  --mizan-light-border: var(--mizan-border-light);
-  --mizan-light-text: var(--mizan-text-light);
-  --mizan-light-muted: var(--mizan-muted-light);
-  --mizan-border-soft: rgba(255,255,255,.07);
-  --mizan-shadow-sm: 0 4px 15px rgba(0,0,0,.14);
-  --mizan-shadow-md: 0 12px 35px rgba(0,0,0,.16);
-  --mizan-shadow-lg: 0 18px 50px rgba(0,0,0,.24);
-
-  /* Theme-facing semantic tokens */
-  --mizan-bg: var(--mizan-bg-dark);
-  --mizan-card: var(--mizan-card-dark);
-  --mizan-surface: var(--mizan-surface-dark);
-  --mizan-surface-2: var(--mizan-surface-2-dark);
-  --mizan-border: var(--mizan-border-dark);
-  --mizan-heading: var(--mizan-heading-dark);
-  --mizan-text: var(--mizan-text-dark);
-  --mizan-muted: var(--mizan-muted-dark);
-
-  /* Legacy aliases — kept temporarily so existing components
-     automatically inherit the centralized palette. */
-  --primary: var(--mizan-blue);
-  --primary-hover: var(--mizan-blue-hover);
-  --bg-dark: var(--mizan-bg);
-  --card-bg: var(--mizan-card);
-  --text-primary: var(--mizan-heading);
-  --text-secondary: var(--mizan-muted);
-  --border: var(--mizan-border);
-  --success: var(--mizan-success);
-  --error: var(--mizan-danger);
-  --header-bg: rgba(15, 23, 42, .92);
-  --gold-light: var(--mizan-gold-light);
-  --gold-soft: var(--mizan-gold-soft);
+  --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
+  --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
+  --mizan-shadow-lg:0 18px 50px rgba(0,0,0,.24);
 }
-
-html[data-theme="light"] {
-  --mizan-bg: var(--mizan-bg-light);
-  --mizan-card: var(--mizan-card-light);
-  --mizan-surface: var(--mizan-surface-light);
-  --mizan-surface-2: var(--mizan-surface-2-light);
-  --mizan-border: var(--mizan-border-light);
-  --mizan-heading: var(--mizan-heading-light);
-  --mizan-text: var(--mizan-text-light);
-  --mizan-muted: var(--mizan-muted-light);
-
-  --primary: var(--mizan-blue);
-  --primary-hover: var(--mizan-blue-hover);
-  --bg-dark: var(--mizan-bg);
-  --card-bg: var(--mizan-surface-light);
-  --text-primary: var(--mizan-heading);
-  --text-secondary: var(--mizan-muted);
-  --border: var(--mizan-border);
-  --header-bg: rgba(255, 255, 255, .94);
+html[data-theme="light"]{
+  --mizan-bg:var(--mizan-bg-light);
+  --mizan-surface:var(--mizan-surface-light);
+  --mizan-card:var(--mizan-card-light);
+  --mizan-border:var(--mizan-border-light);
+  --mizan-heading:var(--mizan-heading-light);
+  --mizan-section-heading:var(--mizan-section-heading-light);
+  --mizan-text:var(--mizan-text-light);
+  --mizan-muted:var(--mizan-muted-light);
+  --mizan-subtle:var(--mizan-subtle-light);
+  --primary:var(--mizan-primary-500);
+  --primary-hover:var(--mizan-primary-600);
+  --bg-dark:var(--mizan-bg-light);
+  --card-bg:var(--mizan-surface-light);
+  --text-primary:var(--mizan-heading-light);
+  --text-secondary:var(--mizan-muted-light);
+  --border:var(--mizan-border-light);
+  --header-bg:var(--mizan-primary-900);
 }
-
-/* Shared functional color helpers */
-.mizan-primary-color { color: var(--mizan-blue); }
-.mizan-gold-color { color: var(--mizan-gold); }
-.mizan-success-color { color: var(--mizan-success); }
-.mizan-danger-color { color: var(--mizan-danger); }
-
-
-/* =========================================================
-   Decorative / metallic palette
-   These tokens preserve intentional decorative gradients while keeping
-   their values editable from one central color file.
-   ========================================================= */
-:root {
-  --mizan-gold-metal-1: #D4AF37;
-  --mizan-gold-metal-2: #FFF0AA;
-  --mizan-gold-metal-3: #AA820A;
-  --mizan-gold-metal-4: #BF953F;
-  --mizan-gold-metal-5: #FCF6BA;
-  --mizan-gold-metal-6: #B38728;
-  --mizan-gold-metal-7: #FBF5B7;
-  --mizan-gold-metal-8: #AA771C;
-  --mizan-gold-metal-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-  --mizan-gold-button-gradient: linear-gradient(180deg, #E5BE6B 0%, #BA8E31 100%);
-  --mizan-gold-button-hover-gradient: linear-gradient(180deg, #F0CC7B 0%, #CA9B3B 100%);
-  --mizan-paper-cream: #F4EAAD;
-  --mizan-paper-edge: #D8C382;
-  --mizan-paper-dark: #B8A05C;
-  --mizan-book-blue-1: #182842;
-  --mizan-book-blue-2: #0A1324;
-  --mizan-book-blue-3: #040914;
-  --mizan-book-blue-spine-1: #03070F;
-  --mizan-book-blue-spine-2: #111E33;
-  --mizan-book-blue-spine-3: #1D3254;
-  --mizan-book-blue-spine-4: #0F1A2C;
-}
-
-
-/* =========================================================
-   Component / legacy visual tokens
-   Exact values retained for existing decorative UI.
-   ========================================================= */
-:root {
-  --mizan-text-soft-legacy: var(--mizan-text);
-  --mizan-text-strong-legacy: var(--mizan-heading);
-  --mizan-gold-muted: var(--mizan-gold);
-  --mizan-gold-antique: var(--mizan-gold-text);
-  --mizan-gold-deep: var(--mizan-gold-text);
-  --mizan-gold-paper: var(--mizan-border);
-  --mizan-gold-paper-light: var(--mizan-gold-pale);
-  --mizan-green-alt: var(--mizan-blue);
-  --mizan-red-alt: var(--mizan-gold);
-  --mizan-blue-pale: var(--mizan-card-light);
-  --mizan-blue-border-pale: var(--mizan-blue);
-  --mizan-info-link: var(--mizan-blue);
-  --mizan-purple-soft: var(--mizan-gold-pale);
-  --mizan-pink-soft: var(--mizan-gold-pale);
-  --mizan-cyan-soft: var(--mizan-blue);
-  --mizan-white-soft: rgba(255,255,255,.07);
-  --mizan-black-soft: rgba(0,0,0,.16);
-}
-
-
-/* =========================================================
-   Component compatibility / legacy neutrals
-   ========================================================= */
-:root {
-  --mizan-ink-soft: var(--mizan-bg-dark);
-  --mizan-ink-deep: var(--mizan-bg-dark);
-  --mizan-slate-900: var(--mizan-bg-dark);
-  --mizan-slate-blue: var(--mizan-card-dark);
-  --mizan-slate-blue-deep: var(--mizan-bg-dark);
-  --mizan-text-dim-blue: var(--mizan-muted);
-  --mizan-text-muted-blue: var(--mizan-muted);
-  --mizan-text-light-blue: var(--mizan-text-dark);
-  --mizan-paper-white: var(--mizan-card-light);
-  --mizan-gold-pale-text: var(--mizan-gold-light);
-}
-
-
+.mizan-primary-color{color:var(--mizan-primary-500)}
+.mizan-success-color{color:var(--mizan-success-500)}
+.mizan-danger-color{color:var(--mizan-danger-500)}
+.mizan-warning-color{color:var(--mizan-warning-500)}
+.mizan-info-color{color:var(--mizan-info-500)}
