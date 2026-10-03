@@ -1,4 +1,4 @@
-/* Mizan Unified Theme — one palette across the site; book artwork is excluded. */
+/* Mizan Unified Theme v1.1 — one palette across the site; book artwork is excluded. */
 :root{--mu-bg:#0F172A;--mu-card:#1E293B;--mu-border:#334155;--mu-text:#E2E8F0;--mu-muted:#94A3B8;--mu-blue:#1E40AF;--mu-blue-hover:#2563EB;--mu-gold:#F59E0B}
 html[data-theme="light"]{--mu-bg:#F8FAFC;--mu-card:#F0F9FF;--mu-border:#E2E8F0;--mu-text:#334155;--mu-muted:#64748B;--mu-blue:#2563EB;--mu-blue-hover:#1D4ED8;--mu-gold:#D97706}
 html body{background:var(--mu-bg)!important;color:var(--mu-text)!important}
@@ -45,3 +45,10 @@ footer,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!impor
 .mizan-pulpit-hero h1,.mizan-article-card h3,.mizan-modal-head h2{color:var(--mu-text)!important}
 .lawyers-hero p,.lawyer-card-location,.lawyer-card-office,.lawyer-details-section,.petition-status,.mizan-article-meta,.mizan-form-help{color:var(--mu-muted)!important}
 .lawyer-verified,.lawyer-tags,.petition-status,.mizan-pulpit-kicker,.mizan-article-meta{border-color:var(--mu-border)!important}
+
+/* Force legacy component tokens into the same unified palette. */
+html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *){
+  --primary:var(--mu-blue);
+  --primary-hover:var(--mu-blue-hover);
+  --border:var(--mu-border);
+}
