@@ -359,3 +359,74 @@ html:not([data-theme="light"]) .home-feature-strip button,
 html:not([data-theme="light"]) .home-feature-strip a{
   background-image:linear-gradient(90deg,#60A5FA 0%,#93C5FD 48%,#38BDF8 100%)!important;
 }
+
+
+/* ================================================================
+   MIZAN CENTRAL PALETTE ENFORCEMENT v3.0
+   Non-book UI only. The internal 3-D book artwork remains untouched.
+   ================================================================ */
+html body{background:var(--mizan-bg)!important;color:var(--mizan-text)!important}
+
+/* Home */
+.home-category-card,.home-category-card.featured,.home-coming-soon,.home-feature-strip>div{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}
+.home-category-card:before{background:var(--mizan-primary-100)!important}
+.home-category-card i{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-700)!important}
+.home-category-card strong,.home-category-card b,.home-feature-strip strong{color:var(--mizan-heading)!important}
+.home-category-card small,.home-feature-strip small{color:var(--mizan-muted)!important}
+.home-category-card b,.home-section-heading span,.home-feature-strip i{color:var(--mizan-primary-500)!important}
+.home-feature-strip button{color:var(--mizan-primary-600)!important}
+.home-category-card:hover,.home-feature-strip>div:hover{border-color:var(--mizan-primary-400)!important}
+
+/* Book card shell + metadata/actions only; .stage/.book artwork is excluded. */
+.book-card{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}
+.book-card>.card-title{color:var(--mizan-heading)!important}
+.book-card>.card-author{color:var(--mizan-muted)!important}
+.book-card>.book-stats .book-stat-badge{background:var(--mizan-bg)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}
+.book-card>.book-stats .book-stat-icon{color:var(--mizan-primary-500)!important}
+.book-card>.book-stats .book-stat-value{color:var(--mizan-heading)!important}
+.book-card>.book-stats .book-stat-label{color:var(--mizan-muted)!important}
+.book-card>.test-btn{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important;box-shadow:0 7px 16px rgba(37,99,235,.18)!important}
+.book-card>.test-btn:hover{background:var(--mizan-primary-600)!important;color:#FFFFFF!important}
+
+/* Chapters */
+.chapter-item{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important;box-shadow:var(--mizan-shadow-sm)!important}
+.chapter-item:hover{border-color:var(--mizan-primary-400)!important;box-shadow:var(--mizan-shadow-md)!important}
+.chapter-number{color:var(--mizan-heading)!important}.chapter-number::before{background:var(--mizan-primary-500)!important}.chapter-info p{color:var(--mizan-muted)!important}
+.chapter-start-btn{background:linear-gradient(145deg,var(--mizan-primary-600),var(--mizan-primary-500))!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.chapter-start-btn:hover{background:var(--mizan-primary-700)!important}
+
+/* Exam / question UI */
+.question-card{background:var(--mizan-card)!important;border-color:var(--mizan-border)!important;box-shadow:var(--mizan-shadow-md)!important}.question-card .question-text{color:var(--mizan-heading)!important;text-shadow:none!important}.question-label{color:var(--mizan-primary-700)!important;background:var(--mizan-primary-100)!important;border-color:var(--mizan-primary-200)!important}
+.exam-home-btn{border-color:var(--mizan-border)!important;color:var(--mizan-muted)!important}.exam-home-btn:hover{border-color:var(--mizan-primary-500)!important;color:var(--mizan-primary-600)!important}
+.share-question-btn{border-color:var(--mizan-primary-500)!important;color:var(--mizan-primary-600)!important}.share-question-btn:hover:not(:disabled){background:var(--mizan-primary-500)!important;color:#FFFFFF!important}
+.option-btn{border-color:var(--mizan-border)!important}.option-btn:hover:not(:disabled){border-color:var(--mizan-primary-500)!important;background:var(--mizan-primary-100)!important}.option-btn.correct{background:var(--mizan-success-100)!important;border-color:var(--mizan-success-500)!important;color:var(--mizan-success-700)!important}.option-btn.incorrect{background:var(--mizan-danger-100)!important;border-color:var(--mizan-danger-500)!important;color:var(--mizan-danger-700)!important}
+
+/* Random exam + search */
+.custom-exam-entry-btn,.custom-exam-start-btn{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.custom-exam-entry-btn:hover,.custom-exam-start-btn:hover{background:var(--mizan-primary-600)!important}
+.custom-exam-title,.question-search-header{color:var(--mizan-primary-600)!important}.custom-exam-desc,.question-search-loading,.question-search-source,.custom-exam-book-option small{color:var(--mizan-muted)!important}
+.custom-exam-book-option,.custom-exam-count-row,.question-search-results{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.custom-exam-count-row input{background:var(--mizan-bg)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.question-search-item{border-color:var(--mizan-border)!important;color:var(--mizan-text)!important}.question-search-item:active{background:var(--mizan-primary-100)!important}
+
+/* Contact */
+.contact-box{background:var(--mizan-card)!important;border-color:var(--mizan-border)!important}.contact-heading span{color:var(--mizan-primary-500)!important}.contact-heading h2{color:var(--mizan-heading)!important}.contact-heading p{color:var(--mizan-muted)!important}
+.contact-info-grid .contact-card{color:var(--mizan-text)!important;background:var(--mizan-card)!important;border-color:var(--mizan-border)!important}.contact-info-grid .contact-card>i{background:var(--mizan-info-100)!important;color:var(--mizan-info-700)!important}.contact-info-grid .contact-card .contact-card-action{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-700)!important}.contact-info-grid .contact-card:hover{background:var(--mizan-bg)!important;border-color:var(--mizan-primary-300)!important}.contact-info-grid .contact-card strong{color:var(--mizan-heading)!important}.contact-info-grid .contact-card small{color:var(--mizan-muted)!important}
+.contact-info-grid .contact-card-whatsapp>i,.contact-info-grid .contact-card-whatsapp .contact-card-action{background:var(--mizan-success-100)!important;color:var(--mizan-success-700)!important}.contact-info-grid .contact-card-phone>i,.contact-info-grid .contact-card-phone .contact-card-action{background:var(--mizan-warning-100)!important;color:var(--mizan-warning-700)!important}.contact-info-grid .contact-card-email>i,.contact-info-grid .contact-card-email .contact-card-action,.contact-info-grid .contact-card-instagram>i,.contact-info-grid .contact-card-instagram .contact-card-action,.contact-info-grid .contact-card-facebook>i,.contact-info-grid .contact-card-facebook .contact-card-action{background:var(--mizan-info-100)!important;color:var(--mizan-info-700)!important}
+
+/* Lawyers */
+.lawyers-section,.lawyers-hero,.lawyers-toolbar,.lawyers-apply-panel,.lawyer-card,.lawyer-details-dialog,.lawyer-my-application{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.lawyers-hero>span,.lawyer-form-head span{color:var(--mizan-primary-500)!important}.lawyers-hero p,.lawyer-form-head p,.lawyer-card-location,.lawyer-card-office,.lawyer-details-section{color:var(--mizan-muted)!important}.lawyers-search input,.lawyer-form input,.lawyer-form select,.lawyer-form textarea{background:var(--mizan-bg)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.lawyers-primary-btn,.lawyer-details-link,.lawyer-identity-btn{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.lawyers-primary-btn:hover,.lawyer-details-link:hover{background:var(--mizan-primary-600)!important}
+
+/* Petitions */
+.petitions-shell,.petitions-hero,.petition-builder-head,.petition-tools,.petition-template-card,.petition-form-panel,.petition-preview-panel{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.petitions-hero span,.petition-builder-head span,.petition-tools label i{color:var(--mizan-primary-500)!important}.petitions-hero p,.petition-builder-head p,.petition-tools>span,.petition-template-card span{color:var(--mizan-muted)!important}.petition-template-icon{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-700)!important}.petition-tools label,.petition-fields input,.petition-fields select,.petition-fields textarea{background:var(--mizan-bg)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.petition-primary{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.petition-primary:hover{background:var(--mizan-primary-600)!important}
+
+/* Pulpit */
+.mizan-pulpit-section,.mizan-pulpit-hero,.mizan-pulpit-toolbar,.mizan-article-card,.mizan-modal-box,.mizan-article-modal-box,.mizan-profile-modal-box{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.mizan-pulpit-hero:after{color:var(--mizan-primary-100)!important}.mizan-pulpit-kicker{color:var(--mizan-primary-500)!important}.mizan-pulpit-hero p,.mizan-pulpit-toolbar span,.mizan-article-meta{color:var(--mizan-muted)!important}.mizan-pulpit-primary,.mizan-read-btn,.mizan-form-submit{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.mizan-pulpit-primary:hover,.mizan-read-btn:hover,.mizan-form-submit:hover{background:var(--mizan-primary-600)!important}.mizan-pulpit-secondary{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-700)!important;border-color:var(--mizan-primary-200)!important}.mizan-article-card h3{color:var(--mizan-heading)!important}
+
+/* Footer + information pages */
+html body footer{background:var(--mizan-primary-900)!important;color:var(--mizan-subtle-light)!important;border-color:var(--mizan-section-heading-dark)!important}footer a{color:#CBD5E1!important}footer a:hover{color:#38BDF8!important}.footer-info-box,.footer-faq-list details{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.footer-info-heading span{color:var(--mizan-primary-500)!important}.footer-info-heading h2{color:var(--mizan-heading)!important}.footer-info-content,.footer-faq-list summary{color:var(--mizan-text)!important}.footer-info-content p,.footer-faq-list p{color:var(--mizan-muted)!important}
+
+/* Sidebar */
+.platform-sidebar-panel{background:var(--mizan-surface)!important;border-color:var(--mizan-border)!important}.platform-sidebar-backdrop{background:rgba(15,23,42,.62)!important}.platform-sidebar-close{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.platform-sidebar-brand strong{color:var(--mizan-heading)!important}.platform-sidebar-brand span{color:var(--mizan-muted)!important}.platform-sidebar-heading{color:var(--mizan-primary-500)!important}.platform-sidebar-item{color:var(--mizan-text)!important;border-color:transparent!important}.platform-sidebar-item:hover,.platform-sidebar-item.active{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-800)!important;border-color:var(--mizan-primary-200)!important}.platform-sidebar-item i{color:var(--mizan-primary-500)!important}
+
+/* Forms */
+input:not(.book-card input),select:not(.book-card select),textarea:not(.book-card textarea),.contact-form input,.contact-form textarea,.contact-form select{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}input:not(.book-card input):focus,select:not(.book-card select):focus,textarea:not(.book-card textarea):focus{border-color:var(--mizan-primary-500)!important;box-shadow:0 0 0 3px rgba(37,99,235,.12)!important;outline:none!important}input::placeholder,textarea::placeholder{color:var(--mizan-muted)!important}
+
+/* Any remaining generic non-book card action */
+.start-exam-btn,.card:not(.book-card) button{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.start-exam-btn:hover,.card:not(.book-card) button:hover{background:var(--mizan-primary-600)!important}
