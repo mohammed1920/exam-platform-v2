@@ -22,7 +22,7 @@
 
 
 /* Final lawsuit letterhead v2 */
-.petition-a4.is-branded{padding:12mm 14mm 17mm!important;background:var(--mizan-white)df8!important}
+.petition-a4.is-branded{padding:12mm 14mm 17mm!important;background:var(--mizan-white)!important}
 .petition-letterhead{
   display:grid!important;
   grid-template-columns:minmax(0,1fr) 34mm minmax(0,1fr)!important;
