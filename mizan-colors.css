@@ -1,0 +1,106 @@
+/* =========================================================
+   Mizan Color System — مصدر الألوان المركزي
+   كل ألوان الهوية الرئيسية تُعرّف هنا وتُستدعى عبر var().
+   لا نضع ألواناً خاصة بالمكوّنات هنا؛ هذا الملف للـ palette فقط.
+   ========================================================= */
+
+:root {
+  /* Brand */
+  --mizan-navy: #0F172A;
+  --mizan-navy-deep: #09111F;
+  --mizan-white: #FFFFFF;
+  --mizan-ice: #F1F5F9;
+
+  /* Primary action — Royal Blue */
+  --mizan-blue: #2563EB;
+  --mizan-blue-hover: #1D4ED8;
+  --mizan-blue-soft: rgba(37, 99, 235, .10);
+  --mizan-blue-border: rgba(37, 99, 235, .28);
+
+  /* Gold / Amber accent */
+  --mizan-gold: #D97706;
+  --mizan-gold-light: #F59E0B;
+  --mizan-gold-pale: #FEF3C7;
+  --mizan-gold-text: #B45309;
+  --mizan-gold-soft: rgba(217, 119, 6, .10);
+  --mizan-gold-border: rgba(217, 119, 6, .28);
+
+  /* Light theme */
+  --mizan-bg-light: #F8FAFC;
+  --mizan-card-light: #F0F9FF;
+  --mizan-surface-light: #FFFFFF;
+  --mizan-surface-2-light: #F8FAFC;
+  --mizan-border-light: #E2E8F0;
+  --mizan-heading-light: #0F172A;
+  --mizan-text-light: #334155;
+  --mizan-muted-light: #64748B;
+
+  /* Dark theme */
+  --mizan-bg-dark: #0F172A;
+  --mizan-card-dark: #1E293B;
+  --mizan-surface-dark: #1E293B;
+  --mizan-surface-2-dark: #172B45;
+  --mizan-border-dark: #334155;
+  --mizan-heading-dark: #F8FAFC;
+  --mizan-text-dark: #E2E8F0;
+  --mizan-muted-dark: #94A3B8;
+
+  /* Semantic states */
+  --mizan-success: #10B981;
+  --mizan-success-dark: #059669;
+  --mizan-danger: #EF4444;
+  --mizan-danger-dark: #DC2626;
+  --mizan-warning: #F59E0B;
+  --mizan-info: #38BDF8;
+
+  /* Theme-facing semantic tokens */
+  --mizan-bg: var(--mizan-bg-dark);
+  --mizan-card: var(--mizan-card-dark);
+  --mizan-surface: var(--mizan-surface-dark);
+  --mizan-surface-2: var(--mizan-surface-2-dark);
+  --mizan-border: var(--mizan-border-dark);
+  --mizan-heading: var(--mizan-heading-dark);
+  --mizan-text: var(--mizan-text-dark);
+  --mizan-muted: var(--mizan-muted-dark);
+
+  /* Legacy aliases — kept temporarily so existing components
+     automatically inherit the centralized palette. */
+  --primary: var(--mizan-blue);
+  --primary-hover: var(--mizan-blue-hover);
+  --bg-dark: var(--mizan-bg);
+  --card-bg: var(--mizan-card);
+  --text-primary: var(--mizan-heading);
+  --text-secondary: var(--mizan-muted);
+  --border: var(--mizan-border);
+  --success: var(--mizan-success);
+  --error: var(--mizan-danger);
+  --header-bg: rgba(15, 23, 42, .92);
+  --gold-light: var(--mizan-gold-light);
+  --gold-soft: var(--mizan-gold-soft);
+}
+
+html[data-theme="light"] {
+  --mizan-bg: var(--mizan-bg-light);
+  --mizan-card: var(--mizan-card-light);
+  --mizan-surface: var(--mizan-surface-light);
+  --mizan-surface-2: var(--mizan-surface-2-light);
+  --mizan-border: var(--mizan-border-light);
+  --mizan-heading: var(--mizan-heading-light);
+  --mizan-text: var(--mizan-text-light);
+  --mizan-muted: var(--mizan-muted-light);
+
+  --primary: var(--mizan-blue);
+  --primary-hover: var(--mizan-blue-hover);
+  --bg-dark: var(--mizan-bg);
+  --card-bg: var(--mizan-surface-light);
+  --text-primary: var(--mizan-heading);
+  --text-secondary: var(--mizan-muted);
+  --border: var(--mizan-border);
+  --header-bg: rgba(255, 255, 255, .94);
+}
+
+/* Shared functional color helpers */
+.mizan-primary-color { color: var(--mizan-blue); }
+.mizan-gold-color { color: var(--mizan-gold); }
+.mizan-success-color { color: var(--mizan-success); }
+.mizan-danger-color { color: var(--mizan-danger); }
