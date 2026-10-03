@@ -354,17 +354,6 @@ footer{border-top:1px solid var(--mizan-gold-soft);padding:28px 0 20px;backgroun
 .home-category-card[data-home-action="mizan-pulpit"] i{background:rgba(162,143,174,.10);color:#b7a8bf}.home-category-card[data-home-action="mizan-pulpit"] b{color:#b7a8bf}
 
 
-/* ألوان هادئة للأقسام القادمة */
-.home-coming-soon:nth-child(1){border-color:rgba(137,152,168,.18);background:linear-gradient(145deg,rgba(45,55,66,.58),rgba(12,23,37,.92))}
-.home-coming-soon:nth-child(1) i{background:rgba(137,152,168,.08);color:#9aa9b7}
-.home-coming-soon:nth-child(1) b{border-color:rgba(137,152,168,.18);background:rgba(137,152,168,.06);color:#9aa9b7}
-.home-coming-soon:nth-child(2){border-color:rgba(127,164,147,.18);background:linear-gradient(145deg,rgba(38,58,51,.58),rgba(12,23,37,.92))}
-.home-coming-soon:nth-child(2) i{background:rgba(127,164,147,.08);color:#8eae9f}
-.home-coming-soon:nth-child(2) b{border-color:rgba(127,164,147,.18);background:rgba(127,164,147,.06);color:#8eae9f}
-.home-coming-soon:nth-child(3){border-color:rgba(127,166,167,.18);background:linear-gradient(145deg,rgba(39,59,61,.58),rgba(12,23,37,.92))}
-.home-coming-soon:nth-child(3) i{background:rgba(127,166,167,.08);color:#91b1b2}
-.home-coming-soon:nth-child(3) b{border-color:rgba(127,166,167,.18);background:rgba(127,166,167,.06);color:#91b1b2}
-
 /* =========================================================
    MIZAN POLISH — refined interaction layer
    8px spacing rhythm · restrained motion · accessible focus
@@ -480,28 +469,46 @@ html[data-theme="light"] .footer-faq-list p{color:#475467}
 
 
 
-/* Light theme: category cards retain their identity but use light surfaces for readable contrast. */
-html[data-theme="light"] .home-category-card[data-home-action]{color:var(--mizan-heading-light);border-color:color-mix(in srgb,var(--card-accent) 34%,var(--mizan-border-light));}
-html[data-theme="light"] .home-category-card[data-home-action] small{color:color-mix(in srgb,var(--card-accent) 72%,var(--mizan-text-light));}
-html[data-theme="light"] .home-category-card[data-home-action] strong{color:var(--mizan-heading-light);}
-html[data-theme="light"] .home-category-card[data-home-action]:before{opacity:.75;}
 
-/* ===== Theme-aware inner surfaces ===== */
-html[data-theme="light"] .home-feature-strip>div,
-html[data-theme="light"] .exam-dashboard-actions button,
-html[data-theme="light"] .contact-card,
-html[data-theme="light"] .footer-faq-list details{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
-html[data-theme="light"] .home-feature-strip>div:first-child{background:linear-gradient(145deg,#EFF6FF,#F8FAFC);border-color:rgba(59,130,246,.22)}
-html[data-theme="light"] .home-feature-strip>div:last-child{background:linear-gradient(145deg,#ECFDF8,#F8FAFC);border-color:rgba(20,184,166,.22)}
-html[data-theme="light"] .contact-card-whatsapp{background:#F0FDF4}
-html[data-theme="light"] .contact-card-telegram{background:#EFF8FF}
-html[data-theme="light"] .contact-card-instagram{background:#FFF1F5}
-html[data-theme="light"] .contact-card-facebook{background:#EFF6FF}
-html[data-theme="light"] .home-category-card[data-home-action]:before{opacity:.35}
-
-/* Final theme-aware section surface layer */
-.home-category-card[data-home-action] strong{color:var(--mizan-heading-dark)}
-.home-category-card[data-home-action] small{color:color-mix(in srgb,var(--card-accent) 58%,var(--mizan-text-dark))}
-html[data-theme="light"] .home-category-card[data-home-action]{background:radial-gradient(circle at 88% 18%,color-mix(in srgb,var(--card-accent) 12%,transparent),transparent 38%),linear-gradient(145deg,var(--card-bg),var(--card-end));}
+/* ===== Unified Mizan section palette ===== */
+.home-category-card[data-home-action]{
+  border-color:var(--mizan-border);
+  background:var(--mizan-card);
+  color:var(--mizan-heading);
+  box-shadow:0 10px 28px var(--mizan-shadow-sm);
+}
+.home-category-card[data-home-action] i{
+  background:var(--mizan-gold-soft);
+  color:var(--mizan-gold-light);
+}
+.home-category-card[data-home-action] strong{color:var(--mizan-heading)}
+.home-category-card[data-home-action] small{color:var(--mizan-muted)}
+.home-category-card[data-home-action] b{color:var(--mizan-gold)}
+.home-category-card[data-home-action]:before{
+  background:var(--mizan-gold-soft);
+}
+.home-category-card[data-home-action]:hover{
+  border-color:var(--mizan-gold-border);
+  box-shadow:0 14px 35px var(--mizan-shadow-md);
+}
+.home-category-card[data-home-action="books"].featured{
+  border-color:var(--mizan-gold-border);
+  background:var(--mizan-card);
+}
+html[data-theme="light"] .home-category-card[data-home-action]{
+  background:var(--mizan-card-light);
+  border-color:var(--mizan-border-light);
+  color:var(--mizan-heading-light);
+}
 html[data-theme="light"] .home-category-card[data-home-action] strong{color:var(--mizan-heading-light)}
-html[data-theme="light"] .home-category-card[data-home-action] small{color:color-mix(in srgb,var(--card-accent) 72%,var(--mizan-text-light))}
+html[data-theme="light"] .home-category-card[data-home-action] small{color:var(--mizan-text-light)}
+html[data-theme="light"] .home-category-card[data-home-action] b{color:var(--mizan-gold-text)}
+html[data-theme="light"] .home-category-card[data-home-action] i{
+  background:var(--mizan-gold-pale);
+  color:var(--mizan-gold-text);
+}
+html[data-theme="light"] .home-category-card[data-home-action]:before{background:var(--mizan-gold-soft)}
+html[data-theme="light"] .home-category-card[data-home-action]:hover{
+  border-color:var(--mizan-gold-border);
+  box-shadow:0 14px 35px rgba(15,23,42,.08);
+}
