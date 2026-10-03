@@ -141,3 +141,11 @@
 
 /* Light theme audit repair */
 html[data-theme="light"] .profile-hero{background:linear-gradient(135deg,var(--mizan-white),var(--mizan-ice));border-color:var(--mizan-gold-paper);box-shadow:0 12px 35px rgba(15,23,42,.08)}html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:var(--mizan-white);border-color:var(--mizan-text-dark)}html[data-theme="light"] .history-item{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}
+
+/* ===== Theme-aware dashboard surfaces ===== */
+html[data-theme="light"] .student-profile-card,
+html[data-theme="light"] .profile-panel,
+html[data-theme="light"] .profile-stat-card,
+html[data-theme="light"] .student-info-grid>div{background:var(--mizan-white);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .history-item{background:var(--mizan-surface-2-light);border-color:var(--mizan-border-light)}
+html[data-theme="light"] .profile-name-editor-row input{background:var(--mizan-white);color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
