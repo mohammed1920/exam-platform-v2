@@ -25,3 +25,23 @@ footer,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!impor
 .footer-bottom,.footer-faq-list summary,.footer-info-content{color:var(--mu-text)!important}.footer-bottom p,.footer-contact-info a,.footer-faq-list p{color:var(--mu-muted)!important}
 .contact-card-whatsapp,.contact-card-telegram,.contact-card-instagram,.contact-card-facebook{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
 /* Book cards, book artwork and chapter visuals intentionally receive no overrides here. */
+
+/* Dedicated sections: same brand surfaces, no per-section colors. */
+.lawyers-section,.lawyers-hero,.lawyers-toolbar,.lawyers-apply-panel,.lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
+.petitions-shell,.petitions-hero,.petition-builder-head,.petition-tools,.petition-template-card,.petition-form-panel,.petition-preview-panel,
+.mizan-pulpit-section,.mizan-pulpit-hero,.mizan-pulpit-toolbar,.mizan-article-card,.mizan-modal-box,.mizan-article-modal-box,.mizan-profile-modal-box{
+  background:var(--mu-card)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important;
+}
+.lawyers-search,.lawyer-form input,.lawyer-form select,.lawyer-form textarea,
+.petition-fields input,.petition-fields select,.petition-fields textarea,
+.mizan-form-grid input,.mizan-form-grid select,.mizan-form-grid textarea{
+  background:var(--mu-bg)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important;
+}
+.lawyers-primary-btn,.lawyer-details-link,.lawyer-identity-btn,.petition-primary,.mizan-pulpit-primary,.mizan-read-btn,.mizan-form-submit{
+  background:var(--mu-blue)!important;color:#fff!important;border-color:var(--mu-blue)!important;
+}
+.lawyers-primary-btn:hover,.petition-primary:hover,.mizan-pulpit-primary:hover,.mizan-read-btn:hover,.mizan-form-submit:hover{background:var(--mu-blue-hover)!important}
+.lawyers-hero h1,.lawyers-hero h2,.lawyer-card-main,.petition-builder-head h1,.petition-panel-title,
+.mizan-pulpit-hero h1,.mizan-article-card h3,.mizan-modal-head h2{color:var(--mu-text)!important}
+.lawyers-hero p,.lawyer-card-location,.lawyer-card-office,.lawyer-details-section,.petition-status,.mizan-article-meta,.mizan-form-help{color:var(--mu-muted)!important}
+.lawyer-verified,.lawyer-tags,.petition-status,.mizan-pulpit-kicker,.mizan-article-meta{border-color:var(--mu-border)!important}
