@@ -220,6 +220,16 @@
       b.addEventListener('click',open);
       header.appendChild(b);
     }
+    const menu=document.getElementById('platform-menu-trigger');
+    const theme=document.getElementById('theme-toggle');
+    if(menu && theme && !document.getElementById('mizan-header-tools')){
+      const tools=document.createElement('div');
+      tools.id='mizan-header-tools';
+      tools.className='mizan-header-tools';
+      header.appendChild(tools);
+      tools.appendChild(theme);
+      tools.appendChild(menu);
+    }
   }
 
   window.addEventListener('public-auth-state-changed',updateAccountState);
