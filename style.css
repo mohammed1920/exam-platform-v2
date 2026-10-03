@@ -920,12 +920,12 @@ header {
    لكسر محددات مشتركة مثل .start-exam-btn / .card button)
    ========================================================= */
 :root {
-  --bk-gold-primary: var(--mizan-primary-500-metal-1);
-  --bk-gold-light: var(--mizan-primary-500-metal-2);
-  --bk-gold-dark: var(--mizan-primary-500-metal-3);
-  --bk-gold-shimmer: var(--mizan-primary-500-metal-gradient);
-  --bk-btn-gold: var(--mizan-primary-500-button-gradient);
-  --bk-btn-gold-hover: var(--mizan-primary-500-button-hover-gradient);
+  --bk-gold-primary: var(--mizan-gold-metal-1);
+  --bk-gold-light: var(--mizan-gold-metal-2);
+  --bk-gold-dark: var(--mizan-gold-metal-3);
+  --bk-gold-shimmer: var(--mizan-gold-metal-gradient);
+  --bk-btn-gold: var(--mizan-gold-button-gradient);
+  --bk-btn-gold-hover: var(--mizan-gold-button-hover-gradient);
   --bk-paper-cream: var(--mizan-paper-cream);
   --bk-paper-edge: var(--mizan-paper-edge);
   --bk-paper-dark: var(--mizan-paper-dark);
@@ -1200,14 +1200,14 @@ header {
   background: var(--mizan-bg-dark) !important;
 }
 .book-card .test-btn {
-  width: 100% !important; background: var(--bk-btn-gold) !important; color: #0d0d0d !important;
+  width: 100% !important; background: var(--mizan-primary-500) !important; color: #FFFFFF !important;
   font-family: 'Tajawal', sans-serif !important; font-size: 14px !important; font-weight: 800 !important;
   border: none !important; border-radius: 12px !important; padding: 10px 0 !important; margin-top: 14px !important;
   cursor: pointer; transition: background 0.2s, transform 0.1s;
   display: flex !important; justify-content: center !important; align-items: center !important; gap: 6px !important;
-  box-shadow: 0 4px 12px rgba(186, 142, 49, 0.25);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.20);
 }
-.book-card .test-btn:hover { background: var(--bk-btn-gold-hover) !important; }
+.book-card .test-btn:hover { background: var(--mizan-primary-600) !important; color: #FFFFFF !important; }
 
 @media (max-width: 480px) {
   .book-card { padding: 14px 6px 12px !important; }
