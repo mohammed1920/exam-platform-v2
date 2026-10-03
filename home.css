@@ -485,3 +485,16 @@ html[data-theme="light"] .home-category-card[data-home-action]{color:var(--mizan
 html[data-theme="light"] .home-category-card[data-home-action] small{color:color-mix(in srgb,var(--card-accent) 72%,var(--mizan-text-light));}
 html[data-theme="light"] .home-category-card[data-home-action] strong{color:var(--mizan-heading-light);}
 html[data-theme="light"] .home-category-card[data-home-action]:before{opacity:.75;}
+
+/* ===== Theme-aware inner surfaces ===== */
+html[data-theme="light"] .home-feature-strip>div,
+html[data-theme="light"] .exam-dashboard-actions button,
+html[data-theme="light"] .contact-card,
+html[data-theme="light"] .footer-faq-list details{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .home-feature-strip>div:first-child{background:linear-gradient(145deg,#EFF6FF,#F8FAFC);border-color:rgba(59,130,246,.22)}
+html[data-theme="light"] .home-feature-strip>div:last-child{background:linear-gradient(145deg,#ECFDF8,#F8FAFC);border-color:rgba(20,184,166,.22)}
+html[data-theme="light"] .contact-card-whatsapp{background:#F0FDF4}
+html[data-theme="light"] .contact-card-telegram{background:#EFF8FF}
+html[data-theme="light"] .contact-card-instagram{background:#FFF1F5}
+html[data-theme="light"] .contact-card-facebook{background:#EFF6FF}
+html[data-theme="light"] .home-category-card[data-home-action]:before{opacity:.35}
