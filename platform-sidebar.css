@@ -1,5 +1,5 @@
 /* Main platform navigation - مستقل عن محرك الاختبارات */
-.platform-menu-trigger{position:fixed;top:18px;right:18px;z-index:9000;width:46px;height:46px;border:1px solid rgba(194,157,95,.45);border-radius:13px;background:rgba(15,23,42,.92);color:#d8bd86;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.25);backdrop-filter:blur(10px)}
+.mizan-header-tools{position:absolute;top:12px;left:12px;right:12px;height:50px;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:4px 6px;border:1px solid rgba(194,157,95,.28);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.92),rgba(16,29,45,.82));box-shadow:0 10px 30px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(194,157,95,.08),transparent);opacity:.8}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;left:auto!important;z-index:1;width:42px!important;height:42px!important;margin:0!important;flex:0 0 42px}
 .platform-menu-trigger:hover{border-color:#d8bd86;transform:translateY(-1px)}
 .platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
 .platform-sidebar.is-open{pointer-events:auto;visibility:visible}
@@ -24,7 +24,7 @@
 .platform-sidebar-note{margin:18px 4px 0;padding:14px;border:1px solid rgba(194,157,95,.15);border-radius:14px;background:rgba(194,157,95,.045);color:#8397a9;font-size:11px;line-height:1.8}
 .platform-sidebar-note strong{display:block;color:#d7bc82;margin-bottom:4px}
 .platform-sidebar-account{display:grid;gap:7px;margin-top:10px}
-@media(max-width:600px){.platform-menu-trigger{top:12px;right:12px;width:42px;height:42px}.platform-sidebar-panel{width:min(340px,94vw)}}
+@media(max-width:600px){.mizan-header-tools{top:10px;left:10px;right:10px;height:48px;border-radius:15px;padding:3px 5px}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{width:40px!important;height:40px!important;flex-basis:40px}.platform-sidebar-panel{width:min(340px,94vw)}}
 body.platform-sidebar-open{overflow:hidden}
 
 .platform-sidebar-account{margin-top:12px;padding:12px;border:1px solid rgba(194,157,95,.18);border-radius:14px;background:rgba(194,157,95,.045)}
@@ -77,3 +77,7 @@ html[data-theme="light"] .platform-sidebar-brand{border-color:#e2e8f0}html[data-
 html[data-theme="light"] .platform-sidebar-brand span,html[data-theme="light"] .platform-sidebar-item i,html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account-user span{color:#667085}
 html[data-theme="light"] .platform-sidebar-item{color:#344054}html[data-theme="light"] .platform-sidebar-item:hover{background:#fff8eb;border-color:#ead9b8;color:#8f6b34}html[data-theme="light"] .platform-sidebar-item.is-active{background:#fff8eb;border-color:#e4d2ad;color:#7f5d2a}
 html[data-theme="light"] .platform-sidebar-note,html[data-theme="light"] .platform-sidebar-account{background:#fff;border-color:#e2e8f0}html[data-theme="light"] .platform-sidebar-account-user strong{color:#172b45}html[data-theme="light"] .platform-sidebar-account-action{background:#f8fafc;border-color:#d8dee8;color:#344054}html[data-theme="light"] .platform-sidebar-divider{background:#e2e8f0}
+
+/* Mizan top utility controls — shared container */
+html[data-theme="light"] .mizan-header-tools{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(248,250,252,.92));border-color:rgba(143,107,52,.22);box-shadow:0 10px 30px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.8)}
+html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(90deg,transparent,rgba(143,107,52,.07),transparent)}
