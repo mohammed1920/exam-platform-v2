@@ -443,8 +443,6 @@ footer {
 :root {
   --primary: var(--mizan-primary-500);
   --primary-hover: var(--mizan-primary-500-hover);
-  --gold-light: var(--mizan-primary-300);
-  --gold-soft: var(--mizan-primary-100);
   --bg-dark: var(--mizan-bg-dark);
   --card-bg: var(--mizan-card-dark);
   --text-primary: var(--mizan-heading-dark);
