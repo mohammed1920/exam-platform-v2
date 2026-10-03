@@ -1136,8 +1136,8 @@ class ExamApp {
     const ctx = canvas.getContext('2d');
 
     const C = {
-      paper: '#f3ecdd', paperLine: '#c9bda0', navy: '#0f172a',
-      gold: '#c29d5f', goldLight: '#d9bd8a', ink: '#241d12', inkSoft: '#6b5f45'
+      paper: '#FFFFFF', paperLine: '#E2E8F0', navy: '#0F172A',
+      gold: '#2563EB', goldLight: '#93C5FD', ink: '#0F172A', inkSoft: '#64748B'
     };
     const cx = W / 2;
 
@@ -1146,7 +1146,7 @@ class ExamApp {
     ctx.strokeStyle = C.paperLine;
     ctx.lineWidth = 3;
     ctx.strokeRect(32, 32, W - 64, H - 64);
-    ctx.strokeStyle = 'rgba(194,157,95,0.5)';
+    ctx.strokeStyle = 'rgba(37,99,235,0.35)';
     ctx.lineWidth = 2;
     ctx.strokeRect(44, 44, W - 88, H - 88);
 
