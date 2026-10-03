@@ -131,7 +131,7 @@
 .profile-name-editor label{display:block;margin:0 0 8px;color:var(--mizan-muted);font-size:13px;font-weight:700}
 .profile-name-editor-row{display:flex;align-items:stretch;gap:9px}
 .profile-name-editor-row input{flex:1;min-width:0;border:1px solid var(--mizan-primary-500-border);border-radius:11px;background:rgba(0,0,0,.16);color:var(--mizan-bg-light);padding:11px 13px;font:inherit;outline:none;direction:rtl}
-.profile-name-editor-row input:focus{border-color:rgba(217,119,6,.62);box-shadow:0 0 0 3px var(--mizan-primary-100)}
+.profile-name-editor-row input:focus{border-color:rgba(37,99,235,.62);box-shadow:0 0 0 3px var(--mizan-primary-100)}
 .profile-name-editor-row button{border:1px solid var(--mizan-primary-500-border);border-radius:11px;background:var(--mizan-primary-100);color:var(--mizan-primary-500-pale);padding:10px 15px;cursor:pointer;font:inherit;font-weight:800;white-space:nowrap}
 .profile-name-editor-row button:hover{background:var(--mizan-primary-500-border)}
 .profile-name-editor-row button:disabled{opacity:.55;cursor:wait}
