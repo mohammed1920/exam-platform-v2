@@ -22,6 +22,8 @@
   --mizan-gold-light: #F59E0B;
   --mizan-gold-pale: #FEF3C7;
   --mizan-gold-text: #B45309;
+  /* Compatibility alias for older component styles. */
+  --mizan-gold-dark: var(--mizan-gold-text);
   --mizan-gold-soft: rgba(217, 119, 6, .10);
   --mizan-gold-border: rgba(217, 119, 6, .28);
 
