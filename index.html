@@ -88,8 +88,8 @@
       </div>
       <p class="mizan-header-tagline">حيث يُقاس الفهم القانوني بدقة</p>
     </div>
-    <button id="install-app-btn" type="button">📲 ثبّت التطبيق</button>
-    <p id="ios-install-hint">📲 لتثبيت التطبيق: اضغط زر المشاركة <strong>⬆️</strong> بالأسفل، ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p>
+    <button id="install-app-btn" type="button" aria-label="تثبيت ميزان على هاتفك">📲 ثبّت التطبيق على هاتفك</button>
+    <p id="ios-install-hint" hidden>📲 اضغط زر المشاركة <strong>⬆️</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p>
   </header>
   <main class="container">
     <section class="platform-home">
@@ -224,7 +224,7 @@
         .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
         .catch(() => {});
     }
-    (function setupInstallButton(){ const installBtn=document.getElementById('install-app-btn'),iosHint=document.getElementById('ios-install-hint'); const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true; if(isStandalone)return; const isIOS=/iphone|ipad|ipod/i.test(window.navigator.userAgent); if(isIOS){iosHint.style.display='block';return;} installBtn.style.display='inline-block'; let deferredPrompt=null; window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();deferredPrompt=event;}); installBtn.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}else{alert('لتثبيت التطبيق:\n\nاضغط على قائمة المتصفح (⋮ أو ≡ حسب متصفحك)\nثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية"');}}); window.addEventListener('appinstalled',()=>{installBtn.style.display='none';deferredPrompt=null;}); })();
+    (function setupInstallButton(){ const installBtn=document.getElementById('install-app-btn'),iosHint=document.getElementById('ios-install-hint'); if(!installBtn)return; const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true; if(isStandalone){installBtn.hidden=true;return;} installBtn.hidden=false; let deferredPrompt=null; const isIOS=/iphone|ipad|ipod/i.test(window.navigator.userAgent); window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();deferredPrompt=event;}); installBtn.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;return;} if(isIOS){iosHint.hidden=false;setTimeout(()=>{iosHint.hidden=true;},7000);return;} alert('لتثبيت ميزان على هاتفك:\n\nافتح قائمة المتصفح (⋮ أو ≡) ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".');}); window.addEventListener('appinstalled',()=>{installBtn.hidden=true;iosHint.hidden=true;deferredPrompt=null;}); })();
     (function setupVisitorCounter(){ const countEl=document.getElementById('visitor-count');if(!countEl)return;const WORKSPACE='mhmd-hmyds-team-5310',COUNTER_NAME='first-counter-5310',BASE_URL=`https://api.counterapi.dev/v2/${WORKSPACE}/${COUNTER_NAME}`;const alreadyCountedThisSession=sessionStorage.getItem('visitCounted')==='1',requestUrl=alreadyCountedThisSession?`${BASE_URL}`:`${BASE_URL}/up`;fetch(requestUrl).then((res)=>res.json()).then((data)=>{const value=data.data?.up_count??data.data?.value??data.count??data.value??null;countEl.textContent=(value!==null&&value!==undefined)?value:'—';if(!alreadyCountedThisSession)sessionStorage.setItem('visitCounted','1');}).catch(()=>{countEl.textContent='—';}); })();
   </script>
 </body>
