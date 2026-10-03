@@ -105,7 +105,6 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
   left:18px!important;
   bottom:18px!important;
   z-index:8500!important;
-  display:none;
   align-items:center;
   gap:7px;
   margin:0!important;
