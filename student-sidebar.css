@@ -28,7 +28,7 @@
 /* ===== Light theme coverage ===== */
 html[data-theme="light"] .student-sidebar-backdrop{background:rgba(15,23,42,.38)}
 html[data-theme="light"] .student-sidebar-panel{
-  background:linear-gradient(180deg,var(--mizan-white),#f5f7fb);
+  background:linear-gradient(180deg,var(--mizan-white),var(--mizan-bg-light));
   border-left-color:var(--mizan-border-light);
   box-shadow:-18px 0 55px rgba(15,23,42,.16);
 }
@@ -73,7 +73,7 @@ html[data-theme="light"] .profile-name-editor-row input{
 
 /* Light theme audit repair */
 html[data-theme="light"] .student-sidebar-backdrop{background:rgba(15,23,42,.38)}
-html[data-theme="light"] .student-sidebar-panel{background:linear-gradient(180deg,var(--mizan-white),#f5f7fb);border-left-color:var(--mizan-border-light);box-shadow:-18px 0 55px rgba(15,23,42,.16)}
+html[data-theme="light"] .student-sidebar-panel{background:linear-gradient(180deg,var(--mizan-white),var(--mizan-bg-light));border-left-color:var(--mizan-border-light);box-shadow:-18px 0 55px rgba(15,23,42,.16)}
 html[data-theme="light"] .student-sidebar-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467}
 html[data-theme="light"] .student-sidebar-brand strong,html[data-theme="light"] .profile-identity h3{color:#172b45}
 html[data-theme="light"] .student-sidebar-brand span,html[data-theme="light"] .student-sidebar-heading,html[data-theme="light"] .profile-identity p,html[data-theme="light"] .student-info-grid small,html[data-theme="light"] .profile-stat-card small,html[data-theme="light"] .profile-panel-heading p,html[data-theme="light"] .history-main small,html[data-theme="light"] .history-score span,html[data-theme="light"] .profile-empty,html[data-theme="light"] .student-wrong-item span,html[data-theme="light"] .student-wrong-item small,html[data-theme="light"] .student-progress-item small{color:var(--mizan-muted-light)}
