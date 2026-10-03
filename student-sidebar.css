@@ -49,7 +49,7 @@ html[data-theme="light"] .student-wrong-item small,
 html[data-theme="light"] .student-progress-item small{color:var(--mizan-muted-light)}
 html[data-theme="light"] .student-sidebar-item{color:var(--mizan-text-strong-legacy)}
 html[data-theme="light"] .student-sidebar-item:hover,
-html[data-theme="light"] .student-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
+html[data-theme="light"] .student-sidebar-item.is-active{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
 html[data-theme="light"] .student-info-grid>div,
 html[data-theme="light"] .profile-stat-card,
 html[data-theme="light"] .profile-panel{
@@ -57,7 +57,7 @@ html[data-theme="light"] .profile-panel{
 }
 html[data-theme="light"] .student-profile-card,
 html[data-theme="light"] .resume-exam-panel{
-  background:linear-gradient(135deg,var(--mizan-white)af0,var(--mizan-ice));
+  background:linear-gradient(135deg,var(--mizan-white),var(--mizan-ice));
   border-color:var(--mizan-gold-paper);
 }
 html[data-theme="light"] .history-item,
@@ -77,8 +77,8 @@ html[data-theme="light"] .student-sidebar-panel{background:linear-gradient(180de
 html[data-theme="light"] .student-sidebar-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:#475467}
 html[data-theme="light"] .student-sidebar-brand strong,html[data-theme="light"] .profile-identity h3{color:#172b45}
 html[data-theme="light"] .student-sidebar-brand span,html[data-theme="light"] .student-sidebar-heading,html[data-theme="light"] .profile-identity p,html[data-theme="light"] .student-info-grid small,html[data-theme="light"] .profile-stat-card small,html[data-theme="light"] .profile-panel-heading p,html[data-theme="light"] .history-main small,html[data-theme="light"] .history-score span,html[data-theme="light"] .profile-empty,html[data-theme="light"] .student-wrong-item span,html[data-theme="light"] .student-wrong-item small,html[data-theme="light"] .student-progress-item small{color:var(--mizan-muted-light)}
-html[data-theme="light"] .student-sidebar-item{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .student-sidebar-item:hover,html[data-theme="light"] .student-sidebar-item.is-active{background:var(--mizan-white)8eb;border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
+html[data-theme="light"] .student-sidebar-item{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .student-sidebar-item:hover,html[data-theme="light"] .student-sidebar-item.is-active{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-paper-light);color:var(--mizan-gold-text)}
 html[data-theme="light"] .student-info-grid>div,html[data-theme="light"] .profile-stat-card,html[data-theme="light"] .profile-panel{background:var(--mizan-white);border-color:var(--mizan-text-dark)}
-html[data-theme="light"] .student-profile-card,html[data-theme="light"] .resume-exam-panel{background:linear-gradient(135deg,var(--mizan-white)af0,var(--mizan-ice));border-color:var(--mizan-gold-paper)}
+html[data-theme="light"] .student-profile-card,html[data-theme="light"] .resume-exam-panel{background:linear-gradient(135deg,var(--mizan-white),var(--mizan-ice));border-color:var(--mizan-gold-paper)}
 html[data-theme="light"] .history-item,html[data-theme="light"] .student-wrong-item{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .student-page-header{border-color:var(--mizan-text-dark)}html[data-theme="light"] .profile-name-editor-row input{background:var(--mizan-white);color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
