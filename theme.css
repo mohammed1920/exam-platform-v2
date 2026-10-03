@@ -78,7 +78,7 @@ html[data-theme="light"] #search-input::placeholder {
   height: 46px;
   margin: 0;
   padding: 0;
-  border: 1px solid rgba(194, 157, 95, 0.45);
+  border: 1px solid var(--mizan-gold-border);
   border-radius: 13px;
   background: var(--mizan-navy);
   color: var(--mizan-gold-light);
