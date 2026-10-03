@@ -145,7 +145,7 @@ html[data-theme="light"] .exam-home-btn {
 
 html[data-theme="light"] .exam-btn.prev {
   background: #E2E8F0;
-  color: #344054;
+  color: var(--mizan-text-strong-legacy);
 }
 
 /* ---------- Polish: shared interaction primitives ---------- */
