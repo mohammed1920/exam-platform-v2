@@ -17,7 +17,7 @@
 .mizan-article-author{display:flex;align-items:center;gap:9px;padding-top:11px;border-top:1px solid rgba(255,255,255,.05)}.mizan-article-author>i{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--mizan-primary-100);color:var(--mizan-primary-300)}.mizan-article-author strong,.mizan-article-author small{display:block}.mizan-article-author strong{font-size:11px}.mizan-article-author small{color:var(--mizan-muted-light);font-size:9px;margin-top:2px}
 .mizan-read-btn{margin-top:13px;border:0;background:transparent;color:var(--mizan-primary-300);font:inherit;font-size:11px;font-weight:800;cursor:pointer}
 .mizan-pulpit-empty,.mizan-pulpit-loading{display:grid;place-items:center;gap:7px;min-height:180px;padding:25px;border:1px dashed var(--mizan-primary-500-border);border-radius:18px;color:var(--mizan-subtle);text-align:center}.mizan-pulpit-empty i{font-size:28px;color:var(--mizan-primary-500)}.mizan-pulpit-empty strong{color:var(--mizan-text-dark)}
-.mizan-modal{position:fixed;inset:0;z-index:12000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(2,8,15,.82)}.mizan-modal.is-open{display:flex}
+.mizan-modal{position:fixed;inset:0;z-index:12000;display:none;align-items:center;justify-content:center;padding:16px;background:var(--mizan-bg-dark)}.mizan-modal.is-open{display:flex}
 .mizan-modal-box,.mizan-article-modal-box{width:min(760px,100%);max-height:90vh;overflow:auto;padding:22px;border:1px solid var(--mizan-primary-500-border);border-radius:20px;background:var(--mizan-ink-soft);box-shadow:0 24px 70px rgba(0,0,0,.5)}
 .mizan-modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.mizan-modal-head h3{margin:0;color:var(--mizan-primary-300)}.mizan-modal-close,.mizan-article-close{border:0;background:transparent;color:var(--mizan-muted-light);font-size:26px;cursor:pointer}
 .mizan-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mizan-form-grid label{display:block}.mizan-form-grid .full{grid-column:1/-1}.mizan-form-grid textarea{min-height:180px;resize:vertical}.mizan-form-help{color:var(--mizan-muted-light);font-size:10px;line-height:1.8;margin:10px 0}.mizan-form-submit{width:100%;padding:12px;border:0;border-radius:11px;background:var(--mizan-primary-500);color:var(--mizan-primary-900);font:inherit;font-weight:900;cursor:pointer}
@@ -141,8 +141,32 @@ html[data-theme="light"] .mizan-form-help,
 html[data-theme="light"] .mizan-article-modal-author span{color:var(--mizan-muted-light)}
 html[data-theme="light"] .mizan-article-card{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-heading-light);box-shadow:0 8px 24px rgba(15,23,42,.05)}
 html[data-theme="light"] .mizan-article-author{border-top-color:var(--mizan-border-light)}
-html[data-theme="light"] .mizan-modal{background:rgba(15,23,42,.38)}
+html[data-theme="light"] .mizan-modal{background:var(--mizan-bg-light)}
 html[data-theme="light"] .mizan-modal-box,html[data-theme="light"] .mizan-article-modal-box{background:var(--mizan-surface);border-color:var(--mizan-border-light);color:var(--mizan-text-light);box-shadow:0 24px 70px rgba(15,23,42,.18)}
 html[data-theme="light"] .mizan-modal-head h3{color:var(--mizan-heading-light)}
 html[data-theme="light"] .mizan-modal-close,html[data-theme="light"] .mizan-article-close{color:var(--mizan-muted-light)}
 html[data-theme="light"] .mizan-article-body{color:var(--mizan-text-light)}
+
+
+/* ===== Contrast + modal isolation audit ===== */
+.mizan-form-grid label{color:var(--mizan-text-dark);font-weight:700;font-size:11px;line-height:1.8}
+.mizan-form-grid input,.mizan-form-grid select,.mizan-form-grid textarea{
+  color:var(--mizan-text-dark);
+  background:var(--mizan-bg-dark);
+  border:1px solid var(--mizan-border-dark);
+}
+.mizan-form-grid input::placeholder,.mizan-form-grid textarea::placeholder{color:var(--mizan-muted-dark)}
+.mizan-form-grid input:focus,.mizan-form-grid select:focus,.mizan-form-grid textarea:focus{
+  border-color:var(--mizan-primary-400);
+  outline:2px solid color-mix(in srgb,var(--mizan-primary-400) 22%,transparent);
+}
+html[data-theme="light"] .mizan-form-grid label{color:var(--mizan-text-light)}
+html[data-theme="light"] .mizan-form-grid input,
+html[data-theme="light"] .mizan-form-grid select,
+html[data-theme="light"] .mizan-form-grid textarea{
+  color:var(--mizan-text-light);
+  background:var(--mizan-surface-light);
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .mizan-form-grid input::placeholder,
+html[data-theme="light"] .mizan-form-grid textarea::placeholder{color:var(--mizan-muted-light)}
