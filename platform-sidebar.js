@@ -226,9 +226,10 @@
       const tools=document.createElement('div');
       tools.id='mizan-header-tools';
       tools.className='mizan-header-tools';
+      tools.setAttribute('aria-label','أدوات المنصة');
       header.appendChild(tools);
-      tools.appendChild(theme);
       tools.appendChild(menu);
+      tools.appendChild(theme);
     }
   }
 
