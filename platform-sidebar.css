@@ -99,53 +99,17 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 .mizan-header-tools .platform-menu-trigger:hover{background:linear-gradient(145deg,rgba(194,157,95,.2),rgba(255,255,255,.055))!important;box-shadow:0 6px 16px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.08)!important}
 .mizan-header-tools .platform-menu-trigger:hover .menu-lines i:nth-child(2){width:100%}
 
-/* App installation prompt: independent from the header utility box */
-#install-app-btn{
-  position:fixed!important;
-  right:14px!important;
-  left:auto!important;
-  bottom:14px!important;
-  z-index:8500!important;
-  align-items:center;
-  gap:5px;
-  margin:0!important;
-  padding:6px 10px!important;
-  border:1px solid rgba(194,157,95,.45)!important;
-  border-radius:10px!important;
-  background:rgba(15,23,42,.94)!important;
-  color:#e8cf9a!important;
-  box-shadow:0 8px 24px rgba(0,0,0,.2);
-  font:inherit;
-  font-size:11px!important;
-  font-weight:800!important;
-  line-height:1.2;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
+/* App installation prompt — sits above the home search without affecting the header */
+.install-slot{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:0 0 10px;padding:0 2px;position:relative;z-index:2}
+#install-app-btn{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;z-index:2!important;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0!important;padding:7px 11px!important;border:1px solid rgba(194,157,95,.5)!important;border-radius:11px!important;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(25,39,57,.94))!important;color:#e8cf9a!important;box-shadow:0 5px 16px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.06);font:inherit;font-size:11px!important;font-weight:800!important;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 #install-app-btn:hover{transform:translateY(-1px);border-color:#d8bd86!important}
-#ios-install-hint{
-  position:fixed!important;
-  left:18px!important;
-  bottom:18px!important;
-  z-index:8500!important;
-  max-width:min(340px,calc(100vw - 36px));
-  margin:0!important;
-  padding:10px 13px!important;
-  border:1px solid rgba(194,157,95,.35);
-  border-radius:13px;
-  background:rgba(15,23,42,.94);
-  color:#d8e0e7!important;
-  box-shadow:0 8px 24px rgba(0,0,0,.2);
-  font-size:11px!important;
-  line-height:1.7;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
+#ios-install-hint{position:absolute;top:calc(100% + 7px);right:0;z-index:3;max-width:min(340px,calc(100vw - 24px));margin:0!important;padding:9px 12px!important;border:1px solid rgba(194,157,95,.35);border-radius:11px;background:rgba(15,23,42,.96);color:#d8e0e7!important;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:11px!important;line-height:1.7;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 #ios-install-hint strong{color:#e8cf9a}
 html[data-theme="light"] #install-app-btn,
 html[data-theme="light"] #ios-install-hint{background:rgba(255,255,255,.97)!important;color:#344054!important;border-color:rgba(143,107,52,.3)!important;box-shadow:0 8px 24px rgba(15,23,42,.14)}
 html[data-theme="light"] #install-app-btn{color:#8f6b34!important}
 @media(max-width:600px){
-  #install-app-btn,#ios-install-hint{right:12px!important;left:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
-  #install-app-btn{padding:6px 9px!important;max-width:calc(100vw - 24px)}
+  .install-slot{justify-content:flex-start;margin-bottom:8px;padding:0}
+  #install-app-btn{padding:6px 9px!important;font-size:10.5px!important}
+  #ios-install-hint{right:auto;left:0;max-width:calc(100vw - 24px)}
 }
