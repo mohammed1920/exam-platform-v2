@@ -1,7 +1,7 @@
 :root {
   /* Legacy aliases — mapped to the centralized Mizan Design System. */
-  --primary: var(--mizan-gold);
-  --primary-hover: #b08d4f;
+  --primary: var(--mizan-blue);
+  --primary-hover: var(--mizan-blue-hover);
   --bg-dark: var(--mizan-navy-900);
   --card-bg: var(--mizan-slate-800);
   --text-primary: var(--mizan-text);
@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: var(--mizan-white);
+  background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.4;
   overflow-x: hidden;
