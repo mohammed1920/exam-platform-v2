@@ -48,10 +48,10 @@
   --mizan-muted-dark: #94A3B8;
 
   /* Social / channel colors */
-  --mizan-whatsapp: #25D366;
-  --mizan-telegram: #2AABEE;
-  --mizan-instagram: #E1306C;
-  --mizan-facebook: #1877F2;
+  --mizan-whatsapp: var(--mizan-blue);
+  --mizan-telegram: var(--mizan-blue);
+  --mizan-instagram: var(--mizan-gold);
+  --mizan-facebook: var(--mizan-blue);
 
   /* Semantic states */
   --mizan-success: #10B981;
@@ -181,21 +181,21 @@ html[data-theme="light"] {
    Exact values retained for existing decorative UI.
    ========================================================= */
 :root {
-  --mizan-text-soft-legacy: #CBD5E1;
-  --mizan-text-strong-legacy: #344054;
-  --mizan-gold-muted: #A67F45;
-  --mizan-gold-antique: #8D6B37;
-  --mizan-gold-deep: #7D6235;
-  --mizan-gold-paper: #E2D4B6;
-  --mizan-gold-paper-light: #EAD9B8;
-  --mizan-green-alt: #42D3A1;
-  --mizan-red-alt: #DC5A5A;
-  --mizan-blue-pale: #F0F9FF;
-  --mizan-blue-border-pale: #7DD3FC;
-  --mizan-info-link: #0369A1;
-  --mizan-purple-soft: #C9B8E6;
-  --mizan-pink-soft: #F48AAC;
-  --mizan-cyan-soft: #62D2C5;
+  --mizan-text-soft-legacy: var(--mizan-text);
+  --mizan-text-strong-legacy: var(--mizan-heading);
+  --mizan-gold-muted: var(--mizan-gold);
+  --mizan-gold-antique: var(--mizan-gold-text);
+  --mizan-gold-deep: var(--mizan-gold-text);
+  --mizan-gold-paper: var(--mizan-border);
+  --mizan-gold-paper-light: var(--mizan-gold-pale);
+  --mizan-green-alt: var(--mizan-blue);
+  --mizan-red-alt: var(--mizan-gold);
+  --mizan-blue-pale: var(--mizan-card-light);
+  --mizan-blue-border-pale: var(--mizan-blue);
+  --mizan-info-link: var(--mizan-blue);
+  --mizan-purple-soft: var(--mizan-gold-pale);
+  --mizan-pink-soft: var(--mizan-gold-pale);
+  --mizan-cyan-soft: var(--mizan-blue);
   --mizan-white-soft: rgba(255,255,255,.07);
   --mizan-black-soft: rgba(0,0,0,.16);
 }
@@ -205,16 +205,16 @@ html[data-theme="light"] {
    Component compatibility / legacy neutrals
    ========================================================= */
 :root {
-  --mizan-ink-soft: #101D2D;
-  --mizan-ink-deep: #0D1727;
-  --mizan-slate-900: #10151D;
-  --mizan-slate-blue: #182438;
-  --mizan-slate-blue-deep: #0C1826;
-  --mizan-text-dim-blue: #7F93A4;
-  --mizan-text-muted-blue: #8FA0B1;
-  --mizan-text-light-blue: #DCE4EC;
-  --mizan-paper-white: #F7F8FA;
-  --mizan-gold-pale-text: #E0C77F;
+  --mizan-ink-soft: var(--mizan-bg-dark);
+  --mizan-ink-deep: var(--mizan-bg-dark);
+  --mizan-slate-900: var(--mizan-bg-dark);
+  --mizan-slate-blue: var(--mizan-card-dark);
+  --mizan-slate-blue-deep: var(--mizan-bg-dark);
+  --mizan-text-dim-blue: var(--mizan-muted);
+  --mizan-text-muted-blue: var(--mizan-muted);
+  --mizan-text-light-blue: var(--mizan-text-dark);
+  --mizan-paper-white: var(--mizan-card-light);
+  --mizan-gold-pale-text: var(--mizan-gold-light);
 }
 
 
