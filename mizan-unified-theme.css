@@ -19,6 +19,14 @@ html[data-theme="light"] .home-category-card[data-home-action],html[data-theme="
 .home-category-card[data-home-action] i,.home-category-card[data-home-action] b,.home-coming-soon i,.home-coming-soon b,.home-section-heading span,.student-page-header span,.student-page-icon,.profile-stat-card strong,.student-big-score,.history-score strong,.firebase-admin-card-head h3,.firebase-admin-kicker{color:var(--mu-gold)!important}
 .home-category-card[data-home-action] i,.student-page-icon,.account-btn,.firebase-admin-tab{background:rgba(245,158,11,.10)!important;border-color:rgba(245,158,11,.28)!important}
 .home-category-card[data-home-action]:before{background:rgba(245,158,11,.10)!important}
+.home-feature-strip>div,.contact-box,.exam-dashboard-tabs,.exam-dashboard-actions button{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
+.home-feature-strip>div:first-child,.home-feature-strip>div:last-child{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
+.home-feature-strip strong,.exam-dashboard-actions button span,.contact-card strong{color:var(--mu-text)!important}
+.home-feature-strip small,.exam-dashboard-actions button small,.contact-heading p,.contact-card small{color:var(--mu-muted)!important}
+.home-feature-strip button{color:var(--mu-blue)!important}
+.exam-dashboard-tabs button{color:var(--mu-muted)!important}
+.exam-dashboard-tabs button.is-active{background:var(--mizan-gold-soft)!important;border-color:var(--mizan-gold-border)!important;color:var(--mizan-gold)!important}
+.contact-card-action{background:var(--mizan-blue-soft)!important;color:var(--mizan-blue)!important}
 .mizan-header-tools,.platform-sidebar,.student-sidebar-panel{background:var(--mu-bg)!important;border-color:var(--mu-border)!important}
 .student-sidebar-item{color:var(--mu-text)!important}.student-sidebar-item:hover,.student-sidebar-item.is-active{background:rgba(37,99,235,.12)!important;border-color:rgba(37,99,235,.28)!important;color:var(--mu-text)!important}.student-sidebar-item i{color:var(--mu-gold)!important}
 footer,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
