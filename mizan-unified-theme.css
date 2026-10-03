@@ -1,68 +1,218 @@
-/* Mizan Unified Theme v1.1 — one palette across the site; book artwork is excluded. */
-:root{--mu-bg:var(--mizan-bg);--mu-card:var(--mizan-card);--mu-border:var(--mizan-border);--mu-text:var(--mizan-text);--mu-muted:var(--mizan-muted);--mu-blue:var(--mizan-blue);--mu-blue-hover:var(--mizan-blue-hover);--mu-gold:var(--mizan-gold)}
-html[data-theme="light"]{--mu-bg:var(--mizan-bg);--mu-card:var(--mizan-card);--mu-border:var(--mizan-border);--mu-text:var(--mizan-text);--mu-muted:var(--mizan-muted);--mu-blue:var(--mizan-blue);--mu-blue-hover:var(--mizan-blue-hover);--mu-gold:var(--mizan-gold)}
-html body{background:var(--mu-bg)!important;color:var(--mu-text)!important}
-html body header{background:var(--mu-card)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important}
-html[data-theme="light"] body header{background:var(--mu-card)!important;color:var(--mu-text)!important}
-header p{color:var(--mu-muted)!important}
-.exam-box,.results-box,.review-item,.profile-panel,.profile-stat-card,.student-info-grid>div,.student-profile-card,.custom-exam-book-option,.custom-exam-count-row,.question-search-results,.question-search-item,.firebase-admin-card,.firebase-admin-stat,.firebase-admin-head,.resume-exam-panel,.contact-card,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
-.stat-item,.option-btn,.progress-bar-container,.result-details,.history-item,.student-wrong-item{background:var(--mu-bg)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
-.question-text,.exam-title,.review-question,.detail-value,.profile-identity h3,.profile-panel-heading h3,.firebase-admin-head h2{color:var(--mu-text)!important}
-.stat-label,.detail-label,.review-explanation,.profile-identity p,.profile-panel-heading p,.history-main small,.history-score span,.student-highlight-panel p,.profile-empty,.question-search-source{color:var(--mu-muted)!important}
-.exam-btn.next,.primary-btn,.btn-primary,.cta-button,.firebase-admin-action,.firebase-admin-back{background:var(--mu-blue)!important;color:#fff!important;border-color:var(--mu-blue)!important}
-.exam-btn.next:hover,.primary-btn:hover,.btn-primary:hover,.cta-button:hover,.firebase-admin-action:hover,.firebase-admin-back:hover{background:var(--mu-blue-hover)!important}
-input:not(.book-card input),select:not(.book-card select),textarea:not(.book-card textarea),#search-input{background:var(--mu-card)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important}
-input::placeholder,textarea::placeholder{color:var(--mu-muted)!important}
-.home-category-card[data-home-action],.home-coming-soon{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
-html[data-theme="light"] .home-category-card[data-home-action],html[data-theme="light"] .home-coming-soon{background:#F0F9FF!important;border-color:#E2E8F0!important}
-.home-category-card[data-home-action] strong{color:var(--mu-text)!important}.home-category-card[data-home-action] small{color:var(--mu-muted)!important}
-.home-category-card[data-home-action] i,.home-category-card[data-home-action] b,.home-coming-soon i,.home-coming-soon b,.home-section-heading span,.student-page-header span,.student-page-icon,.profile-stat-card strong,.student-big-score,.history-score strong,.firebase-admin-card-head h3,.firebase-admin-kicker{color:var(--mu-gold)!important}
-.home-category-card[data-home-action] i,.student-page-icon,.account-btn,.firebase-admin-tab{background:rgba(245,158,11,.10)!important;border-color:rgba(245,158,11,.28)!important}
-.home-category-card[data-home-action]:before{background:rgba(245,158,11,.10)!important}
-.home-feature-strip>div,.contact-box,.exam-dashboard-tabs,.exam-dashboard-actions button{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
-.home-feature-strip>div:first-child,.home-feature-strip>div:last-child{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
-.home-feature-strip strong,.exam-dashboard-actions button span,.contact-card strong{color:var(--mu-text)!important}
-.home-feature-strip small,.exam-dashboard-actions button small,.contact-heading p,.contact-card small{color:var(--mu-muted)!important}
-.home-feature-strip button{color:var(--mu-blue)!important}
-.exam-dashboard-tabs button{color:var(--mu-muted)!important}
-.exam-dashboard-tabs button.is-active{background:var(--mizan-gold-soft)!important;border-color:var(--mizan-gold-border)!important;color:var(--mizan-gold)!important}
-.contact-card-action{background:var(--mizan-blue-soft)!important;color:var(--mizan-blue)!important}
-.mizan-header-tools,.platform-sidebar,.student-sidebar-panel{background:var(--mu-bg)!important;border-color:var(--mu-border)!important}
-.student-sidebar-item{color:var(--mu-text)!important}.student-sidebar-item:hover,.student-sidebar-item.is-active{background:rgba(37,99,235,.12)!important;border-color:rgba(37,99,235,.28)!important;color:var(--mu-text)!important}.student-sidebar-item i{color:var(--mu-gold)!important}
-footer,.footer-info-box,.footer-faq-list details{background:var(--mu-card)!important;border-color:var(--mu-border)!important;color:var(--mu-text)!important}
-.footer-bottom,.footer-faq-list summary,.footer-info-content{color:var(--mu-text)!important}.footer-bottom p,.footer-contact-info a,.footer-faq-list p{color:var(--mu-muted)!important}
-.contact-card-whatsapp,.contact-card-telegram,.contact-card-instagram,.contact-card-facebook{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
-/* Book cards, book artwork and chapter visuals intentionally receive no overrides here. */
-
-/* Dedicated sections: same brand surfaces, no per-section colors. */
-.lawyers-section,.lawyers-hero,.lawyers-toolbar,.lawyers-apply-panel,.lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
-.petitions-shell,.petitions-hero,.petition-builder-head,.petition-tools,.petition-template-card,.petition-form-panel,.petition-preview-panel,
-.mizan-pulpit-section,.mizan-pulpit-hero,.mizan-pulpit-toolbar,.mizan-article-card,.mizan-modal-box,.mizan-article-modal-box,.mizan-profile-modal-box{
-  background:var(--mu-card)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important;
+/* Mizan Unified Theme v2.0 — exact supplied palette.
+   Global site UI is themed here. Book cards/artwork/chapter visuals are excluded.
+*/
+:root{
+  --mu-bg:var(--mizan-bg);
+  --mu-surface:var(--mizan-surface);
+  --mu-card:var(--mizan-card);
+  --mu-border:var(--mizan-border);
+  --mu-heading:var(--mizan-heading);
+  --mu-section-heading:var(--mizan-section-heading);
+  --mu-text:var(--mizan-text);
+  --mu-muted:var(--mizan-muted);
+  --mu-subtle:var(--mizan-subtle);
+  --mu-primary:var(--mizan-primary-500);
+  --mu-primary-hover:var(--mizan-primary-600);
+  --mu-primary-active:var(--mizan-primary-700);
 }
+html[data-theme="light"]{
+  --mu-bg:var(--mizan-bg-light);
+  --mu-surface:var(--mizan-surface-light);
+  --mu-card:var(--mizan-card-light);
+  --mu-border:var(--mizan-border-light);
+  --mu-heading:var(--mizan-heading-light);
+  --mu-section-heading:var(--mizan-section-heading-light);
+  --mu-text:var(--mizan-text-light);
+  --mu-muted:var(--mizan-muted-light);
+  --mu-subtle:var(--mizan-subtle-light);
+}
+
+/* Base */
+html,body{background:var(--mu-bg)!important;color:var(--mu-text)!important}
+body{border-color:var(--mu-border)!important}
+
+/* Header: exact navy in BOTH modes */
+html body header{
+  background:var(--mizan-primary-900)!important;
+  color:#FFFFFF!important;
+  border-color:var(--mizan-primary-800)!important;
+}
+html body header h1,html body header h2,html body header h3,
+html body header .title,html body header strong{color:#FFFFFF!important}
+html body header p{color:#94A3B8!important}
+html body header a,html body header nav a{color:#E2E8F0!important}
+html body header a:hover,html body header nav a:hover{color:#38BDF8!important}
+html body header .login-btn,html body header .login-button,
+html body header .btn-primary{background:var(--mizan-primary-500)!important;color:#FFFFFF!important}
+
+/* Generic surfaces */
+.exam-box,.results-box,.review-item,.profile-panel,.profile-stat-card,
+.student-info-grid>div,.student-profile-card,.custom-exam-count-row,
+.question-search-results,.question-search-item,.firebase-admin-card,
+.firebase-admin-stat,.firebase-admin-head,.resume-exam-panel,.contact-card,
+.footer-info-box,.footer-faq-list details,
+.home-feature-strip>div,.contact-box,.exam-dashboard-tabs,
+.exam-dashboard-actions button,
+.lawyers-section,.lawyers-hero,.lawyers-toolbar,.lawyers-apply-panel,
+.lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
+.petitions-shell,.petitions-hero,.petition-builder-head,.petition-tools,
+.petition-template-card,.petition-form-panel,.petition-preview-panel,
+.mizan-pulpit-section,.mizan-pulpit-hero,.mizan-pulpit-toolbar,
+.mizan-article-card,.mizan-modal-box,.mizan-article-modal-box,
+.mizan-profile-modal-box{
+  background:var(--mu-card)!important;
+  color:var(--mu-text)!important;
+  border-color:var(--mu-border)!important;
+}
+.stat-item,.option-btn,.progress-bar-container,.result-details,
+.history-item,.student-wrong-item{
+  background:var(--mu-bg)!important;
+  color:var(--mu-text)!important;
+  border-color:var(--mu-border)!important;
+}
+
+/* Typography */
+.question-text,.exam-title,.review-question,.detail-value,
+.profile-identity h3,.profile-panel-heading h3,.firebase-admin-head h2,
+.lawyers-hero h1,.lawyers-hero h2,.lawyer-card-main,
+.petition-builder-head h1,.petition-panel-title,.mizan-pulpit-hero h1,
+.mizan-article-card h3,.mizan-modal-head h2,.home-section-heading h2,
+.mizan-pulpit-toolbar h3,.contact-heading h2,.footer-info-heading h2,
+.student-page-header h2{color:var(--mu-heading)!important}
+.stat-label,.detail-label,.review-explanation,.profile-identity p,
+.profile-panel-heading p,.history-main small,.history-score span,
+.student-highlight-panel p,.profile-empty,.question-search-source,
+.home-feature-strip small,.exam-dashboard-actions button small,
+.contact-heading p,.contact-card small,.lawyers-hero p,.lawyer-card-location,
+.lawyer-card-office,.lawyer-details-section,.petition-status,
+.mizan-article-meta,.mizan-form-help{
+  color:var(--mu-muted)!important;
+}
+
+/* Primary actions */
+.exam-btn.next,.primary-btn,.btn-primary,.cta-button,.firebase-admin-action,
+.firebase-admin-back,.lawyers-primary-btn,.lawyer-details-link,
+.lawyer-identity-btn,.petition-primary,.mizan-pulpit-primary,
+.mizan-read-btn,.mizan-form-submit{
+  background:var(--mu-primary)!important;
+  color:#FFFFFF!important;
+  border-color:var(--mu-primary)!important;
+}
+.exam-btn.next:hover,.primary-btn:hover,.btn-primary:hover,.cta-button:hover,
+.firebase-admin-action:hover,.firebase-admin-back:hover,
+.lawyers-primary-btn:hover,.petition-primary:hover,
+.mizan-pulpit-primary:hover,.mizan-read-btn:hover,.mizan-form-submit:hover{
+  background:var(--mu-primary-hover)!important;
+}
+
+/* Forms/search */
+input:not(.book-card input),select:not(.book-card select),
+textarea:not(.book-card textarea),#search-input,
 .lawyers-search,.lawyer-form input,.lawyer-form select,.lawyer-form textarea,
 .petition-fields input,.petition-fields select,.petition-fields textarea,
 .mizan-form-grid input,.mizan-form-grid select,.mizan-form-grid textarea{
-  background:var(--mu-bg)!important;color:var(--mu-text)!important;border-color:var(--mu-border)!important;
+  background:var(--mu-card)!important;
+  color:var(--mu-text)!important;
+  border-color:var(--mu-border)!important;
 }
-.lawyers-primary-btn,.lawyer-details-link,.lawyer-identity-btn,.petition-primary,.mizan-pulpit-primary,.mizan-read-btn,.mizan-form-submit{
-  background:var(--mu-blue)!important;color:#fff!important;border-color:var(--mu-blue)!important;
-}
-.lawyers-primary-btn:hover,.petition-primary:hover,.mizan-pulpit-primary:hover,.mizan-read-btn:hover,.mizan-form-submit:hover{background:var(--mu-blue-hover)!important}
-.lawyers-hero h1,.lawyers-hero h2,.lawyer-card-main,.petition-builder-head h1,.petition-panel-title,
-.mizan-pulpit-hero h1,.mizan-article-card h3,.mizan-modal-head h2,
-.home-section-heading h2,.mizan-pulpit-toolbar h3,.contact-heading h2,.footer-info-heading h2,
-.student-page-header h2,.profile-panel-heading h3{color:var(--mu-text)!important}
-.lawyers-hero p,.lawyer-card-location,.lawyer-card-office,.lawyer-details-section,.petition-status,.mizan-article-meta,.mizan-form-help{color:var(--mu-muted)!important}
-.lawyer-verified,.lawyer-tags,.petition-status,.mizan-pulpit-kicker,.mizan-article-meta{border-color:var(--mu-border)!important}
+input::placeholder,textarea::placeholder{color:var(--mu-muted)!important}
 
-/* Force legacy component tokens into the same unified palette. */
-html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *){
-  --primary:var(--mu-blue);
-  --primary-hover:var(--mu-blue-hover);
+/* Home cards: exact white/dark surfaces; book cards are untouched */
+.home-category-card[data-home-action],.home-coming-soon{
+  background:var(--mu-card)!important;
+  border-color:var(--mu-border)!important;
+  color:var(--mu-text)!important;
+}
+.home-category-card[data-home-action] strong{color:var(--mu-heading)!important}
+.home-category-card[data-home-action] small{color:var(--mu-muted)!important}
+.home-category-card[data-home-action] i,
+.home-category-card[data-home-action] b,
+.home-coming-soon i,.home-coming-soon b,
+.home-section-heading span,.student-page-header span,
+.student-page-icon,.profile-stat-card strong,.student-big-score,
+.history-score strong,.firebase-admin-card-head h3,.firebase-admin-kicker{
+  color:var(--mu-primary)!important;
+}
+.home-category-card[data-home-action] i,.student-page-icon,
+.account-btn,.firebase-admin-tab{
+  background:var(--mizan-primary-100)!important;
+  border-color:var(--mizan-primary-200)!important;
+}
+.home-category-card[data-home-action]:before{background:var(--mizan-primary-100)!important}
+
+/* Quiz */
+.quiz-system,.quiz-container,.exam-container{color:var(--mu-text)}
+.quiz-system,.quiz-container{background:var(--mu-card)!important}
+.question-text{color:var(--mizan-primary-900)!important}
+html:not([data-theme="light"]) .question-text{color:#F8FAFC!important}
+.timer-text{color:var(--mu-section-heading)!important}
+.progress-bar-container{background:var(--mizan-border)!important}
+.progress-bar-fill{background:var(--mizan-primary-500)!important}
+.option-btn{background:var(--mu-bg)!important;color:var(--mu-text)!important;border-color:#CBD5E1!important}
+.option-btn:hover{border-color:var(--mizan-primary-500)!important}
+.option-btn.correct{background:var(--mizan-success-100)!important;border-color:var(--mizan-success-500)!important;color:var(--mizan-success-700)!important}
+.option-btn.incorrect{background:var(--mizan-danger-100)!important;border-color:var(--mizan-danger-500)!important;color:var(--mizan-danger-700)!important}
+
+/* Forum / pulpit */
+.mizan-pulpit-hero{background:var(--mu-card)!important}
+.mizan-pulpit-kicker,.mizan-article-meta{border-color:var(--mu-border)!important}
+.mizan-pulpit-toolbar h3,.mizan-article-card h3{color:var(--mu-section-heading)!important}
+
+/* Contact */
+.contact-card-action{background:var(--mizan-info-100)!important;color:var(--mizan-info-700)!important}
+.contact-card-whatsapp,.contact-card-telegram,.contact-card-instagram,
+.contact-card-facebook{background:var(--mu-card)!important;border-color:var(--mu-border)!important}
+.contact-card strong{color:var(--mu-heading)!important}
+
+/* Sidebar */
+.mizan-header-tools,.platform-sidebar,.student-sidebar-panel{
+  background:var(--mu-bg)!important;border-color:var(--mu-border)!important;
+}
+.student-sidebar-item{color:var(--mu-text)!important}
+.student-sidebar-item:hover,.student-sidebar-item.is-active{
+  background:var(--mizan-primary-100)!important;
+  border-color:var(--mizan-primary-200)!important;
+  color:var(--mizan-primary-800)!important;
+}
+html:not([data-theme="light"]) .student-sidebar-item:hover,
+html:not([data-theme="light"]) .student-sidebar-item.is-active{
+  background:rgba(37,99,235,.16)!important;
+  border-color:rgba(96,165,250,.35)!important;
+  color:#F8FAFC!important;
+}
+.student-sidebar-item i{color:var(--mu-primary)!important}
+
+/* Footer: exact navy */
+html body footer{
+  background:var(--mizan-primary-900)!important;
+  color:#94A3B8!important;
+  border-color:#1E293B!important;
+}
+footer a{color:#CBD5E1!important}
+footer a:hover{color:#38BDF8!important}
+.footer-bottom,.footer-faq-list summary,.footer-info-content{color:#E2E8F0!important}
+.footer-bottom p,.footer-contact-info a,.footer-faq-list p{color:#94A3B8!important}
+.footer-info-box,.footer-faq-list details{
+  background:#FFFFFF!important;color:#334155!important;border-color:#E2E8F0!important;
+}
+html:not([data-theme="light"]) .footer-info-box,
+html:not([data-theme="light"]) .footer-faq-list details{
+  background:#1E293B!important;color:#CBD5E1!important;border-color:#334155!important;
+}
+
+/* Semantic states */
+.badge-success,.status-success{background:var(--mizan-success-100)!important;color:var(--mizan-success-700)!important}
+.badge-warning,.status-warning{background:var(--mizan-warning-100)!important;color:var(--mizan-warning-700)!important}
+.badge-danger,.status-danger{background:var(--mizan-danger-100)!important;color:var(--mizan-danger-700)!important}
+.badge-info,.status-info{background:var(--mizan-info-100)!important;color:var(--mizan-info-700)!important}
+
+/* Legacy component tokens — never alter book artwork */
+html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *):not(.chapter-item):not(.chapter-item *){
+  --primary:var(--mu-primary);
+  --primary-hover:var(--mu-primary-hover);
   --bg-dark:var(--mu-bg);
   --card-bg:var(--mu-card);
-  --text-primary:var(--mu-text);
+  --text-primary:var(--mu-heading);
   --text-secondary:var(--mu-muted);
   --border:var(--mu-border);
 }
