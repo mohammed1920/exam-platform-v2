@@ -64,7 +64,7 @@ html[data-theme="light"] #search-input {
 }
 
 html[data-theme="light"] #search-input::placeholder {
-  color: #98a2b3;
+  color: var(--mizan-muted-light);
 }
 
 /* ---------- Header controls ---------- */
@@ -144,7 +144,7 @@ html[data-theme="light"] .exam-home-btn {
 }
 
 html[data-theme="light"] .exam-btn.prev {
-  background: #E2E8F0;
+  background: var(--mizan-border-light);
   color: var(--mizan-text-strong-legacy);
 }
 
