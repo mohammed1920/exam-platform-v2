@@ -571,7 +571,7 @@ header {
 .book-card button:focus-visible,
 .card button:focus-visible,
 .start-exam-btn:focus-visible {
-  outline: 2px solid var(--gold-light);
+  outline: 2px solid var(--mizan-primary-400);
   outline-offset: 3px;
 }
 
@@ -648,7 +648,7 @@ header {
   display: inline-block;
   font-size: 0.76rem;
   font-weight: 800;
-  color: var(--gold-light, var(--primary));
+  color: var(--mizan-primary-500);
   background: rgba(37,99,235,.14);
   border: 1px solid var(--mizan-primary-500-border);
   padding: 4px 11px;
