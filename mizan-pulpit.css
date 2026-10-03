@@ -129,3 +129,20 @@ html[data-theme="light"] .mizan-modal-box,html[data-theme="light"] .mizan-articl
 html[data-theme="light"] .mizan-article-modal-author,html[data-theme="light"] .mizan-article-reading-author,html[data-theme="light"] .mizan-article-reading-footer{border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .mizan-article-reading h1{color:#172b45}html[data-theme="light"] .mizan-article-reading-content{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:var(--mizan-white)}
 html[data-theme="light"] .mizan-profile-stats>div,html[data-theme="light"] .mizan-profile-section{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}html[data-theme="light"] .mizan-profile-modal-box h2{color:#172b45}
+
+/* ===== Theme-aware article surfaces ===== */
+html[data-theme="light"] .mizan-pulpit-hero{background:radial-gradient(circle at 12% 20%,var(--mizan-gold-soft),transparent 36%),linear-gradient(145deg,#FFF9EC,#F8FAFC);color:var(--mizan-heading-light)}
+html[data-theme="light"] .mizan-pulpit-hero p,
+html[data-theme="light"] .mizan-pulpit-toolbar span,
+html[data-theme="light"] .mizan-article-meta time,
+html[data-theme="light"] .mizan-article-card>p,
+html[data-theme="light"] .mizan-article-author small,
+html[data-theme="light"] .mizan-form-help,
+html[data-theme="light"] .mizan-article-modal-author span{color:var(--mizan-muted-light)}
+html[data-theme="light"] .mizan-article-card{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-heading-light);box-shadow:0 8px 24px rgba(15,23,42,.05)}
+html[data-theme="light"] .mizan-article-author{border-top-color:var(--mizan-border-light)}
+html[data-theme="light"] .mizan-modal{background:rgba(15,23,42,.38)}
+html[data-theme="light"] .mizan-modal-box,html[data-theme="light"] .mizan-article-modal-box{background:var(--mizan-white);border-color:var(--mizan-border-light);color:var(--mizan-text-light);box-shadow:0 24px 70px rgba(15,23,42,.18)}
+html[data-theme="light"] .mizan-modal-head h3{color:var(--mizan-heading-light)}
+html[data-theme="light"] .mizan-modal-close,html[data-theme="light"] .mizan-article-close{color:var(--mizan-muted-light)}
+html[data-theme="light"] .mizan-article-body{color:var(--mizan-text-light)}
