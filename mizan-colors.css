@@ -142,3 +142,33 @@ html[data-theme="light"] {
 .mizan-gold-color { color: var(--mizan-gold); }
 .mizan-success-color { color: var(--mizan-success); }
 .mizan-danger-color { color: var(--mizan-danger); }
+
+
+/* =========================================================
+   Decorative / metallic palette
+   These tokens preserve intentional decorative gradients while keeping
+   their values editable from one central color file.
+   ========================================================= */
+:root {
+  --mizan-gold-metal-1: #D4AF37;
+  --mizan-gold-metal-2: #FFF0AA;
+  --mizan-gold-metal-3: #AA820A;
+  --mizan-gold-metal-4: #BF953F;
+  --mizan-gold-metal-5: #FCF6BA;
+  --mizan-gold-metal-6: #B38728;
+  --mizan-gold-metal-7: #FBF5B7;
+  --mizan-gold-metal-8: #AA771C;
+  --mizan-gold-metal-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  --mizan-gold-button-gradient: linear-gradient(180deg, #E5BE6B 0%, #BA8E31 100%);
+  --mizan-gold-button-hover-gradient: linear-gradient(180deg, #F0CC7B 0%, #CA9B3B 100%);
+  --mizan-paper-cream: #F4EAAD;
+  --mizan-paper-edge: #D8C382;
+  --mizan-paper-dark: #B8A05C;
+  --mizan-book-blue-1: #182842;
+  --mizan-book-blue-2: #0A1324;
+  --mizan-book-blue-3: #040914;
+  --mizan-book-blue-spine-1: #03070F;
+  --mizan-book-blue-spine-2: #111E33;
+  --mizan-book-blue-spine-3: #1D3254;
+  --mizan-book-blue-spine-4: #0F1A2C;
+}
