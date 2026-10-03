@@ -231,6 +231,9 @@
       tools.appendChild(menu);
       tools.appendChild(theme);
     }
+    const adminTab=document.getElementById('firebase-admin-tab');
+    const toolsWrap=document.getElementById('mizan-header-tools');
+    if(adminTab && toolsWrap && adminTab.parentElement!==toolsWrap) toolsWrap.insertBefore(adminTab,theme||null);
   }
 
   window.addEventListener('public-auth-state-changed',updateAccountState);
