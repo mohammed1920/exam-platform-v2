@@ -63,26 +63,26 @@ footer{border-top:1px solid var(--mizan-gold-soft);padding:28px 0 20px;backgroun
 .contact-card strong{font-size:15px;margin-bottom:5px}
 .contact-card small{color:#8da0ae;font-size:11px;line-height:1.6;word-break:break-word}
 .contact-card-action{font-size:10px;font-weight:800;padding:7px 10px;border-radius:9px;white-space:nowrap;background:var(--mizan-gold-soft);color:var(--mizan-gold-light)}
-.contact-card-whatsapp{border-color:rgba(37,211,102,.28);background:linear-gradient(145deg,rgba(22,64,47,.45),rgba(10,24,34,.92))}
-.contact-card-whatsapp>i{background:rgba(37,211,102,.12);color:#52df86}
-.contact-card-whatsapp .contact-card-action{background:rgba(37,211,102,.10);color:#68e796}
-.contact-card-whatsapp:hover{border-color:rgba(37,211,102,.55);box-shadow:0 12px 30px rgba(37,211,102,.10)}
-.contact-card-telegram{border-color:rgba(42,171,238,.28);background:linear-gradient(145deg,rgba(24,59,82,.48),rgba(10,24,34,.92))}
-.contact-card-telegram>i{background:rgba(42,171,238,.12);color:var(--mizan-info-light)}
-.contact-card-telegram .contact-card-action{background:rgba(42,171,238,.10);color:#66ccf7}
-.contact-card-telegram:hover{border-color:rgba(42,171,238,.55);box-shadow:0 12px 30px rgba(42,171,238,.10)}
+.contact-card-whatsapp{border-color:color-mix(in srgb, var(--mizan-whatsapp) 28%, transparent);background:linear-gradient(145deg,rgba(22,64,47,.45),rgba(10,24,34,.92))}
+.contact-card-whatsapp>i{background:color-mix(in srgb, var(--mizan-whatsapp) 12%, transparent);color:var(--mizan-whatsapp)}
+.contact-card-whatsapp .contact-card-action{background:color-mix(in srgb, var(--mizan-whatsapp) 10%, transparent);color:var(--mizan-whatsapp)}
+.contact-card-whatsapp:hover{border-color:rgba(37,211,102,.55);box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-whatsapp) 10%, transparent)}
+.contact-card-telegram{border-color:color-mix(in srgb, var(--mizan-telegram) 28%, transparent);background:linear-gradient(145deg,rgba(24,59,82,.48),rgba(10,24,34,.92))}
+.contact-card-telegram>i{background:color-mix(in srgb, var(--mizan-telegram) 12%, transparent);color:var(--mizan-info-light)}
+.contact-card-telegram .contact-card-action{background:color-mix(in srgb, var(--mizan-telegram) 10%, transparent);color:var(--mizan-telegram)}
+.contact-card-telegram:hover{border-color:rgba(42,171,238,.55);box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-telegram) 10%, transparent)}
 .contact-card-phone{border-color:var(--mizan-gold-border)}
 .contact-card-phone>i{background:var(--mizan-gold-soft);color:var(--mizan-gold-light)}
 .contact-card-email{border-color:rgba(180,160,210,.22)}
 .contact-card-email>i{background:rgba(180,160,210,.10);color:#c9b8e6}
-.contact-card-instagram{border-color:rgba(225,48,108,.28);background:linear-gradient(145deg,rgba(91,35,61,.42),rgba(10,24,34,.92))}
-.contact-card-instagram>i{background:rgba(225,48,108,.11);color:#f47aa7}
-.contact-card-instagram .contact-card-action{background:rgba(225,48,108,.10);color:#f48aac}
-.contact-card-instagram:hover{border-color:rgba(225,48,108,.52);box-shadow:0 12px 30px rgba(225,48,108,.10)}
-.contact-card-facebook{border-color:rgba(24,119,242,.28);background:linear-gradient(145deg,rgba(25,57,92,.44),rgba(10,24,34,.92))}
-.contact-card-facebook>i{background:rgba(24,119,242,.11);color:#5fa5ff}
-.contact-card-facebook .contact-card-action{background:rgba(24,119,242,.10);color:#6aaeff}
-.contact-card-facebook:hover{border-color:rgba(24,119,242,.52);box-shadow:0 12px 30px rgba(24,119,242,.10)}
+.contact-card-instagram{border-color:color-mix(in srgb, var(--mizan-instagram) 28%, transparent);background:linear-gradient(145deg,rgba(91,35,61,.42),rgba(10,24,34,.92))}
+.contact-card-instagram>i{background:color-mix(in srgb, var(--mizan-instagram) 11%, transparent);color:var(--mizan-instagram)}
+.contact-card-instagram .contact-card-action{background:color-mix(in srgb, var(--mizan-instagram) 10%, transparent);color:#f48aac}
+.contact-card-instagram:hover{border-color:rgba(225,48,108,.52);box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-instagram) 10%, transparent)}
+.contact-card-facebook{border-color:color-mix(in srgb, var(--mizan-facebook) 28%, transparent);background:linear-gradient(145deg,rgba(25,57,92,.44),rgba(10,24,34,.92))}
+.contact-card-facebook>i{background:color-mix(in srgb, var(--mizan-facebook) 11%, transparent);color:var(--mizan-facebook)}
+.contact-card-facebook .contact-card-action{background:color-mix(in srgb, var(--mizan-facebook) 10%, transparent);color:#6aaeff}
+.contact-card-facebook:hover{border-color:rgba(24,119,242,.52);box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-facebook) 10%, transparent)}
 .contact-card-secondary{min-height:78px}
 @media(max-width:600px){.contact-section{padding:24px 12px 12px}.contact-box{padding:20px 14px;border-radius:19px}.contact-info-grid{grid-template-columns:1fr}.contact-heading h2{font-size:22px}.contact-card{min-height:86px;padding:15px}.contact-card-action{display:none}}
 
