@@ -31,3 +31,10 @@ html[data-theme="light"] .lawyer-admin-tab.active,html[data-theme="light"] .fire
 html[data-theme="light"] .lawyer-admin-edit,html[data-theme="light"] .lawyer-admin-edit-requests{background:#fff;border-color:#e2e8f0}
 html[data-theme="light"] .lawyer-admin-edit-form input,html[data-theme="light"] .lawyer-admin-edit-form textarea{background:#fff;color:#1f2937;border-color:#d8dee8}
 html[data-theme="light"] .firebase-admin-menu-card span,html[data-theme="light"] .lawyer-admin-status{color:#667085}
+
+/* Admin crown joins the shared Mizan top utility box */
+#mizan-header-tools .firebase-admin-tab{position:relative!important;inset:auto!important;width:42px;height:42px;margin:0;flex:0 0 42px;display:grid;place-items:center;border:1px solid rgba(194,157,95,.35);border-radius:12px;background:rgba(194,157,95,.08);color:#d8bd86;box-shadow:none;z-index:1;cursor:pointer}
+#mizan-header-tools .firebase-admin-tab span{display:none}
+#mizan-header-tools .firebase-admin-tab:hover{border-color:rgba(194,157,95,.7);background:rgba(194,157,95,.14);transform:translateY(-1px)}
+html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{background:#fff8eb;border-color:#ead9b8;color:#8f6b34}
+@media(max-width:600px){#mizan-header-tools .firebase-admin-tab{width:40px;height:40px;flex-basis:40px}}
