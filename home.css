@@ -157,14 +157,14 @@ footer{border-top:1px solid var(--mizan-gold-soft);padding:28px 0 20px;backgroun
   .home-coming-soon b{font-size:8px;padding:4px 6px}
 }
 
-.home-category-card[data-home-action="books"]{--card-accent:#b8a16a;--card-bg:rgba(58,52,39,.62);}
-.home-category-card[data-home-action="judicial"]{--card-accent:#8998a8;--card-bg:rgba(45,55,66,.64);}
-.home-category-card[data-home-action="random"]{--card-accent:#7896a9;--card-bg:rgba(38,57,69,.64);}
-.home-category-card[data-home-action="laws"]{--card-accent:#7fa493;--card-bg:rgba(38,58,51,.64);}
-.home-category-card[data-home-action="procedures"]{--card-accent:#7fa6a7;--card-bg:rgba(39,59,61,.64);}
-.home-category-card[data-home-action="petitions"]{--card-accent:#b49a72;--card-bg:rgba(59,50,39,.64);}
-.home-category-card[data-home-action="lawyers"]{--card-accent:#aa7f88;--card-bg:rgba(58,43,48,.64);}
-.home-category-card[data-home-action="leaderboard"]{--card-accent:#789aaa;--card-bg:rgba(39,55,64,.64);}
+.home-category-card[data-home-action="books"]{--card-accent:var(--mizan-section-books-accent);--card-bg:var(--mizan-section-books-bg);}
+.home-category-card[data-home-action="judicial"]{--card-accent:var(--mizan-section-judicial-accent);--card-bg:var(--mizan-section-judicial-bg);}
+.home-category-card[data-home-action="random"]{--card-accent:var(--mizan-section-random-accent);--card-bg:var(--mizan-section-random-bg);}
+.home-category-card[data-home-action="laws"]{--card-accent:var(--mizan-section-laws-accent);--card-bg:var(--mizan-section-laws-bg);}
+.home-category-card[data-home-action="procedures"]{--card-accent:var(--mizan-section-procedures-accent);--card-bg:var(--mizan-section-procedures-bg);}
+.home-category-card[data-home-action="petitions"]{--card-accent:var(--mizan-section-petitions-accent);--card-bg:var(--mizan-section-petitions-bg);}
+.home-category-card[data-home-action="lawyers"]{--card-accent:var(--mizan-section-lawyers-accent);--card-bg:var(--mizan-section-lawyers-bg);}
+.home-category-card[data-home-action="leaderboard"]{--card-accent:var(--mizan-section-leaderboard-accent);--card-bg:var(--mizan-section-leaderboard-bg);}
 
 .home-category-card[data-home-action]{
   border-color:color-mix(in srgb,var(--card-accent) 30%,transparent);
@@ -350,7 +350,7 @@ footer{border-top:1px solid var(--mizan-gold-soft);padding:28px 0 20px;backgroun
   .home-coming-soon b{font-size:8px;padding:5px 7px}
 }
 
-.home-category-card[data-home-action="mizan-pulpit"]{--card-accent:#a28fae;--card-bg:rgba(54,47,61,.64);border-color:rgba(162,143,174,.26);background:radial-gradient(circle at 88% 18%,rgba(162,143,174,.09),transparent 38%),linear-gradient(145deg,rgba(54,47,61,.64),rgba(12,23,37,.97))}
+.home-category-card[data-home-action="mizan-pulpit"]{--card-accent:var(--mizan-section-pulpit-accent);--card-bg:var(--mizan-section-pulpit-bg);border-color:rgba(162,143,174,.26);background:radial-gradient(circle at 88% 18%,rgba(162,143,174,.09),transparent 38%),linear-gradient(145deg,rgba(54,47,61,.64),rgba(12,23,37,.97))}
 .home-category-card[data-home-action="mizan-pulpit"] i{background:rgba(162,143,174,.10);color:#b7a8bf}.home-category-card[data-home-action="mizan-pulpit"] b{color:#b7a8bf}
 
 
@@ -478,3 +478,10 @@ html[data-theme="light"] .footer-faq-list summary{color:#172b45}
 html[data-theme="light"] .footer-faq-list summary:before{background:var(--mizan-gold-pale);color:var(--mizan-gold-text)}
 html[data-theme="light"] .footer-faq-list p{color:#475467}
 
+
+
+/* Light theme: category cards retain their identity but use light surfaces for readable contrast. */
+html[data-theme="light"] .home-category-card[data-home-action]{color:var(--mizan-heading-light);}
+html[data-theme="light"] .home-category-card[data-home-action] small{color:color-mix(in srgb,var(--card-accent) 72%,var(--mizan-text-light));}
+html[data-theme="light"] .home-category-card[data-home-action] strong{color:var(--mizan-heading-light);}
+html[data-theme="light"] .home-category-card[data-home-action]:before{opacity:.75;}
