@@ -28,9 +28,9 @@
 - رفع وثائق الهوية للمحامين غير مستخدم حالياً بسبب قيود Firebase Storage في الخطة الحالية.
 
 ## الواجهة الحالية
-- الصفحة الرئيسية تستخدم صورة الهوية الموحدة:
-  `assets/branding/mizan-header.svg`
-- تم التخلي عن Lottie للهوية الرئيسية.
+- الصفحة الرئيسية تستخدم شعار Lottie الموحد:
+  `assets/branding/meezan-assemble.json`
+- لا توجد أصول SVG أو PNG قديمة للهوية الرئيسية؛ الشعار المتحرك هو المصدر الوحيد لهيدر المنصة.
 - شريط الهيدر وأيقونة تبديل الثيم وأقسام المنصة مرتبطة بالتصميم الحالي في `index.html` و`style.css` و`platform-header-fix.js`.
 - قسم العرائض في `petitions.js` و`petitions.css`.
 - منبر ميزان في `mizan-pulpit.js` و`mizan-pulpit.css`.
@@ -57,9 +57,10 @@
 5. حذف تحميل مكتبة Lottie من `index.html`.
 6. حذف أنماط الهوية القديمة الخاصة بـ `.mizan-logo-animation` و`.mizan-brand-copy`.
 7. حذف ملف Lottie القديم `assets/branding/mizan-logo.json`.
-8. الهوية الحالية تعتمد على SVG الثابت، وليس Lottie.
-9. حذف `auto_sync_data.py` بعد فحص وظيفته ومسار تشغيله؛ كان مجرد wrapper توافق قديم يستدعي `update_questions.py`، ولم يعد هناك workflow أو مسار تشغيل حالي يحتاجه.
-10. حذف `split_chapters.py` بعد فحص وظيفته؛ كان أداة ترحيل قديمة لتحويل `chapters.json` إلى `chapter_N.json`، بينما بنية المشروع الحالية تعتمد فقط على ملفات `chapter_N.json` ولا توجد ملفات `chapters.json` في البيانات الحالية.
+8. استبدال الهوية القديمة بشعار Lottie المرفق `assets/branding/meezan-assemble.json`.
+9. حذف أصول SVG وPNG القديمة ومراجعها من الهيدر وmanifest ووسوم المشاركة الاجتماعية.
+10. حذف `auto_sync_data.py` بعد فحص وظيفته ومسار تشغيله؛ كان مجرد wrapper توافق قديم يستدعي `update_questions.py`، ولم يعد هناك workflow أو مسار تشغيل حالي يحتاجه.
+11. حذف `split_chapters.py` بعد فحص وظيفته؛ كان أداة ترحيل قديمة لتحويل `chapters.json` إلى `chapter_N.json`، بينما بنية المشروع الحالية تعتمد فقط على ملفات `chapter_N.json` ولا توجد ملفات `chapters.json` في البيانات الحالية.
 - commits التنظيف الأخير: `b99ec057db8d7168bd440028ead75b1564548d7e` و`e3a07e43349b8c998600f9367daf9695c3861c55`.
 
 ## قاعدة إلزامية قبل حذف أي ملف — 2026-10-02

@@ -42,8 +42,7 @@
       overflow: hidden;
     }
 
-    .mizan-header-logo svg,
-    .mizan-header-logo-fallback {
+    .mizan-header-logo svg {
       display: block;
       width: 100%;
       height: 100%;
@@ -102,7 +101,6 @@
   function mountMizanLogo() {
     const container = document.getElementById('mizan-header-logo');
     if (!container || !window.lottie) return;
-    const fallback = container.querySelector('.mizan-header-logo-fallback');
     try {
       window.lottie.loadAnimation({
         container,
@@ -111,9 +109,8 @@
         autoplay: true,
         path: 'assets/branding/meezan-assemble.json'
       });
-      if (fallback) fallback.remove();
     } catch (_) {
-      /* يبقى الشعار الاحتياطي ظاهراً إذا تعذر تشغيل Lottie. */
+      /* لا يُعاد أي شعار قديم إذا تعذر تشغيل Lottie. */
     }
   }
 
