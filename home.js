@@ -24,7 +24,7 @@
     if (!document.querySelector('link[data-mizan-pulpit-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'mizan-pulpit.css?v=1.3';
+      css.href = 'mizan-pulpit.css?v=1.4';
       css.dataset.mizanPulpitCss = '1';
       document.head.appendChild(css);
     }
