@@ -174,3 +174,28 @@ html[data-theme="light"] {
   --mizan-book-blue-spine-3: #1D3254;
   --mizan-book-blue-spine-4: #0F1A2C;
 }
+
+
+/* =========================================================
+   Component / legacy visual tokens
+   Exact values retained for existing decorative UI.
+   ========================================================= */
+:root {
+  --mizan-text-soft-legacy: #CBD5E1;
+  --mizan-text-strong-legacy: #344054;
+  --mizan-gold-muted: #A67F45;
+  --mizan-gold-antique: #8D6B37;
+  --mizan-gold-deep: #7D6235;
+  --mizan-gold-paper: #E2D4B6;
+  --mizan-gold-paper-light: #EAD9B8;
+  --mizan-green-alt: #42D3A1;
+  --mizan-red-alt: #DC5A5A;
+  --mizan-blue-pale: #F0F9FF;
+  --mizan-blue-border-pale: #7DD3FC;
+  --mizan-info-link: #0369A1;
+  --mizan-purple-soft: #C9B8E6;
+  --mizan-pink-soft: #F48AAC;
+  --mizan-cyan-soft: #62D2C5;
+  --mizan-white-soft: rgba(255,255,255,.07);
+  --mizan-black-soft: rgba(0,0,0,.16);
+}
