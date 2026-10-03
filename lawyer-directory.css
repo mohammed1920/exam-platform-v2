@@ -117,3 +117,17 @@ html[data-theme="light"] .lawyer-detail-item strong{color:var(--mizan-text-stron
 html[data-theme="light"] .lawyer-detail-item span,html[data-theme="light"] .lawyer-details-section>span{color:var(--mizan-muted-light)}
 html[data-theme="light"] .lawyer-details-section p{color:#475467;background:var(--mizan-ice)}
 
+
+/* ===== Theme-aware directory controls and detail surfaces ===== */
+html[data-theme="light"] .lawyers-search input,
+html[data-theme="light"] .lawyer-form input,
+html[data-theme="light"] .lawyer-form textarea{background:var(--mizan-white);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .lawyer-form label{color:var(--mizan-heading-light)}
+html[data-theme="light"] .lawyer-form small,
+html[data-theme="light"] .lawyer-form-status,
+html[data-theme="light"] .lawyer-identity-notice span{color:var(--mizan-muted-light)}
+html[data-theme="light"] .lawyer-card-actions a{background:var(--mizan-surface-2-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .lawyer-detail-item{background:var(--mizan-surface-2-light);border-color:var(--mizan-border-light)}
+html[data-theme="light"] .lawyer-detail-item strong{color:var(--mizan-heading-light)}
+html[data-theme="light"] .lawyer-details-close{background:var(--mizan-ice);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .lawyers-empty{border-color:var(--mizan-border-light);color:var(--mizan-muted-light)}
