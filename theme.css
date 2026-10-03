@@ -190,7 +190,7 @@ html[data-theme="light"] .custom-exam-count-row input{
 }
 html[data-theme="light"] .question-search-header,
 html[data-theme="light"] .question-search-item{border-color:var(--mizan-border-light)}
-html[data-theme="light"] .question-search-item:active{background:var(--mizan-white)8eb}
+html[data-theme="light"] .question-search-item:active{background:var(--mizan-gold-pale)}
 html[data-theme="light"] .question-search-source,
 html[data-theme="light"] .custom-exam-book-option small{color:var(--mizan-muted-light)}
 
@@ -200,5 +200,5 @@ html[data-theme="light"] .custom-exam-book-option small{color:var(--mizan-muted-
 html[data-theme="light"] .custom-exam-book-option,html[data-theme="light"] .custom-exam-count-row,html[data-theme="light"] .question-search-results{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light);box-shadow:0 6px 20px rgba(15,23,42,.04)}
 html[data-theme="light"] .custom-exam-count-row input{background:var(--mizan-surface-2-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
 html[data-theme="light"] .question-search-header,html[data-theme="light"] .question-search-item{border-color:var(--mizan-border-light)}
-html[data-theme="light"] .question-search-item:active{background:var(--mizan-white)8eb}
+html[data-theme="light"] .question-search-item:active{background:var(--mizan-gold-pale)}
 html[data-theme="light"] .question-search-source,html[data-theme="light"] .custom-exam-book-option small{color:var(--mizan-muted-light)}
