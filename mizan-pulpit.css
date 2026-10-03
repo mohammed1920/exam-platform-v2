@@ -111,7 +111,7 @@ html[data-theme="light"] .mizan-article-reading-author,
 html[data-theme="light"] .mizan-article-reading-footer{border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .mizan-article-reading h1{color:#172b45}
 html[data-theme="light"] .mizan-article-reading-content{color:var(--mizan-text-strong-legacy)}
-html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:var(--mizan-white)af0}
+html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:var(--mizan-white)}
 html[data-theme="light"] .mizan-profile-stats>div,
 html[data-theme="light"] .mizan-profile-section{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}
 html[data-theme="light"] .mizan-profile-modal-box h2{color:#172b45}
@@ -127,5 +127,5 @@ html[data-theme="light"] .mizan-article-author,html[data-theme="light"] .mizan-a
 html[data-theme="light"] .mizan-modal{background:rgba(15,23,42,.42)}
 html[data-theme="light"] .mizan-modal-box,html[data-theme="light"] .mizan-article-modal-box,html[data-theme="light"] .mizan-profile-modal-box,html[data-theme="light"] .mizan-article-reading{background:linear-gradient(145deg,var(--mizan-white),#f6f8fb);border-color:var(--mizan-border-light);color:var(--mizan-text-light);box-shadow:0 24px 70px rgba(15,23,42,.16)}
 html[data-theme="light"] .mizan-article-modal-author,html[data-theme="light"] .mizan-article-reading-author,html[data-theme="light"] .mizan-article-reading-footer{border-color:var(--mizan-text-dark)}
-html[data-theme="light"] .mizan-article-reading h1{color:#172b45}html[data-theme="light"] .mizan-article-reading-content{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:var(--mizan-white)af0}
+html[data-theme="light"] .mizan-article-reading h1{color:#172b45}html[data-theme="light"] .mizan-article-reading-content{color:var(--mizan-text-strong-legacy)}html[data-theme="light"] .mizan-article-reading-excerpt{color:#475467;background:var(--mizan-white)}
 html[data-theme="light"] .mizan-profile-stats>div,html[data-theme="light"] .mizan-profile-section{background:var(--mizan-ice);border-color:var(--mizan-text-dark)}html[data-theme="light"] .mizan-profile-modal-box h2{color:#172b45}
