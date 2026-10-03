@@ -105,9 +105,9 @@ html[data-theme="light"] .lawyer-detail-item{background:var(--mizan-ice)}
 html[data-theme="light"] .lawyer-my-application{background:linear-gradient(145deg,var(--mizan-white),#f6f8fb);border-color:var(--mizan-border-light);color:var(--mizan-text-light);box-shadow:0 8px 24px rgba(15,23,42,.05)}
 html[data-theme="light"] .lawyer-my-application-head span,html[data-theme="light"] .lawyer-my-application p{color:var(--mizan-muted-light)}
 html[data-theme="light"] .lawyer-my-application-head h3{color:#172b45}
-html[data-theme="light"] .lawyer-my-application-edit{background:var(--mizan-white)8eb;border-color:var(--mizan-gold-light);color:var(--mizan-gold-text)}
-html[data-theme="light"] .lawyer-my-application-edit:hover{background:var(--mizan-white)3d6;border-color:var(--mizan-gold)}
-html[data-theme="light"] .lawyer-identity-notice{background:var(--mizan-white)af0;border-color:var(--mizan-gold-paper)}
+html[data-theme="light"] .lawyer-my-application-edit{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-light);color:var(--mizan-gold-text)}
+html[data-theme="light"] .lawyer-my-application-edit:hover{background:var(--mizan-gold-pale);border-color:var(--mizan-gold)}
+html[data-theme="light"] .lawyer-identity-notice{background:var(--mizan-white);border-color:var(--mizan-gold-paper)}
 html[data-theme="light"] .lawyer-identity-notice strong{color:var(--mizan-gold-text)}
 html[data-theme="light"] .lawyer-identity-btn.whatsapp{color:#15803d;background:#f0fdf4;border-color:#86efac}
 html[data-theme="light"] .lawyer-identity-btn.telegram{color:var(--mizan-info-link);background:var(--mizan-blue-pale);border-color:var(--mizan-blue-border-pale)}
