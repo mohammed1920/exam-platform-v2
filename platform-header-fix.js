@@ -3,11 +3,17 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    /* هيدر ميزان: صف الهوية في المنتصف والعبارة تحته */
+    /* هيدر ميزان: الشعار + الكلمة كوحدة واحدة (لوغو) والعبارة تحتهما */
     .mizan-header {
       position: relative;
-      padding: 30px 76px 25px 24px !important;
+      --mizan-wordmark: #f1e2bd;
+      --mizan-wordmark-glow: rgba(216,189,134,.22);
+      padding: 30px 24px 25px !important;
       text-align: center;
+    }
+    html[data-theme="light"] .mizan-header {
+      --mizan-wordmark: #0a1c45;
+      --mizan-wordmark-glow: transparent;
     }
 
     .mizan-header-brand {
@@ -18,7 +24,7 @@
       direction: rtl;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       min-height: 132px;
     }
 
@@ -30,11 +36,7 @@
       justify-content: center;
       width: max-content;
       max-width: 100%;
-      gap: 0;
-    }
-
-    .mizan-header-copy {
-      transform: translateX(38px);
+      gap: 10px;
     }
 
     .mizan-header-logo {
@@ -61,13 +63,15 @@
     }
     .mizan-header-copy h1 {
       margin: 0;
-      color: var(--primary, #c29d5f);
-      font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      padding: 0;
+      color: var(--mizan-wordmark);
+      font-family: 'Reem Kufi', 'Amiri', 'Noto Naskh Arabic', serif;
+      font-size: clamp(2.6rem, 5.4vw, 4.6rem);
       font-weight: 700;
-      line-height: 1;
-      letter-spacing: .01em;
-      text-shadow: 0 5px 24px rgba(194,157,95,.14);
+      line-height: 1.15;
+      letter-spacing: 0;
+      text-shadow: 0 4px 22px var(--mizan-wordmark-glow);
+      transition: color .25s ease;
     }
 
     .mizan-header-tagline {
@@ -86,20 +90,18 @@
     }
 
     @media (max-width: 700px) {
-      .mizan-header { padding: 25px 56px 18px 14px !important; }
-      .mizan-header-brand { gap: 5px; min-height: 104px; margin-top: 46px; }
-      .mizan-header-identity { gap: 0; }
-      .mizan-header-copy { transform: translateX(28px); }
+      .mizan-header { padding: 25px 14px 18px !important; }
+      .mizan-header-brand { gap: 4px; min-height: 104px; margin-top: 46px; }
+      .mizan-header-identity { gap: 8px; }
       .mizan-header-logo { width: 86px; height: 86px; flex-basis: 86px; }
     }
 
     @media (max-width: 420px) {
-      .mizan-header { padding: 22px 50px 16px 8px !important; }
+      .mizan-header { padding: 22px 10px 16px !important; }
       .mizan-header-brand { margin-top: 38px; }
-      .mizan-header-identity { gap: 0; }
-      .mizan-header-copy { transform: translateX(20px); }
+      .mizan-header-identity { gap: 6px; }
       .mizan-header-logo { width: 70px; height: 70px; flex-basis: 70px; }
-      .mizan-header-copy h1 { font-size: 2.3rem; }
+      .mizan-header-copy h1 { font-size: 2.5rem; }
       .mizan-header-tagline { font-size: .74rem; }
     }
   `;
