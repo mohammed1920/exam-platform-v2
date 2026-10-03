@@ -148,7 +148,7 @@ html:not([data-theme="light"]) .question-text{color:#F8FAFC!important}
 .timer-text{color:var(--mu-section-heading)!important}
 .progress-bar-container{background:var(--mizan-border)!important}
 .progress-bar-fill{background:var(--mizan-primary-500)!important}
-.option-btn{background:var(--mu-bg)!important;color:var(--mu-text)!important;border-color:#CBD5E1!important}
+.option-btn{background:var(--mu-bg)!important;color:var(--mu-text)!important;border-color:var(--mizan-text-dark)!important}
 .option-btn:hover{border-color:var(--mizan-primary-500)!important}
 .option-btn.correct{background:var(--mizan-success-100)!important;border-color:var(--mizan-success-500)!important;color:var(--mizan-success-700)!important}
 .option-btn.incorrect{background:var(--mizan-danger-100)!important;border-color:var(--mizan-danger-500)!important;color:var(--mizan-danger-700)!important}
@@ -188,7 +188,7 @@ html body footer{
   color:#94A3B8!important;
   border-color:#1E293B!important;
 }
-footer a{color:#CBD5E1!important}
+footer a{color:var(--mizan-text-dark)!important}
 footer a:hover{color:#38BDF8!important}
 .footer-bottom,.footer-faq-list summary,.footer-info-content{color:#E2E8F0!important}
 .footer-bottom p,.footer-contact-info a,.footer-faq-list p{color:#94A3B8!important}
@@ -197,7 +197,7 @@ footer a:hover{color:#38BDF8!important}
 }
 html:not([data-theme="light"]) .footer-info-box,
 html:not([data-theme="light"]) .footer-faq-list details{
-  background:#1E293B!important;color:#CBD5E1!important;border-color:#334155!important;
+  background:#1E293B!important;color:var(--mizan-text-dark)!important;border-color:#334155!important;
 }
 
 /* Semantic states */
@@ -225,7 +225,7 @@ html[data-theme="light"] .mizan-header-tools .platform-menu-trigger,
 html[data-theme="light"] .mizan-header-tools .theme-toggle{
   background:#FFFFFF!important;
   color:#0F172A!important;
-  border:1px solid #CBD5E1!important;
+  border:1px solid var(--mizan-text-dark)!important;
   box-shadow:0 3px 12px rgba(15,23,42,.12),inset 0 1px 0 rgba(255,255,255,.9)!important;
   opacity:1!important;
 }
@@ -289,7 +289,7 @@ html[data-theme="light"] .contact-info-grid .contact-card{
   background:#FEF3C7!important;color:#B45309!important;
 }
 .contact-info-grid .contact-card-email{
-  border-color:#CBD5E1!important;
+  border-color:var(--mizan-text-dark)!important;
   background:linear-gradient(145deg,#FFFFFF,#F8FAFC)!important;
 }
 .contact-info-grid .contact-card-email>i{
@@ -420,7 +420,7 @@ html body{background:var(--mizan-bg)!important;color:var(--mizan-text)!important
 .mizan-pulpit-section,.mizan-pulpit-hero,.mizan-pulpit-toolbar,.mizan-article-card,.mizan-modal-box,.mizan-article-modal-box,.mizan-profile-modal-box{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.mizan-pulpit-hero:after{color:var(--mizan-primary-100)!important}.mizan-pulpit-kicker{color:var(--mizan-primary-500)!important}.mizan-pulpit-hero p,.mizan-pulpit-toolbar span,.mizan-article-meta{color:var(--mizan-muted)!important}.mizan-pulpit-primary,.mizan-read-btn,.mizan-form-submit{background:var(--mizan-primary-500)!important;color:#FFFFFF!important;border-color:var(--mizan-primary-500)!important}.mizan-pulpit-primary:hover,.mizan-read-btn:hover,.mizan-form-submit:hover{background:var(--mizan-primary-600)!important}.mizan-pulpit-secondary{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-700)!important;border-color:var(--mizan-primary-200)!important}.mizan-article-card h3{color:var(--mizan-heading)!important}
 
 /* Footer + information pages */
-html body footer{background:var(--mizan-primary-900)!important;color:var(--mizan-subtle-light)!important;border-color:var(--mizan-section-heading-dark)!important}footer a{color:#CBD5E1!important}footer a:hover{color:#38BDF8!important}.footer-info-box,.footer-faq-list details{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.footer-info-heading span{color:var(--mizan-primary-500)!important}.footer-info-heading h2{color:var(--mizan-heading)!important}.footer-info-content,.footer-faq-list summary{color:var(--mizan-text)!important}.footer-info-content p,.footer-faq-list p{color:var(--mizan-muted)!important}
+html body footer{background:var(--mizan-primary-900)!important;color:var(--mizan-subtle-light)!important;border-color:var(--mizan-section-heading-dark)!important}footer a{color:var(--mizan-text-dark)!important}footer a:hover{color:#38BDF8!important}.footer-info-box,.footer-faq-list details{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.footer-info-heading span{color:var(--mizan-primary-500)!important}.footer-info-heading h2{color:var(--mizan-heading)!important}.footer-info-content,.footer-faq-list summary{color:var(--mizan-text)!important}.footer-info-content p,.footer-faq-list p{color:var(--mizan-muted)!important}
 
 /* Sidebar */
 .platform-sidebar-panel{background:var(--mizan-surface)!important;border-color:var(--mizan-border)!important}.platform-sidebar-backdrop{background:rgba(15,23,42,.62)!important}.platform-sidebar-close{background:var(--mizan-card)!important;color:var(--mizan-text)!important;border-color:var(--mizan-border)!important}.platform-sidebar-brand strong{color:var(--mizan-heading)!important}.platform-sidebar-brand span{color:var(--mizan-muted)!important}.platform-sidebar-heading{color:var(--mizan-primary-500)!important}.platform-sidebar-item{color:var(--mizan-text)!important;border-color:transparent!important}.platform-sidebar-item:hover,.platform-sidebar-item.active{background:var(--mizan-primary-100)!important;color:var(--mizan-primary-800)!important;border-color:var(--mizan-primary-200)!important}.platform-sidebar-item i{color:var(--mizan-primary-500)!important}
