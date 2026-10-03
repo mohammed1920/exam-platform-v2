@@ -54,6 +54,32 @@
   --mizan-danger-dark: #DC2626;
   --mizan-warning: #F59E0B;
   --mizan-info: #38BDF8;
+  --mizan-info-light: #4FC3F7;
+  --mizan-focus: rgba(217,119,6,.72);
+  --mizan-info-light: #4FC3F7;
+  --mizan-focus: rgba(217,119,6,.72);
+
+  /* Compatibility aliases for the original design-token palette. */
+  --mizan-navy-950: var(--mizan-navy-deep);
+  --mizan-navy-900: var(--mizan-navy);
+  --mizan-navy-850: #101D2D;
+  --mizan-navy-800: #172B45;
+  --mizan-slate-800: var(--mizan-card-dark);
+  --mizan-slate-700: var(--mizan-border-dark);
+  --mizan-text-soft: var(--mizan-text-dark);
+  --mizan-text-muted: var(--mizan-muted-dark);
+  --mizan-text-subtle: #7F93A4;
+  --mizan-error: var(--mizan-danger);
+  --mizan-light-bg: var(--mizan-bg-light);
+  --mizan-light-surface: var(--mizan-surface-light);
+  --mizan-light-surface-2: var(--mizan-surface-2-light);
+  --mizan-light-border: var(--mizan-border-light);
+  --mizan-light-text: var(--mizan-text-light);
+  --mizan-light-muted: var(--mizan-muted-light);
+  --mizan-border-soft: rgba(255,255,255,.07);
+  --mizan-shadow-sm: 0 4px 15px rgba(0,0,0,.14);
+  --mizan-shadow-md: 0 12px 35px rgba(0,0,0,.16);
+  --mizan-shadow-lg: 0 18px 50px rgba(0,0,0,.24);
 
   /* Theme-facing semantic tokens */
   --mizan-bg: var(--mizan-bg-dark);
