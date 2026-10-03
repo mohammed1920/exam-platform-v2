@@ -102,7 +102,8 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 /* App installation prompt: independent from the header utility box */
 #install-app-btn{
   position:fixed!important;
-  left:18px!important;
+  right:18px!important;
+  left:auto!important;
   bottom:18px!important;
   z-index:8500!important;
   align-items:center;
@@ -145,6 +146,6 @@ html[data-theme="light"] #install-app-btn,
 html[data-theme="light"] #ios-install-hint{background:rgba(255,255,255,.97)!important;color:#344054!important;border-color:rgba(143,107,52,.3)!important;box-shadow:0 8px 24px rgba(15,23,42,.14)}
 html[data-theme="light"] #install-app-btn{color:#8f6b34!important}
 @media(max-width:600px){
-  #install-app-btn,#ios-install-hint{left:12px!important;bottom:14px!important}
-  #install-app-btn{padding:8px 12px!important}
+  #install-app-btn,#ios-install-hint{right:12px!important;left:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
+  #install-app-btn{padding:8px 12px!important;max-width:calc(100vw - 24px)}
 }
