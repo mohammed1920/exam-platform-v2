@@ -4,7 +4,6 @@
    unified site theme so the existing book design stays unchanged.
 */
 :root{
-  /* Primary */
   --mizan-primary-100:#C7DCFE;
   --mizan-primary-200:#93C5FD;
   --mizan-primary-300:#60A5FA;
@@ -14,8 +13,6 @@
   --mizan-primary-700:#1E40AF;
   --mizan-primary-800:#1E3A8A;
   --mizan-primary-900:#0F172A;
-
-  /* Semantic */
   --mizan-success-100:#D1FAE5;
   --mizan-success-200:#A7F3D0;
   --mizan-success-500:#10B981;
@@ -31,8 +28,6 @@
   --mizan-info-100:#E0F2FE;
   --mizan-info-500:#0284C7;
   --mizan-info-700:#0369A1;
-
-  /* Light mode */
   --mizan-bg-light:#F8FAFC;
   --mizan-surface-light:#FFFFFF;
   --mizan-card-light:#FFFFFF;
@@ -42,8 +37,6 @@
   --mizan-text-light:#334155;
   --mizan-muted-light:#64748B;
   --mizan-subtle-light:#94A3B8;
-
-  /* Dark mode */
   --mizan-bg-dark:#0F172A;
   --mizan-surface-dark:#1E293B;
   --mizan-card-dark:#1E293B;
@@ -53,8 +46,6 @@
   --mizan-text-dark:#CBD5E1;
   --mizan-muted-dark:#94A3B8;
   --mizan-subtle-dark:#64748B;
-
-  /* Theme-facing aliases */
   --mizan-bg:var(--mizan-bg-dark);
   --mizan-surface:var(--mizan-surface-dark);
   --mizan-card:var(--mizan-card-dark);
@@ -64,8 +55,6 @@
   --mizan-text:var(--mizan-text-dark);
   --mizan-muted:var(--mizan-muted-dark);
   --mizan-subtle:var(--mizan-subtle-dark);
-
-  /* Legacy aliases */
   --mizan-navy:var(--mizan-primary-900);
   --mizan-navy-deep:#020617;
   --mizan-white:#FFFFFF;
@@ -79,7 +68,7 @@
   --mizan-warning:var(--mizan-warning-500);
   --mizan-info:var(--mizan-info-500);
   --mizan-error:var(--mizan-danger-500);
-  --mizan-focus:rgba(37,99,235,.72);
+  --mizan-focus:var(--mizan-focus-ring);
   --primary:var(--mizan-primary-500);
   --primary-hover:var(--mizan-primary-600);
   --bg-dark:var(--mizan-bg);
@@ -90,8 +79,6 @@
   --success:var(--mizan-success-500);
   --error:var(--mizan-danger-500);
   --header-bg:var(--mizan-primary-900);
-
-  /* Keep existing metallic/book-only artwork untouched. */
   --mizan-gold-metal-1:#D4AF37;
   --mizan-gold-metal-2:#FFF0AA;
   --mizan-gold-metal-3:#AA820A;
@@ -113,7 +100,6 @@
   --mizan-book-blue-spine-2:#111E33;
   --mizan-book-blue-spine-3:#1D3254;
   --mizan-book-blue-spine-4:#0F1A2C;
-
   --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
   --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
   --mizan-shadow-lg:0 18px 50px rgba(0,0,0,.24);
@@ -137,17 +123,231 @@ html[data-theme="light"]{
   --border:var(--mizan-border-light);
   --header-bg:var(--mizan-primary-900);
 }
-.mizan-primary-color{color:var(--mizan-primary-500)}
-.mizan-success-color{color:var(--mizan-success-500)}
-.mizan-danger-color{color:var(--mizan-danger-500)}
-.mizan-warning-color{color:var(--mizan-warning-500)}
-.mizan-info-color{color:var(--mizan-info-500)}
-
-
+.mizan-primary-color{
+  color:var(--mizan-primary-500);
+}
+.mizan-success-color{
+  color:var(--mizan-success-500);
+}
+.mizan-danger-color{
+  color:var(--mizan-danger-500);
+}
+.mizan-warning-color{
+  color:var(--mizan-warning-500);
+}
+.mizan-info-color{
+  color:var(--mizan-info-500);
+}
 /* Central compatibility aliases for legacy component variables. */
-:root{--mizan-navy-900:var(--mizan-primary-900);--mizan-navy-800:var(--mizan-primary-800);--mizan-slate-900:var(--mizan-primary-900);--mizan-slate-800:var(--mizan-surface-dark);--mizan-slate-700:var(--mizan-border-dark);--mizan-slate-600:#475569;--mizan-slate-blue:var(--mizan-surface-dark);--mizan-slate-blue-deep:var(--mizan-primary-900);--mizan-text-muted:var(--mizan-muted);--mizan-text-muted-blue:var(--mizan-muted);--mizan-text-dim-blue:var(--mizan-subtle);--mizan-text-soft-legacy:var(--mizan-muted);--mizan-text-strong-legacy:var(--mizan-heading);--mizan-surface-2-light:#F1F5F9;--mizan-surface-2-dark:#0F172A;--mizan-white-soft:rgba(226,232,240,.70);--mizan-black-soft:rgba(15,23,42,.16);--mizan-gold-border:var(--mizan-border);--mizan-gold-soft:rgba(37,99,235,.10);--mizan-gold-light:var(--mizan-primary-300);--mizan-gold-pale:var(--mizan-primary-100);--mizan-gold-text:var(--mizan-primary-700);--mizan-gold:var(--mizan-primary-500);--mizan-gold-muted:var(--mizan-primary-600);--mizan-gold-deep:var(--mizan-primary-700);--mizan-gold-antique:var(--mizan-primary-700);--mizan-gold-paper:var(--mizan-primary-100);--mizan-gold-paper-light:var(--mizan-primary-100);--mizan-danger-soft:var(--mizan-danger-100);--mizan-success-soft:var(--mizan-success-100);--mizan-danger-border:var(--mizan-danger-500);--mizan-success-border:var(--mizan-success-500);--mizan-whatsapp:var(--mizan-success-500);--mizan-blue-pale:var(--mizan-primary-100);--mizan-blue-border-pale:var(--mizan-primary-200)}
-html[data-theme="light"]{--mizan-text-muted:var(--mizan-muted-light);--mizan-text-muted-blue:var(--mizan-muted-light);--mizan-text-dim-blue:var(--mizan-muted-light);--mizan-text-soft-legacy:var(--mizan-muted-light);--mizan-text-strong-legacy:var(--mizan-heading-light);--mizan-slate-800:var(--mizan-surface-light);--mizan-slate-700:var(--mizan-border-light);--mizan-slate-blue:var(--mizan-surface-light);--mizan-gold-border:var(--mizan-border-light);--mizan-gold-soft:var(--mizan-primary-100);--mizan-gold-light:var(--mizan-primary-500);--mizan-gold-pale:var(--mizan-primary-100);--mizan-gold-text:var(--mizan-primary-700)}
-
+:root{
+  --mizan-navy-900:var(--mizan-primary-900);
+  --mizan-navy-800:var(--mizan-primary-800);
+  --mizan-slate-900:var(--mizan-primary-900);
+  --mizan-slate-800:var(--mizan-surface-dark);
+  --mizan-slate-700:var(--mizan-border-dark);
+  --mizan-slate-600:#475569;
+  --mizan-slate-blue:var(--mizan-surface-dark);
+  --mizan-slate-blue-deep:var(--mizan-primary-900);
+  --mizan-text-muted:var(--mizan-muted);
+  --mizan-text-muted-blue:var(--mizan-muted);
+  --mizan-text-dim-blue:var(--mizan-subtle);
+  --mizan-text-soft-legacy:var(--mizan-muted);
+  --mizan-text-strong-legacy:var(--mizan-heading);
+  --mizan-surface-2-light:#F1F5F9;
+  --mizan-surface-2-dark:#0F172A;
+  --mizan-white-soft:rgba(226,232,240,.70);
+  --mizan-black-soft:rgba(15,23,42,.16);
+  --mizan-danger-soft:var(--mizan-danger-100);
+  --mizan-success-soft:var(--mizan-success-100);
+  --mizan-danger-border:var(--mizan-danger-500);
+  --mizan-success-border:var(--mizan-success-500);
+  --mizan-whatsapp:var(--mizan-success-500);
+  --mizan-blue-pale:var(--mizan-primary-100);
+  --mizan-blue-border-pale:var(--mizan-primary-200);
+}
+html[data-theme="light"]{
+  --mizan-text-muted:var(--mizan-muted-light);
+  --mizan-text-muted-blue:var(--mizan-muted-light);
+  --mizan-text-dim-blue:var(--mizan-muted-light);
+  --mizan-text-soft-legacy:var(--mizan-muted-light);
+  --mizan-text-strong-legacy:var(--mizan-heading-light);
+  --mizan-slate-800:var(--mizan-surface-light);
+  --mizan-slate-700:var(--mizan-border-light);
+  --mizan-slate-blue:var(--mizan-surface-light);
+}
 /* Final semantic aliases used by components — all resolve to the central palette. */
-:root{--mizan-surface-soft:var(--mizan-border);--mizan-primary-500-border:var(--mizan-primary-200);--mizan-telegram:var(--mizan-info-500);--mizan-info-light:var(--mizan-info-500);--mizan-ink-soft:var(--mizan-surface-dark);--mizan-primary-500-hover:var(--mizan-primary-600);--mizan-primary-500-dark:var(--mizan-primary-700)}
-html[data-theme="light"]{--mizan-surface-soft:var(--mizan-border-light);--mizan-primary-500-border:var(--mizan-primary-200);--mizan-ink-soft:var(--mizan-surface-light)}
+:root{
+  --mizan-surface-soft:var(--mizan-border);
+  --mizan-primary-500-border:var(--mizan-primary-200);
+  --mizan-telegram:var(--mizan-info-500);
+  --mizan-info-light:var(--mizan-info-500);
+  --mizan-ink-soft:var(--mizan-surface-dark);
+  --mizan-primary-500-hover:var(--mizan-primary-600);
+  --mizan-primary-500-dark:var(--mizan-primary-700);
+}
+html[data-theme="light"]{
+  --mizan-surface-soft:var(--mizan-border-light);
+  --mizan-primary-500-border:var(--mizan-primary-200);
+  --mizan-ink-soft:var(--mizan-surface-light);
+}
+/* ===== Neutral ramp (theme-independent constants) ===== */
+:root{
+  --mizan-neutral-50:#F8FAFC;
+  --mizan-neutral-100:#F1F5F9;
+  --mizan-neutral-200:#E2E8F0;
+  --mizan-neutral-300:#CBD5E1;
+  --mizan-neutral-400:#94A3B8;
+  --mizan-neutral-500:#64748B;
+  --mizan-neutral-600:#475569;
+  --mizan-neutral-700:#334155;
+  --mizan-neutral-800:#1E293B;
+  --mizan-neutral-950:#020617;
+  --mizan-black:#000000;
+}
+/* ===== Extended semantic steps (used as text on dark / soft fills) ===== */
+:root{
+  --mizan-info-300:#38BDF8;
+  --mizan-success-50:#F0FDF4;
+  --mizan-success-300:#86EFAC;
+  --mizan-success-400:#34D399;
+  --mizan-success-deep:#15803D;
+  --mizan-danger-300:#FCA5A5;
+  --mizan-danger-400:#F87171;
+  --mizan-paper-ink:#151515;
+}
+/* ===== Third-party brand colors (fixed by the brands) ===== */
+:root{
+  --mizan-brand-whatsapp:#25D366;
+  --mizan-brand-telegram:#2AABEE;
+  --mizan-brand-instagram:#E1306C;
+  --mizan-brand-facebook:#1877F2;
+  --mizan-instagram:var(--mizan-brand-instagram);
+  --mizan-facebook:var(--mizan-brand-facebook);
+}
+/* ===== Interactive-accent tokens (switch per theme; contrast-checked, WCAG AA) ===== */
+:root{
+  --mizan-accent-text:var(--mizan-primary-300);
+  --mizan-accent-light:var(--mizan-primary-300);
+  --mizan-accent-tile-bg:color-mix(in srgb,var(--mizan-primary-500) 16%,transparent);
+  --mizan-accent-tile-fg:var(--mizan-primary-300);
+  --mizan-accent-tile-border:color-mix(in srgb,var(--mizan-primary-300) 35%,transparent);
+  --mizan-border-control:var(--mizan-subtle-dark);
+  --mizan-success-text:var(--mizan-success-400);
+  --mizan-danger-text:var(--mizan-danger-400);
+  --mizan-on-primary:var(--mizan-white);
+}
+html[data-theme="light"]{
+  --mizan-accent-text:var(--mizan-primary-600);
+  --mizan-accent-light:var(--mizan-primary-500);
+  --mizan-accent-tile-bg:var(--mizan-primary-100);
+  --mizan-accent-tile-fg:var(--mizan-primary-700);
+  --mizan-accent-tile-border:var(--mizan-primary-200);
+  --mizan-border-control:var(--mizan-muted-light);
+  --mizan-success-text:var(--mizan-success-700);
+  --mizan-danger-text:var(--mizan-danger-700);
+}
+/* ===== Component aliases (previously used but undefined) ===== */
+:root{
+  --mizan-primary-500-pale:var(--mizan-primary-100);
+  --mizan-primary-500-paper:var(--mizan-primary-100);
+  --mizan-primary-500-paper-light:var(--mizan-primary-100);
+  --mizan-primary-500-pale-text:var(--mizan-accent-text);
+  --mizan-primary-500-muted:var(--mizan-primary-600);
+  --mizan-primary-500-antique:var(--mizan-primary-700);
+  --mizan-primary-500-deep:var(--mizan-primary-800);
+  --mizan-primary-500-border-pale:var(--mizan-primary-200);
+  --mizan-primary-900-deep:var(--mizan-navy-deep);
+  --mizan-ink-deep:var(--mizan-navy-deep);
+  --mizan-muted-blue:var(--mizan-muted);
+  --mizan-text-light-blue:var(--mizan-muted);
+  --mizan-secondary-text:var(--mizan-muted);
+  --mizan-paper-white:var(--mizan-surface-light);
+  --mizan-info-link:var(--mizan-accent-text);
+  --mizan-cyan-soft:var(--mizan-info-100);
+  --mizan-purple-soft:var(--mizan-muted);
+  --mizan-pink-soft:var(--mizan-danger-200);
+}
+/* ===== Gold accent system — thin accent hints only (badges, hairlines, wordmark, focus) =====
+   Contrast (WCAG AA): gold-primary #D4AF37 = 8.49:1 on #0F172A and 6.96:1 on #1E293B (dark surfaces);
+   gold-light #F3E5AB = 14.1:1 / 11.6:1. On light surfaces the bright gold fails (2.1:1), so the
+   theme-aware tokens below switch to deeper tones: gold-deep #7C5E00 (text, 6.07:1 on white) and
+   gold-mid #9A7B12 (lines/icons/focus ring, 4.03:1 on white, 3.85:1 on #F8FAFC). */
+:root{
+  --mizan-gold-primary:#D4AF37;
+  --mizan-gold-light:#F3E5AB;
+  --mizan-gold-subtle:rgba(212,175,55,.15);
+  --mizan-gold-deep:#7C5E00;
+  --mizan-gold-mid:#9A7B12;
+  --mizan-gold-accent:var(--mizan-gold-primary);
+  --mizan-gold-text:var(--mizan-gold-light);
+  --mizan-gold-line:var(--mizan-gold-primary);
+  --mizan-gold-tint:var(--mizan-gold-subtle);
+  --mizan-gold-tint-border:color-mix(in srgb,var(--mizan-gold-primary) 38%,transparent);
+  --mizan-gold-gradient:linear-gradient(135deg,var(--mizan-gold-light) 0%,var(--mizan-gold-primary) 55%,var(--mizan-gold-light) 100%);
+  --mizan-focus-ring:var(--mizan-gold-accent);
+}
+html[data-theme="light"]{
+  --mizan-gold-accent:var(--mizan-gold-mid);
+  --mizan-gold-text:var(--mizan-gold-deep);
+  --mizan-gold-line:var(--mizan-gold-mid);
+  --mizan-gold-tint-border:color-mix(in srgb,var(--mizan-gold-mid) 40%,transparent);
+}
+.mizan-gold-color{
+  color:var(--mizan-gold-text);
+}
+.mizan-gold-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:3px 9px;
+  border:1px solid var(--mizan-gold-tint-border);
+  border-radius:999px;
+  background:var(--mizan-gold-tint);
+  color:var(--mizan-gold-text);
+  font-weight:800;
+}
+.mizan-gold-topline{
+  border-top:2px solid var(--mizan-gold-line);
+}
+.mizan-gold-text-gradient{
+  background:var(--mizan-gold-gradient);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+/* ===== Decorative tints (component gradients/glows; theme-independent) ===== */
+:root{
+  --mizan-deco-amber-38:#8F6B34;
+  --mizan-deco-amber-54:#C59B4D;
+  --mizan-deco-blue-04:#030811;
+  --mizan-deco-blue-07:#09101D;
+  --mizan-deco-blue-08:#091B22;
+  --mizan-deco-blue-10:#0C1725;
+  --mizan-deco-blue-10a:#0B1726;
+  --mizan-deco-blue-10b:#0B1827;
+  --mizan-deco-blue-11:#111827;
+  --mizan-deco-blue-11a:#0F1B2A;
+  --mizan-deco-blue-12:#131C2B;
+  --mizan-deco-blue-13:#121E2F;
+  --mizan-deco-blue-14:#142235;
+  --mizan-deco-blue-14a:#192330;
+  --mizan-deco-blue-18:#1D2A3E;
+  --mizan-deco-blue-18a:#1C2B40;
+  --mizan-deco-blue-19:#232F3E;
+  --mizan-deco-blue-20:#1C314C;
+  --mizan-deco-blue-21:#183B52;
+  --mizan-deco-blue-23:#19395C;
+  --mizan-deco-blue-32:#26537D;
+  --mizan-deco-blue-44:#3669AB;
+  --mizan-deco-blue-56:#7A8FA6;
+  --mizan-deco-blue-61:#6091D6;
+  --mizan-deco-green-17:#16402F;
+  --mizan-deco-green-69:#8BD3A8;
+  --mizan-deco-rose-25:#5B233D;
+  --mizan-deco-rose-73:#E98B8B;
+  --mizan-deco-teal-17:#173E3F;
+  --mizan-deco-teal-41:#2BA69D;
+  --mizan-deco-teal-51:#43C2B8;
+  --mizan-deco-violet-62:#A28FAE;
+  --mizan-deco-violet-73:#B4A0D2;
+}
