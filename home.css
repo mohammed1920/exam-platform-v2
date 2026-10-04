@@ -1111,13 +1111,13 @@ footer{
   .global-search-item,
   .contact-card,
   .footer-links button{
-    transition:none !important;
+    transition:none;
   }
   .home-category-card:hover,
   .home-feature-strip>div:hover,
   .home-coming-soon:hover,
   .contact-card:hover{
-    transform:none !important;
+    transform:none;
   }
   .home-category-card:after{
     display:none;

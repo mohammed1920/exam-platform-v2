@@ -140,13 +140,13 @@
   display:flex !important;
   align-items:flex-start;
   gap:8px;
-  margin:14px 0 !important;
+  margin:14px 0;
   font-weight:600 !important;
   line-height:1.7;
 }
 .lawyer-consent input{
-  width:17px !important;
-  margin:2px 0 0 !important;
+  width:17px;
+  margin:2px 0 0;
   flex:0 0 17px;
 }
 .lawyer-form-status{

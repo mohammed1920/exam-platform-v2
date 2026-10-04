@@ -6,13 +6,13 @@
     /* هيدر ميزان: الشعار + الكلمة كوحدة واحدة (لوغو) والعبارة تحتهما */
     .mizan-header {
       position: relative;
-      --mizan-wordmark: #f1e2bd;
-      --mizan-wordmark-glow: rgba(216,189,134,.22);
+      --mizan-wordmark: var(--mizan-deco-amber-84);
+      --mizan-wordmark-glow: color-mix(in srgb,var(--mizan-deco-amber-69) 22%,transparent);
       padding: 30px 24px 25px !important;
       text-align: center;
     }
     html[data-theme="light"] .mizan-header {
-      --mizan-wordmark: #0a1c45;
+      --mizan-wordmark: var(--mizan-deco-blue-15a);
       --mizan-wordmark-glow: transparent;
     }
 
@@ -76,7 +76,7 @@
 
     .mizan-header-tagline {
       margin: 0;
-      color: var(--text-secondary, #94a3b8);
+      color: var(--text-secondary, var(--mizan-neutral-400));
       font-family: 'Tajawal', 'Cairo', sans-serif;
       font-size: clamp(.82rem, 1.7vw, 1.08rem);
       font-weight: 500;

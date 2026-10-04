@@ -351,3 +351,57 @@ html[data-theme="light"]{
   --mizan-deco-violet-62:#A28FAE;
   --mizan-deco-violet-73:#B4A0D2;
 }
+/* ===== Theme-specific accents (dark = royal gold, light = professional blue) =====
+   Light values equal the previous blue values exactly, so the light theme is visually unchanged.
+   Dark: gold-light text on a soft gold tint (8.7:1) with a gold hairline border. */
+:root{
+  --mizan-btn-primary-bg:var(--mizan-gold-subtle);
+  --mizan-btn-primary-bg-hover:color-mix(in srgb,var(--mizan-gold-primary) 26%,transparent);
+  --mizan-btn-primary-bg-strong:color-mix(in srgb,var(--mizan-gold-primary) 34%,transparent);
+  --mizan-btn-primary-bg-grad:var(--mizan-gold-subtle);
+  --mizan-btn-primary-fg:var(--mizan-gold-light);
+  --mizan-btn-primary-border:var(--mizan-gold-primary);
+  --mizan-btn-primary-glow:var(--mizan-gold-primary);
+  --mizan-section-icon-fg:var(--mizan-gold-primary);
+  --mizan-section-icon-bg:var(--mizan-gold-subtle);
+  --mizan-section-icon-border:var(--mizan-gold-tint-border);
+}
+html[data-theme="light"]{
+  --mizan-btn-primary-bg:var(--mizan-primary-500);
+  --mizan-btn-primary-bg-hover:var(--mizan-primary-600);
+  --mizan-btn-primary-bg-strong:var(--mizan-primary-700);
+  --mizan-btn-primary-bg-grad:linear-gradient(145deg,var(--mizan-primary-600),var(--mizan-primary-500));
+  --mizan-btn-primary-fg:var(--mizan-white);
+  --mizan-btn-primary-border:var(--mizan-primary-500);
+  --mizan-btn-primary-glow:var(--mizan-primary-500);
+  --mizan-section-icon-fg:var(--mizan-primary-500);
+  --mizan-section-icon-bg:var(--mizan-primary-100);
+  --mizan-section-icon-border:var(--mizan-primary-200);
+}
+/* ===== Decorative tints added in batch 2 ===== */
+:root{
+  --mizan-deco-blue-12a:#101D2D;
+  --mizan-deco-blue-04a:#020812;
+  --mizan-deco-blue-16:#192739;
+  --mizan-deco-blue-02:#00050C;
+  --mizan-deco-green-54:#42D3A1;
+  --mizan-deco-green-55:#48D3A2;
+  --mizan-deco-rose-61:#DC5A5A;
+  --mizan-deco-amber-14:#2A241B;
+  --mizan-deco-blue-09:#0A1624;
+  --mizan-deco-blue-15:#182534;
+  --mizan-deco-blue-08a:#091421;
+  --mizan-deco-blue-76:#B9C5CC;
+  --mizan-deco-blue-84:#D0D7DC;
+  --mizan-deco-blue-58:#8295A5;
+  --mizan-deco-amber-84:#F1E2BD;
+  --mizan-deco-amber-69:#D8BD86;
+  --mizan-deco-blue-15a:#0A1C45;
+  --mizan-deco-blue-27:#344054;
+  --mizan-deco-blue-88:#D8DEE8;
+  --mizan-deco-amber-96:#FFF8EB;
+  --mizan-deco-amber-63:#D8B66A;
+  --mizan-deco-amber-80:#E2D4B6;
+  --mizan-deco-blue-17:#1F2937;
+  --mizan-deco-rose-51:#DC2626;
+}

@@ -1,40 +1,370 @@
-.lawyer-admin-card{margin-top:16px}.lawyer-admin-table{width:100%;border-collapse:collapse}.lawyer-admin-table th,.lawyer-admin-table td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:right;font-size:11px;vertical-align:top}.lawyer-admin-table th{color:var(--mizan-primary-500)}.lawyer-admin-actions{display:flex;flex-wrap:wrap;gap:6px}.lawyer-admin-actions button{border:1px solid var(--mizan-border-dark);background:var(--mizan-primary-900);color:var(--mizan-text-dark);border-radius:8px;padding:6px 8px;font:inherit;font-size:10px;cursor:pointer}.lawyer-admin-actions .approve{border-color:rgba(16,185,129,.45);color:var(--mizan-success)}.lawyer-admin-actions .reject{border-color:rgba(239,68,68,.45);color:var(--mizan-danger)}.lawyer-admin-doc{color:var(--mizan-primary-500);text-decoration:none}.lawyer-admin-status{font-size:10px;color:var(--mizan-muted-dark)}
-.lawyer-admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.lawyer-admin-tab{border:1px solid var(--mizan-primary-500-border);background:rgba(255,255,255,.025);color:var(--mizan-muted);border-radius:10px;padding:8px 12px;font:inherit;font-size:11px;cursor:pointer}.lawyer-admin-tab.active{border-color:var(--mizan-primary-500-border);color:var(--mizan-primary-300);background:var(--mizan-primary-100)}.lawyer-admin-tab strong{margin-right:5px}.lawyer-admin-view-panel[hidden],.lawyer-admin-edit[hidden]{display:none}.lawyer-admin-actions button{white-space:nowrap}.lawyer-admin-status.is-live{color:var(--mizan-success)}.lawyer-admin-status.is-off{color:var(--mizan-warning)}.lawyer-admin-edit{margin-top:14px;padding:16px;border:1px solid var(--mizan-primary-500-border);border-radius:14px;background:rgba(255,255,255,.025)}.lawyer-admin-edit-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.lawyer-admin-edit-head span{display:block;color:var(--mizan-primary-500);font-size:10px}.lawyer-admin-edit-head h4{margin:3px 0 0;font-size:16px}.lawyer-admin-edit-head button{border:0;background:transparent;color:var(--mizan-muted-dark);font-size:22px;cursor:pointer}.lawyer-admin-edit-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.lawyer-admin-edit-form label{display:flex;flex-direction:column;gap:5px;color:var(--mizan-muted-dark);font-size:10px}.lawyer-admin-edit-form label.full{grid-column:1/-1}.lawyer-admin-edit-form input,.lawyer-admin-edit-form textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.08);background:var(--mizan-primary-900);color:var(--mizan-text-dark);border-radius:9px;padding:9px;font:inherit;font-size:12px}.lawyer-admin-edit-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;margin-top:4px}.lawyer-admin-edit-actions button{border:1px solid var(--mizan-border-dark);background:var(--mizan-primary-900);color:var(--mizan-text-dark);border-radius:9px;padding:8px 14px;cursor:pointer;font:inherit}.lawyer-admin-edit-actions .save{border-color:rgba(16,185,129,.45);color:var(--mizan-success)}@media(max-width:700px){.lawyer-admin-edit-form{grid-template-columns:1fr}.lawyer-admin-edit-form label.full{grid-column:auto}.lawyer-admin-edit-actions{grid-column:auto}.lawyer-admin-table{min-width:760px}.firebase-admin-table-wrap{overflow-x:auto}}
+.lawyer-admin-card{
+  margin-top:16px;
+}
+.lawyer-admin-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.lawyer-admin-table th,
+.lawyer-admin-table td{
+  padding:10px 8px;
+  border-bottom:1px solid color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  text-align:right;
+  font-size:11px;
+  vertical-align:top;
+}
+.lawyer-admin-table th{
+  color:var(--mizan-primary-500);
+}
+.lawyer-admin-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.lawyer-admin-actions button{
+  border:1px solid var(--mizan-border-dark);
+  background:var(--mizan-primary-900);
+  color:var(--mizan-text-dark);
+  border-radius:8px;
+  padding:6px 8px;
+  font:inherit;
+  font-size:10px;
+  cursor:pointer;
+}
+.lawyer-admin-actions .approve{
+  border-color:color-mix(in srgb,var(--mizan-success-500) 45%,transparent);
+  color:var(--mizan-success);
+}
+.lawyer-admin-actions .reject{
+  border-color:color-mix(in srgb,var(--mizan-danger-500) 45%,transparent);
+  color:var(--mizan-danger);
+}
+.lawyer-admin-doc{
+  color:var(--mizan-primary-500);
+  text-decoration:none;
+}
+.lawyer-admin-status{
+  font-size:10px;
+  color:var(--mizan-muted-dark);
+}
+.lawyer-admin-tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:14px 0;
+}
+.lawyer-admin-tab{
+  border:1px solid var(--mizan-primary-500-border);
+  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  color:var(--mizan-muted);
+  border-radius:10px;
+  padding:8px 12px;
+  font:inherit;
+  font-size:11px;
+  cursor:pointer;
+}
+.lawyer-admin-tab.active{
+  border-color:var(--mizan-primary-500-border);
+  color:var(--mizan-primary-300);
+  background:var(--mizan-primary-100);
+}
+.lawyer-admin-tab strong{
+  margin-right:5px;
+}
+.lawyer-admin-view-panel[hidden],
+.lawyer-admin-edit[hidden]{
+  display:none;
+}
+.lawyer-admin-actions button{
+  white-space:nowrap;
+}
+.lawyer-admin-status.is-live{
+  color:var(--mizan-success);
+}
+.lawyer-admin-status.is-off{
+  color:var(--mizan-warning);
+}
+.lawyer-admin-edit{
+  margin-top:14px;
+  padding:16px;
+  border:1px solid var(--mizan-primary-500-border);
+  border-radius:14px;
+  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+}
+.lawyer-admin-edit-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.lawyer-admin-edit-head span{
+  display:block;
+  color:var(--mizan-primary-500);
+  font-size:10px;
+}
+.lawyer-admin-edit-head h4{
+  margin:3px 0 0;
+  font-size:16px;
+}
+.lawyer-admin-edit-head button{
+  border:0;
+  background:transparent;
+  color:var(--mizan-muted-dark);
+  font-size:22px;
+  cursor:pointer;
+}
+.lawyer-admin-edit-form{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.lawyer-admin-edit-form label{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  color:var(--mizan-muted-dark);
+  font-size:10px;
+}
+.lawyer-admin-edit-form label.full{
+  grid-column:1/-1;
+}
+.lawyer-admin-edit-form input,
+.lawyer-admin-edit-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  background:var(--mizan-primary-900);
+  color:var(--mizan-text-dark);
+  border-radius:9px;
+  padding:9px;
+  font:inherit;
+  font-size:12px;
+}
+.lawyer-admin-edit-actions{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:4px;
+}
+.lawyer-admin-edit-actions button{
+  border:1px solid var(--mizan-border-dark);
+  background:var(--mizan-primary-900);
+  color:var(--mizan-text-dark);
+  border-radius:9px;
+  padding:8px 14px;
+  cursor:pointer;
+  font:inherit;
+}
+.lawyer-admin-edit-actions .save{
+  border-color:color-mix(in srgb,var(--mizan-success-500) 45%,transparent);
+  color:var(--mizan-success);
+}
+@media(max-width:700px){
+  .lawyer-admin-edit-form{
+    grid-template-columns:1fr;
+  }
+  .lawyer-admin-edit-form label.full{
+    grid-column:auto;
+  }
+  .lawyer-admin-edit-actions{
+    grid-column:auto;
+  }
+  .lawyer-admin-table{
+    min-width:760px;
+  }
+  .firebase-admin-table-wrap{
+    overflow-x:auto;
+  }
+}
 /* تنظيم لوحة الإدارة إلى أقسام فرعية */
-.firebase-admin-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
-.firebase-admin-menu-card{display:flex;flex-direction:column;align-items:flex-start;gap:7px;text-align:right;border:1px solid var(--mizan-primary-500-border);background:rgba(255,255,255,.025);color:var(--mizan-text-dark);border-radius:14px;padding:16px;cursor:pointer;font:inherit;transition:.2s}
-.firebase-admin-menu-card i{font-size:20px;color:var(--mizan-primary-500)}
-.firebase-admin-menu-card strong{font-size:14px}
-.firebase-admin-menu-card span{font-size:10px;color:var(--mizan-muted-dark)}
-.firebase-admin-menu-card:hover{border-color:var(--mizan-primary-500-border);transform:translateY(-1px)}
-.firebase-admin-menu-card.active{border-color:var(--mizan-primary-500-border);background:var(--mizan-primary-100);box-shadow:0 8px 24px rgba(0,0,0,.12)}
-.firebase-admin-subviews{min-height:180px}
-.firebase-admin-subview{display:none}
-.firebase-admin-subview.active{display:block}
-.firebase-admin-subview-back{border:1px solid var(--mizan-primary-500-border);background:rgba(255,255,255,.025);color:var(--mizan-primary-500);border-radius:9px;padding:9px 13px;margin-bottom:14px;cursor:pointer;font:inherit;font-size:11px}
-.firebase-admin-subview-back:hover{border-color:var(--mizan-primary-500-border);background:var(--mizan-primary-100)}
-#fa-admin-home[hidden]{display:none}
-.firebase-admin-subview>.firebase-admin-card{margin-top:0}
-@media(max-width:700px){.firebase-admin-menu{grid-template-columns:1fr}.firebase-admin-menu-card{padding:14px}}
-
-.lawyer-admin-edit-requests{margin-bottom:16px;padding:14px;border:1px solid var(--mizan-primary-500-border);border-radius:14px;background:var(--mizan-primary-100)}
-.lawyer-admin-edit-requests .firebase-admin-card-head{margin-bottom:10px}
-.lawyer-admin-edit-requests #fa-lawyer-edit-requests-count{min-width:24px;text-align:center;border-radius:999px;padding:3px 7px;background:var(--mizan-primary-100);color:var(--mizan-primary-300);font-size:10px}
-.lawyer-my-application-edit{margin-top:12px;border:1px solid var(--mizan-primary-500-border);background:var(--mizan-primary-100);color:var(--mizan-primary-300);border-radius:10px;padding:9px 14px;cursor:pointer;font:inherit;font-size:11px}
-.lawyer-my-application-edit:hover{background:var(--mizan-primary-100);border-color:var(--mizan-primary-500-border)}
-
+.firebase-admin-menu{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:18px 0;
+}
+.firebase-admin-menu-card{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+  text-align:right;
+  border:1px solid var(--mizan-primary-500-border);
+  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  color:var(--mizan-text-dark);
+  border-radius:14px;
+  padding:16px;
+  cursor:pointer;
+  font:inherit;
+  transition:.2s;
+}
+.firebase-admin-menu-card i{
+  font-size:20px;
+  color:var(--mizan-primary-500);
+}
+.firebase-admin-menu-card strong{
+  font-size:14px;
+}
+.firebase-admin-menu-card span{
+  font-size:10px;
+  color:var(--mizan-muted-dark);
+}
+.firebase-admin-menu-card:hover{
+  border-color:var(--mizan-primary-500-border);
+  transform:translateY(-1px);
+}
+.firebase-admin-menu-card.active{
+  border-color:var(--mizan-primary-500-border);
+  background:var(--mizan-primary-100);
+  box-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 12%,transparent);
+}
+.firebase-admin-subviews{
+  min-height:180px;
+}
+.firebase-admin-subview{
+  display:none;
+}
+.firebase-admin-subview.active{
+  display:block;
+}
+.firebase-admin-subview-back{
+  border:1px solid var(--mizan-primary-500-border);
+  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  color:var(--mizan-primary-500);
+  border-radius:9px;
+  padding:9px 13px;
+  margin-bottom:14px;
+  cursor:pointer;
+  font:inherit;
+  font-size:11px;
+}
+.firebase-admin-subview-back:hover{
+  border-color:var(--mizan-primary-500-border);
+  background:var(--mizan-primary-100);
+}
+#fa-admin-home[hidden]{
+  display:none;
+}
+.firebase-admin-subview>.firebase-admin-card{
+  margin-top:0;
+}
+@media(max-width:700px){
+  .firebase-admin-menu{
+    grid-template-columns:1fr;
+  }
+  .firebase-admin-menu-card{
+    padding:14px;
+  }
+}
+.lawyer-admin-edit-requests{
+  margin-bottom:16px;
+  padding:14px;
+  border:1px solid var(--mizan-primary-500-border);
+  border-radius:14px;
+  background:var(--mizan-primary-100);
+}
+.lawyer-admin-edit-requests .firebase-admin-card-head{
+  margin-bottom:10px;
+}
+.lawyer-admin-edit-requests #fa-lawyer-edit-requests-count{
+  min-width:24px;
+  text-align:center;
+  border-radius:999px;
+  padding:3px 7px;
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-300);
+  font-size:10px;
+}
+.lawyer-my-application-edit{
+  margin-top:12px;
+  border:1px solid var(--mizan-primary-500-border);
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-300);
+  border-radius:10px;
+  padding:9px 14px;
+  cursor:pointer;
+  font:inherit;
+  font-size:11px;
+}
+.lawyer-my-application-edit:hover{
+  background:var(--mizan-primary-100);
+  border-color:var(--mizan-primary-500-border);
+}
 /* Light theme audit repair */
-html[data-theme="light"] .lawyer-admin-table th,html[data-theme="light"] .lawyer-admin-table td{border-color:var(--mizan-text-dark)}
-html[data-theme="light"] .lawyer-admin-actions button,html[data-theme="light"] .lawyer-admin-edit-actions button{background:var(--mizan-bg-light);color:var(--mizan-heading);border-color:var(--mizan-border-light)}
-html[data-theme="light"] .lawyer-admin-tab,html[data-theme="light"] .firebase-admin-menu-card,html[data-theme="light"] .firebase-admin-subview-back{background:var(--mizan-surface);color:var(--mizan-heading);border-color:var(--mizan-border-light)}
-html[data-theme="light"] .lawyer-admin-tab.active,html[data-theme="light"] .firebase-admin-menu-card.active{background:var(--mizan-surface)8eb;border-color:var(--mizan-primary-300);color:var(--mizan-primary-700)}
-html[data-theme="light"] .lawyer-admin-edit,html[data-theme="light"] .lawyer-admin-edit-requests{background:var(--mizan-surface);border-color:var(--mizan-text-dark)}
-html[data-theme="light"] .lawyer-admin-edit-form input,html[data-theme="light"] .lawyer-admin-edit-form textarea{background:var(--mizan-surface);color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
-html[data-theme="light"] .firebase-admin-menu-card span,html[data-theme="light"] .lawyer-admin-status{color:var(--mizan-muted-light)}
-
+html[data-theme="light"] .lawyer-admin-table th,
+html[data-theme="light"] .lawyer-admin-table td{
+  border-color:var(--mizan-text-dark);
+}
+html[data-theme="light"] .lawyer-admin-actions button,
+html[data-theme="light"] .lawyer-admin-edit-actions button{
+  background:var(--mizan-bg-light);
+  color:var(--mizan-heading);
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .lawyer-admin-tab,
+html[data-theme="light"] .firebase-admin-menu-card,
+html[data-theme="light"] .firebase-admin-subview-back{
+  background:var(--mizan-surface);
+  color:var(--mizan-heading);
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .lawyer-admin-tab.active,
+html[data-theme="light"] .firebase-admin-menu-card.active{
+  background:var(--mizan-surface)8eb;
+  border-color:var(--mizan-primary-300);
+  color:var(--mizan-primary-700);
+}
+html[data-theme="light"] .lawyer-admin-edit,
+html[data-theme="light"] .lawyer-admin-edit-requests{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-text-dark);
+}
+html[data-theme="light"] .lawyer-admin-edit-form input,
+html[data-theme="light"] .lawyer-admin-edit-form textarea{
+  background:var(--mizan-surface);
+  color:var(--mizan-text-light);
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .firebase-admin-menu-card span,
+html[data-theme="light"] .lawyer-admin-status{
+  color:var(--mizan-muted-light);
+}
 /* Admin crown joins the shared Mizan top utility box */
-#mizan-header-tools .firebase-admin-tab{position:relative!important;inset:auto!important;width:42px;height:42px;margin:0;flex:0 0 42px;display:grid;place-items:center;border:1px solid var(--mizan-primary-500-border);border-radius:12px;background:var(--mizan-primary-100);color:var(--mizan-primary-300);box-shadow:none;z-index:1;cursor:pointer}
-#mizan-header-tools .firebase-admin-tab span{display:none}
-#mizan-header-tools .firebase-admin-tab:hover{border-color:var(--mizan-primary-500-border);background:var(--mizan-primary-100);transform:translateY(-1px)}
-html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{background:var(--mizan-surface)8eb;border-color:var(--mizan-primary-500-paper-light);color:var(--mizan-primary-700)}
-@media(max-width:600px){#mizan-header-tools .firebase-admin-tab{width:40px;height:40px;flex-basis:40px}}
+#mizan-header-tools .firebase-admin-tab{
+  position:relative !important;
+  inset:auto !important;
+  width:42px;
+  height:42px;
+  margin:0;
+  flex:0 0 42px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--mizan-primary-500-border);
+  border-radius:12px;
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-300);
+  box-shadow:none;
+  z-index:1;
+  cursor:pointer;
+}
+#mizan-header-tools .firebase-admin-tab span{
+  display:none;
+}
+#mizan-header-tools .firebase-admin-tab:hover{
+  border-color:var(--mizan-primary-500-border);
+  background:var(--mizan-primary-100);
+  transform:translateY(-1px);
+}
+html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
+  background:var(--mizan-surface)8eb;
+  border-color:var(--mizan-primary-500-paper-light);
+  color:var(--mizan-primary-700);
+}
+@media(max-width:600px){
+  #mizan-header-tools .firebase-admin-tab{
+    width:40px;
+    height:40px;
+    flex-basis:40px;
+  }
+}
