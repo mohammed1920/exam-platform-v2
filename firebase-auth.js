@@ -75,6 +75,8 @@
     document.getElementById('auth-error').textContent = '';
   }
 
+  function displayName(user) { return (user && (user.displayName || user.email || 'المستخدم')).trim(); }
+
   function openModal(mode = 'login') {
     const modal = document.getElementById('login-modal');
     if (!modal) return;
