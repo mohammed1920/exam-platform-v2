@@ -257,7 +257,7 @@ header h1{
 }
 .auth-modal[aria-hidden="true"],
 #login-modal[aria-hidden="true"]{
-  display:none !important;
+  display:none;
 }
 /* Light theme audit repair */
 html[data-theme="light"] .profile-name-editor{

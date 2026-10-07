@@ -1,5 +1,5 @@
 /* Main platform navigation - مستقل عن محرك الاختبارات */
-.mizan-header-tools{position:absolute;top:12px;left:12px;right:12px;height:50px;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:4px 6px;border:1px solid var(--mizan-primary-500-border);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.92),rgba(16,29,45,.82));box-shadow:0 10px 30px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent,var(--mizan-primary-100),transparent);opacity:.8}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;left:auto!important;z-index:1;width:42px!important;height:42px!important;margin:0!important;flex:0 0 42px}
+.mizan-header-tools{position:absolute;top:12px;left:12px;right:12px;height:50px;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:4px 6px;border:1px solid var(--mizan-primary-500-border);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.92),rgba(16,29,45,.82));box-shadow:0 10px 30px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent,var(--mizan-primary-100),transparent);opacity:.8}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{position:relative!important;inset:auto!important;top:auto!important;right:auto;left:auto!important;z-index:1;width:42px;height:42px!important;margin:0;flex:0 0 42px}
 .platform-menu-trigger:hover{border-color:var(--mizan-primary-300);transform:translateY(-1px)}
 .platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
 .platform-sidebar.is-open{pointer-events:auto;visibility:visible}
@@ -79,7 +79,7 @@
   display:grid;
   gap:7px;
 }
-@media(max-width:600px){.mizan-header-tools{top:10px;left:10px;right:10px;height:48px;border-radius:15px;padding:3px 5px}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{width:40px!important;height:40px!important;flex-basis:40px}.platform-sidebar-panel{width:min(340px,94vw)}}
+@media(max-width:600px){.mizan-header-tools{top:10px;left:10px;right:10px;height:48px;border-radius:15px;padding:3px 5px}.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{width:40px;height:40px!important;flex-basis:40px}.platform-sidebar-panel{width:min(340px,94vw)}}
 body.platform-sidebar-open{overflow:hidden}
 
 .platform-sidebar-account{margin-top:12px;padding:12px;border:1px solid var(--mizan-border-dark);border-radius:14px;background:var(--mizan-surface-dark);box-shadow:0 8px 24px rgba(2,6,23,.18)}
@@ -91,7 +91,7 @@ body.platform-sidebar-open{overflow:hidden}
 .platform-sidebar-account-user span{font-size:10px;color:var(--mizan-muted-dark);margin-top:2px}
 .platform-sidebar-account-action{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;border:1px solid var(--mizan-border-dark);border-radius:10px;background:var(--mizan-bg-dark);color:var(--mizan-text-dark);font:inherit;font-size:12px;font-weight:800;cursor:pointer}
 .platform-sidebar-account-action:hover{background:var(--mizan-primary-500);color:#FFFFFF;border-color:var(--mizan-primary-500)}
-.platform-sidebar-account-action[hidden]{display:none !important;}
+.platform-sidebar-account-action[hidden]{display:none;}
 
 .platform-sidebar-item[hidden]{display:none !important;}
 
@@ -123,10 +123,10 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 
 /* Refined top utility controls */
 .mizan-header-tools .platform-menu-trigger{
-  display:grid!important;
+  display:grid;
   place-items:center;
   border:1px solid var(--mizan-primary-500-border)!important;
-  border-radius:12px!important;
+  border-radius:12px;
   background:linear-gradient(145deg,var(--mizan-primary-100),rgba(255,255,255,.035))!important;
   color:var(--mizan-primary-300)!important;
   box-shadow:0 4px 14px var(--mizan-shadow-sm),inset 0 1px 0 rgba(255,255,255,.06)!important;
@@ -139,9 +139,9 @@ html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(
 
 /* App installation prompt — sits above the home search without affecting the header */
 .install-slot{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:0 0 10px;padding:0 2px;position:relative;z-index:2}
-#install-app-btn{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;z-index:2!important;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0!important;padding:7px 11px!important;border:1px solid var(--mizan-primary-500-border)!important;border-radius:11px!important;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(25,39,57,.94))!important;color:var(--mizan-primary-300)!important;box-shadow:0 5px 16px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.06);font:inherit;font-size:11px!important;font-weight:800!important;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#install-app-btn{position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0;padding:7px 11px;border:1px solid var(--mizan-primary-500-border)!important;border-radius:11px;background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(25,39,57,.94));color:var(--mizan-primary-300);box-shadow:0 5px 16px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.06);font:inherit;font-size:11px;font-weight:800;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 #install-app-btn:hover{transform:translateY(-1px);border-color:var(--mizan-primary-300)!important}
-#ios-install-hint{position:absolute;top:calc(100% + 7px);right:0;z-index:3;max-width:min(340px,calc(100vw - 24px));margin:0!important;padding:9px 12px!important;border:1px solid var(--mizan-primary-500-border);border-radius:11px;background:rgba(15,23,42,.96);color:var(--mizan-text-dark)!important;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:11px!important;line-height:1.7;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#ios-install-hint{position:absolute;top:calc(100% + 7px);right:0;z-index:3;max-width:min(340px,calc(100vw - 24px));margin:0;padding:9px 12px;border:1px solid var(--mizan-primary-500-border);border-radius:11px;background:rgba(15,23,42,.96);color:var(--mizan-text-dark);box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:11px;line-height:1.7;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 #ios-install-hint strong{color:var(--mizan-primary-300)}
 html[data-theme="light"] #install-app-btn,
 html[data-theme="light"] #ios-install-hint{background:rgba(255,255,255,.97)!important;color:var(--mizan-heading)!important;border-color:rgba(143,107,52,.3)!important;box-shadow:0 8px 24px rgba(15,23,42,.14)}

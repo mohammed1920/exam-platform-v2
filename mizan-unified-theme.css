@@ -40,7 +40,7 @@ html body header h2,
 html body header h3,
 html body header .title,
 html body header strong{
-  color:var(--mizan-white) !important;
+  color:var(--mizan-white);
 }
 html body header p{
   color:var(--mizan-neutral-400) !important;
@@ -213,9 +213,9 @@ textarea:not(.book-card textarea),
 /* Home cards: exact white/dark surfaces; book cards are untouched */
 .home-category-card[data-home-action],
 .home-coming-soon{
-  background:var(--mu-card) !important;
+  background:var(--mu-card);
   border-color:var(--mu-border) !important;
-  color:var(--mu-text) !important;
+  color:var(--mu-text);
 }
 .home-category-card[data-home-action] strong{
   color:var(--mu-heading);
@@ -465,8 +465,8 @@ html body{
 .home-category-card.featured,
 .home-coming-soon,
 .home-feature-strip>div{
-  background:var(--mizan-card) !important;
-  color:var(--mizan-text) !important;
+  background:var(--mizan-card);
+  color:var(--mizan-text);
   border-color:var(--mizan-border) !important;
 }
 .home-category-card:before{
@@ -504,21 +504,21 @@ html body{
   border-color:var(--mizan-border);
 }
 .book-card>.card-title{
-  color:var(--mizan-heading) !important;
+  color:var(--mizan-heading);
 }
 .book-card>.card-author{
   color:var(--mizan-muted);
 }
 .book-card>.book-stats .book-stat-badge{
-  background:var(--mizan-bg) !important;
-  color:var(--mizan-text) !important;
-  border-color:var(--mizan-border) !important;
+  background:var(--mizan-bg);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
 }
 .book-card>.book-stats .book-stat-icon{
   color:var(--mizan-primary-500);
 }
 .book-card>.book-stats .book-stat-value{
-  color:var(--mizan-heading) !important;
+  color:var(--mizan-heading);
 }
 .book-card>.book-stats .book-stat-label{
   color:var(--mizan-muted);
@@ -1097,7 +1097,7 @@ html body header .mizan-header-copy h1{
 .home-coming-soon b{
   background:var(--mizan-gold-tint) !important;
   color:var(--mizan-gold-text) !important;
-  border-color:var(--mizan-gold-tint-border) !important;
+  border-color:var(--mizan-gold-tint-border);
 }
 .results-box,
 .home-category-card[data-home-action],
@@ -1133,9 +1133,9 @@ html:not([data-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.peti
   border-color:var(--mizan-section-icon-border) !important;
 }
 html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
-  background:var(--mizan-gold-tint) !important;
-  color:var(--mizan-gold-text) !important;
-  border-color:var(--mizan-gold-tint-border) !important;
+  background:var(--mizan-gold-tint);
+  color:var(--mizan-gold-text);
+  border-color:var(--mizan-gold-tint-border);
 }
 /* ---- 2. Lawyer details / identity box (dark = gold) ---- */
 html:not([data-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
@@ -1160,8 +1160,8 @@ html:not([data-theme="light"]) .lawyer-identity-btn{
 /* ---- 3. Pulpit (dark): secondary buttons match the publish button ---- */
 html:not([data-theme="light"]) .mizan-pulpit-secondary{
   background:transparent !important;
-  color:var(--mizan-gold-text) !important;
-  border:1px solid var(--mizan-gold-tint-border) !important;
+  color:var(--mizan-gold-text);
+  border:1px solid var(--mizan-gold-tint-border);
 }
 html:not([data-theme="light"]) .mizan-pulpit-secondary:hover{
   background:var(--mizan-gold-tint) !important;
@@ -1287,12 +1287,12 @@ html:not([data-theme="light"]) .contact-info-grid .contact-card{
   border-color:var(--mizan-border) !important;
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card>i{
-  background:var(--mizan-accent-tile-bg) !important;
-  color:var(--mizan-accent-text) !important;
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-text);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
-  background:var(--mizan-accent-tile-bg) !important;
-  color:var(--mizan-accent-text) !important;
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-text);
   border:1px solid var(--mizan-accent-tile-border);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
