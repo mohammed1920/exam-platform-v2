@@ -20,13 +20,11 @@
 html[data-theme="light"]{
   color-scheme:light;
   --primary:var(--mizan-primary-500);
-  --primary-hover:var(--mizan-primary-500-hover);
   --bg-dark:var(--mizan-bg-light);
   --card-bg:var(--mizan-surface-light);
   --text-primary:var(--mizan-text-light);
   --text-secondary:var(--mizan-muted-light);
   --border:var(--mizan-border-light);
-  --header-bg:color-mix(in srgb,var(--mizan-white) 94%,transparent);
 }
 /* ---------- Base ---------- */
 html[data-theme="light"] body{
@@ -125,7 +123,6 @@ html[data-theme="light"] .exam-btn.prev{
 /* ---------- Polish: shared interaction primitives ---------- */
 :root{
   --mizan-ease-out:cubic-bezier(.22,1,.36,1);
-  --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
 }
 button,
 a,
@@ -168,31 +165,6 @@ button:active:not(:disabled){
   #theme-toggle.theme-toggle:active{
     transform:none;
   }
-}
-/* ===== Light theme coverage: report 2026-10-02 ===== */
-html[data-theme="light"] .custom-exam-book-option,
-html[data-theme="light"] .custom-exam-count-row,
-html[data-theme="light"] .question-search-results{
-  background:var(--mizan-surface-light);
-  border-color:var(--mizan-border-light);
-  color:var(--mizan-text-light);
-  box-shadow:0 6px 20px color-mix(in srgb,var(--mizan-primary-900) 4%,transparent);
-}
-html[data-theme="light"] .custom-exam-count-row input{
-  background:var(--mizan-bg-light);
-  border-color:var(--mizan-border-light);
-  color:var(--mizan-text-light);
-}
-html[data-theme="light"] .question-search-header,
-html[data-theme="light"] .question-search-item{
-  border-color:var(--mizan-border-light);
-}
-html[data-theme="light"] .question-search-item:active{
-  background:var(--mizan-primary-500-pale);
-}
-html[data-theme="light"] .question-search-source,
-html[data-theme="light"] .custom-exam-book-option small{
-  color:var(--mizan-muted-light);
 }
 /* Light theme audit repair */
 html[data-theme="light"] .custom-exam-book-option,

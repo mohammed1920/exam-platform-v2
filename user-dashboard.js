@@ -89,57 +89,16 @@
     return { exams, questions, avg, best, passRate: exams ? Math.round((passed / exams) * 100) : 0 };
   }
 
-  function ensureSidebar() {
-    if (window.platformNavigation && typeof window.platformNavigation.ensure === 'function') {
-      window.platformNavigation.ensure();
-      return document.getElementById('platform-sidebar');
-    }
-    return null;
-  }
-
-  function updateSidebarUser() {
-    const user = window.publicAuth && window.publicAuth.user;
-    if (!user) return;
-    const name = user.displayName || 'طالب المنصة';
-    const email = user.email || '';
-    const avatar = document.getElementById('student-sidebar-avatar');
-    const nameEl = document.getElementById('student-sidebar-name');
-    const emailEl = document.getElementById('student-sidebar-email');
-    if (avatar) avatar.textContent = name.trim().charAt(0).toUpperCase() || 'ط';
-    if (nameEl) nameEl.textContent = name;
-    if (emailEl) emailEl.textContent = email;
-  }
-
   function openSidebar() {
     if (!window.publicAuth || !window.publicAuth.user) { window.publicAuth.openLogin(); return; }
-    if (window.platformNavigation && typeof window.platformNavigation.open === 'function') {
-      window.platformNavigation.open();
-      return;
-    }
-    const sidebar = ensureSidebar();
-    updateSidebarUser();
-    sidebar.classList.add('is-open');
-    sidebar.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('student-sidebar-open');
+    if (window.platformNavigation && typeof window.platformNavigation.open === 'function') window.platformNavigation.open();
   }
 
   function closeSidebar() {
-    const sidebar = document.getElementById('platform-sidebar') || document.getElementById('student-account-sidebar');
+    const sidebar = document.getElementById('platform-sidebar');
     if (!sidebar) return;
     sidebar.classList.remove('is-open');
     sidebar.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('student-sidebar-open');
-  }
-
-  function syncActiveMenu(target) {
-    const sidebar = document.getElementById('student-account-sidebar');
-    if (!sidebar) return;
-    sidebar.querySelectorAll('[data-sidebar-target]').forEach(button => {
-      const active = button.dataset.sidebarTarget === target;
-      button.classList.toggle('is-active', active);
-      if (active) button.setAttribute('aria-current', 'page');
-      else button.removeAttribute('aria-current');
-    });
   }
 
   function ensureSection() {
@@ -274,12 +233,6 @@
       <div class="profile-stat-card"><span>🏆</span><strong>${stats.best}%</strong><small>أفضل نتيجة</small></div>
       <div class="profile-stat-card"><span>❓</span><strong>${stats.questions}</strong><small>سؤال محلول</small></div>
     </div>
-    <div class="exam-dashboard-actions">
-      <button type="button" data-exam-tab="results"><i class="fas fa-chart-line"></i><span>نتائجي</span><small>تفاصيل النتائج</small></button>
-      <button type="button" data-exam-tab="history"><i class="fas fa-clock-rotate-left"></i><span>سجل الاختبارات</span><small>المكتملة والمتوقفة</small></button>
-      <button type="button" data-exam-tab="progress"><i class="fas fa-chart-pie"></i><span>تقدمي</span><small>حسب الكتب</small></button>
-      <button type="button" data-exam-tab="wrong"><i class="fas fa-circle-xmark"></i><span>الإجابات الخاطئة</span><small>راجع نقاط الضعف</small></button>
-    </div>
     <div class="profile-panel student-highlight-panel"><h3>آخر نتيجة</h3>${history.length ? `<strong class="student-big-score">${Number(history[0].percentage)||0}%</strong><p>${escapeHtml(history[0].bookTitle||'اختبار')} · ${history[0].custom?'اختبار مخصص':`الفصل ${escapeHtml(history[0].chapter||'-')}`}</p>` : '<p class="profile-empty">لم تكمل أي اختبار بعد. ابدأ اختبارك الأول من قسم الاختبارات.</p>'}</div>`;
     else if (tab === 'results') body = renderResults(history);
     else if (tab === 'history') body = renderHistory(history);
@@ -295,7 +248,6 @@
     const section = ensureSection(), root = document.getElementById('student-dashboard-content');
     if (!section || !root) return;
     const normalized = ['results','history','wrong','progress','favorites'].includes(target) ? target : target === 'exam-dashboard' ? 'overview' : target;
-    syncActiveMenu(normalized === 'profile' ? 'profile' : 'exam-dashboard');
     const user = window.publicAuth && window.publicAuth.user;
     if (!user) { root.innerHTML = '<div class="profile-empty">🔐 سجّل الدخول أولاً للوصول إلى حسابك.</div>'; return; }
     const history = readHistory();
@@ -368,16 +320,7 @@
 
   function install() {
     if (window.platformNavigation && typeof window.platformNavigation.ensure === 'function') window.platformNavigation.ensure();
-    const account = document.getElementById('account-btn');
-    if (account && !account.dataset.studentSidebarBound) {
-      const replacement = account.cloneNode(true);
-      account.replaceWith(replacement);
-      replacement.dataset.studentSidebarBound = 'true';
-      replacement.addEventListener('click', openSidebar);
-    }
     window.addEventListener('student-history-updated', () => render());
-    window.addEventListener('public-auth-state-changed', updateSidebarUser);
-    updateSidebarUser();
 
     // حماية إضافية من حفظ نفس الاختبار مرتين بسبب أي استدعاء مزدوج.
     if (window.app && typeof window.app.endExam === 'function' && !window.app.__studentHistoryWrapped) {

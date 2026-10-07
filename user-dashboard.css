@@ -3,120 +3,19 @@
   max-width:1100px;
   margin-inline:auto;
 }
-.student-dashboard-header{
-  margin:8px 0 22px;
-}
-.dashboard-kicker{
-  display:inline-block;
-  color:var(--primary, var(--mizan-primary-500));
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.4px;
-  margin-bottom:5px;
-}
-.student-dashboard-header h2{
-  margin:0 0 6px;
-}
-.student-dashboard-header p{
-  margin:0;
-  color:var(--text-secondary, var(--mizan-muted-dark));
-}
-.profile-hero{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding:20px;
-  margin-bottom:18px;
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:20px;
-  background:linear-gradient(135deg, var(--mizan-primary-100), color-mix(in srgb,var(--mizan-primary-900) 45%,transparent));
-  box-shadow:0 12px 35px color-mix(in srgb,var(--mizan-black) 16%,transparent);
-}
 .profile-avatar{
-  width:62px;
-  height:62px;
-  flex:0 0 62px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:linear-gradient(135deg, var(--primary,var(--mizan-primary-500)), var(--mizan-primary-500-antique));
-  color:var(--mizan-primary-900);
-  font-size:25px;
-  font-weight:900;
   box-shadow:0 0 24px var(--mizan-primary-500-border);
 }
 .profile-identity{
-  min-width:0;
   flex:1;
 }
 .profile-identity h2{
   margin:0 0 3px;
   font-size:21px;
 }
-.profile-identity p{
-  margin:0 0 6px;
-  color:var(--text-secondary,var(--mizan-muted-dark));
-  overflow-wrap:anywhere;
-}
-.profile-identity span{
-  font-size:12px;
-  color:var(--primary,var(--mizan-primary-500));
-  font-weight:700;
-}
-.profile-logout-btn,
-.profile-clear-btn{
-  border:1px solid var(--mizan-primary-500-border);
-  background:transparent;
-  color:var(--primary,var(--mizan-primary-500));
-  border-radius:10px;
-  padding:9px 13px;
-  cursor:pointer;
-  font-weight:700;
-}
 .profile-logout-btn:hover,
 .profile-clear-btn:hover{
   background:var(--mizan-primary-100);
-}
-.profile-stats-grid{
-  display:grid;
-  grid-template-columns:repeat(5, minmax(0, 1fr));
-  gap:12px;
-  margin-bottom:18px;
-}
-.profile-stat-card{
-  padding:16px 10px;
-  text-align:center;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 7%,transparent);
-  border-radius:16px;
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
-}
-.profile-stat-card span{
-  display:block;
-  font-size:21px;
-  margin-bottom:6px;
-}
-.profile-stat-card strong{
-  display:block;
-  color:var(--primary,var(--mizan-primary-500));
-  font-size:22px;
-}
-.profile-stat-card small{
-  color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
-}
-.profile-panel{
-  margin-bottom:16px;
-  padding:18px;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 7%,transparent);
-  border-radius:18px;
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
-}
-.profile-panel-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:13px;
 }
 .profile-panel-heading h3,
 .profile-coming-soon h3{
@@ -127,68 +26,6 @@
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
   font-size:13px;
-}
-.exam-history-list{
-  display:grid;
-  gap:9px;
-}
-.history-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px;
-  border-radius:13px;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
-  background:color-mix(in srgb,var(--mizan-primary-900) 28%,transparent);
-}
-.history-icon{
-  font-size:22px;
-  width:35px;
-  text-align:center;
-}
-.history-main{
-  min-width:0;
-  flex:1;
-}
-.history-main strong,
-.history-main span,
-.history-main small{
-  display:block;
-}
-.history-main strong{
-  margin-bottom:3px;
-}
-.history-main span{
-  color:var(--primary,var(--mizan-primary-500));
-  font-size:12px;
-}
-.history-main small{
-  color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
-  margin-top:3px;
-}
-.history-score{
-  text-align:center;
-  min-width:65px;
-}
-.history-score strong{
-  display:block;
-  color:var(--primary,var(--mizan-primary-500));
-  font-size:19px;
-}
-.history-score span{
-  color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
-}
-.profile-empty{
-  padding:25px 12px;
-  text-align:center;
-  color:var(--text-secondary,var(--mizan-muted-dark));
-}
-.profile-coming-soon > div{
-  display:flex;
-  align-items:center;
-  gap:13px;
 }
 .coming-icon{
   font-size:27px;
@@ -202,12 +39,7 @@
   }
 }
 @media (max-width: 560px){
-  .profile-hero{
-    align-items:flex-start;
-    flex-wrap:wrap;
-    padding:15px;
-  }
-  .profile-logout-btn{
+    .profile-logout-btn{
     margin-inline-start:auto;
   }
   .profile-avatar{
@@ -272,10 +104,10 @@
   box-shadow:0 0 0 3px var(--mizan-primary-100);
 }
 .profile-name-editor-row button{
-  border:1px solid var(--mizan-primary-500-border);
+  border:1px solid var(--mizan-btn-primary-border);
   border-radius:11px;
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-500-pale);
+  background:var(--mizan-btn-primary-bg);
+  color:var(--mizan-btn-primary-fg);
   padding:10px 15px;
   cursor:pointer;
   font:inherit;
@@ -283,7 +115,7 @@
   white-space:nowrap;
 }
 .profile-name-editor-row button:hover{
-  background:var(--mizan-primary-500-border);
+  background:var(--mizan-btn-primary-bg-hover);
 }
 .profile-name-editor-row button:disabled{
   opacity:.55;
@@ -304,18 +136,9 @@
   }
 }
 /* Light theme audit repair */
-html[data-theme="light"] .profile-hero{
-  background:linear-gradient(135deg,var(--mizan-surface),var(--mizan-bg-light));
-  border-color:var(--mizan-primary-500-paper);
-  box-shadow:0 12px 35px color-mix(in srgb,var(--mizan-primary-900) 8%,transparent);
-}
 html[data-theme="light"] .profile-stat-card,
 html[data-theme="light"] .profile-panel{
   background:var(--mizan-surface);
-  border-color:var(--mizan-text-dark);
-}
-html[data-theme="light"] .history-item{
-  background:var(--mizan-bg-light);
   border-color:var(--mizan-text-dark);
 }
 /* ===== Theme-aware dashboard surfaces ===== */
@@ -325,14 +148,9 @@ html[data-theme="light"] .profile-stat-card,
 html[data-theme="light"] .student-info-grid>div{
   background:var(--mizan-surface);
   border-color:var(--mizan-border-light);
-  color:var(--mizan-text-light);
+  color:var(--mizan-text);
 }
 html[data-theme="light"] .history-item{
   background:var(--mizan-bg-light);
-  border-color:var(--mizan-border-light);
-}
-html[data-theme="light"] .profile-name-editor-row input{
-  background:var(--mizan-surface);
-  color:var(--mizan-text-light);
   border-color:var(--mizan-border-light);
 }

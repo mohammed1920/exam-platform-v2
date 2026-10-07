@@ -3,28 +3,22 @@
 */
 :root{
   --mu-bg:var(--mizan-bg);
-  --mu-surface:var(--mizan-surface);
   --mu-card:var(--mizan-card);
   --mu-border:var(--mizan-border);
   --mu-heading:var(--mizan-heading);
   --mu-section-heading:var(--mizan-section-heading);
   --mu-text:var(--mizan-text);
   --mu-muted:var(--mizan-muted);
-  --mu-subtle:var(--mizan-subtle);
   --mu-primary:var(--mizan-primary-500);
-  --mu-primary-hover:var(--mizan-primary-600);
-  --mu-primary-active:var(--mizan-primary-700);
 }
 html[data-theme="light"]{
   --mu-bg:var(--mizan-bg-light);
-  --mu-surface:var(--mizan-surface-light);
   --mu-card:var(--mizan-card-light);
   --mu-border:var(--mizan-border-light);
   --mu-heading:var(--mizan-heading-light);
   --mu-section-heading:var(--mizan-section-heading-light);
   --mu-text:var(--mizan-text-light);
   --mu-muted:var(--mizan-muted-light);
-  --mu-subtle:var(--mizan-subtle-light);
 }
 /* Base */
 html,
@@ -86,7 +80,6 @@ html body header .btn-primary{
 .home-feature-strip>div,
 .contact-box,
 .exam-dashboard-tabs,
-.exam-dashboard-actions button,
 .lawyers-section,
 .lawyers-hero,
 .lawyers-toolbar,
@@ -156,7 +149,6 @@ html body header .btn-primary{
 .profile-empty,
 .question-search-source,
 .home-feature-strip small,
-.exam-dashboard-actions button small,
 .contact-heading p,
 .contact-card small,
 .lawyers-hero p,
@@ -256,23 +248,11 @@ textarea:not(.book-card textarea),
   background:var(--mizan-primary-100);
 }
 /* Quiz */
-.quiz-system,
-.quiz-container,
-.exam-container{
-  color:var(--mu-text);
-}
-.quiz-system,
-.quiz-container{
-  background:var(--mu-card) !important;
-}
 .question-text{
   color:var(--mizan-primary-900);
 }
 html:not([data-theme="light"]) .question-text{
   color:var(--mizan-neutral-50);
-}
-.timer-text{
-  color:var(--mu-section-heading) !important;
 }
 .progress-bar-container{
   background:var(--mizan-border) !important;
@@ -318,31 +298,7 @@ html:not([data-theme="light"]) .question-text{
   background:var(--mu-bg) !important;
   border-color:var(--mu-border) !important;
 }
-.student-sidebar-item{
-  color:var(--mu-text) !important;
-}
-.student-sidebar-item:hover,
-.student-sidebar-item.is-active{
-  background:var(--mizan-primary-100) !important;
-  border-color:var(--mizan-primary-200) !important;
-  color:var(--mizan-primary-800) !important;
-}
-html:not([data-theme="light"]) .student-sidebar-item:hover,
-html:not([data-theme="light"]) .student-sidebar-item.is-active{
-  background:color-mix(in srgb,var(--mizan-primary-500) 16%,transparent) !important;
-  border-color:color-mix(in srgb,var(--mizan-primary-300) 35%,transparent) !important;
-  color:var(--mizan-neutral-50) !important;
-}
-.student-sidebar-item i{
-  color:var(--mu-primary) !important;
-}
 /* Footer: exact navy */
-footer a{
-  color:var(--mizan-text-dark) !important;
-}
-footer a:hover{
-  color:var(--mizan-info-300) !important;
-}
 .footer-bottom,
 .footer-faq-list summary,
 .footer-info-content{
@@ -353,43 +309,15 @@ footer a:hover{
 .footer-faq-list p{
   color:var(--mizan-neutral-400) !important;
 }
-.footer-info-box,
-.footer-faq-list details{
-  background:var(--mizan-white);
-  color:var(--mizan-neutral-700);
-  border-color:var(--mizan-neutral-200);
-}
 html:not([data-theme="light"]) .footer-info-box,
 html:not([data-theme="light"]) .footer-faq-list details{
   background:var(--mizan-neutral-800);
   color:var(--mizan-text-dark);
   border-color:var(--mizan-neutral-700);
 }
-/* Semantic states */
-.badge-success,
-.status-success{
-  background:var(--mizan-success-100) !important;
-  color:var(--mizan-success-700) !important;
-}
-.badge-warning,
-.status-warning{
-  background:var(--mizan-warning-100) !important;
-  color:var(--mizan-warning-700) !important;
-}
-.badge-danger,
-.status-danger{
-  background:var(--mizan-danger-100) !important;
-  color:var(--mizan-danger-700) !important;
-}
-.badge-info,
-.status-info{
-  background:var(--mizan-info-100) !important;
-  color:var(--mizan-info-700) !important;
-}
 /* Legacy component tokens — never alter book artwork */
 html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *):not(.chapter-item):not(.chapter-item *){
   --primary:var(--mu-primary);
-  --primary-hover:var(--mu-primary-hover);
   --bg-dark:var(--mu-bg);
   --card-bg:var(--mu-card);
   --text-primary:var(--mu-heading);
@@ -430,8 +358,6 @@ html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
 /* Contact cards: restore individual visual identity instead of flattening all
    cards into one generic surface. */
 .contact-info-grid .contact-card{
-  background:var(--mu-card);
-  color:var(--mu-text);
   border-width:1px;
 }
 html[data-theme="light"] .contact-info-grid .contact-card{
@@ -500,24 +426,6 @@ html[data-theme="light"] .contact-info-grid .contact-card{
 .contact-info-grid .contact-card-facebook .contact-card-action{
   background:var(--mizan-primary-100) !important;
   color:var(--mizan-primary-700) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
-  background:linear-gradient(145deg,var(--mizan-success-700),var(--mizan-success-700)) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
-  background:linear-gradient(145deg,var(--mizan-info-700),var(--mizan-primary-900)) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
-  background:linear-gradient(145deg,var(--mizan-warning-700),var(--mizan-primary-900)) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-email{
-  background:linear-gradient(145deg,var(--mizan-surface-dark),var(--mizan-primary-900)) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
-  background:linear-gradient(145deg,var(--mizan-danger-700),var(--mizan-primary-900)) !important;
-}
-html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
-  background:linear-gradient(145deg,var(--mizan-primary-800),var(--mizan-primary-900)) !important;
 }
 /* CTA text: apply the accent/gradient to the complete phrase, not a partial
    fragment caused by inline background clipping. */
@@ -909,7 +817,7 @@ html body{
 /* Footer + information pages */
 html body footer{
   background:var(--mizan-primary-900);
-  color:var(--mizan-subtle-light);
+  color:var(--mizan-muted-dark);
   border-color:var(--mizan-section-heading-dark);
 }
 footer a{
@@ -1123,12 +1031,6 @@ html body footer .footer-links button:hover{
 html[data-theme="light"] .footer-links span{
   color:var(--mizan-muted-dark);
 }
-.account-btn:hover,
-.account-btn.authenticated{
-  background:var(--mizan-primary-500) !important;
-  color:var(--mizan-on-primary) !important;
-  border-color:var(--mizan-primary-500) !important;
-}
 .auth-submit-btn{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
@@ -1198,7 +1100,7 @@ html body header .mizan-header-copy h1{
   border-color:var(--mizan-gold-tint-border) !important;
 }
 .results-box,
-.home-category-card.featured,
+.home-category-card[data-home-action],
 .petition-form-panel{
   border-top:2px solid var(--mizan-gold-line) !important;
 }
@@ -1208,4 +1110,294 @@ html:not([data-theme="light"]) .home-category-card[data-home-action] i{
   background:var(--mizan-section-icon-bg) !important;
   color:var(--mizan-section-icon-fg) !important;
   border-color:var(--mizan-section-icon-border) !important;
+}
+/* ================================================================
+   Batch 3 — theme-aware icons, modern form fields, admin action
+   badges, always-white A4 sheet, calmer dark contact cards.
+   Dark = royal gold accent, light = professional blue (unchanged).
+   ================================================================ */
+/* ---- 1. Icons: gold in dark mode ---- */
+html:not([data-theme="light"]) .platform-sidebar-item i,
+html:not([data-theme="light"]) .exam-dashboard-tabs i,
+html:not([data-theme="light"]) .student-page-icon i,
+html:not([data-theme="light"]) .profile-panel-heading>i,
+html:not([data-theme="light"]) #petitions-section i:not(.fa-arrow-right),
+html:not([data-theme="light"]) .lawyer-details-dialog i,
+html:not([data-theme="light"]) .lawyer-detail-item i,
+html:not([data-theme="light"]) .mizan-article-author>i,
+html:not([data-theme="light"]) .home-feature-strip>div>i{
+  color:var(--mizan-section-icon-fg) !important;
+}
+html:not([data-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
+  background:var(--mizan-section-icon-bg) !important;
+  border-color:var(--mizan-section-icon-border) !important;
+}
+html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
+  background:var(--mizan-gold-tint) !important;
+  color:var(--mizan-gold-text) !important;
+  border-color:var(--mizan-gold-tint-border) !important;
+}
+/* ---- 2. Lawyer details / identity box (dark = gold) ---- */
+html:not([data-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
+  background:var(--mizan-gold-tint) !important;
+  color:var(--mizan-gold-text) !important;
+  border:1px solid var(--mizan-gold-tint-border);
+}
+html:not([data-theme="light"]) .lawyer-details-actions a{
+  background:var(--mizan-btn-primary-bg) !important;
+  color:var(--mizan-btn-primary-fg) !important;
+  border:1px solid var(--mizan-btn-primary-border) !important;
+}
+.lawyer-identity-btn.whatsapp i{
+  color:var(--mizan-brand-whatsapp);
+}
+.lawyer-identity-btn.telegram i{
+  color:var(--mizan-brand-telegram);
+}
+html:not([data-theme="light"]) .lawyer-identity-btn{
+  font-weight:800;
+}
+/* ---- 3. Pulpit (dark): secondary buttons match the publish button ---- */
+html:not([data-theme="light"]) .mizan-pulpit-secondary{
+  background:transparent !important;
+  color:var(--mizan-gold-text) !important;
+  border:1px solid var(--mizan-gold-tint-border) !important;
+}
+html:not([data-theme="light"]) .mizan-pulpit-secondary:hover{
+  background:var(--mizan-gold-tint) !important;
+}
+html:not([data-theme="light"]) .mizan-pulpit-hero:after{
+  color:var(--mizan-gold-subtle);
+}
+/* ---- 4. Modern form fields (contributors form, lawyer form, petitions) ---- */
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields){
+  gap:14px;
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid) label,
+html body .petition-fields label,
+html body .petition-long-field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.5;
+  color:var(--mizan-muted);
+}
+html body .petition-fields label span,
+html body .petition-long-field span{
+  color:var(--mizan-muted);
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){
+  width:100%;
+  box-sizing:border-box;
+  min-height:46px;
+  padding:11px 14px;
+  border:1px solid var(--mizan-field-border);
+  border-radius:12px;
+  background-color:var(--mizan-field-bg);
+  color:var(--mizan-text);
+  font:inherit;
+  font-size:14.5px;
+  font-weight:500;
+  line-height:1.5;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease;
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) textarea{
+  min-height:112px;
+  resize:vertical;
+  line-height:1.8;
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) select{
+  padding-inline-end:14px;
+  padding-left:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2394A3B8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:left 14px center;
+  background-size:12px 8px;
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea)::placeholder{
+  color:var(--mizan-muted);
+  opacity:.7;
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea):hover{
+  border-color:var(--mizan-field-border-hover);
+}
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea):focus,
+html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea):focus-visible{
+  outline:none !important;
+  border-color:var(--mizan-field-focus);
+  box-shadow:0 0 0 3px var(--mizan-field-focus-ring);
+}
+html body .lawyer-form .lawyer-consent{
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  color:var(--mizan-muted);
+}
+html body .lawyer-form .lawyer-consent input{
+  accent-color:var(--mizan-gold-accent);
+}
+html body .petition-design button{
+  min-height:42px;
+  border:1px solid var(--mizan-field-border);
+  border-radius:11px;
+  background:var(--mizan-field-bg);
+  color:var(--mizan-muted);
+  font-weight:700;
+}
+html body .petition-design button.active{
+  background:var(--mizan-gold-tint);
+  border-color:var(--mizan-gold-line);
+  color:var(--mizan-gold-text);
+}
+html[data-theme="light"] body .petition-design button.active{
+  background:var(--mizan-primary-100);
+  border-color:var(--mizan-primary-500);
+  color:var(--mizan-primary-700);
+}
+/* ---- 5. A4 petition sheet: always paper-white with black ink ---- */
+.petition-a4{
+  --mizan-bg:var(--mizan-bg-light);
+  --mizan-surface:var(--mizan-surface-light);
+  --mizan-card:var(--mizan-card-light);
+  --mizan-border:var(--mizan-border-light);
+  --mizan-heading:var(--mizan-heading-light);
+  --mizan-text:var(--mizan-text-light);
+  --mizan-muted:var(--mizan-muted-strong-light);
+  --mizan-surface-2:var(--mizan-surface-2-light);
+  background:var(--mizan-white) !important;
+  color:var(--mizan-paper-ink) !important;
+  color-scheme:light;
+}
+.petition-a4 :is(.petition-doc-body,p,div,li,span,td,th){
+  color:var(--mizan-paper-ink);
+}
+.petition-a4 :is(small){
+  color:var(--mizan-muted-strong-light);
+}
+.petition-a4 .petition-letterhead{
+  background:var(--mizan-white) !important;
+}
+/* ---- 6. Contact cards: calm dark surface, brand color only on icon/border ---- */
+html:not([data-theme="light"]) .contact-info-grid .contact-card{
+  background:var(--mizan-card) !important;
+  border-color:var(--mizan-border) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card>i{
+  background:var(--mizan-accent-tile-bg) !important;
+  color:var(--mizan-accent-text) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
+  background:var(--mizan-accent-tile-bg) !important;
+  color:var(--mizan-accent-text) !important;
+  border:1px solid var(--mizan-accent-tile-border);
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
+  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
+  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent) !important;
+  color:var(--mizan-brand-whatsapp) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
+  border-color:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram>i{
+  background:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent) !important;
+  color:var(--mizan-brand-telegram) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
+  border-color:var(--mizan-gold-tint-border) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-phone>i,
+html:not([data-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
+  background:var(--mizan-gold-tint) !important;
+  color:var(--mizan-gold-text) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
+  border-color:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram>i{
+  background:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent) !important;
+  color:var(--mizan-brand-instagram) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
+  border-color:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent) !important;
+}
+html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
+  background:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent) !important;
+  color:var(--mizan-info-300) !important;
+}
+html body .petition-a4 footer{
+  background:transparent !important;
+  color:var(--mizan-paper-ink) !important;
+  border-top-color:var(--mizan-border-light);
+}
+html body .mizan-form-submit{
+  margin-top:18px;
+}
+/* ---- 7. Cohesion touches ---- */
+html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
+  color:var(--mizan-gold-text) !important;
+}
+.mizan-pulpit-hero h2{
+  color:var(--mizan-heading);
+}
+.mizan-pulpit-hero p{
+  color:var(--mizan-muted);
+}
+.mizan-article-card .mizan-btn,
+.mizan-article-card button{
+  border-radius:11px;
+  padding-inline:14px;
+}
+/* ---- 8. Contrast fixes found by the browser scan ---- */
+.profile-avatar{
+  color:var(--mizan-white);
+}
+.profile-identity span{
+  color:var(--mizan-accent-text);
+}
+.profile-logout-btn{
+  color:var(--mizan-accent-text);
+  border-color:var(--mizan-accent-tile-border);
+}
+.student-ok{
+  color:var(--mizan-success-text);
+}
+html[data-theme="light"] .exam-dashboard-tabs button.is-active{
+  color:var(--mizan-primary-700);
+}
+html[data-theme="light"] .exam-dashboard-tabs button{
+  color:var(--mizan-muted);
+}
+html[data-theme="light"] .mizan-article-author>i{
+  color:var(--mizan-primary-600);
+}
+.mizan-article-meta span:first-child{
+  color:var(--mizan-accent-text);
+}
+html:not([data-theme="light"]) .mizan-article-meta span:first-child{
+  color:var(--mizan-gold-text);
+}
+html:not([data-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
+  color:var(--mizan-gold-text);
+}
+:is(.mizan-modal-close,#lawyer-form-close,.lawyer-modal-close){
+  color:var(--mizan-muted);
+}
+.lawyer-details-head>div:last-child>span{
+  color:var(--mizan-success-text);
+}
+html body .petition-a4 .petition-letterhead :is(strong,b){
+  color:var(--mizan-primary-800) !important;
+}
+html body .petition-a4 .petition-letterhead small{
+  color:var(--mizan-muted-strong-light) !important;
+}
+html body .petition-a4 .petition-letterhead .petition-head-right small{
+  color:var(--mizan-primary-600) !important;
 }

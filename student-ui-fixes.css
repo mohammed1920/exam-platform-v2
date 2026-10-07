@@ -6,136 +6,32 @@ header h1{
   padding-inline-start:clamp(92px, 12vw, 150px);
   padding-inline-end:12px;
 }
-.student-sidebar-login{
-  display:flex;
-  width:100%;
-  margin:10px 0 4px;
-  justify-content:flex-start;
-}
 .auth-modal,
 #login-modal{
   z-index:10000;
 }
-.account-btn{
-  position:absolute;
-  top:16px;
-  right:16px;
-  min-width:46px;
-  width:46px;
-  height:46px;
-  margin:0 !important;
-  padding:0 10px !important;
-  display:grid;
-  place-items:center;
-  border-radius:14px;
-  font-size:19px !important;
-  line-height:1;
-  background:var(--mizan-primary-100) !important;
-  border:1px solid var(--mizan-primary-500-border) !important;
-  color:var(--primary,var(--mizan-primary-500)) !important;
-  box-shadow:0 8px 22px var(--mizan-shadow-sm);
-  z-index:5;
-}
-.account-btn:not(.authenticated){
-  width:auto;
-  min-width:108px;
-  font-size:14px !important;
-  font-weight:800;
-  white-space:nowrap;
-}
-.account-btn:hover{
-  transform:translateY(-1px);
-}
 .profile-name-editor{
-  margin-top:18px;
   padding:20px;
   border:1px solid var(--mizan-primary-500-border);
   border-radius:18px;
   background:linear-gradient(145deg, color-mix(in srgb,var(--mizan-white) 3.5%,transparent), var(--mizan-primary-100));
   box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-black) 10%,transparent);
 }
-.profile-name-editor-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  margin-bottom:16px;
-}
-.profile-name-editor-heading h3{
-  margin:0 0 5px;
-}
-.profile-name-editor-heading p{
-  margin:0;
-  opacity:.72;
-  font-size:.9rem;
-}
-.profile-name-editor-heading > i{
-  color:var(--primary,var(--mizan-primary-500));
-  font-size:22px;
-}
 .profile-name-editor label{
-  display:block;
   margin-bottom:7px;
-  font-weight:800;
-}
-.profile-name-editor-row{
-  display:flex;
-  gap:10px;
 }
 .profile-name-editor-row input{
-  flex:1;
-  min-width:0;
   height:46px;
-  padding:0 14px;
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:12px;
-  background:color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
-  color:inherit;
-  font:inherit;
-  outline:none;
-}
-.profile-name-editor-row input:focus{
-  border-color:var(--mizan-primary-500-border);
-  box-shadow:0 0 0 3px var(--mizan-primary-100);
 }
 .profile-name-editor-row button{
   min-width:125px;
   height:46px;
-  padding:0 15px;
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:12px;
-  background:var(--mizan-primary-100);
-  color:var(--primary,var(--mizan-primary-500));
-  font:inherit;
-  font-weight:800;
-  cursor:pointer;
-}
-.profile-name-editor-row button:disabled{
-  opacity:.6;
-  cursor:wait;
 }
 .profile-name-editor-message{
-  min-height:20px;
-  margin:9px 2px 0;
-  font-size:.88rem;
   opacity:.8;
 }
 @media (max-width: 560px){
-  .account-btn{
-    top:12px;
-    right:12px;
-    width:42px;
-    min-width:42px;
-    height:42px;
-    border-radius:12px;
-  }
-  .account-btn:not(.authenticated){
-    width:auto;
-    min-width:92px;
-    padding:0 11px !important;
-    font-size:13px !important;
-  }
-  .profile-name-editor{
+      .profile-name-editor{
     padding:16px;
   }
   .profile-name-editor-row{
@@ -144,27 +40,6 @@ header h1{
   .profile-name-editor-row button{
     width:100%;
   }
-}
-.student-sidebar-status .student-sidebar-login{
-  display:inline-block;
-  width:auto;
-  min-height:0;
-  margin:0 0 0 4px;
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  color:var(--mizan-primary-300);
-  font-size:12px;
-}
-.student-sidebar-status .student-sidebar-login:hover{
-  background:transparent;
-  border-color:transparent;
-  transform:none;
-}
-.student-sidebar-login[hidden],
-.student-sidebar-logout[hidden]{
-  display:none;
 }
 /* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
 .firebase-admin-tab{
@@ -274,11 +149,6 @@ header h1{
   color:var(--primary,var(--mizan-primary-500));
   font-size:25px;
 }
-.firebase-admin-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
 .firebase-admin-card{
   min-width:0;
   overflow:hidden;
@@ -341,10 +211,7 @@ header h1{
   .firebase-admin-stats{
     grid-template-columns:repeat(2,1fr);
   }
-  .firebase-admin-grid{
-    grid-template-columns:1fr;
   }
-}
 @media (max-width:560px){
   .firebase-admin-tab{
     top:12px;
@@ -392,25 +259,11 @@ header h1{
 #login-modal[aria-hidden="true"]{
   display:none !important;
 }
-/* Account access is provided from the platform sidebar, not as page content. */
-#account-btn,
-.account-btn{
-  display:none !important;
-}
-/* Legacy student dashboard/sidebar must never leak into the home document flow. */
-#student-account-sidebar:not(.is-open){
-  display:none !important;
-}
 /* Light theme audit repair */
 html[data-theme="light"] .profile-name-editor{
   background:linear-gradient(145deg,var(--mizan-surface),var(--mizan-surface));
   border-color:var(--mizan-primary-500-paper);
   box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
-}
-html[data-theme="light"] .profile-name-editor-row input{
-  background:var(--mizan-surface);
-  color:var(--mizan-text-light);
-  border-color:var(--mizan-border-light);
 }
 html[data-theme="light"] .firebase-admin-head,
 html[data-theme="light"] .firebase-admin-stat,
@@ -421,9 +274,6 @@ html[data-theme="light"] .firebase-admin-card{
 }
 html[data-theme="light"] .firebase-admin-card-head{
   border-color:var(--mizan-text-dark);
-}
-html[data-theme="light"] .firebase-admin-card th{
-  background:var(--mizan-bg-light);
 }
 html[data-theme="light"] .firebase-admin-card td{
   color:var(--mizan-heading);

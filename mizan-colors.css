@@ -36,7 +36,6 @@
   --mizan-section-heading-light:#1E293B;
   --mizan-text-light:#334155;
   --mizan-muted-light:#64748B;
-  --mizan-subtle-light:#94A3B8;
   --mizan-bg-dark:#0F172A;
   --mizan-surface-dark:#1E293B;
   --mizan-card-dark:#1E293B;
@@ -54,42 +53,20 @@
   --mizan-section-heading:var(--mizan-section-heading-dark);
   --mizan-text:var(--mizan-text-dark);
   --mizan-muted:var(--mizan-muted-dark);
-  --mizan-subtle:var(--mizan-subtle-dark);
-  --mizan-navy:var(--mizan-primary-900);
   --mizan-navy-deep:#020617;
   --mizan-white:#FFFFFF;
   --mizan-ice:#F1F5F9;
   --mizan-blue:var(--mizan-primary-500);
   --mizan-blue-hover:var(--mizan-primary-600);
-  --mizan-blue-soft:rgba(37,99,235,.10);
-  --mizan-blue-border:rgba(37,99,235,.28);
   --mizan-success:var(--mizan-success-500);
   --mizan-danger:var(--mizan-danger-500);
   --mizan-warning:var(--mizan-warning-500);
-  --mizan-info:var(--mizan-info-500);
   --mizan-error:var(--mizan-danger-500);
   --mizan-focus:var(--mizan-focus-ring);
-  --primary:var(--mizan-primary-500);
-  --primary-hover:var(--mizan-primary-600);
-  --bg-dark:var(--mizan-bg);
-  --card-bg:var(--mizan-card);
-  --text-primary:var(--mizan-heading);
-  --text-secondary:var(--mizan-muted);
-  --border:var(--mizan-border);
-  --success:var(--mizan-success-500);
-  --error:var(--mizan-danger-500);
-  --header-bg:var(--mizan-primary-900);
   --mizan-gold-metal-1:#D4AF37;
   --mizan-gold-metal-2:#FFF0AA;
   --mizan-gold-metal-3:#AA820A;
-  --mizan-gold-metal-4:#BF953F;
-  --mizan-gold-metal-5:#FCF6BA;
-  --mizan-gold-metal-6:#B38728;
-  --mizan-gold-metal-7:#FBF5B7;
-  --mizan-gold-metal-8:#AA771C;
   --mizan-gold-metal-gradient:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);
-  --mizan-gold-button-gradient:linear-gradient(180deg,#E5BE6B 0%,#BA8E31 100%);
-  --mizan-gold-button-hover-gradient:linear-gradient(180deg,#F0CC7B 0%,#CA9B3B 100%);
   --mizan-paper-cream:#F4EAAD;
   --mizan-paper-edge:#D8C382;
   --mizan-paper-dark:#B8A05C;
@@ -102,7 +79,6 @@
   --mizan-book-blue-spine-4:#0F1A2C;
   --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
   --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
-  --mizan-shadow-lg:0 18px 50px rgba(0,0,0,.24);
 }
 html[data-theme="light"]{
   --mizan-bg:var(--mizan-bg-light);
@@ -112,68 +88,16 @@ html[data-theme="light"]{
   --mizan-heading:var(--mizan-heading-light);
   --mizan-section-heading:var(--mizan-section-heading-light);
   --mizan-text:var(--mizan-text-light);
-  --mizan-muted:var(--mizan-muted-light);
-  --mizan-subtle:var(--mizan-subtle-light);
-  --primary:var(--mizan-primary-500);
-  --primary-hover:var(--mizan-primary-600);
-  --bg-dark:var(--mizan-bg-light);
-  --card-bg:var(--mizan-surface-light);
-  --text-primary:var(--mizan-heading-light);
-  --text-secondary:var(--mizan-muted-light);
-  --border:var(--mizan-border-light);
-  --header-bg:var(--mizan-primary-900);
-}
-.mizan-primary-color{
-  color:var(--mizan-primary-500);
-}
-.mizan-success-color{
-  color:var(--mizan-success-500);
-}
-.mizan-danger-color{
-  color:var(--mizan-danger-500);
-}
-.mizan-warning-color{
-  color:var(--mizan-warning-500);
-}
-.mizan-info-color{
-  color:var(--mizan-info-500);
+  --mizan-muted:var(--mizan-muted-strong-light);
 }
 /* Central compatibility aliases for legacy component variables. */
 :root{
-  --mizan-navy-900:var(--mizan-primary-900);
-  --mizan-navy-800:var(--mizan-primary-800);
-  --mizan-slate-900:var(--mizan-primary-900);
-  --mizan-slate-800:var(--mizan-surface-dark);
-  --mizan-slate-700:var(--mizan-border-dark);
-  --mizan-slate-600:#475569;
-  --mizan-slate-blue:var(--mizan-surface-dark);
-  --mizan-slate-blue-deep:var(--mizan-primary-900);
-  --mizan-text-muted:var(--mizan-muted);
-  --mizan-text-muted-blue:var(--mizan-muted);
-  --mizan-text-dim-blue:var(--mizan-subtle);
-  --mizan-text-soft-legacy:var(--mizan-muted);
-  --mizan-text-strong-legacy:var(--mizan-heading);
   --mizan-surface-2-light:#F1F5F9;
   --mizan-surface-2-dark:#0F172A;
-  --mizan-white-soft:rgba(226,232,240,.70);
-  --mizan-black-soft:rgba(15,23,42,.16);
   --mizan-danger-soft:var(--mizan-danger-100);
   --mizan-success-soft:var(--mizan-success-100);
   --mizan-danger-border:var(--mizan-danger-500);
   --mizan-success-border:var(--mizan-success-500);
-  --mizan-whatsapp:var(--mizan-success-500);
-  --mizan-blue-pale:var(--mizan-primary-100);
-  --mizan-blue-border-pale:var(--mizan-primary-200);
-}
-html[data-theme="light"]{
-  --mizan-text-muted:var(--mizan-muted-light);
-  --mizan-text-muted-blue:var(--mizan-muted-light);
-  --mizan-text-dim-blue:var(--mizan-muted-light);
-  --mizan-text-soft-legacy:var(--mizan-muted-light);
-  --mizan-text-strong-legacy:var(--mizan-heading-light);
-  --mizan-slate-800:var(--mizan-surface-light);
-  --mizan-slate-700:var(--mizan-border-light);
-  --mizan-slate-blue:var(--mizan-surface-light);
 }
 /* Final semantic aliases used by components — all resolve to the central palette. */
 :root{
@@ -182,8 +106,6 @@ html[data-theme="light"]{
   --mizan-telegram:var(--mizan-info-500);
   --mizan-info-light:var(--mizan-info-500);
   --mizan-ink-soft:var(--mizan-surface-dark);
-  --mizan-primary-500-hover:var(--mizan-primary-600);
-  --mizan-primary-500-dark:var(--mizan-primary-700);
 }
 html[data-theme="light"]{
   --mizan-surface-soft:var(--mizan-border-light);
@@ -211,7 +133,6 @@ html[data-theme="light"]{
   --mizan-success-300:#86EFAC;
   --mizan-success-400:#34D399;
   --mizan-success-deep:#15803D;
-  --mizan-danger-300:#FCA5A5;
   --mizan-danger-400:#F87171;
   --mizan-paper-ink:#151515;
 }
@@ -227,7 +148,6 @@ html[data-theme="light"]{
 /* ===== Interactive-accent tokens (switch per theme; contrast-checked, WCAG AA) ===== */
 :root{
   --mizan-accent-text:var(--mizan-primary-300);
-  --mizan-accent-light:var(--mizan-primary-300);
   --mizan-accent-tile-bg:color-mix(in srgb,var(--mizan-primary-500) 16%,transparent);
   --mizan-accent-tile-fg:var(--mizan-primary-300);
   --mizan-accent-tile-border:color-mix(in srgb,var(--mizan-primary-300) 35%,transparent);
@@ -238,7 +158,6 @@ html[data-theme="light"]{
 }
 html[data-theme="light"]{
   --mizan-accent-text:var(--mizan-primary-600);
-  --mizan-accent-light:var(--mizan-primary-500);
   --mizan-accent-tile-bg:var(--mizan-primary-100);
   --mizan-accent-tile-fg:var(--mizan-primary-700);
   --mizan-accent-tile-border:var(--mizan-primary-200);
@@ -248,7 +167,7 @@ html[data-theme="light"]{
 }
 /* ===== Component aliases (previously used but undefined) ===== */
 :root{
-  --mizan-primary-500-pale:var(--mizan-primary-100);
+  --mizan-primary-500-pale:var(--mizan-accent-tile-bg);
   --mizan-primary-500-paper:var(--mizan-primary-100);
   --mizan-primary-500-paper-light:var(--mizan-primary-100);
   --mizan-primary-500-pale-text:var(--mizan-accent-text);
@@ -265,7 +184,6 @@ html[data-theme="light"]{
   --mizan-info-link:var(--mizan-accent-text);
   --mizan-cyan-soft:var(--mizan-info-100);
   --mizan-purple-soft:var(--mizan-muted);
-  --mizan-pink-soft:var(--mizan-danger-200);
 }
 /* ===== Gold accent system — thin accent hints only (badges, hairlines, wordmark, focus) =====
    Contrast (WCAG AA): gold-primary #D4AF37 = 8.49:1 on #0F172A and 6.96:1 on #1E293B (dark surfaces);
@@ -292,58 +210,24 @@ html[data-theme="light"]{
   --mizan-gold-line:var(--mizan-gold-mid);
   --mizan-gold-tint-border:color-mix(in srgb,var(--mizan-gold-mid) 40%,transparent);
 }
-.mizan-gold-color{
-  color:var(--mizan-gold-text);
-}
-.mizan-gold-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  padding:3px 9px;
-  border:1px solid var(--mizan-gold-tint-border);
-  border-radius:999px;
-  background:var(--mizan-gold-tint);
-  color:var(--mizan-gold-text);
-  font-weight:800;
-}
-.mizan-gold-topline{
-  border-top:2px solid var(--mizan-gold-line);
-}
-.mizan-gold-text-gradient{
-  background:var(--mizan-gold-gradient);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
 /* ===== Decorative tints (component gradients/glows; theme-independent) ===== */
 :root{
-  --mizan-deco-amber-38:#8F6B34;
   --mizan-deco-amber-54:#C59B4D;
   --mizan-deco-blue-04:#030811;
-  --mizan-deco-blue-07:#09101D;
   --mizan-deco-blue-08:#091B22;
   --mizan-deco-blue-10:#0C1725;
   --mizan-deco-blue-10a:#0B1726;
   --mizan-deco-blue-10b:#0B1827;
   --mizan-deco-blue-11:#111827;
   --mizan-deco-blue-11a:#0F1B2A;
-  --mizan-deco-blue-12:#131C2B;
-  --mizan-deco-blue-13:#121E2F;
-  --mizan-deco-blue-14:#142235;
   --mizan-deco-blue-14a:#192330;
-  --mizan-deco-blue-18:#1D2A3E;
-  --mizan-deco-blue-18a:#1C2B40;
   --mizan-deco-blue-19:#232F3E;
   --mizan-deco-blue-20:#1C314C;
-  --mizan-deco-blue-21:#183B52;
-  --mizan-deco-blue-23:#19395C;
   --mizan-deco-blue-32:#26537D;
   --mizan-deco-blue-44:#3669AB;
   --mizan-deco-blue-56:#7A8FA6;
   --mizan-deco-blue-61:#6091D6;
-  --mizan-deco-green-17:#16402F;
   --mizan-deco-green-69:#8BD3A8;
-  --mizan-deco-rose-25:#5B233D;
   --mizan-deco-rose-73:#E98B8B;
   --mizan-deco-teal-17:#173E3F;
   --mizan-deco-teal-41:#2BA69D;
@@ -380,12 +264,7 @@ html[data-theme="light"]{
 }
 /* ===== Decorative tints added in batch 2 ===== */
 :root{
-  --mizan-deco-blue-12a:#101D2D;
-  --mizan-deco-blue-04a:#020812;
-  --mizan-deco-blue-16:#192739;
-  --mizan-deco-blue-02:#00050C;
   --mizan-deco-green-54:#42D3A1;
-  --mizan-deco-green-55:#48D3A2;
   --mizan-deco-rose-61:#DC5A5A;
   --mizan-deco-amber-14:#2A241B;
   --mizan-deco-blue-09:#0A1624;
@@ -404,4 +283,26 @@ html[data-theme="light"]{
   --mizan-deco-amber-80:#E2D4B6;
   --mizan-deco-blue-17:#1F2937;
   --mizan-deco-rose-51:#DC2626;
+}
+/* ===== Batch 3 tokens: form fields, semantic action colors, strong secondary text ===== */
+:root{
+  --mizan-surface-2:var(--mizan-surface-2-dark);
+  --mizan-muted-strong-light:#505E74;
+  --mizan-field-bg:color-mix(in srgb,var(--mizan-black) 22%,transparent);
+  --mizan-field-border:var(--mizan-neutral-500);
+  --mizan-field-border-hover:var(--mizan-neutral-400);
+  --mizan-field-focus:var(--mizan-gold-primary);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-primary) 24%,transparent);
+  --mizan-warning-text:var(--mizan-warning-200);
+  --mizan-info-text:var(--mizan-info-300);
+}
+html[data-theme="light"]{
+  --mizan-surface-2:var(--mizan-surface-2-light);
+  --mizan-field-bg:var(--mizan-white);
+  --mizan-field-border:#7B8799;
+  --mizan-field-border-hover:#5F6C80;
+  --mizan-field-focus:var(--mizan-gold-mid);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-mid) 22%,transparent);
+  --mizan-warning-text:var(--mizan-warning-700);
+  --mizan-info-text:var(--mizan-info-700);
 }

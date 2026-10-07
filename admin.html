@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم - منصة الامتحانات القانونية</title>
-    <link rel="stylesheet" href="mizan-colors.css?v=4.1">
+    <link rel="stylesheet" href="mizan-colors.css?v=6.5">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: var(--mizan-bg-dark);
             --card: var(--mizan-card-dark);
-            --card-2: var(--mizan-surface-2-dark);
+            --card-2: var(--mizan-surface-2);
             --border: var(--mizan-border-dark);
             --border-soft:var(--mizan-border-dark);
             --gold:var(--mizan-primary-500);
@@ -114,7 +114,7 @@
             transition: .2s; font-size: 14px; min-height: 40px;
         }
         .btn:disabled { opacity: .55; cursor: not-allowed; }
-        .btn-primary { background: var(--gold); color: var(--bg); width: 100%; margin-top: 10px; }
+        .btn-primary { background: var(--mizan-btn-primary-bg); color: var(--mizan-btn-primary-fg); border: 1px solid var(--mizan-btn-primary-border); }
         .btn-green { background: var(--green); color: white; }
         .btn-red { background: var(--red); color: white; }
         .btn-secondary { background: var(--card-2); color: var(--text); border: 1px solid var(--border); }
@@ -203,13 +203,13 @@ html[data-admin-theme="light"]{color-scheme:light}
 html[data-admin-theme="light"] body{background:var(--mizan-bg-light);color:var(--mizan-text-light)}
 html[data-admin-theme="light"] .topbar,html[data-admin-theme="light"] .book-bar,html[data-admin-theme="light"] .content-area,html[data-admin-theme="light"] .sidebar{background:#fff;border-color:var(--mizan-border-light)}
 html[data-admin-theme="light"] .layout .content-area,html[data-admin-theme="light"] .panel,html[data-admin-theme="light"] .item-card,html[data-admin-theme="light"] .book-item{background:#fff;border-color:var(--mizan-text-dark)}
-html[data-admin-theme="light"] .book-item.active{background:var(--mizan-gold-pale);border-color:var(--mizan-gold-light)}
+html[data-admin-theme="light"] .book-item.active{background:var(--mizan-gold-tint);border-color:var(--mizan-gold-mid)}
 html[data-admin-theme="light"] input,html[data-admin-theme="light"] textarea,html[data-admin-theme="light"] select{background:#fff;color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
 html[data-admin-theme="light"] .modal{background:rgba(15,23,42,.42)}
 html[data-admin-theme="light"] .modal-content{background:#fff;color:var(--mizan-text-light)}
 html[data-admin-theme="light"] .panel-header-row p,html[data-admin-theme="light"] .loading{color:var(--mizan-muted-light)}
 html[data-admin-theme="light"] .icon-btn{background:var(--mizan-ice);color:#344054;border-color:var(--mizan-border-light)}
-html[data-admin-theme="light"] .theme-admin-toggle{background:var(--mizan-ice);color:var(--mizan-gold-dark);border-color:var(--mizan-border-light)}
+html[data-admin-theme="light"] .theme-admin-toggle{background:var(--mizan-ice);color:var(--mizan-gold-deep);border-color:var(--mizan-border-light)}
 .theme-admin-toggle{background:var(--bg);border:1px solid var(--border);color:var(--gold);width:38px;height:38px;border-radius:9px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 </style>
 </head>

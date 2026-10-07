@@ -39,10 +39,6 @@
   border-color:color-mix(in srgb,var(--mizan-danger-500) 45%,transparent);
   color:var(--mizan-danger);
 }
-.lawyer-admin-doc{
-  color:var(--mizan-primary-500);
-  text-decoration:none;
-}
 .lawyer-admin-status{
   font-size:10px;
   color:var(--mizan-muted-dark);
@@ -91,86 +87,8 @@
   border-radius:14px;
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
-.lawyer-admin-edit-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:14px;
-}
-.lawyer-admin-edit-head span{
-  display:block;
-  color:var(--mizan-primary-500);
-  font-size:10px;
-}
-.lawyer-admin-edit-head h4{
-  margin:3px 0 0;
-  font-size:16px;
-}
-.lawyer-admin-edit-head button{
-  border:0;
-  background:transparent;
-  color:var(--mizan-muted-dark);
-  font-size:22px;
-  cursor:pointer;
-}
-.lawyer-admin-edit-form{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-}
-.lawyer-admin-edit-form label{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-  color:var(--mizan-muted-dark);
-  font-size:10px;
-}
-.lawyer-admin-edit-form label.full{
-  grid-column:1/-1;
-}
-.lawyer-admin-edit-form input,
-.lawyer-admin-edit-form textarea{
-  width:100%;
-  box-sizing:border-box;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 8%,transparent);
-  background:var(--mizan-primary-900);
-  color:var(--mizan-text-dark);
-  border-radius:9px;
-  padding:9px;
-  font:inherit;
-  font-size:12px;
-}
-.lawyer-admin-edit-actions{
-  grid-column:1/-1;
-  display:flex;
-  justify-content:flex-end;
-  gap:8px;
-  margin-top:4px;
-}
-.lawyer-admin-edit-actions button{
-  border:1px solid var(--mizan-border-dark);
-  background:var(--mizan-primary-900);
-  color:var(--mizan-text-dark);
-  border-radius:9px;
-  padding:8px 14px;
-  cursor:pointer;
-  font:inherit;
-}
-.lawyer-admin-edit-actions .save{
-  border-color:color-mix(in srgb,var(--mizan-success-500) 45%,transparent);
-  color:var(--mizan-success);
-}
 @media(max-width:700px){
-  .lawyer-admin-edit-form{
-    grid-template-columns:1fr;
-  }
-  .lawyer-admin-edit-form label.full{
-    grid-column:auto;
-  }
-  .lawyer-admin-edit-actions{
-    grid-column:auto;
-  }
-  .lawyer-admin-table{
+        .lawyer-admin-table{
     min-width:760px;
   }
   .firebase-admin-table-wrap{
@@ -257,25 +175,6 @@
     padding:14px;
   }
 }
-.lawyer-admin-edit-requests{
-  margin-bottom:16px;
-  padding:14px;
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:14px;
-  background:var(--mizan-primary-100);
-}
-.lawyer-admin-edit-requests .firebase-admin-card-head{
-  margin-bottom:10px;
-}
-.lawyer-admin-edit-requests #fa-lawyer-edit-requests-count{
-  min-width:24px;
-  text-align:center;
-  border-radius:999px;
-  padding:3px 7px;
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-300);
-  font-size:10px;
-}
 .lawyer-my-application-edit{
   margin-top:12px;
   border:1px solid var(--mizan-primary-500-border);
@@ -320,12 +219,6 @@ html[data-theme="light"] .lawyer-admin-edit-requests{
   background:var(--mizan-surface);
   border-color:var(--mizan-text-dark);
 }
-html[data-theme="light"] .lawyer-admin-edit-form input,
-html[data-theme="light"] .lawyer-admin-edit-form textarea{
-  background:var(--mizan-surface);
-  color:var(--mizan-text-light);
-  border-color:var(--mizan-border-light);
-}
 html[data-theme="light"] .firebase-admin-menu-card span,
 html[data-theme="light"] .lawyer-admin-status{
   color:var(--mizan-muted-light);
@@ -367,4 +260,69 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
     height:40px;
     flex-basis:40px;
   }
+}
+/* ===== Admin action badges (pulpit management + shared .btn) ===== */
+.firebase-admin-table-wrap .btn,
+.mizan-admin-modal-box .btn,
+.mizan-admin-head-actions .btn{
+  --btn-tone:var(--mizan-info-text);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin:2px;
+  padding:6px 13px;
+  border:1px solid color-mix(in srgb,var(--btn-tone) 45%,transparent);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--btn-tone) 13%,transparent);
+  color:var(--btn-tone);
+  font:inherit;
+  font-size:12.5px;
+  font-weight:800;
+  line-height:1.4;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:background-color .16s ease,border-color .16s ease,transform .16s ease,box-shadow .16s ease;
+}
+.firebase-admin-table-wrap .btn:hover,
+.mizan-admin-modal-box .btn:hover,
+.mizan-admin-head-actions .btn:hover{
+  background:color-mix(in srgb,var(--btn-tone) 24%,transparent);
+  border-color:var(--btn-tone);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px color-mix(in srgb,var(--btn-tone) 22%,transparent);
+}
+.firebase-admin-table-wrap .btn:active,
+.mizan-admin-modal-box .btn:active,
+.mizan-admin-head-actions .btn:active{
+  transform:translateY(0) scale(.97);
+  box-shadow:none;
+}
+.firebase-admin-table-wrap .btn:disabled,
+.mizan-admin-modal-box .btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
+}
+.firebase-admin-table-wrap td:last-child{
+  white-space:normal;
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) .btn[data-mizan-close]{
+  --btn-tone:var(--mizan-muted);
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-green,[data-mizan-action="publish"],[data-mizan-action="republish"],[data-mizan-action="approve-contributor"],[data-mizan-action="unblock-contributor"]){
+  --btn-tone:var(--mizan-success-text);
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-red,[data-mizan-action="reject"],[data-mizan-action="reject-contributor"],[data-mizan-action="delete"],[data-mizan-action="delete-contributor"]){
+  --btn-tone:var(--mizan-danger-text);
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="block-contributor"],[data-mizan-action="hide"],[data-mizan-view-hide]){
+  --btn-tone:var(--mizan-warning-text);
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="edit"],[data-mizan-action="resubmit"],[data-mizan-view-edit],[data-mizan-view-resubmit]){
+  --btn-tone:var(--mizan-gold-text);
+}
+:is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="view"],[data-mizan-action="view-contributor"]){
+  --btn-tone:var(--mizan-info-text);
 }

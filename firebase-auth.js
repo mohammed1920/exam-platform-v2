@@ -57,16 +57,6 @@
     return code ? `${baseMessage}\n\nرمز الخطأ: ${code}` : baseMessage;
   }
 
-  function displayName(user) { return (user && (user.displayName || user.email || 'المستخدم')).trim(); }
-
-  function updateAccountButton() {
-    const button = document.getElementById('account-btn');
-    if (!button) return;
-    button.textContent = state.user ? `👤 ${displayName(state.user)}` : '🔐 تسجيل الدخول';
-    button.title = state.user ? 'فتح قائمة الحساب' : 'تسجيل الدخول';
-    button.classList.toggle('authenticated', Boolean(state.user));
-  }
-
   function setModalMode(mode) {
     const modal = document.getElementById('login-modal');
     const title = document.getElementById('auth-modal-title');
@@ -86,9 +76,6 @@
   }
 
   function openModal(mode = 'login') {
-    const sidebar = document.getElementById('student-account-sidebar');
-    if (sidebar) { sidebar.classList.remove('is-open'); sidebar.setAttribute('aria-hidden', 'true'); }
-    document.body.classList.remove('student-sidebar-open');
     const modal = document.getElementById('login-modal');
     if (!modal) return;
     setModalMode(mode);
@@ -112,15 +99,6 @@
     if (button) button.disabled = true;
     try { await operation(); } catch (error) { setError(messageFor(error)); }
     finally { if (button) button.disabled = false; }
-  }
-
-  function openAccountMenu() {
-    if (!state.user) { openModal(); return; }
-    if (window.openStudentAccountSidebar) window.openStudentAccountSidebar();
-    else {
-      const label = displayName(state.user);
-      if (window.confirm(`تم تسجيل الدخول باسم ${label}.\nهل تريد تسجيل الخروج؟`)) signOut();
-    }
   }
 
   async function signInGoogle() { await withButtonBusy(document.getElementById('google-signin-btn'), async () => { await auth.signInWithPopup(googleProvider); }); }
@@ -206,8 +184,6 @@
         </div>
       </div>`);
 
-    const accountButton = document.getElementById('account-btn');
-    if (accountButton) accountButton.addEventListener('click', openAccountMenu);
     document.getElementById('auth-close-btn').addEventListener('click', () => closeModal());
     document.getElementById('login-modal').addEventListener('click', event => { if (event.target.id === 'login-modal') closeModal(); });
     document.getElementById('google-signin-btn').addEventListener('click', signInGoogle);
@@ -236,7 +212,6 @@
     const wasAuthenticated = Boolean(state.user);
     state.user = user;
     state.ready = true;
-    updateAccountButton();
     if (state.resolveReady) { state.resolveReady(user); state.resolveReady = null; }
     if (user) {
       closeModal(false);
