@@ -238,6 +238,11 @@
         description: String(fd.get('description') || '').trim()
       };
 
+      if (!data.name || !data.governorate || !data.phone || !data.specializations.length || !fd.has('consent')) {
+        setFormStatus('يرجى إكمال الاسم والمحافظة ورقم الهاتف والاختصاصات والموافقة المطلوبة.', true);
+        return;
+      }
+
       if (form.dataset.mode === 'edit') {
         const applicationId = form.dataset.applicationId;
         const profileId = form.dataset.profileId;
