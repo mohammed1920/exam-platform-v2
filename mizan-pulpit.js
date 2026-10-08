@@ -211,7 +211,7 @@
     if (!modal) return;
     const msg = modal.querySelector('[data-contributor-message]');
     if (msg) msg.textContent = message || 'قدّم طلب الانضمام إلى منبر ميزان ليتم مراجعته من الإدارة.';
-    modal.classList.add('is-open');
+    openMizanModal(modal);
   }
 
   async function openSubmit() {
