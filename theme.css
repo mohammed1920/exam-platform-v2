@@ -25,12 +25,6 @@ html[data-theme="light"] body{
   background:var(--mizan-bg-light);
   color:var(--mizan-text-light);
 }
-html[data-theme="light"] header{
-  position:relative;
-  background:var(--mizan-surface);
-  border-bottom-color:var(--mizan-border-light);
-  box-shadow:0 4px 22px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
-}
 html[data-theme="light"] header p{
   color:var(--mizan-muted-light);
 }
