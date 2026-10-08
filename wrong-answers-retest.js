@@ -155,7 +155,6 @@
     }, true);
 
     window.setTimeout(addButtonIfNeeded, 300);
-    window.setInterval(addButtonIfNeeded, 700);
     return true;
   }
 
