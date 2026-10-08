@@ -14,7 +14,7 @@
 
   function openMizanModal(modal) {
     if (!modal) return;
-    openMizanModal(modal);
+    modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
