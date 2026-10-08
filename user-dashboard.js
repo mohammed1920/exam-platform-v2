@@ -164,8 +164,7 @@
       <div class="profile-panel student-highlight-panel"><h3>آخر نتيجة</h3>${history.length ? `<strong class="student-big-score">${Number(history[0].percentage) || 0}%</strong><p>${escapeHtml(history[0].bookTitle || 'اختبار')} · ${history[0].custom ? 'اختبار مخصص' : `الفصل ${escapeHtml(history[0].chapter || '-')}`}</p>` : '<p class="profile-empty">لم تكمل أي اختبار بعد.</p>'}</div>`;
   }
 
-  function renderHistory(history) {
-    const drafts = window.app && typeof window.app.getExamDraftSummaries === 'function' ? window.app.getExamDraftSummaries() : [];
+  function groupHistoryByBook(history) {
     const grouped = {};
     history.forEach(item => {
       const key = item.bookId || item.bookTitle || 'unknown';
@@ -174,7 +173,12 @@
       grouped[key].total += Number(item.totalQuestions) || 0;
       grouped[key].avg += Number(item.percentage) || 0;
     });
-    const progressRows = Object.values(grouped).map(row => ({ ...row, avg: Math.round(row.avg / row.exams) }));
+    return Object.values(grouped).map(row => ({ ...row, avg: Math.round(row.avg / row.exams) }));
+  }
+
+  function renderHistory(history) {
+    const drafts = window.app && typeof window.app.getExamDraftSummaries === 'function' ? window.app.getExamDraftSummaries() : [];
+    const progressRows = groupHistoryByBook(history);
     const draftHtml = drafts.length ? `<div class="resume-exam-list">${drafts.map(draft => `<div class="profile-panel resume-exam-panel"><div><span class="resume-exam-label">اختبار غير مكتمل</span><h3>${escapeHtml(draft.title)}</h3><p>وصلت إلى السؤال ${draft.questionNumber} من ${draft.totalQuestions} · ${draft.answered} إجابة محفوظة</p></div><div class="resume-exam-actions"><button type="button" class="profile-resume-btn" data-resume-exam="${escapeHtml(draft.id)}"><i class="fas fa-play"></i> متابعة</button><button type="button" class="profile-delete-btn" data-delete-draft="${escapeHtml(draft.id)}" aria-label="حذف الاختبار غير المكتمل"><i class="fas fa-trash"></i></button></div></div>`).join('')}</div>` : '';
     const progressHtml = `<div class="profile-panel"><div class="profile-panel-heading"><div><h3>تقدمك في الكتب</h3><p>متوسط نتائجك وعدد الاختبارات لكل كتاب.</p></div></div><div class="student-progress-list">${progressRows.length ? progressRows.map(row => `<div class="student-progress-item"><div class="student-progress-top"><strong>${escapeHtml(row.title)}</strong><span>${row.avg}%</span></div><div class="student-progress-bar"><i style="width:${Math.min(100, Math.max(0, row.avg))}%"></i></div><small>${row.exams} اختبار · ${row.total} سؤال</small></div>`).join('') : '<div class="profile-empty">ابدأ اختباراً في أحد الكتب ليظهر تقدمك هنا.</div>'}</div></div>`;
     return `${pageHeader('السجل والتقدم', 'راجع اختباراتك السابقة وتابع تقدمك أو أكمل اختباراً متوقفاً.', 'fa-clock-rotate-left')}
@@ -196,15 +200,7 @@
   }
 
   function renderProgress(history) {
-    const grouped = {};
-    history.forEach(item => {
-      const key = item.bookId || item.bookTitle || 'unknown';
-      if (!grouped[key]) grouped[key] = { title: item.bookTitle || 'كتاب', exams: 0, total: 0, avg: 0 };
-      grouped[key].exams += 1;
-      grouped[key].total += Number(item.totalQuestions) || 0;
-      grouped[key].avg += Number(item.percentage) || 0;
-    });
-    const rows = Object.values(grouped).map(x => ({ ...x, avg: Math.round(x.avg / x.exams) }));
+    const rows = groupHistoryByBook(history);
     return `${pageHeader('تقدمي في الكتب', 'ملخص تقدمك حسب الكتب التي اختبرت فيها.', 'fa-chart-pie')}
       <div class="profile-panel"><div class="student-progress-list">${rows.length ? rows.map(row => `<div class="student-progress-item"><div class="student-progress-top"><strong>${escapeHtml(row.title)}</strong><span>${row.avg}%</span></div><div class="student-progress-bar"><i style="width:${Math.min(100, Math.max(0, row.avg))}%"></i></div><small>${row.exams} اختبار · ${row.total} سؤال</small></div>`).join('') : '<div class="profile-empty">ابدأ اختباراً في أحد الكتب ليظهر تقدمك هنا.</div>'}</div></div>`;
   }
