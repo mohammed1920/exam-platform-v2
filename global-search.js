@@ -15,6 +15,7 @@
   const state = {
     timer: null,
     cache: {},
+    datasetPromises: {},
     lawyerProfiles: null,
     lawyerProfilesPromise: null,
     requestId: 0
@@ -53,30 +54,38 @@
   }
 
   async function loadDataset(ds) {
-    if (state.cache[ds.key]) return state.cache[ds.key];
-    try {
-      const res = await fetch(basePath() + '/' + ds.path + '?v=' + Date.now());
-      if (!res.ok) {
+    if (Object.prototype.hasOwnProperty.call(state.cache, ds.key)) return state.cache[ds.key];
+    if (state.datasetPromises[ds.key]) return state.datasetPromises[ds.key];
+
+    state.datasetPromises[ds.key] = (async () => {
+      try {
+        const res = await fetch(basePath() + '/' + ds.path + '?v=' + Date.now());
+        if (!res.ok) {
+          state.cache[ds.key] = [];
+          return state.cache[ds.key];
+        }
+        const data = await res.json();
+        const raw = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data).find(Array.isArray) || []);
+        state.cache[ds.key] = raw.map((item, i) => ({
+          ...item,
+          _searchTitle: titleOf(item),
+          _searchText: fieldText(item),
+          _index: i,
+          _dataset: ds.key,
+          _label: ds.label,
+          _icon: ds.icon,
+          _action: ds.action
+        }));
+        return state.cache[ds.key];
+      } catch (_) {
         state.cache[ds.key] = [];
         return state.cache[ds.key];
+      } finally {
+        delete state.datasetPromises[ds.key];
       }
-      const data = await res.json();
-      const raw = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data).find(Array.isArray) || []);
-      state.cache[ds.key] = raw.map((item, i) => ({
-        ...item,
-        _searchTitle: titleOf(item),
-        _searchText: fieldText(item),
-        _index: i,
-        _dataset: ds.key,
-        _label: ds.label,
-        _icon: ds.icon,
-        _action: ds.action
-      }));
-      return state.cache[ds.key];
-    } catch (_) {
-      state.cache[ds.key] = [];
-      return state.cache[ds.key];
-    }
+    })();
+
+    return state.datasetPromises[ds.key];
   }
 
   async function loadLawyerProfiles() {
@@ -303,6 +312,7 @@
     clearTimeout(state.timer);
     state.requestId += 1;
     state.cache = {};
+    state.datasetPromises = {};
     state.lawyerProfiles = null;
     state.lawyerProfilesPromise = null;
   } };
