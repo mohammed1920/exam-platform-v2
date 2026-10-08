@@ -25,7 +25,6 @@
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', light ? '#f5f7fb' : '#0f172a');
 
-    document.documentElement.style.colorScheme = light ? 'light' : 'dark';
   }
 
   function toggle(){

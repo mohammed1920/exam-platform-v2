@@ -107,11 +107,16 @@
 
   async function submitEmailAuth(event) {
     event.preventDefault();
-    const email = document.getElementById('auth-email').value.trim();
+    const emailInput = document.getElementById('auth-email');
+    const email = emailInput.value.trim();
     const password = document.getElementById('auth-password').value;
     const isRegister = document.getElementById('login-modal').dataset.mode === 'register';
+    if (!email) { setError('أدخل بريدك الإلكتروني أولاً.'); return; }
+    if (!emailInput.checkValidity()) { setError('يرجى إدخال بريد إلكتروني صحيح.'); return; }
+    if (!password) { setError('أدخل كلمة المرور.'); return; }
+    if (isRegister && password.length < 6) { setError('كلمة المرور ضعيفة. استخدم 6 أحرف على الأقل.'); return; }
+    setError('');
     await withButtonBusy(document.getElementById('auth-submit-btn'), async () => {
-      if (!email || !password) throw { code: 'auth/invalid-email' };
       if (isRegister) await auth.createUserWithEmailAndPassword(email, password);
       else await auth.signInWithEmailAndPassword(email, password);
     });
