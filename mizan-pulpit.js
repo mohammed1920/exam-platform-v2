@@ -12,6 +12,22 @@
     return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('ar-IQ', {year:'numeric', month:'long', day:'numeric'});
   }
 
+  function openMizanModal(modal) {
+    if (!modal) return;
+    openMizanModal(modal);
+    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    const focusTarget = modal.querySelector('.mizan-modal-close, .mizan-profile-close, input, select, textarea, button');
+    focusTarget?.focus();
+  }
+
+  function closeMizanModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
   let publishedArticlesCache = null;
 
   function renderPublishedArticles(list, docs) {
@@ -90,8 +106,11 @@
           '<div class="mizan-profile-stats"><div><strong>' + count + '</strong><span>مساهمة منشورة</span></div><div><strong>' + esc(p.specialization || '—') + '</strong><span>التخصص</span></div></div>' +
           '<div class="mizan-profile-section"><h3>النبذة المهنية</h3><p>' + esc(p.bio || 'لم تتم إضافة نبذة مهنية.') + '</p></div>' +
         '</div>';
-      modal.classList.add('is-open');
-      modal.querySelector('.mizan-profile-close').onclick = () => modal.classList.remove('is-open');
+      modal.querySelector('.mizan-profile-close').setAttribute('data-mizan-profile-close', '');
+      modal.setAttribute('aria-labelledby', 'mizan-profile-title');
+      modal.querySelector('h2').id = 'mizan-profile-title';
+      modal.querySelector('.mizan-profile-close').onclick = () => closeMizanModal(modal);
+      openMizanModal(modal);
     } catch (error) {
       console.error('Mizan contributor profile error:', error);
     }
@@ -174,7 +193,7 @@
     if(submit) submit.textContent='حفظ التعديلات';
     const msg=modal?.querySelector('[data-contributor-message]');
     if(msg) msg.textContent=contributor.status==='approved'?'يمكنك تحديث بياناتك الشخصية والمهنية. حالة اعتمادك ستبقى كما هي.':contributor.status==='blocked'?'يمكنك تحديث بياناتك، لكن حالة حظر النشر ستبقى كما هي.':'حدّث بياناتك ثم احفظ التعديلات.';
-    modal?.classList.add('is-open');
+    openMizanModal(modal);
   }
 
   function resetContributorModalForNew() {
@@ -213,7 +232,7 @@
         if(form.authorTitle) form.authorTitle.value=contributor.role||'';
         if(form.authorSpecialization) form.authorSpecialization.value=contributor.specialization||'';
       }
-      modal.classList.add('is-open');
+      openMizanModal(modal);
     }
   }
 
@@ -252,7 +271,7 @@
           updatedAt:firebase.firestore.FieldValue.serverTimestamp()
         }, {merge:true});
       }
-      document.getElementById('mizan-contributor-modal')?.classList.remove('is-open');
+      closeMizanModal(document.getElementById('mizan-contributor-modal'));
       const isUpdate=!!existing;
       window.app?.showHomeNotice?.(isUpdate?'تم تحديث بياناتك':'تم إرسال طلب الانضمام', isUpdate?'تم حفظ بيانات المساهم بنجاح.':'سيتم مراجعة بياناتك من إدارة منبر ميزان.');
       form.reset();
@@ -293,7 +312,7 @@
       if (!data.title || !data.authorName || !data.content) throw new Error('missing');
       await db.collection(COLLECTION).add(data);
       form.reset();
-      document.getElementById('mizan-submit-modal')?.classList.remove('is-open');
+      closeMizanModal(document.getElementById('mizan-submit-modal'));
       window.app?.showHomeNotice?.('تم استلام المشاركة', 'ستظهر بعد مراجعتها واعتمادها من إدارة المنصة.');
     } catch (error) {
       console.error('Mizan Pulpit submit error:', error);
@@ -316,7 +335,15 @@
       if (contributor && contributor.dataset.contributorId) openContributorProfile(contributor.dataset.contributorId);
       if (event.target.closest('[data-mizan-submit]')) openSubmit();
       if (event.target.closest('[data-mizan-edit-contributor]')) openContributorEdit();
-      if (event.target.closest('[data-mizan-close]')) document.querySelectorAll('.mizan-modal').forEach(m => m.classList.remove('is-open'));
+      const closeButton = event.target.closest('[data-mizan-close]');
+      if (closeButton) closeMizanModal(closeButton.closest('.mizan-modal'));
+      if (event.target.matches('.mizan-modal')) closeMizanModal(event.target);
+      if (event.target.closest('[data-mizan-profile-close]')) closeMizanModal(document.getElementById('mizan-contributor-profile-modal'));
+      if (event.target.id === 'mizan-contributor-profile-modal') closeMizanModal(event.target);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      document.querySelectorAll('.mizan-modal.is-open, #mizan-contributor-profile-modal.is-open').forEach(closeMizanModal);
     });
     document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
