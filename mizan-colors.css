@@ -90,6 +90,31 @@ html[data-theme="light"]{
   --mizan-text:var(--mizan-text-light);
   --mizan-muted:var(--mizan-muted-strong-light);
 }
+/* ===== Central legacy compatibility layer =====
+   Legacy component tokens remain available, but their values are owned here.
+   New code should use the --mizan-* semantic tokens directly.
+*/
+:root{
+  --primary:var(--mizan-primary-500);
+  --bg-dark:var(--mizan-bg-dark);
+  --card-bg:var(--mizan-card-dark);
+  --text-primary:var(--mizan-heading-dark);
+  --text-secondary:var(--mizan-muted-dark);
+  --border:var(--mizan-border-dark);
+  --success:var(--mizan-success-500);
+  --error:var(--mizan-danger-500);
+}
+html[data-theme="light"]{
+  --primary:var(--mizan-primary-500);
+  --bg-dark:var(--mizan-bg-light);
+  --card-bg:var(--mizan-surface-light);
+  --text-primary:var(--mizan-text-light);
+  --text-secondary:var(--mizan-muted-light);
+  --border:var(--mizan-border-light);
+  --success:var(--mizan-success-700);
+  --error:var(--mizan-danger-700);
+}
+
 /* Central compatibility aliases for legacy component variables. */
 :root{
   --mizan-surface-2-light:#F1F5F9;
