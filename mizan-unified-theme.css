@@ -307,15 +307,6 @@ html:not([data-theme="light"]) .footer-faq-list details{
   color:var(--mizan-text-dark);
   border-color:var(--mizan-neutral-700);
 }
-/* Legacy component tokens — never alter book artwork */
-html body *:not(.book-card):not(.book-card *):not(.book-cover):not(.book-cover *):not(.chapter-item):not(.chapter-item *){
-  --primary:var(--mu-primary);
-  --bg-dark:var(--mu-bg);
-  --card-bg:var(--mu-card);
-  --text-primary:var(--mu-heading);
-  --text-secondary:var(--mu-muted);
-  --border:var(--mu-border);
-}
 /* ===== v2.1 contrast + CTA + contact repair ===== */
 /* Top utility icons must remain clearly visible in light mode. */
 html[data-theme="light"] .mizan-header-tools .platform-menu-trigger,
