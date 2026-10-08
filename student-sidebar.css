@@ -456,7 +456,7 @@
     flex:0 0 46px;
   }
 }
-/* Light theme audit repair */
+/* ===== Theme-aware student sidebar surfaces — merged ===== */
 html[data-theme="light"] .student-sidebar-brand strong,
 html[data-theme="light"] .profile-identity h3{
   color:var(--mizan-primary-800);
@@ -499,8 +499,6 @@ html[data-theme="light"] .profile-name-editor-row input{
   color:var(--mizan-text);
   border-color:var(--mizan-border-light);
 }
-/* ===== Theme-aware student sidebar surfaces ===== */
-html[data-theme="light"] .student-info-grid>div,
-.student-profile-card{
+html[data-theme="light"] .student-profile-card{
   color:var(--mizan-text);
 }
