@@ -45,6 +45,7 @@
   --mizan-text-dark:#CBD5E1;
   --mizan-muted-dark:#94A3B8;
   --mizan-subtle-dark:#64748B;
+  --mizan-muted-strong-light:#505E74;
   --mizan-bg:var(--mizan-bg-dark);
   --mizan-surface:var(--mizan-surface-dark);
   --mizan-card:var(--mizan-card-dark);
@@ -62,7 +63,6 @@
   --mizan-danger:var(--mizan-danger-500);
   --mizan-warning:var(--mizan-warning-500);
   --mizan-error:var(--mizan-danger-500);
-  --mizan-focus:var(--mizan-focus-ring);
   --mizan-gold-metal-1:#D4AF37;
   --mizan-gold-metal-2:#FFF0AA;
   --mizan-gold-metal-3:#AA820A;
@@ -70,6 +70,7 @@
   --mizan-paper-cream:#F4EAAD;
   --mizan-paper-edge:#D8C382;
   --mizan-paper-dark:#B8A05C;
+  --mizan-focus:var(--mizan-focus-ring);
   --mizan-book-blue-1:#182842;
   --mizan-book-blue-2:#0A1324;
   --mizan-book-blue-3:#040914;
@@ -312,7 +313,6 @@ html[data-theme="light"]{
 /* ===== Batch 3 tokens: form fields, semantic action colors, strong secondary text ===== */
 :root{
   --mizan-surface-2:var(--mizan-surface-2-dark);
-  --mizan-muted-strong-light:#505E74;
   --mizan-field-bg:color-mix(in srgb,var(--mizan-black) 22%,transparent);
   --mizan-field-border:var(--mizan-neutral-500);
   --mizan-field-border-hover:var(--mizan-neutral-400);
