@@ -19,12 +19,6 @@
 }
 html[data-theme="light"]{
   color-scheme:light;
-  --primary:var(--mizan-primary-500);
-  --bg-dark:var(--mizan-bg-light);
-  --card-bg:var(--mizan-surface-light);
-  --text-primary:var(--mizan-text-light);
-  --text-secondary:var(--mizan-muted-light);
-  --border:var(--mizan-border-light);
 }
 /* ---------- Base ---------- */
 html[data-theme="light"] body{
