@@ -405,10 +405,6 @@ html[data-admin-theme="light"] .theme-admin-toggle{background:var(--mizan-ice);c
             return escapeHtml(value).replace(/`/g, '&#96;');
         }
 
-        function questionKey(q) {
-            return q?.uid || q?.id || '';
-        }
-
         function createQuestionUid() {
             if (window.crypto?.randomUUID) return window.crypto.randomUUID();
             return 'q_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
