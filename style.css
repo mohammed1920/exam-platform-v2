@@ -1,7 +1,3 @@
-:root{
-  --success:var(--mizan-success);
-  --error:var(--mizan-error);
-}
 *{
   margin:0;
   padding:0;
@@ -298,15 +294,6 @@ footer{
 /* =========================================================
    FINAL DESIGN POLISH — لمسة فاخرة متناسقة مع الكتب
    ========================================================= */
-/* لوحة ألوان أعمق وأكثر فخامة */
-:root{
-  --primary:var(--mizan-primary-500);
-  --bg-dark:var(--mizan-bg-dark);
-  --card-bg:var(--mizan-card-dark);
-  --text-primary:var(--mizan-heading-dark);
-  --text-secondary:var(--mizan-muted-dark);
-  --border:var(--mizan-border-dark);
-}
 /* خلفية الصفحة: عمق خفيف جداً خلف البطاقات */
 body{
   background:radial-gradient(
