@@ -135,7 +135,6 @@ html[data-theme="light"]{
 }
 html[data-theme="light"]{
   --mizan-surface-soft:var(--mizan-border-light);
-  --mizan-primary-500-border:var(--mizan-primary-200);
   --mizan-ink-soft:var(--mizan-surface-light);
 }
 /* ===== Neutral ramp (theme-independent constants) ===== */
