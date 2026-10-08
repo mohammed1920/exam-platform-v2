@@ -78,7 +78,7 @@ header p{
   border-color:var(--text-secondary);
 }
 .exam-box{
-  border:1px solid var(--border);
+  border:1px solid var(--mizan-border);
   border-radius:16px;
   padding:24px;
   max-width:700px;
@@ -91,7 +91,7 @@ header p{
   margin-bottom:20px;
 }
 .stat-item{
-  border:1px solid var(--border);
+  border:1px solid var(--mizan-border);
   border-radius:12px;
   padding:10px 6px;
   display:flex;
@@ -108,22 +108,22 @@ header p{
   font-weight:800;
 }
 .stat-wrong{
-  border-color:var(--mizan-danger-soft);
+  border-color:var(--mizan-danger-50);
 }
 .stat-correct{
-  border-color:var(--mizan-success-soft);
+  border-color:var(--mizan-success-50);
 }
 .stat-progress .stat-value{
-  color:var(--text-primary);
+  color:var(--mizan-text);
 }
 .stat-time .stat-value{
-  color:var(--primary);
+  color:var(--mizan-primary-500);
 }
 .stat-time{
   border-color:var(--mizan-primary-500-border);
 }
 .exam-header{
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid var(--mizan-border);
   padding-bottom:15px;
   margin-bottom:20px;
 }
@@ -133,7 +133,7 @@ header p{
 }
 .exam-timer{
   font-weight:700;
-  color:var(--primary);
+  color:var(--mizan-primary-500);
   font-size:1.1rem;
 }
 .progress-bar-container{
