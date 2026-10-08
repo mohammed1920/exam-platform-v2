@@ -895,8 +895,7 @@ html[data-theme="light"] .footer-links button:hover{
 html[data-theme="light"] .footer-bottom{
   border-top-color:var(--mizan-border-light);
 }
-html[data-theme="light"] .footer-bottom p,
-html[data-theme="light"] .footer-contact-info a{
+html[data-theme="light"] .footer-bottom p{
   color:var(--mizan-muted-light);
 }
 html[data-theme="light"] .footer-info-box{
