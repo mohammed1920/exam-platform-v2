@@ -134,7 +134,7 @@
     button.id = BUTTON_ID;
     button.type = 'button';
     button.className = 'back-btn';
-    button.style.cssText = 'margin-top:10px;width:100%;border-color:var(--primary,#c29d5f);color:var(--primary,#c29d5f);';
+    button.style.cssText = 'margin-top:10px;width:100%;border-color:var(--mizan-primary-500);color:var(--mizan-primary-500);';
     button.textContent = state && state.active
       ? `🔄 أعد اختبار الأخطاء (${wrongAnswers.length})`
       : `🔄 اختبرني بالأخطاء (${wrongAnswers.length})`;
@@ -147,7 +147,7 @@
     if (!results) return false;
 
     const observer = new MutationObserver(() => window.setTimeout(addButtonIfNeeded, 0));
-    observer.observe(results, { attributes: true, attributeFilter: ['class', 'style'] });
+    observer.observe(results, { attributes: true, attributeFilter: ['class', 'style'], childList: true, subtree: true });
 
     document.addEventListener('click', event => {
       const target = event.target.closest('#back-books-btn, #restart-exam-btn, #back-from-review, #exam-home-btn');
