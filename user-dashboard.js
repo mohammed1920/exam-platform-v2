@@ -329,9 +329,9 @@
         if (this.__studentHistorySaving) return originalEndExam();
         this.__studentHistorySaving = true;
         try {
-          const result = window.examEngine.finishExam();
+          const result = originalEndExam();
           saveExamResult(result, this);
-          return originalEndExam();
+          return result;
         } finally {
           setTimeout(() => { this.__studentHistorySaving = false; }, 0);
         }
