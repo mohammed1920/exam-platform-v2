@@ -12,7 +12,13 @@
     { key: 'petitions', label: 'عرائض وطلبات', icon: '📝', path: 'data/petitions/petitions.json', action: 'petitions' }
   ];
 
-  const state = { timer: null, cache: {}, questionIndex: null };
+  const state = {
+    timer: null,
+    cache: {},
+    lawyerProfiles: null,
+    lawyerProfilesPromise: null,
+    requestId: 0
+  };
 
   function normalize(value) {
     return String(value ?? '')
@@ -50,7 +56,10 @@
     if (state.cache[ds.key]) return state.cache[ds.key];
     try {
       const res = await fetch(basePath() + '/' + ds.path + '?v=' + Date.now());
-      if (!res.ok) return [];
+      if (!res.ok) {
+        state.cache[ds.key] = [];
+        return state.cache[ds.key];
+      }
       const data = await res.json();
       const raw = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data).find(Array.isArray) || []);
       state.cache[ds.key] = raw.map((item, i) => ({
@@ -66,8 +75,33 @@
       return state.cache[ds.key];
     } catch (_) {
       state.cache[ds.key] = [];
-      return [];
+      return state.cache[ds.key];
     }
+  }
+
+  async function loadLawyerProfiles() {
+    if (!window.publicAuth?.firestore) return [];
+    if (state.lawyerProfiles !== null) return state.lawyerProfiles;
+    if (state.lawyerProfilesPromise) return state.lawyerProfilesPromise;
+
+    state.lawyerProfilesPromise = (async () => {
+      try {
+        const snap = await window.publicAuth.firestore
+          .collection('lawyerProfiles')
+          .where('published', '==', true)
+          .get();
+        state.lawyerProfiles = snap.docs.map(d => d.data());
+      } catch (_) {
+        // Cache a failed attempt for this page session to avoid repeated reads
+        // on every keystroke. A page reload retries the request.
+        state.lawyerProfiles = [];
+      } finally {
+        state.lawyerProfilesPromise = null;
+      }
+      return state.lawyerProfiles;
+    })();
+
+    return state.lawyerProfilesPromise;
   }
 
   async function buildIndex(query) {
@@ -99,23 +133,18 @@
         });
       } catch (_) {}
     }
-    if (window.publicAuth?.firestore) {
-      try {
-        const snap = await window.publicAuth.firestore.collection('lawyerProfiles').where('published','==',true).get();
-        snap.docs.forEach(d => {
-          const p = d.data();
-          results.push({
-            type: 'lawyers',
-            title: p.name || 'محامٍ',
-            subtitle: [p.governorate,p.district,(p.specializations||[]).join('، ')].filter(Boolean).join(' — '),
-            icon: '👨‍⚖️',
-            action: 'lawyers',
-            item: p,
-            text: normalize([p.name,p.governorate,p.district,p.office,p.address,(p.specializations||[]).join(' ')].filter(Boolean).join(' '))
-          });
-        });
-      } catch (_) {}
-    }
+    const lawyerProfiles = await loadLawyerProfiles();
+    lawyerProfiles.forEach(p => {
+      results.push({
+        type: 'lawyers',
+        title: p.name || 'محامٍ',
+        subtitle: [p.governorate,p.district,(p.specializations||[]).join('، ')].filter(Boolean).join(' — '),
+        icon: '👨‍⚖️',
+        action: 'lawyers',
+        item: p,
+        text: normalize([p.name,p.governorate,p.district,p.office,p.address,(p.specializations||[]).join(' ')].filter(Boolean).join(' '))
+      });
+    });
 
     const datasets = await Promise.all(DATASETS.map(loadDataset));
     datasets.flat().forEach(item => {
@@ -204,7 +233,7 @@
     return div.innerHTML;
   }
 
-  async function perform(query) {
+  async function perform(query, requestId) {
     const normalized = normalize(query);
     if (!normalized) {
       render([], '');
@@ -222,6 +251,8 @@
     }
 
     const index = await buildIndex(normalized);
+    if (requestId !== state.requestId) return;
+
     const matches = index
       .map(item => ({ item, score: score(item, normalized) }))
       .filter(x => x.score > 0)
@@ -234,7 +265,8 @@
   function search(value) {
     clearTimeout(state.timer);
     const query = String(value ?? '');
-    state.timer = setTimeout(() => perform(query), 180);
+    const requestId = ++state.requestId;
+    state.timer = setTimeout(() => perform(query, requestId), 180);
   }
 
   async function openResult(result) {
@@ -268,7 +300,10 @@
   }
 
   window.globalSearch = { search, buildIndex, clear: () => {
-    state.questionIndex = null;
+    clearTimeout(state.timer);
+    state.requestId += 1;
     state.cache = {};
+    state.lawyerProfiles = null;
+    state.lawyerProfilesPromise = null;
   } };
 })();
