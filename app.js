@@ -1137,7 +1137,7 @@ class ExamApp {
 
     const C = {
       paper: '#FFFFFF', paperLine: '#E2E8F0', navy: '#0F172A',
-      gold: '#2563EB', goldLight: '#93C5FD', ink: '#0F172A', inkSoft: '#64748B'
+      gold: '#D4AF37', goldLight: '#F3E5AB', ink: '#0F172A', inkSoft: '#64748B'
     };
     const cx = W / 2;
 
