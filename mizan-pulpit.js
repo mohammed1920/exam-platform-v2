@@ -274,7 +274,6 @@
       closeMizanModal(document.getElementById('mizan-contributor-modal'));
       const isUpdate=!!existing;
       window.app?.showHomeNotice?.(isUpdate?'تم تحديث بياناتك':'تم إرسال طلب الانضمام', isUpdate?'تم حفظ بيانات المساهم بنجاح.':'سيتم مراجعة بياناتك من إدارة منبر ميزان.');
-      form.reset();
       resetContributorModalForNew();
     } catch (error) {
       console.error('Mizan contributor submit error:', error);
