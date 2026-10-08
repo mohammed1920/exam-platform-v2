@@ -45,14 +45,6 @@ html body header strong{
 html body header p{
   color:var(--mizan-neutral-400) !important;
 }
-html body header a,
-html body header nav a{
-  color:var(--mizan-neutral-200) !important;
-}
-html body header a:hover,
-html body header nav a:hover{
-  color:var(--mizan-info-300) !important;
-}
 html body header .login-btn,
 html body header .login-button,
 html body header .btn-primary{
@@ -192,7 +184,7 @@ html body header .btn-primary{
   background:var(--mizan-btn-primary-bg-hover) !important;
 }
 /* Forms/search */
-input:not(.book-card input),
+input:not(.book-card input):not(.petition-tools input),
 select:not(.book-card select),
 textarea:not(.book-card textarea),
 #search-input,
@@ -556,7 +548,7 @@ html body{
 .chapter-start-btn{
   background:var(--mizan-btn-primary-bg-grad);
   color:var(--mizan-btn-primary-fg);
-  border-color:var(--mizan-btn-primary-border) !important;
+  border-color:var(--mizan-btn-primary-border);
 }
 .chapter-start-btn:hover{
   background:var(--mizan-btn-primary-bg-strong);
@@ -724,8 +716,8 @@ html body{
 .lawyer-details-link,
 .lawyer-identity-btn{
   background:var(--mizan-btn-primary-bg) !important;
-  color:var(--mizan-btn-primary-fg) !important;
-  border-color:var(--mizan-btn-primary-border) !important;
+  color:var(--mizan-btn-primary-fg);
+  border-color:var(--mizan-btn-primary-border);
 }
 .lawyers-primary-btn:hover,
 .lawyer-details-link:hover{
@@ -820,12 +812,6 @@ html body footer{
   color:var(--mizan-muted-dark);
   border-color:var(--mizan-section-heading-dark);
 }
-footer a{
-  color:var(--mizan-text-dark) !important;
-}
-footer a:hover{
-  color:var(--mizan-info-300) !important;
-}
 .footer-info-box,
 .footer-faq-list details{
   background:var(--mizan-card);
@@ -879,7 +865,7 @@ footer a:hover{
   color:var(--mizan-primary-500) !important;
 }
 /* Forms */
-input:not(.book-card input),
+input:not(.book-card input):not(.petition-tools input),
 select:not(.book-card select),
 textarea:not(.book-card textarea),
 .contact-form input,
@@ -1139,14 +1125,14 @@ html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
 }
 /* ---- 2. Lawyer details / identity box (dark = gold) ---- */
 html:not([data-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
-  background:var(--mizan-gold-tint) !important;
-  color:var(--mizan-gold-text) !important;
+  background:var(--mizan-gold-tint);
+  color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
 html:not([data-theme="light"]) .lawyer-details-actions a{
-  background:var(--mizan-btn-primary-bg) !important;
-  color:var(--mizan-btn-primary-fg) !important;
-  border:1px solid var(--mizan-btn-primary-border) !important;
+  background:var(--mizan-btn-primary-bg);
+  color:var(--mizan-btn-primary-fg);
+  border:1px solid var(--mizan-btn-primary-border);
 }
 .lawyer-identity-btn.whatsapp i{
   color:var(--mizan-brand-whatsapp);
@@ -1268,8 +1254,8 @@ html[data-theme="light"] body .petition-design button.active{
   --mizan-text:var(--mizan-text-light);
   --mizan-muted:var(--mizan-muted-strong-light);
   --mizan-surface-2:var(--mizan-surface-2-light);
-  background:var(--mizan-white) !important;
-  color:var(--mizan-paper-ink) !important;
+  background:var(--mizan-white);
+  color:var(--mizan-paper-ink);
   color-scheme:light;
 }
 .petition-a4 :is(.petition-doc-body,p,div,li,span,td,th){
@@ -1332,8 +1318,8 @@ html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
   color:var(--mizan-info-300) !important;
 }
 html body .petition-a4 footer{
-  background:transparent !important;
-  color:var(--mizan-paper-ink) !important;
+  background:transparent;
+  color:var(--mizan-paper-ink);
   border-top-color:var(--mizan-border-light);
 }
 html body .mizan-form-submit{
@@ -1396,7 +1382,7 @@ html body .petition-a4 .petition-letterhead :is(strong,b){
   color:var(--mizan-primary-800) !important;
 }
 html body .petition-a4 .petition-letterhead small{
-  color:var(--mizan-muted-strong-light) !important;
+  color:var(--mizan-muted-strong-light);
 }
 html body .petition-a4 .petition-letterhead .petition-head-right small{
   color:var(--mizan-primary-600) !important;

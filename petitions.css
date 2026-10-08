@@ -465,7 +465,7 @@ html[data-theme="light"] .petition-template-card p{
   font-family:"Amiri","Noto Naskh Arabic",Tahoma,serif;
   font-size:25px;
   line-height:1.35;
-  color:var(--mizan-primary-800) !important;
+  color:var(--mizan-primary-800);
   font-weight:900;
   margin-top:1mm;
 }
