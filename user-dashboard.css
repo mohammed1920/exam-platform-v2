@@ -135,13 +135,7 @@
     width:100%;
   }
 }
-/* Light theme audit repair */
-html[data-theme="light"] .profile-stat-card,
-html[data-theme="light"] .profile-panel{
-  background:var(--mizan-surface);
-  border-color:var(--mizan-text-dark);
-}
-/* ===== Theme-aware dashboard surfaces ===== */
+/* ===== Theme-aware dashboard surfaces — merged ===== */
 html[data-theme="light"] .student-profile-card,
 html[data-theme="light"] .profile-panel,
 html[data-theme="light"] .profile-stat-card,
