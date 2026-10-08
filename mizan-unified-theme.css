@@ -296,9 +296,7 @@ html:not([data-theme="light"]) .question-text{
 .footer-info-content{
   color:var(--mizan-neutral-200);
 }
-.footer-bottom p,
-.footer-contact-info a,
-.footer-faq-list p{
+.footer-bottom p{
   color:var(--mizan-neutral-400) !important;
 }
 html:not([data-theme="light"]) .footer-info-box,
