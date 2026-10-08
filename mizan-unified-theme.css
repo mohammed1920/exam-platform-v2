@@ -252,10 +252,7 @@ html:not([data-theme="light"]) .question-text{
 .progress-bar-fill{
   background:var(--mizan-primary-500);
 }
-.option-btn{
-  background:var(--mu-bg);
-  color:var(--mu-text);
-}
+
 .option-btn:hover{
   border-color:var(--mizan-primary-500) !important;
 }
