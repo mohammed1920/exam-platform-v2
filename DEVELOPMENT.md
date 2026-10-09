@@ -72,6 +72,6 @@ find . -type f \( -name '*.js' -o -name '*.mjs' \) -not -path './.git/*' -not -p
 
 فرع العمل الحالي هو `refactor/architecture-foundation`، ولا يُعدّ نشر Vercel ناجحاً لمجرد نجاح GitHub Actions. راجع حالة النشر الفعلية وحدود البناء قبل إعلان جاهزية الإصدار. لا تنفّذ نشر إنتاج أو دمجاً إلى `main` كجزء من التنظيف دون تحقق مستقل.
 
-- `.github/workflows/update.yml` يتحقق من المشروع ثم يبني Pages artifact من ملفات HTML وJavaScript وCSS في الجذر ومجلدات `engine/` و`icons/` و`data/` و`assets/`. عند إضافة أصل تشغيل جديد خارج هذه المسارات، حدّث قائمة النسخ واختبارات وجود الملفات في workflow نفسه.
+- `scripts/build-pages-bundle.sh` هو المصدر الوحيد لقائمة ملفات GitHub Pages: ينسخ ملفات HTML وJavaScript وCSS في الجذر ومجلدات `engine/` و`icons/` و`data/` و`assets/`، ويتحقق من الملفات الأساسية قبل النشر. يستخدمه كل من `.github/workflows/update.yml` وCI؛ عند إضافة أصل تشغيل جديد، حدّث هذا السكربت واختبارات الحزمة فقط.
 
 **آخر تحديث:** 9 أكتوبر 2026
