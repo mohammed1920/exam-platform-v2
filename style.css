@@ -321,10 +321,10 @@ header{
 .start-exam-btn{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,var(--mizan-primary-400) 0%,var(--mizan-primary-500) 48%,var(--mizan-primary-600) 100%);
+  background:var(--mizan-btn-surface-gradient);
   color:var(--mizan-white);
   border-radius:13px;
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-primary-500) 18%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 22%,transparent);
+  box-shadow:var(--mizan-btn-surface-shadow);
   text-shadow:none;
   transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
 }
@@ -337,7 +337,7 @@ header{
   bottom:0;
   left:-70%;
   width:45%;
-  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--mizan-white) 22%,transparent),transparent);
+  background:var(--mizan-btn-surface-shine);
   transform:skewX(-20deg);
   transition:left .55s ease;
   pointer-events:none;
@@ -345,10 +345,10 @@ header{
 .book-card button:hover,
 .card button:hover,
 .start-exam-btn:hover{
-  background:linear-gradient(135deg,var(--mizan-primary-500) 0%,var(--mizan-primary-600) 50%,var(--mizan-primary-700) 100%);
+  background:var(--mizan-btn-surface-gradient-hover);
   filter:brightness(1.04);
   transform:translateY(-2px);
-  box-shadow:0 10px 22px color-mix(in srgb,var(--mizan-primary-500) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-primary-500) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
+  box-shadow:var(--mizan-btn-surface-shadow-hover);
 }
 .book-card button:hover::before,
 .card button:hover::before,
@@ -1286,7 +1286,7 @@ header{
   justify-content:center;
   align-items:center;
   gap:6px;
-  box-shadow:0 4px 12px color-mix(in srgb,var(--mizan-btn-primary-glow) 20%,transparent);
+  box-shadow:var(--mizan-btn-primary-shadow);
 }
 .book-card .test-btn:hover{
   background:var(--mizan-btn-primary-bg-hover);
