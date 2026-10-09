@@ -128,7 +128,7 @@ html body header .btn-primary{
 .contact-heading h2,
 .footer-info-heading h2,
 .student-page-header h2{
-  color:var(--mu-heading) !important;
+  color:var(--mu-heading);
 }
 .stat-label,
 .detail-label,
@@ -214,7 +214,7 @@ textarea:not(.book-card textarea),
 .home-category-card[data-home-action],
 .home-coming-soon{
   background:var(--mu-card);
-  border-color:var(--mu-border) !important;
+  border-color:var(--mu-border);
   color:var(--mu-text);
 }
 .home-category-card[data-home-action] strong{
@@ -288,12 +288,11 @@ html:not([data-theme="light"]) .question-text{
 .contact-card strong{
   color:var(--mu-heading);
 }
-/* Sidebar */
-.mizan-header-tools,
+/* Sidebar surfaces. Keep the utility-header glass treatment from platform-sidebar.css. */
 .platform-sidebar,
 .student-sidebar-panel{
-  background:var(--mu-bg) !important;
-  border-color:var(--mu-border) !important;
+  background:var(--mu-bg);
+  border-color:var(--mu-border);
 }
 /* Footer: exact navy */
 .footer-bottom,
@@ -441,7 +440,7 @@ html body{
 .home-feature-strip>div{
   background:var(--mizan-card);
   color:var(--mizan-text);
-  border-color:var(--mizan-border) !important;
+  border-color:var(--mizan-border);
 }
 .home-category-card:before{
   background:var(--mizan-primary-100);
@@ -457,7 +456,7 @@ html body{
 }
 .home-category-card small,
 .home-feature-strip small{
-  color:var(--mizan-muted) !important;
+  color:var(--mizan-muted);
 }
 .home-category-card b,
 .home-section-heading span,
@@ -469,7 +468,7 @@ html body{
 }
 .home-category-card:hover,
 .home-feature-strip>div:hover{
-  border-color:var(--mizan-primary-400) !important;
+  border-color:var(--mizan-primary-400);
 }
 /* Book card shell + metadata/actions only; .stage/.book artwork is excluded. */
 .book-card{
