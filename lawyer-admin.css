@@ -41,7 +41,7 @@
 }
 .lawyer-admin-status{
   font-size:10px;
-  color:var(--mizan-muted-dark);
+  color:var(--mizan-muted);
 }
 .lawyer-admin-tabs{
   display:flex;
@@ -125,7 +125,7 @@
 }
 .firebase-admin-menu-card span{
   font-size:10px;
-  color:var(--mizan-muted-dark);
+  color:var(--mizan-muted);
 }
 .firebase-admin-menu-card:hover{
   border-color:var(--mizan-primary-500-border);
