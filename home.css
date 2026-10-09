@@ -90,7 +90,7 @@
 .home-hero-secondary{
   background:var(--mizan-glass-white-025);
   color:var(--mizan-white);
-  border-color:var(--mizan-glass-white-080)!important;
+  border-color:var(--mizan-glass-white-080);
 }
 .home-hero-secondary:hover{background:var(--mizan-glass-white-050)}
 .home-hero-mark{
