@@ -69,13 +69,13 @@
   --mizan-header-tools-height:50px;
   --mizan-header-tools-padding:4px 6px;
   --mizan-header-control-size:42px;
-  --mizan-header-brand-min-height:64px;
+  --mizan-header-brand-min-height:88px;
   --mizan-header-brand-gap:2px;
-  --mizan-header-logo-size:42px;
-  --mizan-header-tagline-size:10px;
-  --mizan-header-wordmark-size:clamp(1.1rem,1.4vw,1.25rem);
-  --mizan-header-wordmark-size-mobile:17px;
-  --mizan-header-wordmark-size-compact:16px;
+  --mizan-header-logo-size:56px;
+  --mizan-header-tagline-size:14px;
+  --mizan-header-wordmark-size:clamp(1.45rem,2vw,1.75rem);
+  --mizan-header-wordmark-size-mobile:22px;
+  --mizan-header-wordmark-size-compact:20px;
   --mizan-header-brand-reserve:116px;
   --mizan-header-brand-reserve-mobile:88px;
   --mizan-header-brand-reserve-compact:82px;
@@ -101,18 +101,18 @@
     --mizan-header-tools-height:48px;
     --mizan-header-tools-padding:3px 5px;
     --mizan-header-control-size:40px;
-    --mizan-header-brand-min-height:58px;
-    --mizan-header-logo-size:36px;
-    --mizan-header-tagline-size:9px;
+    --mizan-header-brand-min-height:76px;
+    --mizan-header-logo-size:50px;
+    --mizan-header-tagline-size:12px;
     --mizan-header-wordmark-size:var(--mizan-header-wordmark-size-mobile);
   }
 }
 
 @media(max-width:420px){
   :root{
-    --mizan-header-logo-size:32px;
-    --mizan-header-brand-min-height:54px;
-    --mizan-header-tagline-size:8px;
+    --mizan-header-logo-size:44px;
+    --mizan-header-brand-min-height:70px;
+    --mizan-header-tagline-size:11px;
     --mizan-header-wordmark-size:var(--mizan-header-wordmark-size-compact);
   }
 }
