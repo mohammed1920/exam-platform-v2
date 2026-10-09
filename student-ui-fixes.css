@@ -229,11 +229,7 @@ header:not(.mizan-header) h1{
   display:none;
 }
 /* Light theme audit repair */
-html[data-theme="light"] .profile-name-editor{
-  background:var(--mizan-surface);
-  border-color:var(--mizan-primary-500-paper);
-  box-shadow:var(--mizan-shadow-surface-soft);
-}
+
 html[data-theme="light"] .firebase-admin-head{
   background:var(--mizan-surface);
   border-color:var(--mizan-text-dark);
