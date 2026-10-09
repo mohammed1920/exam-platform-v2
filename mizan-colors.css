@@ -128,7 +128,7 @@
   --mizan-gradient-pulpit-hero:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-amber-14) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-09) 98%,transparent));
   --mizan-gradient-pulpit-highlight:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-15) 90%,transparent),color-mix(in srgb,var(--mizan-deco-blue-08a) 98%,transparent));
   --mizan-gradient-lawyer-card:linear-gradient(145deg,var(--mizan-surface),var(--mizan-ink-deep));
-  --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--admin-warning),var(--admin-accent));
+  --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-500),var(--mizan-primary-500));
   --mizan-gradient-home-card-shine:linear-gradient(135deg,var(--mizan-glass-white-035),transparent 45%);
   --mizan-gradient-home-featured:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-primary-900));
   --mizan-gradient-home-featured-light:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-14a) 78%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 94%,transparent));
@@ -142,7 +142,12 @@
   --mizan-shadow-avatar-glow:0 0 24px var(--mizan-primary-500-border);
   --mizan-shadow-profile-focus:0 0 0 3px var(--mizan-primary-100);
   --mizan-shadow-lawyer-admin-card:0 8px 24px var(--mizan-glass-black-120);
-  --mizan-shadow-tone-button:0 4px 12px color-mix(in srgb,var(--btn-tone) 22%,transparent);
+  --mizan-shadow-tone-muted:0 4px 12px color-mix(in srgb,var(--mizan-muted) 22%,transparent);
+  --mizan-shadow-tone-success:0 4px 12px color-mix(in srgb,var(--mizan-success-text) 22%,transparent);
+  --mizan-shadow-tone-danger:0 4px 12px color-mix(in srgb,var(--mizan-danger-text) 22%,transparent);
+  --mizan-shadow-tone-warning:0 4px 12px color-mix(in srgb,var(--mizan-warning-text) 22%,transparent);
+  --mizan-shadow-tone-gold:0 4px 12px color-mix(in srgb,var(--mizan-gold-text) 22%,transparent);
+  --mizan-shadow-tone-info:0 4px 12px color-mix(in srgb,var(--mizan-info-text) 22%,transparent);
   --mizan-shadow-student-ui-compact:0 8px 22px var(--mizan-glass-black-120);
   --mizan-shadow-navigation-active:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
   --mizan-shadow-focus-primary:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 12%,transparent);
