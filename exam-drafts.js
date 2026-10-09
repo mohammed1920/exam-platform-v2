@@ -85,7 +85,6 @@
     app.writeExamDrafts(app.readExamDrafts().filter(draft => draft.id !== draftId));
   }
 
-
   window.MizanExamDrafts = Object.freeze({
     read: readExamDrafts,
     write: writeExamDrafts,
