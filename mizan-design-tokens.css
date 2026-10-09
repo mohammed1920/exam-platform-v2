@@ -53,6 +53,10 @@
   --mizan-header-tools-height:50px;
   --mizan-header-tools-padding:4px 6px;
   --mizan-header-control-size:42px;
+  --mizan-header-brand-min-height:64px;
+  --mizan-header-brand-gap:2px;
+  --mizan-header-logo-size:42px;
+  --mizan-header-tagline-size:10px;
   --mizan-sidebar-panel-width:360px;
   --mizan-sidebar-panel-width-mobile:340px;
   --mizan-sidebar-panel-viewport-cap:92vw;
@@ -69,12 +73,22 @@
   --mizan-menu-line-height:2px;
   --mizan-menu-line-short-width:14px;
 }
+@media(max-width:420px){
+  :root{
+    --mizan-header-logo-size:32px;
+    --mizan-header-brand-min-height:54px;
+    --mizan-header-tagline-size:8px;
+  }
+}
 @media(max-width:600px){
   :root{
     --mizan-header-tools-offset:10px;
     --mizan-header-tools-height:48px;
     --mizan-header-tools-padding:3px 5px;
     --mizan-header-control-size:40px;
+    --mizan-header-brand-min-height:58px;
+    --mizan-header-logo-size:36px;
+    --mizan-header-tagline-size:9px;
   }
 }
 
