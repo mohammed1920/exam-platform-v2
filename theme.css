@@ -122,7 +122,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible{
-  outline:2px solid var(--mizan-focus);
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
   outline-offset:3px;
 }
 button:not(:disabled),
