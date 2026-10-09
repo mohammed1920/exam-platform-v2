@@ -693,7 +693,7 @@ html body{
 }
 .lawyers-primary-btn:hover,
 .lawyer-details-link:hover{
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 /* Petitions */
 .petitions-shell,
@@ -704,7 +704,7 @@ html body{
 .petition-form-panel,
 .petition-preview-panel{
   background:var(--mizan-card);
-  color:var(--mizan-text) !important;
+  color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
 .petitions-hero span,
@@ -716,7 +716,7 @@ html body{
 .petition-builder-head p,
 .petition-tools>span,
 .petition-template-card span{
-  color:var(--mizan-muted) !important;
+  color:var(--mizan-muted);
 }
 .petition-template-icon{
   background:var(--mizan-primary-100);
@@ -726,9 +726,9 @@ html body{
 .petition-fields input,
 .petition-fields select,
 .petition-fields textarea{
-  background:var(--mizan-bg) !important;
+  background:var(--mizan-bg);
   color:var(--mizan-text);
-  border-color:var(--mizan-border) !important;
+  border-color:var(--mizan-border);
 }
 .petition-primary{
   background:var(--mizan-primary-500);
@@ -943,7 +943,7 @@ html[data-theme="light"] .option-btn.incorrect:hover{
 .firebase-admin-kicker,
 .home-feature-strip i,
 .auth-modal-heading{
-  color:var(--mizan-accent-text) !important;
+  color:var(--mizan-accent-text);
 }
 .share-question-btn,
 .exam-home-btn:hover{
@@ -1351,11 +1351,11 @@ html:not([data-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
   color:var(--mizan-success-text);
 }
 html body .petition-a4 .petition-letterhead :is(strong,b){
-  color:var(--mizan-primary-800) !important;
+  color:var(--mizan-primary-800);
 }
 html body .petition-a4 .petition-letterhead small{
   color:var(--mizan-muted-strong-light);
 }
 html body .petition-a4 .petition-letterhead .petition-head-right small{
-  color:var(--mizan-primary-600) !important;
+  color:var(--mizan-primary-600);
 }
