@@ -368,3 +368,12 @@ html[data-theme="light"]{
   --mizan-btn-primary-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
   --mizan-btn-primary-shadow-hover:0 10px 22px color-mix(in srgb,var(--mizan-btn-primary-glow) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-btn-primary-glow) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
 }
+
+/* Shared button visual tokens: color, gradient, border, and elevation values live here. */
+:root{
+  --mizan-btn-surface-shadow:0 7px 16px color-mix(in srgb,var(--mizan-primary-500) 18%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 22%,transparent);
+  --mizan-btn-surface-shadow-hover:0 10px 22px color-mix(in srgb,var(--mizan-primary-500) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-primary-500) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
+  --mizan-btn-surface-gradient:linear-gradient(135deg,var(--mizan-primary-400) 0%,var(--mizan-primary-500) 48%,var(--mizan-primary-600) 100%);
+  --mizan-btn-surface-gradient-hover:linear-gradient(135deg,var(--mizan-primary-500) 0%,var(--mizan-primary-600) 50%,var(--mizan-primary-700) 100%);
+  --mizan-btn-surface-shine:linear-gradient(90deg,transparent,color-mix(in srgb,var(--mizan-white) 22%,transparent),transparent);
+}
