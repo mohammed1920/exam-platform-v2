@@ -84,6 +84,24 @@
   --mizan-book-blue-spine-4:#0F1A2C;
   --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
   --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
+  /* Shared component glass surfaces — centralized from repeated component declarations. */
+  --mizan-glass-white-025:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-glass-white-030:color-mix(in srgb,var(--mizan-white) 3%,transparent);
+  --mizan-glass-white-035:color-mix(in srgb,var(--mizan-white) 3.5%,transparent);
+  --mizan-glass-white-040:color-mix(in srgb,var(--mizan-white) 4%,transparent);
+  --mizan-glass-white-050:color-mix(in srgb,var(--mizan-white) 5%,transparent);
+  --mizan-glass-white-055:color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
+  --mizan-glass-white-060:color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  --mizan-glass-white-080:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-glass-primary-900-050:color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  --mizan-glass-primary-900-080:color-mix(in srgb,var(--mizan-primary-900) 8%,transparent);
+  --mizan-glass-primary-900-180:color-mix(in srgb,var(--mizan-primary-900) 18%,transparent);
+  --mizan-glass-black-120:color-mix(in srgb,var(--mizan-black) 12%,transparent);
+  --mizan-surface-glass-095:color-mix(in srgb,var(--mizan-surface) 95%,transparent);
+  /* Shared semantic elevation and decorative surfaces. */
+  --mizan-shadow-card:0 8px 24px var(--mizan-glass-primary-900-050);
+  --mizan-gradient-surface-light:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+  --mizan-gradient-surface-deep:linear-gradient(145deg,var(--mizan-surface),var(--mizan-primary-900));
 }
 html[data-theme="light"]{
   --mizan-bg:var(--mizan-bg-light);
