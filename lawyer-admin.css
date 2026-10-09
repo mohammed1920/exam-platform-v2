@@ -61,7 +61,7 @@
 }
 .lawyer-admin-tab.active{
   border-color:var(--mizan-primary-500-border);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
   background:var(--mizan-accent-tile-bg);
 }
 .lawyer-admin-tab strong{
@@ -194,7 +194,7 @@ html[data-theme="light"] .firebase-admin-subview-back{
 html[data-theme="light"] .lawyer-admin-tab.active,
 html[data-theme="light"] .firebase-admin-menu-card.active{
   background:var(--mizan-accent-tile-bg);
-  border-color:var(--mizan-primary-300);
+  border-color:var(--mizan-accent-tile-fg);
   color:var(--mizan-primary-700);
 }
 html[data-theme="light"] .lawyer-admin-edit{
@@ -218,7 +218,7 @@ html[data-theme="light"] .lawyer-admin-status{
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-compact);
   background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
   box-shadow:none;
   z-index:1;
   cursor:pointer;
