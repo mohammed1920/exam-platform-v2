@@ -63,7 +63,7 @@
 }
 .mizan-pulpit-secondary{
   border:1px solid var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
 }
 .mizan-pulpit-toolbar{
@@ -126,7 +126,7 @@
   display:grid;
   place-items:center;
   border-radius:var(--mizan-radius-sm);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
 }
 .mizan-article-author strong,
@@ -340,7 +340,7 @@
   display:grid;
   place-items:center;
   border-radius:var(--mizan-radius-lg);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border:1px solid var(--mizan-primary-500-border);
   color:var(--mizan-primary-300);
   font-size:25px;
@@ -430,7 +430,7 @@
   gap:var(--mizan-space-2);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-11);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
   padding:10px 14px;
   font:inherit;
@@ -440,7 +440,7 @@
   transition:.2s;
 }
 .mizan-article-back:hover{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   transform:translateY(-1px);
 }
 .mizan-article-page-label{
@@ -492,7 +492,7 @@
   display:grid;
   place-items:center;
   border-radius:var(--mizan-radius-13);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border:1px solid var(--mizan-primary-500-border);
   color:var(--mizan-primary-300);
 }
