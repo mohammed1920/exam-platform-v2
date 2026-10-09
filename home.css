@@ -78,21 +78,21 @@
   cursor:pointer;
   transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
 }
-.home-hero-primary{
+.home-hero-actions .home-hero-primary{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
 }
-.home-hero-primary:hover{
+.home-hero-actions .home-hero-primary:hover{
   background:var(--mizan-btn-primary-bg-hover);
   border-color:var(--mizan-btn-primary-border-hover);
 }
-.home-hero-secondary{
+.home-hero-actions .home-hero-secondary{
   background:var(--mizan-glass-white-025);
   color:var(--mizan-white);
   border-color:var(--mizan-glass-white-080);
 }
-.home-hero-secondary:hover{background:var(--mizan-glass-white-050)}
+.home-hero-actions .home-hero-secondary:hover{background:var(--mizan-glass-white-050)}
 .home-hero-mark{
   display:grid;
   place-items:center;
