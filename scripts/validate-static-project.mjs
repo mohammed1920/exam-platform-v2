@@ -92,6 +92,30 @@ for (const htmlFile of htmlFiles) {
   }
 }
 
+// Validate statically declared assets loaded or navigated to from JavaScript.
+// Dynamic expressions are intentionally skipped because they cannot be resolved safely here.
+const jsReferencePattern = /\\.\\s*(?:src|href)\\s*=\\s*(["'])(.*?)\\1/gi;
+const jsFiles = files.filter(file => /\\.(?:js|mjs)$/i.test(file));
+for (const jsFile of jsFiles) {
+  const source = await readFile(jsFile, "utf8");
+  for (const match of source.matchAll(jsReferencePattern)) {
+    const raw = match[2].trim();
+    if (!raw || /^(?:[a-z][a-z\\d+.-]*:|\\/\\/|#|data:|blob:)/i.test(raw)) continue;
+    const clean = raw.split(/[?#]/, 1)[0];
+    if (!clean) continue;
+    const resolved = path.resolve(root, clean.replace(/^\\.\\//, "").replace(/^\\//, ""));
+    if (resolved !== root && !resolved.startsWith(root + path.sep)) {
+      failures.push(`Unsafe dynamic local reference in ${display(jsFile)}: ${raw}`);
+      continue;
+    }
+    try {
+      await access(resolved);
+    } catch {
+      failures.push(`Missing dynamic local asset in ${display(jsFile)}: ${raw}`);
+    }
+  }
+}
+
 // CSS url(...) references are relative to the stylesheet.
 // @import accepts a quoted path or url(...); avoid parsing the url keyword as a filename.
 const cssUrlPattern = /url\(\s*(?:(['"])(.*?)\1|([^)]*?))\s*\)/gi;
