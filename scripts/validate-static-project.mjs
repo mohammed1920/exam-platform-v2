@@ -51,6 +51,23 @@ for (let i = 0; i < cssFiles.length; i++) {
   }
 }
 
+// Resolve local CSS url(...) and @import references as well as HTML assets.
+function checkLocalReference(ownerFile, raw, label) {
+  const value = raw.trim();
+  if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/|#|data:|blob:)/i.test(value)) return;
+  const clean = value.split(/[?#]/, 1)[0];
+  if (!clean) return;
+  const ownerDir = path.dirname(ownerFile);
+  const resolved = path.resolve(ownerDir, clean);
+  if (resolved !== root && !resolved.startsWith(root + path.sep)) {
+    failures.push(`Unsafe local ${label} in ${display(ownerFile)}: ${value}`);
+    return;
+  }
+  access(resolved).catch(() => {
+    failures.push(`Missing local ${label} in ${display(ownerFile)}: ${value}`);
+  });
+}
+
 const htmlFiles = files.filter(file => /\.html?$/i.test(file));
 const referencePattern = /<(?:script\b[^>]*?\bsrc|link\b[^>]*?\bhref)\s*=\s*(["'])(.*?)\1/gi;
 for (const htmlFile of htmlFiles) {
@@ -72,6 +89,17 @@ for (const htmlFile of htmlFiles) {
     }
   }
 }
+
+// CSS asset paths are relative to the stylesheet, not the repository root.
+const cssReferencePattern = /(?:url\(\s*|@import\s+)(["']?)([^"'()\s]+)\1\s*\)?/gi;
+for (const cssFile of cssFiles) {
+  const css = await readFile(cssFile, "utf8");
+  for (const match of css.matchAll(cssReferencePattern)) {
+    checkLocalReference(cssFile, match[2], "CSS asset");
+  }
+}
+// Wait for any local CSS asset checks before reporting results.
+await new Promise(resolve => setImmediate(resolve));
 
 if (failures.length) {
   console.error(`Static integrity checks failed (${failures.length} issue(s)):`);
