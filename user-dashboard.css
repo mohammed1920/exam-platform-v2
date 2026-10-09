@@ -17,14 +17,6 @@
 .profile-clear-btn:hover{
   background:var(--mizan-primary-100);
 }
-.profile-panel-heading h3{
-  margin:0 0 4px;
-}
-.profile-panel-heading p{
-  margin:0;
-  color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:13px;
-}
 .coming-icon{
   font-size:27px;
 }
