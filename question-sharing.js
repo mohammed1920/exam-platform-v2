@@ -32,7 +32,7 @@
     return url;
   }
 
-  function roundRect(app, ctx, x, y, w, h, r) {
+  function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
     ctx.moveTo(x + r, y);
     ctx.arcTo(x + w, y, x + w, y + h, r);
@@ -42,7 +42,7 @@
     ctx.closePath();
   }
 
-  function wrapText(app, ctx, text, maxWidth) {
+  function wrapText(ctx, text, maxWidth) {
     const words = (text || '').split(' ');
     const lines = [];
     let current = '';
@@ -76,7 +76,7 @@
     const measureCanvas = document.createElement('canvas');
     const mctx = measureCanvas.getContext('2d');
     mctx.font = '700 46px "Aref Ruqaa", serif';
-    const lines = wrapText(app, mctx, q.question, W - 220);
+    const lines = wrapText(mctx, q.question, W - 220);
 
     // هوامش أمان أعلى وأسفل الصورة: فراغ فاضي (نفس لون الورقة) نتركه عمداً
     // حتى لو تيليجرام أو أي تطبيق قص/غطّى حواف الصورة عند عرضها مع رابط أو تعليق،
@@ -168,7 +168,7 @@
     const optX = 80;
     const optWidth = W - 160;
     q.options.forEach((opt, i) => {
-      roundRect(app, ctx, optX, y, optWidth, optHeight, 8);
+      roundRect(ctx, optX, y, optWidth, optHeight, 8);
       ctx.fillStyle = 'rgba(255,255,255,0.45)';
       ctx.fill();
       ctx.strokeStyle = C.paperLine;
@@ -212,7 +212,7 @@
     ctx.font = '800 32px Tajawal, sans-serif';
     const ctaWidth = ctx.measureText(ctaText).width + 80;
     const ctaHeight = 64;
-    roundRect(app, ctx, cx - ctaWidth / 2, y - ctaHeight / 2, ctaWidth, ctaHeight, 32);
+    roundRect(ctx, cx - ctaWidth / 2, y - ctaHeight / 2, ctaWidth, ctaHeight, 32);
     ctx.fillStyle = C.navy;
     ctx.fill();
     ctx.fillStyle = C.goldLight;
@@ -226,7 +226,7 @@
     const linkPadX = 40;
     const linkWidth = ctx.measureText(linkText).width + linkPadX * 2;
     const linkHeight = 60;
-    roundRect(app, ctx, cx - linkWidth / 2, y - linkHeight / 2, linkWidth, linkHeight, 30);
+    roundRect(ctx, cx - linkWidth / 2, y - linkHeight / 2, linkWidth, linkHeight, 30);
     ctx.fillStyle = C.navy;
     ctx.fill();
     ctx.strokeStyle = C.gold;
@@ -282,8 +282,8 @@
 
   window.MizanQuestionSharing = Object.freeze({
     buildDeepLink: (app, q) => buildDeepLink(app, q),
-    roundRect: (app, ctx, x, y, w, h, r) => roundRect(app, ctx, x, y, w, h, r),
-    wrapText: (app, ctx, text, maxWidth) => wrapText(app, ctx, text, maxWidth),
+    roundRect: (_app, ctx, x, y, w, h, r) => roundRect(ctx, x, y, w, h, r),
+    wrapText: (_app, ctx, text, maxWidth) => wrapText(ctx, text, maxWidth),
     generateShareCard: (app, q) => generateShareCard(app, q),
     shareQuestion: app => shareQuestion(app)
   });
