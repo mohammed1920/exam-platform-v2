@@ -589,9 +589,6 @@ html body{
   border-color:var(--mizan-border);
   color:var(--mizan-text);
 }
-.question-search-item:active{
-  background:var(--mizan-primary-100);
-}
 /* Contact */
 .contact-box{
   background:var(--mizan-card);
