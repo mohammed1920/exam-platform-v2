@@ -248,6 +248,7 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
 .mizan-admin-modal-box .btn,
 .mizan-admin-head-actions .btn{
   --btn-tone:var(--mizan-info-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-info);
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -292,18 +293,23 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) .btn[data-mizan-close]{
   --btn-tone:var(--mizan-muted);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-muted);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-green,[data-mizan-action="publish"],[data-mizan-action="republish"],[data-mizan-action="approve-contributor"],[data-mizan-action="unblock-contributor"]){
   --btn-tone:var(--mizan-success-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-success);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-red,[data-mizan-action="reject"],[data-mizan-action="reject-contributor"],[data-mizan-action="delete"],[data-mizan-action="delete-contributor"]){
   --btn-tone:var(--mizan-danger-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-danger);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="block-contributor"],[data-mizan-action="hide"],[data-mizan-view-hide]){
   --btn-tone:var(--mizan-warning-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-warning);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="edit"],[data-mizan-action="resubmit"],[data-mizan-view-edit],[data-mizan-view-resubmit]){
   --btn-tone:var(--mizan-gold-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-gold);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="view"],[data-mizan-action="view-contributor"]){
   --btn-tone:var(--mizan-info-text);
