@@ -8,7 +8,7 @@
   function timeValue(v){const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleTimeString('ar-IQ',{hour:'2-digit',minute:'2-digit'});}
   function buildUI(){
     if(document.getElementById('firebase-admin-tab'))return;
-    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='lawyer-admin.css?v=1.14';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
+    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='lawyer-admin.css?v=1.15';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
     const tab=document.createElement('button');tab.id='firebase-admin-tab';tab.type='button';tab.className='firebase-admin-tab';tab.innerHTML='<i class="fas fa-crown" aria-hidden="true"></i><span>الإدارة</span>';tab.title='لوحة إدارة Firebase';tab.setAttribute('aria-label','لوحة إدارة Firebase');tab.hidden=true;tab.addEventListener('click',openPanel);header.appendChild(tab);
     const main=document.querySelector('main.container');if(!main)return;const section=document.createElement('section');section.id='firebase-admin-section';section.className='view-section firebase-admin-view';section.hidden=true;
