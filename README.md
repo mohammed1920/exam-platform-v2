@@ -174,8 +174,7 @@ npx http-server
   "title": "القانون التجاري",
   "author": "مستشار قانوني",
   "description": "شرح شامل للقانون التجاري",
-  "chapters": 3,
-  "color": "#f59e0b"
+  "icon": "scale"
 }
 ```
 
