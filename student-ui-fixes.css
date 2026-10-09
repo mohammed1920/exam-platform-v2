@@ -259,9 +259,7 @@ html[data-theme="light"] .profile-name-editor{
   border-color:var(--mizan-primary-500-paper);
   box-shadow:var(--mizan-shadow-surface-soft);
 }
-html[data-theme="light"] .firebase-admin-head,
-html[data-theme="light"] .firebase-admin-stat,
-html[data-theme="light"] .firebase-admin-card{
+html[data-theme="light"] .firebase-admin-head{
   background:var(--mizan-surface);
   border-color:var(--mizan-text-dark);
   color:var(--mizan-text-light);
