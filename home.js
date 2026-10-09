@@ -119,7 +119,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'lawyer-directory.css?v=2.4';
+          css.href = 'lawyer-directory.css?v=2.5';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
