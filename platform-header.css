@@ -19,8 +19,8 @@
       direction: rtl;
       justify-content: center;
       align-items: center;
-      gap:2px;
-      min-height:64px;
+      gap:var(--mizan-header-brand-gap);
+      min-height:var(--mizan-header-brand-min-height);
     }
 
     .mizan-header-identity {
@@ -35,9 +35,9 @@
     }
 
     .mizan-header-logo {
-      width:42px;
-      height:42px;
-      flex:0 0 42px;
+      width:var(--mizan-header-logo-size);
+      height:var(--mizan-header-logo-size);
+      flex:0 0 var(--mizan-header-logo-size);
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -73,7 +73,7 @@
       margin:0;
       color: var(--text-secondary, var(--mizan-neutral-400));
       font-family:var(--mizan-font-family-arabic);
-      font-size:10px;
+      font-size:var(--mizan-header-tagline-size);
       font-weight: 500;
       line-height: 1.5;
       text-align: center;
@@ -86,15 +86,15 @@
 
     @media (max-width:700px) {
       .mizan-header{padding:var(--mizan-space-2) var(--mizan-space-2)}
-      .mizan-header-brand{width:calc(100% - 88px);min-height:58px;gap:2px}
+      .mizan-header-brand{width:calc(100% - 88px);min-height:var(--mizan-header-brand-min-height);gap:var(--mizan-header-brand-gap)}
       .mizan-header-identity{gap:var(--mizan-space-2)}
-      .mizan-header-logo{width:36px;height:36px;flex-basis:36px}
+      .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
       .mizan-header-copy h1{font-size:17px}
-      .mizan-header-tagline{font-size:9px;line-height:1.35}
+      .mizan-header-tagline{font-size:var(--mizan-header-tagline-size);line-height:1.35}
     }
     @media(max-width:420px){
-      .mizan-header-brand{width:calc(100% - 82px);min-height:54px}
-      .mizan-header-logo{width:32px;height:32px;flex-basis:32px}
+      .mizan-header-brand{width:calc(100% - 82px);min-height:var(--mizan-header-brand-min-height)}
+      .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
       .mizan-header-copy h1{font-size:16px}
-      .mizan-header-tagline{font-size:8px}
+      .mizan-header-tagline{font-size:var(--mizan-header-tagline-size)}
     }
