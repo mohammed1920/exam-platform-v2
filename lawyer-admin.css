@@ -247,7 +247,7 @@ html[data-theme="light"] .lawyer-admin-status{
   transform:translateY(-1px);
 }
 html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
-  background:var(--mizan-surface)8eb;
+  background:var(--mizan-surface);
   border-color:var(--mizan-primary-500-paper-light);
   color:var(--mizan-primary-700);
 }
