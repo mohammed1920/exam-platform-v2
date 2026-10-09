@@ -115,14 +115,14 @@
 
                     <label class="admin-label-spaced">🔗 روابط إضافية</label>
                     <div id="contactLinksContainer" class="admin-contact-links"></div>
-                    <button class="btn btn-secondary btn-block" onclick="addContactLink()" class="admin-action-spacing">➕ إضافة رابط إضافي</button>
+                    <button class="btn btn-secondary btn-block admin-action-spacing" onclick="addContactLink()" >➕ إضافة رابط إضافي</button>
 
                     <button class="btn btn-primary" onclick="guardedOp(saveContactData)">💾 حفظ معلومات التواصل</button>
                 </div>
             </section>
 
             <section id="chapters" class="tab-content">
-                <button class="btn btn-green btn-block" class="admin-action-spacing" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
+                <button class="btn btn-green btn-block admin-action-spacing"  onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
                 <div id="chapters-list"></div>
             </section>
 
@@ -131,7 +131,7 @@
                     <label>اختر الفصل:</label>
                     <select id="chapter-select" onchange="loadChapterQuestions()"></select>
                 </div>
-                <button class="btn btn-green btn-block" class="admin-action-spacing" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
+                <button class="btn btn-green btn-block admin-action-spacing"  onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
                 <div id="questions-list"></div>
             </section>
 
@@ -139,13 +139,13 @@
                 <div class="panel-header-row">
                     <p>راجع الأخطاء المقترحة من فحص الذكاء الاصطناعي، حدد قبول أو رفض لكل واحدة، ثم اضغط "حفظ المعالجات" بالأسفل لتطبيق القرارات وتنظيف القائمة.</p>
                 </div>
-                <div class="btn-row" class="admin-action-spacing">
+                <div class="btn-row admin-action-spacing" >
                     <button class="btn btn-secondary btn-sm" onclick="loadSpellingReport()">🔄 تحديث القائمة</button>
                     <button class="btn btn-secondary btn-sm" onclick="undoAllDecisions()">↩️ تراجع عن كل القرارات</button>
                 </div>
                 <div id="spellcheck-summary" class="admin-summary"></div>
                 <div id="spellcheck-list">جاري التحميل...</div>
-                <button class="btn btn-primary" id="apply-spellcheck-btn" class="btn btn-primary admin-apply-action" onclick="guardedOp(applyApprovedFixes)">
+                <button class="btn btn-primary admin-apply-action" id="apply-spellcheck-btn"  onclick="guardedOp(applyApprovedFixes)">
                     🚀 تطبيق القرارات وتنظيف السجل
                 </button>
             </section>
@@ -154,13 +154,13 @@
                 <div class="panel-header-row">
                     <p>فحص جودة الأسئلة بالذكاء الاصطناعي (وضوح الصياغة، تمايز الخيارات، وصحة الإجابة وفق القانون العراقي). الاكتشاف تلقائي فقط — أي تصحيح فعلي يتم يدويًا من زر "✏️ تعديل السؤال".</p>
                 </div>
-                <div class="btn-row" class="admin-action-spacing">
+                <div class="btn-row admin-action-spacing" >
                     <button class="btn btn-secondary btn-sm" onclick="loadQaReport()">🔄 تحديث القائمة</button>
                     <button class="btn btn-secondary btn-sm" onclick="undoAllQaDecisions()">↩️ تراجع عن كل القرارات</button>
                 </div>
                 <div id="qa-audit-summary" class="admin-summary"></div>
                 <div id="qa-audit-list">جاري التحميل...</div>
-                <button class="btn btn-primary" id="apply-qa-btn" class="btn btn-primary admin-apply-action" onclick="guardedOp(applyQaDecisions)">
+                <button class="btn btn-primary admin-apply-action" id="apply-qa-btn"  onclick="guardedOp(applyQaDecisions)">
                     🚀 حفظ القرارات وتنظيف السجل
                 </button>
             </section>
