@@ -376,14 +376,6 @@ class ExamApp {
     return div.innerHTML;
   }
 
-  safeExternalUrl(value) {
-    try {
-      const url = new URL(String(value || ''), window.location.origin);
-      if (url.protocol === 'https:') return url.href;
-    } catch (_) {}
-    return '#';
-  }
-
   filterBooks() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
     const filtered = this.books.filter(b => 
