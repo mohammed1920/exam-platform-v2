@@ -114,7 +114,7 @@
   padding:var(--mizan-space-4);
   cursor:pointer;
   font:inherit;
-  transition:.2s;
+  transition:var(--mizan-transition-standard);
 }
 .firebase-admin-menu-card i{
   font-size:var(--mizan-font-size-xl);
@@ -262,10 +262,10 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
   font:inherit;
   font-size:12.5px;
   font-weight:800;
-  line-height:1.4;
+  line-height:var(--mizan-line-height-heading);
   white-space:nowrap;
   cursor:pointer;
-  transition:background-color .16s ease,border-color .16s ease,transform .16s ease,box-shadow .16s ease;
+  transition:background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,transform var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-fast) ease;
 }
 .firebase-admin-table-wrap .btn:hover,
 .mizan-admin-modal-box .btn:hover,
