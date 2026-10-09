@@ -32,22 +32,22 @@
   --mizan-info-100:#E0F2FE;
   --mizan-info-500:#0284C7;
   --mizan-info-700:#0369A1;
-  --mizan-bg-light:#F8FAFC;
+  --mizan-bg-light:#F6F8FB;
   --mizan-surface-light:#FFFFFF;
   --mizan-card-light:#FFFFFF;
-  --mizan-border-light:#E2E8F0;
-  --mizan-heading-light:#0F172A;
-  --mizan-section-heading-light:#1E293B;
+  --mizan-border-light:#E4E9F0;
+  --mizan-heading-light:#0D1728;
+  --mizan-section-heading-light:#1B2A41;
   --mizan-text-light:#334155;
-  --mizan-muted-light:#64748B;
-  --mizan-bg-dark:#0F172A;
-  --mizan-surface-dark:#1E293B;
-  --mizan-card-dark:#1E293B;
-  --mizan-border-dark:#334155;
-  --mizan-heading-dark:#F8FAFC;
-  --mizan-section-heading-dark:#E2E8F0;
-  --mizan-text-dark:#CBD5E1;
-  --mizan-muted-dark:#94A3B8;
+  --mizan-muted-light:#687589;
+  --mizan-bg-dark:#07111F;
+  --mizan-surface-dark:#0D1B2D;
+  --mizan-card-dark:#101F33;
+  --mizan-border-dark:#203249;
+  --mizan-heading-dark:#F4F7FB;
+  --mizan-section-heading-dark:#E4ECF6;
+  --mizan-text-dark:#F4F7FB;
+  --mizan-muted-dark:#9BAABD;
   --mizan-subtle-dark:#64748B;
   --mizan-muted-strong-light:#505E74;
   --mizan-bg:var(--mizan-bg-dark);
@@ -206,8 +206,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 
 /* Central compatibility aliases for legacy component variables. */
 :root{
-  --mizan-surface-2-light:#F1F5F9;
-  --mizan-surface-2-dark:#0F172A;
+  --mizan-surface-2-light:#F9FAFC;
+  --mizan-surface-2-dark:#101F33;
   --mizan-danger-soft:var(--mizan-danger-100);
   --mizan-success-soft:var(--mizan-success-100);
   --mizan-danger-border:var(--mizan-danger-500);
