@@ -68,7 +68,9 @@ class ExamApp {
         window.publicAuth.requireAuth(() => this.restoreState(savedState));
         return;
       }
-      if (!restored && savedState && savedState.view && savedState.view !== 'books' && savedState.bookId) {
+      // Restore only views that legitimately require a selected book.
+      // Home is the root view and must never restore stale book/chapter content.
+      if (!restored && savedState && savedState.view && !['home', 'books'].includes(savedState.view) && savedState.bookId) {
         restored = await this.restoreState(savedState);
       }
 
@@ -1052,12 +1054,15 @@ class ExamApp {
     if (section) section.classList.add('active');
 
     if (pushState) {
-      const state = {
-        view: viewId,
-        bookId: this.currentBook ? this.currentBook.id : null,
-        chapter: this.currentChapter,
-        ...params
-      };
+      // The home view is a clean root: never carry a previous book or chapter into it.
+      const state = viewId === 'home'
+        ? { view: 'home', bookId: null, chapter: null, ...params }
+        : {
+            view: viewId,
+            bookId: this.currentBook ? this.currentBook.id : null,
+            chapter: this.currentChapter,
+            ...params
+          };
 
       const currentView = history.state?.view || 'home';
       const parentView = this.getNavigationParent(viewId);
