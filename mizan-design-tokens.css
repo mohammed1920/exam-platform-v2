@@ -229,6 +229,11 @@
   --mizan-card-padding-comfortable:var(--mizan-space-5);
   --mizan-control-min-height:44px;
   --mizan-control-min-height-compact:40px;
+  --mizan-install-slot-bottom-margin:10px;
+  --mizan-install-slot-horizontal-padding:2px;
+  --mizan-install-button-gap:5px;
+  --mizan-install-button-padding:7px 11px;
+  --mizan-install-slot-bottom-margin-mobile:8px;
   --mizan-transition-standard:var(--mizan-duration-regular) var(--mizan-ease-standard);
   --mizan-transition-emphasized:var(--mizan-duration-slow) var(--mizan-ease-out);
   --mizan-transition-color:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease;
