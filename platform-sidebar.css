@@ -22,44 +22,44 @@
 }
 .platform-sidebar.is-open .platform-sidebar-panel{transform:translateX(0)}
 .platform-sidebar-close{
-  position:absolute;top:16px;left:16px;width:38px;height:38px;border:1px solid var(--mizan-sidebar-close-border);
+  position:absolute;top:var(--mizan-sidebar-close-offset);left:var(--mizan-sidebar-close-offset);width:var(--mizan-sidebar-close-size);height:var(--mizan-sidebar-close-size);border:1px solid var(--mizan-sidebar-close-border);
   border-radius:var(--mizan-radius-11);background:var(--mizan-sidebar-close-bg);color:var(--mizan-sidebar-close-fg);cursor:pointer;
 }
-.platform-sidebar-brand{padding:8px 8px 20px;border-bottom:1px solid var(--mizan-sidebar-brand-border);margin-bottom:16px}
-.platform-sidebar-brand strong{display:block;font-size:18px;color:var(--mizan-heading)}
-.platform-sidebar-brand span{display:block;font-size:11px;margin-top:5px;line-height:1.7;color:var(--mizan-muted)}
-.platform-sidebar-heading{color:var(--mizan-accent-text);font-size:11px;font-weight:900;margin:18px 8px 7px}
+.platform-sidebar-brand{padding:var(--mizan-sidebar-brand-padding);border-bottom:1px solid var(--mizan-sidebar-brand-border);margin-bottom:var(--mizan-sidebar-brand-margin)}
+.platform-sidebar-brand strong{display:block;font-size:var(--mizan-sidebar-brand-title-size);color:var(--mizan-heading)}
+.platform-sidebar-brand span{display:block;font-size:var(--mizan-sidebar-caption-size);margin-top:var(--mizan-sidebar-caption-offset);line-height:var(--mizan-sidebar-caption-line-height);color:var(--mizan-muted)}
+.platform-sidebar-heading{color:var(--mizan-accent-text);font-size:var(--mizan-sidebar-heading-size);font-weight:900;margin:var(--mizan-sidebar-heading-margin)}
 .platform-sidebar-nav{display:grid;gap:var(--mizan-sidebar-item-gap)}
 .platform-sidebar-item{
-  width:100%;display:flex;align-items:center;gap:11px;text-align:right;padding:var(--mizan-sidebar-item-padding);
+  width:100%;display:flex;align-items:center;gap:var(--mizan-sidebar-item-icon-gap);text-align:right;padding:var(--mizan-sidebar-item-padding);
   border:1px solid transparent;border-radius:var(--mizan-radius-compact);background:transparent;color:var(--mizan-text);
-  font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--mizan-duration-regular) var(--mizan-ease-standard);
+  font:inherit;font-size:var(--mizan-sidebar-item-font-size);font-weight:700;cursor:pointer;transition:all var(--mizan-duration-regular) var(--mizan-ease-standard);
 }
-.platform-sidebar-item i{width:22px;text-align:center;font-size:15px;color:var(--mizan-accent-text)}
+.platform-sidebar-item i{width:var(--mizan-sidebar-item-icon-width);text-align:center;font-size:var(--mizan-sidebar-item-icon-size);color:var(--mizan-accent-text)}
 .platform-sidebar-item:hover,.platform-sidebar-item.is-active{
   background:var(--mizan-sidebar-item-active-bg);border-color:var(--mizan-sidebar-item-active-border);color:var(--mizan-sidebar-item-active-fg);
 }
 .platform-sidebar-item:hover i,.platform-sidebar-item.is-active i{color:var(--mizan-sidebar-item-active-fg)}
-.platform-sidebar-sub{display:grid;gap:4px;margin-right:16px;padding-right:10px;border-right:1px solid var(--mizan-sidebar-sub-border)}
-.platform-sidebar-sub .platform-sidebar-item{font-size:12px;padding:9px 10px}
-.platform-sidebar-divider{height:1px;background:var(--mizan-sidebar-divider);margin:17px 6px}
+.platform-sidebar-sub{display:grid;gap:var(--mizan-sidebar-sub-gap);margin-right:var(--mizan-sidebar-sub-indent);padding-right:var(--mizan-sidebar-sub-padding);border-right:1px solid var(--mizan-sidebar-sub-border)}
+.platform-sidebar-sub .platform-sidebar-item{font-size:var(--mizan-sidebar-sub-font-size);padding:var(--mizan-sidebar-sub-item-padding)}
+.platform-sidebar-divider{height:1px;background:var(--mizan-sidebar-divider);margin:var(--mizan-sidebar-divider-margin)}
 .platform-sidebar-account{
-  display:grid;gap:7px;margin-top:12px;padding:12px;border:1px solid var(--mizan-sidebar-account-border);
+  display:grid;gap:var(--mizan-sidebar-account-gap);margin-top:var(--mizan-sidebar-account-offset);padding:var(--mizan-sidebar-account-padding);border:1px solid var(--mizan-sidebar-account-border);
   border-radius:var(--mizan-radius-md);background:var(--mizan-sidebar-account-bg);box-shadow:var(--mizan-sidebar-account-shadow);
 }
-.platform-sidebar-account-user{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
+.platform-sidebar-account-user{display:flex;align-items:center;gap:var(--mizan-sidebar-account-user-gap);margin-bottom:var(--mizan-sidebar-account-user-margin);min-width:0}
 .platform-sidebar-account-avatar{
-  width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:50%;
+  width:var(--mizan-sidebar-avatar-size);height:var(--mizan-sidebar-avatar-size);flex:0 0 var(--mizan-sidebar-avatar-size);display:grid;place-items:center;border-radius:50%;
   background:var(--mizan-sidebar-avatar-bg);color:var(--mizan-white);font-weight:900;
 }
 .platform-sidebar-account-user>div:last-child{min-width:0}
 .platform-sidebar-account-user strong,.platform-sidebar-account-user span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.platform-sidebar-account-user strong{font-size:13px;color:var(--mizan-heading)}
-.platform-sidebar-account-user span{font-size:10px;color:var(--mizan-muted);margin-top:2px}
+.platform-sidebar-account-user strong{font-size:var(--mizan-sidebar-account-name-size);color:var(--mizan-heading)}
+.platform-sidebar-account-user span{font-size:var(--mizan-sidebar-account-meta-size);color:var(--mizan-muted);margin-top:var(--mizan-sidebar-account-meta-offset)}
 .platform-sidebar-account-action{
-  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;
+  width:100%;display:flex;align-items:center;justify-content:center;gap:var(--mizan-sidebar-action-gap);padding:var(--mizan-sidebar-action-padding);
   border:1px solid var(--mizan-sidebar-action-border);border-radius:var(--mizan-radius-sm);
-  background:var(--mizan-sidebar-action-bg);color:var(--mizan-sidebar-action-fg);font:inherit;font-size:12px;font-weight:800;
+  background:var(--mizan-sidebar-action-bg);color:var(--mizan-sidebar-action-fg);font:inherit;font-size:var(--mizan-sidebar-action-font-size);font-weight:800;
   cursor:pointer;transition:all var(--mizan-duration-regular) var(--mizan-ease-standard);
 }
 .platform-sidebar-account-action:hover{background:var(--mizan-sidebar-action-bg-hover);color:var(--mizan-sidebar-action-fg-hover);border-color:var(--mizan-sidebar-action-border-hover)}
@@ -91,14 +91,14 @@
   position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:5px;
   margin:0;padding:7px 11px;border:1px solid var(--mizan-install-button-border);border-radius:var(--mizan-radius-11);
   background:var(--mizan-install-button-bg);color:var(--mizan-install-button-fg);box-shadow:var(--mizan-install-button-shadow);
-  font:inherit;font-size:11px;font-weight:800;line-height:1.2;white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font:inherit;font-size:var(--mizan-install-button-font-size);font-weight:800;line-height:var(--mizan-install-button-line-height);white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   transition:transform var(--mizan-duration-regular) ease,border-color var(--mizan-duration-regular) ease;
 }
 #install-app-btn:hover{transform:translateY(-1px);border-color:var(--mizan-install-button-border-hover)}
 #ios-install-hint{
-  position:absolute;top:calc(100% + 7px);right:0;z-index:3;max-width:min(340px,calc(100vw - 24px));margin:0;padding:9px 12px;
+  position:absolute;top:calc(100% + var(--mizan-install-hint-offset));right:0;z-index:3;max-width:min(var(--mizan-install-hint-max-width),calc(100vw - var(--mizan-install-hint-viewport-gap)));margin:0;padding:var(--mizan-install-hint-padding);
   border:1px solid var(--mizan-install-hint-border);border-radius:var(--mizan-radius-11);background:var(--mizan-install-hint-bg);
-  color:var(--mizan-install-hint-fg);box-shadow:var(--mizan-install-hint-shadow);font-size:11px;line-height:1.7;
+  color:var(--mizan-install-hint-fg);box-shadow:var(--mizan-install-hint-shadow);font-size:var(--mizan-install-hint-font-size);line-height:var(--mizan-install-hint-line-height);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
 #ios-install-hint strong{color:var(--mizan-install-hint-heading)}
@@ -107,6 +107,6 @@ body.platform-sidebar-open{overflow:hidden}
   .mizan-header-tools{border-radius:var(--mizan-radius-15)}
   .platform-sidebar-panel{width:min(var(--mizan-sidebar-panel-width-mobile),94vw)}
   .install-slot{justify-content:flex-start;margin-bottom:8px;padding:0}
-  #install-app-btn{padding:6px 9px;font-size:10.5px}
-  #ios-install-hint{right:auto;left:0;max-width:calc(100vw - 24px)}
+  #install-app-btn{padding:var(--mizan-install-button-padding-mobile);font-size:var(--mizan-install-button-font-size-mobile)}
+  #ios-install-hint{right:auto;left:0;max-width:calc(100vw - var(--mizan-install-hint-viewport-gap))}
 }
