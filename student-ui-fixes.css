@@ -10,38 +10,13 @@ header:not(.mizan-header) h1{
 #login-modal{
   z-index:10000;
 }
-.profile-name-editor{
-  padding:var(--mizan-space-5);
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:var(--mizan-radius-lg);
-  background:var(--mizan-gradient-card-glass-primary);
-  box-shadow:var(--mizan-shadow-student-ui-card);
-}
-.profile-name-editor label{
-  margin-bottom:7px;
-}
-.profile-name-editor-row input{
-  height:46px;
-}
-.profile-name-editor-row button{
-  min-width:125px;
-  height:46px;
-}
-.profile-name-editor-message{
-  opacity:.8;
-}
-@media (max-width: 560px){
-      .profile-name-editor{
-    padding:var(--mizan-space-4);
-  }
-}
 /* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
 .firebase-admin-tab{
   position:absolute;
   top:16px;
   right:72px;
   min-width:78px;
-  height:46px;
+  height:var(--mizan-control-height-prominent);
   padding:0 13px;
   display:inline-flex;
   align-items:center;
