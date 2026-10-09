@@ -34,12 +34,6 @@ header:not(.mizan-header) h1{
       .profile-name-editor{
     padding:var(--mizan-space-4);
   }
-  .profile-name-editor-row{
-    flex-direction:column;
-  }
-  .profile-name-editor-row button{
-    width:100%;
-  }
 }
 /* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
 .firebase-admin-tab{
