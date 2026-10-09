@@ -40,3 +40,7 @@ jobs:
             -not -path './.git/*' \
             -not -path './node_modules/*' \
             -print0 | xargs -0 -r -n1 node --check
+
+      - name: Verify GitHub Pages deployment bundle
+        shell: bash
+        run: bash scripts/build-pages-bundle.sh "$RUNNER_TEMP/mizan-pages-bundle-$GITHUB_RUN_ID"
