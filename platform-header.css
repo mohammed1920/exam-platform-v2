@@ -2,13 +2,11 @@
     .mizan-header {
       position:relative;
       --mizan-wordmark:var(--mizan-white);
-      --mizan-wordmark-glow:transparent;
       padding:var(--mizan-space-2) var(--mizan-space-3);
       text-align:center;
     }
     html[data-theme="light"] .mizan-header {
       --mizan-wordmark: var(--mizan-deco-blue-15a);
-      --mizan-wordmark-glow: transparent;
     }
 
     .mizan-header-brand {
