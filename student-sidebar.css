@@ -82,7 +82,7 @@
   padding:15px;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-15);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  background:var(--mizan-glass-white-025);
 }
 .student-info-grid small{
   display:block;
@@ -115,7 +115,7 @@
   text-align:center;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-wide);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  background:var(--mizan-glass-white-025);
 }
 .profile-stat-card span{
   display:block;
@@ -136,7 +136,7 @@
   padding:18px;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-lg);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  background:var(--mizan-glass-white-025);
 }
 .profile-panel-heading{
   display:flex;
@@ -176,7 +176,7 @@
   gap:12px;
   padding:13px;
   border-radius:var(--mizan-radius-13);
-  border:1px solid color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
+  border:1px solid var(--mizan-glass-white-055);
   background:color-mix(in srgb,var(--mizan-primary-900) 28%,transparent);
 }
 .history-icon{
@@ -227,7 +227,7 @@
   display:flex;
   gap:12px;
   padding:15px;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  border:1px solid var(--mizan-glass-white-060);
   border-radius:var(--mizan-radius-md);
   background:color-mix(in srgb,var(--mizan-primary-900) 25%,transparent);
 }
