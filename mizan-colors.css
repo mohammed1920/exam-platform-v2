@@ -98,22 +98,30 @@ html[data-theme="light"]{
 :root{
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-dark);
+  --gold:var(--mizan-primary-500);
   --card-bg:var(--mizan-card-dark);
   --text-primary:var(--mizan-heading-dark);
   --text-secondary:var(--mizan-muted-dark);
   --border:var(--mizan-border-dark);
   --success:var(--mizan-success-500);
+  --green:var(--mizan-success-500);
   --error:var(--mizan-danger-500);
+  --red:var(--mizan-danger-500);
+  --warning:var(--mizan-warning-500);
 }
 html[data-theme="light"]{
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-light);
+  --gold:var(--mizan-primary-700);
   --card-bg:var(--mizan-surface-light);
   --text-primary:var(--mizan-text-light);
   --text-secondary:var(--mizan-muted-light);
   --border:var(--mizan-border-light);
   --success:var(--mizan-success-700);
+  --green:var(--mizan-success-700);
   --error:var(--mizan-danger-700);
+  --red:var(--mizan-danger-700);
+  --warning:var(--mizan-warning-700);
 }
 
 /* Central compatibility aliases for legacy component variables. */
