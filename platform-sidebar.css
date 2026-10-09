@@ -74,21 +74,21 @@
 .platform-sidebar-item[hidden]{display:none}
 
 /* Header action icons use the existing central button tokens. */
-.mizan-header-tools .platform-menu-trigger{
+#platform-menu-trigger.platform-menu-trigger{
   display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);
-  background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow);
+  background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:none;
   font-size:var(--mizan-font-size-lg);transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
 }
-.mizan-header-tools .platform-menu-trigger:hover{
+#platform-menu-trigger.platform-menu-trigger:hover{
   background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
-  color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
+  color:var(--mizan-menu-button-fg-hover);box-shadow:none;
 }
-.mizan-header-tools .theme-toggle{
+#theme-toggle.theme-toggle{
   display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);
   background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow);
   font-size:var(--mizan-font-size-lg);transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
 }
-.mizan-header-tools .theme-toggle:hover{
+#theme-toggle.theme-toggle:hover{
   background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
   color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
 }
@@ -112,7 +112,6 @@
 #ios-install-hint strong{color:var(--mizan-install-hint-heading)}
 body.platform-sidebar-open{overflow:hidden}
 @media(max-width:600px){
-  .mizan-header-tools{border-radius:var(--mizan-radius-15)}
   .platform-sidebar-panel{width:min(var(--mizan-sidebar-panel-width-mobile),var(--mizan-sidebar-panel-viewport-cap-mobile))}
   .install-slot{justify-content:flex-start;margin-bottom:var(--mizan-install-slot-bottom-margin-mobile);padding:0}
   #install-app-btn{padding:var(--mizan-install-button-padding-mobile);font-size:var(--mizan-install-button-font-size-mobile)}
