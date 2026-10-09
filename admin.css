@@ -1,7 +1,7 @@
 /* Mizan admin workspace styles.
  * Consumes central color and geometry tokens; admin-only components live here.
  */
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
+/* Arabic font families are loaded by admin.html and defined centrally. */
 
 :root {
   --admin-bg: var(--mizan-bg);
@@ -37,7 +37,7 @@ body {
   padding-bottom:var(--mizan-space-5);
   background: var(--admin-bg);
   color: var(--admin-text);
-  font-family: "Cairo", sans-serif;
+  font-family:var(--mizan-font-family-arabic);
 }
 button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
