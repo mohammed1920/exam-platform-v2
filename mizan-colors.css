@@ -517,3 +517,24 @@ html[data-theme="light"]{
   --mizan-petition-template-bg:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-19) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 98%,transparent));
   --mizan-petition-light-surface-gradient:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
 }
+
+
+/* ===== style.css semantic color/effect tokens =====
+   Keep component styles free of raw color compositions. Book-cover colors remain
+   owned by the dedicated 3D book design and are intentionally not changed here.
+*/
+:root{
+  --mizan-transparent:transparent;
+  --mizan-page-background:radial-gradient(circle at 50% -10%,color-mix(in srgb,var(--mizan-primary-500) 7.5%,transparent),transparent 31%),radial-gradient(circle at 0% 50%,color-mix(in srgb,var(--mizan-deco-blue-32) 7.5%,transparent),transparent 28%),var(--bg-dark);
+  --mizan-header-shadow:0 8px 30px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  --mizan-search-border:color-mix(in srgb,var(--mizan-deco-blue-56) 25%,transparent);
+  --mizan-search-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 10%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-search-focus-border:color-mix(in srgb,var(--mizan-primary-500) 68%,transparent);
+  --mizan-search-focus-shadow:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 8%,transparent),0 10px 28px color-mix(in srgb,var(--mizan-black) 14%,transparent);
+  --mizan-question-card-border:color-mix(in srgb,var(--mizan-primary-500) 30%,transparent);
+  --mizan-chapter-card-border:color-mix(in srgb,var(--mizan-deco-blue-56) 24%,transparent);
+  --mizan-auth-overlay-bg:color-mix(in srgb,var(--mizan-neutral-950) 82%,transparent);
+  --mizan-auth-content-bg:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-deco-blue-11));
+  --mizan-auth-content-shadow:0 24px 80px color-mix(in srgb,var(--mizan-black) 55%,transparent);
+  --mizan-auth-divider-line:color-mix(in srgb,var(--mizan-neutral-400) 25%,transparent);
+}
