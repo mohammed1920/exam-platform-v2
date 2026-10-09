@@ -11,15 +11,25 @@ if [[ "$OUTPUT_DIR" == "/" || "$OUTPUT_DIR" == "$ROOT" ]]; then
   exit 1
 fi
 
-# Inside the repository, only the dedicated dist/ directory may be replaced.
-case "$OUTPUT_DIR/" in
-  "$ROOT/"*)
-    if [[ "$OUTPUT_DIR" != "$ROOT/dist" ]]; then
-      echo "Repository output is restricted to $ROOT/dist: $OUTPUT_DIR" >&2
-      exit 1
+# Only the dedicated deployment directory or a specifically named temporary
+# bundle directory may be removed/rebuilt. Never accept an arbitrary path.
+if [[ "$OUTPUT_DIR" != "$ROOT/dist" ]]; then
+  output_parent="$(dirname "$OUTPUT_DIR")"
+  output_name="$(basename "$OUTPUT_DIR")"
+  allowed_temp_parent=false
+
+  for temp_parent in "${RUNNER_TEMP:-/nonexistent}" "${TMPDIR:-/tmp}" "/tmp"; do
+    if [[ "$output_parent" == "$temp_parent" ]]; then
+      allowed_temp_parent=true
+      break
     fi
-    ;;
-esac
+  done
+
+  if [[ "$allowed_temp_parent" != true || "$output_name" != mizan-pages-bundle* ]]; then
+    echo "Output must be $ROOT/dist or a dedicated mizan-pages-bundle* directory in a temporary folder: $OUTPUT_DIR" >&2
+    exit 1
+  fi
+fi
 
 rm -rf -- "$OUTPUT_DIR"
 mkdir -p -- "$OUTPUT_DIR"
