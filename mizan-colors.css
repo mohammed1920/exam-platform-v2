@@ -411,3 +411,74 @@ html[data-theme="light"]{
   --mizan-btn-soft-fg:var(--mizan-primary-500);
   --mizan-btn-soft-border:var(--mizan-primary-500);
 }
+
+
+/* ===== Sidebar and utility-surface semantic tokens ===== */
+:root{
+  --mizan-sidebar-backdrop:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent);
+  --mizan-sidebar-panel-bg:var(--mizan-surface-dark);
+  --mizan-sidebar-panel-border:var(--mizan-primary-500-border);
+  --mizan-sidebar-panel-shadow:-20px 0 60px color-mix(in srgb,var(--mizan-black) 35%,transparent);
+  --mizan-sidebar-close-bg:var(--mizan-card-dark);
+  --mizan-sidebar-close-fg:var(--mizan-text-dark);
+  --mizan-sidebar-close-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-sidebar-brand-border:var(--mizan-surface-soft);
+  --mizan-sidebar-account-bg:var(--mizan-surface-dark);
+  --mizan-sidebar-account-border:var(--mizan-border-dark);
+  --mizan-sidebar-account-shadow:0 8px 24px color-mix(in srgb,var(--mizan-navy-deep) 18%,transparent);
+  --mizan-sidebar-avatar-bg:linear-gradient(135deg,var(--mizan-primary-500),var(--mizan-primary-700));
+  --mizan-sidebar-divider:color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  --mizan-sidebar-item-active-bg:var(--mizan-primary-100);
+  --mizan-sidebar-item-active-fg:var(--mizan-primary-300);
+  --mizan-sidebar-item-active-border:var(--mizan-primary-500-border);
+  --mizan-sidebar-sub-border:var(--mizan-primary-100);
+  --mizan-sidebar-action-bg:var(--mizan-bg-dark);
+  --mizan-sidebar-action-fg:var(--mizan-text-dark);
+  --mizan-sidebar-action-border:var(--mizan-border-dark);
+  --mizan-sidebar-action-bg-hover:var(--mizan-primary-500);
+  --mizan-sidebar-action-fg-hover:var(--mizan-white);
+  --mizan-sidebar-action-border-hover:var(--mizan-primary-500);
+  --mizan-header-tools-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-bg-dark) 92%,transparent),var(--mizan-header-glass-mid));
+  --mizan-header-tools-border:var(--mizan-primary-500-border);
+  --mizan-header-tools-shadow:0 10px 30px color-mix(in srgb,var(--mizan-black) 20%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 4.5%,transparent);
+  --mizan-header-tools-glow:linear-gradient(90deg,transparent,var(--mizan-primary-100),transparent);
+  --mizan-header-tools-glow-opacity:.8;
+  --mizan-install-hint-bg:color-mix(in srgb,var(--mizan-bg-dark) 96%,transparent);
+  --mizan-install-hint-fg:var(--mizan-text-dark);
+  --mizan-install-hint-border:var(--mizan-primary-500-border);
+  --mizan-install-hint-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  --mizan-install-hint-heading:var(--mizan-primary-300);
+}
+html[data-theme="light"]{
+  --mizan-sidebar-backdrop:color-mix(in srgb,var(--mizan-bg-dark) 38%,transparent);
+  --mizan-sidebar-panel-bg:linear-gradient(180deg,var(--mizan-surface),var(--mizan-bg-light) 72%,var(--mizan-bg-light));
+  --mizan-sidebar-panel-border:var(--mizan-border-light);
+  --mizan-sidebar-panel-shadow:-20px 0 60px color-mix(in srgb,var(--mizan-bg-dark) 16%,transparent);
+  --mizan-sidebar-close-bg:var(--mizan-bg-light);
+  --mizan-sidebar-close-fg:var(--mizan-muted-light);
+  --mizan-sidebar-close-border:var(--mizan-border-light);
+  --mizan-sidebar-brand-border:var(--mizan-border-light);
+  --mizan-sidebar-account-bg:var(--mizan-surface);
+  --mizan-sidebar-account-border:var(--mizan-border-light);
+  --mizan-sidebar-account-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 10%,transparent);
+  --mizan-sidebar-divider:var(--mizan-border-light);
+  --mizan-sidebar-item-active-bg:var(--mizan-primary-500-pale);
+  --mizan-sidebar-item-active-fg:var(--mizan-primary-700);
+  --mizan-sidebar-item-active-border:var(--mizan-primary-200);
+  --mizan-sidebar-sub-border:var(--mizan-primary-100);
+  --mizan-sidebar-action-bg:var(--mizan-bg-light);
+  --mizan-sidebar-action-fg:var(--mizan-heading);
+  --mizan-sidebar-action-border:var(--mizan-border-light);
+  --mizan-sidebar-action-bg-hover:var(--mizan-primary-500);
+  --mizan-sidebar-action-fg-hover:var(--mizan-white);
+  --mizan-sidebar-action-border-hover:var(--mizan-primary-500);
+  --mizan-header-tools-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-white) 96%,transparent),color-mix(in srgb,var(--mizan-bg-light) 92%,transparent));
+  --mizan-header-tools-border:var(--mizan-header-gold-line);
+  --mizan-header-tools-shadow:0 10px 30px color-mix(in srgb,var(--mizan-bg-dark) 10%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 80%,transparent);
+  --mizan-header-tools-glow:linear-gradient(90deg,transparent,var(--mizan-header-gold-glow),transparent);
+  --mizan-install-hint-bg:color-mix(in srgb,var(--mizan-white) 97%,transparent);
+  --mizan-install-hint-fg:var(--mizan-heading);
+  --mizan-install-hint-border:var(--mizan-header-gold-accent);
+  --mizan-install-hint-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
+  --mizan-install-hint-heading:var(--mizan-primary-700);
+}
