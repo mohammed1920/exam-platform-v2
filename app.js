@@ -841,8 +841,8 @@ class ExamApp {
   // ---------- مشاركة السؤال (بطاقة صورة + رابط مباشر) ----------
 
   buildDeepLink(q) { return window.MizanQuestionSharing.buildDeepLink(this, q); }
-  roundRect(ctx, x, y, w, h, r) { return window.MizanQuestionSharing.roundRect(this, ctx, x, y, w, h, r); }
-  wrapText(ctx, text, maxWidth) { return window.MizanQuestionSharing.wrapText(this, ctx, text, maxWidth); }
+  roundRect(ctx, x, y, w, h, r) { return window.MizanQuestionSharing.roundRect(ctx, x, y, w, h, r); }
+  wrapText(ctx, text, maxWidth) { return window.MizanQuestionSharing.wrapText(ctx, text, maxWidth); }
   async generateShareCard(q) { return window.MizanQuestionSharing.generateShareCard(this, q); }
   async shareQuestion() { return window.MizanQuestionSharing.shareQuestion(this); }
 
