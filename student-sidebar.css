@@ -42,8 +42,8 @@
   margin-bottom:16px;
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 20%,transparent);
   border-radius:var(--mizan-radius-2xl);
-  background:linear-gradient(135deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-primary-900) 45%,transparent));
-  box-shadow:0 12px 35px color-mix(in srgb,var(--mizan-black) 14%,transparent);
+  background:var(--mizan-gradient-student-sidebar-profile);
+  box-shadow:var(--mizan-shadow-student-sidebar-profile);
 }
 .profile-avatar{
   width:68px;
@@ -52,7 +52,7 @@
   display:grid;
   place-items:center;
   border-radius:var(--mizan-radius-2xl);
-  background:linear-gradient(135deg,var(--primary,var(--mizan-primary-500)),var(--mizan-primary-500-antique));
+  background:var(--mizan-gradient-student-sidebar-identity);
   font-size:27px;
   font-weight:900;
 }
@@ -280,7 +280,7 @@
   display:block;
   height:100%;
   border-radius:inherit;
-  background:linear-gradient(90deg,var(--mizan-primary-500-deep),var(--primary,var(--mizan-primary-500)));
+  background:var(--mizan-gradient-student-sidebar-active);
 }
 .student-progress-item small{
   display:block;
@@ -369,7 +369,7 @@
   gap:16px;
   min-width:0;
   border-color:color-mix(in srgb,var(--mizan-deco-green-54) 28%,transparent);
-  background:linear-gradient(135deg,color-mix(in srgb,var(--mizan-deco-green-54) 10%,transparent),color-mix(in srgb,var(--mizan-primary-900) 35%,transparent));
+  background:var(--mizan-gradient-student-sidebar-success);
 }
 .resume-exam-label{
   display:block;
@@ -480,7 +480,7 @@ html[data-theme="light"] .profile-panel{
 }
 html[data-theme="light"] .student-profile-card,
 html[data-theme="light"] .resume-exam-panel{
-  background:linear-gradient(135deg,var(--mizan-surface),var(--mizan-bg-light));
+  background:var(--mizan-gradient-student-sidebar-surface);
   border-color:var(--mizan-primary-500-paper);
 }
 html[data-theme="light"] .history-item,
