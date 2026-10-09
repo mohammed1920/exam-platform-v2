@@ -865,7 +865,7 @@ html[data-theme="light"] .footer-bottom p{
 html[data-theme="light"] .footer-info-box{
   background:var(--mizan-gradient-surface-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 18px 45px var(--mizan-glass-primary-900-080);
+  box-shadow:var(--mizan-shadow-home-featured);
 }
 html[data-theme="light"] .footer-info-heading span{
   color:var(--mizan-primary-700);
@@ -921,7 +921,7 @@ html[data-theme="light"] .home-category-card[data-home-action] i{
   color:var(--mizan-primary-700);
 }
 html[data-theme="light"] .home-category-card[data-home-action]:hover{
-  box-shadow:0 14px 35px var(--mizan-glass-primary-900-080);
+  box-shadow:var(--mizan-shadow-home-floating);
 }
 
 
