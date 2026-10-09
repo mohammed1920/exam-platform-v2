@@ -200,7 +200,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 :root{
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-dark);
-  --gold:var(--mizan-primary-500);
+  --gold:var(--mizan-gold-accent);
   --card-bg:var(--mizan-card-dark);
   --text-primary:var(--mizan-heading-dark);
   --text-secondary:var(--mizan-muted-dark);
@@ -214,7 +214,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 html:is([data-theme="light"],[data-admin-theme="light"]){
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-light);
-  --gold:var(--mizan-primary-700);
+  --gold:var(--mizan-gold-accent);
   --card-bg:var(--mizan-surface-light);
   --text-primary:var(--mizan-text-light);
   --text-secondary:var(--mizan-muted-light);
