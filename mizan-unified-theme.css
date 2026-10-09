@@ -629,11 +629,7 @@ html body{
   color:var(--mizan-warning-700);
 }
 .contact-info-grid .contact-card-email>i,
-.contact-info-grid .contact-card-email .contact-card-action,
-.contact-info-grid .contact-card-instagram>i,
-.contact-info-grid .contact-card-instagram .contact-card-action,
-.contact-info-grid .contact-card-facebook>i,
-.contact-info-grid .contact-card-facebook .contact-card-action{
+.contact-info-grid .contact-card-email .contact-card-action{
   background:var(--mizan-info-100);
   color:var(--mizan-info-700);
 }
