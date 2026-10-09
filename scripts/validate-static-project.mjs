@@ -93,10 +93,9 @@ for (const htmlFile of htmlFiles) {
 }
 
 // CSS url(...) references are relative to the stylesheet.
-// @import can use either a quoted path or url(...); the url() parser handles
-// both local and remote URLs without mistaking the word "url" for a file.
-const cssUrlPattern = /url\\(\\s*(?:(["'])(.*?)\\1|([^)]*?))\\s*\\)/gi;
-const cssImportPattern = /@import\\s+(?!url\\s*\\()(["'])(.*?)\\1/gi;
+// @import accepts a quoted path or url(...); avoid parsing the url keyword as a filename.
+const cssUrlPattern = /url\(\s*(?:(['"])(.*?)\1|([^)]*?))\s*\)/gi;
+const cssImportPattern = /@import\s+(?!url\s*\()(['"])(.*?)\1/gi;
 for (const cssFile of cssFiles) {
   const css = await readFile(cssFile, "utf8");
   for (const match of css.matchAll(cssUrlPattern)) {
