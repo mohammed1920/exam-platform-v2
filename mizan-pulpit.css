@@ -343,7 +343,7 @@
   background:var(--mizan-accent-tile-bg);
   border:1px solid var(--mizan-primary-500-border);
   color:var(--mizan-accent-text);
-  font-size:25px;
+  font-size:var(--mizan-font-size-heading-lg);
 }
 .mizan-profile-kicker{
   font-size:var(--mizan-font-size-micro);
@@ -374,7 +374,7 @@
 .mizan-profile-stats strong{
   display:block;
   color:var(--mizan-accent-text);
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
   line-height:1.6;
 }
 .mizan-profile-stats span{
