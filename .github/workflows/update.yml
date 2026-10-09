@@ -40,7 +40,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          find . -maxdepth 1 -type f \\( -name '*.html' -o -name '*.js' -o -name '*.css' -o -name 'manifest.json' \\) -exec cp {} dist/ \\;
+          find . -maxdepth 1 -type f \( -name '*.html' -o -name '*.js' -o -name '*.css' -o -name 'manifest.json' \) -exec cp {} dist/ \\;
           cp -r engine icons data assets dist/
           # تُنسخ ملفات التشغيل الفعلية فقط؛ تبقى التقارير وملفات Python والوثائق وإعدادات CI خارج النشر.
           test -f dist/contact-info.js
