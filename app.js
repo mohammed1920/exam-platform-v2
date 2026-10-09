@@ -83,7 +83,6 @@ class ExamApp {
   }
 
   readExamDrafts() { return window.MizanExamDrafts.read(); }
-  writeExamDrafts(drafts) { return window.MizanExamDrafts.write(drafts); }
   saveExamDraft() { return window.MizanExamDrafts.save(this); }
   clearExamDraft() { return window.MizanExamDrafts.clear(this); }
   getExamDraftSummaries() { return window.MizanExamDrafts.summaries(this); }
