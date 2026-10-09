@@ -81,7 +81,7 @@
 }
 .lawyer-admin-edit{
   margin-top:14px;
-  padding:16px;
+  padding:var(--mizan-space-4);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-glass-white-025);
