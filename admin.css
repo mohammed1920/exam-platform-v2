@@ -10,7 +10,7 @@
   --admin-border: var(--mizan-border);
   --admin-text: var(--mizan-text);
   --admin-muted: var(--mizan-muted);
-  --admin-accent: var(--mizan-primary-500);
+  --admin-accent: var(--mizan-accent-text);
   --admin-success: var(--mizan-success-500);
   --admin-danger: var(--mizan-danger-500);
   --admin-warning: var(--mizan-warning-500);
@@ -24,7 +24,7 @@ html[data-admin-theme="light"] {
   --admin-border: var(--mizan-border-light);
   --admin-text: var(--mizan-text-light);
   --admin-muted: var(--mizan-muted-light);
-  --admin-accent: var(--mizan-primary-700);
+  --admin-accent: var(--mizan-accent-text);
   --admin-success: var(--mizan-success-700);
   --admin-danger: var(--mizan-danger-700);
   --admin-warning: var(--mizan-warning-700);
