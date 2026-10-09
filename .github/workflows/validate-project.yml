@@ -1,9 +1,6 @@
 name: Validate Mizan Project
 
 on:
-  push:
-    branches:
-      - "refactor/**"
   pull_request:
     branches:
       - main
