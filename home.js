@@ -24,7 +24,7 @@
     if (!document.querySelector('link[data-mizan-pulpit-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'mizan-pulpit.css?v=3.1';
+      css.href = 'mizan-pulpit.css?v=3.2';
       css.dataset.mizanPulpitCss = '1';
       document.head.appendChild(css);
     }
@@ -119,7 +119,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'lawyer-directory.css?v=2.8';
+          css.href = 'lawyer-directory.css?v=2.9';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
