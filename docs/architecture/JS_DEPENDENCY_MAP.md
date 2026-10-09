@@ -60,7 +60,7 @@
 
 ## التحقق الحالي وحدوده
 
-- `scripts/validate-static-project.mjs` يفحص سلامة JSON، ومراجع الملفات المحلية في HTML وCSS، وروابط `src`/`href` الثابتة في JavaScript، ومراجع رموز الحواف `--mizan-radius-*`.
+- `scripts/validate-static-project.mjs` يفحص سلامة JSON، ومراجع الملفات المحلية في HTML وCSS، وروابط `src`/`href` الثابتة في JavaScript، وتعريفات ومراجع رموز التصميم `--mizan-*`.
 - `.github/workflows/validate-project.yml` يشغّل الفحص الساكن و`node --check` لملفات `.js` و`.mjs`.
 - نجاح الفحص الساكن لا يثبت صحة Firebase أو تسجيل الدخول أو الاختبارات أو البحث أو الصلاحيات أو التصميم في كل أحجام الشاشات؛ يجب اختبار هذه المسارات فعليًا قبل الدمج والنشر.
 
