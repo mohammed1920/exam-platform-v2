@@ -244,13 +244,18 @@ class ExamApp {
     cards.forEach(card => {
       const clone = card.cloneNode(true);
       clone.classList.add('home-book-preview-card');
-      clone.setAttribute('aria-label', 'فتح كتاب ' + (clone.querySelector('.card-title')?.textContent || ''));
       clone.addEventListener('click', event => {
-        event.preventDefault();
-        const button = clone.querySelector('.test-btn');
-        const bookId = button?.dataset.bookId;
-        if (bookId) this.selectBook(bookId);
+        if (event.target.closest('.test-btn')) return;
+        clone.classList.toggle('is-open');
       });
+      const button = clone.querySelector('.test-btn');
+      if (button) {
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+          const bookId = button.dataset.bookId;
+          if (bookId) this.selectBook(bookId);
+        });
+      }
       preview.appendChild(clone);
     });
   }
