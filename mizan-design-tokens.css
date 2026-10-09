@@ -45,3 +45,31 @@
   --mizan-focus-ring-width:3px;
   --mizan-focus-ring-offset:2px;
 }
+
+
+/* Sidebar/header layout and motion tokens. */
+:root{
+  --mizan-header-tools-offset:12px;
+  --mizan-header-tools-height:50px;
+  --mizan-header-tools-padding:4px 6px;
+  --mizan-header-control-size:42px;
+  --mizan-sidebar-panel-width:360px;
+  --mizan-sidebar-panel-width-mobile:340px;
+  --mizan-sidebar-panel-padding:22px 16px 28px;
+  --mizan-sidebar-panel-duration:300ms;
+  --mizan-sidebar-backdrop-duration:250ms;
+  --mizan-sidebar-item-gap:5px;
+  --mizan-sidebar-item-padding:11px 12px;
+  --mizan-menu-lines-width:20px;
+  --mizan-menu-lines-height:18px;
+  --mizan-menu-lines-gap:4px;
+  --mizan-menu-line-height:2px;
+}
+@media(max-width:600px){
+  :root{
+    --mizan-header-tools-offset:10px;
+    --mizan-header-tools-height:48px;
+    --mizan-header-tools-padding:3px 5px;
+    --mizan-header-control-size:40px;
+  }
+}
