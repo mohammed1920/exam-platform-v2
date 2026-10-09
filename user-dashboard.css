@@ -17,12 +17,10 @@
 .profile-clear-btn:hover{
   background:var(--mizan-primary-100);
 }
-.profile-panel-heading h3,
-.profile-coming-soon h3{
+.profile-panel-heading h3{
   margin:0 0 4px;
 }
-.profile-panel-heading p,
-.profile-coming-soon p{
+.profile-panel-heading p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
   font-size:13px;
