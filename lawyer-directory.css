@@ -197,7 +197,7 @@
 .lawyer-tags span{
   padding:var(--mizan-space-1) var(--mizan-space-2);
   border-radius:var(--mizan-radius-xs);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
   font-size:10px;
 }
@@ -355,7 +355,7 @@
   gap:5px;
   padding:7px 10px;
   border-radius:var(--mizan-radius-9);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border:1px solid var(--mizan-primary-500-border);
   color:var(--mizan-primary-300);
   font-size:10px;
@@ -416,7 +416,7 @@
   width:58px;
   height:58px;
   border-radius:var(--mizan-radius-wide);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
   font-size:25px;
 }
@@ -493,7 +493,7 @@
   gap:7px;
   padding:9px 13px;
   border-radius:var(--mizan-radius-sm);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border:1px solid var(--mizan-primary-500-border);
   color:var(--mizan-primary-700);
   text-decoration:none;
@@ -553,7 +553,7 @@ body.lawyer-modal-open{
 }
 .lawyer-my-application-head strong.pending{
   color:var(--mizan-primary-300);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 .lawyer-my-application-head strong.approved{
   color:var(--mizan-success);
@@ -575,7 +575,7 @@ body.lawyer-modal-open{
 .lawyer-my-application-edit{
   margin-top:var(--mizan-space-3);
   border:1px solid var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
   border-radius:var(--mizan-radius-sm);
   padding:9px 14px;
@@ -584,7 +584,7 @@ body.lawyer-modal-open{
   font-size:var(--mizan-font-size-2xs);
 }
 .lawyer-my-application-edit:hover{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-500-border);
 }
 html[data-theme="light"] .lawyers-hero p,
