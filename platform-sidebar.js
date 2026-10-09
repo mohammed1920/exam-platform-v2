@@ -246,10 +246,9 @@
 
   function placeAdminTab(){
     const adminTab=document.getElementById('firebase-admin-tab');
-    const toolsWrap=document.getElementById('mizan-header-tools');
-    const theme=document.getElementById('theme-toggle');
-    if(adminTab && toolsWrap && adminTab.parentElement!==toolsWrap){
-      toolsWrap.insertBefore(adminTab,theme||null);
+    const header=document.querySelector('.mizan-header');
+    if(adminTab && header && adminTab.parentElement!==header){
+      header.appendChild(adminTab);
     }
   }
 
@@ -299,15 +298,8 @@
     }
     const menu=document.getElementById('platform-menu-trigger');
     const theme=document.getElementById('theme-toggle');
-    if(menu && theme && !document.getElementById('mizan-header-tools')){
-      const tools=document.createElement('div');
-      tools.id='mizan-header-tools';
-      tools.className='mizan-header-tools';
-      tools.setAttribute('aria-label','أدوات المنصة');
-      header.appendChild(tools);
-      tools.appendChild(menu);
-      tools.appendChild(theme);
-    }
+    if(menu && menu.parentElement!==header) header.appendChild(menu);
+    if(theme && theme.parentElement!==header) header.appendChild(theme);
     placeAdminTab();
     updateAdminEntry();
   }
