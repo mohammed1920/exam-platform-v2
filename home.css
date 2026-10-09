@@ -449,7 +449,7 @@ footer{
   height:48px;
   flex:0 0 48px;
   border-radius:var(--mizan-radius-md);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
   font-size:21px;
 }
@@ -495,7 +495,7 @@ footer{
   border-color:var(--mizan-primary-500-border);
 }
 .contact-card-phone>i{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
 }
 .contact-card-email{
@@ -586,7 +586,7 @@ footer{
 }
 .global-search-item:hover,
 .global-search-item:focus{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   outline:none;
 }
 .global-search-icon{
@@ -596,7 +596,7 @@ footer{
   height:38px;
   flex:0 0 38px;
   border-radius:var(--mizan-radius-11);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   font-size:17px;
 }
 .global-search-copy{
@@ -840,7 +840,7 @@ footer{
   height:22px;
   margin-left:var(--mizan-space-2);
   border-radius:7px;
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-500);
   font-size:15px;
   vertical-align:middle;
@@ -909,7 +909,7 @@ footer{
   height:38px;
   flex:0 0 38px;
   border-radius:var(--mizan-radius-11);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-600);
   font-size:15px;
 }
@@ -1012,7 +1012,7 @@ html[data-theme="light"] .footer-faq-list p{
   box-shadow:var(--mizan-shadow-card-rest);
 }
 .home-category-card[data-home-action] i{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-300);
 }
 .home-category-card[data-home-action] b{
@@ -1068,6 +1068,6 @@ html[data-theme="light"] .home-category-card[data-home-action]:hover{
     .question-search-loading { padding:14px; font-size:13px; color:var(--text-secondary,var(--mizan-muted-dark)); margin:0; }
     .question-search-item { padding:var(--mizan-space-3) 14px; border-bottom:1px solid var(--mizan-glass-white-050); cursor:pointer; }
     .question-search-item:last-child { border-bottom:none; }
-    .question-search-item:active { background:var(--mizan-primary-100); }
+    .question-search-item:active { background:var(--mizan-accent-tile-bg); }
     .question-search-text { font-size:var(--mizan-font-size-sm); line-height:1.5; margin-bottom:var(--mizan-space-1); }
     .question-search-source { font-size:var(--mizan-font-size-xs); color:var(--text-secondary,var(--mizan-muted-dark)); }
