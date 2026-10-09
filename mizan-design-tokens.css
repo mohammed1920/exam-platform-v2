@@ -219,6 +219,8 @@
   --mizan-font-family-arabic:"IBM Plex Sans Arabic","Cairo",sans-serif;
   --mizan-font-family-display:"IBM Plex Sans Arabic","Cairo",sans-serif;
   --mizan-font-size-2xs:0.6875rem;
+  --mizan-font-size-micro:0.625rem;
+  --mizan-font-size-compact:0.8125rem;
   --mizan-font-size-xs:0.75rem;
   --mizan-font-size-sm:0.875rem;
   --mizan-font-size-md:1rem;
