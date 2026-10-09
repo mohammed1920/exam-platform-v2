@@ -295,7 +295,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
 .footer-bottom p{
   color:var(--mizan-neutral-400);
 }
-html:not([data-theme="light"]):not([data-admin-theme="light"]) body .footer-info-section html body .footer-info-section .footer-info-box{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) body .footer-info-section .footer-info-box{
   background:var(--mizan-gradient-home-hero);
   color:var(--mizan-white);
   border-color:var(--mizan-home-hero-border);
@@ -768,7 +768,7 @@ html body footer{
   color:var(--mizan-muted);
   border-color:var(--mizan-section-heading-dark);
 }
-.footer-info-box{
+html body .footer-info-section .footer-info-box{
   background:var(--mizan-gradient-home-hero);
   color:var(--mizan-white);
   border-color:var(--mizan-home-hero-border);
