@@ -39,7 +39,7 @@
     font-size:21px;
   }
   .profile-identity h2{
-    font-size:18px;
+    font-size:var(--mizan-font-size-lg);
   }
   .profile-panel{
     padding:13px;
@@ -63,7 +63,7 @@
 }
 .profile-name-editor .profile-panel-heading>i{
   color:var(--primary,var(--mizan-primary-500));
-  font-size:18px;
+  font-size:var(--mizan-font-size-lg);
 }
 .profile-name-editor label{
   display:block;
@@ -115,7 +115,7 @@
   min-height:20px;
   margin:8px 0 0;
   color:var(--mizan-success);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 @media(max-width:560px){
   .profile-name-editor-row{
