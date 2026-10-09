@@ -393,3 +393,21 @@ html[data-theme="light"]{
   --mizan-install-button-border-hover:var(--mizan-header-gold-accent);
   --mizan-install-button-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
 }
+
+/* Secondary, outline, and soft button variants. */
+:root{
+  --mizan-btn-outline-bg:transparent;
+  --mizan-btn-outline-fg:var(--mizan-primary-500);
+  --mizan-btn-outline-border:var(--mizan-primary-500);
+  --mizan-btn-outline-bg-hover:var(--mizan-primary-500);
+  --mizan-btn-outline-fg-hover:var(--mizan-primary-900);
+  --mizan-btn-ghost-bg:transparent;
+  --mizan-btn-ghost-fg:var(--mizan-muted);
+  --mizan-btn-ghost-border:var(--mizan-border);
+  --mizan-btn-ghost-bg-hover:var(--mizan-card);
+  --mizan-btn-ghost-fg-hover:var(--mizan-primary-500);
+  --mizan-btn-ghost-border-hover:var(--mizan-primary-500);
+  --mizan-btn-soft-bg:var(--mizan-primary-100);
+  --mizan-btn-soft-fg:var(--mizan-primary-500);
+  --mizan-btn-soft-border:var(--mizan-primary-500);
+}
