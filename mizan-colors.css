@@ -366,7 +366,6 @@ html[data-theme="light"]{
 /* ===== Central button elevation tokens ===== */
 :root{
   --mizan-btn-primary-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
-  --mizan-btn-primary-shadow-hover:0 10px 22px color-mix(in srgb,var(--mizan-btn-primary-glow) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-btn-primary-glow) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
 }
 
 /* Shared button visual tokens: color, gradient, border, and elevation values live here. */
@@ -376,4 +375,22 @@ html[data-theme="light"]{
   --mizan-btn-surface-gradient:linear-gradient(135deg,var(--mizan-primary-400) 0%,var(--mizan-primary-500) 48%,var(--mizan-primary-600) 100%);
   --mizan-btn-surface-gradient-hover:linear-gradient(135deg,var(--mizan-primary-500) 0%,var(--mizan-primary-600) 50%,var(--mizan-primary-700) 100%);
   --mizan-btn-surface-shine:linear-gradient(90deg,transparent,color-mix(in srgb,var(--mizan-white) 22%,transparent),transparent);
+}
+
+/* Chapter CTA and app-install button tokens. */
+:root{
+  --mizan-chapter-button-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-chapter-button-shadow:0 7px 16px color-mix(in srgb,var(--mizan-black) 16%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 20%,transparent);
+  --mizan-install-button-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-bg-dark) 96%,transparent),var(--mizan-header-glass-deep));
+  --mizan-install-button-fg:var(--mizan-primary-300);
+  --mizan-install-button-border:var(--mizan-primary-500-border);
+  --mizan-install-button-border-hover:var(--mizan-primary-300);
+  --mizan-install-button-shadow:0 5px 16px color-mix(in srgb,var(--mizan-black) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 6%,transparent);
+}
+html[data-theme="light"]{
+  --mizan-install-button-bg:color-mix(in srgb,var(--mizan-white) 97%,transparent);
+  --mizan-install-button-fg:var(--mizan-primary-700);
+  --mizan-install-button-border:var(--mizan-header-gold-accent);
+  --mizan-install-button-border-hover:var(--mizan-header-gold-accent);
+  --mizan-install-button-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
 }
