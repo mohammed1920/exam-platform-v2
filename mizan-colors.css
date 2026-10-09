@@ -4,6 +4,10 @@
    unified site theme so the existing book design stays unchanged.
 */
 :root{
+  --mizan-overlay-black-24:rgba(0,0,0,.24);
+  --mizan-overlay-black-60:rgba(0,0,0,.6);
+  --mizan-overlay-black-85:rgba(0,0,0,.85);
+  --mizan-overlay-black-20:rgba(0,0,0,.2);
   --mizan-primary-100:#C7DCFE;
   --mizan-primary-200:#93C5FD;
   --mizan-primary-300:#60A5FA;
