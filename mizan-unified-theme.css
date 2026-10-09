@@ -89,8 +89,7 @@ html body header .btn-primary{
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
-.mizan-article-modal-box,
-.mizan-profile-modal-box{
+.mizan-article-modal-box{
   background:var(--mu-card);
   color:var(--mu-text);
   border-color:var(--mu-border);
@@ -161,8 +160,7 @@ html body header .btn-primary{
 .lawyer-details-link,
 .lawyer-identity-btn,
 .petition-primary,
-.mizan-pulpit-primary,
-.mizan-read-btn{
+.mizan-pulpit-primary{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
@@ -182,8 +180,6 @@ html body header .btn-primary{
 .petition-primary:hover,
 
 .mizan-pulpit-primary:hover,
-
-.mizan-read-btn:hover,
 
 .mizan-form-submit:hover{
   background:var(--mizan-btn-primary-bg-hover);
@@ -266,8 +262,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
 .mizan-article-meta{
   border-color:var(--mu-border);
 }
-.mizan-pulpit-toolbar h3,
-.mizan-article-card h3{
+.mizan-pulpit-toolbar h3{
   color:var(--mu-section-heading);
 }
 /* Contact */
