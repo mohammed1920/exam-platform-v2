@@ -26,7 +26,6 @@ function display(file) {
 }
 
 const failures = [];
-const warnings = [];
 await walk(root);
 
 const jsonFiles = files.filter(file => file.endsWith(".json"));
@@ -81,4 +80,3 @@ if (failures.length) {
 } else {
   console.log(`Static integrity checks passed: ${htmlFiles.length} HTML file(s), ${cssFiles.length} CSS file(s), ${jsonFiles.length} JSON file(s), local HTML assets and Mizan radius tokens verified.`);
 }
-for (const warning of warnings) console.warn(`WARN: ${warning}`);
