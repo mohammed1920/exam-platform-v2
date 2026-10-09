@@ -13,12 +13,19 @@ on:
 permissions:
   contents: write
 
+# Serialize repository writes with book maintenance and question metadata updates.
+concurrency:
+  group: content-maintenance
+  cancel-in-progress: false
+
 jobs:
   build-search-index:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Build search index
         run: node scripts/build-search-index.js
@@ -33,4 +40,5 @@ jobs:
             exit 0
           fi
           git commit -m "Auto-update search index"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
