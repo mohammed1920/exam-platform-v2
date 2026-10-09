@@ -228,8 +228,19 @@
         else btn.removeAttribute('aria-current');
       });
     };
-    const observer=new MutationObserver(sync);
-    observer.observe(document.querySelector('main')||document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+    const main=document.querySelector('main')||document.body;
+    const viewObserver=new MutationObserver(sync);
+    const observeViews=root=>{
+      if(!root || root.nodeType!==1) return;
+      if(root.matches('.view-section')) viewObserver.observe(root,{attributes:true,attributeFilter:['class']});
+      root.querySelectorAll('.view-section').forEach(section=>viewObserver.observe(section,{attributes:true,attributeFilter:['class']}));
+    };
+    observeViews(main);
+    const structureObserver=new MutationObserver(records=>{
+      records.forEach(record=>record.addedNodes.forEach(observeViews));
+      sync();
+    });
+    structureObserver.observe(main,{childList:true});
     sync();
   }
 
