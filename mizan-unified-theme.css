@@ -28,21 +28,21 @@ body{
   color:var(--mu-text);
   border-color:var(--mu-border);
 }
-/* Header: exact navy in BOTH modes */
+/* Header uses the active central surface token in both themes. */
 html body header{
-  background:var(--mizan-primary-900);
-  color:var(--mizan-white);
-  border-color:var(--mizan-primary-800);
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
 }
 html body header h1,
 html body header h2,
 html body header h3,
 html body header .title,
 html body header strong{
-  color:var(--mizan-white);
+  color:var(--mizan-heading);
 }
 html body header p{
-  color:var(--mizan-neutral-400);
+  color:var(--mizan-muted);
 }
 html body header .login-btn,
 html body header .login-button,
