@@ -55,7 +55,7 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   gap:var(--mizan-space-3, var(--mizan-space-3));
-  padding: 12px 15px;
+  padding: var(--mizan-space-3) 15px;
   background: var(--admin-surface);
   border-bottom: 1px solid var(--admin-border);
 }
@@ -149,7 +149,7 @@ button { cursor: pointer; }
 .books-list { max-height: 55vh; margin-bottom:var(--mizan-space-3); overflow-y: auto; }
 .book-item {
   margin-bottom:var(--mizan-space-2);
-  padding: 10px 12px;
+  padding: 10px var(--mizan-space-3);
   border: 1px solid var(--admin-border);
   border-radius:var(--mizan-radius-9, var(--mizan-radius-9));
   background: var(--admin-bg);
@@ -166,7 +166,7 @@ button { cursor: pointer; }
 .tabs {
   display: flex;
   gap:6px;
-  margin-bottom: 16px;
+  margin-bottom: var(--mizan-space-4);
   overflow-x: auto;
   border-bottom: 1px solid var(--admin-border);
   -webkit-overflow-scrolling: touch;
@@ -225,7 +225,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
 /* Admin data panels and dynamic cards */
 .panel {
   margin-top:22px;
-  padding: 16px;
+  padding: var(--mizan-space-4);
   border: 1px solid var(--admin-border);
   border-radius:var(--mizan-radius-sm, var(--mizan-radius-sm));
   background: var(--admin-bg);
@@ -235,7 +235,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
 .panel-header-row p { flex: 1; min-width: 200px; margin:0; color: var(--admin-muted); font-size: 13px; }
 .item-card {
   margin-bottom:10px;
-  padding: 12px;
+  padding: var(--mizan-space-3);
   border: 1px solid var(--admin-border);
   border-radius:var(--mizan-radius-sm, var(--mizan-radius-sm));
   background: var(--admin-bg);
@@ -284,7 +284,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   align-items: center;
   justify-content: space-between;
   gap:var(--mizan-space-3);
-  padding: 14px 16px;
+  padding: 14px var(--mizan-space-4);
   background: var(--mizan-gradient-admin-warning-accent);
   box-shadow: var(--mizan-shadow-md);
 }
