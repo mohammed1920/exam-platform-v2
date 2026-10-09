@@ -6,10 +6,6 @@ header:not(.mizan-header) h1{
   padding-inline-start:clamp(92px, 12vw, 150px);
   padding-inline-end:var(--mizan-space-3);
 }
-.auth-modal,
-#login-modal{
-  z-index:10000;
-}
 /* Firebase admin tab — hidden until the signed-in Firebase UID is an enabled admin. */
 .firebase-admin-tab{
   position:absolute;
@@ -212,10 +208,12 @@ header:not(.mizan-header) h1{
   }
 }
 /* Global auth/modal visibility — overlays must never render as normal page content. */
+
 .auth-modal,
 #login-modal{
   display:none;
   position:fixed;
+  z-index:10000;
   inset:0;
   align-items:center;
   justify-content:center;
