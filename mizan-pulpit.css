@@ -36,7 +36,7 @@
   margin:0;
   max-width:720px;
   color:var(--mizan-muted);
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   line-height:2;
 }
 .mizan-pulpit-hero-actions{
@@ -79,7 +79,7 @@
 }
 .mizan-pulpit-toolbar span{
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
 }
 .mizan-pulpit-list{
   display:grid;
@@ -99,7 +99,7 @@
   justify-content:space-between;
   gap:10px;
   color:var(--mizan-accent-text);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   margin-bottom:10px;
 }
 .mizan-article-meta time{
@@ -224,7 +224,7 @@
 }
 .mizan-form-help{
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   line-height:1.8;
   margin:10px 0;
 }
@@ -309,7 +309,7 @@
   color:var(--mizan-accent-text);
 }
 .mizan-read-btn i{
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
 }
 .mizan-profile-modal-box{
   width:min(620px,100%);
@@ -346,7 +346,7 @@
   font-size:25px;
 }
 .mizan-profile-kicker{
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   color:var(--mizan-accent-text);
   font-weight:800;
 }
@@ -392,7 +392,7 @@
 .mizan-profile-section h3{
   margin:0 0 7px;
   color:var(--mizan-accent-text);
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 .mizan-profile-section p{
   margin:0;
@@ -466,7 +466,7 @@
   justify-content:space-between;
   gap:15px;
   color:var(--mizan-accent-text);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   margin-bottom:18px;
 }
 .mizan-article-reading-meta time{
@@ -507,7 +507,7 @@
 .mizan-article-reading-author span{
   margin-top:3px;
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
 }
 .mizan-article-reading-excerpt{
   margin:var(--mizan-space-6) 0;
@@ -516,7 +516,7 @@
   border-radius:var(--mizan-radius-compact);
   background:color-mix(in srgb,var(--mizan-warning-500) 5.5%,transparent);
   color:var(--mizan-deco-blue-76);
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   line-height:2.1;
 }
 .mizan-article-reading-content{
@@ -539,7 +539,7 @@
   padding-top:var(--mizan-space-5);
   border-top:1px solid var(--mizan-surface-soft);
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
 }
 .mizan-article-page-loading,
 .mizan-article-page-error{
@@ -575,7 +575,7 @@
     font-size:23px;
   }
   .mizan-article-reading-content{
-    font-size:13px;
+    font-size:var(--mizan-font-size-compact);
     line-height:2.25;
   }
   .mizan-article-reading-footer{
@@ -611,7 +611,7 @@
   top:50%;
   transform:translateY(-50%);
   color:var(--mizan-accent-text);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   opacity:.8;
 }
 /* Light theme audit repair */
