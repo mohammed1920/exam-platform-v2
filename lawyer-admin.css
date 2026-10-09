@@ -19,7 +19,7 @@
 .lawyer-admin-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
 }
 .lawyer-admin-actions button{
   border:1px solid var(--mizan-border-dark);
@@ -105,7 +105,7 @@
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
   text-align:right;
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-glass-white-025);
@@ -252,7 +252,7 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
   margin:2px;
   padding:6px 13px;
   border:1px solid color-mix(in srgb,var(--btn-tone) 45%,transparent);
