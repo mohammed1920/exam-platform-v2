@@ -39,14 +39,14 @@ for (const file of jsonFiles) {
 
 const cssFiles = files.filter(file => file.endsWith(".css"));
 const cssContents = await Promise.all(cssFiles.map(file => readFile(file, "utf8")));
-const definedRadiusTokens = new Set();
+const definedMizanTokens = new Set();
 for (const css of cssContents) {
-  for (const match of css.matchAll(/(--mizan-radius-[\w-]+)\s*:/g)) definedRadiusTokens.add(match[1]);
+  for (const match of css.matchAll(/(--mizan-[\w-]+)\s*:/g)) definedMizanTokens.add(match[1]);
 }
 for (let i = 0; i < cssFiles.length; i++) {
-  for (const match of cssContents[i].matchAll(/var\(\s*(--mizan-radius-[\w-]+)/g)) {
-    if (!definedRadiusTokens.has(match[1])) {
-      failures.push(`Undefined Mizan radius token in ${display(cssFiles[i])}: ${match[1]}`);
+  for (const match of cssContents[i].matchAll(/var\(\s*(--mizan-[\w-]+)/g)) {
+    if (!definedMizanTokens.has(match[1])) {
+      failures.push(`Undefined Mizan design token in ${display(cssFiles[i])}: ${match[1]}`);
     }
   }
 }
