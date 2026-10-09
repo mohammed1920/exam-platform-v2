@@ -11,7 +11,7 @@
 }
 .profile-identity h2{
   margin:0 0 3px;
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
 }
 .profile-logout-btn:hover,
 .profile-clear-btn:hover{
@@ -36,7 +36,7 @@
     width:52px;
     height:52px;
     flex-basis:52px;
-    font-size:21px;
+    font-size:var(--mizan-font-size-heading-sm);
   }
   .profile-identity h2{
     font-size:var(--mizan-font-size-lg);
