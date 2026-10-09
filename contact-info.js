@@ -6,7 +6,10 @@
 
   async function loadContactInfo() {
     try {
-      const basePath = window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
+      const pathname = window.location.pathname;
+      const basePath = window.location.hostname.endsWith('github.io')
+        ? (pathname.split('/').filter(Boolean)[0] ? `/${pathname.split('/').filter(Boolean)[0]}` : '')
+        : (pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '');
       const res = await fetch(`${basePath}/data/contact.json?contact_version=3&ts=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
