@@ -85,12 +85,12 @@
 }
 #theme-toggle.theme-toggle{
   display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);
-  background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow);
+  background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:none;
   font-size:var(--mizan-font-size-lg);transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
 }
 #theme-toggle.theme-toggle:hover{
   background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
-  color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
+  color:var(--mizan-menu-button-fg-hover);box-shadow:none;
 }
 
 /* App installation prompt */
