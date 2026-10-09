@@ -32,6 +32,10 @@
   --mizan-space-inset-compact:10px;
   --mizan-space-inset-medium:14px;
   --mizan-space-inset-roomy:15px;
+  --mizan-gap-tight:7px;
+  --mizan-gap-compact:10px;
+  --mizan-gap-small:9px;
+  --mizan-gap-micro:6px;
   --mizan-content-width:1200px;
   --mizan-content-padding:20px;
   --mizan-icon-tile-size:38px;
