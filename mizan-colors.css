@@ -538,3 +538,11 @@ html[data-theme="light"]{
   --mizan-auth-content-shadow:0 24px 80px color-mix(in srgb,var(--mizan-black) 55%,transparent);
   --mizan-auth-divider-line:color-mix(in srgb,var(--mizan-neutral-400) 25%,transparent);
 }
+
+
+/* Light-theme authentication surfaces, kept in the central palette. */
+:root{
+  --mizan-auth-light-overlay-bg:color-mix(in srgb,var(--mizan-primary-900) 38%,transparent);
+  --mizan-auth-light-content-bg:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+  --mizan-auth-light-content-shadow:0 24px 80px color-mix(in srgb,var(--mizan-primary-900) 18%,transparent);
+}
