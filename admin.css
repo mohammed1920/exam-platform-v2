@@ -103,7 +103,7 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   padding: var(--mizan-space-inset-compact) var(--mizan-space-inset-roomy);
   background: var(--admin-surface);
   border-bottom: 1px solid var(--admin-border);
@@ -165,7 +165,7 @@ button { cursor: pointer; }
 /* Horizontally scrollable content navigation */
 .tabs {
   display: flex;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
   margin-bottom: var(--mizan-space-4);
   overflow-x: auto;
   border-bottom: 1px solid var(--admin-border);
