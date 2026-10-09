@@ -14,7 +14,7 @@
   place-items:center;
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-15);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
   font-size:21px;
 }
