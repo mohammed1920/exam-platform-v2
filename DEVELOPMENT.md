@@ -8,7 +8,7 @@
 
 ```bash
 node scripts/validate-static-project.mjs
-find . -type f \\( -name '*.js' -o -name '*.mjs' \\) -not -path './.git/*' -not -path './node_modules/*' -not -path './.vercel/*' -not -path './.next/*' -print0 | xargs -0 -r -n1 node --check
+find . -type f \( -name '*.js' -o -name '*.mjs' \) -not -path './.git/*' -not -path './node_modules/*' -not -path './.vercel/*' -not -path './.next/*' -print0 | xargs -0 -r -n1 node --check
 ```
 
 يشمل الفحص الساكن صحة ملفات JSON ومراجع الأصول المحلية في HTML وCSS وتعريفات رموز أنصاف الأقطار. فحص الصياغة لا يثبت وحده سلامة الوظائف داخل المتصفح؛ يجب اختبار التغييرات الوظيفية على المعاينة.
