@@ -115,11 +115,11 @@ html[data-theme="light"] .mizan-header-tools{background:linear-gradient(135deg,c
 html[data-theme="light"] .mizan-header-tools::before{background:linear-gradient(90deg,transparent,var(--mizan-header-gold-glow),transparent)}
 
 /* Refined top utility controls — merged */
-.mizan-header-tools .platform-menu-trigger{display:grid;place-items:center;border:1px solid var(--mizan-primary-500-border)!important;border-radius:var(--mizan-radius-compact);background:linear-gradient(145deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-white) 3.5000000000000004%,transparent))!important;color:var(--mizan-primary-300)!important;box-shadow:0 4px 14px var(--mizan-shadow-sm),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 6%,transparent)!important}
+.mizan-header-tools .platform-menu-trigger{display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow)}
 .mizan-header-tools .platform-menu-trigger .menu-lines{width:20px;height:18px;display:flex;flex-direction:column;justify-content:center;gap:4px}
 .mizan-header-tools .platform-menu-trigger .menu-lines i{display:block;width:100%;height:2px;border-radius:3px;background:currentColor;transition:transform .2s,opacity .2s,width .2s}
 .mizan-header-tools .platform-menu-trigger .menu-lines i:nth-child(2){width:14px;align-self:flex-end}
-.mizan-header-tools .platform-menu-trigger:hover{background:linear-gradient(145deg,var(--mizan-primary-500-border),color-mix(in srgb,var(--mizan-white) 5.5%,transparent))!important;box-shadow:0 6px 16px color-mix(in srgb,var(--mizan-black) 20%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 8%,transparent)!important}
+.mizan-header-tools .platform-menu-trigger:hover{background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover)}
 .mizan-header-tools .platform-menu-trigger:hover .menu-lines i:nth-child(2){width:100%}
 /* App installation prompt — sits above the home search without affecting the header */
 .install-slot{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:0 0 10px;padding:0 2px;position:relative;z-index:2}
