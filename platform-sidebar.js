@@ -293,7 +293,7 @@
       b.type='button';
       b.title='قائمة المنصة';
       b.setAttribute('aria-label','فتح قائمة المنصة');
-      b.innerHTML='<span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span>';
+      b.innerHTML='<i class="fas fa-bars-staggered" aria-hidden="true"></i>';
       b.addEventListener('click',open);
       header.appendChild(b);
     }
