@@ -6,9 +6,9 @@
   background:var(--mizan-header-tools-bg);box-shadow:var(--mizan-header-tools-shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
 }
 .mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:var(--mizan-header-tools-glow);opacity:var(--mizan-header-tools-glow-opacity)}
-.mizan-header-tools .theme-toggle,.mizan-header-tools .platform-menu-trigger{
-  position:relative!important;inset:auto!important;top:auto!important;right:auto;left:auto!important;z-index:1;
-  width:var(--mizan-header-control-size)!important;height:var(--mizan-header-control-size)!important;margin:0;flex:0 0 var(--mizan-header-control-size);
+#mizan-header-tools .theme-toggle,#mizan-header-tools .platform-menu-trigger{
+  position:relative;inset:auto;z-index:1;
+  width:var(--mizan-header-control-size);height:var(--mizan-header-control-size);margin:0;flex:0 0 var(--mizan-header-control-size);
 }
 .platform-menu-trigger:hover{border-color:var(--mizan-menu-button-border-hover);transform:translateY(-1px)}
 .platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
@@ -64,7 +64,7 @@
 }
 .platform-sidebar-account-action:hover{background:var(--mizan-sidebar-action-bg-hover);color:var(--mizan-sidebar-action-fg-hover);border-color:var(--mizan-sidebar-action-border-hover)}
 .platform-sidebar-account-action[hidden]{display:none}
-.platform-sidebar-item[hidden]{display:none!important}
+.platform-sidebar-item[hidden]{display:none}
 
 /* Menu trigger visuals are shared with the central button palette. */
 .mizan-header-tools .platform-menu-trigger{
