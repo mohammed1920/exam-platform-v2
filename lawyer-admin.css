@@ -47,7 +47,7 @@
   display:flex;
   gap:var(--mizan-space-2);
   flex-wrap:wrap;
-  margin:14px 0;
+  margin:var(--mizan-space-inset-medium) 0;
 }
 .lawyer-admin-tab{
   border:1px solid var(--mizan-primary-500-border);
@@ -80,7 +80,7 @@
   color:var(--mizan-warning);
 }
 .lawyer-admin-edit{
-  margin-top:14px;
+  margin-top:var(--mizan-space-inset-medium);
   padding:var(--mizan-space-4);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-md);
@@ -151,7 +151,7 @@
   color:var(--mizan-accent-text);
   border-radius:var(--mizan-radius-9);
   padding:9px 13px;
-  margin-bottom:14px;
+  margin-bottom:var(--mizan-space-inset-medium);
   cursor:pointer;
   font:inherit;
   font-size:var(--mizan-font-size-2xs);
