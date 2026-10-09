@@ -1119,7 +1119,7 @@ html body .petition-long-field{
   display:flex;
   flex-direction:column;
   gap:7px;
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   font-weight:700;
   line-height:1.5;
   color:var(--mizan-muted);
@@ -1174,7 +1174,7 @@ html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long
 html body .lawyer-form .lawyer-consent{
   align-items:center;
   gap:10px;
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   color:var(--mizan-muted);
 }
 html body .lawyer-form .lawyer-consent input{
