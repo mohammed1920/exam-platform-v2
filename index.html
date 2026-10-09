@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="style.css?v=4.8">
 
   <!-- Layer 3: page and component styles. Keep these before the late UI-fix layer. -->
-  <link rel="stylesheet" href="home.css?v=3.3">
+  <link rel="stylesheet" href="home.css?v=3.4">
   <link rel="stylesheet" href="platform-sidebar.css?v=2.7">
   <link rel="stylesheet" href="user-dashboard.css?v=2.2">
   <link rel="stylesheet" href="student-sidebar.css?v=2.3">
@@ -83,6 +83,18 @@
   <main class="container">
     <section class="platform-home">
       <div class="install-slot"><button id="install-app-btn" type="button" aria-label="تثبيت ميزان على هاتفك">📲 ثبّت التطبيق على هاتفك</button><p id="ios-install-hint" hidden>📲 اضغط زر المشاركة <strong>⬆️</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p></div>
+      <section class="home-hero" aria-labelledby="home-hero-title">
+        <div class="home-hero-copy">
+          <span class="home-hero-eyebrow"><i class="fas fa-scale-balanced" aria-hidden="true"></i> منصة المعرفة القانونية العراقية</span>
+          <h2 id="home-hero-title">الفهم القانوني يستحق تجربة أفضل.</h2>
+          <p>اختبر فهمك القانوني، راجع إجاباتك، وتابع تقدمك في تجربة واحدة منظمة.</p>
+          <div class="home-hero-actions">
+            <button type="button" class="home-hero-primary" data-home-action="books">استكشف الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+            <button type="button" class="home-hero-secondary" data-home-action="dashboard"><i class="fas fa-chart-line" aria-hidden="true"></i> لوحة الاختبارات</button>
+          </div>
+        </div>
+        <div class="home-hero-mark" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
+      </section>
       <div class="search-container home-search-container"><div class="search-wrapper"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="ابحث عن كتاب أو فصل أو سؤال..."></div></div>
       <div id="question-search-results" class="question-search-results home-question-search-results" hidden></div>
       <div class="home-section-heading"><h2>كل ما تحتاجه في مكان واحد</h2><span>الأقسام الرئيسية</span></div>
