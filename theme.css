@@ -39,38 +39,46 @@ html[data-theme="light"] #search-input::placeholder{
   color:var(--mizan-muted-light);
 }
 /* ---------- Header controls ---------- */
-/* Keep the theme toggle in the same top utility row as the menu trigger. */
-#theme-toggle.theme-toggle{
-  position:fixed;
-  top:18px;
-  left:18px;
-  z-index:9000;
-  width:46px;
-  height:46px;
+/* Keep the toggle aligned with the existing header utility controls.
+   Position it in the header context (not fixed to a transformed ancestor). */
+.mizan-header > #theme-toggle.theme-toggle{
+  position:absolute;
+  top:12px;
+  left:12px;
+  z-index:20;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
   margin:0;
   padding:0;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:var(--mizan-radius-13);
+  border-radius:50%;
   background:var(--mizan-primary-900);
   color:var(--mizan-primary-300);
-  display:grid;
-  place-items:center;
+  box-shadow:none;
+  backdrop-filter:none;
   cursor:pointer;
-  box-shadow:var(--mizan-shadow-md);
-  backdrop-filter:blur(10px);
 }
-#theme-toggle.theme-toggle:hover{
+.mizan-header > #theme-toggle.theme-toggle i,
+.mizan-header > #theme-toggle.theme-toggle svg{
+  display:block;
+  background:transparent;
+  color:inherit;
+}
+.mizan-header > #theme-toggle.theme-toggle:hover{
   border-color:var(--mizan-primary-300);
+  background:var(--mizan-surface-dark);
   transform:translateY(-1px);
 }
-html[data-theme="light"] #theme-toggle.theme-toggle{
-  background:color-mix(in srgb,var(--mizan-white) 94%,transparent);
+html[data-theme="light"] .mizan-header > #theme-toggle.theme-toggle{
+  background:var(--mizan-surface-light);
   color:var(--mizan-primary-700);
   border-color:var(--mizan-border-light);
-  box-shadow:0 8px 25px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent);
+  box-shadow:none;
 }
-@media (max-width: 600px){
-  #theme-toggle.theme-toggle{
+@media (max-width:600px){
+  .mizan-header > #theme-toggle.theme-toggle{
     top:12px;
     left:12px;
     width:42px;
