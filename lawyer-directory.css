@@ -5,7 +5,7 @@
 }
 .lawyers-hero{
   text-align:center;
-  margin:8px auto 22px;
+  margin:var(--mizan-space-2) auto 22px;
   max-width:760px;
 }
 .lawyers-hero>span{
@@ -16,7 +16,7 @@
   margin-bottom:5px;
 }
 .lawyers-hero h2{
-  margin:0 0 8px;
+  margin:0 0 var(--mizan-space-2);
   font-size:26px;
 }
 .lawyers-hero p{
@@ -29,7 +29,7 @@
   display:flex;
   gap:10px;
   align-items:center;
-  margin-bottom:16px;
+  margin-bottom:var(--mizan-space-4);
 }
 .lawyers-search{
   position:relative;
@@ -54,7 +54,7 @@
 .lawyers-primary-btn{
   border:0;
   border-radius:var(--mizan-radius-13);
-  padding:12px 16px;
+  padding:var(--mizan-space-3) var(--mizan-space-4);
   background:var(--mizan-gradient-lawyer-primary);
   color:var(--mizan-primary-900-deep);
   font:inherit;
@@ -67,7 +67,7 @@
   cursor:not-allowed;
 }
 .lawyers-apply-panel{
-  margin-bottom:20px;
+  margin-bottom:var(--mizan-space-5);
   padding:20px;
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-2xl);
@@ -102,7 +102,7 @@
 .lawyer-form-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+  gap:var(--mizan-space-3);
 }
 .lawyer-form label.full{
   grid-column:1/-1;
@@ -117,7 +117,7 @@
 .lawyer-consent{
   display:flex;
   align-items:flex-start;
-  gap:8px;
+  gap:var(--mizan-space-2);
   margin:14px 0;
   font-weight:600;
   line-height:1.7;
@@ -174,7 +174,7 @@
 .lawyer-verified{
   display:inline-flex;
   align-items:center;
-  gap:4px;
+  gap:var(--mizan-space-1);
   padding:3px 9px;
   border:1px solid var(--mizan-gold-tint-border);
   border-radius:var(--mizan-radius-pill);
@@ -182,7 +182,7 @@
   color:var(--mizan-gold-text);
   font-size:var(--mizan-font-size-2xs);
   font-weight:800;
-  margin-bottom:8px;
+  margin-bottom:var(--mizan-space-2);
 }
 .lawyer-card p{
   margin:0 0 9px;
@@ -195,7 +195,7 @@
   gap:5px;
 }
 .lawyer-tags span{
-  padding:4px 8px;
+  padding:var(--mizan-space-1) var(--mizan-space-2);
   border-radius:var(--mizan-radius-xs);
   background:var(--mizan-primary-100);
   color:var(--mizan-primary-700);
@@ -257,7 +257,7 @@
     grid-column:auto;
   }
   .lawyers-section{
-    padding:8px 12px 25px;
+    padding:var(--mizan-space-2) var(--mizan-space-3) 25px;
   }
   .lawyers-hero h2{
     font-size:22px;
@@ -283,7 +283,7 @@
 }
 .lawyer-identity-actions{
   display:flex;
-  gap:8px;
+  gap:var(--mizan-space-2);
   flex-wrap:wrap;
   margin-top:3px;
 }
@@ -326,7 +326,7 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:8px;
+  gap:var(--mizan-space-2);
 }
 .lawyer-card-topline h3{
   min-width:0;
@@ -387,7 +387,7 @@
   border-radius:var(--mizan-radius-22);
   background:var(--mizan-gradient-lawyer-card);
   box-shadow:var(--mizan-shadow-lawyer-dialog);
-  padding:24px;
+  padding:var(--mizan-space-6);
 }
 .lawyer-details-close{
   position:absolute;
@@ -426,7 +426,7 @@
   font-weight:800;
 }
 .lawyer-details-head h2{
-  margin:4px 0 0;
+  margin:var(--mizan-space-1) 0 0;
   font-size:21px;
 }
 .lawyer-details-grid{
@@ -436,7 +436,7 @@
   margin-top:16px;
 }
 .lawyer-detail-item{
-  padding:12px;
+  padding:var(--mizan-space-3);
   border:1px solid var(--mizan-glass-white-060);
   border-radius:var(--mizan-radius-compact);
   background:var(--mizan-glass-white-025);
@@ -464,7 +464,7 @@
   margin-top:3px;
 }
 .lawyer-details-section{
-  margin-top:16px;
+  margin-top:var(--mizan-space-4);
 }
 .lawyer-details-section p{
   margin:0;
@@ -472,7 +472,7 @@
   font-size:var(--mizan-font-size-xs);
   line-height:2;
   background:var(--mizan-glass-white-025);
-  padding:12px;
+  padding:var(--mizan-space-3);
   border-radius:var(--mizan-radius-compact);
 }
 .lawyer-details-tags{
@@ -483,7 +483,7 @@
 }
 .lawyer-details-actions{
   display:flex;
-  gap:8px;
+  gap:var(--mizan-space-2);
   flex-wrap:wrap;
   margin-top:18px;
 }
@@ -528,7 +528,7 @@ body.lawyer-modal-open{
 .lawyer-my-application-head{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:var(--mizan-space-3);
 }
 .lawyer-my-application-head>i{
   font-size:25px;
@@ -573,7 +573,7 @@ body.lawyer-modal-open{
 }
 /* Light theme audit repair */
 .lawyer-my-application-edit{
-  margin-top:12px;
+  margin-top:var(--mizan-space-3);
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-primary-100);
   color:var(--mizan-primary-300);
