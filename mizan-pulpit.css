@@ -680,7 +680,7 @@ html[data-theme="light"] .mizan-article-card{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-heading);
-  box-shadow:0 8px 24px var(--mizan-glass-primary-900-050);
+  box-shadow:var(--mizan-shadow-card);
 }
 html[data-theme="light"] .mizan-article-author{
   border-top-color:var(--mizan-border-light);
@@ -692,7 +692,7 @@ html[data-theme="light"] .mizan-modal-box{
   background:var(--mizan-surface);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
-  box-shadow:0 24px 70px var(--mizan-glass-primary-900-180);
+  box-shadow:var(--mizan-shadow-elevated-card);
 }
 html[data-theme="light"] .mizan-modal-head h3{
   color:var(--mizan-heading);
