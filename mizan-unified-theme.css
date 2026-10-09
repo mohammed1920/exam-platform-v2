@@ -248,7 +248,7 @@ textarea:not(.book-card textarea),
 .question-text{
   color:var(--mizan-primary-900);
 }
-html:not([data-theme="light"]) .question-text{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
   color:var(--mizan-neutral-50);
 }
 .progress-bar-container{
@@ -300,8 +300,8 @@ html:not([data-theme="light"]) .question-text{
 .footer-bottom p{
   color:var(--mizan-neutral-400);
 }
-html:not([data-theme="light"]) .footer-info-box,
-html:not([data-theme="light"]) .footer-faq-list details{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-info-box,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-faq-list details{
   background:var(--mizan-neutral-800);
   color:var(--mizan-text-dark);
   border-color:var(--mizan-neutral-700);
@@ -413,8 +413,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .con
   -webkit-text-fill-color:transparent;
   color:transparent;
 }
-html:not([data-theme="light"]) .home-feature-strip button,
-html:not([data-theme="light"]) .home-feature-strip a{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip button,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip a{
   background-image:linear-gradient(90deg,var(--mizan-primary-300) 0%,var(--mizan-primary-200) 48%,var(--mizan-info-300) 100%);
 }
 /* ================================================================
@@ -876,19 +876,19 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .question-card .questio
   color:var(--mizan-heading);
   text-shadow:none;
 }
-html:not([data-theme="light"]) .option-btn:hover:not(:disabled):not(.correct):not(.incorrect){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn:hover:not(:disabled):not(.correct):not(.incorrect){
   background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-400);
   color:var(--mizan-heading);
 }
-html:not([data-theme="light"]) .option-btn.correct,
-html:not([data-theme="light"]) .option-btn.correct:hover{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.correct,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.correct:hover{
   background:color-mix(in srgb,var(--mizan-success-500) 16%,transparent);
   border-color:var(--mizan-success-500);
   color:var(--mizan-success-200);
 }
-html:not([data-theme="light"]) .option-btn.incorrect,
-html:not([data-theme="light"]) .option-btn.incorrect:hover{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.incorrect,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.incorrect:hover{
   background:color-mix(in srgb,var(--mizan-danger-500) 16%,transparent);
   border-color:var(--mizan-danger-500);
   color:var(--mizan-danger-200);
@@ -941,26 +941,26 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .option-btn.incorrect:h
   background:var(--mizan-primary-500);
   color:var(--mizan-on-primary);
 }
-html:not([data-theme="light"]) .home-coming-soon i,
-html:not([data-theme="light"]) .home-category-card b,
-html:not([data-theme="light"]) .student-page-icon,
-html:not([data-theme="light"]) .account-btn,
-html:not([data-theme="light"]) .firebase-admin-tab,
-html:not([data-theme="light"]) .petition-template-icon,
-html:not([data-theme="light"]) .question-label{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-coming-soon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card b,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .account-btn,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .firebase-admin-tab,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-template-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-label{
   background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-accent-tile-border);
 }
-html:not([data-theme="light"]) .home-coming-soon i,
-html:not([data-theme="light"]) .student-page-icon,
-html:not([data-theme="light"]) .petition-template-icon{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-coming-soon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-template-icon{
   color:var(--mizan-accent-tile-fg);
 }
-html:not([data-theme="light"]) .question-label{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-label{
   color:var(--mizan-primary-200);
 }
-html:not([data-theme="light"]) .home-category-card:before,
-html:not([data-theme="light"]) .home-category-card[data-home-action]:before{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card:before,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card[data-home-action]:before{
   background:var(--mizan-section-icon-bg);
 }
 html body footer #visitor-count,
@@ -991,7 +991,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .footer-links span{
 .auth-error{
   color:var(--mizan-danger-text);
 }
-html:not([data-theme="light"]) .auth-divider{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .auth-divider{
   color:var(--mizan-muted-dark);
 }
 input:not(.book-card input):not([type="checkbox"]):not([type="radio"]),
@@ -1054,8 +1054,8 @@ html body header .mizan-header-copy h1{
   border-top:2px solid var(--mizan-gold-line);
 }
 /* ===== Main section icons: gold in dark, blue in light (tokens switch the colors) ===== */
-html:not([data-theme="light"]) .home-category-card i,
-html:not([data-theme="light"]) .home-category-card[data-home-action] i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card[data-home-action] i{
   background:var(--mizan-section-icon-bg);
   color:var(--mizan-section-icon-fg);
   border-color:var(--mizan-section-icon-border);
@@ -1066,33 +1066,33 @@ html:not([data-theme="light"]) .home-category-card[data-home-action] i{
    Dark = royal gold accent, light = professional blue (unchanged).
    ================================================================ */
 /* ---- 1. Icons: gold in dark mode ---- */
-html:not([data-theme="light"]) .platform-sidebar-item i,
-html:not([data-theme="light"]) .exam-dashboard-tabs i,
-html:not([data-theme="light"]) .student-page-icon i,
-html:not([data-theme="light"]) .profile-panel-heading>i,
-html:not([data-theme="light"]) #petitions-section i:not(.fa-arrow-right),
-html:not([data-theme="light"]) .lawyer-details-dialog i,
-html:not([data-theme="light"]) .lawyer-detail-item i,
-html:not([data-theme="light"]) .mizan-article-author>i,
-html:not([data-theme="light"]) .home-feature-strip>div>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .platform-sidebar-item i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .exam-dashboard-tabs i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .profile-panel-heading>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) #petitions-section i:not(.fa-arrow-right),
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-details-dialog i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-detail-item i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-article-author>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip>div>i{
   color:var(--mizan-section-icon-fg);
 }
-html:not([data-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
   background:var(--mizan-section-icon-bg);
   border-color:var(--mizan-section-icon-border);
 }
-html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .exam-dashboard-tabs button.is-active{
   background:var(--mizan-gold-tint);
   color:var(--mizan-gold-text);
   border-color:var(--mizan-gold-tint-border);
 }
 /* ---- 2. Lawyer details / identity box (dark = gold) ---- */
-html:not([data-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
   background:var(--mizan-gold-tint);
   color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .lawyer-details-actions a{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-details-actions a{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border:1px solid var(--mizan-btn-primary-border);
@@ -1103,19 +1103,19 @@ html:not([data-theme="light"]) .lawyer-details-actions a{
 .lawyer-identity-btn.telegram i{
   color:var(--mizan-brand-telegram);
 }
-html:not([data-theme="light"]) .lawyer-identity-btn{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-identity-btn{
   font-weight:800;
 }
 /* ---- 3. Pulpit (dark): secondary buttons match the publish button ---- */
-html:not([data-theme="light"]) .mizan-pulpit-secondary{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-secondary{
   background:transparent;
   color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .mizan-pulpit-secondary:hover{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-secondary:hover{
   background:var(--mizan-gold-tint);
 }
-html:not([data-theme="light"]) .mizan-pulpit-hero:after{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-hero:after{
   color:var(--mizan-gold-subtle);
 }
 /* ---- 4. Modern form fields (contributors form, lawyer form, petitions) ---- */
@@ -1231,52 +1231,52 @@ html:is([data-theme="light"],[data-admin-theme="light"]) body .petition-design b
   background:var(--mizan-white);
 }
 /* ---- 6. Contact cards: calm dark surface, brand color only on icon/border ---- */
-html:not([data-theme="light"]) .contact-info-grid .contact-card{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card{
   background:var(--mizan-card);
   border-color:var(--mizan-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card>i{
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
   border:1px solid var(--mizan-accent-tile-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-whatsapp{
   border-color:var(--mizan-contact-whatsapp-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
   background:var(--mizan-contact-whatsapp-icon-bg-dark);
   color:var(--mizan-contact-whatsapp-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-telegram{
   border-color:var(--mizan-contact-telegram-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-telegram>i{
   background:var(--mizan-contact-telegram-icon-bg-dark);
   color:var(--mizan-contact-telegram-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone{
   border-color:var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone>i,
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
   background:var(--mizan-gold-tint);
   color:var(--mizan-gold-text);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-instagram{
   border-color:var(--mizan-contact-instagram-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-instagram>i{
   background:var(--mizan-contact-instagram-icon-bg-dark);
   color:var(--mizan-contact-instagram-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-facebook{
   border-color:var(--mizan-contact-facebook-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-facebook>i{
   background:var(--mizan-contact-facebook-icon-bg-dark);
   color:var(--mizan-contact-facebook-icon-fg-dark);
 }
@@ -1289,7 +1289,7 @@ html body .mizan-form-submit{
   margin-top:18px;
 }
 /* ---- 7. Cohesion touches ---- */
-html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
   color:var(--mizan-gold-text);
 }
 .mizan-pulpit-hero h2{
@@ -1329,10 +1329,10 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-article-author>i
 .mizan-article-meta span:first-child{
   color:var(--mizan-accent-text);
 }
-html:not([data-theme="light"]) .mizan-article-meta span:first-child{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-article-meta span:first-child{
   color:var(--mizan-gold-text);
 }
-html:not([data-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
   color:var(--mizan-gold-text);
 }
 :is(.mizan-modal-close,#lawyer-form-close,.lawyer-modal-close){
