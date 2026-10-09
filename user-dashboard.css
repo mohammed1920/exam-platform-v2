@@ -75,7 +75,7 @@
 .profile-name-editor-row{
   display:flex;
   align-items:stretch;
-  gap:9px;
+  gap:var(--mizan-gap-small);
 }
 .profile-name-editor-row input{
   flex:1;
