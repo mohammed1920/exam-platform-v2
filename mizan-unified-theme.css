@@ -552,14 +552,14 @@ html body{
   background:var(--mizan-primary-100);
 }
 .option-btn.correct{
-  background:var(--mizan-success-100) !important;
-  border-color:var(--mizan-success-500) !important;
-  color:var(--mizan-success-700) !important;
+  background:var(--mizan-success-100);
+  border-color:var(--mizan-success-500);
+  color:var(--mizan-success-700);
 }
 .option-btn.incorrect{
-  background:var(--mizan-danger-100) !important;
-  border-color:var(--mizan-danger-500) !important;
-  color:var(--mizan-danger-700) !important;
+  background:var(--mizan-danger-100);
+  border-color:var(--mizan-danger-500);
+  color:var(--mizan-danger-700);
 }
 /* Random exam + search */
 .custom-exam-entry-btn,
@@ -595,7 +595,7 @@ html body{
   color:var(--mizan-text);
 }
 .question-search-item:active{
-  background:var(--mizan-primary-100) !important;
+  background:var(--mizan-primary-100);
 }
 /* Contact */
 .contact-box{
@@ -625,8 +625,8 @@ html body{
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card:hover{
-  background:var(--mizan-bg) !important;
-  border-color:var(--mizan-primary-300) !important;
+  background:var(--mizan-bg);
+  border-color:var(--mizan-primary-300);
 }
 .contact-info-grid .contact-card strong{
   color:var(--mizan-heading);
@@ -798,11 +798,11 @@ html body footer{
 }
 .footer-info-content,
 .footer-faq-list summary{
-  color:var(--mizan-text) !important;
+  color:var(--mizan-text);
 }
 .footer-info-content p,
 .footer-faq-list p{
-  color:var(--mizan-muted) !important;
+  color:var(--mizan-muted);
 }
 /* Sidebar */
 .platform-sidebar-panel{
@@ -830,8 +830,8 @@ html body footer{
 .platform-sidebar-item:hover,
 .platform-sidebar-item.active{
   background:var(--mizan-primary-100);
-  color:var(--mizan-primary-800) !important;
-  border-color:var(--mizan-primary-200) !important;
+  color:var(--mizan-primary-800);
+  border-color:var(--mizan-primary-200);
 }
 .platform-sidebar-item i{
   color:var(--mizan-primary-500);
@@ -850,9 +850,9 @@ textarea:not(.book-card textarea),
 input:not(.book-card input):focus,
 select:not(.book-card select):focus,
 textarea:not(.book-card textarea):focus{
-  border-color:var(--mizan-primary-500) !important;
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 12%,transparent) !important;
-  outline:none !important;
+  border-color:var(--mizan-primary-500);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 12%,transparent);
+  outline:none;
 }
 input::placeholder,
 textarea::placeholder{
@@ -890,21 +890,21 @@ html[data-theme="light"] .question-card .question-text{
   text-shadow:none;
 }
 html:not([data-theme="light"]) .option-btn:hover:not(:disabled):not(.correct):not(.incorrect){
-  background:var(--mizan-accent-tile-bg) !important;
-  border-color:var(--mizan-primary-400) !important;
-  color:var(--mizan-heading) !important;
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-primary-400);
+  color:var(--mizan-heading);
 }
 html:not([data-theme="light"]) .option-btn.correct,
 html:not([data-theme="light"]) .option-btn.correct:hover{
-  background:color-mix(in srgb,var(--mizan-success-500) 16%,transparent) !important;
+  background:color-mix(in srgb,var(--mizan-success-500) 16%,transparent);
   border-color:var(--mizan-success-500);
-  color:var(--mizan-success-200) !important;
+  color:var(--mizan-success-200);
 }
 html:not([data-theme="light"]) .option-btn.incorrect,
 html:not([data-theme="light"]) .option-btn.incorrect:hover{
-  background:color-mix(in srgb,var(--mizan-danger-500) 16%,transparent) !important;
+  background:color-mix(in srgb,var(--mizan-danger-500) 16%,transparent);
   border-color:var(--mizan-danger-500);
-  color:var(--mizan-danger-200) !important;
+  color:var(--mizan-danger-200);
 }
 html[data-theme="light"] .option-btn.correct:hover{
   background:var(--mizan-success-100);
@@ -947,12 +947,12 @@ html[data-theme="light"] .option-btn.incorrect:hover{
 }
 .share-question-btn,
 .exam-home-btn:hover{
-  color:var(--mizan-accent-text) !important;
-  border-color:var(--mizan-accent-text) !important;
+  color:var(--mizan-accent-text);
+  border-color:var(--mizan-accent-text);
 }
 .share-question-btn:hover:not(:disabled){
-  background:var(--mizan-primary-500) !important;
-  color:var(--mizan-on-primary) !important;
+  background:var(--mizan-primary-500);
+  color:var(--mizan-on-primary);
 }
 html:not([data-theme="light"]) .home-coming-soon i,
 html:not([data-theme="light"]) .home-category-card b,
@@ -961,13 +961,13 @@ html:not([data-theme="light"]) .account-btn,
 html:not([data-theme="light"]) .firebase-admin-tab,
 html:not([data-theme="light"]) .petition-template-icon,
 html:not([data-theme="light"]) .question-label{
-  background:var(--mizan-accent-tile-bg) !important;
-  border-color:var(--mizan-accent-tile-border) !important;
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-accent-tile-border);
 }
 html:not([data-theme="light"]) .home-coming-soon i,
 html:not([data-theme="light"]) .student-page-icon,
 html:not([data-theme="light"]) .petition-template-icon{
-  color:var(--mizan-accent-tile-fg) !important;
+  color:var(--mizan-accent-tile-fg);
 }
 html:not([data-theme="light"]) .question-label{
   color:var(--mizan-primary-200);
@@ -1044,7 +1044,7 @@ textarea:not(.book-card textarea),
 }
 /* ===== Gold accent layer — thin hints only (tokens: mizan-colors.css) ===== */
 html body header .mizan-header-copy h1{
-  color:var(--mizan-gold-light) !important;
+  color:var(--mizan-gold-light);
   background:var(--mizan-gold-gradient);
   -webkit-background-clip:text;
   background-clip:text;
@@ -1060,14 +1060,14 @@ html body header .mizan-header-copy h1{
 .results-box,
 .home-category-card[data-home-action],
 .petition-form-panel{
-  border-top:2px solid var(--mizan-gold-line) !important;
+  border-top:2px solid var(--mizan-gold-line);
 }
 /* ===== Main section icons: gold in dark, blue in light (tokens switch the colors) ===== */
 html:not([data-theme="light"]) .home-category-card i,
 html:not([data-theme="light"]) .home-category-card[data-home-action] i{
-  background:var(--mizan-section-icon-bg) !important;
-  color:var(--mizan-section-icon-fg) !important;
-  border-color:var(--mizan-section-icon-border) !important;
+  background:var(--mizan-section-icon-bg);
+  color:var(--mizan-section-icon-fg);
+  border-color:var(--mizan-section-icon-border);
 }
 /* ================================================================
    Batch 3 — theme-aware icons, modern form fields, admin action
@@ -1084,11 +1084,11 @@ html:not([data-theme="light"]) .lawyer-details-dialog i,
 html:not([data-theme="light"]) .lawyer-detail-item i,
 html:not([data-theme="light"]) .mizan-article-author>i,
 html:not([data-theme="light"]) .home-feature-strip>div>i{
-  color:var(--mizan-section-icon-fg) !important;
+  color:var(--mizan-section-icon-fg);
 }
 html:not([data-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
-  background:var(--mizan-section-icon-bg) !important;
-  border-color:var(--mizan-section-icon-border) !important;
+  background:var(--mizan-section-icon-bg);
+  border-color:var(--mizan-section-icon-border);
 }
 html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
   background:var(--mizan-gold-tint);
@@ -1117,12 +1117,12 @@ html:not([data-theme="light"]) .lawyer-identity-btn{
 }
 /* ---- 3. Pulpit (dark): secondary buttons match the publish button ---- */
 html:not([data-theme="light"]) .mizan-pulpit-secondary{
-  background:transparent !important;
+  background:transparent;
   color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
 html:not([data-theme="light"]) .mizan-pulpit-secondary:hover{
-  background:var(--mizan-gold-tint) !important;
+  background:var(--mizan-gold-tint);
 }
 html:not([data-theme="light"]) .mizan-pulpit-hero:after{
   color:var(--mizan-gold-subtle);
@@ -1237,12 +1237,12 @@ html[data-theme="light"] body .petition-design button.active{
   color:var(--mizan-muted-strong-light);
 }
 .petition-a4 .petition-letterhead{
-  background:var(--mizan-white) !important;
+  background:var(--mizan-white);
 }
 /* ---- 6. Contact cards: calm dark surface, brand color only on icon/border ---- */
 html:not([data-theme="light"]) .contact-info-grid .contact-card{
-  background:var(--mizan-card) !important;
-  border-color:var(--mizan-border) !important;
+  background:var(--mizan-card);
+  border-color:var(--mizan-border);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card>i{
   background:var(--mizan-accent-tile-bg);
@@ -1254,40 +1254,40 @@ html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-ac
   border:1px solid var(--mizan-accent-tile-border);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
-  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent) !important;
+  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
-  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent) !important;
-  color:var(--mizan-brand-whatsapp) !important;
+  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent);
+  color:var(--mizan-brand-whatsapp);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
-  border-color:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent) !important;
+  border-color:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram>i{
-  background:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent) !important;
-  color:var(--mizan-brand-telegram) !important;
+  background:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent);
+  color:var(--mizan-brand-telegram);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
-  border-color:var(--mizan-gold-tint-border) !important;
+  border-color:var(--mizan-gold-tint-border);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-phone>i,
 html:not([data-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
-  background:var(--mizan-gold-tint) !important;
-  color:var(--mizan-gold-text) !important;
+  background:var(--mizan-gold-tint);
+  color:var(--mizan-gold-text);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
-  border-color:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent) !important;
+  border-color:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram>i{
-  background:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent) !important;
-  color:var(--mizan-brand-instagram) !important;
+  background:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent);
+  color:var(--mizan-brand-instagram);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
-  border-color:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent) !important;
+  border-color:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
-  background:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent) !important;
-  color:var(--mizan-info-300) !important;
+  background:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent);
+  color:var(--mizan-info-300);
 }
 html body .petition-a4 footer{
   background:transparent;
@@ -1299,7 +1299,7 @@ html body .mizan-form-submit{
 }
 /* ---- 7. Cohesion touches ---- */
 html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
-  color:var(--mizan-gold-text) !important;
+  color:var(--mizan-gold-text);
 }
 .mizan-pulpit-hero h2{
   color:var(--mizan-heading);
