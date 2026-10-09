@@ -32,7 +32,7 @@
 }
 .petition-tools{
   display:flex;
-  gap:12px;
+  gap:var(--mizan-space-3);
   align-items:center;
   margin-bottom:15px;
 }
@@ -99,7 +99,7 @@
   color:var(--mizan-primary-300);
 }
 .petition-template-card h3{
-  margin:4px 0;
+  margin:var(--mizan-space-1) 0;
   font-size:15px;
 }
 .petition-template-card p{
@@ -189,7 +189,7 @@
   border-color:var(--mizan-primary-500-border);
 }
 .petition-long-field{
-  margin-top:12px;
+  margin-top:var(--mizan-space-3);
 }
 .petition-long-field textarea{
   resize:vertical;
