@@ -2,7 +2,7 @@
   display:flex;
   align-items:center;
   gap:15px;
-  margin:8px 0 20px;
+  margin:var(--mizan-space-2) 0 var(--mizan-space-5);
   padding:18px 0;
   border-bottom:1px solid var(--mizan-surface-soft);
 }
@@ -76,7 +76,7 @@
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:var(--mizan-space-3);
-  margin-bottom:16px;
+  margin-bottom:var(--mizan-space-4);
 }
 .student-info-grid>div{
   padding:15px;
