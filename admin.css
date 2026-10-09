@@ -285,7 +285,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  background: linear-gradient(135deg, var(--admin-warning), var(--admin-accent));
+  background: var(--mizan-gradient-admin-warning-accent);
   box-shadow: var(--mizan-shadow-md);
 }
 .batch-save-bar.active { display: flex; }
