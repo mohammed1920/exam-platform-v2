@@ -1025,15 +1025,14 @@ html body #search-input:focus-visible{
   content:" ✗";
   font-weight:900;
 }
-/* ===== Gold accent layer — thin hints only (tokens: mizan-colors.css) ===== */
+/* Brand wordmark follows Mizan V5: crisp white on the navy header.
+   Gold remains a restrained accent for metadata and premium details. */
 html body header .mizan-header-copy h1{
-  color:var(--mizan-gold-light);
-  background:var(--mizan-gold-gradient);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:var(--mizan-white);
+  background:none;
+  -webkit-text-fill-color:currentColor;
   text-shadow:none;
-  filter:drop-shadow(0 4px 18px color-mix(in srgb,var(--mizan-gold-primary) 22%,transparent));
+  filter:none;
 }
 .home-coming-soon b{
   background:var(--mizan-contact-phone-icon-bg-dark);
