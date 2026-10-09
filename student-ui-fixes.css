@@ -94,7 +94,7 @@ header:not(.mizan-header) h1{
 }
 .firebase-admin-head h2{
   margin:0 0 5px;
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
 }
 .firebase-admin-head p{
   margin:0;
@@ -147,7 +147,7 @@ header:not(.mizan-header) h1{
   display:block;
   margin-top:var(--mizan-space-1);
   color:var(--primary,var(--mizan-primary-500));
-  font-size:25px;
+  font-size:var(--mizan-font-size-heading-lg);
 }
 .firebase-admin-card{
   min-width:0;
@@ -167,7 +167,7 @@ header:not(.mizan-header) h1{
 .firebase-admin-card-head h3{
   margin:0;
   color:var(--primary,var(--mizan-primary-500));
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
 }
 .firebase-admin-card-head span{
   color:var(--text-secondary,var(--mizan-muted-dark));
@@ -239,7 +239,7 @@ header:not(.mizan-header) h1{
     padding:var(--mizan-space-3);
   }
   .firebase-admin-stat strong{
-    font-size:21px;
+    font-size:var(--mizan-font-size-heading-sm);
   }
 }
 /* Global auth/modal visibility — overlays must never render as normal page content. */
