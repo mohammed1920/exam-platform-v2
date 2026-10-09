@@ -15,7 +15,7 @@
 }
 .profile-logout-btn:hover,
 .profile-clear-btn:hover{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 .coming-icon{
   font-size:27px;
