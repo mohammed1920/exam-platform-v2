@@ -172,6 +172,8 @@
   .home-hero h2{font-size:clamp(1.9rem,7.5vw,2.6rem)}
   .home-hero-overview{padding:var(--mizan-space-5)}
   .home-hero-overview-list{grid-template-columns:1fr 1fr}
+  .home-info-grid{grid-template-columns:1fr;gap:var(--mizan-space-3)}
+  .home-info-card{padding:var(--mizan-space-5)}
   .home-hero-overview-item{align-items:flex-start;padding:var(--mizan-space-3)}
   .home-hero-actions button{flex:1 1 160px}
 }
@@ -274,6 +276,71 @@
   color:var(--mizan-accent-text);
   font-size:var(--mizan-font-size-2xs);
   margin-top:var(--mizan-space-3);
+}
+.home-info-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:var(--mizan-space-4);
+  margin:var(--mizan-space-7) 0 var(--mizan-space-5);
+}
+.home-info-card{
+  min-width:0;
+  padding:var(--mizan-space-6);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-card-featured);
+  background:var(--mizan-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+.home-info-kicker{
+  color:var(--mizan-accent-text);
+  font-size:var(--mizan-font-size-xs);
+  font-weight:800;
+}
+.home-info-card h2{
+  margin:var(--mizan-space-2) 0;
+  color:var(--mizan-heading);
+  font-size:var(--mizan-font-size-xl);
+  line-height:1.5;
+}
+.home-info-card p{
+  margin:0;
+  color:var(--mizan-muted);
+  font-size:var(--mizan-font-size-sm);
+  line-height:var(--mizan-line-height-relaxed);
+}
+.home-info-card>button,
+.home-info-actions button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--mizan-space-2);
+  min-height:var(--mizan-control-min-height);
+  margin-top:var(--mizan-space-4);
+  padding:var(--mizan-space-2) var(--mizan-space-3);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-control);
+  background:var(--mizan-bg);
+  color:var(--mizan-accent-text);
+  font:inherit;
+  font-size:var(--mizan-font-size-xs);
+  font-weight:800;
+  cursor:pointer;
+  transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
+}
+.home-info-card>button:hover,
+.home-info-actions button:hover{
+  border-color:var(--mizan-primary-400);
+  transform:translateY(-1px);
+}
+.home-info-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--mizan-space-2);
+}
+.home-info-actions button{margin-top:var(--mizan-space-4)}
+.home-info-card button:focus-visible{
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 .home-feature-strip{
   display:grid;
