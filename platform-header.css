@@ -3,7 +3,7 @@
       position: relative;
       --mizan-wordmark: var(--mizan-deco-amber-84);
       --mizan-wordmark-glow: color-mix(in srgb,var(--mizan-deco-amber-69) 22%,transparent);
-      padding: 30px 24px 25px !important;
+      padding: 30px 24px 25px;
       text-align: center;
     }
     html[data-theme="light"] .mizan-header {
@@ -85,14 +85,14 @@
     }
 
     @media (max-width: 700px) {
-      .mizan-header { padding: 25px 14px 18px !important; }
+      .mizan-header { padding: 25px 14px 18px; }
       .mizan-header-brand { gap: 4px; min-height: 104px; margin-top: 46px; }
       .mizan-header-identity { gap: 8px; }
       .mizan-header-logo { width: 86px; height: 86px; flex-basis: 86px; }
     }
 
     @media (max-width: 420px) {
-      .mizan-header { padding: 22px 10px 16px !important; }
+      .mizan-header { padding: 22px 10px 16px; }
       .mizan-header-brand { margin-top: 38px; }
       .mizan-header-identity { gap: 6px; }
       .mizan-header-logo { width: 70px; height: 70px; flex-basis: 70px; }
