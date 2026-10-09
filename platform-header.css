@@ -85,17 +85,18 @@
     }
 
     @media (max-width: 700px) {
-      .mizan-header { padding: 25px 14px 18px; }
-      .mizan-header-brand { gap: 4px; min-height: 104px; margin-top: 46px; }
+      .mizan-header { padding: 18px 14px 14px; }
+      .mizan-header-brand { gap: 4px; min-height: auto; margin-top: 42px; }
       .mizan-header-identity { gap: 8px; }
-      .mizan-header-logo { width: 86px; height: 86px; flex-basis: 86px; }
+      .mizan-header-logo { width: 72px; height: 72px; flex-basis: 72px; }
+      .mizan-header-copy h1 { font-size: clamp(2.2rem, 5.5vw, 2.7rem); }
     }
 
     @media (max-width: 420px) {
-      .mizan-header { padding: 22px 10px 16px; }
-      .mizan-header-brand { margin-top: 38px; }
+      .mizan-header { padding: 15px 10px 12px; }
+      .mizan-header-brand { margin-top: 34px; }
       .mizan-header-identity { gap: 6px; }
-      .mizan-header-logo { width: 70px; height: 70px; flex-basis: 70px; }
-      .mizan-header-copy h1 { font-size: 2.5rem; }
+      .mizan-header-logo { width: 60px; height: 60px; flex-basis: 60px; }
+      .mizan-header-copy h1 { font-size: 2.25rem; }
       .mizan-header-tagline { font-size: .74rem; }
     }
