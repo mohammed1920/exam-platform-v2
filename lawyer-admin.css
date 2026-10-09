@@ -222,8 +222,8 @@ html[data-theme="light"] .lawyer-admin-status{
 }
 /* Admin crown joins the shared Mizan top utility box */
 #mizan-header-tools .firebase-admin-tab{
-  position:relative !important;
-  inset:auto !important;
+  position:relative;
+  inset:auto;
   width:42px;
   height:42px;
   margin:0;
