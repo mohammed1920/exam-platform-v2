@@ -499,10 +499,10 @@
     padding:var(--mizan-space-4);
   }
   .home-category-card strong{
-    font-size:13px;
+    font-size:var(--mizan-font-size-compact);
   }
   .home-category-card small{
-    font-size:10px;
+    font-size:var(--mizan-font-size-micro);
   }
   .home-feature-strip{
     grid-template-columns:1fr;
@@ -558,7 +558,7 @@ footer{
 }
 @media(max-width:600px){
       .footer-bottom{
-    font-size:10px;
+    font-size:var(--mizan-font-size-micro);
     gap:7px;
   }
 }
@@ -644,7 +644,7 @@ footer{
   word-break:break-word;
 }
 .contact-card-action{
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   font-weight:800;
   padding:7px 10px;
   border-radius:var(--mizan-radius-9);
@@ -722,12 +722,12 @@ footer{
   padding:var(--mizan-space-3) 15px;
   border-bottom:1px solid var(--mizan-surface-soft);
   color:var(--mizan-primary-500-pale-text);
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   font-weight:900;
 }
 .global-search-header small{
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   font-weight:700;
 }
 .global-search-group{
@@ -783,13 +783,13 @@ footer{
   white-space:nowrap;
 }
 .global-search-copy strong{
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   line-height:1.6;
 }
 .global-search-copy small{
   margin-top:2px;
   color:var(--mizan-muted);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   line-height:1.6;
 }
 .global-search-arrow{
@@ -937,7 +937,7 @@ footer{
 }
 .footer-links span{
   color:var(--mizan-primary-500-border);
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
 }
 .footer-info-section{
   max-width:900px;
@@ -1039,7 +1039,7 @@ footer{
     gap:7px;
   }
   .footer-links button{
-    font-size:10px;
+    font-size:var(--mizan-font-size-micro);
   }
 }
 .home-coming-soon-list{
@@ -1088,7 +1088,7 @@ footer{
 .home-coming-soon span{
   flex:1;
   min-width:0;
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   font-weight:800;
 }
 .home-coming-soon b{
@@ -1114,7 +1114,7 @@ footer{
     width:34px;
     height:34px;
     flex-basis:34px;
-    font-size:13px;
+    font-size:var(--mizan-font-size-compact);
   }
   .home-coming-soon span{
     font-size:var(--mizan-font-size-xs);
