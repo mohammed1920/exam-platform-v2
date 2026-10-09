@@ -11,7 +11,7 @@
   --mu-muted:var(--mizan-muted);
   --mu-primary:var(--mizan-primary-500);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mu-bg:var(--mizan-bg-light);
   --mu-card:var(--mizan-card-light);
   --mu-border:var(--mizan-border-light);
@@ -23,33 +23,33 @@ html[data-theme="light"]{
 /* Base */
 html,
 body{
+  font-family:var(--mizan-font-family-arabic,"IBM Plex Sans Arabic","Cairo",sans-serif);
   background:var(--mu-bg);
   color:var(--mu-text);
-}
-body{
   border-color:var(--mu-border);
 }
-/* Header: exact navy in BOTH modes */
+/* Header uses the active central surface token in both themes. */
 html body header{
-  background:var(--mizan-primary-900) !important;
-  color:var(--mizan-white);
-  border-color:var(--mizan-primary-800) !important;
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
 }
 html body header h1,
+html body header .mizan-header-copy h1,
 html body header h2,
 html body header h3,
 html body header .title,
 html body header strong{
-  color:var(--mizan-white);
+  color:var(--mizan-heading);
 }
 html body header p{
-  color:var(--mizan-neutral-400) !important;
+  color:var(--mizan-muted);
 }
 html body header .login-btn,
 html body header .login-button,
 html body header .btn-primary{
-  background:var(--mizan-btn-primary-bg) !important;
-  color:var(--mizan-btn-primary-fg) !important;
+  background:var(--mizan-btn-primary-bg);
+  color:var(--mizan-btn-primary-fg);
 }
 /* Generic surfaces */
 .exam-box,
@@ -91,11 +91,10 @@ html body header .btn-primary{
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
-.mizan-article-modal-box,
-.mizan-profile-modal-box{
-  background:var(--mu-card) !important;
+.mizan-article-modal-box{
+  background:var(--mu-card);
   color:var(--mu-text);
-  border-color:var(--mu-border) !important;
+  border-color:var(--mu-border);
 }
 .stat-item,
 .option-btn,
@@ -128,7 +127,7 @@ html body header .btn-primary{
 .contact-heading h2,
 .footer-info-heading h2,
 .student-page-header h2{
-  color:var(--mu-heading) !important;
+  color:var(--mu-heading);
 }
 .stat-label,
 .detail-label,
@@ -163,25 +162,29 @@ html body header .btn-primary{
 .lawyer-details-link,
 .lawyer-identity-btn,
 .petition-primary,
-.mizan-pulpit-primary,
-.mizan-read-btn,
-.mizan-form-submit{
-  background:var(--mizan-btn-primary-bg) !important;
-  color:var(--mizan-btn-primary-fg) !important;
-  border-color:var(--mizan-btn-primary-border) !important;
+.mizan-pulpit-primary{
+  background:var(--mizan-btn-primary-bg);
+  color:var(--mizan-btn-primary-fg);
+  border-color:var(--mizan-btn-primary-border);
 }
 .exam-btn.next:hover,
+
 .primary-btn:hover,
+
 .btn-primary:hover,
+
 .cta-button:hover,
+
 .firebase-admin-action:hover,
+
 .firebase-admin-back:hover,
-.lawyers-primary-btn:hover,
+
 .petition-primary:hover,
+
 .mizan-pulpit-primary:hover,
-.mizan-read-btn:hover,
+
 .mizan-form-submit:hover{
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 /* Forms/search */
 input:not(.book-card input):not(.petition-tools input),
@@ -206,7 +209,7 @@ textarea:not(.book-card textarea),
 .home-category-card[data-home-action],
 .home-coming-soon{
   background:var(--mu-card);
-  border-color:var(--mu-border) !important;
+  border-color:var(--mu-border);
   color:var(--mu-text);
 }
 .home-category-card[data-home-action] strong{
@@ -227,43 +230,42 @@ textarea:not(.book-card textarea),
 .history-score strong,
 .firebase-admin-card-head h3,
 .firebase-admin-kicker{
-  color:var(--mu-primary) !important;
+  color:var(--mu-primary);
 }
 .home-category-card[data-home-action] i,
 .student-page-icon,
 .account-btn,
 .firebase-admin-tab{
-  background:var(--mizan-primary-100) !important;
-  border-color:var(--mizan-primary-200) !important;
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-primary-200);
 }
 .home-category-card[data-home-action]:before{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 /* Quiz */
 .question-text{
   color:var(--mizan-primary-900);
 }
-html:not([data-theme="light"]) .question-text{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
   color:var(--mizan-neutral-50);
 }
 .progress-bar-container{
-  background:var(--mizan-border) !important;
+  background:var(--mizan-border);
 }
 .progress-bar-fill{
   background:var(--mizan-primary-500);
 }
 
 .option-btn:hover{
-  border-color:var(--mizan-primary-500) !important;
+  border-color:var(--mizan-accent-text);
 }
 /* Forum / pulpit */
 .mizan-pulpit-kicker,
 .mizan-article-meta{
   border-color:var(--mu-border);
 }
-.mizan-pulpit-toolbar h3,
-.mizan-article-card h3{
-  color:var(--mu-section-heading) !important;
+.mizan-pulpit-toolbar h3{
+  color:var(--mu-section-heading);
 }
 /* Contact */
 .contact-card-action{
@@ -280,12 +282,11 @@ html:not([data-theme="light"]) .question-text{
 .contact-card strong{
   color:var(--mu-heading);
 }
-/* Sidebar */
-.mizan-header-tools,
+/* Sidebar surfaces. Keep the utility-header glass treatment from platform-sidebar.css. */
 .platform-sidebar,
 .student-sidebar-panel{
-  background:var(--mu-bg) !important;
-  border-color:var(--mu-border) !important;
+  background:var(--mu-bg);
+  border-color:var(--mu-border);
 }
 /* Footer: exact navy */
 .footer-bottom,
@@ -294,42 +295,37 @@ html:not([data-theme="light"]) .question-text{
   color:var(--mizan-neutral-200);
 }
 .footer-bottom p{
-  color:var(--mizan-neutral-400) !important;
+  color:var(--mizan-neutral-400);
 }
-html:not([data-theme="light"]) .footer-info-box,
-html:not([data-theme="light"]) .footer-faq-list details{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-info-box,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-faq-list details{
   background:var(--mizan-neutral-800);
   color:var(--mizan-text-dark);
   border-color:var(--mizan-neutral-700);
 }
 /* ===== v2.1 contrast + CTA + contact repair ===== */
-/* Top utility icons must remain clearly visible in light mode. */
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger,
-html[data-theme="light"] .mizan-header-tools .theme-toggle{
-  background:var(--mizan-white) !important;
-  color:var(--mizan-primary-900) !important;
-  border:1px solid var(--mizan-text-dark) !important;
-  box-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent) !important;
+/* Theme toggle remains explicit here; menu trigger styling is owned by
+   theme-aware tokens in mizan-colors.css and platform-sidebar.css. */
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle{
+  background:var(--mizan-white);
+  color:var(--mizan-primary-900);
+  border:1px solid var(--mizan-text-dark);
+  box-shadow:none;
   opacity:1;
 }
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger i,
-html[data-theme="light"] .mizan-header-tools .theme-toggle i,
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger svg,
-html[data-theme="light"] .mizan-header-tools .theme-toggle svg,
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger .menu-lines i{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle i,
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle svg{
   color:var(--mizan-primary-900);
   background-color:currentColor;
   opacity:1;
 }
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover,
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover{
-  background:var(--mizan-neutral-100) !important;
-  border-color:var(--mizan-primary-500) !important;
-  color:var(--mizan-primary-600) !important;
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover{
+  background:var(--mizan-neutral-100);
+  border-color:var(--mizan-accent-text);
+  color:var(--mizan-primary-600);
 }
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover .menu-lines i,
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover i,
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover i,
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover svg{
   color:var(--mizan-primary-600);
   background-color:currentColor;
 }
@@ -338,24 +334,16 @@ html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
 .contact-info-grid .contact-card{
   border-width:1px;
 }
-html[data-theme="light"] .contact-info-grid .contact-card{
-  box-shadow:0 8px 24px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
+html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .contact-card{
+  box-shadow:var(--mizan-contact-panel-shadow);
 }
 .contact-info-grid .contact-card-whatsapp{
-  border-color:var(--mizan-success-500);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-success-100));
-}
-.contact-info-grid .contact-card-whatsapp>i{
-  background:var(--mizan-success-100);
-  color:var(--mizan-success-700);
-}
-.contact-info-grid .contact-card-whatsapp .contact-card-action{
-  background:var(--mizan-success-100);
-  color:var(--mizan-success-700);
+  border-color:var(--mizan-contact-whatsapp-icon-fg);
+  background:var(--mizan-gradient-status-success);
 }
 .contact-info-grid .contact-card-telegram{
-  border-color:var(--mizan-info-500);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-info-100));
+  border-color:var(--mizan-contact-telegram-icon-fg);
+  background:var(--mizan-gradient-status-info);
 }
 .contact-info-grid .contact-card-telegram>i{
   background:var(--mizan-info-100);
@@ -366,44 +354,40 @@ html[data-theme="light"] .contact-info-grid .contact-card{
   color:var(--mizan-info-700);
 }
 .contact-info-grid .contact-card-phone{
-  border-color:var(--mizan-warning-200);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-warning-100));
-}
-.contact-info-grid .contact-card-phone>i{
-  background:var(--mizan-warning-100);
-  color:var(--mizan-warning-700);
+  border-color:var(--mizan-contact-phone-border);
+  background:var(--mizan-contact-phone-bg);
 }
 .contact-info-grid .contact-card-email{
-  border-color:var(--mizan-text-dark) !important;
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light)) !important;
+  border-color:var(--mizan-contact-email-border);
+  background:var(--mizan-contact-email-bg);
 }
 .contact-info-grid .contact-card-email>i{
-  background:var(--mizan-border-light) !important;
-  color:var(--mizan-secondary-text) !important;
+  background:var(--mizan-contact-email-icon-bg);
+  color:var(--mizan-contact-email-icon-fg);
 }
 .contact-info-grid .contact-card-instagram{
-  border-color:var(--mizan-primary-300);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  border-color:var(--mizan-contact-instagram-border);
+  background:var(--mizan-contact-social-bg);
 }
 .contact-info-grid .contact-card-instagram>i{
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-700);
+  background:var(--mizan-contact-instagram-icon-bg);
+  color:var(--mizan-contact-instagram-icon-fg);
 }
 .contact-info-grid .contact-card-instagram .contact-card-action{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card-facebook{
-  border-color:var(--mizan-primary-300) !important;
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100)) !important;
+  border-color:var(--mizan-contact-facebook-border);
+  background:var(--mizan-contact-social-bg);
 }
 .contact-info-grid .contact-card-facebook>i{
-  background:var(--mizan-primary-100) !important;
-  color:var(--mizan-primary-700) !important;
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card-facebook .contact-card-action{
-  background:var(--mizan-primary-100) !important;
-  color:var(--mizan-primary-700) !important;
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-primary-700);
 }
 /* CTA text: apply the accent/gradient to the complete phrase, not a partial
    fragment caused by inline background clipping. */
@@ -419,16 +403,16 @@ html[data-theme="light"] .contact-info-grid .contact-card{
 }
 .home-feature-strip button,
 .home-feature-strip a{
-  background-image:linear-gradient(90deg,var(--mizan-primary-600) 0%,var(--mizan-primary-500) 48%,var(--mizan-info-500) 100%);
+  background-image:var(--mizan-gradient-progress-primary);
   background-size:100% 100%;
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   color:transparent;
 }
-html:not([data-theme="light"]) .home-feature-strip button,
-html:not([data-theme="light"]) .home-feature-strip a{
-  background-image:linear-gradient(90deg,var(--mizan-primary-300) 0%,var(--mizan-primary-200) 48%,var(--mizan-info-300) 100%);
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip button,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip a{
+  background-image:var(--mizan-gradient-progress-light);
 }
 /* ================================================================
    MIZAN CENTRAL PALETTE ENFORCEMENT v3.0
@@ -445,13 +429,13 @@ html body{
 .home-feature-strip>div{
   background:var(--mizan-card);
   color:var(--mizan-text);
-  border-color:var(--mizan-border) !important;
+  border-color:var(--mizan-border);
 }
 .home-category-card:before{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 .home-category-card i{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .home-category-card strong,
@@ -461,19 +445,19 @@ html body{
 }
 .home-category-card small,
 .home-feature-strip small{
-  color:var(--mizan-muted) !important;
+  color:var(--mizan-muted);
 }
 .home-category-card b,
 .home-section-heading span,
 .home-feature-strip i{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .home-feature-strip button{
-  color:var(--mizan-primary-600) !important;
+  color:var(--mizan-primary-600);
 }
 .home-category-card:hover,
 .home-feature-strip>div:hover{
-  border-color:var(--mizan-primary-400) !important;
+  border-color:var(--mizan-primary-400);
 }
 /* Book card shell + metadata/actions only; .stage/.book artwork is excluded. */
 .book-card{
@@ -493,7 +477,7 @@ html body{
   border-color:var(--mizan-border);
 }
 .book-card>.book-stats .book-stat-icon{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .book-card>.book-stats .book-stat-value{
   color:var(--mizan-heading);
@@ -501,26 +485,17 @@ html body{
 .book-card>.book-stats .book-stat-label{
   color:var(--mizan-muted);
 }
-.book-card>.test-btn{
-  background:var(--mizan-btn-primary-bg);
-  color:var(--mizan-btn-primary-fg);
-  border-color:var(--mizan-btn-primary-border);
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
-}
-.book-card>.test-btn:hover{
-  background:var(--mizan-btn-primary-bg-hover);
-  color:var(--mizan-btn-primary-fg);
-}
+
 /* Chapters */
 .chapter-item{
   background:var(--mizan-card);
   color:var(--mizan-text);
   border-color:var(--mizan-border);
-  box-shadow:var(--mizan-shadow-sm) !important;
+  box-shadow:var(--mizan-shadow-sm);
 }
 .chapter-item:hover{
-  border-color:var(--mizan-primary-400) !important;
-  box-shadow:var(--mizan-shadow-md) !important;
+  border-color:var(--mizan-primary-400);
+  box-shadow:var(--mizan-shadow-md);
 }
 .chapter-number{
   color:var(--mizan-heading);
@@ -551,7 +526,7 @@ html body{
 }
 .question-label{
   color:var(--mizan-primary-700);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-200);
 }
 .exam-home-btn{
@@ -562,18 +537,18 @@ html body{
   border-color:var(--mizan-border);
 }
 .option-btn:hover:not(:disabled){
-  border-color:var(--mizan-primary-500) !important;
-  background:var(--mizan-primary-100) !important;
+  border-color:var(--mizan-accent-text);
+  background:var(--mizan-accent-tile-bg);
 }
 .option-btn.correct{
-  background:var(--mizan-success-100) !important;
-  border-color:var(--mizan-success-500) !important;
-  color:var(--mizan-success-700) !important;
+  background:var(--mizan-success-100);
+  border-color:var(--mizan-success-500);
+  color:var(--mizan-success-700);
 }
 .option-btn.incorrect{
-  background:var(--mizan-danger-100) !important;
-  border-color:var(--mizan-danger-500) !important;
-  color:var(--mizan-danger-700) !important;
+  background:var(--mizan-danger-100);
+  border-color:var(--mizan-danger-500);
+  color:var(--mizan-danger-700);
 }
 /* Random exam + search */
 .custom-exam-entry-btn,
@@ -605,11 +580,8 @@ html body{
   border-color:var(--mizan-border);
 }
 .question-search-item{
-  border-color:var(--mizan-border) !important;
-  color:var(--mizan-text) !important;
-}
-.question-search-item:active{
-  background:var(--mizan-primary-100) !important;
+  border-color:var(--mizan-border);
+  color:var(--mizan-text);
 }
 /* Contact */
 .contact-box{
@@ -617,7 +589,7 @@ html body{
   border-color:var(--mizan-border);
 }
 .contact-heading span{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .contact-heading h2{
   color:var(--mizan-heading);
@@ -635,12 +607,12 @@ html body{
   color:var(--mizan-info-700);
 }
 .contact-info-grid .contact-card .contact-card-action{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card:hover{
-  background:var(--mizan-bg) !important;
-  border-color:var(--mizan-primary-300) !important;
+  background:var(--mizan-bg);
+  border-color:var(--mizan-accent-tile-border);
 }
 .contact-info-grid .contact-card strong{
   color:var(--mizan-heading);
@@ -659,11 +631,7 @@ html body{
   color:var(--mizan-warning-700);
 }
 .contact-info-grid .contact-card-email>i,
-.contact-info-grid .contact-card-email .contact-card-action,
-.contact-info-grid .contact-card-instagram>i,
-.contact-info-grid .contact-card-instagram .contact-card-action,
-.contact-info-grid .contact-card-facebook>i,
-.contact-info-grid .contact-card-facebook .contact-card-action{
+.contact-info-grid .contact-card-email .contact-card-action{
   background:var(--mizan-info-100);
   color:var(--mizan-info-700);
 }
@@ -681,7 +649,7 @@ html body{
 }
 .lawyers-hero>span,
 .lawyer-form-head span{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .lawyers-hero p,
 .lawyer-form-head p,
@@ -701,13 +669,13 @@ html body{
 .lawyers-primary-btn,
 .lawyer-details-link,
 .lawyer-identity-btn{
-  background:var(--mizan-btn-primary-bg) !important;
+  background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
 }
 .lawyers-primary-btn:hover,
 .lawyer-details-link:hover{
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 /* Petitions */
 .petitions-shell,
@@ -718,39 +686,39 @@ html body{
 .petition-form-panel,
 .petition-preview-panel{
   background:var(--mizan-card);
-  color:var(--mizan-text) !important;
+  color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
 .petitions-hero span,
 .petition-builder-head span,
 .petition-tools label i{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .petitions-hero p,
 .petition-builder-head p,
 .petition-tools>span,
 .petition-template-card span{
-  color:var(--mizan-muted) !important;
+  color:var(--mizan-muted);
 }
 .petition-template-icon{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .petition-tools label,
 .petition-fields input,
 .petition-fields select,
 .petition-fields textarea{
-  background:var(--mizan-bg) !important;
+  background:var(--mizan-bg);
   color:var(--mizan-text);
-  border-color:var(--mizan-border) !important;
+  border-color:var(--mizan-border);
 }
 .petition-primary{
-  background:var(--mizan-primary-500) !important;
-  color:var(--mizan-white) !important;
-  border-color:var(--mizan-primary-500) !important;
+  background:var(--mizan-primary-500);
+  color:var(--mizan-white);
+  border-color:var(--mizan-accent-text);
 }
 .petition-primary:hover{
-  background:var(--mizan-primary-600) !important;
+  background:var(--mizan-primary-600);
 }
 /* Pulpit */
 .mizan-pulpit-section,
@@ -765,90 +733,94 @@ html body{
   border-color:var(--mizan-border);
 }
 .mizan-pulpit-hero:after{
-  color:var(--mizan-primary-100);
+  color:var(--mizan-accent-tile-fg);
 }
-.mizan-pulpit-hero p,
 .mizan-pulpit-toolbar span,
+
 .mizan-article-meta{
   color:var(--mizan-muted);
 }
 .mizan-pulpit-primary,
-.mizan-read-btn,
-.mizan-form-submit{
-  background:var(--mizan-btn-primary-bg) !important;
+.mizan-read-btn{
+  background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
 }
 .mizan-pulpit-primary:hover,
-.mizan-read-btn:hover,
-.mizan-form-submit:hover{
+.mizan-read-btn:hover{
   background:var(--mizan-btn-primary-bg-hover);
 }
 .mizan-pulpit-secondary{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
   border-color:var(--mizan-primary-200);
 }
 .mizan-article-card h3{
-  color:var(--mizan-heading) !important;
+  color:var(--mizan-heading);
 }
 /* Footer + information pages */
 html body footer{
   background:var(--mizan-primary-900);
-  color:var(--mizan-muted-dark);
+  color:var(--mizan-muted);
   border-color:var(--mizan-section-heading-dark);
 }
-.footer-info-box,
+.footer-info-box{
+  background:var(--mizan-gradient-home-hero);
+  color:var(--mizan-white);
+  border-color:var(--mizan-home-hero-border);
+  box-shadow:var(--mizan-shadow-home-hero);
+}
 .footer-faq-list details{
+  background:var(--mizan-glass-white-025);
+  color:var(--mizan-white);
+  border-color:var(--mizan-glass-white-080);
+  box-shadow:var(--mizan-shadow-theme-subtle);
+}
+.footer-info-heading span{
+  color:var(--mizan-warning-200);
+}
+.footer-info-heading h2{
+  color:var(--mizan-white);
+}
+.footer-info-heading p,
+.footer-info-content,
+.footer-faq-list p{
+  color:var(--mizan-ice);
+}
+.footer-faq-list summary{
+  color:var(--mizan-white);
+}
+/* Sidebar */
+.platform-sidebar-panel{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-border);
+}
+.platform-sidebar-backdrop{
+  background:var(--mizan-sidebar-backdrop);
+}
+.platform-sidebar-close{
   background:var(--mizan-card);
   color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
-.footer-info-heading span{
-  color:var(--mizan-primary-500);
-}
-.footer-info-heading h2{
-  color:var(--mizan-heading);
-}
-.footer-info-content,
-.footer-faq-list summary{
-  color:var(--mizan-text) !important;
-}
-.footer-info-content p,
-.footer-faq-list p{
-  color:var(--mizan-muted) !important;
-}
-/* Sidebar */
-.platform-sidebar-panel{
-  background:var(--mizan-surface) !important;
-  border-color:var(--mizan-border);
-}
-.platform-sidebar-backdrop{
-  background:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent) !important;
-}
-.platform-sidebar-close{
-  background:var(--mizan-card) !important;
-  color:var(--mizan-text) !important;
-  border-color:var(--mizan-border);
-}
 .platform-sidebar-brand strong{
-  color:var(--mizan-heading) !important;
+  color:var(--mizan-heading);
 }
 .platform-sidebar-brand span{
   color:var(--mizan-muted);
 }
 .platform-sidebar-item{
-  color:var(--mizan-text) !important;
+  color:var(--mizan-text);
   border-color:transparent;
 }
 .platform-sidebar-item:hover,
 .platform-sidebar-item.active{
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-800) !important;
-  border-color:var(--mizan-primary-200) !important;
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-primary-800);
+  border-color:var(--mizan-primary-200);
 }
 .platform-sidebar-item i{
-  color:var(--mizan-primary-500) !important;
+  color:var(--mizan-accent-text);
 }
 /* Forms */
 input:not(.book-card input):not(.petition-tools input),
@@ -857,16 +829,16 @@ textarea:not(.book-card textarea),
 .contact-form input,
 .contact-form textarea,
 .contact-form select{
-  background:var(--mizan-card) !important;
-  color:var(--mizan-text) !important;
+  background:var(--mizan-card);
+  color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
 input:not(.book-card input):focus,
 select:not(.book-card select):focus,
 textarea:not(.book-card textarea):focus{
-  border-color:var(--mizan-primary-500) !important;
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 12%,transparent) !important;
-  outline:none !important;
+  border-color:var(--mizan-accent-text);
+  box-shadow:var(--mizan-shadow-focus-primary);
+  outline:none;
 }
 input::placeholder,
 textarea::placeholder{
@@ -875,13 +847,13 @@ textarea::placeholder{
 /* Any remaining generic non-book card action */
 .start-exam-btn,
 .card:not(.book-card) button{
-  background:var(--mizan-btn-primary-bg) !important;
-  color:var(--mizan-btn-primary-fg) !important;
+  background:var(--mizan-btn-primary-bg);
+  color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
 }
 .start-exam-btn:hover,
 .card:not(.book-card) button:hover{
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 /* FINAL BUTTON COLOR LOCK — book artwork excluded */
 .book-card .test-btn,
@@ -890,7 +862,7 @@ textarea::placeholder{
   background-image:none;
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent) !important;
+  box-shadow:var(--mizan-btn-primary-shadow);
 }
 .book-card .test-btn:hover,
 .book-card>.test-btn:hover{
@@ -899,33 +871,33 @@ textarea::placeholder{
   color:var(--mizan-btn-primary-fg);
 }
 /* ===== Accessibility & state refinements (merged from the design audit) ===== */
-html[data-theme="light"] .question-card .question-text{
+html:is([data-theme="light"],[data-admin-theme="light"]) .question-card .question-text{
   color:var(--mizan-heading);
   text-shadow:none;
 }
-html:not([data-theme="light"]) .option-btn:hover:not(:disabled):not(.correct):not(.incorrect){
-  background:var(--mizan-accent-tile-bg) !important;
-  border-color:var(--mizan-primary-400) !important;
-  color:var(--mizan-heading) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn:hover:not(:disabled):not(.correct):not(.incorrect){
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-primary-400);
+  color:var(--mizan-heading);
 }
-html:not([data-theme="light"]) .option-btn.correct,
-html:not([data-theme="light"]) .option-btn.correct:hover{
-  background:color-mix(in srgb,var(--mizan-success-500) 16%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.correct,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.correct:hover{
+  background:color-mix(in srgb,var(--mizan-success-500) 16%,transparent);
   border-color:var(--mizan-success-500);
-  color:var(--mizan-success-200) !important;
+  color:var(--mizan-success-200);
 }
-html:not([data-theme="light"]) .option-btn.incorrect,
-html:not([data-theme="light"]) .option-btn.incorrect:hover{
-  background:color-mix(in srgb,var(--mizan-danger-500) 16%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.incorrect,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .option-btn.incorrect:hover{
+  background:color-mix(in srgb,var(--mizan-danger-500) 16%,transparent);
   border-color:var(--mizan-danger-500);
-  color:var(--mizan-danger-200) !important;
+  color:var(--mizan-danger-200);
 }
-html[data-theme="light"] .option-btn.correct:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) .option-btn.correct:hover{
   background:var(--mizan-success-100);
   border-color:var(--mizan-success-500);
   color:var(--mizan-success-700);
 }
-html[data-theme="light"] .option-btn.incorrect:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) .option-btn.incorrect:hover{
   background:var(--mizan-danger-100);
   border-color:var(--mizan-danger-500);
   color:var(--mizan-danger-700);
@@ -957,58 +929,58 @@ html[data-theme="light"] .option-btn.incorrect:hover{
 .firebase-admin-kicker,
 .home-feature-strip i,
 .auth-modal-heading{
-  color:var(--mizan-accent-text) !important;
+  color:var(--mizan-accent-text);
 }
 .share-question-btn,
 .exam-home-btn:hover{
-  color:var(--mizan-accent-text) !important;
-  border-color:var(--mizan-accent-text) !important;
+  color:var(--mizan-accent-text);
+  border-color:var(--mizan-accent-text);
 }
 .share-question-btn:hover:not(:disabled){
-  background:var(--mizan-primary-500) !important;
-  color:var(--mizan-on-primary) !important;
+  background:var(--mizan-primary-500);
+  color:var(--mizan-on-primary);
 }
-html:not([data-theme="light"]) .home-coming-soon i,
-html:not([data-theme="light"]) .home-category-card b,
-html:not([data-theme="light"]) .student-page-icon,
-html:not([data-theme="light"]) .account-btn,
-html:not([data-theme="light"]) .firebase-admin-tab,
-html:not([data-theme="light"]) .petition-template-icon,
-html:not([data-theme="light"]) .question-label{
-  background:var(--mizan-accent-tile-bg) !important;
-  border-color:var(--mizan-accent-tile-border) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-coming-soon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card b,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .account-btn,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .firebase-admin-tab,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-template-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-label{
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-accent-tile-border);
 }
-html:not([data-theme="light"]) .home-coming-soon i,
-html:not([data-theme="light"]) .student-page-icon,
-html:not([data-theme="light"]) .petition-template-icon{
-  color:var(--mizan-accent-tile-fg) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-coming-soon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-template-icon{
+  color:var(--mizan-accent-tile-fg);
 }
-html:not([data-theme="light"]) .question-label{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-label{
   color:var(--mizan-primary-200);
 }
-html:not([data-theme="light"]) .home-category-card:before,
-html:not([data-theme="light"]) .home-category-card[data-home-action]:before{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card:before,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card[data-home-action]:before{
   background:var(--mizan-section-icon-bg);
 }
 html body footer #visitor-count,
 .visitor-counter #visitor-count{
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-text);
 }
 html body footer .footer-links button{
-  color:var(--mizan-muted-dark) !important;
+  color:var(--mizan-muted);
 }
 html body footer .footer-links button:hover{
-  color:var(--mizan-heading-dark) !important;
+  color:var(--mizan-heading-dark);
 }
-html[data-theme="light"] .footer-links span{
-  color:var(--mizan-muted-dark);
+html:is([data-theme="light"],[data-admin-theme="light"]) .footer-links span{
+  color:var(--mizan-muted);
 }
 .auth-submit-btn{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
 }
 .auth-submit-btn:hover:not(:disabled){
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 .google-signin-btn{
   background:var(--mizan-card);
@@ -1018,18 +990,22 @@ html[data-theme="light"] .footer-links span{
 .auth-error{
   color:var(--mizan-danger-text);
 }
-html:not([data-theme="light"]) .auth-divider{
-  color:var(--mizan-muted-dark);
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .auth-divider{
+  color:var(--mizan-muted);
 }
 input:not(.book-card input):not([type="checkbox"]):not([type="radio"]),
 select:not(.book-card select),
 textarea:not(.book-card textarea),
 #search-input{
-  border-color:var(--mizan-border-control) !important;
+  border-color:var(--mizan-border-control);
 }
-:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
-  outline:3px solid var(--mizan-focus-ring) !important;
-  outline-offset:2px !important;
+html body :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible,
+html body .book-card button:focus-visible,
+html body .card button:focus-visible,
+html body .start-exam-btn:focus-visible,
+html body #search-input:focus-visible{
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 #result-grade{
   color:var(--mizan-accent-text);
@@ -1056,32 +1032,30 @@ textarea:not(.book-card textarea),
   content:" ✗";
   font-weight:900;
 }
-/* ===== Gold accent layer — thin hints only (tokens: mizan-colors.css) ===== */
+/* Brand wordmark uses the active semantic heading color in both themes. */
 html body header .mizan-header-copy h1{
-  color:var(--mizan-gold-light) !important;
-  background:var(--mizan-gold-gradient);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:var(--mizan-heading);
+  background:none;
+  -webkit-text-fill-color:currentColor;
   text-shadow:none;
-  filter:drop-shadow(0 4px 18px color-mix(in srgb,var(--mizan-gold-primary) 22%,transparent));
+  filter:none;
 }
 .home-coming-soon b{
-  background:var(--mizan-gold-tint) !important;
-  color:var(--mizan-gold-text) !important;
-  border-color:var(--mizan-gold-tint-border);
+  background:var(--mizan-contact-phone-icon-bg-dark);
+  color:var(--mizan-contact-phone-icon-fg-dark);
+  border-color:var(--mizan-contact-phone-border-dark);
 }
 .results-box,
 .home-category-card[data-home-action],
 .petition-form-panel{
-  border-top:2px solid var(--mizan-gold-line) !important;
+  border-top:2px solid var(--mizan-gold-line);
 }
 /* ===== Main section icons: gold in dark, blue in light (tokens switch the colors) ===== */
-html:not([data-theme="light"]) .home-category-card i,
-html:not([data-theme="light"]) .home-category-card[data-home-action] i{
-  background:var(--mizan-section-icon-bg) !important;
-  color:var(--mizan-section-icon-fg) !important;
-  border-color:var(--mizan-section-icon-border) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-category-card[data-home-action] i{
+  background:var(--mizan-section-icon-bg);
+  color:var(--mizan-section-icon-fg);
+  border-color:var(--mizan-section-icon-border);
 }
 /* ================================================================
    Batch 3 — theme-aware icons, modern form fields, admin action
@@ -1089,33 +1063,33 @@ html:not([data-theme="light"]) .home-category-card[data-home-action] i{
    Dark = royal gold accent, light = professional blue (unchanged).
    ================================================================ */
 /* ---- 1. Icons: gold in dark mode ---- */
-html:not([data-theme="light"]) .platform-sidebar-item i,
-html:not([data-theme="light"]) .exam-dashboard-tabs i,
-html:not([data-theme="light"]) .student-page-icon i,
-html:not([data-theme="light"]) .profile-panel-heading>i,
-html:not([data-theme="light"]) #petitions-section i:not(.fa-arrow-right),
-html:not([data-theme="light"]) .lawyer-details-dialog i,
-html:not([data-theme="light"]) .lawyer-detail-item i,
-html:not([data-theme="light"]) .mizan-article-author>i,
-html:not([data-theme="light"]) .home-feature-strip>div>i{
-  color:var(--mizan-section-icon-fg) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .platform-sidebar-item i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .exam-dashboard-tabs i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .student-page-icon i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .profile-panel-heading>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) #petitions-section i:not(.fa-arrow-right),
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-details-dialog i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-detail-item i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-article-author>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .home-feature-strip>div>i{
+  color:var(--mizan-section-icon-fg);
 }
-html:not([data-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
-  background:var(--mizan-section-icon-bg) !important;
-  border-color:var(--mizan-section-icon-border) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.student-page-icon,.lawyer-details-icon,.petition-template-icon,.mizan-article-author>i,.home-feature-strip>div>i){
+  background:var(--mizan-section-icon-bg);
+  border-color:var(--mizan-section-icon-border);
 }
-html:not([data-theme="light"]) .exam-dashboard-tabs button.is-active{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .exam-dashboard-tabs button.is-active{
   background:var(--mizan-gold-tint);
   color:var(--mizan-gold-text);
   border-color:var(--mizan-gold-tint-border);
 }
 /* ---- 2. Lawyer details / identity box (dark = gold) ---- */
-html:not([data-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.lawyer-tags span,.lawyer-details-tags span){
   background:var(--mizan-gold-tint);
   color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .lawyer-details-actions a{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-details-actions a{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border:1px solid var(--mizan-btn-primary-border);
@@ -1126,19 +1100,19 @@ html:not([data-theme="light"]) .lawyer-details-actions a{
 .lawyer-identity-btn.telegram i{
   color:var(--mizan-brand-telegram);
 }
-html:not([data-theme="light"]) .lawyer-identity-btn{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .lawyer-identity-btn{
   font-weight:800;
 }
 /* ---- 3. Pulpit (dark): secondary buttons match the publish button ---- */
-html:not([data-theme="light"]) .mizan-pulpit-secondary{
-  background:transparent !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-secondary{
+  background:transparent;
   color:var(--mizan-gold-text);
   border:1px solid var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .mizan-pulpit-secondary:hover{
-  background:var(--mizan-gold-tint) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-secondary:hover{
+  background:var(--mizan-gold-tint);
 }
-html:not([data-theme="light"]) .mizan-pulpit-hero:after{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-pulpit-hero:after{
   color:var(--mizan-gold-subtle);
 }
 /* ---- 4. Modern form fields (contributors form, lawyer form, petitions) ---- */
@@ -1150,8 +1124,8 @@ html body .petition-fields label,
 html body .petition-long-field{
   display:flex;
   flex-direction:column;
-  gap:7px;
-  font-size:13px;
+  gap:var(--mizan-gap-tight);
+  font-size:var(--mizan-font-size-compact);
   font-weight:700;
   line-height:1.5;
   color:var(--mizan-muted);
@@ -1164,9 +1138,9 @@ html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long
   width:100%;
   box-sizing:border-box;
   min-height:46px;
-  padding:11px 14px;
+  padding:11px var(--mizan-space-inset-medium);
   border:1px solid var(--mizan-field-border);
-  border-radius:12px;
+  border-radius:var(--mizan-radius-compact);
   background-color:var(--mizan-field-bg);
   color:var(--mizan-text);
   font:inherit;
@@ -1183,7 +1157,7 @@ html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long
   line-height:1.8;
 }
 html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) select{
-  padding-inline-end:14px;
+  padding-inline-end:var(--mizan-space-inset-medium);
   padding-left:38px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2394A3B8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
@@ -1199,14 +1173,14 @@ html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long
 }
 html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea):focus,
 html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long-field) :is(input,select,textarea):focus-visible{
-  outline:none !important;
+  outline:none;
   border-color:var(--mizan-field-focus);
-  box-shadow:0 0 0 3px var(--mizan-field-focus-ring);
+  box-shadow:var(--mizan-shadow-focus-field);
 }
 html body .lawyer-form .lawyer-consent{
   align-items:center;
-  gap:10px;
-  font-size:13px;
+  gap:var(--mizan-gap-compact);
+  font-size:var(--mizan-font-size-compact);
   color:var(--mizan-muted);
 }
 html body .lawyer-form .lawyer-consent input{
@@ -1215,7 +1189,7 @@ html body .lawyer-form .lawyer-consent input{
 html body .petition-design button{
   min-height:42px;
   border:1px solid var(--mizan-field-border);
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   background:var(--mizan-field-bg);
   color:var(--mizan-muted);
   font-weight:700;
@@ -1225,9 +1199,9 @@ html body .petition-design button.active{
   border-color:var(--mizan-gold-line);
   color:var(--mizan-gold-text);
 }
-html[data-theme="light"] body .petition-design button.active{
-  background:var(--mizan-primary-100);
-  border-color:var(--mizan-primary-500);
+html:is([data-theme="light"],[data-admin-theme="light"]) body .petition-design button.active{
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-accent-text);
   color:var(--mizan-primary-700);
 }
 /* ---- 5. A4 petition sheet: always paper-white with black ink ---- */
@@ -1251,57 +1225,57 @@ html[data-theme="light"] body .petition-design button.active{
   color:var(--mizan-muted-strong-light);
 }
 .petition-a4 .petition-letterhead{
-  background:var(--mizan-white) !important;
+  background:var(--mizan-white);
 }
 /* ---- 6. Contact cards: calm dark surface, brand color only on icon/border ---- */
-html:not([data-theme="light"]) .contact-info-grid .contact-card{
-  background:var(--mizan-card) !important;
-  border-color:var(--mizan-border) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card{
+  background:var(--mizan-card);
+  border-color:var(--mizan-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card>i{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card>i{
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card .contact-card-action{
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
   border:1px solid var(--mizan-accent-tile-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
-  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-whatsapp{
+  border-color:var(--mizan-contact-whatsapp-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
-  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent) !important;
-  color:var(--mizan-brand-whatsapp) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
+  background:var(--mizan-contact-whatsapp-icon-bg-dark);
+  color:var(--mizan-contact-whatsapp-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
-  border-color:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-telegram{
+  border-color:var(--mizan-contact-telegram-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram>i{
-  background:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent) !important;
-  color:var(--mizan-brand-telegram) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-telegram>i{
+  background:var(--mizan-contact-telegram-icon-bg-dark);
+  color:var(--mizan-contact-telegram-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
-  border-color:var(--mizan-gold-tint-border) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone{
+  border-color:var(--mizan-gold-tint-border);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone>i,
-html:not([data-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
-  background:var(--mizan-gold-tint) !important;
-  color:var(--mizan-gold-text) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone>i,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-phone .contact-card-action{
+  background:var(--mizan-gold-tint);
+  color:var(--mizan-gold-text);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
-  border-color:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-instagram{
+  border-color:var(--mizan-contact-instagram-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram>i{
-  background:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent) !important;
-  color:var(--mizan-brand-instagram) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-instagram>i{
+  background:var(--mizan-contact-instagram-icon-bg-dark);
+  color:var(--mizan-contact-instagram-icon-fg);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
-  border-color:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-facebook{
+  border-color:var(--mizan-contact-facebook-border-dark);
 }
-html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
-  background:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent) !important;
-  color:var(--mizan-info-300) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .contact-info-grid .contact-card-facebook>i{
+  background:var(--mizan-contact-facebook-icon-bg-dark);
+  color:var(--mizan-contact-facebook-icon-fg-dark);
 }
 html body .petition-a4 footer{
   background:transparent;
@@ -1312,8 +1286,8 @@ html body .mizan-form-submit{
   margin-top:18px;
 }
 /* ---- 7. Cohesion touches ---- */
-html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
-  color:var(--mizan-gold-text) !important;
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.profile-stat-card strong,.student-big-score,.history-score strong,.student-page-header>div>span,.profile-panel-heading span){
+  color:var(--mizan-gold-text);
 }
 .mizan-pulpit-hero h2{
   color:var(--mizan-heading);
@@ -1323,8 +1297,8 @@ html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,
 }
 .mizan-article-card .mizan-btn,
 .mizan-article-card button{
-  border-radius:11px;
-  padding-inline:14px;
+  border-radius:var(--mizan-radius-11);
+  padding-inline:var(--mizan-space-inset-medium);
 }
 /* ---- 8. Contrast fixes found by the browser scan ---- */
 .profile-avatar{
@@ -1340,22 +1314,22 @@ html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,
 .student-ok{
   color:var(--mizan-success-text);
 }
-html[data-theme="light"] .exam-dashboard-tabs button.is-active{
+html:is([data-theme="light"],[data-admin-theme="light"]) .exam-dashboard-tabs button.is-active{
   color:var(--mizan-primary-700);
 }
-html[data-theme="light"] .exam-dashboard-tabs button{
+html:is([data-theme="light"],[data-admin-theme="light"]) .exam-dashboard-tabs button{
   color:var(--mizan-muted);
 }
-html[data-theme="light"] .mizan-article-author>i{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-article-author>i{
   color:var(--mizan-primary-600);
 }
 .mizan-article-meta span:first-child{
   color:var(--mizan-accent-text);
 }
-html:not([data-theme="light"]) .mizan-article-meta span:first-child{
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .mizan-article-meta span:first-child{
   color:var(--mizan-gold-text);
 }
-html:not([data-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
+html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
   color:var(--mizan-gold-text);
 }
 :is(.mizan-modal-close,#lawyer-form-close,.lawyer-modal-close){
@@ -1365,11 +1339,11 @@ html:not([data-theme="light"]) :is(.profile-identity span,.profile-logout-btn){
   color:var(--mizan-success-text);
 }
 html body .petition-a4 .petition-letterhead :is(strong,b){
-  color:var(--mizan-primary-800) !important;
+  color:var(--mizan-primary-800);
 }
 html body .petition-a4 .petition-letterhead small{
   color:var(--mizan-muted-strong-light);
 }
 html body .petition-a4 .petition-letterhead .petition-head-right small{
-  color:var(--mizan-primary-600) !important;
+  color:var(--mizan-primary-600);
 }

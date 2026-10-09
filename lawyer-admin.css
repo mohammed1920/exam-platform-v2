@@ -1,5 +1,5 @@
 .lawyer-admin-card{
-  margin-top:16px;
+  margin-top:var(--mizan-space-4);
 }
 .lawyer-admin-table{
   width:100%;
@@ -7,28 +7,28 @@
 }
 .lawyer-admin-table th,
 .lawyer-admin-table td{
-  padding:10px 8px;
-  border-bottom:1px solid color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-2);
+  border-bottom:1px solid var(--mizan-glass-white-060);
   text-align:right;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   vertical-align:top;
 }
 .lawyer-admin-table th{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .lawyer-admin-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
 }
 .lawyer-admin-actions button{
   border:1px solid var(--mizan-border-dark);
   background:var(--mizan-primary-900);
   color:var(--mizan-text-dark);
-  border-radius:8px;
-  padding:6px 8px;
+  border-radius:var(--mizan-radius-xs);
+  padding:6px var(--mizan-space-2);
   font:inherit;
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   cursor:pointer;
 }
 .lawyer-admin-actions .approve{
@@ -40,34 +40,33 @@
   color:var(--mizan-danger);
 }
 .lawyer-admin-status{
-  font-size:10px;
-  color:var(--mizan-muted-dark);
+  font-size:var(--mizan-font-size-micro);
+  color:var(--mizan-muted);
 }
 .lawyer-admin-tabs{
   display:flex;
-  gap:8px;
+  gap:var(--mizan-space-2);
   flex-wrap:wrap;
-  margin:14px 0;
+  margin:var(--mizan-space-inset-medium) 0;
 }
 .lawyer-admin-tab{
   border:1px solid var(--mizan-primary-500-border);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  background:var(--mizan-glass-white-025);
   color:var(--mizan-muted);
-  border-radius:10px;
-  padding:8px 12px;
+  border-radius:var(--mizan-radius-sm);
+  padding:var(--mizan-space-2) var(--mizan-space-3);
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   cursor:pointer;
 }
 .lawyer-admin-tab.active{
   border-color:var(--mizan-primary-500-border);
-  color:var(--mizan-primary-300);
-  background:var(--mizan-primary-100);
+  color:var(--mizan-accent-tile-fg);
+  background:var(--mizan-accent-tile-bg);
 }
 .lawyer-admin-tab strong{
   margin-right:5px;
 }
-.lawyer-admin-view-panel[hidden],
 .lawyer-admin-edit[hidden]{
   display:none;
 }
@@ -81,11 +80,11 @@
   color:var(--mizan-warning);
 }
 .lawyer-admin-edit{
-  margin-top:14px;
-  padding:16px;
+  margin-top:var(--mizan-space-inset-medium);
+  padding:var(--mizan-space-4);
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:14px;
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  border-radius:var(--mizan-radius-md);
+  background:var(--mizan-glass-white-025);
 }
 @media(max-width:700px){
         .lawyer-admin-table{
@@ -99,34 +98,34 @@
 .firebase-admin-menu{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
+  gap:var(--mizan-space-3);
   margin:18px 0;
 }
 .firebase-admin-menu-card{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
   text-align:right;
   border:1px solid var(--mizan-primary-500-border);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  background:var(--mizan-glass-white-025);
   color:var(--mizan-text-dark);
-  border-radius:14px;
-  padding:16px;
+  border-radius:var(--mizan-radius-md);
+  padding:var(--mizan-space-4);
   cursor:pointer;
   font:inherit;
-  transition:.2s;
+  transition:var(--mizan-transition-standard);
 }
 .firebase-admin-menu-card i{
-  font-size:20px;
-  color:var(--mizan-primary-500);
+  font-size:var(--mizan-font-size-xl);
+  color:var(--mizan-accent-text);
 }
 .firebase-admin-menu-card strong{
-  font-size:14px;
+  font-size:var(--mizan-font-size-sm);
 }
 .firebase-admin-menu-card span{
-  font-size:10px;
-  color:var(--mizan-muted-dark);
+  font-size:var(--mizan-font-size-micro);
+  color:var(--mizan-muted);
 }
 .firebase-admin-menu-card:hover{
   border-color:var(--mizan-primary-500-border);
@@ -134,8 +133,8 @@
 }
 .firebase-admin-menu-card.active{
   border-color:var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
-  box-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 12%,transparent);
+  background:var(--mizan-accent-tile-bg);
+  box-shadow:var(--mizan-shadow-lawyer-admin-card);
 }
 .firebase-admin-subviews{
   min-height:180px;
@@ -148,18 +147,18 @@
 }
 .firebase-admin-subview-back{
   border:1px solid var(--mizan-primary-500-border);
-  background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
-  color:var(--mizan-primary-500);
-  border-radius:9px;
+  background:var(--mizan-glass-white-025);
+  color:var(--mizan-accent-text);
+  border-radius:var(--mizan-radius-9);
   padding:9px 13px;
-  margin-bottom:14px;
+  margin-bottom:var(--mizan-space-inset-medium);
   cursor:pointer;
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .firebase-admin-subview-back:hover{
   border-color:var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 #fa-admin-home[hidden]{
   display:none;
@@ -172,31 +171,15 @@
     grid-template-columns:1fr;
   }
   .firebase-admin-menu-card{
-    padding:14px;
+    padding:var(--mizan-space-inset-medium);
   }
-}
-.lawyer-my-application-edit{
-  margin-top:12px;
-  border:1px solid var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-300);
-  border-radius:10px;
-  padding:9px 14px;
-  cursor:pointer;
-  font:inherit;
-  font-size:11px;
-}
-.lawyer-my-application-edit:hover{
-  background:var(--mizan-primary-100);
-  border-color:var(--mizan-primary-500-border);
 }
 /* Light theme audit repair */
 html[data-theme="light"] .lawyer-admin-table th,
 html[data-theme="light"] .lawyer-admin-table td{
   border-color:var(--mizan-text-dark);
 }
-html[data-theme="light"] .lawyer-admin-actions button,
-html[data-theme="light"] .lawyer-admin-edit-actions button{
+html[data-theme="light"] .lawyer-admin-actions button{
   background:var(--mizan-bg-light);
   color:var(--mizan-heading);
   border-color:var(--mizan-border-light);
@@ -210,12 +193,11 @@ html[data-theme="light"] .firebase-admin-subview-back{
 }
 html[data-theme="light"] .lawyer-admin-tab.active,
 html[data-theme="light"] .firebase-admin-menu-card.active{
-  background:var(--mizan-surface)8eb;
-  border-color:var(--mizan-primary-300);
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-accent-tile-fg);
   color:var(--mizan-primary-700);
 }
-html[data-theme="light"] .lawyer-admin-edit,
-html[data-theme="light"] .lawyer-admin-edit-requests{
+html[data-theme="light"] .lawyer-admin-edit{
   background:var(--mizan-surface);
   border-color:var(--mizan-text-dark);
 }
@@ -225,8 +207,8 @@ html[data-theme="light"] .lawyer-admin-status{
 }
 /* Admin crown joins the shared Mizan top utility box */
 #mizan-header-tools .firebase-admin-tab{
-  position:relative !important;
-  inset:auto !important;
+  position:relative;
+  inset:auto;
   width:42px;
   height:42px;
   margin:0;
@@ -234,9 +216,9 @@ html[data-theme="light"] .lawyer-admin-status{
   display:grid;
   place-items:center;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:12px;
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-300);
+  border-radius:var(--mizan-radius-compact);
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-tile-fg);
   box-shadow:none;
   z-index:1;
   cursor:pointer;
@@ -246,11 +228,11 @@ html[data-theme="light"] .lawyer-admin-status{
 }
 #mizan-header-tools .firebase-admin-tab:hover{
   border-color:var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   transform:translateY(-1px);
 }
 html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
-  background:var(--mizan-surface)8eb;
+  background:var(--mizan-surface);
   border-color:var(--mizan-primary-500-paper-light);
   color:var(--mizan-primary-700);
 }
@@ -266,23 +248,24 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
 .mizan-admin-modal-box .btn,
 .mizan-admin-head-actions .btn{
   --btn-tone:var(--mizan-info-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-info);
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
   margin:2px;
   padding:6px 13px;
   border:1px solid color-mix(in srgb,var(--btn-tone) 45%,transparent);
-  border-radius:999px;
+  border-radius:var(--mizan-radius-pill);
   background:color-mix(in srgb,var(--btn-tone) 13%,transparent);
   color:var(--btn-tone);
   font:inherit;
   font-size:12.5px;
   font-weight:800;
-  line-height:1.4;
+  line-height:var(--mizan-line-height-heading);
   white-space:nowrap;
   cursor:pointer;
-  transition:background-color .16s ease,border-color .16s ease,transform .16s ease,box-shadow .16s ease;
+  transition:background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,transform var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-fast) ease;
 }
 .firebase-admin-table-wrap .btn:hover,
 .mizan-admin-modal-box .btn:hover,
@@ -290,7 +273,7 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
   background:color-mix(in srgb,var(--btn-tone) 24%,transparent);
   border-color:var(--btn-tone);
   transform:translateY(-1px);
-  box-shadow:0 4px 12px color-mix(in srgb,var(--btn-tone) 22%,transparent);
+  box-shadow:var(--mizan-shadow-tone-button);
 }
 .firebase-admin-table-wrap .btn:active,
 .mizan-admin-modal-box .btn:active,
@@ -310,18 +293,23 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) .btn[data-mizan-close]{
   --btn-tone:var(--mizan-muted);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-muted);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-green,[data-mizan-action="publish"],[data-mizan-action="republish"],[data-mizan-action="approve-contributor"],[data-mizan-action="unblock-contributor"]){
   --btn-tone:var(--mizan-success-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-success);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is(.btn-red,[data-mizan-action="reject"],[data-mizan-action="reject-contributor"],[data-mizan-action="delete"],[data-mizan-action="delete-contributor"]){
   --btn-tone:var(--mizan-danger-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-danger);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="block-contributor"],[data-mizan-action="hide"],[data-mizan-view-hide]){
   --btn-tone:var(--mizan-warning-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-warning);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="edit"],[data-mizan-action="resubmit"],[data-mizan-view-edit],[data-mizan-view-resubmit]){
   --btn-tone:var(--mizan-gold-text);
+  --mizan-shadow-tone-button:var(--mizan-shadow-tone-gold);
 }
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="view"],[data-mizan-action="view-contributor"]){
   --btn-tone:var(--mizan-info-text);

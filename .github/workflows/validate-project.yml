@@ -1,0 +1,57 @@
+name: Validate Mizan Project
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-mizan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-integrity:
+    name: Static integrity and JavaScript syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate local assets and JSON data
+        run: node scripts/validate-static-project.mjs
+
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            -print0 | xargs -0 -r -n1 node --check
+
+      - name: Verify GitHub Pages deployment bundle
+        shell: bash
+        run: bash scripts/build-pages-bundle.sh "$RUNNER_TEMP/mizan-pages-bundle-$GITHUB_RUN_ID"
+
+      - name: Verify bundle builder rejects unsafe output paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          unsafe_output="$RUNNER_TEMP/not-a-mizan-bundle"
+          if bash scripts/build-pages-bundle.sh "$unsafe_output"; then
+            echo "Bundle builder unexpectedly accepted an unsafe output path." >&2
+            exit 1
+          fi
+          if [[ -e "$unsafe_output" ]]; then
+            echo "Unsafe output path was created unexpectedly." >&2
+            exit 1
+          fi

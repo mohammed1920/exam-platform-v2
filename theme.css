@@ -33,48 +33,56 @@ html[data-theme="light"] #search-input{
   background:var(--mizan-surface-light);
   color:var(--mizan-text-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 4px 18px color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  box-shadow:var(--mizan-shadow-theme-header);
 }
 html[data-theme="light"] #search-input::placeholder{
   color:var(--mizan-muted-light);
 }
 /* ---------- Header controls ---------- */
-/* Keep the theme toggle in the same top utility row as the menu trigger. */
-#theme-toggle.theme-toggle{
-  position:fixed;
-  top:18px;
-  left:18px;
-  z-index:9000;
-  width:46px;
-  height:46px;
+/* Keep the toggle aligned with the existing header utility controls.
+   Position it in the header context (not fixed to a transformed ancestor). */
+.mizan-header > #theme-toggle.theme-toggle{
+  position:absolute;
+  top:var(--mizan-header-tools-offset);
+  left:var(--mizan-header-tools-offset);
+  z-index:20;
+  display:grid;
+  place-items:center;
+  width:var(--mizan-header-control-size);
+  height:var(--mizan-header-control-size);
   margin:0;
   padding:0;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:13px;
+  border-radius:50%;
   background:var(--mizan-primary-900);
   color:var(--mizan-primary-300);
-  display:grid;
-  place-items:center;
+  box-shadow:none;
+  backdrop-filter:none;
   cursor:pointer;
-  box-shadow:var(--mizan-shadow-md);
-  backdrop-filter:blur(10px);
 }
-#theme-toggle.theme-toggle:hover{
+.mizan-header > #theme-toggle.theme-toggle i,
+.mizan-header > #theme-toggle.theme-toggle svg{
+  display:block;
+  background:transparent;
+  color:inherit;
+}
+.mizan-header > #theme-toggle.theme-toggle:hover{
   border-color:var(--mizan-primary-300);
+  background:var(--mizan-surface-dark);
   transform:translateY(-1px);
 }
-html[data-theme="light"] #theme-toggle.theme-toggle{
-  background:color-mix(in srgb,var(--mizan-white) 94%,transparent);
+html[data-theme="light"] .mizan-header > #theme-toggle.theme-toggle{
+  background:var(--mizan-surface-light);
   color:var(--mizan-primary-700);
   border-color:var(--mizan-border-light);
-  box-shadow:0 8px 25px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent);
+  box-shadow:none;
 }
-@media (max-width: 600px){
-  #theme-toggle.theme-toggle{
-    top:12px;
-    left:12px;
-    width:42px;
-    height:42px;
+@media (max-width:600px){
+  .mizan-header > #theme-toggle.theme-toggle{
+    top:var(--mizan-header-tools-offset);
+    left:var(--mizan-header-tools-offset);
+    width:var(--mizan-header-control-size);
+    height:var(--mizan-header-control-size);
   }
 }
 /* ---------- Exam / content surfaces ---------- */
@@ -85,7 +93,7 @@ html[data-theme="light"] .results-box,
 html[data-theme="light"] .review-item{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 8px 25px color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  box-shadow:var(--mizan-shadow-surface-soft);
 }
 html[data-theme="light"] .stat-item,
 html[data-theme="light"] .option-btn,
@@ -109,9 +117,7 @@ html[data-theme="light"] .exam-btn.prev{
   color:var(--mizan-heading);
 }
 /* ---------- Polish: shared interaction primitives ---------- */
-:root{
-  --mizan-ease-out:cubic-bezier(.22,1,.36,1);
-}
+/* Motion tokens are provided by mizan-design-tokens.css. */
 button,
 a,
 input,
@@ -124,18 +130,18 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible{
-  outline:2px solid var(--mizan-focus);
-  outline-offset:3px;
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 button:not(:disabled),
 a{
-  transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease,box-shadow 200ms ease,transform 180ms var(--mizan-ease-out);
+  transition:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-regular) ease,transform var(--mizan-duration-medium) var(--mizan-ease-out);
 }
 button:active:not(:disabled){
   transform:translateY(1px);
 }
 #theme-toggle.theme-toggle{
-  transition:transform 180ms var(--mizan-ease-out),border-color 160ms ease,background 160ms ease,box-shadow 200ms ease;
+  transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-fast) ease,background var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-regular) ease;
 }
 #theme-toggle.theme-toggle:active{
   transform:scale(.94);
@@ -161,7 +167,7 @@ html[data-theme="light"] .question-search-results{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text-light);
-  box-shadow:0 6px 20px color-mix(in srgb,var(--mizan-primary-900) 4%,transparent);
+  box-shadow:var(--mizan-shadow-theme-subtle);
 }
 html[data-theme="light"] .custom-exam-count-row input{
   background:var(--mizan-bg-light);

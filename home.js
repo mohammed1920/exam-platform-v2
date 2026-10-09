@@ -24,7 +24,7 @@
     if (!document.querySelector('link[data-mizan-pulpit-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'mizan-pulpit.css?v=1.9';
+      css.href = 'mizan-pulpit.css?v=3.2';
       css.dataset.mizanPulpitCss = '1';
       document.head.appendChild(css);
     }
@@ -119,7 +119,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'lawyer-directory.css?v=1.7';
+          css.href = 'lawyer-directory.css?v=2.9';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
@@ -164,7 +164,7 @@
     if (!document.querySelector('link[data-petitions-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'petitions.css?v=2.3';
+      css.href = 'petitions.css?v=3.1';
       css.dataset.petitionsCss = '1';
       document.head.appendChild(css);
     }
@@ -203,7 +203,6 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();
-
 
 (function setupFooterLinks(){
   const routes = {about:'about',terms:'terms',privacy:'privacy',disclaimer:'disclaimer',faq:'faq'};

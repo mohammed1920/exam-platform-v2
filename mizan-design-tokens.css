@@ -3,9 +3,20 @@
    الألوان موجودة حصراً في mizan-colors.css.
    ========================================================= */
 :root{
+  --mizan-radius-xs:8px;
+  --mizan-radius-9:9px;
+  --mizan-radius-11:11px;
+  --mizan-radius-13:13px;
+  --mizan-radius-15:15px;
+  --mizan-radius-17:17px;
+  --mizan-radius-19:19px;
+  --mizan-radius-22:22px;
   --mizan-radius-sm:10px;
+  --mizan-radius-compact:12px;
   --mizan-radius-md:14px;
   --mizan-radius-lg:18px;
+  --mizan-radius-wide:16px;
+  --mizan-radius-2xl:20px;
   --mizan-radius-xl:24px;
   --mizan-radius-pill:999px;
   --mizan-space-1:4px;
@@ -18,11 +29,271 @@
   --mizan-space-8:40px;
   --mizan-space-9:48px;
   --mizan-space-10:64px;
+  --mizan-space-inset-compact:10px;
+  --mizan-space-inset-medium:14px;
+  --mizan-space-inset-roomy:15px;
+  --mizan-gap-tight:7px;
+  --mizan-gap-compact:10px;
+  --mizan-gap-small:9px;
+  --mizan-gap-micro:6px;
   --mizan-content-width:1200px;
   --mizan-content-padding:20px;
+  --mizan-icon-tile-size:38px;
+  --mizan-blur-glass:14px;
+  --mizan-blur-backdrop:3px;
+  --mizan-blur-install:8px;
+  --mizan-blur-hint:10px;
+  --mizan-blur-mobile-nav:18px;
+  --mizan-mobile-nav-safe-space:92px;
+  --mizan-mobile-nav-min-height:56px;
   --mizan-ease-out:cubic-bezier(.22,1,.36,1);
   --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
   --mizan-duration-fast:160ms;
+  --mizan-duration-medium:180ms;
+  --mizan-duration-regular:200ms;
   --mizan-duration-ui:220ms;
   --mizan-duration-slow:320ms;
+  --mizan-duration-interaction:250ms;
 }
+
+/* Shared keyboard focus geometry; focus color is owned by mizan-colors.css. */
+:root{
+  --mizan-focus-ring-width:3px;
+  --mizan-focus-ring-offset:2px;
+}
+
+
+/* Sidebar/header layout and motion tokens. */
+:root{
+  --mizan-header-tools-offset:12px;
+  --mizan-header-tools-height:50px;
+  --mizan-header-tools-padding:4px 6px;
+  --mizan-header-control-size:42px;
+  --mizan-header-brand-min-height:88px;
+  --mizan-header-brand-gap:2px;
+  --mizan-header-logo-size:56px;
+  --mizan-header-tagline-size:14px;
+  --mizan-header-wordmark-size:clamp(1.45rem,2vw,1.75rem);
+  --mizan-header-wordmark-size-mobile:22px;
+  --mizan-header-wordmark-size-compact:20px;
+  --mizan-header-brand-reserve:116px;
+  --mizan-header-brand-reserve-mobile:88px;
+  --mizan-header-brand-reserve-compact:82px;
+  --mizan-sidebar-panel-width:360px;
+  --mizan-sidebar-panel-width-mobile:340px;
+  --mizan-sidebar-panel-viewport-cap:92vw;
+  --mizan-sidebar-panel-viewport-cap-mobile:94vw;
+  --mizan-sidebar-hidden-offset:105%;
+  --mizan-sidebar-panel-padding:22px 16px 28px;
+  --mizan-sidebar-panel-duration:300ms;
+  --mizan-sidebar-backdrop-duration:250ms;
+  --mizan-sidebar-item-gap:5px;
+  --mizan-sidebar-item-padding:11px 12px;
+  --mizan-menu-lines-width:20px;
+  --mizan-menu-lines-height:18px;
+  --mizan-menu-lines-gap:4px;
+  --mizan-menu-line-height:2px;
+  --mizan-menu-line-short-width:14px;
+}
+@media(max-width:600px){
+  :root{
+    --mizan-header-tools-offset:10px;
+    --mizan-header-tools-height:48px;
+    --mizan-header-tools-padding:3px 5px;
+    --mizan-header-control-size:40px;
+    --mizan-header-brand-min-height:76px;
+    --mizan-header-logo-size:50px;
+    --mizan-header-tagline-size:12px;
+    --mizan-header-wordmark-size:var(--mizan-header-wordmark-size-mobile);
+  }
+}
+
+@media(max-width:420px){
+  :root{
+    --mizan-header-logo-size:44px;
+    --mizan-header-brand-min-height:70px;
+    --mizan-header-tagline-size:11px;
+    --mizan-header-wordmark-size:var(--mizan-header-wordmark-size-compact);
+  }
+}
+
+
+/* Component geometry tokens: sidebar, header controls and install UI. */
+:root{
+  --mizan-sidebar-close-offset:16px;
+  --mizan-sidebar-close-size:38px;
+  --mizan-sidebar-brand-padding:8px 8px 20px;
+  --mizan-sidebar-brand-margin:16px;
+  --mizan-sidebar-brand-title-size:18px;
+  --mizan-sidebar-caption-size:11px;
+  --mizan-sidebar-caption-offset:5px;
+  --mizan-sidebar-caption-line-height:1.7;
+  --mizan-sidebar-heading-size:11px;
+  --mizan-sidebar-heading-margin:18px 8px 7px;
+  --mizan-sidebar-item-icon-gap:11px;
+  --mizan-sidebar-item-font-size:13px;
+  --mizan-sidebar-item-icon-width:22px;
+  --mizan-sidebar-item-icon-size:15px;
+  --mizan-sidebar-sub-gap:4px;
+  --mizan-sidebar-sub-indent:16px;
+  --mizan-sidebar-sub-padding:10px;
+  --mizan-sidebar-sub-font-size:12px;
+  --mizan-sidebar-sub-item-padding:9px 10px;
+  --mizan-sidebar-divider-margin:17px 6px;
+  --mizan-sidebar-account-gap:7px;
+  --mizan-sidebar-account-offset:12px;
+  --mizan-sidebar-account-padding:12px;
+  --mizan-sidebar-account-user-gap:10px;
+  --mizan-sidebar-account-user-margin:10px;
+  --mizan-sidebar-avatar-size:40px;
+  --mizan-sidebar-account-name-size:13px;
+  --mizan-sidebar-account-meta-size:10px;
+  --mizan-sidebar-account-meta-offset:2px;
+  --mizan-sidebar-action-gap:8px;
+  --mizan-sidebar-action-padding:9px 10px;
+  --mizan-sidebar-action-font-size:12px;
+  --mizan-install-button-gap:5px;
+  --mizan-install-button-padding:7px 11px;
+  --mizan-install-button-font-size:11px;
+  --mizan-install-button-line-height:1.2;
+  --mizan-install-button-padding-mobile:6px 9px;
+  --mizan-install-button-font-size-mobile:10.5px;
+  --mizan-install-hint-offset:7px;
+  --mizan-install-hint-max-width:340px;
+  --mizan-install-hint-viewport-gap:24px;
+  --mizan-install-hint-padding:9px 12px;
+  --mizan-install-hint-font-size:11px;
+  --mizan-install-hint-line-height:1.7;
+}
+
+
+/* Petition builder and A4 letterhead geometry. */
+:root{
+  --mizan-petitions-shell-max-width:1220px;
+  --mizan-petitions-shell-padding:18px 20px 45px;
+  --mizan-petitions-shell-padding-mobile:10px 12px 30px;
+  --mizan-petitions-hero-margin:16px 0 20px;
+  --mizan-petitions-hero-padding:28px;
+  --mizan-petitions-hero-padding-mobile:20px;
+  --mizan-petitions-heading-size:25px;
+  --mizan-petitions-heading-size-mobile:20px;
+  --mizan-petitions-grid-gap:14px;
+  --mizan-petitions-card-padding:20px;
+  --mizan-petitions-card-min-height:180px;
+  --mizan-petitions-card-icon-size:46px;
+  --mizan-petitions-layout-gap:16px;
+  --mizan-petitions-form-min-width:320px;
+  --mizan-petitions-preview-min-width:400px;
+  --mizan-petitions-panel-padding:18px;
+  --mizan-petitions-panel-padding-mobile:13px;
+  --mizan-petitions-fields-gap:10px;
+  --mizan-petitions-textarea-min-height:270px;
+  --mizan-petitions-a4-width:210mm;
+  --mizan-petitions-a4-min-height:297mm;
+  --mizan-petitions-a4-padding:20mm 17mm;
+  --mizan-petitions-a4-padding-branded:12mm 14mm 17mm;
+  --mizan-petitions-a4-padding-mobile:14mm 10mm;
+  --mizan-petitions-a4-padding-branded-mobile:9mm 7mm 13mm;
+  --mizan-petitions-a4-border-width:1.4mm;
+  --mizan-petitions-a4-outline-width:.55mm;
+  --mizan-petitions-a4-outline-offset:-3mm;
+  --mizan-petitions-a4-inner-inset:4.5mm;
+  --mizan-petitions-a4-inner-border-width:.35mm;
+  --mizan-petitions-watermark-size:105mm;
+  --mizan-petitions-letterhead-columns:minmax(0,1fr) 34mm minmax(0,1fr);
+  --mizan-petitions-letterhead-columns-mobile:minmax(0,1fr) 25mm minmax(0,1fr);
+  --mizan-petitions-letterhead-gap:7mm;
+  --mizan-petitions-letterhead-gap-mobile:2mm;
+  --mizan-petitions-letterhead-padding:1mm 2mm 7mm;
+  --mizan-petitions-letterhead-padding-mobile:1mm 1mm 5mm;
+  --mizan-petitions-letterhead-margin:0 0 7mm;
+  --mizan-petitions-letterhead-margin-mobile:0 0 6mm;
+  --mizan-petitions-logo-width:34mm;
+  --mizan-petitions-logo-height:46mm;
+  --mizan-petitions-logo-width-mobile:25mm;
+  --mizan-petitions-logo-height-mobile:34mm;
+  --mizan-petitions-document-font-size:13.6px;
+  --mizan-petitions-document-font-size-mobile:11.5px;
+  --mizan-petitions-document-line-height:2.05;
+  --mizan-petitions-document-line-height-mobile:1.9;
+  --mizan-petitions-document-padding:0 2mm;
+  --mizan-petitions-document-padding-mobile:0 1mm;
+  --mizan-petitions-footer-margin:15mm;
+  --mizan-petitions-footer-gap:18mm;
+  --mizan-petitions-footer-padding:6mm;
+  --mizan-petitions-footer-margin-mobile:11mm;
+  --mizan-petitions-footer-gap-mobile:8mm;
+}
+
+/* ===== Shared typography, interaction and layout tokens =====
+   Added for the Mizan global design direction. Palette values remain in
+   mizan-colors.css; keep book-specific artwork and geometry isolated.
+*/
+:root{
+  --mizan-font-family-arabic:"IBM Plex Sans Arabic","Cairo",sans-serif;
+  --mizan-font-family-display:"IBM Plex Sans Arabic","Cairo",sans-serif;
+  --mizan-font-size-2xs:0.6875rem;
+  --mizan-font-size-micro:0.625rem;
+  --mizan-font-size-compact:0.8125rem;
+  --mizan-font-size-compact-strong:15px;
+  --mizan-font-size-heading-sm:21px;
+  --mizan-font-size-heading-md:22px;
+  --mizan-font-size-heading-lg:25px;
+  --mizan-font-size-xs:0.75rem;
+  --mizan-font-size-sm:0.875rem;
+  --mizan-font-size-md:1rem;
+  --mizan-font-size-lg:1.125rem;
+  --mizan-font-size-xl:1.25rem;
+  --mizan-font-size-2xl:1.5rem;
+  --mizan-font-size-3xl:1.875rem;
+  --mizan-font-size-4xl:2.25rem;
+  --mizan-line-height-tight:1.25;
+  --mizan-line-height-heading:1.4;
+  --mizan-line-height-body:1.75;
+  --mizan-line-height-relaxed:1.9;
+  --mizan-font-weight-regular:400;
+  --mizan-font-weight-medium:500;
+  --mizan-font-weight-semibold:600;
+  --mizan-font-weight-bold:700;
+  --mizan-font-weight-extrabold:800;
+  --mizan-font-weight-black:900;
+  --mizan-radius-card:var(--mizan-radius-lg);
+  --mizan-radius-card-featured:var(--mizan-radius-xl);
+  --mizan-radius-control:var(--mizan-radius-compact);
+  --mizan-radius-field:var(--mizan-radius-md);
+  --mizan-radius-dialog:var(--mizan-radius-2xl);
+  --mizan-content-width-wide:1440px;
+  --mizan-content-padding-mobile:10px;
+  --mizan-content-padding-tablet:16px;
+  --mizan-section-gap:var(--mizan-space-9);
+  --mizan-component-gap:var(--mizan-space-3);
+  --mizan-card-padding:var(--mizan-space-4);
+  --mizan-card-padding-comfortable:var(--mizan-space-5);
+  --mizan-control-min-height:44px;
+  --mizan-control-min-height-compact:40px;
+  --mizan-control-height-prominent:46px;
+  --mizan-install-slot-bottom-margin:10px;
+  --mizan-install-slot-horizontal-padding:2px;
+  --mizan-install-slot-bottom-margin-mobile:8px;
+  --mizan-transition-standard:var(--mizan-duration-regular) var(--mizan-ease-standard);
+  --mizan-transition-emphasized:var(--mizan-duration-slow) var(--mizan-ease-out);
+  --mizan-transition-color:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease;
+  --mizan-transition-elevation:box-shadow var(--mizan-duration-regular) var(--mizan-ease-standard),transform var(--mizan-duration-regular) var(--mizan-ease-standard);
+  --mizan-focus-outline-style:solid;
+}
+@media (max-width:650px){
+  :root{
+    --mizan-section-gap:var(--mizan-space-7);
+    --mizan-card-padding:var(--mizan-space-3);
+    --mizan-card-padding-comfortable:var(--mizan-space-4);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  :root{
+    --mizan-transition-standard:0ms linear;
+    --mizan-transition-emphasized:0ms linear;
+    --mizan-transition-color:color 0ms linear,background-color 0ms linear,border-color 0ms linear;
+    --mizan-transition-elevation:box-shadow 0ms linear,transform 0ms linear;
+  }
+}
+

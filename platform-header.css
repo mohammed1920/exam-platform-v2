@@ -1,0 +1,98 @@
+    /* هيدر ميزان: الشعار + الكلمة كوحدة واحدة (لوغو) والعبارة تحتهما */
+    .mizan-header {
+      position:relative;
+      --mizan-wordmark:var(--mizan-white);
+      padding:var(--mizan-space-2) var(--mizan-space-3);
+      text-align:center;
+    }
+    html[data-theme="light"] .mizan-header {
+      --mizan-wordmark: var(--mizan-deco-blue-15a);
+    }
+
+    .mizan-header-brand {
+      width:100%;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      direction: rtl;
+      justify-content: center;
+      align-items: center;
+      gap:var(--mizan-header-brand-gap);
+      min-height:var(--mizan-header-brand-min-height);
+    }
+
+    .mizan-header-identity {
+      display: inline-flex;
+      flex-direction: row;
+      direction: rtl;
+      align-items: center;
+      justify-content: center;
+      width: max-content;
+      max-width: 100%;
+      gap:var(--mizan-space-2);
+    }
+
+    .mizan-header-logo {
+      width:var(--mizan-header-logo-size);
+      height:var(--mizan-header-logo-size);
+      flex:0 0 var(--mizan-header-logo-size);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .mizan-header-logo svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .mizan-header-copy {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 0;
+      text-align: right;
+    }
+    .mizan-header-copy h1 {
+      margin:0;
+      padding: 0;
+      color: var(--mizan-heading);
+      font-family:var(--mizan-font-family-display);
+      font-size:var(--mizan-header-wordmark-size);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: 0;
+      text-shadow:none;
+      transition: color .25s ease;
+    }
+
+    .mizan-header-tagline {
+      margin:0;
+      color: var(--text-secondary, var(--mizan-neutral-400));
+      font-family:var(--mizan-font-family-arabic);
+      font-size:var(--mizan-header-tagline-size);
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .mizan-header .mizan-header-brand + #install-app-btn {
+      margin-left:auto;
+      margin-right: auto;
+    }
+
+    @media (max-width:700px) {
+      .mizan-header{padding:var(--mizan-space-2) var(--mizan-space-2)}
+      .mizan-header-brand{width:100%;min-height:var(--mizan-header-brand-min-height);gap:var(--mizan-header-brand-gap);align-items:center}
+      .mizan-header-identity{gap:var(--mizan-space-2)}
+      .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
+      .mizan-header-copy h1{font-size:var(--mizan-header-wordmark-size)}
+      .mizan-header-tagline{font-size:var(--mizan-header-tagline-size);line-height:1.35}
+    }
+    @media(max-width:420px){
+      .mizan-header-brand{width:100%;min-height:var(--mizan-header-brand-min-height);align-items:center}
+      .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
+      .mizan-header-copy h1{font-size:var(--mizan-header-wordmark-size)}
+      .mizan-header-tagline{font-size:var(--mizan-header-tagline-size)}
+    }

@@ -3,10 +3,11 @@ name: AI Spelling Check
 on:
   schedule:
     # الفحص الدوري اليومي الساعة 12 ظهراً بتوقيت بغداد (09:00 UTC)
-      - cron: '0 9 * * *'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 concurrency:
+  # تشترك جميع المهام التي تحفظ تقارير إلى main في مجموعة واحدة لمنع تداخل rebase/push.
   group: content-maintenance
   cancel-in-progress: false
 

@@ -8,6 +8,7 @@ on:
 
 # يمنع تشغيل نسختين بنفس الوقت (لو ضغطت تشغيل يدوي أثناء الجدولة التلقائية)
 concurrency:
+  # تشترك جميع المهام التي تحفظ تقارير إلى main في مجموعة واحدة لمنع تداخل rebase/push.
   group: content-maintenance
   cancel-in-progress: false
 

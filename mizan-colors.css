@@ -4,6 +4,10 @@
    unified site theme so the existing book design stays unchanged.
 */
 :root{
+  --mizan-overlay-black-24:rgba(0,0,0,.24);
+  --mizan-overlay-black-60:rgba(0,0,0,.6);
+  --mizan-overlay-black-85:rgba(0,0,0,.85);
+  --mizan-overlay-black-20:rgba(0,0,0,.2);
   --mizan-primary-100:#C7DCFE;
   --mizan-primary-200:#93C5FD;
   --mizan-primary-300:#60A5FA;
@@ -28,22 +32,22 @@
   --mizan-info-100:#E0F2FE;
   --mizan-info-500:#0284C7;
   --mizan-info-700:#0369A1;
-  --mizan-bg-light:#F8FAFC;
+  --mizan-bg-light:#F6F8FB;
   --mizan-surface-light:#FFFFFF;
   --mizan-card-light:#FFFFFF;
-  --mizan-border-light:#E2E8F0;
-  --mizan-heading-light:#0F172A;
-  --mizan-section-heading-light:#1E293B;
+  --mizan-border-light:#E4E9F0;
+  --mizan-heading-light:#0D1728;
+  --mizan-section-heading-light:#1B2A41;
   --mizan-text-light:#334155;
-  --mizan-muted-light:#64748B;
-  --mizan-bg-dark:#0F172A;
-  --mizan-surface-dark:#1E293B;
-  --mizan-card-dark:#1E293B;
-  --mizan-border-dark:#334155;
-  --mizan-heading-dark:#F8FAFC;
-  --mizan-section-heading-dark:#E2E8F0;
-  --mizan-text-dark:#CBD5E1;
-  --mizan-muted-dark:#94A3B8;
+  --mizan-muted-light:#657286;
+  --mizan-bg-dark:#07111F;
+  --mizan-surface-dark:#0D1B2D;
+  --mizan-card-dark:#101F33;
+  --mizan-border-dark:#203249;
+  --mizan-heading-dark:#F4F7FB;
+  --mizan-section-heading-dark:#E4ECF6;
+  --mizan-text-dark:#F4F7FB;
+  --mizan-muted-dark:#9BAABD;
   --mizan-subtle-dark:#64748B;
   --mizan-muted-strong-light:#505E74;
   --mizan-bg:var(--mizan-bg-dark);
@@ -80,8 +84,106 @@
   --mizan-book-blue-spine-4:#0F1A2C;
   --mizan-shadow-sm:0 4px 15px rgba(0,0,0,.14);
   --mizan-shadow-md:0 12px 35px rgba(0,0,0,.16);
+  /* Shared component glass surfaces — centralized from repeated component declarations. */
+  --mizan-glass-white-025:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-glass-white-030:color-mix(in srgb,var(--mizan-white) 3%,transparent);
+  --mizan-glass-white-035:color-mix(in srgb,var(--mizan-white) 3.5%,transparent);
+  --mizan-glass-white-040:color-mix(in srgb,var(--mizan-white) 4%,transparent);
+  --mizan-glass-white-050:color-mix(in srgb,var(--mizan-white) 5%,transparent);
+  --mizan-glass-white-055:color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
+  --mizan-glass-white-060:color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  --mizan-glass-white-080:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-glass-primary-900-050:color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  --mizan-glass-primary-900-080:color-mix(in srgb,var(--mizan-primary-900) 8%,transparent);
+  --mizan-glass-primary-900-180:color-mix(in srgb,var(--mizan-primary-900) 18%,transparent);
+  --mizan-glass-black-120:color-mix(in srgb,var(--mizan-black) 12%,transparent);
+  --mizan-surface-glass-095:color-mix(in srgb,var(--mizan-surface) 95%,transparent);
+  /* Shared semantic elevation and decorative surfaces. */
+  --mizan-shadow-card:0 8px 24px var(--mizan-glass-primary-900-050);
+  --mizan-shadow-surface-soft:0 8px 25px var(--mizan-glass-primary-900-050);
+  --mizan-gradient-surface-light:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+  --mizan-gradient-surface-deep:linear-gradient(145deg,var(--mizan-surface),var(--mizan-primary-900));
+  --mizan-shadow-card-rest:0 10px 28px rgba(0,0,0,.14);
+  --mizan-shadow-card-raised:0 14px 35px rgba(0,0,0,.16);
+  --mizan-shadow-card-featured:0 18px 45px rgba(0,0,0,.14);
+  --mizan-gradient-glow-primary:radial-gradient(circle at 12% 20%,var(--mizan-primary-100),transparent 36%);
+  --mizan-shadow-elevated-card:0 24px 70px var(--mizan-glass-primary-900-180);
+  --mizan-shadow-card-hover:0 18px 50px var(--mizan-glass-primary-900-180);
+  /* Shared component elevations and gradients; component styles consume these tokens. */
+  --mizan-shadow-home-featured:0 18px 45px var(--mizan-glass-primary-900-080);
+  --mizan-shadow-home-floating:0 14px 35px var(--mizan-glass-primary-900-080);
+  --mizan-shadow-student-sidebar-profile:0 12px 35px color-mix(in srgb,var(--mizan-black) 14%,transparent);
+  --mizan-shadow-student-ui-card:0 12px 30px color-mix(in srgb,var(--mizan-black) 10%,transparent);
+  --mizan-shadow-student-ui-card-hover:0 14px 34px var(--mizan-glass-black-120);
+  --mizan-shadow-lawyer-dialog:0 24px 70px color-mix(in srgb,var(--mizan-black) 40%,transparent);
+  --mizan-shadow-pulpit-card-deep:0 24px 70px color-mix(in srgb,var(--mizan-black) 50%,transparent);
+  --mizan-shadow-pulpit-card-deeper:0 24px 70px color-mix(in srgb,var(--mizan-black) 55%,transparent);
+  --mizan-shadow-pulpit-card-light:0 24px 70px color-mix(in srgb,var(--mizan-black) 28%,transparent);
+  --mizan-shadow-pulpit-card-primary:0 24px 70px color-mix(in srgb,var(--mizan-primary-900) 16%,transparent);
+  --mizan-gradient-student-sidebar-profile:linear-gradient(135deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-primary-900) 45%,transparent));
+  --mizan-gradient-student-sidebar-identity:linear-gradient(135deg,var(--primary,var(--mizan-primary-500)),var(--mizan-primary-500-antique));
+  --mizan-gradient-student-sidebar-active:linear-gradient(90deg,var(--mizan-primary-500-deep),var(--primary,var(--mizan-primary-500)));
+  --mizan-gradient-student-sidebar-success:linear-gradient(135deg,color-mix(in srgb,var(--mizan-deco-green-54) 10%,transparent),color-mix(in srgb,var(--mizan-primary-900) 35%,transparent));
+  --mizan-gradient-student-sidebar-surface:linear-gradient(135deg,var(--mizan-surface),var(--mizan-bg-light));
+  --mizan-gradient-pulpit-hero:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-amber-14) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-09) 98%,transparent));
+  --mizan-gradient-pulpit-highlight:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-15) 90%,transparent),color-mix(in srgb,var(--mizan-deco-blue-08a) 98%,transparent));
+  --mizan-gradient-lawyer-card:linear-gradient(145deg,var(--mizan-surface),var(--mizan-ink-deep));
+  --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-500),var(--mizan-primary-500));
+  --mizan-gradient-home-card-shine:linear-gradient(135deg,var(--mizan-glass-white-035),transparent 45%);
+  --mizan-gradient-home-hero:linear-gradient(135deg,#07182E 0%,#0C2542 57%,#16476C 100%);
+  --mizan-shadow-home-hero:0 24px 70px color-mix(in srgb,var(--mizan-primary-900) 22%,transparent);
+  --mizan-home-hero-border:var(--mizan-glass-white-080);
+  --mizan-gradient-home-featured:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-primary-900));
+  --mizan-gradient-home-featured-light:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-14a) 78%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 94%,transparent));
+  --mizan-gradient-lawyer-primary:linear-gradient(135deg,var(--mizan-primary-500),var(--mizan-primary-500-muted));
+  --mizan-gradient-pulpit-card-deep:linear-gradient(145deg,var(--mizan-surface-dark),var(--mizan-primary-900));
+  --mizan-gradient-pulpit-card-dark:linear-gradient(145deg,var(--mizan-surface-dark),var(--mizan-bg-dark));
+  --mizan-gradient-progress-primary:linear-gradient(90deg,var(--mizan-primary-600) 0%,var(--mizan-primary-500) 48%,var(--mizan-info-500) 100%);
+  --mizan-gradient-progress-light:linear-gradient(90deg,var(--mizan-primary-300) 0%,var(--mizan-primary-200) 48%,var(--mizan-info-300) 100%);
+  --mizan-shadow-theme-header:0 4px 18px var(--mizan-glass-primary-900-050);
+  --mizan-shadow-theme-subtle:0 6px 20px color-mix(in srgb,var(--mizan-primary-900) 4%,transparent);
+  --mizan-shadow-avatar-glow:0 0 24px var(--mizan-primary-500-border);
+  --mizan-shadow-profile-focus:0 0 0 3px var(--mizan-primary-100);
+  --mizan-shadow-lawyer-admin-card:0 8px 24px var(--mizan-glass-black-120);
+  --mizan-shadow-tone-muted:0 4px 12px color-mix(in srgb,var(--mizan-muted) 22%,transparent);
+  --mizan-shadow-tone-success:0 4px 12px color-mix(in srgb,var(--mizan-success-text) 22%,transparent);
+  --mizan-shadow-tone-danger:0 4px 12px color-mix(in srgb,var(--mizan-danger-text) 22%,transparent);
+  --mizan-shadow-tone-warning:0 4px 12px color-mix(in srgb,var(--mizan-warning-text) 22%,transparent);
+  --mizan-shadow-tone-gold:0 4px 12px color-mix(in srgb,var(--mizan-gold-text) 22%,transparent);
+  --mizan-shadow-tone-info:0 4px 12px color-mix(in srgb,var(--mizan-info-text) 22%,transparent);
+  --mizan-shadow-student-ui-compact:0 8px 22px var(--mizan-glass-black-120);
+  --mizan-shadow-navigation-active:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
+  --mizan-shadow-focus-primary:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 12%,transparent);
+  --mizan-shadow-focus-field:0 0 0 3px var(--mizan-field-focus-ring);
+
+ 
+/* V5 light-mode elevation: restrained, soft shadows on light surfaces. */
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-shadow-sm:0 4px 15px rgba(14,30,52,.04);
+  --mizan-shadow-md:0 12px 35px rgba(14,30,52,.07);
+  --mizan-shadow-card:0 8px 24px rgba(14,30,52,.045);
+  --mizan-shadow-surface-soft:0 8px 25px rgba(14,30,52,.045);
+  --mizan-shadow-card-rest:0 10px 28px rgba(14,30,52,.05);
+  --mizan-shadow-card-raised:0 14px 35px rgba(14,30,52,.08);
+  --mizan-shadow-card-featured:0 18px 45px rgba(14,30,52,.07);
+  --mizan-shadow-elevated-card:0 24px 70px rgba(14,30,52,.10);
+  --mizan-shadow-card-hover:0 18px 50px rgba(14,30,52,.09);
+  --mizan-shadow-home-featured:0 18px 45px rgba(14,30,52,.07);
+  --mizan-shadow-home-floating:0 14px 35px rgba(14,30,52,.06);
+  --mizan-shadow-student-sidebar-profile:0 12px 35px rgba(14,30,52,.07);
+  --mizan-shadow-student-ui-card:0 12px 30px rgba(14,30,52,.05);
+  --mizan-shadow-student-ui-card-hover:0 14px 34px rgba(14,30,52,.08);
+  --mizan-shadow-lawyer-admin-card:0 8px 24px rgba(14,30,52,.05);
+  --mizan-shadow-theme-header:0 4px 18px rgba(14,30,52,.05);
+  --mizan-shadow-theme-subtle:0 6px 20px rgba(14,30,52,.035);
+  --mizan-shadow-navigation-active:0 3px 12px rgba(14,30,52,.07),inset 0 1px 0 rgba(255,255,255,.85);
 }
-html[data-theme="light"]{
+  --mizan-gradient-status-success:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-success-100));
+  --mizan-gradient-status-info:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-info-100));
+  --mizan-gradient-card-glass-primary:linear-gradient(145deg,var(--mizan-glass-white-035),var(--mizan-primary-100));
+  --mizan-gradient-card-glass-subtle:linear-gradient(145deg,var(--mizan-glass-white-035),color-mix(in srgb,var(--mizan-white) 1.5%,transparent));
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-bg:var(--mizan-bg-light);
   --mizan-surface:var(--mizan-surface-light);
   --mizan-card:var(--mizan-card-light);
@@ -98,28 +200,36 @@ html[data-theme="light"]{
 :root{
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-dark);
+  --gold:var(--mizan-gold-accent);
   --card-bg:var(--mizan-card-dark);
   --text-primary:var(--mizan-heading-dark);
   --text-secondary:var(--mizan-muted-dark);
   --border:var(--mizan-border-dark);
   --success:var(--mizan-success-500);
+  --green:var(--mizan-success-500);
   --error:var(--mizan-danger-500);
+  --red:var(--mizan-danger-500);
+  --warning:var(--mizan-warning-500);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --primary:var(--mizan-primary-500);
   --bg-dark:var(--mizan-bg-light);
+  --gold:var(--mizan-gold-accent);
   --card-bg:var(--mizan-surface-light);
   --text-primary:var(--mizan-text-light);
   --text-secondary:var(--mizan-muted-light);
   --border:var(--mizan-border-light);
   --success:var(--mizan-success-700);
+  --green:var(--mizan-success-700);
   --error:var(--mizan-danger-700);
+  --red:var(--mizan-danger-700);
+  --warning:var(--mizan-warning-700);
 }
 
 /* Central compatibility aliases for legacy component variables. */
 :root{
-  --mizan-surface-2-light:#F1F5F9;
-  --mizan-surface-2-dark:#0F172A;
+  --mizan-surface-2-light:#F9FAFC;
+  --mizan-surface-2-dark:#101F33;
   --mizan-danger-soft:var(--mizan-danger-100);
   --mizan-success-soft:var(--mizan-success-100);
   --mizan-danger-border:var(--mizan-danger-500);
@@ -133,7 +243,7 @@ html[data-theme="light"]{
   --mizan-info-light:var(--mizan-info-500);
   --mizan-ink-soft:var(--mizan-surface-dark);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-surface-soft:var(--mizan-border-light);
   --mizan-ink-soft:var(--mizan-surface-light);
 }
@@ -150,6 +260,15 @@ html[data-theme="light"]{
   --mizan-neutral-800:#1E293B;
   --mizan-neutral-950:#020617;
   --mizan-black:#000000;
+  --mizan-overlay-danger-40:rgba(239,68,68,.4);
+  --mizan-overlay-dark-20:rgba(0,0,0,.2);
+  --mizan-overlay-warning-5:rgba(245,158,11,.05);
+  --mizan-overlay-gold-10:rgba(194,157,95,.1);
+  --mizan-header-glass-mid:rgba(16,29,45,.82);
+  --mizan-header-glass-deep:rgba(25,39,57,.94);
+  --mizan-header-gold-line:rgba(143,107,52,.22);
+  --mizan-header-gold-glow:rgba(143,107,52,.07);
+  --mizan-header-gold-accent:rgba(143,107,52,.3);
 }
 /* ===== Extended semantic steps (used as text on dark / soft fills) ===== */
 :root{
@@ -181,7 +300,7 @@ html[data-theme="light"]{
   --mizan-danger-text:var(--mizan-danger-400);
   --mizan-on-primary:var(--mizan-white);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-accent-text:var(--mizan-primary-600);
   --mizan-accent-tile-bg:var(--mizan-primary-100);
   --mizan-accent-tile-fg:var(--mizan-primary-700);
@@ -227,9 +346,9 @@ html[data-theme="light"]{
   --mizan-gold-tint:var(--mizan-gold-subtle);
   --mizan-gold-tint-border:color-mix(in srgb,var(--mizan-gold-primary) 38%,transparent);
   --mizan-gold-gradient:linear-gradient(135deg,var(--mizan-gold-light) 0%,var(--mizan-gold-primary) 55%,var(--mizan-gold-light) 100%);
-  --mizan-focus-ring:var(--mizan-gold-accent);
+  --mizan-focus-ring:var(--mizan-primary-500);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-gold-accent:var(--mizan-gold-mid);
   --mizan-gold-text:var(--mizan-gold-deep);
   --mizan-gold-line:var(--mizan-gold-mid);
@@ -264,24 +383,26 @@ html[data-theme="light"]{
    Light values equal the previous blue values exactly, so the light theme is visually unchanged.
    Dark: gold-light text on a soft gold tint (8.7:1) with a gold hairline border. */
 :root{
-  --mizan-btn-primary-bg:var(--mizan-gold-subtle);
-  --mizan-btn-primary-bg-hover:color-mix(in srgb,var(--mizan-gold-primary) 26%,transparent);
-  --mizan-btn-primary-bg-strong:color-mix(in srgb,var(--mizan-gold-primary) 34%,transparent);
-  --mizan-btn-primary-bg-grad:var(--mizan-gold-subtle);
-  --mizan-btn-primary-fg:var(--mizan-gold-light);
-  --mizan-btn-primary-border:var(--mizan-gold-primary);
-  --mizan-btn-primary-glow:var(--mizan-gold-primary);
-  --mizan-section-icon-fg:var(--mizan-gold-primary);
-  --mizan-section-icon-bg:var(--mizan-gold-subtle);
-  --mizan-section-icon-border:var(--mizan-gold-tint-border);
-}
-html[data-theme="light"]{
   --mizan-btn-primary-bg:var(--mizan-primary-500);
   --mizan-btn-primary-bg-hover:var(--mizan-primary-600);
   --mizan-btn-primary-bg-strong:var(--mizan-primary-700);
   --mizan-btn-primary-bg-grad:linear-gradient(145deg,var(--mizan-primary-600),var(--mizan-primary-500));
   --mizan-btn-primary-fg:var(--mizan-white);
   --mizan-btn-primary-border:var(--mizan-primary-500);
+  --mizan-btn-primary-border-hover:var(--mizan-primary-600);
+  --mizan-btn-primary-glow:var(--mizan-primary-500);
+  --mizan-section-icon-fg:var(--mizan-gold-primary);
+  --mizan-section-icon-bg:var(--mizan-gold-subtle);
+  --mizan-section-icon-border:var(--mizan-gold-tint-border);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-btn-primary-bg:var(--mizan-primary-500);
+  --mizan-btn-primary-bg-hover:var(--mizan-primary-600);
+  --mizan-btn-primary-bg-strong:var(--mizan-primary-700);
+  --mizan-btn-primary-bg-grad:linear-gradient(145deg,var(--mizan-primary-600),var(--mizan-primary-500));
+  --mizan-btn-primary-fg:var(--mizan-white);
+  --mizan-btn-primary-border:var(--mizan-primary-500);
+  --mizan-btn-primary-border-hover:var(--mizan-primary-600);
   --mizan-btn-primary-glow:var(--mizan-primary-500);
   --mizan-section-icon-fg:var(--mizan-primary-500);
   --mizan-section-icon-bg:var(--mizan-primary-100);
@@ -315,18 +436,342 @@ html[data-theme="light"]{
   --mizan-field-bg:color-mix(in srgb,var(--mizan-black) 22%,transparent);
   --mizan-field-border:var(--mizan-neutral-500);
   --mizan-field-border-hover:var(--mizan-neutral-400);
-  --mizan-field-focus:var(--mizan-gold-primary);
-  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-primary) 24%,transparent);
+  --mizan-field-focus:var(--mizan-primary-500);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-primary-500) 24%,transparent);
   --mizan-warning-text:var(--mizan-warning-200);
   --mizan-info-text:var(--mizan-info-300);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-surface-2:var(--mizan-surface-2-light);
   --mizan-field-bg:var(--mizan-white);
   --mizan-field-border:#7B8799;
   --mizan-field-border-hover:#5F6C80;
-  --mizan-field-focus:var(--mizan-gold-mid);
-  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-mid) 22%,transparent);
+  --mizan-field-focus:var(--mizan-primary-600);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-primary-500) 22%,transparent);
   --mizan-warning-text:var(--mizan-warning-700);
   --mizan-info-text:var(--mizan-info-700);
+}
+
+/* ===== Central theme-aware menu trigger tokens =====
+   The menu button's surface, border, icon color, and elevation are owned here.
+   Component styles consume these tokens; they must not hard-code theme colors.
+*/
+:root{
+  --mizan-menu-button-bg:linear-gradient(145deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-white) 3.5%,transparent));
+  --mizan-menu-button-fg:var(--mizan-primary-300);
+  --mizan-menu-button-border:var(--mizan-primary-500-border);
+  --mizan-menu-button-shadow:0 1px 3px color-mix(in srgb,var(--mizan-black) 12%,transparent);
+  --mizan-menu-button-bg-hover:linear-gradient(145deg,var(--mizan-primary-500-border),color-mix(in srgb,var(--mizan-white) 5.5%,transparent));
+  --mizan-menu-button-fg-hover:var(--mizan-primary-300);
+  --mizan-menu-button-border-hover:var(--mizan-primary-300);
+  --mizan-menu-button-shadow-hover:0 2px 5px color-mix(in srgb,var(--mizan-black) 14%,transparent);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-menu-button-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light));
+  --mizan-menu-button-fg:var(--mizan-primary-700);
+  --mizan-menu-button-border:color-mix(in srgb,var(--mizan-primary-700) 14%,transparent);
+  --mizan-menu-button-shadow:0 1px 3px color-mix(in srgb,var(--mizan-primary-900) 4%,transparent);
+  --mizan-menu-button-bg-hover:linear-gradient(145deg,var(--mizan-primary-100),var(--mizan-surface-light));
+  --mizan-menu-button-fg-hover:var(--mizan-primary-800);
+  --mizan-menu-button-border-hover:var(--mizan-primary-500-border);
+}
+
+/* ===== Central button elevation tokens ===== */
+:root{
+  --mizan-btn-primary-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
+}
+
+/* Shared button visual tokens: color, gradient, border, and elevation values live here. */
+:root{
+  --mizan-btn-surface-shadow:0 7px 16px color-mix(in srgb,var(--mizan-primary-500) 18%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 22%,transparent);
+  --mizan-btn-surface-shadow-hover:0 10px 22px color-mix(in srgb,var(--mizan-primary-500) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-primary-500) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
+  --mizan-btn-surface-gradient:linear-gradient(135deg,var(--mizan-primary-400) 0%,var(--mizan-primary-500) 48%,var(--mizan-primary-600) 100%);
+  --mizan-btn-surface-gradient-hover:linear-gradient(135deg,var(--mizan-primary-500) 0%,var(--mizan-primary-600) 50%,var(--mizan-primary-700) 100%);
+  --mizan-btn-surface-shine:linear-gradient(90deg,transparent,color-mix(in srgb,var(--mizan-white) 22%,transparent),transparent);
+}
+
+/* Chapter CTA and app-install button tokens. */
+:root{
+  --mizan-chapter-button-shadow:0 7px 16px color-mix(in srgb,var(--mizan-black) 16%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 20%,transparent);
+  --mizan-install-button-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-bg-dark) 96%,transparent),var(--mizan-header-glass-deep));
+  --mizan-install-button-fg:var(--mizan-primary-300);
+  --mizan-install-button-border:var(--mizan-primary-500-border);
+  --mizan-install-button-border-hover:var(--mizan-primary-300);
+  --mizan-install-button-shadow:0 5px 16px color-mix(in srgb,var(--mizan-black) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 6%,transparent);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-install-button-bg:color-mix(in srgb,var(--mizan-white) 97%,transparent);
+  --mizan-install-button-fg:var(--mizan-primary-700);
+  --mizan-install-button-border:var(--mizan-header-gold-accent);
+  --mizan-install-button-border-hover:var(--mizan-header-gold-accent);
+  --mizan-install-button-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
+}
+
+/* Secondary, outline, and soft button variants. */
+:root{
+  --mizan-btn-outline-bg:transparent;
+  --mizan-btn-outline-fg:var(--mizan-primary-500);
+  --mizan-btn-outline-border:var(--mizan-primary-500);
+  --mizan-btn-outline-bg-hover:var(--mizan-primary-500);
+  --mizan-btn-outline-fg-hover:var(--mizan-primary-900);
+  --mizan-btn-ghost-bg:transparent;
+  --mizan-btn-ghost-fg:var(--mizan-muted);
+  --mizan-btn-ghost-border:var(--mizan-border);
+  --mizan-btn-ghost-bg-hover:var(--mizan-card);
+  --mizan-btn-ghost-fg-hover:var(--mizan-primary-500);
+  --mizan-btn-ghost-border-hover:var(--mizan-primary-500);
+  --mizan-btn-soft-bg:var(--mizan-primary-100);
+  --mizan-btn-soft-fg:var(--mizan-primary-500);
+  --mizan-btn-soft-border:var(--mizan-primary-500);
+}
+
+
+/* ===== Sidebar and utility-surface semantic tokens ===== */
+:root{
+  --mizan-sidebar-backdrop:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent);
+  --mizan-sidebar-panel-bg:var(--mizan-surface-dark);
+  --mizan-sidebar-panel-border:var(--mizan-primary-500-border);
+  --mizan-sidebar-panel-shadow:-20px 0 60px color-mix(in srgb,var(--mizan-black) 35%,transparent);
+  --mizan-sidebar-close-bg:var(--mizan-card-dark);
+  --mizan-sidebar-close-fg:var(--mizan-text-dark);
+  --mizan-sidebar-close-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-sidebar-brand-border:var(--mizan-surface-soft);
+  --mizan-sidebar-account-bg:var(--mizan-surface-dark);
+  --mizan-sidebar-account-border:var(--mizan-border-dark);
+  --mizan-sidebar-account-shadow:0 8px 24px color-mix(in srgb,var(--mizan-navy-deep) 18%,transparent);
+  --mizan-sidebar-avatar-bg:linear-gradient(135deg,var(--mizan-primary-500),var(--mizan-primary-700));
+  --mizan-sidebar-divider:color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  --mizan-sidebar-item-active-bg:var(--mizan-primary-100);
+  --mizan-sidebar-item-active-fg:var(--mizan-primary-300);
+  --mizan-sidebar-item-active-border:var(--mizan-primary-500-border);
+  --mizan-sidebar-sub-border:var(--mizan-primary-100);
+  --mizan-sidebar-action-bg:var(--mizan-bg-dark);
+  --mizan-sidebar-action-fg:var(--mizan-text-dark);
+  --mizan-sidebar-action-border:var(--mizan-border-dark);
+  --mizan-sidebar-action-bg-hover:var(--mizan-primary-500);
+  --mizan-sidebar-action-fg-hover:var(--mizan-white);
+  --mizan-sidebar-action-border-hover:var(--mizan-primary-500);
+  --mizan-header-tools-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-bg-dark) 92%,transparent),var(--mizan-header-glass-mid));
+  --mizan-header-tools-border:var(--mizan-primary-500-border);
+  --mizan-header-tools-shadow:0 10px 30px color-mix(in srgb,var(--mizan-black) 20%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 4.5%,transparent);
+  --mizan-header-tools-glow:linear-gradient(90deg,transparent,var(--mizan-primary-100),transparent);
+  --mizan-header-tools-glow-opacity:.8;
+  --mizan-install-hint-bg:color-mix(in srgb,var(--mizan-bg-dark) 96%,transparent);
+  --mizan-install-hint-fg:var(--mizan-text-dark);
+  --mizan-install-hint-border:var(--mizan-primary-500-border);
+  --mizan-install-hint-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  --mizan-install-hint-heading:var(--mizan-primary-300);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-sidebar-backdrop:color-mix(in srgb,var(--mizan-bg-dark) 38%,transparent);
+  --mizan-sidebar-panel-bg:linear-gradient(180deg,var(--mizan-surface),var(--mizan-bg-light) 72%,var(--mizan-bg-light));
+  --mizan-sidebar-panel-border:var(--mizan-border-light);
+  --mizan-sidebar-panel-shadow:-20px 0 60px color-mix(in srgb,var(--mizan-bg-dark) 16%,transparent);
+  --mizan-sidebar-close-bg:var(--mizan-bg-light);
+  --mizan-sidebar-close-fg:var(--mizan-muted-light);
+  --mizan-sidebar-close-border:var(--mizan-border-light);
+  --mizan-sidebar-brand-border:var(--mizan-border-light);
+  --mizan-sidebar-account-bg:var(--mizan-surface);
+  --mizan-sidebar-account-border:var(--mizan-border-light);
+  --mizan-sidebar-account-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 10%,transparent);
+  --mizan-sidebar-divider:var(--mizan-border-light);
+  --mizan-sidebar-item-active-bg:var(--mizan-primary-500-pale);
+  --mizan-sidebar-item-active-fg:var(--mizan-primary-700);
+  --mizan-sidebar-item-active-border:var(--mizan-primary-200);
+  --mizan-sidebar-sub-border:var(--mizan-primary-100);
+  --mizan-sidebar-action-bg:var(--mizan-bg-light);
+  --mizan-sidebar-action-fg:var(--mizan-heading);
+  --mizan-sidebar-action-border:var(--mizan-border-light);
+  --mizan-sidebar-action-bg-hover:var(--mizan-primary-500);
+  --mizan-sidebar-action-fg-hover:var(--mizan-white);
+  --mizan-sidebar-action-border-hover:var(--mizan-primary-500);
+  --mizan-header-tools-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-white) 96%,transparent),color-mix(in srgb,var(--mizan-bg-light) 92%,transparent));
+  --mizan-header-tools-border:var(--mizan-header-gold-line);
+  --mizan-header-tools-shadow:0 10px 30px color-mix(in srgb,var(--mizan-bg-dark) 10%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 80%,transparent);
+  --mizan-header-tools-glow:linear-gradient(90deg,transparent,var(--mizan-header-gold-glow),transparent);
+  --mizan-install-hint-bg:color-mix(in srgb,var(--mizan-white) 97%,transparent);
+  --mizan-install-hint-fg:var(--mizan-heading);
+  --mizan-install-hint-border:var(--mizan-header-gold-accent);
+  --mizan-install-hint-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
+  --mizan-install-hint-heading:var(--mizan-primary-700);
+}
+
+
+/* Petition-specific surface, border and shadow tokens. */
+:root{
+  --mizan-petition-search-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-petition-search-bg:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-petition-template-border:color-mix(in srgb,var(--mizan-warning-500) 20%,transparent);
+  --mizan-petition-template-border-hover:color-mix(in srgb,var(--mizan-warning-500) 52%,transparent);
+  --mizan-petition-template-shadow-hover:0 14px 35px color-mix(in srgb,var(--mizan-black) 20%,transparent);
+  --mizan-petition-panel-bg:color-mix(in srgb,var(--mizan-deco-blue-11a) 82%,transparent);
+  --mizan-petition-document-shadow:0 10px 30px color-mix(in srgb,var(--mizan-black) 25%,transparent);
+  --mizan-petition-watermark:color-mix(in srgb,var(--mizan-deco-amber-54) 4.5%,transparent);
+  --mizan-petition-letterhead-rule:linear-gradient(90deg,var(--mizan-primary-800) 0%,var(--mizan-primary-500) 50%,var(--mizan-primary-800) 100%);
+}
+
+
+/* Petition component gradients; palette values remain centralized here. */
+:root{
+  --mizan-petition-hero-bg:linear-gradient(145deg,color-mix(in srgb,var(--mizan-primary-900) 88%,var(--mizan-warning-700) 12%),color-mix(in srgb,var(--mizan-deco-blue-10b) 97%,transparent));
+  --mizan-petition-template-bg:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-19) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 98%,transparent));
+  --mizan-petition-light-surface-gradient:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+}
+
+
+/* ===== style.css semantic color/effect tokens =====
+   Keep component styles free of raw color compositions. Book-cover colors remain
+   owned by the dedicated 3D book design and are intentionally not changed here.
+*/
+:root{
+  --mizan-transparent:transparent;
+  --mizan-page-background:radial-gradient(circle at 50% -10%,color-mix(in srgb,var(--mizan-primary-500) 7.5%,transparent),transparent 31%),radial-gradient(circle at 0% 50%,color-mix(in srgb,var(--mizan-deco-blue-32) 7.5%,transparent),transparent 28%),var(--bg-dark);
+  --mizan-header-shadow:0 8px 30px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  --mizan-search-border:color-mix(in srgb,var(--mizan-deco-blue-56) 25%,transparent);
+  --mizan-search-shadow:0 8px 24px color-mix(in srgb,var(--mizan-black) 10%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-search-focus-border:color-mix(in srgb,var(--mizan-primary-500) 68%,transparent);
+  --mizan-search-focus-shadow:0 0 0 3px color-mix(in srgb,var(--mizan-primary-500) 8%,transparent),0 10px 28px color-mix(in srgb,var(--mizan-black) 14%,transparent);
+  --mizan-question-card-border:color-mix(in srgb,var(--mizan-primary-500) 30%,transparent);
+  --mizan-chapter-card-border:color-mix(in srgb,var(--mizan-deco-blue-56) 24%,transparent);
+  --mizan-auth-overlay-bg:color-mix(in srgb,var(--mizan-neutral-950) 82%,transparent);
+  --mizan-auth-content-bg:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-deco-blue-11));
+  --mizan-auth-content-shadow:0 24px 80px color-mix(in srgb,var(--mizan-black) 55%,transparent);
+  --mizan-auth-divider-line:color-mix(in srgb,var(--mizan-neutral-400) 25%,transparent);
+}
+
+
+/* Light-theme authentication surfaces, kept in the central palette. */
+:root{
+  --mizan-auth-light-overlay-bg:color-mix(in srgb,var(--mizan-primary-900) 38%,transparent);
+  --mizan-auth-light-content-bg:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+  --mizan-auth-light-content-shadow:0 24px 80px color-mix(in srgb,var(--mizan-primary-900) 18%,transparent);
+}
+
+
+/* ===== Home test dashboard and contact section semantic tokens =====
+   Shared visual values for home.css and theme-aware section styling.
+   Keep component files focused on layout and behavior.
+*/
+:root{
+  --mizan-test-dashboard-border:color-mix(in srgb,var(--mizan-deco-blue-61) 24%,transparent);
+  --mizan-test-dashboard-border-hover:color-mix(in srgb,var(--mizan-deco-blue-61) 48%,transparent);
+  --mizan-test-dashboard-bg:radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--mizan-deco-blue-61) 12%,transparent),transparent 42%),linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-20) 78%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10a) 97%,transparent));
+  --mizan-test-dashboard-icon-bg:color-mix(in srgb,var(--mizan-deco-blue-61) 10%,transparent);
+  --mizan-test-dashboard-icon-fg:var(--mizan-primary-400);
+  --mizan-test-dashboard-action-fg:var(--mizan-primary-300);
+  --mizan-test-dashboard-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-deco-blue-44) 10%,transparent);
+  --mizan-contact-feature-border:color-mix(in srgb,var(--mizan-deco-teal-51) 28%,transparent);
+  --mizan-contact-feature-border-hover:color-mix(in srgb,var(--mizan-deco-teal-51) 55%,transparent);
+  --mizan-contact-feature-bg:radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--mizan-deco-teal-51) 14%,transparent),transparent 42%),linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-teal-17) 82%,transparent),color-mix(in srgb,var(--mizan-deco-blue-08) 98%,transparent));
+  --mizan-contact-feature-icon-bg:color-mix(in srgb,var(--mizan-deco-teal-51) 11%,transparent);
+  --mizan-contact-feature-icon-fg:var(--mizan-cyan-soft);
+  --mizan-contact-feature-glow:color-mix(in srgb,var(--mizan-deco-teal-51) 7%,transparent);
+  --mizan-contact-feature-action-fg:var(--mizan-info-500);
+  --mizan-contact-feature-hover-shadow:0 12px 32px color-mix(in srgb,var(--mizan-deco-teal-41) 12%,transparent);
+  --mizan-contact-panel-border:var(--mizan-primary-100);
+  --mizan-contact-panel-shadow:0 18px 45px var(--mizan-shadow-sm);
+  --mizan-contact-card-hover-shadow:0 12px 28px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  --mizan-contact-whatsapp-icon-bg:color-mix(in srgb,var(--mizan-brand-whatsapp) 12%,transparent);
+  --mizan-contact-whatsapp-icon-fg:var(--mizan-brand-whatsapp);
+  --mizan-contact-whatsapp-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-brand-whatsapp) 10%,transparent);
+  --mizan-contact-telegram-icon-bg:color-mix(in srgb,var(--mizan-brand-telegram) 12%,transparent);
+  --mizan-contact-telegram-icon-fg:var(--mizan-brand-telegram);
+  --mizan-contact-telegram-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-brand-telegram) 10%,transparent);
+  --mizan-contact-email-border:color-mix(in srgb,var(--mizan-brand-instagram) 22%,transparent);
+  --mizan-contact-email-icon-bg:color-mix(in srgb,var(--mizan-brand-instagram) 10%,transparent);
+  --mizan-contact-email-icon-fg:var(--mizan-brand-instagram);
+  --mizan-contact-instagram-icon-bg:color-mix(in srgb,var(--mizan-brand-instagram) 11%,transparent);
+  --mizan-contact-instagram-icon-fg:var(--mizan-brand-instagram);
+  --mizan-contact-instagram-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-brand-instagram) 10%,transparent);
+  --mizan-contact-facebook-icon-bg:color-mix(in srgb,var(--mizan-brand-facebook) 11%,transparent);
+  --mizan-contact-facebook-icon-fg:var(--mizan-brand-facebook);
+  --mizan-contact-facebook-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-brand-facebook) 10%,transparent);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-test-dashboard-border:var(--mizan-primary-200);
+  --mizan-test-dashboard-border-hover:var(--mizan-primary-500);
+  --mizan-test-dashboard-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  --mizan-test-dashboard-icon-bg:var(--mizan-primary-100);
+  --mizan-test-dashboard-icon-fg:var(--mizan-primary-700);
+  --mizan-test-dashboard-action-fg:var(--mizan-primary-700);
+  --mizan-test-dashboard-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-primary-900) 9%,transparent);
+  --mizan-contact-feature-border:var(--mizan-info-500);
+  --mizan-contact-feature-border-hover:var(--mizan-info-700);
+  --mizan-contact-feature-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-info-100));
+  --mizan-contact-feature-icon-bg:var(--mizan-info-100);
+  --mizan-contact-feature-icon-fg:var(--mizan-info-700);
+  --mizan-contact-feature-glow:color-mix(in srgb,var(--mizan-info-500) 7%,transparent);
+  --mizan-contact-feature-action-fg:var(--mizan-info-700);
+  --mizan-contact-feature-hover-shadow:0 12px 32px color-mix(in srgb,var(--mizan-info-700) 10%,transparent);
+  --mizan-contact-panel-border:var(--mizan-border-light);
+  --mizan-contact-card-hover-shadow:0 12px 28px color-mix(in srgb,var(--mizan-primary-900) 10%,transparent);
+  --mizan-contact-whatsapp-icon-bg:var(--mizan-success-100);
+  --mizan-contact-whatsapp-icon-fg:var(--mizan-success-700);
+  --mizan-contact-whatsapp-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-success-700) 10%,transparent);
+  --mizan-contact-telegram-icon-bg:var(--mizan-info-100);
+  --mizan-contact-telegram-icon-fg:var(--mizan-info-700);
+  --mizan-contact-telegram-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-info-700) 10%,transparent);
+  --mizan-contact-email-border:var(--mizan-border-light);
+  --mizan-contact-email-icon-bg:var(--mizan-border-light);
+  --mizan-contact-email-icon-fg:var(--mizan-secondary-text);
+  --mizan-contact-instagram-icon-bg:var(--mizan-primary-100);
+  --mizan-contact-instagram-icon-fg:var(--mizan-primary-700);
+  --mizan-contact-instagram-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-primary-700) 10%,transparent);
+  --mizan-contact-facebook-icon-bg:var(--mizan-primary-100);
+  --mizan-contact-facebook-icon-fg:var(--mizan-primary-700);
+  --mizan-contact-facebook-hover-shadow:0 12px 30px color-mix(in srgb,var(--mizan-primary-700) 10%,transparent);
+}
+
+
+/* Contact channel card semantics shared by home.css and unified theme. */
+:root{
+  --mizan-contact-phone-border:var(--mizan-warning-200);
+  --mizan-contact-phone-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-warning-100));
+  --mizan-contact-email-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light));
+  --mizan-contact-social-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  --mizan-contact-instagram-border:var(--mizan-primary-300);
+  --mizan-contact-facebook-border:var(--mizan-primary-300);
+  --mizan-contact-whatsapp-border-dark:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent);
+  --mizan-contact-whatsapp-icon-bg-dark:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent);
+  --mizan-contact-telegram-border-dark:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent);
+  --mizan-contact-telegram-icon-bg-dark:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent);
+  --mizan-contact-phone-border-dark:var(--mizan-gold-tint-border);
+  --mizan-contact-phone-icon-bg-dark:var(--mizan-gold-tint);
+  --mizan-contact-phone-icon-fg-dark:var(--mizan-gold-text);
+  --mizan-contact-instagram-border-dark:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent);
+  --mizan-contact-instagram-icon-bg-dark:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent);
+  --mizan-contact-facebook-border-dark:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent);
+  --mizan-contact-facebook-icon-bg-dark:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent);
+  --mizan-contact-facebook-icon-fg-dark:var(--mizan-info-300);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-contact-phone-border:var(--mizan-warning-200);
+  --mizan-contact-phone-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-warning-100));
+  --mizan-contact-email-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light));
+  --mizan-contact-social-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  --mizan-contact-instagram-border:var(--mizan-primary-300);
+  --mizan-contact-facebook-border:var(--mizan-primary-300);
+}
+
+
+/* Responsive quick navigation — semantic colors for both themes. */
+:root{
+  --mizan-mobile-nav-bg:color-mix(in srgb,var(--mizan-surface-dark) 92%,transparent);
+  --mizan-mobile-nav-border:var(--mizan-border-dark);
+  --mizan-mobile-nav-text:var(--mizan-muted-dark);
+  --mizan-mobile-nav-active-bg:color-mix(in srgb,var(--mizan-primary-500) 16%,var(--mizan-surface-dark));
+  --mizan-mobile-nav-active-text:var(--mizan-primary-200);
+  --mizan-mobile-nav-shadow:0 8px 28px color-mix(in srgb,var(--mizan-black) 24%,transparent);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-mobile-nav-bg:color-mix(in srgb,var(--mizan-white) 96%,transparent);
+  --mizan-mobile-nav-border:var(--mizan-border-light);
+  --mizan-mobile-nav-text:var(--mizan-muted-light);
+  --mizan-mobile-nav-active-bg:var(--mizan-primary-100);
+  --mizan-mobile-nav-active-text:var(--mizan-primary-700);
+  --mizan-mobile-nav-shadow:0 8px 28px color-mix(in srgb,var(--mizan-primary-900) 10%,transparent);
+}
+
+html[data-admin-theme="light"]{
+  --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-700),var(--mizan-primary-700));
 }

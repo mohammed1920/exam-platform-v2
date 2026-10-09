@@ -1,20 +1,25 @@
-name: Maintain Book Index
+name: Maintain Legal Data Indexes
 
 on:
   push:
     branches: [main]
     paths:
       - 'data/**'
-      - '!data/books.json'
+      - 'scripts/generate-question-metadata.mjs'
+      - 'scripts/build-search-index.js'
+      - 'update_questions.py'
+      - 'integrity_check.py'
+      - '.github/workflows/auto-update-books.yml'
   workflow_dispatch:
 
-# يمنع سباق عمليتين من إعادة كتابة books.json فوق بعضهما.
+# One serialized pipeline keeps chapter counts, question metadata and search index in sync.
 concurrency:
   group: content-maintenance
   cancel-in-progress: false
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   maintain:
@@ -30,21 +35,41 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Repair missing question identities and update chapter counts
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Repair question identities and update chapter counts
         run: python3 update_questions.py
 
       - name: Generate non-destructive data integrity report
         run: python3 integrity_check.py
 
+      - name: Generate question metadata
+        run: node scripts/generate-question-metadata.mjs
+
+      - name: Build search index
+        run: node scripts/build-search-index.js
+
       - name: Commit safe maintenance changes
+        id: maintenance
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/books.json data/*/chapter_*.json reports/data_integrity_report.json
+          git add data/books.json data/*/chapter_*.json data/question-metadata.json data/search-index.json reports/data_integrity_report.json
           if git diff --cached --quiet; then
-            echo "لا توجد صيانة تلقائية مطلوبة."
+            echo "No generated data changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "صيانة تلقائية آمنة لفهرس الكتب ومعرفات الأسئلة"
+          git commit -m "chore: maintain legal data indexes and integrity report"
           git pull --rebase origin main
           git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy updated public data
+        if: steps.maintenance.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update.yml --ref main

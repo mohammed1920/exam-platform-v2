@@ -26,18 +26,18 @@ jobs:
       - name: Repair missing question identities before deployment
         run: python3 update_questions.py
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Validate project before deployment
-        run: python3 validate_project.py
+        run: |
+          node scripts/validate-static-project.mjs
+          python3 validate_project.py
 
       - name: Build public site only
-        run: |
-          rm -rf dist
-          mkdir -p dist
-          cp index.html app.js firebase-auth.js style.css manifest.json dist/
-          cp admin.html dist/
-          cp -r engine icons data dist/
-          # ننشر لوحة الأدمن القديمة كما كانت سابقاً؛ لا ننشر التقارير أو ملفات Python أو الوثائق أو إعدادات CI.
-          touch dist/.nojekyll
+        run: bash scripts/build-pages-bundle.sh dist
 
       - uses: actions/configure-pages@v5
 
