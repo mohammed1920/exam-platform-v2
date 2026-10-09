@@ -14,7 +14,7 @@
   vertical-align:top;
 }
 .lawyer-admin-table th{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .lawyer-admin-actions{
   display:flex;
@@ -118,7 +118,7 @@
 }
 .firebase-admin-menu-card i{
   font-size:var(--mizan-font-size-xl);
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .firebase-admin-menu-card strong{
   font-size:var(--mizan-font-size-sm);
@@ -148,7 +148,7 @@
 .firebase-admin-subview-back{
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-glass-white-025);
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
   border-radius:var(--mizan-radius-9);
   padding:9px 13px;
   margin-bottom:14px;
