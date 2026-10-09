@@ -255,14 +255,14 @@ html:not([data-theme="light"]) .question-text{
   color:var(--mizan-neutral-50);
 }
 .progress-bar-container{
-  background:var(--mizan-border) !important;
+  background:var(--mizan-border);
 }
 .progress-bar-fill{
   background:var(--mizan-primary-500);
 }
 
 .option-btn:hover{
-  border-color:var(--mizan-primary-500) !important;
+  border-color:var(--mizan-primary-500);
 }
 /* Forum / pulpit */
 .mizan-pulpit-kicker,
@@ -271,7 +271,7 @@ html:not([data-theme="light"]) .question-text{
 }
 .mizan-pulpit-toolbar h3,
 .mizan-article-card h3{
-  color:var(--mu-section-heading) !important;
+  color:var(--mu-section-heading);
 }
 /* Contact */
 .contact-card-action{
@@ -302,7 +302,7 @@ html:not([data-theme="light"]) .question-text{
   color:var(--mizan-neutral-200);
 }
 .footer-bottom p{
-  color:var(--mizan-neutral-400) !important;
+  color:var(--mizan-neutral-400);
 }
 html:not([data-theme="light"]) .footer-info-box,
 html:not([data-theme="light"]) .footer-faq-list details{
@@ -592,8 +592,8 @@ html body{
   border-color:var(--mizan-border);
 }
 .question-search-item{
-  border-color:var(--mizan-border) !important;
-  color:var(--mizan-text) !important;
+  border-color:var(--mizan-border);
+  color:var(--mizan-text);
 }
 .question-search-item:active{
   background:var(--mizan-primary-100) !important;
@@ -777,7 +777,7 @@ html body{
   border-color:var(--mizan-primary-200);
 }
 .mizan-article-card h3{
-  color:var(--mizan-heading) !important;
+  color:var(--mizan-heading);
 }
 /* Footer + information pages */
 html body footer{
@@ -807,15 +807,15 @@ html body footer{
 }
 /* Sidebar */
 .platform-sidebar-panel{
-  background:var(--mizan-surface) !important;
+  background:var(--mizan-surface);
   border-color:var(--mizan-border);
 }
 .platform-sidebar-backdrop{
-  background:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent) !important;
+  background:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent);
 }
 .platform-sidebar-close{
-  background:var(--mizan-card) !important;
-  color:var(--mizan-text) !important;
+  background:var(--mizan-card);
+  color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
 .platform-sidebar-brand strong{
@@ -982,10 +982,10 @@ html body footer #visitor-count,
   color:var(--mizan-primary-300);
 }
 html body footer .footer-links button{
-  color:var(--mizan-muted-dark) !important;
+  color:var(--mizan-muted-dark);
 }
 html body footer .footer-links button:hover{
-  color:var(--mizan-heading-dark) !important;
+  color:var(--mizan-heading-dark);
 }
 html[data-theme="light"] .footer-links span{
   color:var(--mizan-muted-dark);
@@ -995,7 +995,7 @@ html[data-theme="light"] .footer-links span{
   color:var(--mizan-btn-primary-fg);
 }
 .auth-submit-btn:hover:not(:disabled){
-  background:var(--mizan-btn-primary-bg-hover) !important;
+  background:var(--mizan-btn-primary-bg-hover);
 }
 .google-signin-btn{
   background:var(--mizan-card);
@@ -1012,7 +1012,7 @@ input:not(.book-card input):not([type="checkbox"]):not([type="radio"]),
 select:not(.book-card select),
 textarea:not(.book-card textarea),
 #search-input{
-  border-color:var(--mizan-border-control) !important;
+  border-color:var(--mizan-border-control);
 }
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:3px solid var(--mizan-focus-ring) !important;
