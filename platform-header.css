@@ -58,7 +58,7 @@
     .mizan-header-copy h1 {
       margin:0;
       padding: 0;
-      color: var(--mizan-wordmark);
+      color: var(--mizan-heading);
       font-family:var(--mizan-font-family-display);
       font-size:var(--mizan-header-wordmark-size);
       font-weight: 700;
