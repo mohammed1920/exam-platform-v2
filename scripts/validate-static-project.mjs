@@ -71,7 +71,7 @@ async function checkLocalReference(ownerFile, raw, label) {
 }
 
 const htmlFiles = files.filter(file => /\.html?$/i.test(file));
-const referencePattern = /<(?:script\b[^>]*?\bsrc|link\b[^>]*?\bhref)\s*=\s*(["'])(.*?)\1/gi;
+const referencePattern = /<(?:script|link|img|source|audio|video|iframe|a|form)\b[^>]*?\b(?:src|href|poster|action)\s*=\s*(["'])(.*?)\1/gi;
 for (const htmlFile of htmlFiles) {
   const html = await readFile(htmlFile, "utf8");
   for (const match of html.matchAll(referencePattern)) {
@@ -89,6 +89,26 @@ for (const htmlFile of htmlFiles) {
     } catch {
       failures.push(`Missing local asset in ${display(htmlFile)}: ${raw}`);
     }
+  }
+}
+
+// Validate the PWA manifest's local launch page and icons.
+const manifestFiles = files.filter(file => /(^|\\/)manifest\\.json$/i.test(file));
+for (const manifestFile of manifestFiles) {
+  try {
+    const manifest = JSON.parse(await readFile(manifestFile, "utf8"));
+    if (typeof manifest.start_url === "string") {
+      await checkLocalReference(manifestFile, manifest.start_url, "manifest start URL");
+    }
+    if (Array.isArray(manifest.icons)) {
+      for (const icon of manifest.icons) {
+        if (icon && typeof icon.src === "string") {
+          await checkLocalReference(manifestFile, icon.src, "manifest icon");
+        }
+      }
+    }
+  } catch {
+    // Invalid JSON is reported by the JSON integrity pass above.
   }
 }
 
