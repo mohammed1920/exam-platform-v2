@@ -41,3 +41,17 @@ jobs:
       - name: Verify GitHub Pages deployment bundle
         shell: bash
         run: bash scripts/build-pages-bundle.sh "$RUNNER_TEMP/mizan-pages-bundle-$GITHUB_RUN_ID"
+
+      - name: Verify bundle builder rejects unsafe output paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          unsafe_output="$RUNNER_TEMP/not-a-mizan-bundle"
+          if bash scripts/build-pages-bundle.sh "$unsafe_output"; then
+            echo "Bundle builder unexpectedly accepted an unsafe output path." >&2
+            exit 1
+          fi
+          if [[ -e "$unsafe_output" ]]; then
+            echo "Unsafe output path was created unexpectedly." >&2
+            exit 1
+          fi
