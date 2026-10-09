@@ -171,15 +171,23 @@ html body header .btn-primary{
   border-color:var(--mizan-btn-primary-border) !important;
 }
 .exam-btn.next:hover,
+
 .primary-btn:hover,
+
 .btn-primary:hover,
+
 .cta-button:hover,
+
 .firebase-admin-action:hover,
+
 .firebase-admin-back:hover,
-.lawyers-primary-btn:hover,
+
 .petition-primary:hover,
+
 .mizan-pulpit-primary:hover,
+
 .mizan-read-btn:hover,
+
 .mizan-form-submit:hover{
   background:var(--mizan-btn-primary-bg-hover) !important;
 }
@@ -345,14 +353,6 @@ html[data-theme="light"] .contact-info-grid .contact-card{
   border-color:var(--mizan-success-500);
   background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-success-100));
 }
-.contact-info-grid .contact-card-whatsapp>i{
-  background:var(--mizan-success-100);
-  color:var(--mizan-success-700);
-}
-.contact-info-grid .contact-card-whatsapp .contact-card-action{
-  background:var(--mizan-success-100);
-  color:var(--mizan-success-700);
-}
 .contact-info-grid .contact-card-telegram{
   border-color:var(--mizan-info-500);
   background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-info-100));
@@ -368,10 +368,6 @@ html[data-theme="light"] .contact-info-grid .contact-card{
 .contact-info-grid .contact-card-phone{
   border-color:var(--mizan-warning-200);
   background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-warning-100));
-}
-.contact-info-grid .contact-card-phone>i{
-  background:var(--mizan-warning-100);
-  color:var(--mizan-warning-700);
 }
 .contact-info-grid .contact-card-email{
   border-color:var(--mizan-text-dark) !important;
@@ -767,8 +763,8 @@ html body{
 .mizan-pulpit-hero:after{
   color:var(--mizan-primary-100);
 }
-.mizan-pulpit-hero p,
 .mizan-pulpit-toolbar span,
+
 .mizan-article-meta{
   color:var(--mizan-muted);
 }
