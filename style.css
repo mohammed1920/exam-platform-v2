@@ -507,12 +507,11 @@ header{
   gap:7px;
   padding:11px 16px;
   margin:0;
-  border:1px solid color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  border:1px solid var(--mizan-chapter-button-border);
   border-radius:13px;
   font-size:1rem;
   font-weight:800;
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-black) 16%,transparent),
-    inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 20%,transparent);
+  box-shadow:var(--mizan-chapter-button-shadow);
   white-space:nowrap;
   flex-shrink:0;
 }
