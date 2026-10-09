@@ -43,13 +43,13 @@ html[data-theme="light"] #search-input::placeholder{
    Position it in the header context (not fixed to a transformed ancestor). */
 .mizan-header > #theme-toggle.theme-toggle{
   position:absolute;
-  top:12px;
-  left:12px;
+  top:var(--mizan-header-tools-offset);
+  left:var(--mizan-header-tools-offset);
   z-index:20;
   display:grid;
   place-items:center;
-  width:42px;
-  height:42px;
+  width:var(--mizan-header-control-size);
+  height:var(--mizan-header-control-size);
   margin:0;
   padding:0;
   border:1px solid var(--mizan-primary-500-border);
@@ -79,10 +79,10 @@ html[data-theme="light"] .mizan-header > #theme-toggle.theme-toggle{
 }
 @media (max-width:600px){
   .mizan-header > #theme-toggle.theme-toggle{
-    top:12px;
-    left:12px;
-    width:42px;
-    height:42px;
+    top:var(--mizan-header-tools-offset);
+    left:var(--mizan-header-tools-offset);
+    width:var(--mizan-header-control-size);
+    height:var(--mizan-header-control-size);
   }
 }
 /* ---------- Exam / content surfaces ---------- */
