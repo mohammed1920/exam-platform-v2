@@ -569,11 +569,7 @@ footer{
   outline-offset:2px;
 }
 /* بطاقة الاختبارات تبقى مميزة، لكن ضمن نفس النظام اللوني */
-/* بطاقات الشريط السفلي — ألوان مستقلة عن بطاقات الأقسام */
-.home-feature-strip>div{
-  position:relative;
-  overflow:hidden;
-}
+/* Distinct feature-strip card treatments follow; shared positioning/overflow are defined above. */
 .home-feature-strip>div:first-child{
   border-color:color-mix(in srgb,var(--mizan-deco-blue-61) 24%,transparent);
   background:radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--mizan-deco-blue-61) 12%,transparent),transparent 42%),
