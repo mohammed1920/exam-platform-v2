@@ -55,6 +55,9 @@
   --mizan-header-control-size:42px;
   --mizan-sidebar-panel-width:360px;
   --mizan-sidebar-panel-width-mobile:340px;
+  --mizan-sidebar-panel-viewport-cap:92vw;
+  --mizan-sidebar-panel-viewport-cap-mobile:94vw;
+  --mizan-sidebar-hidden-offset:105%;
   --mizan-sidebar-panel-padding:22px 16px 28px;
   --mizan-sidebar-panel-duration:300ms;
   --mizan-sidebar-backdrop-duration:250ms;
@@ -64,6 +67,7 @@
   --mizan-menu-lines-height:18px;
   --mizan-menu-lines-gap:4px;
   --mizan-menu-line-height:2px;
+  --mizan-menu-line-short-width:14px;
 }
 @media(max-width:600px){
   :root{
