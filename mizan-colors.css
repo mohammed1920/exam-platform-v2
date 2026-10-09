@@ -379,7 +379,6 @@ html[data-theme="light"]{
 
 /* Chapter CTA and app-install button tokens. */
 :root{
-  --mizan-chapter-button-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
   --mizan-chapter-button-shadow:0 7px 16px color-mix(in srgb,var(--mizan-black) 16%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 20%,transparent);
   --mizan-install-button-bg:linear-gradient(135deg,color-mix(in srgb,var(--mizan-bg-dark) 96%,transparent),var(--mizan-header-glass-deep));
   --mizan-install-button-fg:var(--mizan-primary-300);
