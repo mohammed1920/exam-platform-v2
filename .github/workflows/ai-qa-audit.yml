@@ -8,7 +8,7 @@ on:
 
 # يمنع تشغيل نسختين بنفس الوقت (لو ضغطت تشغيل يدوي أثناء الجدولة التلقائية)
 concurrency:
-  group: content-maintenance
+  group: ai-qa-report
   cancel-in-progress: false
 
 permissions:
