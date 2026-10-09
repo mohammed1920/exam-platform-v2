@@ -39,7 +39,7 @@
 .petition-tools label{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:var(--mizan-gap-small);
   flex:1;
   padding:11px var(--mizan-space-inset-medium);
   border:1px solid var(--mizan-petition-search-border);
@@ -164,7 +164,7 @@
 .petition-fields label,
 .petition-long-field{
   display:grid;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
 }
 .petition-fields label span,
 .petition-long-field span,
@@ -198,7 +198,7 @@
 }
 .petition-design{
   display:flex;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
   align-items:center;
   flex-wrap:wrap;
   margin:14px 0;
@@ -206,7 +206,7 @@
 .petition-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
+  gap:var(--mizan-gap-small);
 }
 .petition-actions button{
   border:0;
