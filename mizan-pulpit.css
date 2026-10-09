@@ -24,7 +24,7 @@
 }
 .mizan-pulpit-kicker{
   color:var(--mizan-primary-500);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   font-weight:900;
   margin-bottom:6px;
 }
@@ -52,7 +52,7 @@
   padding:11px 16px;
   border-radius:var(--mizan-radius-11);
   font:inherit;
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   font-weight:800;
   cursor:pointer;
 }
@@ -113,7 +113,7 @@
 .mizan-article-card>p{
   margin:0 0 15px;
   color:var(--mizan-muted);
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   line-height:1.9;
   min-height:42px;
 }
@@ -134,7 +134,7 @@
   display:block;
 }
 .mizan-article-author strong{
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .mizan-article-author small{
   color:var(--mizan-muted);
@@ -146,7 +146,7 @@
   border:0;
   background:transparent;
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   font-weight:800;
   cursor:pointer;
 }
@@ -352,12 +352,12 @@
 }
 .mizan-profile-modal-box h2{
   margin:5px 0 3px;
-  font-size:24px;
+  font-size:var(--mizan-font-size-2xl);
   color:var(--mizan-text-dark);
 }
 .mizan-profile-role{
   color:var(--mizan-muted);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 .mizan-profile-stats{
   display:grid;
@@ -397,7 +397,7 @@
 .mizan-profile-section p{
   margin:0;
   color:var(--mizan-text-dark);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   line-height:2;
 }
 @media(max-width:600px){
@@ -434,7 +434,7 @@
   color:var(--mizan-primary-300);
   padding:10px 14px;
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   font-weight:800;
   cursor:pointer;
   transition:.2s;
@@ -445,7 +445,7 @@
 }
 .mizan-article-page-label{
   color:var(--mizan-muted);
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   display:inline-flex;
   align-items:center;
   gap:7px;
@@ -501,7 +501,7 @@
   display:block;
 }
 .mizan-article-reading-author strong{
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   color:var(--mizan-text-dark);
 }
 .mizan-article-reading-author span{
@@ -522,7 +522,7 @@
 .mizan-article-reading-content{
   padding:24px 0;
   color:var(--mizan-deco-blue-84);
-  font-size:14px;
+  font-size:var(--mizan-font-size-sm);
   line-height:2.35;
   word-break:break-word;
 }
@@ -553,12 +553,12 @@
 }
 .mizan-article-page-loading i,
 .mizan-article-page-error i{
-  font-size:30px;
+  font-size:var(--mizan-font-size-3xl);
   color:var(--mizan-primary-500);
 }
 .mizan-article-page-error strong{
   color:var(--mizan-text-dark);
-  font-size:14px;
+  font-size:var(--mizan-font-size-sm);
 }
 @media(max-width:600px){
   .mizan-article-section{
