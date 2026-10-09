@@ -38,9 +38,9 @@
 
 | الوحدة | المسؤولية | عقد التوافق |
 |---|---|---|
-| `contact-info.js` | جلب بيانات الاتصال وعرضها | `loadContactInfo()` و`renderContactInfo(data)` عبر التطبيق |
-| `exam-drafts.js` | مفاتيح المسودات، القراءة والكتابة والحفظ والاستئناف والحذف | `ExamApp` يفوّض إلى `window.MizanExamDrafts` |
-| `question-sharing.js` | إنشاء رابط السؤال وبطاقة المشاركة | `ExamApp` يفوّض إلى `window.MizanQuestionSharing` |
+| `contact-info.js` | جلب بيانات الاتصال وعرض البطاقات داخليًا | `window.MizanContactInfo.load()`؛ لا تُصدَّر دالة الرسم كواجهة عامة |
+| `exam-drafts.js` | قراءة/كتابة/حفظ/مسح/تلخيص/حذف المسودات وترحيل المفتاح القديم داخليًا | `window.MizanExamDrafts` يصدّر عمليات المسودات المستخدمة فقط؛ دوال المفاتيح داخلية |
+| `question-sharing.js` | إنشاء رابط السؤال وبطاقة المشاركة | `window.MizanQuestionSharing.shareQuestion()`؛ أدوات الرسم والرابط المساعدة داخلية |
 | `admin.js` | منطق لوحة الإدارة المنفصل عن HTML | يُحمّل من `admin.html` |
 | `admin-theme.js` | سلوك ثيم لوحة الإدارة | منفصل عن منطق الإدارة |
 | `admin.css` | تنسيقات لوحة الإدارة | يُحمّل من `admin.html` |
@@ -60,8 +60,8 @@
 
 ## التحقق الحالي وحدوده
 
-- `scripts/validate-static-project.mjs` يفحص سلامة JSON، ومراجع الملفات المحلية في HTML، ومراجع رموز الحواف `--mizan-radius-*`.
-- `.github/workflows/validate-project.yml` يشغّل الفحص الساكن و`node --check` لملفات JavaScript.
+- `scripts/validate-static-project.mjs` يفحص سلامة JSON، ومراجع الملفات المحلية في HTML وCSS، وروابط `src`/`href` الثابتة في JavaScript، ومراجع رموز الحواف `--mizan-radius-*`.
+- `.github/workflows/validate-project.yml` يشغّل الفحص الساكن و`node --check` لملفات `.js` و`.mjs`.
 - نجاح الفحص الساكن لا يثبت صحة Firebase أو تسجيل الدخول أو الاختبارات أو البحث أو الصلاحيات أو التصميم في كل أحجام الشاشات؛ يجب اختبار هذه المسارات فعليًا قبل الدمج والنشر.
 
 ## خطة الإكمال
