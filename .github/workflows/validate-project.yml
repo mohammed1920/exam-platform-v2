@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          find . -type f -name '*.js' \
+          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
             -not -path './.git/*' \
             -not -path './node_modules/*' \
             -print0 | xargs -0 -r -n1 node --check
