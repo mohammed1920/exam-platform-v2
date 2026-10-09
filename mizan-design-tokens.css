@@ -129,3 +129,62 @@
   --mizan-install-hint-font-size:11px;
   --mizan-install-hint-line-height:1.7;
 }
+
+
+/* Petition builder and A4 letterhead geometry. */
+:root{
+  --mizan-petitions-shell-max-width:1220px;
+  --mizan-petitions-shell-padding:18px 20px 45px;
+  --mizan-petitions-shell-padding-mobile:10px 12px 30px;
+  --mizan-petitions-hero-margin:16px 0 20px;
+  --mizan-petitions-hero-padding:28px;
+  --mizan-petitions-hero-padding-mobile:20px;
+  --mizan-petitions-heading-size:25px;
+  --mizan-petitions-heading-size-mobile:20px;
+  --mizan-petitions-grid-gap:14px;
+  --mizan-petitions-card-padding:20px;
+  --mizan-petitions-card-min-height:180px;
+  --mizan-petitions-card-icon-size:46px;
+  --mizan-petitions-layout-gap:16px;
+  --mizan-petitions-form-min-width:320px;
+  --mizan-petitions-preview-min-width:400px;
+  --mizan-petitions-panel-padding:18px;
+  --mizan-petitions-panel-padding-mobile:13px;
+  --mizan-petitions-fields-gap:10px;
+  --mizan-petitions-textarea-min-height:270px;
+  --mizan-petitions-a4-width:210mm;
+  --mizan-petitions-a4-min-height:297mm;
+  --mizan-petitions-a4-padding:20mm 17mm;
+  --mizan-petitions-a4-padding-branded:12mm 14mm 17mm;
+  --mizan-petitions-a4-padding-mobile:14mm 10mm;
+  --mizan-petitions-a4-padding-branded-mobile:9mm 7mm 13mm;
+  --mizan-petitions-a4-border-width:1.4mm;
+  --mizan-petitions-a4-outline-width:.55mm;
+  --mizan-petitions-a4-outline-offset:-3mm;
+  --mizan-petitions-a4-inner-inset:4.5mm;
+  --mizan-petitions-a4-inner-border-width:.35mm;
+  --mizan-petitions-watermark-size:105mm;
+  --mizan-petitions-letterhead-columns:minmax(0,1fr) 34mm minmax(0,1fr);
+  --mizan-petitions-letterhead-columns-mobile:minmax(0,1fr) 25mm minmax(0,1fr);
+  --mizan-petitions-letterhead-gap:7mm;
+  --mizan-petitions-letterhead-gap-mobile:2mm;
+  --mizan-petitions-letterhead-padding:1mm 2mm 7mm;
+  --mizan-petitions-letterhead-padding-mobile:1mm 1mm 5mm;
+  --mizan-petitions-letterhead-margin:0 0 7mm;
+  --mizan-petitions-letterhead-margin-mobile:0 0 6mm;
+  --mizan-petitions-logo-width:34mm;
+  --mizan-petitions-logo-height:46mm;
+  --mizan-petitions-logo-width-mobile:25mm;
+  --mizan-petitions-logo-height-mobile:34mm;
+  --mizan-petitions-document-font-size:13.6px;
+  --mizan-petitions-document-font-size-mobile:11.5px;
+  --mizan-petitions-document-line-height:2.05;
+  --mizan-petitions-document-line-height-mobile:1.9;
+  --mizan-petitions-document-padding:0 2mm;
+  --mizan-petitions-document-padding-mobile:0 1mm;
+  --mizan-petitions-footer-margin:15mm;
+  --mizan-petitions-footer-gap:18mm;
+  --mizan-petitions-footer-padding:6mm;
+  --mizan-petitions-footer-margin-mobile:11mm;
+  --mizan-petitions-footer-gap-mobile:8mm;
+}
