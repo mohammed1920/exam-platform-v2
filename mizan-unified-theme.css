@@ -35,6 +35,7 @@ html body header{
   border-color:var(--mizan-border);
 }
 html body header h1,
+html body header .mizan-header-copy h1,
 html body header h2,
 html body header h3,
 html body header .title,
