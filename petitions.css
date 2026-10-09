@@ -100,7 +100,7 @@
 }
 .petition-template-card h3{
   margin:var(--mizan-space-1) 0;
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
 }
 .petition-template-card p{
   margin:0;
@@ -568,7 +568,7 @@ html[data-theme="light"] .petition-template-card p{
     font-size:6px;
   }
   .petition-head-right strong{
-    font-size:15px;
+    font-size:var(--mizan-font-size-compact-strong);
   }
   .petition-head-right b{
     font-size:6.5px;
