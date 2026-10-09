@@ -28,7 +28,7 @@
   border-radius:var(--mizan-radius-xs);
   padding:6px var(--mizan-space-2);
   font:inherit;
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   cursor:pointer;
 }
 .lawyer-admin-actions .approve{
@@ -40,7 +40,7 @@
   color:var(--mizan-danger);
 }
 .lawyer-admin-status{
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   color:var(--mizan-muted);
 }
 .lawyer-admin-tabs{
@@ -124,7 +124,7 @@
   font-size:var(--mizan-font-size-sm);
 }
 .firebase-admin-menu-card span{
-  font-size:10px;
+  font-size:var(--mizan-font-size-micro);
   color:var(--mizan-muted);
 }
 .firebase-admin-menu-card:hover{
