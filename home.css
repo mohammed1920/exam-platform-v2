@@ -813,11 +813,7 @@ footer{
 }
 .footer-info-box{
   padding:28px;
-  border:1px solid var(--mizan-home-hero-border);
   border-radius:var(--mizan-radius-xl);
-  background:var(--mizan-gradient-home-hero);
-  color:var(--mizan-white);
-  box-shadow:var(--mizan-shadow-home-hero);
 }
 .footer-info-back{
   margin-bottom:22px;
@@ -1016,11 +1012,7 @@ html[data-theme="light"] .footer-bottom{
 html[data-theme="light"] .footer-bottom p{
   color:var(--mizan-muted-light);
 }
-html[data-theme="light"] .footer-info-box{
-  background:var(--mizan-gradient-home-hero);
-  border-color:var(--mizan-home-hero-border);
-  box-shadow:var(--mizan-shadow-home-hero);
-}
+
 html[data-theme="light"] .footer-info-heading span{
   color:var(--mizan-warning-200);
 }
