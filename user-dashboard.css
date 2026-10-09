@@ -57,6 +57,11 @@
 /* Student profile name editor */
 .profile-name-editor{
   margin-top:var(--mizan-space-4);
+  padding:var(--mizan-space-5);
+  border:1px solid var(--mizan-primary-500-border);
+  border-radius:var(--mizan-radius-lg);
+  background:var(--mizan-gradient-card-glass-primary);
+  box-shadow:var(--mizan-shadow-student-ui-card);
 }
 .profile-name-editor .profile-panel-heading{
   align-items:center;
@@ -67,7 +72,7 @@
 }
 .profile-name-editor label{
   display:block;
-  margin:0 0 var(--mizan-space-2);
+  margin:0 0 var(--mizan-gap-tight);
   color:var(--mizan-muted);
   font-size:13px;
   font-weight:700;
@@ -80,6 +85,7 @@
 .profile-name-editor-row input{
   flex:1;
   min-width:0;
+  height:var(--mizan-control-height-prominent);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-11);
   background:color-mix(in srgb,var(--mizan-black) 16%,transparent);
@@ -94,6 +100,8 @@
   box-shadow:var(--mizan-shadow-profile-focus);
 }
 .profile-name-editor-row button{
+  min-width:125px;
+  height:var(--mizan-control-height-prominent);
   border:1px solid var(--mizan-btn-primary-border);
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-btn-primary-bg);
@@ -116,8 +124,10 @@
   margin:var(--mizan-space-2) 0 0;
   color:var(--mizan-success);
   font-size:var(--mizan-font-size-xs);
+  opacity:.8;
 }
 @media(max-width:560px){
+  .profile-name-editor{padding:var(--mizan-space-4)}
   .profile-name-editor-row{
     flex-direction:column;
   }
