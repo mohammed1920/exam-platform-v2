@@ -134,7 +134,7 @@
 .firebase-admin-menu-card.active{
   border-color:var(--mizan-primary-500-border);
   background:var(--mizan-primary-100);
-  box-shadow:0 8px 24px var(--mizan-glass-black-120);
+  box-shadow:var(--mizan-shadow-lawyer-admin-card);
 }
 .firebase-admin-subviews{
   min-height:180px;
@@ -272,7 +272,7 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
   background:color-mix(in srgb,var(--btn-tone) 24%,transparent);
   border-color:var(--btn-tone);
   transform:translateY(-1px);
-  box-shadow:0 4px 12px color-mix(in srgb,var(--btn-tone) 22%,transparent);
+  box-shadow:var(--mizan-shadow-tone-button);
 }
 .firebase-admin-table-wrap .btn:active,
 .mizan-admin-modal-box .btn:active,
