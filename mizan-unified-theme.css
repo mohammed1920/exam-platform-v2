@@ -503,10 +503,6 @@ html body{
   border-color:var(--mizan-btn-primary-border);
   box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
 }
-.book-card>.test-btn:hover{
-  background:var(--mizan-btn-primary-bg-hover);
-  color:var(--mizan-btn-primary-fg);
-}
 /* Chapters */
 .chapter-item{
   background:var(--mizan-card);
