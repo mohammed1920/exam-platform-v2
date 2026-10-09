@@ -29,6 +29,9 @@
   --mizan-space-8:40px;
   --mizan-space-9:48px;
   --mizan-space-10:64px;
+  --mizan-space-inset-compact:10px;
+  --mizan-space-inset-medium:14px;
+  --mizan-space-inset-roomy:15px;
   --mizan-content-width:1200px;
   --mizan-content-padding:20px;
   --mizan-icon-tile-size:38px;
