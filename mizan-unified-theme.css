@@ -497,12 +497,7 @@ html body{
 .book-card>.book-stats .book-stat-label{
   color:var(--mizan-muted);
 }
-.book-card>.test-btn{
-  background:var(--mizan-btn-primary-bg);
-  color:var(--mizan-btn-primary-fg);
-  border-color:var(--mizan-btn-primary-border);
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
-}
+
 /* Chapters */
 .chapter-item{
   background:var(--mizan-card);
