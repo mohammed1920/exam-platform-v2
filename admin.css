@@ -89,7 +89,7 @@ button { cursor: pointer; }
   padding: 10px 20px;
   transform: translateX(-50%);
   border-radius: var(--mizan-radius-xs, 8px);
-  box-shadow: 0 8px 24px var(--mizan-shadow-md, rgb(0 0 0 / 24%));
+  box-shadow: 0 8px 24px var(--mizan-shadow-md, var(--mizan-shadow-md));
   font-size: 14px;
   font-weight: 700;
   text-align: center;
@@ -131,7 +131,7 @@ button { cursor: pointer; }
   transform: translateX(100%);
   background: var(--admin-surface);
   border-inline-start: 1px solid var(--admin-border);
-  box-shadow: var(--mizan-shadow-md, 0 12px 30px rgb(0 0 0 / 24%));
+  box-shadow: var(--mizan-shadow-md, 0 12px 30px var(--mizan-shadow-md));
   transition: transform var(--mizan-duration-medium, 180ms) var(--mizan-ease-standard, ease);
 }
 .sidebar.open { transform: translateX(0); }
@@ -142,7 +142,7 @@ button { cursor: pointer; }
   z-index: 1400;
   display: none;
   inset: 0;
-  background: var(--mizan-sidebar-backdrop, rgb(0 0 0 / 60%));
+  background: var(--mizan-sidebar-backdrop, var(--mizan-overlay-black-60));
 }
 .sidebar-backdrop.active { display: block; }
 .search-input { margin-bottom: 12px; }
@@ -261,7 +261,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   align-items: flex-end;
   justify-content: center;
   inset: 0;
-  background: var(--mizan-sidebar-backdrop, rgb(0 0 0 / 85%));
+  background: var(--mizan-sidebar-backdrop, var(--mizan-overlay-black-85));
 }
 .modal.active { display: flex; }
 .modal-content {
@@ -286,13 +286,13 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   gap: 12px;
   padding: 14px 16px;
   background: linear-gradient(135deg, var(--admin-warning), var(--admin-accent));
-  box-shadow: 0 -4px 12px var(--mizan-shadow-md, rgb(0 0 0 / 24%));
+  box-shadow: 0 -4px 12px var(--mizan-shadow-md, var(--mizan-shadow-md));
 }
 .batch-save-bar.active { display: flex; }
 .batch-save-bar-text { color: var(--mizan-white); font-size: 13px; font-weight: 800; text-align: center; }
 .batch-save-bar .btn { width: 100%; margin: 0; }
 .batch-save-bar .btn-primary { background: var(--admin-bg); color: var(--admin-accent); }
-.batch-save-bar .btn-secondary { border: 0; background: var(--mizan-overlay-dark-20, rgb(0 0 0 / 20%)); color: var(--mizan-white); }
+.batch-save-bar .btn-secondary { border: 0; background: var(--mizan-overlay-dark-20, var(--mizan-overlay-black-20)); color: var(--mizan-white); }
 body.batch-active { padding-bottom: 130px; }
 
 /* Reusable presentation helpers replacing static HTML style attributes. */
