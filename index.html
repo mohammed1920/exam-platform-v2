@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="style.css?v=4.8">
 
   <!-- Layer 3: page and component styles. Keep these before the late UI-fix layer. -->
-  <link rel="stylesheet" href="home.css?v=4.4">
+  <link rel="stylesheet" href="home.css?v=4.5">
   <link rel="stylesheet" href="platform-sidebar.css?v=2.8">
   <link rel="stylesheet" href="user-dashboard.css?v=2.4">
   <link rel="stylesheet" href="student-sidebar.css?v=2.5">
@@ -132,6 +132,13 @@
           <b>قادم قريباً</b>
         </div>
       </div>
+      <section class="home-book-preview" aria-labelledby="home-book-preview-title">
+        <div class="home-section-heading">
+          <div><h2 id="home-book-preview-title">من مكتبة اختبارات ميزان</h2><span>ابدأ من الكتاب الذي تدرسه</span></div>
+          <button type="button" data-home-action="books">عرض جميع الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+        <div id="home-book-preview-grid" class="home-book-preview-grid" aria-live="polite"></div>
+      </section>
       <div class="home-feature-strip">
         <div data-home-action="dashboard"><i class="fas fa-chart-line"></i><span><strong>لوحة الاختبارات</strong><small>نتائجك وسجلك وتقدمك في قسم واحد</small></span><button type="button">فتح اللوحة ←</button></div>
         <div data-home-action="contact"><i class="fas fa-headset"></i><span><strong>تواصل معنا</strong></span><button type="button">معلومات التواصل ←</button></div>
@@ -239,7 +246,7 @@
   <script src="contact-info.js?v=1.1"></script>
   <script src="exam-drafts.js?v=1.1"></script>
   <script src="question-sharing.js?v=1.0"></script>
-  <script src="app.js?v=3.1"></script>
+  <script src="app.js?v=3.2"></script>
   <script src="global-search.js?v=1.0"></script>
   <script src="home.js?v=2.6"></script>
   <script src="platform-sidebar.js?v=1.5"></script>
