@@ -67,7 +67,6 @@
 .lawyer-admin-tab strong{
   margin-right:5px;
 }
-.lawyer-admin-view-panel[hidden],
 .lawyer-admin-edit[hidden]{
   display:none;
 }
@@ -195,8 +194,7 @@ html[data-theme="light"] .lawyer-admin-table th,
 html[data-theme="light"] .lawyer-admin-table td{
   border-color:var(--mizan-text-dark);
 }
-html[data-theme="light"] .lawyer-admin-actions button,
-html[data-theme="light"] .lawyer-admin-edit-actions button{
+html[data-theme="light"] .lawyer-admin-actions button{
   background:var(--mizan-bg-light);
   color:var(--mizan-heading);
   border-color:var(--mizan-border-light);
@@ -214,8 +212,7 @@ html[data-theme="light"] .firebase-admin-menu-card.active{
   border-color:var(--mizan-primary-300);
   color:var(--mizan-primary-700);
 }
-html[data-theme="light"] .lawyer-admin-edit,
-html[data-theme="light"] .lawyer-admin-edit-requests{
+html[data-theme="light"] .lawyer-admin-edit{
   background:var(--mizan-surface);
   border-color:var(--mizan-text-dark);
 }
