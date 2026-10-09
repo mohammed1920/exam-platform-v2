@@ -73,3 +73,55 @@
     --mizan-header-control-size:40px;
   }
 }
+
+
+/* Component geometry tokens: sidebar, header controls and install UI. */
+:root{
+  --mizan-sidebar-close-offset:16px;
+  --mizan-sidebar-close-size:38px;
+  --mizan-sidebar-brand-padding:8px 8px 20px;
+  --mizan-sidebar-brand-margin:16px;
+  --mizan-sidebar-brand-title-size:18px;
+  --mizan-sidebar-caption-size:11px;
+  --mizan-sidebar-caption-offset:5px;
+  --mizan-sidebar-caption-line-height:1.7;
+  --mizan-sidebar-heading-size:11px;
+  --mizan-sidebar-heading-margin:18px 8px 7px;
+  --mizan-sidebar-item-icon-gap:11px;
+  --mizan-sidebar-item-font-size:13px;
+  --mizan-sidebar-item-icon-width:22px;
+  --mizan-sidebar-item-icon-size:15px;
+  --mizan-sidebar-sub-gap:4px;
+  --mizan-sidebar-sub-indent:16px;
+  --mizan-sidebar-sub-padding:10px;
+  --mizan-sidebar-sub-font-size:12px;
+  --mizan-sidebar-sub-item-padding:9px 10px;
+  --mizan-sidebar-divider-margin:17px 6px;
+  --mizan-sidebar-account-gap:7px;
+  --mizan-sidebar-account-offset:12px;
+  --mizan-sidebar-account-padding:12px;
+  --mizan-sidebar-account-user-gap:10px;
+  --mizan-sidebar-account-user-margin:10px;
+  --mizan-sidebar-avatar-size:40px;
+  --mizan-sidebar-account-name-size:13px;
+  --mizan-sidebar-account-meta-size:10px;
+  --mizan-sidebar-account-meta-offset:2px;
+  --mizan-sidebar-action-gap:8px;
+  --mizan-sidebar-action-padding:9px 10px;
+  --mizan-sidebar-action-font-size:12px;
+  --mizan-install-slot-gap:5px;
+  --mizan-install-slot-margin:10px;
+  --mizan-install-slot-padding:0 2px;
+  --mizan-install-button-gap:5px;
+  --mizan-install-button-padding:7px 11px;
+  --mizan-install-button-font-size:11px;
+  --mizan-install-button-line-height:1.2;
+  --mizan-install-button-padding-mobile:6px 9px;
+  --mizan-install-button-font-size-mobile:10.5px;
+  --mizan-install-hint-offset:7px;
+  --mizan-install-hint-max-width:340px;
+  --mizan-install-hint-viewport-gap:24px;
+  --mizan-install-hint-padding:9px 12px;
+  --mizan-install-hint-font-size:11px;
+  --mizan-install-hint-line-height:1.7;
+}
