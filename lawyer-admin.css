@@ -208,7 +208,7 @@ html[data-theme="light"] .firebase-admin-subview-back{
 }
 html[data-theme="light"] .lawyer-admin-tab.active,
 html[data-theme="light"] .firebase-admin-menu-card.active{
-  background:var(--mizan-surface)8eb;
+  background:var(--mizan-primary-100);
   border-color:var(--mizan-primary-300);
   color:var(--mizan-primary-700);
 }
