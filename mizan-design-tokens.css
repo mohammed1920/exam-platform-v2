@@ -64,6 +64,9 @@
   --mizan-header-brand-gap:2px;
   --mizan-header-logo-size:42px;
   --mizan-header-tagline-size:10px;
+  --mizan-header-brand-reserve:116px;
+  --mizan-header-brand-reserve-mobile:88px;
+  --mizan-header-brand-reserve-compact:82px;
   --mizan-sidebar-panel-width:360px;
   --mizan-sidebar-panel-width-mobile:340px;
   --mizan-sidebar-panel-viewport-cap:92vw;
