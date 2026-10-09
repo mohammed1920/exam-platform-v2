@@ -95,7 +95,7 @@
 .lawyer-form-head button{
   border:0;
   background:transparent;
-  color:var(--mizan-muted-dark);
+  color:var(--mizan-muted);
   font-size:26px;
   cursor:pointer;
 }
