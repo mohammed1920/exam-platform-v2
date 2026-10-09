@@ -82,8 +82,6 @@ class ExamApp {
     }
   }
 
-  getExamDraftKey() { return window.MizanExamDrafts.getKey(); }
-  getLegacyExamDraftKey() { return window.MizanExamDrafts.getLegacyKey(); }
   readExamDrafts() { return window.MizanExamDrafts.read(); }
   writeExamDrafts(drafts) { return window.MizanExamDrafts.write(drafts); }
   saveExamDraft() { return window.MizanExamDrafts.save(this); }
@@ -228,10 +226,6 @@ class ExamApp {
     return window.MizanContactInfo.load();
   }
 
-  renderContactInfo(data) {
-    if (!window.MizanContactInfo) return;
-    return window.MizanContactInfo.render(data);
-  }
   renderBooks(booksList) {
     const container = document.getElementById('books-container');
     if (!container) return;
@@ -832,10 +826,6 @@ class ExamApp {
 
   // ---------- مشاركة السؤال (بطاقة صورة + رابط مباشر) ----------
 
-  buildDeepLink(q) { return window.MizanQuestionSharing.buildDeepLink(this, q); }
-  roundRect(ctx, x, y, w, h, r) { return window.MizanQuestionSharing.roundRect(ctx, x, y, w, h, r); }
-  wrapText(ctx, text, maxWidth) { return window.MizanQuestionSharing.wrapText(ctx, text, maxWidth); }
-  async generateShareCard(q) { return window.MizanQuestionSharing.generateShareCard(this, q); }
   async shareQuestion() { return window.MizanQuestionSharing.shareQuestion(this); }
 
   handleAnswer(optIdx, btnEl) {
