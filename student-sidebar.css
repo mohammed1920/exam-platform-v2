@@ -168,7 +168,7 @@
 }
 .exam-history-list{
   display:grid;
-  gap:9px;
+  gap:var(--mizan-gap-small);
 }
 .history-item{
   display:flex;
@@ -405,7 +405,7 @@
 }
 .resume-exam-list{
   display:grid;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
 }
 .resume-exam-actions{
   display:flex;
