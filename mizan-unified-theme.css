@@ -297,11 +297,17 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
 .footer-bottom p{
   color:var(--mizan-neutral-400);
 }
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-info-box,
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-info-box{
+  background:var(--mizan-gradient-home-hero);
+  color:var(--mizan-white);
+  border-color:var(--mizan-home-hero-border);
+  box-shadow:var(--mizan-shadow-home-hero);
+}
 html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-faq-list details{
-  background:var(--mizan-neutral-800);
-  color:var(--mizan-text-dark);
-  border-color:var(--mizan-neutral-700);
+  background:var(--mizan-glass-white-025);
+  color:var(--mizan-white);
+  border-color:var(--mizan-glass-white-080);
+  box-shadow:var(--mizan-shadow-theme-subtle);
 }
 /* ===== v2.1 contrast + CTA + contact repair ===== */
 /* Theme toggle remains explicit here; menu trigger styling is owned by
