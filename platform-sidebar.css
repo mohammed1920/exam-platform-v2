@@ -110,3 +110,67 @@ body.platform-sidebar-open{overflow:hidden}
   #install-app-btn{padding:var(--mizan-install-button-padding-mobile);font-size:var(--mizan-install-button-font-size-mobile)}
   #ios-install-hint{right:auto;left:0;max-width:calc(100vw - var(--mizan-install-hint-viewport-gap))}
 }
+
+
+/* Compact mobile quick navigation; desktop continues to use the full sidebar. */
+.platform-mobile-nav{
+  display:none;
+}
+@media(max-width:680px){
+  body.platform-mobile-nav-enabled{
+    padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));
+  }
+  .platform-mobile-nav{
+    position:fixed;
+    inset-inline:var(--mizan-space-3);
+    bottom:calc(var(--mizan-space-2) + env(safe-area-inset-bottom,0px));
+    z-index:9500;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:var(--mizan-space-1);
+    padding:var(--mizan-space-1);
+    border:1px solid var(--mizan-mobile-nav-border);
+    border-radius:var(--mizan-radius-xl);
+    background:var(--mizan-mobile-nav-bg);
+    box-shadow:var(--mizan-mobile-nav-shadow);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+  .platform-mobile-nav-item{
+    display:flex;
+    min-width:0;
+    min-height:56px;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:var(--mizan-space-1);
+    padding:var(--mizan-space-2) var(--mizan-space-1);
+    border:1px solid transparent;
+    border-radius:var(--mizan-radius-md);
+    background:transparent;
+    color:var(--mizan-mobile-nav-text);
+    font:inherit;
+    font-size:var(--mizan-font-size-2xs);
+    font-weight:700;
+    line-height:1.2;
+    cursor:pointer;
+    transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .platform-mobile-nav-item i{
+    font-size:16px;
+    line-height:1;
+  }
+  .platform-mobile-nav-item.is-active{
+    border-color:var(--mizan-mobile-nav-border);
+    background:var(--mizan-mobile-nav-active-bg);
+    color:var(--mizan-mobile-nav-active-text);
+  }
+  .platform-mobile-nav-item:active{
+    transform:scale(.97);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .platform-mobile-nav-item{transition:none}
+  .platform-mobile-nav-item:active{transform:none}
+}
