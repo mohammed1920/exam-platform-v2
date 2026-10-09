@@ -92,12 +92,18 @@ for (const htmlFile of htmlFiles) {
   }
 }
 
-// CSS asset paths are relative to the stylesheet, not the repository root.
-const cssReferencePattern = /(?:url\(\s*|@import\s+)(["']?)([^"'()\s]+)\1\s*\)?/gi;
+// CSS url(...) references are relative to the stylesheet.
+// @import can use either a quoted path or url(...); the url() parser handles
+// both local and remote URLs without mistaking the word "url" for a file.
+const cssUrlPattern = /url\\(\\s*(?:(["'])(.*?)\\1|([^)]*?))\\s*\\)/gi;
+const cssImportPattern = /@import\\s+(?!url\\s*\\()(["'])(.*?)\\1/gi;
 for (const cssFile of cssFiles) {
   const css = await readFile(cssFile, "utf8");
-  for (const match of css.matchAll(cssReferencePattern)) {
-    await checkLocalReference(cssFile, match[2], "CSS asset");
+  for (const match of css.matchAll(cssUrlPattern)) {
+    await checkLocalReference(cssFile, match[2] ?? match[3] ?? "", "CSS asset");
+  }
+  for (const match of css.matchAll(cssImportPattern)) {
+    await checkLocalReference(cssFile, match[2], "CSS import");
   }
 }
 if (failures.length) {
