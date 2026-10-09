@@ -284,9 +284,9 @@ footer{
 }
 .contact-box{
   padding:28px;
-  border:1px solid var(--mizan-primary-100);
+  border:1px solid var(--mizan-contact-panel-border);
   border-radius:var(--mizan-radius-xl);
-  box-shadow:0 18px 45px var(--mizan-shadow-sm);
+  box-shadow:var(--mizan-contact-panel-shadow);
 }
 .contact-heading{
   text-align:center;
@@ -326,7 +326,7 @@ footer{
 }
 .contact-card:hover{
   transform:translateY(-3px);
-  box-shadow:0 12px 28px color-mix(in srgb,var(--mizan-black) 18%,transparent);
+  box-shadow:var(--mizan-contact-card-hover-shadow);
 }
 .contact-card>i{
   display:grid;
@@ -364,18 +364,18 @@ footer{
   border-radius:var(--mizan-radius-9);
 }
 .contact-card-whatsapp>i{
-  background:color-mix(in srgb, var(--mizan-success-500) 12%, transparent);
-  color:var(--mizan-success-500);
+  background:var(--mizan-contact-whatsapp-icon-bg);
+  color:var(--mizan-contact-whatsapp-icon-fg);
 }
 .contact-card-whatsapp:hover{
-  box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-success-500) 10%, transparent);
+  box-shadow:var(--mizan-contact-whatsapp-hover-shadow);
 }
 .contact-card-telegram>i{
-  background:color-mix(in srgb, var(--mizan-telegram) 12%, transparent);
-  color:var(--mizan-info-light);
+  background:var(--mizan-contact-telegram-icon-bg);
+  color:var(--mizan-contact-telegram-icon-fg);
 }
 .contact-card-telegram:hover{
-  box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-telegram) 10%, transparent);
+  box-shadow:var(--mizan-contact-telegram-hover-shadow);
 }
 .contact-card-phone{
   border-color:var(--mizan-primary-500-border);
@@ -385,25 +385,25 @@ footer{
   color:var(--mizan-primary-300);
 }
 .contact-card-email{
-  border-color:color-mix(in srgb,var(--mizan-deco-violet-73) 22%,transparent);
+  border-color:var(--mizan-contact-email-border);
 }
 .contact-card-email>i{
-  background:color-mix(in srgb,var(--mizan-deco-violet-73) 10%,transparent);
-  color:var(--mizan-purple-soft);
+  background:var(--mizan-contact-email-icon-bg);
+  color:var(--mizan-contact-email-icon-fg);
 }
 .contact-card-instagram>i{
-  background:color-mix(in srgb, var(--mizan-instagram) 11%, transparent);
-  color:var(--mizan-instagram);
+  background:var(--mizan-contact-instagram-icon-bg);
+  color:var(--mizan-contact-instagram-icon-fg);
 }
 .contact-card-instagram:hover{
-  box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-instagram) 10%, transparent);
+  box-shadow:var(--mizan-contact-instagram-hover-shadow);
 }
 .contact-card-facebook>i{
-  background:color-mix(in srgb, var(--mizan-facebook) 11%, transparent);
-  color:var(--mizan-facebook);
+  background:var(--mizan-contact-facebook-icon-bg);
+  color:var(--mizan-contact-facebook-icon-fg);
 }
 .contact-card-facebook:hover{
-  box-shadow:0 12px 30px color-mix(in srgb, var(--mizan-facebook) 10%, transparent);
+  box-shadow:var(--mizan-contact-facebook-hover-shadow);
 }
 .contact-card-secondary{
   min-height:78px;
@@ -571,42 +571,40 @@ footer{
 /* بطاقة الاختبارات تبقى مميزة، لكن ضمن نفس النظام اللوني */
 /* Distinct feature-strip card treatments follow; shared positioning/overflow are defined above. */
 .home-feature-strip>div:first-child{
-  border-color:color-mix(in srgb,var(--mizan-deco-blue-61) 24%,transparent);
-  background:radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--mizan-deco-blue-61) 12%,transparent),transparent 42%),
-    linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-20) 78%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10a) 97%,transparent));
+  border-color:var(--mizan-test-dashboard-border);
+  background:var(--mizan-test-dashboard-bg);
 }
 .home-feature-strip>div:first-child>i{
-  color:var(--mizan-primary-400);
-  background:color-mix(in srgb,var(--mizan-deco-blue-61) 10%,transparent);
+  color:var(--mizan-test-dashboard-icon-fg);
+  background:var(--mizan-test-dashboard-icon-bg);
   border-radius:var(--mizan-radius-sm);
   padding:7px;
   width:40px;
 }
 .home-feature-strip>div:first-child button{
-  color:var(--mizan-primary-300);
+  color:var(--mizan-test-dashboard-action-fg);
 }
 .home-feature-strip>div:first-child:hover{
-  border-color:color-mix(in srgb,var(--mizan-deco-blue-61) 48%,transparent);
-  box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-deco-blue-44) 10%,transparent);
+  border-color:var(--mizan-test-dashboard-border-hover);
+  box-shadow:var(--mizan-test-dashboard-hover-shadow);
 }
 .home-feature-strip>div:last-child{
-  border-color:color-mix(in srgb,var(--mizan-deco-teal-51) 28%,transparent);
-  background:radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--mizan-deco-teal-51) 14%,transparent),transparent 42%),
-    linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-teal-17) 82%,transparent),color-mix(in srgb,var(--mizan-deco-blue-08) 98%,transparent));
+  border-color:var(--mizan-contact-feature-border);
+  background:var(--mizan-contact-feature-bg);
 }
 .home-feature-strip>div:last-child>i{
-  color:var(--mizan-cyan-soft);
-  background:color-mix(in srgb,var(--mizan-deco-teal-51) 11%,transparent);
+  color:var(--mizan-contact-feature-icon-fg);
+  background:var(--mizan-contact-feature-icon-bg);
   border-radius:var(--mizan-radius-sm);
   padding:7px;
   width:40px;
 }
 .home-feature-strip>div:last-child button{
-  color:var(--mizan-info-500);
+  color:var(--mizan-contact-feature-action-fg);
 }
 .home-feature-strip>div:last-child:hover{
-  border-color:color-mix(in srgb,var(--mizan-deco-teal-51) 55%,transparent);
-  box-shadow:0 12px 32px color-mix(in srgb,var(--mizan-deco-teal-41) 12%,transparent);
+  border-color:var(--mizan-contact-feature-border-hover);
+  box-shadow:var(--mizan-contact-feature-hover-shadow);
 }
 /* تواصل معنا — بطاقة أكثر دفئاً ووضوحاً */
 .home-feature-strip>div:last-child:after{
@@ -617,7 +615,7 @@ footer{
   left:-65px;
   bottom:-105px;
   border-radius:50%;
-  background:color-mix(in srgb,var(--mizan-deco-teal-51) 7%,transparent);
+  background:var(--mizan-contact-feature-glow);
   filter:blur(2px);
   pointer-events:none;
 }
