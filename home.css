@@ -143,9 +143,9 @@
 .home-hero-overview-item>i{
   display:grid;
   place-items:center;
-  flex:0 0 38px;
-  width:38px;
-  height:38px;
+  flex:0 0 var(--mizan-icon-tile-size);
+  width:var(--mizan-icon-tile-size);
+  height:var(--mizan-icon-tile-size);
   border-radius:var(--mizan-radius-13);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
@@ -764,9 +764,9 @@ footer{
 .global-search-icon{
   display:grid;
   place-items:center;
-  width:38px;
-  height:38px;
-  flex:0 0 38px;
+  width:var(--mizan-icon-tile-size);
+  height:var(--mizan-icon-tile-size);
+  flex:0 0 var(--mizan-icon-tile-size);
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-accent-tile-bg);
   font-size:17px;
@@ -1077,9 +1077,9 @@ footer{
 .home-coming-soon i{
   display:grid;
   place-items:center;
-  width:38px;
-  height:38px;
-  flex:0 0 38px;
+  width:var(--mizan-icon-tile-size);
+  height:var(--mizan-icon-tile-size);
+  flex:0 0 var(--mizan-icon-tile-size);
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-600);
