@@ -7,6 +7,7 @@
 
   function applyTheme(theme) {
     root.setAttribute('data-admin-theme', theme);
+    root.setAttribute('data-theme', theme);
 
     if (!button) return;
     button.textContent = theme === 'light' ? '🌙' : '☀️';
