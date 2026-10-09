@@ -73,13 +73,6 @@
   --mizan-menu-line-height:2px;
   --mizan-menu-line-short-width:14px;
 }
-@media(max-width:420px){
-  :root{
-    --mizan-header-logo-size:32px;
-    --mizan-header-brand-min-height:54px;
-    --mizan-header-tagline-size:8px;
-  }
-}
 @media(max-width:600px){
   :root{
     --mizan-header-tools-offset:10px;
@@ -89,6 +82,14 @@
     --mizan-header-brand-min-height:58px;
     --mizan-header-logo-size:36px;
     --mizan-header-tagline-size:9px;
+  }
+}
+
+@media(max-width:420px){
+  :root{
+    --mizan-header-logo-size:32px;
+    --mizan-header-brand-min-height:54px;
+    --mizan-header-tagline-size:8px;
   }
 }
 
