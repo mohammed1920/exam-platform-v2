@@ -16,7 +16,7 @@
   border-radius:var(--mizan-radius-15);
   background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
 }
 .student-page-header span{
   display:block;
@@ -61,7 +61,7 @@
 }
 .profile-identity h3{
   margin:0 0 var(--mizan-space-1);
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
 }
 .profile-identity p{
   margin:0 0 6px;
@@ -119,13 +119,13 @@
 }
 .profile-stat-card span{
   display:block;
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
   margin-bottom:6px;
 }
 .profile-stat-card strong{
   display:block;
   color:var(--primary,var(--mizan-primary-500));
-  font-size:22px;
+  font-size:var(--mizan-font-size-heading-md);
 }
 .profile-stat-card small{
   color:var(--text-secondary,var(--mizan-muted-dark));
@@ -180,7 +180,7 @@
   background:color-mix(in srgb,var(--mizan-primary-900) 28%,transparent);
 }
 .history-icon{
-  font-size:22px;
+  font-size:var(--mizan-font-size-heading-md);
   width:35px;
   text-align:center;
 }
@@ -337,7 +337,7 @@
     width:56px;
     height:56px;
     flex-basis:56px;
-    font-size:22px;
+    font-size:var(--mizan-font-size-heading-md);
   }
   .profile-identity h3{
     font-size:var(--mizan-font-size-lg);
