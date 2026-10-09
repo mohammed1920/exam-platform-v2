@@ -134,5 +134,5 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Static integrity checks passed: ${htmlFiles.length} HTML file(s), ${cssFiles.length} CSS file(s), ${jsonFiles.length} JSON file(s), local HTML/CSS assets and Mizan radius tokens verified.`);
+  console.log(`Static integrity checks passed: ${htmlFiles.length} HTML file(s), ${cssFiles.length} CSS file(s), ${jsonFiles.length} JSON file(s), local HTML/JavaScript/CSS assets and Mizan radius tokens verified.`);
 }
