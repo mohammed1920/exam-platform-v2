@@ -204,7 +204,6 @@
   else install();
 })();
 
-
 (function setupFooterLinks(){
   const routes = {about:'about',terms:'terms',privacy:'privacy',disclaimer:'disclaimer',faq:'faq'};
   function installFooter(){
