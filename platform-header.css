@@ -3,7 +3,7 @@
       position: relative;
       --mizan-wordmark: var(--mizan-deco-amber-84);
       --mizan-wordmark-glow: color-mix(in srgb,var(--mizan-deco-amber-69) 22%,transparent);
-      padding: 30px 24px 25px;
+      padding:30px var(--mizan-space-6) 25px;
       text-align: center;
     }
     html[data-theme="light"] .mizan-header {
@@ -13,13 +13,13 @@
 
     .mizan-header-brand {
       width: min(100%, 920px);
-      margin: 58px auto 0;
+      margin:58px auto 0;
       display: flex;
       flex-direction: column;
       direction: rtl;
       justify-content: center;
       align-items: center;
-      gap: 6px;
+      gap:6px;
       min-height: 132px;
     }
 
@@ -31,7 +31,7 @@
       justify-content: center;
       width: max-content;
       max-width: 100%;
-      gap: 10px;
+      gap:10px;
     }
 
     .mizan-header-logo {
@@ -57,7 +57,7 @@
       text-align: center;
     }
     .mizan-header-copy h1 {
-      margin: 0;
+      margin:0;
       padding: 0;
       color: var(--mizan-wordmark);
       font-family: 'Reem Kufi', 'Amiri', 'Noto Naskh Arabic', serif;
@@ -70,7 +70,7 @@
     }
 
     .mizan-header-tagline {
-      margin: 0;
+      margin:0;
       color: var(--text-secondary, var(--mizan-neutral-400));
       font-family: 'Tajawal', 'Cairo', sans-serif;
       font-size: clamp(.82rem, 1.7vw, 1.08rem);
@@ -80,22 +80,22 @@
     }
 
     .mizan-header .mizan-header-brand + #install-app-btn {
-      margin-left: auto;
+      margin-left:auto;
       margin-right: auto;
     }
 
     @media (max-width: 700px) {
-      .mizan-header { padding: 18px 14px 14px; }
-      .mizan-header-brand { gap: 4px; min-height: auto; margin-top: 42px; }
-      .mizan-header-identity { gap: 8px; }
+      .mizan-header { padding:18px 14px 14px; }
+      .mizan-header-brand { gap:var(--mizan-space-1); min-height: auto; margin-top:42px; }
+      .mizan-header-identity { gap:var(--mizan-space-2); }
       .mizan-header-logo { width: 72px; height: 72px; flex-basis: 72px; }
       .mizan-header-copy h1 { font-size: clamp(2.2rem, 5.5vw, 2.7rem); }
     }
 
     @media (max-width: 420px) {
-      .mizan-header { padding: 15px 10px 12px; }
-      .mizan-header-brand { margin-top: 34px; }
-      .mizan-header-identity { gap: 6px; }
+      .mizan-header { padding:15px 10px var(--mizan-space-3); }
+      .mizan-header-brand { margin-top:34px; }
+      .mizan-header-identity { gap:6px; }
       .mizan-header-logo { width: 60px; height: 60px; flex-basis: 60px; }
       .mizan-header-copy h1 { font-size: 2.25rem; }
       .mizan-header-tagline { font-size: .74rem; }
