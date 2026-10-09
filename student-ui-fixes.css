@@ -55,7 +55,7 @@ header:not(.mizan-header) h1{
   gap:6px;
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 42%,transparent);
   border-radius:var(--mizan-radius-md);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
   font:inherit;
   font-size:13px;
@@ -105,7 +105,7 @@ header:not(.mizan-header) h1{
 .firebase-admin-back{
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-sm);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
   padding:9px 14px;
   font:inherit;
@@ -117,7 +117,7 @@ header:not(.mizan-header) h1{
   padding:11px 13px;
   border-radius:var(--mizan-radius-11);
   border:1px solid var(--mizan-primary-500-border);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
   font-size:13px;
 }
