@@ -13,7 +13,7 @@
   display:grid;
   place-items:center;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:15px;
+  border-radius:var(--mizan-radius-15);
   background:var(--mizan-primary-100);
   color:var(--primary,var(--mizan-primary-500));
   font-size:21px;
@@ -41,7 +41,7 @@
   padding:22px;
   margin-bottom:16px;
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 20%,transparent);
-  border-radius:20px;
+  border-radius:var(--mizan-radius-2xl);
   background:linear-gradient(135deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-primary-900) 45%,transparent));
   box-shadow:0 12px 35px color-mix(in srgb,var(--mizan-black) 14%,transparent);
 }
@@ -51,7 +51,7 @@
   flex:0 0 68px;
   display:grid;
   place-items:center;
-  border-radius:20px;
+  border-radius:var(--mizan-radius-2xl);
   background:linear-gradient(135deg,var(--primary,var(--mizan-primary-500)),var(--mizan-primary-500-antique));
   font-size:27px;
   font-weight:900;
@@ -81,7 +81,7 @@
 .student-info-grid>div{
   padding:15px;
   border:1px solid var(--mizan-surface-soft);
-  border-radius:15px;
+  border-radius:var(--mizan-radius-15);
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
 .student-info-grid small{
@@ -99,7 +99,7 @@
   border:1px solid var(--mizan-primary-500-border);
   background:transparent;
   color:var(--primary,var(--mizan-primary-500));
-  border-radius:10px;
+  border-radius:var(--mizan-radius-sm);
   padding:9px 13px;
   cursor:pointer;
   font-weight:700;
@@ -114,7 +114,7 @@
   padding:16px 10px;
   text-align:center;
   border:1px solid var(--mizan-surface-soft);
-  border-radius:16px;
+  border-radius:var(--mizan-radius-wide);
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
 .profile-stat-card span{
@@ -135,7 +135,7 @@
   margin-bottom:16px;
   padding:18px;
   border:1px solid var(--mizan-surface-soft);
-  border-radius:18px;
+  border-radius:var(--mizan-radius-lg);
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
 .profile-panel-heading{
@@ -175,7 +175,7 @@
   align-items:center;
   gap:12px;
   padding:13px;
-  border-radius:13px;
+  border-radius:var(--mizan-radius-13);
   border:1px solid color-mix(in srgb,var(--mizan-white) 5.5%,transparent);
   background:color-mix(in srgb,var(--mizan-primary-900) 28%,transparent);
 }
@@ -228,7 +228,7 @@
   gap:12px;
   padding:15px;
   border:1px solid color-mix(in srgb,var(--mizan-white) 6%,transparent);
-  border-radius:14px;
+  border-radius:var(--mizan-radius-md);
   background:color-mix(in srgb,var(--mizan-primary-900) 25%,transparent);
 }
 .student-wrong-number{
@@ -237,7 +237,7 @@
   flex:0 0 32px;
   display:grid;
   place-items:center;
-  border-radius:10px;
+  border-radius:var(--mizan-radius-sm);
   background:color-mix(in srgb,var(--mizan-deco-rose-61) 10%,transparent);
   color:var(--mizan-danger-500);
   font-weight:800;
@@ -272,7 +272,7 @@
 }
 .student-progress-bar{
   height:8px;
-  border-radius:999px;
+  border-radius:var(--mizan-radius-pill);
   background:var(--mizan-surface-soft);
   overflow:hidden;
 }
@@ -391,7 +391,7 @@
   flex:1 1 auto;
   min-width:0;
   border:1px solid color-mix(in srgb,var(--mizan-deco-green-54) 35%,transparent);
-  border-radius:10px;
+  border-radius:var(--mizan-radius-sm);
   padding:10px 13px;
   background:color-mix(in srgb,var(--mizan-deco-green-54) 12%,transparent);
   color:var(--mizan-success);
@@ -419,13 +419,13 @@
   height:46px;
   flex:0 0 46px;
   font-size:18px;
-  border-radius:12px;
+  border-radius:var(--mizan-radius-compact);
 }
 .profile-delete-btn{
   width:36px;
   height:36px;
   border:1px solid color-mix(in srgb,var(--mizan-deco-rose-61) 22%,transparent);
-  border-radius:9px;
+  border-radius:var(--mizan-radius-9);
   background:color-mix(in srgb,var(--mizan-deco-rose-61) 6%,transparent);
   color:var(--mizan-danger-500);
   cursor:pointer;

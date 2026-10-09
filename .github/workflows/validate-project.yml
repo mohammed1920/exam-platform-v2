@@ -1,0 +1,42 @@
+name: Validate Mizan Project
+
+on:
+  push:
+    branches:
+      - "refactor/**"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-mizan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-integrity:
+    name: Static integrity and JavaScript syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate local assets and JSON data
+        run: node scripts/validate-static-project.mjs
+
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type f -name '*.js' \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            -print0 | xargs -0 -r -n1 node --check

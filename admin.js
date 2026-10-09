@@ -1,0 +1,1242 @@
+/* Mizan administration panel logic.
+ * Extracted from the existing inline script without changing its statements or order.
+ */
+
+        // ===== المتغيرات العامة =====
+        let books = [];
+        let currentBook = null;
+        let bookChapterFiles = [];
+        let currentChapterNum = null;
+        let currentChapterData = null;
+        let editingChapterNum = null;
+        let editingQuestionIdx = null;
+        let modifiedQuestionsIndices = [];
+        let opInProgress = false;
+        // رمز GitHub يبقى في الذاكرة فقط ولا يُحفظ في تخزين المتصفح.
+        // عند إعادة فتح/تحديث لوحة الإدارة سيُطلب الرمز من جديد.
+        let config = { token: null, user: '', repo: 'exam-platform-v2' };
+
+        function escapeHtml(value) {
+            const div = document.createElement('div');
+            div.textContent = value == null ? '' : String(value);
+            return div.innerHTML;
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value).replace(/`/g, '&#96;');
+        }
+
+        function createQuestionUid() {
+            if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+            return 'q_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
+        }
+
+        // ===== حماية من الضغط المزدوج =====
+        // يمنع إرسال أكثر من عملية حفظ/حذف بنفس الوقت (شائع عند الضغط مرتين بسرعة من الموبايل)
+        // وهو السبب الأكثر رجوحًا خلف الحفظ الذي "يختفي" لأن commit ثاني يتعارض مع الأول بصمت
+        function guardedOp(fn) {
+            if (opInProgress) { showAlert('جاري تنفيذ عملية سابقة، الرجاء الانتظار...', 'error'); return; }
+            opInProgress = true;
+            Promise.resolve(fn()).finally(() => { opInProgress = false; });
+        }
+
+        // ===== دوال مساعدة =====
+        function showAlert(msg, type = 'success') {
+            const box = document.getElementById('alert-box');
+            box.textContent = msg;
+            box.className = `alert active alert-${type}`;
+            setTimeout(() => box.className = 'alert', 4000);
+        }
+
+        function decode(b64) {
+            return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0)));
+        }
+
+        function encode(str) {
+            return btoa(Array.from(new TextEncoder().encode(str), b => String.fromCharCode(b)).join(''));
+        }
+
+        async function resolveGitHubIdentity() {
+            if (!config.token) throw new Error('لم يتم إدخال رمز GitHub.');
+            const res = await fetch('https://api.github.com/user', {
+                headers: { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' }
+            });
+            if (!res.ok) throw new Error('رمز GitHub غير صالح أو منتهي الصلاحية.');
+            const user = await res.json();
+            if (!user.login) throw new Error('تعذر معرفة حساب GitHub المرتبط بالرمز.');
+            config.user = user.login;
+            return user.login;
+        }
+
+        async function ghRequest(path, method = 'GET', body = null) {
+            const url = `https://api.github.com/repos/${config.user}/${config.repo}/contents/${path}?t=${Date.now()}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+            const options = { method, headers };
+            if (body) options.body = JSON.stringify(body);
+            const res = await fetch(url, options);
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.message || `HTTP ${res.status}`);
+            }
+            return res.json();
+        }
+
+        function logout() {
+            config.token = null;
+            config.user = '';
+            window.location.href = 'index.html';
+        }
+
+        // ===== الحفظ إلى GitHub (Git Data API) =====
+        // كل خطوة الآن يتم التحقق من نجاحها؛ أي فشل يرمي خطأ واضح بدل الفشل الصامت
+        async function commitFiles(files, message) {
+            const base = `https://api.github.com/repos/${config.user}/${config.repo}`;
+            const headers = { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' };
+
+            const refRes = await fetch(`${base}/git/ref/heads/main`, { headers });
+            if (!refRes.ok) throw new Error(`فشل قراءة آخر commit (${refRes.status})`);
+            const refData = await refRes.json();
+            const lastCommitSha = refData.object.sha;
+
+            const commitRes = await fetch(`${base}/git/commits/${lastCommitSha}`, { headers });
+            if (!commitRes.ok) throw new Error(`فشل قراءة تفاصيل الـ commit (${commitRes.status})`);
+            const commitData = await commitRes.json();
+            const baseTreeSha = commitData.tree.sha;
+
+            const treeItems = [];
+            for (const file of files) {
+                const blobRes = await fetch(`${base}/git/blobs`, {
+                    method: 'POST', headers,
+                    body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
+                });
+                if (!blobRes.ok) throw new Error(`فشل رفع ملف ${file.path} (${blobRes.status})`);
+                const blob = await blobRes.json();
+                treeItems.push({ path: file.path, mode: '100644', type: 'blob', sha: blob.sha });
+            }
+
+            const treeRes = await fetch(`${base}/git/trees`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
+            });
+            if (!treeRes.ok) throw new Error(`فشل إنشاء tree (${treeRes.status})`);
+            const newTree = await treeRes.json();
+
+            const newCommitRes = await fetch(`${base}/git/commits`, {
+                method: 'POST', headers,
+                body: JSON.stringify({ message, tree: newTree.sha, parents: [lastCommitSha] })
+            });
+            if (!newCommitRes.ok) throw new Error(`فشل إنشاء commit (${newCommitRes.status})`);
+            const newCommit = await newCommitRes.json();
+
+            const updateRefRes = await fetch(`${base}/git/refs/heads/main`, {
+                method: 'PATCH', headers,
+                body: JSON.stringify({ sha: newCommit.sha })
+            });
+            if (!updateRefRes.ok) {
+                const err = await updateRefRes.json().catch(() => ({}));
+                throw new Error(err.message || `فشل تحديث الفرع الرئيسي (${updateRefRes.status}) - على الأغلب تعارض بسبب عملية حفظ أخرى بنفس الوقت`);
+            }
+        }
+
+        // حفظ آمن للفهرس: نقرأ آخر نسخة من GitHub قبل التعديل حتى لا تكتب جلسة قديمة فوق إضافة أحدث.
+        async function saveBooks(mutator, message) {
+            const remote = await ghRequest('data/books.json');
+            const latest = JSON.parse(decode(remote.content));
+            if (!Array.isArray(latest)) throw new Error('books.json غير صالح');
+            const result = await mutator(latest);
+            const nextBooks = Array.isArray(result) ? result : latest;
+            await commitFiles([
+                { path: 'data/books.json', content: JSON.stringify(nextBooks, null, 2) }
+            ], message);
+            books = nextBooks;
+            renderBooks();
+            return nextBooks;
+        }
+
+        // اسم قديم للتوافق مع بعض أجزاء اللوحة، لكنه الآن لا يكتب index.html ولا يعتمد على نسخة محلية قديمة.
+        async function updateIndexAndBooks() {
+            await saveBooks(() => books, 'تحديث قائمة الكتب');
+        }
+
+        async function loadBooks() {
+            if (!config.token) return;
+            try {
+                if (!config.user) await resolveGitHubIdentity();
+                const data = await ghRequest('data/books.json');
+                books = JSON.parse(decode(data.content));
+                renderBooks();
+                loadContactData();
+            } catch (e) { showAlert('خطأ في الاتصال: ' + e.message, 'error'); }
+        }
+
+        function renderBooks() {
+            const list = document.getElementById('books-list');
+            const filterEl = document.getElementById('book-search');
+            const filter = (filterEl?.value || '').trim();
+            const filtered = filter
+                ? books.filter(b => (b.title || '').includes(filter) || (b.id || '').includes(filter))
+                : books;
+
+            if (filtered.length === 0) {
+                list.innerHTML = `<p class="empty-hint">${books.length === 0 ? 'لا توجد كتب بعد.' : 'لا نتائج مطابقة.'}</p>`;
+                return;
+            }
+            list.innerHTML = filtered.map(b => {
+                const id = escapeAttr(b.id);
+                return `
+                <div class="book-item ${currentBook?.id === b.id ? 'active' : ''}" data-book-id="${id}">
+                    <strong>${escapeHtml(b.title)}</strong>
+                    <div class="book-item-meta">${Number(b.chapters) || 0} فصول</div>
+                </div>`;
+            }).join('');
+            list.querySelectorAll('[data-book-id]').forEach(el => {
+                el.addEventListener('click', () => selectBook(el.dataset.bookId));
+            });
+        }
+
+        function toggleBookPanel(state) {
+            const sb = document.getElementById('sidebar');
+            const bd = document.getElementById('sidebar-backdrop');
+            const open = state !== undefined ? state : !sb.classList.contains('open');
+            sb.classList.toggle('open', open);
+            bd.classList.toggle('active', open);
+        }
+
+        async function selectBook(id) {
+            currentBook = books.find(b => b.id === id);
+            currentChapterNum = null;
+            currentChapterData = null;
+            modifiedQuestionsIndices = [];
+            updateBatchSaveBar();
+            document.getElementById('current-book-name').textContent = currentBook.title;
+            document.getElementById('book-bar-name').textContent = currentBook.title;
+            document.getElementById('current-book-info').innerHTML = `
+                <p><strong>المؤلف:</strong> ${escapeHtml(currentBook.author || 'غير محدد')}</p>
+                <p><strong>الوصف:</strong> ${escapeHtml(currentBook.description || 'بدون وصف')}</p>
+                <p><strong>عدد الفصول:</strong> <span id="chapters-count">${Number(currentBook.chapters) || 0}</span></p>
+            `;
+
+            const bookEditSection = document.getElementById('book-edit-section');
+            bookEditSection.style.display = 'block';
+            document.getElementById('bookTitleInput').value = currentBook.title || '';
+            document.getElementById('bookDescriptionInput').value = currentBook.description || '';
+            document.getElementById('bookAuthorInput').value = currentBook.author || '';
+            const iconSelect = document.getElementById('bookIconInput');
+            if (iconSelect) iconSelect.innerHTML = buildIconOptionsHtml(currentBook.icon || 'scale');
+
+            renderBooks();
+            toggleBookPanel(false);
+            await loadBookChapters();
+            switchTab('overview', null);
+        }
+
+        async function loadBookChapters() {
+            if (!currentBook) return;
+            document.getElementById('chapters-list').innerHTML = '<div class="loading">جاري تحميل الفصول...</div>';
+            try {
+                const files = await ghRequest(`data/${currentBook.id}`);
+                bookChapterFiles = [];
+
+                for (const file of files) {
+                    const m = file.name.match(/^chapter_(\d+)\.json$/);
+                    if (m) {
+                        bookChapterFiles.push({ num: parseInt(m[1]), name: file.name, path: file.path });
+                    }
+                }
+
+                bookChapterFiles.sort((a, b) => a.num - b.num);
+                await loadChapterTitles();
+                renderChapters();
+                updateChapterSelect();
+            } catch (e) {
+                bookChapterFiles = [];
+                document.getElementById('chapters-list').innerHTML = '<p class="empty-hint">لا توجد فصول مضافة بعد.</p>';
+            }
+        }
+
+        async function loadChapterTitles() {
+            const promises = bookChapterFiles.map(async (ch) => {
+                try {
+                    const data = await ghRequest(ch.path);
+                    const content = JSON.parse(decode(data.content));
+                    ch.title = content.title || `الفصل ${ch.num}`;
+                    ch.questionCount = (content.questions || []).length;
+                } catch(e) {
+                    ch.title = `الفصل ${ch.num}`;
+                    ch.questionCount = 0;
+                }
+            });
+            await Promise.all(promises);
+        }
+
+        function renderChapters() {
+            const list = document.getElementById('chapters-list');
+            if (bookChapterFiles.length === 0) {
+                list.innerHTML = '<p class="empty-hint">لا توجد فصول مضافة بعد.</p>';
+                return;
+            }
+            list.innerHTML = bookChapterFiles.map((ch) => `
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <div class="item-card-title">${escapeHtml(ch.title)}</div>
+                        <div class="item-card-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="editChapter(${ch.num})">تعديل</button>
+                            <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteChapter(${ch.num}))">حذف</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-dim);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
+                </div>
+            `).join('');
+        }
+
+        function updateChapterSelect() {
+            const sel = document.getElementById('chapter-select');
+            sel.innerHTML = bookChapterFiles.map(ch => `<option value="${ch.num}">${escapeHtml(ch.title)}</option>`).join('');
+            if (bookChapterFiles.length > 0) {
+                currentChapterNum = bookChapterFiles[0].num;
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                loadChapterQuestions();
+            }
+        }
+
+        async function loadChapterQuestions() {
+            const sel = document.getElementById('chapter-select');
+            currentChapterNum = parseInt(sel.value);
+            document.getElementById('questions-list').innerHTML = '<div class="loading">جاري تحميل الأسئلة...</div>';
+            try {
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${currentChapterNum}.json`);
+                currentChapterData = JSON.parse(decode(data.content));
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                renderQuestions();
+            } catch(e) {
+                currentChapterData = null;
+                document.getElementById('questions-list').innerHTML = '<p class="empty-hint">تعذر تحميل الأسئلة.</p>';
+            }
+        }
+
+        function renderQuestions() {
+            const list = document.getElementById('questions-list');
+            if (!currentChapterData) { list.innerHTML = 'اختر فصلاً لعرض الأسئلة'; return; }
+            const qs = currentChapterData.questions || [];
+            if (qs.length === 0) {
+                list.innerHTML = '<p class="empty-hint">لا توجد أسئلة في هذا الفصل.</p>';
+                return;
+            }
+            list.innerHTML = qs.map((q, i) => {
+                const qText = q.q || q.question || '';
+                const opts = q.opts || q.options || [];
+                const isPending = modifiedQuestionsIndices.includes(i);
+                return `
+                    <div class="item-card ${isPending ? 'pending' : ''}">
+                        <div class="item-card-header">
+                            <div class="item-card-title">س ${i+1}</div>
+                            <div class="item-card-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="editQuestion(${i})">تعديل</button>
+                                <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteQuestion(${i}))">حذف</button>
+                            </div>
+                        </div>
+                        <div class="question-text">${escapeHtml(qText)}</div>
+                        <div class="question-options">
+                            ${opts.map((o, oi) => {
+                                const isCorrect = (q.answer === oi);
+                                return `
+                                <label class="question-option-radio ${isCorrect ? 'selected' : ''}">
+                                    <input type="radio" name="q_${i}_ans" value="${oi}" ${isCorrect ? 'checked' : ''} onchange="stageAnswerChange(${i}, ${oi})">
+                                    <span>${oi+1}) ${escapeHtml(o)}</span>
+                                </label>
+                            `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function stageAnswerChange(qIdx, newAnswerIdx) {
+            if (!currentChapterData || !currentChapterData.questions[qIdx]) return;
+            currentChapterData.questions[qIdx].answer = newAnswerIdx;
+            if (currentChapterData.questions[qIdx].ans !== undefined) delete currentChapterData.questions[qIdx].ans;
+
+            if (!modifiedQuestionsIndices.includes(qIdx)) {
+                modifiedQuestionsIndices.push(qIdx);
+            }
+            updateBatchSaveBar();
+            renderQuestions();
+        }
+
+        function updateBatchSaveBar() {
+            const bar = document.getElementById('batch-save-bar');
+            const count = modifiedQuestionsIndices.length;
+
+            if (count > 0) {
+                document.getElementById('batch-save-count').textContent = count;
+                bar.classList.add('active');
+                document.body.classList.add('batch-active');
+            } else {
+                bar.classList.remove('active');
+                document.body.classList.remove('batch-active');
+            }
+        }
+
+        async function saveAllStagedAnswers() {
+            if (modifiedQuestionsIndices.length === 0) {
+                showAlert('لا توجد تعديلات معلقة للحفظ', 'error');
+                return;
+            }
+
+            if (!currentChapterData || currentChapterNum === null) {
+                showAlert('يرجى اختيار فصل أولاً', 'error');
+                return;
+            }
+
+            try {
+                const cleanedQuestions = currentChapterData.questions.map(q => {
+                    const cleaned = {
+                        ...q,
+                        id: q.id || null,
+                        uid: q.uid || createQuestionUid(),
+                        question: q.question || q.q || '',
+                        options: q.options || q.opts || [],
+                        answer: q.answer !== undefined ? q.answer : q.ans,
+                        explanation: q.explanation || ''
+                    };
+                    delete cleaned.ans; delete cleaned.q; delete cleaned.opts; delete cleaned.correct;
+                    return cleaned;
+                });
+
+                const cleanChapterData = {
+                    id: currentChapterData.id,
+                    book_id: currentChapterData.book_id,
+                    chapter: currentChapterData.chapter,
+                    title: currentChapterData.title,
+                    questions: cleanedQuestions
+                };
+
+                const commitMsg = `تحديث ${modifiedQuestionsIndices.length} إجابة في الفصل ${currentChapterNum}`;
+
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(cleanChapterData, null, 2) }
+                ], commitMsg);
+
+                currentChapterData = cleanChapterData;
+                const savedCount = modifiedQuestionsIndices.length;
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                renderQuestions();
+                showAlert(`✅ تم حفظ ${savedCount} تعديلات بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في الحفظ: ' + e.message, 'error');
+            }
+        }
+
+        function switchTab(id, e) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (e && e.target) e.target.classList.add('active');
+        }
+
+        // ===== مراجعة الأخطاء الإملائية ومعالجة القبول والرفض =====
+        let spellingItems = [];
+
+        async function loadSpellingReport() {
+            const listEl = document.getElementById('spellcheck-list');
+            const summaryEl = document.getElementById('spellcheck-summary');
+            const applyBtn = document.getElementById('apply-spellcheck-btn');
+            listEl.innerHTML = 'جاري التحميل...';
+            applyBtn.style.display = 'none';
+
+            try {
+                const data = await ghRequest('reports/spelling_report.json');
+                const report = JSON.parse(decode(data.content));
+                spellingItems = (report.items || []).map(it => ({ ...it, decision: 'pending' }));
+
+                if (spellingItems.length === 0) {
+                    listEl.innerHTML = '<p class="empty-hint">لا توجد أي ملاحظات حالياً 🎉 (شغّل فحصاً جديداً من تبويب Actions في GitHub إذا أردت الفحص).</p>';
+                    summaryEl.textContent = '';
+                    return;
+                }
+                summaryEl.textContent = `آخر فحص: ${report.generated_at || '—'} | عدد الملاحظات: ${spellingItems.length}`;
+                renderSpellingReport();
+            } catch (e) {
+                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
+                summaryEl.textContent = '';
+            }
+        }
+
+        // دالة حاسبة للفرق اللغوي بين النص الأصلي والتصحيح المقترح
+        function getDiffWord(original, corrected) {
+            if (!original || !corrected) return '—';
+            if (original.trim() === corrected.trim()) {
+                return '<span style="color: var(--text-dim);">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
+            }
+            const origWords = original.trim().split(/\s+/);
+            const corrWords = corrected.trim().split(/\s+/);
+
+            for (let i = 0; i < Math.max(origWords.length, corrWords.length); i++) {
+                if (origWords[i] !== corrWords[i]) {
+                    const wordOriginal = escapeHtml(origWords[i] || '');
+                    const wordCorrected = escapeHtml(corrWords[i] || '');
+                    return `<span style="color:var(--mizan-danger); text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:var(--mizan-success); font-weight:700;">(الصواب: ${wordCorrected})</span>`;
+                }
+            }
+            return '—';
+        }
+
+        function renderSpellingReport() {
+            const listEl = document.getElementById('spellcheck-list');
+            const applyBtn = document.getElementById('apply-spellcheck-btn');
+            const summaryEl = document.getElementById('spellcheck-summary');
+
+            const pendingItems = spellingItems.filter(i => i.decision === 'pending');
+
+            if (pendingItems.length === 0 && spellingItems.length > 0) {
+                listEl.innerHTML = '<p class="empty-hint">راجعت كل الملاحظات ✅ اضغط زر "حفظ المعالجات" بالأسفل لرفع القرارات.</p>';
+            } else if (pendingItems.length === 0) {
+                listEl.innerHTML = '<p class="empty-hint">لا يوجد أي ملاحظات حالياً 🎉</p>';
+            } else {
+                listEl.innerHTML = pendingItems.map((item) => {
+                    const idx = spellingItems.indexOf(item);
+                    const realDiff = getDiffWord(item.original, item.corrected);
+
+                    return `
+                    <div class="item-card">
+                        <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
+                            📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')} — الحقل: ${escapeHtml(item.field)}
+                        </div>
+                        <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
+                        <div style="margin-bottom:6px; color:var(--mizan-danger); font-size:13px;"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
+                        <div style="margin-bottom:10px; color:var(--mizan-success); font-size:13px;"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
+                        <div class="btn-row">
+                            <button class="btn btn-green btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
+                            <button class="btn btn-red btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            const acceptedCount = spellingItems.filter(i => i.decision === 'accepted').length;
+            const rejectedCount = spellingItems.filter(i => i.decision === 'rejected').length;
+            const processedCount = acceptedCount + rejectedCount;
+
+            summaryEl.textContent = `متبقي للمراجعة: ${pendingItems.length} | تم تحديد: ${acceptedCount} قبول، ${rejectedCount} رفض (لسا غير مرفوعة)`;
+            applyBtn.style.display = processedCount > 0 ? 'inline-block' : 'none';
+            applyBtn.textContent = `🚀 حفظ المعالجات (${processedCount}) وتنظيف السجل`;
+        }
+
+        function setDecision(idx, decision) {
+            spellingItems[idx].decision = spellingItems[idx].decision === decision ? 'pending' : decision;
+            renderSpellingReport();
+        }
+
+        function undoAllDecisions() {
+            spellingItems = spellingItems.map(it => ({ ...it, decision: 'pending' }));
+            renderSpellingReport();
+        }
+
+        async function applyApprovedFixes() {
+            const accepted = spellingItems.filter(i => i.decision === 'accepted');
+            const rejected = spellingItems.filter(i => i.decision === 'rejected');
+            const processedCount = accepted.length + rejected.length;
+
+            if (processedCount === 0) {
+                showAlert('يرجى تحديد قبول أو رفض لعنصر واحد على الأقل', 'error');
+                return;
+            }
+
+            if (!confirm(`سيتم تطبيق ${accepted.length} تصحيح وإزالة ${processedCount} ملاحظة (مقبولة ومرفوضة) من السجل. متأكد؟`)) return;
+
+            showAlert('جاري حفظ القرارات وتحديث السجل...', 'success');
+
+            const chapterCache = {};
+            const skipped = [];
+
+            for (const item of accepted) {
+                const key = `${item.book_id}/${item.chapter}`;
+                const path = `data/${item.book_id}/chapter_${item.chapter}.json`;
+
+                if (!chapterCache[key]) {
+                    try {
+                        const fileData = await ghRequest(path);
+                        chapterCache[key] = { data: JSON.parse(decode(fileData.content)), path };
+                    } catch (e) {
+                        skipped.push(`${key}: تعذّر جلب الملف (${e.message})`);
+                        continue;
+                    }
+                }
+
+                const chapterObj = chapterCache[key].data;
+                const q = (chapterObj.questions || []).find(qq => (item.question_uid && qq.uid === item.question_uid) || (!item.question_uid && String(qq.id) === String(item.question_id)));
+                if (!q) {
+                    skipped.push(`${key} / سؤال #${item.question_id}: السؤال غير موجود`);
+                    continue;
+                }
+
+                if (item.field === 'question') {
+                    q.question = item.corrected;
+                } else if (item.field && item.field.startsWith('option_')) {
+                    const optIdx = parseInt(item.field.replace('option_', ''), 10);
+                    if (q.options && q.options[optIdx] !== undefined) {
+                        q.options[optIdx] = item.corrected;
+                    }
+                }
+            }
+
+            const filesToCommit = Object.values(chapterCache).map(c => ({
+                path: c.path,
+                content: JSON.stringify(c.data, null, 2)
+            }));
+
+            try {
+                const reportData = await ghRequest('reports/spelling_report.json');
+                const fullReport = JSON.parse(decode(reportData.content));
+
+                const remainingItems = spellingItems.filter(i => i.decision === 'pending').map(i => {
+                    const { decision, ...cleanItem } = i;
+                    return cleanItem;
+                });
+
+                fullReport.items = remainingItems;
+                fullReport.generated_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+                filesToCommit.push({
+                    path: 'reports/spelling_report.json',
+                    content: JSON.stringify(fullReport, null, 2)
+                });
+
+                await commitFiles(filesToCommit, `مراجعة إملائية: قبول ${accepted.length} ورفض ${rejected.length}`);
+
+                showAlert(`✅ تم التحديث بنجاح! تم تطبيق المقبول وتنظيف السجل.`, 'success');
+
+                spellingItems = remainingItems.map(it => ({ ...it, decision: 'pending' }));
+                renderSpellingReport();
+
+            } catch (e) {
+                showAlert('خطأ أثناء حفظ القرارات: ' + e.message, 'error');
+            }
+        }
+
+        // ===== مراجعة الجودة (QA Audit) =====
+        let qaItems = [];
+
+        const QA_ISSUE_LABELS = {
+            'اجابة_غير_صحيحة': { label: '❌ إجابة غير صحيحة', color: 'var(--mizan-danger)' },
+            'خيارات_متشابهة': { label: '🔁 خيارات متشابهة', color: 'var(--mizan-warning)' },
+            'صياغة_غير_واضحة': { label: '❓ صياغة غير واضحة', color: 'var(--mizan-warning)' },
+            'لا_يوجد_اجابة_واحدة_صحيحة': { label: '⚠️ لا توجد إجابة واحدة صحيحة', color: 'var(--mizan-danger)' }
+        };
+
+        async function loadQaReport() {
+            const listEl = document.getElementById('qa-audit-list');
+            const summaryEl = document.getElementById('qa-audit-summary');
+            const applyBtn = document.getElementById('apply-qa-btn');
+            listEl.innerHTML = 'جاري التحميل...';
+            applyBtn.style.display = 'none';
+
+            try {
+                const data = await ghRequest('reports/qa_report.json');
+                const report = JSON.parse(decode(data.content));
+                qaItems = (Array.isArray(report) ? report : []).map(it => ({ ...it, decision: 'pending' }));
+
+                if (qaItems.length === 0) {
+                    listEl.innerHTML = '<p class="empty-hint">لا توجد ملاحظات حالياً 🎉 (شغّل فحصاً جديداً من تبويب Actions في GitHub إذا أردت الفحص).</p>';
+                    summaryEl.textContent = '';
+                    return;
+                }
+                renderQaReport();
+            } catch (e) {
+                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/qa_report.json.</p>`;
+                summaryEl.textContent = '';
+            }
+        }
+
+        function renderQaReport() {
+            const listEl = document.getElementById('qa-audit-list');
+            const applyBtn = document.getElementById('apply-qa-btn');
+            const summaryEl = document.getElementById('qa-audit-summary');
+
+            const pendingItems = qaItems.filter(i => i.decision === 'pending');
+
+            if (pendingItems.length === 0 && qaItems.length > 0) {
+                listEl.innerHTML = '<p class="empty-hint">راجعت كل الملاحظات ✅ اضغط زر "حفظ القرارات" بالأسفل لرفعها.</p>';
+            } else if (pendingItems.length === 0) {
+                listEl.innerHTML = '<p class="empty-hint">لا توجد ملاحظات حالياً 🎉</p>';
+            } else {
+                listEl.innerHTML = pendingItems.map((item) => {
+                    const idx = qaItems.indexOf(item);
+                    const issueInfo = QA_ISSUE_LABELS[item.issue_type] || { label: item.issue_type, color: 'var(--mizan-muted-dark)' };
+                    const opts = item.options || [];
+
+                    const optionsHtml = opts.map((o, oi) => {
+                        const isCurrent = oi === item.current_answer_index;
+                        const isSuggested = item.suggested_answer_index !== null && item.suggested_answer_index !== undefined && oi === item.suggested_answer_index;
+                        let style = 'padding:6px 8px; margin:3px 0; border-radius:6px; font-size:13px;';
+                        let tag = '';
+                        if (isCurrent && isSuggested) {
+                            style += 'background: rgba(16,185,129,0.15); border-left:3px solid var(--green);';
+                            tag = ' <span style="color:var(--green); font-weight:700;">(الحالية)</span>';
+                        } else if (isCurrent) {
+                            style += 'background: rgba(239,68,68,0.12); border-left:3px solid var(--red);';
+                            tag = ' <span style="color:var(--red); font-weight:700;">(الحالية)</span>';
+                        } else if (isSuggested) {
+                            style += 'background: color-mix(in srgb,var(--mizan-warning-500) 15%,transparent); border-left:3px solid var(--gold);';
+                            tag = ' <span style="color:var(--gold); font-weight:700;">(مقترحة)</span>';
+                        }
+                        return `<div style="${style}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
+                    }).join('');
+
+                    return `
+                    <div class="item-card">
+                        <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
+                            📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')}
+                        </div>
+                        <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${escapeHtml(issueInfo.label)}</div>
+                        <div class="question-text">${escapeHtml(item.question || '')}</div>
+                        <div class="question-options">${optionsHtml}</div>
+                        <div style="margin-bottom:12px; color:var(--text-dim); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
+                        <div class="btn-row">
+                            <button class="btn btn-secondary btn-sm" onclick="openQuestionForReview(${idx})">✏️ تعديل السؤال</button>
+                            <button class="btn btn-green btn-sm" onclick="setQaDecision(${idx}, 'accepted')">✅ تم التعديل / موافق عليها</button>
+                            <button class="btn btn-red btn-sm" onclick="setQaDecision(${idx}, 'rejected')">❌ ليست مشكلة</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            const acceptedCount = qaItems.filter(i => i.decision === 'accepted').length;
+            const rejectedCount = qaItems.filter(i => i.decision === 'rejected').length;
+            const processedCount = acceptedCount + rejectedCount;
+
+            summaryEl.textContent = `متبقي للمراجعة: ${pendingItems.length} | تم تحديد: ${acceptedCount} موافقة، ${rejectedCount} رفض (لسا غير مرفوعة)`;
+            applyBtn.style.display = processedCount > 0 ? 'inline-block' : 'none';
+            applyBtn.textContent = `🚀 حفظ القرارات (${processedCount}) وتنظيف السجل`;
+        }
+
+        function setQaDecision(idx, decision) {
+            qaItems[idx].decision = qaItems[idx].decision === decision ? 'pending' : decision;
+            renderQaReport();
+        }
+
+        function undoAllQaDecisions() {
+            qaItems = qaItems.map(it => ({ ...it, decision: 'pending' }));
+            renderQaReport();
+        }
+
+        async function openQuestionForReview(idx) {
+            const item = qaItems[idx];
+            if (!item) return;
+            try {
+                showAlert('جاري فتح السؤال...', 'success');
+                await selectBook(item.book_id);
+
+                const sel = document.getElementById('chapter-select');
+                sel.value = item.chapter;
+                await loadChapterQuestions();
+
+                const qIdx = (currentChapterData?.questions || []).findIndex(q => (item.question_uid && q.uid === item.question_uid) || (!item.question_uid && String(q.id) === String(item.question_id)));
+                if (qIdx === -1) {
+                    showAlert('تعذر العثور على السؤال (ربما تم تعديله أو حذفه مسبقاً)', 'error');
+                    return;
+                }
+                editingQuestionIdx = qIdx;
+
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById('questions').classList.add('active');
+                document.getElementById('tab-btn-questions').classList.add('active');
+
+                showModal('editQuestion');
+            } catch (e) {
+                showAlert('خطأ: ' + e.message, 'error');
+            }
+        }
+
+        async function applyQaDecisions() {
+            const accepted = qaItems.filter(i => i.decision === 'accepted');
+            const rejected = qaItems.filter(i => i.decision === 'rejected');
+            const processedCount = accepted.length + rejected.length;
+
+            if (processedCount === 0) {
+                showAlert('يرجى تحديد قرار لعنصر واحد على الأقل', 'error');
+                return;
+            }
+
+            if (!confirm(`سيتم إزالة ${processedCount} ملاحظة (موافق عليها ومرفوضة) من سجل مراجعة الجودة. هذا لا يغيّر أي بيانات أسئلة — فقط ينظف قائمة المراجعة. متأكد؟`)) return;
+
+            try {
+                const remainingItems = qaItems.filter(i => i.decision === 'pending').map(i => {
+                    const { decision, ...cleanItem } = i;
+                    return cleanItem;
+                });
+
+                await commitFiles([
+                    { path: 'reports/qa_report.json', content: JSON.stringify(remainingItems, null, 2) }
+                ], `مراجعة جودة: موافقة على ${accepted.length} ورفض ${rejected.length}`);
+
+                showAlert('✅ تم تنظيف سجل مراجعة الجودة بنجاح!', 'success');
+
+                qaItems = remainingItems.map(it => ({ ...it, decision: 'pending' }));
+                renderQaReport();
+            } catch (e) {
+                showAlert('خطأ أثناء حفظ القرارات: ' + e.message, 'error');
+            }
+        }
+
+        // ===== إدارة معلومات التواصل =====
+        let contactData = {
+            phone: '',
+            email: '',
+            whatsapp_number: '',
+            telegram_username: '',
+            instagram: '',
+            facebook: '',
+            social_links: []
+        };
+
+        async function loadContactData() {
+            try {
+                const response = await fetch('data/contact.json');
+                if (response.ok) {
+                    contactData = await response.json();
+                    renderContactForm();
+                }
+            } catch (e) {
+                renderContactForm();
+            }
+        }
+
+        function renderContactForm() {
+            const phone = document.getElementById('contactPhone');
+            const email = document.getElementById('contactEmail');
+            const whatsapp = document.getElementById('contactWhatsapp');
+            const telegram = document.getElementById('contactTelegram');
+            const instagram = document.getElementById('contactInstagram');
+            const facebook = document.getElementById('contactFacebook');
+            const linksContainer = document.getElementById('contactLinksContainer');
+
+            if (phone) phone.value = contactData.phone || '';
+            if (email) email.value = contactData.email || '';
+            if (whatsapp) whatsapp.value = contactData.whatsapp_number || '';
+            if (telegram) telegram.value = contactData.telegram_username || '';
+            if (instagram) instagram.value = contactData.instagram || '';
+            if (facebook) facebook.value = contactData.facebook || '';
+
+            if (linksContainer) {
+                linksContainer.innerHTML = '';
+                (contactData.social_links || []).forEach((link, idx) => {
+                    const linkDiv = document.createElement('div');
+                    linkDiv.className = 'item-card';
+                    linkDiv.innerHTML = `
+                        <div class="item-card-header">
+                            <div style="flex:1;">
+                                <input type="text" placeholder="اسم الرابط" value="${escapeAttr(link.label)}" class="link-label-${idx}" style="margin-bottom: 6px;">
+                                <input type="text" placeholder="رابط URL" value="${escapeAttr(link.url)}" class="link-url-${idx}">
+                            </div>
+                            <button class="btn btn-red btn-sm" onclick="deleteContactLink(${idx})">❌ حذف</button>
+                        </div>
+                    `;
+                    linksContainer.appendChild(linkDiv);
+                });
+            }
+        }
+
+        function addContactLink() {
+            contactData.social_links.push({ label: '', url: '' });
+            renderContactForm();
+        }
+
+        function deleteContactLink(idx) {
+            if (confirm('هل أنت متأكد من حذف هذا الرابط؟')) {
+                contactData.social_links.splice(idx, 1);
+                renderContactForm();
+            }
+        }
+
+        async function saveContactData() {
+            const phone = document.getElementById('contactPhone')?.value.trim() || '';
+            const email = document.getElementById('contactEmail')?.value.trim() || '';
+            const whatsappNumber = document.getElementById('contactWhatsapp')?.value.trim().replace(/\D/g, '') || '';
+            const telegramUsername = document.getElementById('contactTelegram')?.value.trim().replace(/^@/, '') || '';
+            const instagram = document.getElementById('contactInstagram')?.value.trim() || '';
+            const facebook = document.getElementById('contactFacebook')?.value.trim() || '';
+
+            const socialLinks = [];
+            document.querySelectorAll('[class^="link-label-"]').forEach((el, idx) => {
+                const label = el.value.trim();
+                const url = document.querySelector(`.link-url-${idx}`)?.value.trim() || '';
+                if (label && url) socialLinks.push({ label, url });
+            });
+
+            const newContactData = {
+                phone,
+                email,
+                whatsapp_number: whatsappNumber,
+                telegram_username: telegramUsername,
+                instagram,
+                facebook,
+                social_links: socialLinks
+            };
+
+            try {
+                await commitFiles([
+                    { path: 'data/contact.json', content: JSON.stringify(newContactData, null, 2) }
+                ], 'تحديث جميع معلومات التواصل من لوحة التحكم');
+
+                contactData = newContactData;
+                showAlert('✅ تم حفظ جميع معلومات التواصل بنجاح!');
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
+        }
+
+        function openSettings() {
+            const t = prompt('أدخل GitHub Token:', config.token || '');
+            if (t !== null && t.trim()) {
+                config.token = t.trim();
+                config.user = '';
+                resolveGitHubIdentity().then(loadBooks).catch(e => showAlert(e.message, 'error'));
+            }
+        }
+
+        async function updateBookDetails() {
+            if (!currentBook) {
+                showAlert('يرجى اختيار كتاب أولاً', 'error');
+                return;
+            }
+
+            const newTitle = document.getElementById('bookTitleInput').value.trim();
+            const newDescription = document.getElementById('bookDescriptionInput').value.trim();
+            const newAuthor = document.getElementById('bookAuthorInput').value.trim();
+            const newIcon = document.getElementById('bookIconInput') ? document.getElementById('bookIconInput').value : (currentBook.icon || 'scale');
+
+            if (!newTitle) {
+                showAlert('يرجى إدخال اسم الكتاب', 'error');
+                return;
+            }
+
+            try {
+                await saveBooks(latest => {
+                    const book = latest.find(b => b.id === currentBook.id);
+                    if (!book) throw new Error('الكتاب لم يعد موجوداً في books.json؛ أعد تحميل القائمة قبل التعديل.');
+                    book.title = newTitle;
+                    book.description = newDescription;
+                    book.author = newAuthor;
+                    book.icon = newIcon;
+                    return latest;
+                }, `تحديث بيانات كتاب: ${newTitle}`);
+                currentBook = books.find(b => b.id === currentBook.id);
+
+                document.getElementById('current-book-name').textContent = newTitle;
+                document.getElementById('book-bar-name').textContent = newTitle;
+                document.getElementById('current-book-info').innerHTML = `
+                    <p><strong>المؤلف:</strong> ${escapeHtml(newAuthor || 'غير محدد')}</p>
+                    <p><strong>الوصف:</strong> ${escapeHtml(newDescription || 'بدون وصف')}</p>
+                    <p><strong>عدد الفصول:</strong> <span id="chapters-count">${currentBook.chapters || 0}</span></p>
+                `;
+
+                renderBooks();
+                showAlert(`✅ تم تحديث بيانات الكتاب "${newTitle}" بنجاح!`);
+            } catch (e) {
+                showAlert('خطأ في حفظ البيانات: ' + e.message, 'error');
+            }
+        }
+
+        function showModal(type) {
+            if (type !== 'editChapter' && type !== 'editQuestion') {
+                editingChapterNum = null;
+                editingQuestionIdx = null;
+            }
+            const body = document.getElementById('modal-body');
+            let html = '';
+
+            if (type === 'addBook') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة كتاب جديد</h3>
+                    <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
+                    <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil" pattern="[a-z0-9_-]+" autocomplete="off"></div>
+                    <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
+                    <div class="form-group"><label>الوصف</label><textarea id="m-desc" rows="3" placeholder="وصف الكتاب"></textarea></div>
+                    <div class="form-group"><label>أيقونة الكتاب</label><select id="m-icon">${buildIconOptionsHtml()}</select></div>
+                    <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
+            } else if (type === 'addChapter') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
+                    <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
+            } else if (type === 'editChapter') {
+                const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
+                    <button class="btn btn-primary" onclick="guardedOp(saveChapter)">حفظ التعديلات</button>`;
+            } else if (type === 'addQuestion') {
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3"></textarea></div>
+                    <div id="question-options-editor"></div>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
+                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="4" value="1"></div>
+                    <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">إضافة السؤال</button>`;
+            } else if (type === 'editQuestion') {
+                const q = currentChapterData.questions[editingQuestionIdx];
+                const qText = q.q || q.question || '';
+                const opts = Array.isArray(q.opts || q.options) ? (q.opts || q.options) : [];
+                const answer = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
+                const ans = Number.isInteger(answer) ? answer + 1 : 1;
+                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل السؤال</h3>
+                    <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${escapeHtml(qText)}</textarea></div>
+                    <div id="question-options-editor"></div>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
+                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="${Math.max(2, opts.length)}" value="${ans}"></div>
+                    <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">حفظ التعديلات</button>`;
+            }
+            body.innerHTML = html + `<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="closeModal()">إلغاء</button>`;
+            document.getElementById('modal').classList.add('active');
+            if (type === 'addQuestion') setTimeout(() => renderQuestionOptionFields(['', '', '', ''], 0), 0);
+            if (type === 'editQuestion') setTimeout(() => renderQuestionOptionFields(opts, Math.max(0, ans - 1)), 0);
+        }
+
+        function renderQuestionOptionFields(options, selectedIndex = 0) {
+            const container = document.getElementById('question-options-editor');
+            if (!container) return;
+            const values = Array.isArray(options) && options.length ? options : ['', '', '', ''];
+            container.innerHTML = values.map((value, i) => `
+                <div class="form-group question-option-editor">
+                    <label>خيار ${i + 1}</label>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input class="question-option-input" data-option-index="${i}" value="${escapeAttr(value)}">
+                        ${values.length > 2 ? `<button type="button" class="btn btn-red btn-sm" onclick="removeQuestionOptionField(${i})">حذف</button>` : ''}
+                    </div>
+                </div>`).join('');
+            const answer = document.getElementById('m-ans');
+            if (answer) {
+                answer.max = String(values.length);
+                answer.value = String(Math.min(selectedIndex + 1, values.length));
+            }
+        }
+
+        function addQuestionOptionField() {
+            const values = [...document.querySelectorAll('.question-option-input')].map(el => el.value);
+            values.push('');
+            const answer = parseInt(document.getElementById('m-ans')?.value || '1', 10) - 1;
+            renderQuestionOptionFields(values, Math.max(0, Math.min(answer, values.length - 1)));
+        }
+
+        function removeQuestionOptionField(index) {
+            const fields = [...document.querySelectorAll('.question-option-input')];
+            if (fields.length <= 2) return;
+            const values = fields.map(el => el.value);
+            values.splice(index, 1);
+            let answer = parseInt(document.getElementById('m-ans')?.value || '1', 10) - 1;
+            if (index < answer) answer--;
+            else if (index === answer) answer = Math.max(0, answer - 1);
+            renderQuestionOptionFields(values, Math.max(0, Math.min(answer, values.length - 1)));
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+        // يبني خيارات قائمة اختيار الأيقونة من مكتبة book-icons.js
+        function buildIconOptionsHtml(selectedKey) {
+            // book-icons.js يحتوي المكتبة الكاملة. نستخدم القائمة الاحتياطية فقط إذا لم تُحمّل المكتبة.
+            const fallback = {
+                scale:'ميزان العدالة', gavel:'مطرقة القاضي', globe:'القانون الدولي',
+                pillar:'عمود الدستور', shield:'درع الحماية', scroll:'الوثيقة القانونية',
+                bookOpen:'كتاب مفتوح', document:'مستند', stamp:'الختم الرسمي',
+                crown:'التاج / السيادة', key:'المفتاح', lock:'القفل / الأمان',
+                flag:'العلم / الدولة', star:'نجمة التميز', compass:'البوصلة',
+                anchor:'المرساة', feather:'ريشة التوقيع', handshake:'الاتفاق / العقد',
+                linkChain:'الالتزام القانوني', briefcase:'الحقيبة المهنية',
+                awardRibbon:'شهادة تقدير', courthouse:'مبنى المحكمة',
+                penSignature:'التوقيع', family:'الأحوال الشخصية', percent:'الضرائب والرسوم',
+                handcuffs:'القانون الجنائي', magnifier:'التحقيق', fingerprint:'البصمة',
+                clipboardCheck:'قائمة تحقق', bank:'البنك / المال', emblem:'الشعار الوطني',
+                torch:'شعلة العدالة', map:'الحدود الجغرافية', buildingColumns:'مبنى حكومي'
+            };
+            const source = (typeof BOOK_ICONS === 'object' && BOOK_ICONS)
+                ? Object.fromEntries(Object.keys(BOOK_ICONS).map(k => [k, BOOK_ICONS[k].label]))
+                : fallback;
+            return Object.keys(source).map(key => {
+                const sel = key === (selectedKey || 'scale') ? ' selected' : '';
+                return `<option value="${key}"${sel}>${source[key]}</option>`;
+            }).join('');
+        }
+
+        async function saveBook() {
+            const id = document.getElementById('m-id').value.trim().replace(/\s+/g, '_').toLowerCase();
+            const title = document.getElementById('m-title').value.trim();
+            const author = document.getElementById('m-author').value.trim();
+            const desc = document.getElementById('m-desc').value.trim();
+            const icon = document.getElementById('m-icon') ? document.getElementById('m-icon').value : 'scale';
+            if (!id || !title) { showAlert('يرجى إدخال اسم الكتاب والمعرف', 'error'); return; }
+            if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) {
+                showAlert('معرف الكتاب يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام و _ أو - فقط', 'error'); return;
+            }
+            try {
+                await saveBooks(latest => {
+                    if (latest.some(b => b.id === id)) throw new Error('هذا المعرف مستخدم مسبقاً، اختر معرفاً آخر');
+                    latest.push({ id, title, author, description: desc, icon, chapters: 0 });
+                    return latest;
+                }, `إضافة كتاب: ${title}`);
+                currentBook = books.find(b => b.id === id) || null;
+                showAlert('تمت إضافة الكتاب بنجاح. عدد الفصول سيُحدّث تلقائياً عند إضافة الفصول.');
+                closeModal();
+                renderBooks();
+            } catch (e) { showAlert('فشلت إضافة الكتاب: ' + e.message, 'error'); }
+        }
+
+        async function saveChapter() {
+            const title = document.getElementById('m-title').value.trim();
+            if (!currentBook) { showAlert('لم يتم اختيار كتاب', 'error'); return; }
+            try {
+                if (editingChapterNum !== null) {
+                    const data = await ghRequest(`data/${currentBook.id}/chapter_${editingChapterNum}.json`);
+                    const chContent = JSON.parse(decode(data.content));
+                    chContent.title = title || `الفصل ${editingChapterNum}`;
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${editingChapterNum}.json`, content: JSON.stringify(chContent, null, 2) }], title ? `تعديل اسم موضوع الفصل ${editingChapterNum}: ${title}` : `إلغاء الاسم المخصص للفصل ${editingChapterNum}`);
+                    const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
+                    if (ch) ch.title = title || `الفصل ${editingChapterNum}`;
+                    showAlert(title ? 'تم تعديل اسم الموضوع بنجاح' : 'تم إلغاء الاسم المخصص، وسيظهر الاسم الافتراضي');
+                } else {
+                    const maxNum = bookChapterFiles.length ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
+                    const newNum = maxNum + 1;
+                    const newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title: title || `الفصل ${newNum}`, description: '', questions: [] };
+                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) }], title ? `إضافة فصل ${newNum}: ${title}` : `إضافة فصل ${newNum}`);
+                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائيًا.`);
+                }
+                closeModal();
+                await loadBookChapters();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+
+        async function deleteChapter(chNum) {
+            if (!confirm(`هل أنت متأكد من حذف هذا الفصل؟`)) return;
+            try {
+                const data = await ghRequest(`data/${currentBook.id}/chapter_${chNum}.json`);
+                const delRes = await fetch(`https://api.github.com/repos/${config.user}/${config.repo}/contents/data/${currentBook.id}/chapter_${chNum}.json`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `حذف الفصل ${chNum}`, sha: data.sha })
+                });
+                if (!delRes.ok) {
+                    const err = await delRes.json().catch(() => ({}));
+                    throw new Error(err.message || `فشل حذف الملف (${delRes.status})`);
+                }
+
+                bookChapterFiles = bookChapterFiles.filter(c => c.num !== chNum);
+                const newCount = bookChapterFiles.length;
+                currentBook.chapters = newCount;
+                const bookInList = books.find(b => b.id === currentBook.id);
+                if (bookInList) bookInList.chapters = newCount;
+
+                showAlert('تم حذف الفصل بنجاح. سيتم تحديث عدد الفصول تلقائياً.');
+                renderChapters();
+                updateChapterSelect();
+            } catch (e) { showAlert('خطأ: ' + e.message, 'error'); }
+        }
+
+        function editChapter(chNum) {
+            editingChapterNum = chNum;
+            showModal('editChapter');
+        }
+
+        // يضمن أن كل سؤال محفوظ من لوحة الإدارة يمتلك هوية ثابتة.
+        // لا يغيّر id/uid الموجودين؛ ينشئهما فقط عند فقدانهما.
+        function ensureQuestionIdentitiesInMemory() {
+            if (!currentChapterData || !Array.isArray(currentChapterData.questions)) return;
+            const chapterNum = currentChapterNum;
+            currentChapterData.questions.forEach((q, idx) => {
+                if (!q || typeof q !== 'object') return;
+                if (!q.id) q.id = `${currentBook.id}_ch${chapterNum}_q${idx + 1}`;
+                if (!q.uid) q.uid = createQuestionUid();
+            });
+        }
+
+        async function saveQuestion() {
+            if (!currentChapterData || currentChapterNum === null) { showAlert('يرجى اختيار فصل أولاً', 'error'); return; }
+            const qText = document.getElementById('m-q').value.trim();
+            const opts = [...document.querySelectorAll('.question-option-input')].map(el => el.value.trim());
+            const ans = parseInt(document.getElementById('m-ans').value, 10) - 1;
+            if (!qText || opts.length < 2 || opts.some(v => !v) || Number.isNaN(ans) || ans < 0 || ans >= opts.length) {
+                showAlert(`يرجى إدخال السؤال وجميع الخيارات وتحديد إجابة صحيحة بين 1 و ${opts.length}`, 'error'); return;
+            }
+            let insertedIdx = null;
+            let previousQuestion = null;
+            if (editingQuestionIdx !== null) {
+                previousQuestion = currentChapterData.questions[editingQuestionIdx];
+                const existing = previousQuestion || {};
+                currentChapterData.questions[editingQuestionIdx] = {
+                    ...existing,
+                    question: qText,
+                    options: opts,
+                    answer: ans,
+                    id: existing.id || `${currentBook.id}_ch${currentChapterNum}_q${editingQuestionIdx + 1}`,
+                    uid: existing.uid || createQuestionUid(),
+                    explanation: existing.explanation || ''
+                };
+                delete currentChapterData.questions[editingQuestionIdx].q;
+                delete currentChapterData.questions[editingQuestionIdx].opts;
+                delete currentChapterData.questions[editingQuestionIdx].ans;
+                delete currentChapterData.questions[editingQuestionIdx].correct;
+            } else {
+                const numericIds = currentChapterData.questions.map(x => Number(x.id)).filter(Number.isFinite);
+                const nextLegacyId = Math.max(0, ...numericIds) + 1;
+                currentChapterData.questions.push({
+                    id: `${currentBook.id}_ch${currentChapterNum}_q${nextLegacyId}`,
+                    uid: createQuestionUid(),
+                    question: qText,
+                    options: opts,
+                    answer: ans,
+                    explanation: ''
+                });
+                insertedIdx = currentChapterData.questions.length - 1;
+            }
+            try {
+                // حماية إضافية: حتى لو كان الفصل يحتوي أسئلة مستوردة قديمة بلا معرفات،
+                // نضمن هويتها قبل أي حفظ. الموجود منها لا يتغير.
+                ensureQuestionIdentitiesInMemory();
+                await commitFiles([{ path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }], editingQuestionIdx !== null ? `تعديل سؤال في الفصل ${currentChapterNum}` : `إضافة سؤال في الفصل ${currentChapterNum}`);
+                showAlert(editingQuestionIdx !== null ? 'تم تعديل السؤال مع الحفاظ على المعرف والشرح' : 'تمت إضافة السؤال بنجاح');
+                closeModal();
+                renderQuestions();
+            } catch (e) {
+                if (editingQuestionIdx === null && insertedIdx !== null) currentChapterData.questions.splice(insertedIdx, 1);
+                else if (editingQuestionIdx !== null && previousQuestion) currentChapterData.questions[editingQuestionIdx] = previousQuestion;
+                showAlert('فشلت إضافة/تعديل السؤال: ' + e.message, 'error');
+            }
+        }
+
+        function editQuestion(qIdx) {
+            editingQuestionIdx = qIdx;
+            showModal('editQuestion');
+        }
+
+        async function deleteQuestion(qIdx) {
+            if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+            const removed = currentChapterData.questions.splice(qIdx, 1);
+            try {
+                await commitFiles([
+                    { path: `data/${currentBook.id}/chapter_${currentChapterNum}.json`, content: JSON.stringify(currentChapterData, null, 2) }
+                ], `حذف سؤال من الفصل ${currentChapterNum}`);
+                showAlert('تم حذف السؤال بنجاح');
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                renderQuestions();
+            } catch (e) {
+                currentChapterData.questions.splice(qIdx, 0, removed[0]); // تراجع محلي عند الفشل
+                showAlert('خطأ: ' + e.message, 'error');
+                renderQuestions();
+            }
+        }
+
+        function cancelBatchChanges() {
+            if (confirm('هل أنت متأكد من إلغاء جميع التعديلات المعلقة؟')) {
+                modifiedQuestionsIndices = [];
+                updateBatchSaveBar();
+                loadChapterQuestions();
+                showAlert('تم إلغاء جميع التعديلات المعلقة');
+            }
+        }
+
+        window.onload = () => {
+            if (config.token) loadBooks();
+            else openSettings();
+        };
+    

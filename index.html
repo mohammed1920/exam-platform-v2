@@ -23,13 +23,14 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link id="fa-primary" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css'">
-  <link rel="stylesheet" href="mizan-colors.css?v=6.5">
-  <link rel="stylesheet" href="style.css?v=4.5">
-  <link rel="stylesheet" href="student-ui-fixes.css?v=2.6">
-  <link rel="stylesheet" href="home.css?v=2.6">
-  <link rel="stylesheet" href="platform-sidebar.css?v=1.9">
-  <link rel="stylesheet" href="user-dashboard.css?v=1.7">
-  <link rel="stylesheet" href="student-sidebar.css?v=1.9">
+  <link rel="stylesheet" href="mizan-colors.css?v=6.6">
+  <link rel="stylesheet" href="mizan-design-tokens.css?v=1.2">
+  <link rel="stylesheet" href="style.css?v=4.6">
+  <link rel="stylesheet" href="student-ui-fixes.css?v=2.7">
+  <link rel="stylesheet" href="home.css?v=2.7">
+  <link rel="stylesheet" href="platform-sidebar.css?v=2.0">
+  <link rel="stylesheet" href="user-dashboard.css?v=1.8">
+  <link rel="stylesheet" href="student-sidebar.css?v=2.0">
   <script>
     (function(){
       try {
@@ -71,8 +72,9 @@
     .question-search-text { font-size:14px; line-height:1.5; margin-bottom:4px; }
     .question-search-source { font-size:12px; color:var(--text-secondary,var(--mizan-muted-dark)); }
   </style>
-  <link rel="stylesheet" href="theme.css?v=1.3">
-  <link rel="stylesheet" href="mizan-unified-theme.css?v=6.11">
+  <link rel="stylesheet" href="theme.css?v=1.4">
+  <link rel="stylesheet" href="mizan-unified-theme.css?v=6.12">
+  <link rel="stylesheet" href="platform-header.css?v=1.0">
   <!-- Unified Mizan theme loads last so it controls the shared palette; mizan-colors.css remains the source of truth. -->
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
@@ -218,7 +220,10 @@
   <script src="firebase-auth.js?v=1.3"></script>
   <script src="engine/examEngine.js?v=1.0"></script>
   <script src="book-icons.js?v=1"></script>
-  <script src="app.js?v=3.0"></script>
+  <script src="contact-info.js?v=1.0"></script>
+  <script src="exam-drafts.js?v=1.1"></script>
+  <script src="question-sharing.js?v=1.0"></script>
+  <script src="app.js?v=3.1"></script>
   <script src="global-search.js?v=1.0"></script>
   <script src="home.js?v=1.8"></script>
   <script src="platform-sidebar.js?v=1.3"></script>
@@ -226,19 +231,10 @@
   <script src="student-account-patch.js?v=1.3"></script>
   <script src="wrong-answers-limit.js?v=1.0"></script>
   <script src="wrong-answers-retest.js?v=1.0"></script>
-  <script src="platform-header-fix.js?v=10.1"></script>
+  <script src="platform-header-fix.js?v=10.2"></script>
   <script src="theme.js?v=1.0"></script>
   <script src="firebase-admin-panel.js?v=1.4"></script>
   <script src="mizan-pulpit-admin.js?v=1.1"></script>
-  <script>
-    // إلغاء تسجيل Service Worker القديم فقط؛ المنصة الحالية لا تعتمد على Offline Cache.
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations()
-        .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
-        .catch(() => {});
-    }
-    (function setupInstallButton(){ const installBtn=document.getElementById('install-app-btn'),iosHint=document.getElementById('ios-install-hint'); if(!installBtn)return; const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true; if(isStandalone){installBtn.hidden=true;return;} installBtn.hidden=false; let deferredPrompt=null; const isIOS=/iphone|ipad|ipod/i.test(window.navigator.userAgent); window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();deferredPrompt=event;}); installBtn.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;return;} if(isIOS){iosHint.hidden=false;setTimeout(()=>{iosHint.hidden=true;},7000);return;} alert('لتثبيت ميزان على هاتفك:\n\nافتح قائمة المتصفح (⋮ أو ≡) ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".');}); window.addEventListener('appinstalled',()=>{installBtn.hidden=true;iosHint.hidden=true;deferredPrompt=null;}); })();
-    (function setupVisitorCounter(){ const countEl=document.getElementById('visitor-count');if(!countEl)return;const WORKSPACE='mhmd-hmyds-team-5310',COUNTER_NAME='first-counter-5310',BASE_URL=`https://api.counterapi.dev/v2/${WORKSPACE}/${COUNTER_NAME}`;const alreadyCountedThisSession=sessionStorage.getItem('visitCounted')==='1',requestUrl=alreadyCountedThisSession?`${BASE_URL}`:`${BASE_URL}/up`;fetch(requestUrl).then((res)=>res.json()).then((data)=>{const value=data.data?.up_count??data.data?.value??data.count??data.value??null;countEl.textContent=(value!==null&&value!==undefined)?value:'—';if(!alreadyCountedThisSession)sessionStorage.setItem('visitCounted','1');}).catch(()=>{countEl.textContent='—';}); })();
-  </script>
+  <script src="platform-bootstrap.js?v=1.0"></script>
 </body>
 </html>

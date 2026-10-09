@@ -13,7 +13,7 @@ header h1{
 .profile-name-editor{
   padding:20px;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:18px;
+  border-radius:var(--mizan-radius-lg);
   background:linear-gradient(145deg, color-mix(in srgb,var(--mizan-white) 3.5%,transparent), var(--mizan-primary-100));
   box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-black) 10%,transparent);
 }
@@ -54,7 +54,7 @@ header h1{
   justify-content:center;
   gap:6px;
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 42%,transparent);
-  border-radius:14px;
+  border-radius:var(--mizan-radius-md);
   background:var(--mizan-primary-100);
   color:var(--primary,var(--mizan-primary-500));
   font:inherit;
@@ -82,7 +82,7 @@ header h1{
   padding:20px;
   margin-bottom:16px;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:18px;
+  border-radius:var(--mizan-radius-lg);
   background:linear-gradient(145deg,color-mix(in srgb,var(--mizan-white) 3.5%,transparent),var(--mizan-primary-100));
   box-shadow:0 14px 34px color-mix(in srgb,var(--mizan-black) 12%,transparent);
 }
@@ -104,7 +104,7 @@ header h1{
 .firebase-admin-action,
 .firebase-admin-back{
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:10px;
+  border-radius:var(--mizan-radius-sm);
   background:var(--mizan-primary-100);
   color:var(--primary,var(--mizan-primary-500));
   padding:9px 14px;
@@ -115,7 +115,7 @@ header h1{
 .firebase-admin-status{
   margin:0 0 15px;
   padding:11px 13px;
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-primary-100);
   color:var(--primary,var(--mizan-primary-500));
@@ -135,7 +135,7 @@ header h1{
 .firebase-admin-stat{
   padding:16px;
   border:1px solid var(--mizan-surface-soft);
-  border-radius:15px;
+  border-radius:var(--mizan-radius-15);
   background:linear-gradient(145deg,color-mix(in srgb,var(--mizan-white) 3.5%,transparent),color-mix(in srgb,var(--mizan-white) 1.5%,transparent));
 }
 .firebase-admin-stat span{
@@ -153,7 +153,7 @@ header h1{
   min-width:0;
   overflow:hidden;
   border:1px solid var(--mizan-surface-soft);
-  border-radius:15px;
+  border-radius:var(--mizan-radius-15);
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
 .firebase-admin-card-head{
@@ -220,7 +220,7 @@ header h1{
     width:43px;
     padding:0;
     height:42px;
-    border-radius:12px;
+    border-radius:var(--mizan-radius-compact);
   }
   .firebase-admin-tab span{
     display:none;

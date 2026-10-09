@@ -150,6 +150,14 @@ html[data-theme="light"]{
   --mizan-neutral-800:#1E293B;
   --mizan-neutral-950:#020617;
   --mizan-black:#000000;
+  --mizan-overlay-danger-40:rgba(239,68,68,.4);
+  --mizan-overlay-warning-5:rgba(245,158,11,.05);
+  --mizan-overlay-gold-10:rgba(194,157,95,.1);
+  --mizan-header-glass-mid:rgba(16,29,45,.82);
+  --mizan-header-glass-deep:rgba(25,39,57,.94);
+  --mizan-header-gold-line:rgba(143,107,52,.22);
+  --mizan-header-gold-glow:rgba(143,107,52,.07);
+  --mizan-header-gold-accent:rgba(143,107,52,.3);
 }
 /* ===== Extended semantic steps (used as text on dark / soft fills) ===== */
 :root{

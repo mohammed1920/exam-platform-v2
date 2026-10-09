@@ -50,7 +50,7 @@ html[data-theme="light"] #search-input::placeholder{
   margin:0;
   padding:0;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:13px;
+  border-radius:var(--mizan-radius-13);
   background:var(--mizan-primary-900);
   color:var(--mizan-primary-300);
   display:grid;
@@ -109,9 +109,7 @@ html[data-theme="light"] .exam-btn.prev{
   color:var(--mizan-heading);
 }
 /* ---------- Polish: shared interaction primitives ---------- */
-:root{
-  --mizan-ease-out:cubic-bezier(.22,1,.36,1);
-}
+/* Motion tokens are provided by mizan-design-tokens.css. */
 button,
 a,
 input,
@@ -129,13 +127,13 @@ textarea:focus-visible{
 }
 button:not(:disabled),
 a{
-  transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease,box-shadow 200ms ease,transform 180ms var(--mizan-ease-out);
+  transition:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-regular) ease,transform var(--mizan-duration-medium) var(--mizan-ease-out);
 }
 button:active:not(:disabled){
   transform:translateY(1px);
 }
 #theme-toggle.theme-toggle{
-  transition:transform 180ms var(--mizan-ease-out),border-color 160ms ease,background 160ms ease,box-shadow 200ms ease;
+  transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-fast) ease,background var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-regular) ease;
 }
 #theme-toggle.theme-toggle:active{
   transform:scale(.94);

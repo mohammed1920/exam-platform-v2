@@ -1166,7 +1166,7 @@ html body :is(.mizan-form-grid,.lawyer-form-grid,.petition-fields,.petition-long
   min-height:46px;
   padding:11px 14px;
   border:1px solid var(--mizan-field-border);
-  border-radius:12px;
+  border-radius:var(--mizan-radius-compact);
   background-color:var(--mizan-field-bg);
   color:var(--mizan-text);
   font:inherit;
@@ -1215,7 +1215,7 @@ html body .lawyer-form .lawyer-consent input{
 html body .petition-design button{
   min-height:42px;
   border:1px solid var(--mizan-field-border);
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   background:var(--mizan-field-bg);
   color:var(--mizan-muted);
   font-weight:700;
@@ -1323,7 +1323,7 @@ html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,
 }
 .mizan-article-card .mizan-btn,
 .mizan-article-card button{
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   padding-inline:14px;
 }
 /* ---- 8. Contrast fixes found by the browser scan ---- */

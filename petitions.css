@@ -8,7 +8,7 @@
   margin:16px 0 20px;
   padding:28px;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:24px;
+  border-radius:var(--mizan-radius-xl);
   background:linear-gradient(145deg,color-mix(in srgb,var(--mizan-primary-900) 88%,var(--mizan-warning-700) 12%),color-mix(in srgb,var(--mizan-deco-blue-10b) 97%,transparent));
   text-align:right;
 }
@@ -43,7 +43,7 @@
   flex:1;
   padding:11px 14px;
   border:1px solid color-mix(in srgb,var(--mizan-white) 8%,transparent);
-  border-radius:14px;
+  border-radius:var(--mizan-radius-md);
   background:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
 }
 .petition-tools label i{
@@ -72,7 +72,7 @@
   text-align:right;
   padding:20px;
   border:1px solid color-mix(in srgb,var(--mizan-warning-500) 20%,transparent);
-  border-radius:19px;
+  border-radius:var(--mizan-radius-19);
   background:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-19) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 98%,transparent));
   color:var(--mizan-paper-white);
   font-family:inherit;
@@ -88,7 +88,7 @@
 .petition-template-icon{
   width:46px;
   height:46px;
-  border-radius:13px;
+  border-radius:var(--mizan-radius-13);
   display:grid;
   place-items:center;
   font-size:19px;
@@ -130,7 +130,7 @@
 .petition-status{
   padding:10px 13px;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:12px;
+  border-radius:var(--mizan-radius-compact);
   font-size:11px;
   white-space:nowrap;
 }
@@ -147,7 +147,7 @@
 .petition-form-panel,
 .petition-preview-panel{
   border:1px solid var(--mizan-surface-soft);
-  border-radius:20px;
+  border-radius:var(--mizan-radius-2xl);
   background:color-mix(in srgb,var(--mizan-deco-blue-11a) 82%,transparent);
   padding:18px;
 }
@@ -177,7 +177,7 @@
   box-sizing:border-box;
   width:100%;
   border:1px solid color-mix(in srgb,var(--mizan-white) 8%,transparent);
-  border-radius:10px;
+  border-radius:var(--mizan-radius-sm);
   background:var(--mizan-bg-dark);
   color:var(--mizan-text-dark);
   padding:10px;
@@ -210,7 +210,7 @@
 }
 .petition-actions button{
   border:0;
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   padding:11px;
   font:inherit;
   font-weight:900;
@@ -285,7 +285,7 @@
   }
   .petitions-hero{
     padding:20px;
-    border-radius:18px;
+    border-radius:var(--mizan-radius-lg);
   }
   .petitions-hero h2,
   .petition-builder-head h2{
@@ -304,7 +304,7 @@
   .petition-form-panel,
   .petition-preview-panel{
     padding:13px;
-    border-radius:16px;
+    border-radius:var(--mizan-radius-wide);
   }
   .petition-actions{
     grid-template-columns:1fr;

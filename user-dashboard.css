@@ -91,7 +91,7 @@
   flex:1;
   min-width:0;
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   background:color-mix(in srgb,var(--mizan-black) 16%,transparent);
   color:var(--mizan-bg-light);
   padding:11px 13px;
@@ -105,7 +105,7 @@
 }
 .profile-name-editor-row button{
   border:1px solid var(--mizan-btn-primary-border);
-  border-radius:11px;
+  border-radius:var(--mizan-radius-11);
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   padding:10px 15px;

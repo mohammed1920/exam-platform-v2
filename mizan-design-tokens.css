@@ -3,9 +3,20 @@
    الألوان موجودة حصراً في mizan-colors.css.
    ========================================================= */
 :root{
+  --mizan-radius-xs:8px;
+  --mizan-radius-9:9px;
+  --mizan-radius-11:11px;
+  --mizan-radius-13:13px;
+  --mizan-radius-15:15px;
+  --mizan-radius-17:17px;
+  --mizan-radius-19:19px;
+  --mizan-radius-22:22px;
   --mizan-radius-sm:10px;
+  --mizan-radius-compact:12px;
   --mizan-radius-md:14px;
   --mizan-radius-lg:18px;
+  --mizan-radius-wide:16px;
+  --mizan-radius-2xl:20px;
   --mizan-radius-xl:24px;
   --mizan-radius-pill:999px;
   --mizan-space-1:4px;
@@ -23,6 +34,8 @@
   --mizan-ease-out:cubic-bezier(.22,1,.36,1);
   --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
   --mizan-duration-fast:160ms;
+  --mizan-duration-medium:180ms;
+  --mizan-duration-regular:200ms;
   --mizan-duration-ui:220ms;
   --mizan-duration-slow:320ms;
 }
