@@ -764,25 +764,31 @@ html body footer{
   color:var(--mizan-muted);
   border-color:var(--mizan-section-heading-dark);
 }
-.footer-info-box,
+.footer-info-box{
+  background:var(--mizan-gradient-home-hero);
+  color:var(--mizan-white);
+  border-color:var(--mizan-home-hero-border);
+  box-shadow:var(--mizan-shadow-home-hero);
+}
 .footer-faq-list details{
-  background:var(--mizan-card);
-  color:var(--mizan-text);
-  border-color:var(--mizan-border);
+  background:var(--mizan-glass-white-025);
+  color:var(--mizan-white);
+  border-color:var(--mizan-glass-white-080);
+  box-shadow:var(--mizan-shadow-theme-subtle);
 }
 .footer-info-heading span{
-  color:var(--mizan-accent-text);
+  color:var(--mizan-warning-200);
 }
 .footer-info-heading h2{
-  color:var(--mizan-heading);
+  color:var(--mizan-white);
 }
+.footer-info-heading p,
 .footer-info-content,
-.footer-faq-list summary{
-  color:var(--mizan-text);
-}
-.footer-info-content p,
 .footer-faq-list p{
-  color:var(--mizan-muted);
+  color:var(--mizan-ice);
+}
+.footer-faq-list summary{
+  color:var(--mizan-white);
 }
 /* Sidebar */
 .platform-sidebar-panel{
