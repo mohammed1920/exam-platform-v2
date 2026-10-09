@@ -1,6 +1,12 @@
-/* Platform bootstrap: install prompt and visitor counter.
+/* Platform bootstrap: legacy service-worker cleanup, install prompt, visitor counter.
  * Keep this classic script at the end of index.html to preserve execution order.
  */
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+    .catch(() => {});
+}
 
 (function setupInstallButton() {
   const installButton = document.getElementById('install-app-btn');
