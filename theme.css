@@ -93,7 +93,7 @@ html[data-theme="light"] .results-box,
 html[data-theme="light"] .review-item{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 8px 25px var(--mizan-glass-primary-900-050);
+  box-shadow:var(--mizan-shadow-surface-soft);
 }
 html[data-theme="light"] .stat-item,
 html[data-theme="light"] .option-btn,
@@ -132,7 +132,6 @@ select:focus-visible,
 textarea:focus-visible{
   outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
   outline-offset:var(--mizan-focus-ring-offset);
-  outline-offset:3px;
 }
 button:not(:disabled),
 a{
