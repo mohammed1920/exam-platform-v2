@@ -11,15 +11,15 @@ if [[ "$OUTPUT_DIR" == "/" || "$OUTPUT_DIR" == "$ROOT" ]]; then
   exit 1
 fi
 
-for source_dir in engine icons data assets; do
-  SOURCE_PATH="$ROOT/$source_dir"
-  case "$OUTPUT_DIR/" in
-    "$SOURCE_PATH/"*)
-      echo "Output directory cannot be inside source directory: $SOURCE_PATH" >&2
+# Inside the repository, only the dedicated dist/ directory may be replaced.
+case "$OUTPUT_DIR/" in
+  "$ROOT/"*)
+    if [[ "$OUTPUT_DIR" != "$ROOT/dist" ]]; then
+      echo "Repository output is restricted to $ROOT/dist: $OUTPUT_DIR" >&2
       exit 1
-      ;;
-  esac
-done
+    fi
+    ;;
+esac
 
 rm -rf -- "$OUTPUT_DIR"
 mkdir -p -- "$OUTPUT_DIR"
