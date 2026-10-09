@@ -743,3 +743,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-mobile-nav-active-text:var(--mizan-primary-700);
   --mizan-mobile-nav-shadow:0 8px 28px color-mix(in srgb,var(--mizan-primary-900) 10%,transparent);
 }
+
+html[data-admin-theme="light"]{
+  --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-700),var(--mizan-primary-700));
+}
