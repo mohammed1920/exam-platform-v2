@@ -235,11 +235,11 @@ textarea:not(.book-card textarea),
 .student-page-icon,
 .account-btn,
 .firebase-admin-tab{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-200);
 }
 .home-category-card[data-home-action]:before{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 /* Quiz */
 .question-text{
@@ -373,7 +373,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .con
   color:var(--mizan-contact-instagram-icon-fg);
 }
 .contact-info-grid .contact-card-instagram .contact-card-action{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card-facebook{
@@ -381,11 +381,11 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .con
   background:var(--mizan-contact-social-bg);
 }
 .contact-info-grid .contact-card-facebook>i{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card-facebook .contact-card-action{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 /* CTA text: apply the accent/gradient to the complete phrase, not a partial
@@ -431,10 +431,10 @@ html body{
   border-color:var(--mizan-border);
 }
 .home-category-card:before{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 .home-category-card i{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .home-category-card strong,
@@ -525,7 +525,7 @@ html body{
 }
 .question-label{
   color:var(--mizan-primary-700);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-200);
 }
 .exam-home-btn{
@@ -537,7 +537,7 @@ html body{
 }
 .option-btn:hover:not(:disabled){
   border-color:var(--mizan-primary-500);
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
 }
 .option-btn.correct{
   background:var(--mizan-success-100);
@@ -606,7 +606,7 @@ html body{
   color:var(--mizan-info-700);
 }
 .contact-info-grid .contact-card .contact-card-action{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card:hover{
@@ -700,7 +700,7 @@ html body{
   color:var(--mizan-muted);
 }
 .petition-template-icon{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
 }
 .petition-tools label,
@@ -750,7 +750,7 @@ html body{
   background:var(--mizan-btn-primary-bg-hover);
 }
 .mizan-pulpit-secondary{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-700);
   border-color:var(--mizan-primary-200);
 }
@@ -808,7 +808,7 @@ html body footer{
 }
 .platform-sidebar-item:hover,
 .platform-sidebar-item.active{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-800);
   border-color:var(--mizan-primary-200);
 }
@@ -1194,7 +1194,7 @@ html body .petition-design button.active{
   color:var(--mizan-gold-text);
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) body .petition-design button.active{
-  background:var(--mizan-primary-100);
+  background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-500);
   color:var(--mizan-primary-700);
 }
