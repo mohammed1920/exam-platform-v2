@@ -457,12 +457,9 @@
   }
 }
 /* ===== Theme-aware student sidebar surfaces — merged ===== */
-html[data-theme="light"] .student-sidebar-brand strong,
 html[data-theme="light"] .profile-identity h3{
   color:var(--mizan-primary-800);
 }
-html[data-theme="light"] .student-sidebar-brand span,
-html[data-theme="light"] .student-sidebar-heading,
 html[data-theme="light"] .profile-identity p,
 html[data-theme="light"] .student-info-grid small,
 html[data-theme="light"] .profile-stat-card small,
