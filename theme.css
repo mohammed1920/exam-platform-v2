@@ -33,7 +33,7 @@ html[data-theme="light"] #search-input{
   background:var(--mizan-surface-light);
   color:var(--mizan-text-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 4px 18px color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  box-shadow:0 4px 18px var(--mizan-glass-primary-900-050);
 }
 html[data-theme="light"] #search-input::placeholder{
   color:var(--mizan-muted-light);
@@ -93,7 +93,7 @@ html[data-theme="light"] .results-box,
 html[data-theme="light"] .review-item{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 8px 25px color-mix(in srgb,var(--mizan-primary-900) 5%,transparent);
+  box-shadow:0 8px 25px var(--mizan-glass-primary-900-050);
 }
 html[data-theme="light"] .stat-item,
 html[data-theme="light"] .option-btn,
