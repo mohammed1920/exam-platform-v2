@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم - منصة الامتحانات القانونية</title>
     <link rel="stylesheet" href="mizan-colors.css?v=6.6">
-    <link rel="stylesheet" href="mizan-design-tokens.css?v=1.2">
-    <link rel="stylesheet" href="admin.css?v=1.1">
+    <link rel="stylesheet" href="mizan-design-tokens.css?v=1.6">
+    <link rel="stylesheet" href="mizan-unified-theme.css?v=6.15">
+    <link rel="stylesheet" href="admin.css?v=1.2">
 </head>
 <body>
     <header class="topbar">
@@ -52,9 +53,9 @@
 
             <section id="overview" class="tab-content active">
                 <h2 id="current-book-name">اختر كتاباً للبدء</h2>
-                <div id="current-book-info" style="margin-top: 12px;"></div>
+                <div id="current-book-info" class="admin-current-book-info"></div>
 
-                <div id="book-edit-section" class="panel" style="display: none;">
+                <div id="book-edit-section" class="panel" class="panel admin-hidden">
                     <h3>✍️ تعديل بيانات الكتاب</h3>
                     <div class="form-group">
                         <label>اسم الكتاب</label>
@@ -77,7 +78,7 @@
 
                 <div class="panel">
                     <h3>📄 إدارة معلومات التواصل</h3>
-                    <p style="color:var(--text-dim);font-size:12px;line-height:1.8;margin-bottom:14px;">
+                    <p class="admin-contact-intro">
                         جميع وسائل التواصل الظاهرة في صفحة «تواصل معنا» تُدار من هنا، ويمكن تعديلها لاحقاً دون الحاجة إلى تعديل ملفات الموقع.
                     </p>
 
@@ -94,7 +95,7 @@
                     <div class="form-group">
                         <label>🟢 رقم واتساب</label>
                         <input type="text" id="contactWhatsapp" inputmode="tel" placeholder="مثال: 9647738511899">
-                        <small style="display:block;margin-top:5px;color:var(--text-dim);">اكتب الرقم بصيغة دولية بدون + أو مسافات.</small>
+                        <small class="admin-field-hint">اكتب الرقم بصيغة دولية بدون + أو مسافات.</small>
                     </div>
 
                     <div class="form-group">
@@ -112,16 +113,16 @@
                         <input type="url" id="contactFacebook" placeholder="https://facebook.com/...">
                     </div>
 
-                    <label style="margin-top:10px;">🔗 روابط إضافية</label>
-                    <div id="contactLinksContainer" style="margin-bottom:12px;"></div>
-                    <button class="btn btn-secondary btn-block" onclick="addContactLink()" style="margin-bottom:12px;">➕ إضافة رابط إضافي</button>
+                    <label class="admin-label-spaced">🔗 روابط إضافية</label>
+                    <div id="contactLinksContainer" class="admin-contact-links"></div>
+                    <button class="btn btn-secondary btn-block" onclick="addContactLink()" class="admin-action-spacing">➕ إضافة رابط إضافي</button>
 
                     <button class="btn btn-primary" onclick="guardedOp(saveContactData)">💾 حفظ معلومات التواصل</button>
                 </div>
             </section>
 
             <section id="chapters" class="tab-content">
-                <button class="btn btn-green btn-block" style="margin-bottom: 15px;" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
+                <button class="btn btn-green btn-block" class="admin-action-spacing" onclick="showModal('addChapter')">+ إضافة فصل جديد</button>
                 <div id="chapters-list"></div>
             </section>
 
@@ -130,7 +131,7 @@
                     <label>اختر الفصل:</label>
                     <select id="chapter-select" onchange="loadChapterQuestions()"></select>
                 </div>
-                <button class="btn btn-green btn-block" style="margin-bottom: 15px;" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
+                <button class="btn btn-green btn-block" class="admin-action-spacing" onclick="showModal('addQuestion')">+ إضافة سؤال جديد</button>
                 <div id="questions-list"></div>
             </section>
 
@@ -138,13 +139,13 @@
                 <div class="panel-header-row">
                     <p>راجع الأخطاء المقترحة من فحص الذكاء الاصطناعي، حدد قبول أو رفض لكل واحدة، ثم اضغط "حفظ المعالجات" بالأسفل لتطبيق القرارات وتنظيف القائمة.</p>
                 </div>
-                <div class="btn-row" style="margin-bottom: 15px;">
+                <div class="btn-row" class="admin-action-spacing">
                     <button class="btn btn-secondary btn-sm" onclick="loadSpellingReport()">🔄 تحديث القائمة</button>
                     <button class="btn btn-secondary btn-sm" onclick="undoAllDecisions()">↩️ تراجع عن كل القرارات</button>
                 </div>
-                <div id="spellcheck-summary" style="margin-bottom: 15px; font-weight: 700; font-size: 13px;"></div>
+                <div id="spellcheck-summary" class="admin-summary"></div>
                 <div id="spellcheck-list">جاري التحميل...</div>
-                <button class="btn btn-primary" id="apply-spellcheck-btn" style="margin-top:20px; display:none;" onclick="guardedOp(applyApprovedFixes)">
+                <button class="btn btn-primary" id="apply-spellcheck-btn" class="btn btn-primary admin-apply-action" onclick="guardedOp(applyApprovedFixes)">
                     🚀 تطبيق القرارات وتنظيف السجل
                 </button>
             </section>
@@ -153,13 +154,13 @@
                 <div class="panel-header-row">
                     <p>فحص جودة الأسئلة بالذكاء الاصطناعي (وضوح الصياغة، تمايز الخيارات، وصحة الإجابة وفق القانون العراقي). الاكتشاف تلقائي فقط — أي تصحيح فعلي يتم يدويًا من زر "✏️ تعديل السؤال".</p>
                 </div>
-                <div class="btn-row" style="margin-bottom: 15px;">
+                <div class="btn-row" class="admin-action-spacing">
                     <button class="btn btn-secondary btn-sm" onclick="loadQaReport()">🔄 تحديث القائمة</button>
                     <button class="btn btn-secondary btn-sm" onclick="undoAllQaDecisions()">↩️ تراجع عن كل القرارات</button>
                 </div>
-                <div id="qa-audit-summary" style="margin-bottom: 15px; font-weight: 700; font-size: 13px;"></div>
+                <div id="qa-audit-summary" class="admin-summary"></div>
                 <div id="qa-audit-list">جاري التحميل...</div>
-                <button class="btn btn-primary" id="apply-qa-btn" style="margin-top:20px; display:none;" onclick="guardedOp(applyQaDecisions)">
+                <button class="btn btn-primary" id="apply-qa-btn" class="btn btn-primary admin-apply-action" onclick="guardedOp(applyQaDecisions)">
                     🚀 حفظ القرارات وتنظيف السجل
                 </button>
             </section>
@@ -176,6 +177,6 @@
 
     <script src="book-icons.js?v=2.0"></script>
     <script src="admin.js?v=1.0"></script>
-<script src="admin-theme.js?v=1.0"></script>
+<script src="admin-theme.js?v=1.1"></script>
 </body>
 </html>
