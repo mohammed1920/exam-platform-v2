@@ -282,8 +282,8 @@
 
   window.MizanQuestionSharing = Object.freeze({
     buildDeepLink: (app, q) => buildDeepLink(app, q),
-    roundRect: (_app, ctx, x, y, w, h, r) => roundRect(ctx, x, y, w, h, r),
-    wrapText: (_app, ctx, text, maxWidth) => wrapText(ctx, text, maxWidth),
+    roundRect: (ctx, x, y, w, h, r) => roundRect(ctx, x, y, w, h, r),
+    wrapText: (ctx, text, maxWidth) => wrapText(ctx, text, maxWidth),
     generateShareCard: (app, q) => generateShareCard(app, q),
     shareQuestion: app => shareQuestion(app)
   });
