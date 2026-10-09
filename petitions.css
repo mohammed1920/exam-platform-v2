@@ -41,7 +41,7 @@
   align-items:center;
   gap:9px;
   flex:1;
-  padding:11px 14px;
+  padding:11px var(--mizan-space-inset-medium);
   border:1px solid var(--mizan-petition-search-border);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-petition-search-bg);
@@ -128,7 +128,7 @@
   margin:15px 0 18px;
 }
 .petition-status{
-  padding:10px 13px;
+  padding:var(--mizan-space-inset-compact) 13px;
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-compact);
   font-size:11px;
@@ -180,7 +180,7 @@
   border-radius:var(--mizan-radius-sm);
   background:var(--mizan-bg-dark);
   color:var(--mizan-text-dark);
-  padding:10px;
+  padding:var(--mizan-space-inset-compact);
   font:inherit;
   font-size:12px;
   outline:none;
