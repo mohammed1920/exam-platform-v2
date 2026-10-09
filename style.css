@@ -507,7 +507,7 @@ header{
   gap:7px;
   padding:11px 16px;
   margin:0;
-  border:1px solid var(--mizan-chapter-button-border);
+  border:1px solid var(--mizan-btn-primary-border);
   border-radius:13px;
   font-size:1rem;
   font-weight:800;
