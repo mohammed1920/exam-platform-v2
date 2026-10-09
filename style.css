@@ -358,8 +358,8 @@ header{
 .book-card button:focus-visible,
 .card button:focus-visible,
 .start-exam-btn:focus-visible{
-  outline:2px solid var(--mizan-primary-300);
-  outline-offset:3px;
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 /* البحث بنفس لغة التصميم */
 #search-input{
