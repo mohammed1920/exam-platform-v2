@@ -8,7 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ignored = new Set([".git", "node_modules", ".vercel", ".next"]);
+const ignored = new Set([".git", "node_modules", ".vercel", ".next", "dist"]);
 const files = [];
 
 async function walk(dir) {
