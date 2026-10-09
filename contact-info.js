@@ -151,7 +151,6 @@
   }
 
   window.MizanContactInfo = Object.freeze({
-    load: loadContactInfo,
-    render: renderContactInfo
+    load: loadContactInfo
   });
 })();
