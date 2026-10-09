@@ -1401,3 +1401,10 @@ html[data-theme="light"] .auth-switch button{
 html[data-theme="light"] .chapter-item .chapter-info p{
   color:var(--mizan-muted-light);
 }
+
+
+/* Layout helpers migrated from index.html inline styles. */
+.chapters-header { margin-bottom: 25px; }
+.back-books-action { margin-bottom: 0; }
+.review-exam-action { width: 100%; margin-top: 15px; }
+.review-section-heading { margin-bottom: 20px; }
