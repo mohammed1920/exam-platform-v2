@@ -142,6 +142,12 @@ const cssUrlPattern = /url\(\s*(?:(['"])(.*?)\1|([^)]*?))\s*\)/gi;
 const cssImportPattern = /@import\s+(?!url\s*\()(['"])(.*?)\1/gi;
 for (const cssFile of cssFiles) {
   const css = await readFile(cssFile, "utf8");
+  const cssWithoutComments = css.replace(/\/\*[\s\S]*?\*\//g, "");
+  const malformedVarSuffixPattern = /var\(\s*--[\w-]+(?:\s*,[^)]*)?\)[0-9a-zA-Z#]/g;
+  for (const match of cssWithoutComments.matchAll(malformedVarSuffixPattern)) {
+    const line = cssWithoutComments.slice(0, match.index).split("\n").length;
+    failures.push(`Suspicious characters directly after CSS var() in ${display(cssFile)}:${line} — ${match[0]}`);
+  }
   for (const match of css.matchAll(cssUrlPattern)) {
     await checkLocalReference(cssFile, match[2] ?? match[3] ?? "", "CSS asset");
   }
