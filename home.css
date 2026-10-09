@@ -450,7 +450,7 @@ footer{
   flex:0 0 48px;
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
   font-size:21px;
 }
 .contact-card span{
@@ -496,7 +496,7 @@ footer{
 }
 .contact-card-phone>i{
   background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
 }
 .contact-card-email{
   border-color:var(--mizan-contact-email-border);
@@ -761,7 +761,7 @@ footer{
   cursor:pointer;
 }
 .footer-links button:hover{
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
 }
 .footer-links span{
   color:var(--mizan-primary-500-border);
@@ -900,7 +900,7 @@ footer{
 }
 .home-coming-soon:hover b{
   background:color-mix(in srgb,var(--mizan-warning-500) 11%,transparent);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
 }
 .home-coming-soon i{
   display:grid;
@@ -1013,7 +1013,7 @@ html[data-theme="light"] .footer-faq-list p{
 }
 .home-category-card[data-home-action] i{
   background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
 }
 .home-category-card[data-home-action] b{
   color:var(--mizan-primary-500);
