@@ -559,7 +559,7 @@ footer{
 @media(max-width:600px){
       .footer-bottom{
     font-size:var(--mizan-font-size-micro);
-    gap:7px;
+    gap:var(--mizan-gap-tight);
   }
 }
 /* قسم تواصل معنا */
@@ -718,7 +718,7 @@ footer{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   padding:var(--mizan-space-3) var(--mizan-space-inset-roomy);
   border-bottom:1px solid var(--mizan-surface-soft);
   color:var(--mizan-primary-500-pale-text);
@@ -918,7 +918,7 @@ footer{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   flex-wrap:wrap;
   margin:0 auto var(--mizan-space-5);
   text-align:center;
@@ -985,7 +985,7 @@ footer{
 }
 .footer-faq-list{
   display:grid;
-  gap:9px;
+  gap:var(--mizan-gap-small);
 }
 .footer-faq-list details{
   border:1px solid var(--mizan-surface-soft);
@@ -1036,7 +1036,7 @@ footer{
     border-radius:var(--mizan-radius-19);
   }
   .footer-links{
-    gap:7px;
+    gap:var(--mizan-gap-tight);
   }
   .footer-links button{
     font-size:var(--mizan-font-size-micro);
@@ -1045,7 +1045,7 @@ footer{
 .home-coming-soon-list{
   display:grid;
   grid-template-columns:1fr;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   margin:14px 0 var(--mizan-space-4);
 }
 .home-coming-soon{
@@ -1108,7 +1108,7 @@ footer{
     min-height:60px;
     padding:9px var(--mizan-space-3);
     border-radius:var(--mizan-radius-md);
-    gap:9px;
+    gap:var(--mizan-gap-small);
   }
   .home-coming-soon i{
     width:34px;
