@@ -41,7 +41,7 @@
 }
 .mizan-pulpit-hero-actions{
   display:flex;
-  gap:9px;
+  gap:var(--mizan-gap-small);
   flex-wrap:wrap;
   margin-top:18px;
   position:relative;
@@ -97,7 +97,7 @@
 .mizan-article-meta{
   display:flex;
   justify-content:space-between;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   color:var(--mizan-accent-text);
   font-size:var(--mizan-font-size-micro);
   margin-bottom:10px;
@@ -154,7 +154,7 @@
 .mizan-pulpit-loading{
   display:grid;
   place-items:center;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
   min-height:180px;
   padding:25px;
   border:1px dashed var(--mizan-primary-500-border);
@@ -196,7 +196,7 @@
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   margin-bottom:var(--mizan-space-4);
 }
 .mizan-modal-head h3{
@@ -278,7 +278,7 @@
   width:100%;
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:var(--mizan-gap-small);
   padding:11px 0 0;
   margin:0;
   border:0;
@@ -305,7 +305,7 @@
   padding:7px 0;
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
   color:var(--mizan-accent-text);
 }
 .mizan-read-btn i{
@@ -362,7 +362,7 @@
 .mizan-profile-stats{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   margin:var(--mizan-space-5) 0;
 }
 .mizan-profile-stats>div{
@@ -448,7 +448,7 @@
   font-size:var(--mizan-font-size-2xs);
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:var(--mizan-gap-tight);
 }
 .mizan-article-page-label i{
   color:var(--mizan-accent-text);
