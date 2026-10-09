@@ -297,7 +297,7 @@
   justify-content:flex-start;
   align-items:center;
   margin-top:10px;
-  padding-top:10px;
+  padding-top:var(--mizan-space-inset-compact);
   border-top:1px solid var(--mizan-glass-white-050);
 }
 .mizan-read-btn{
@@ -385,7 +385,7 @@
 }
 .mizan-profile-section{
   text-align:right;
-  padding:15px;
+  padding:var(--mizan-space-inset-roomy);
   border-radius:var(--mizan-radius-15);
   background:var(--mizan-glass-white-035);
 }
@@ -422,7 +422,7 @@
   align-items:center;
   justify-content:space-between;
   gap:var(--mizan-space-3);
-  padding:18px 0 14px;
+  padding:18px 0 var(--mizan-space-inset-medium);
 }
 .mizan-article-back{
   display:inline-flex;
@@ -432,7 +432,7 @@
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
-  padding:10px 14px;
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-inset-medium);
   font:inherit;
   font-size:var(--mizan-font-size-2xs);
   font-weight:800;
@@ -483,7 +483,7 @@
   display:flex;
   align-items:center;
   gap:var(--mizan-space-3);
-  padding:14px 0 var(--mizan-space-5);
+  padding:var(--mizan-space-inset-medium) 0 var(--mizan-space-5);
   border-bottom:1px solid var(--mizan-surface-soft);
 }
 .mizan-article-reading-avatar{
