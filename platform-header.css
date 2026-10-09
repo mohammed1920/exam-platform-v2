@@ -59,7 +59,7 @@
       padding: 0;
       color: var(--mizan-wordmark);
       font-family:var(--mizan-font-family-display);
-      font-size:clamp(1.1rem,1.4vw,1.25rem);
+      font-size:var(--mizan-header-wordmark-size);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: 0;
@@ -87,12 +87,12 @@
       .mizan-header-brand{width:calc(100% - var(--mizan-header-brand-reserve-mobile));min-height:var(--mizan-header-brand-min-height);gap:var(--mizan-header-brand-gap)}
       .mizan-header-identity{gap:var(--mizan-space-2)}
       .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
-      .mizan-header-copy h1{font-size:17px}
+      .mizan-header-copy h1{font-size:var(--mizan-header-wordmark-size)}
       .mizan-header-tagline{font-size:var(--mizan-header-tagline-size);line-height:1.35}
     }
     @media(max-width:420px){
       .mizan-header-brand{width:calc(100% - var(--mizan-header-brand-reserve-compact));min-height:var(--mizan-header-brand-min-height)}
       .mizan-header-logo{width:var(--mizan-header-logo-size);height:var(--mizan-header-logo-size);flex-basis:var(--mizan-header-logo-size)}
-      .mizan-header-copy h1{font-size:16px}
+      .mizan-header-copy h1{font-size:var(--mizan-header-wordmark-size)}
       .mizan-header-tagline{font-size:var(--mizan-header-tagline-size)}
     }
