@@ -26,7 +26,7 @@
   margin-bottom:3px;
 }
 .student-page-header h2{
-  margin:0 0 4px;
+  margin:0 0 var(--mizan-space-1);
   font-size:var(--mizan-font-size-2xl);
 }
 .student-page-header p{
@@ -37,9 +37,9 @@
 .student-profile-card{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:var(--mizan-space-4);
   padding:22px;
-  margin-bottom:16px;
+  margin-bottom:var(--mizan-space-4);
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 20%,transparent);
   border-radius:var(--mizan-radius-2xl);
   background:var(--mizan-gradient-student-sidebar-profile);
@@ -60,7 +60,7 @@
   min-width:0;
 }
 .profile-identity h3{
-  margin:0 0 4px;
+  margin:0 0 var(--mizan-space-1);
   font-size:21px;
 }
 .profile-identity p{
@@ -75,7 +75,7 @@
 .student-info-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
+  gap:var(--mizan-space-3);
   margin-bottom:16px;
 }
 .student-info-grid>div{
@@ -107,11 +107,11 @@
 .profile-stats-grid{
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:12px;
+  gap:var(--mizan-space-3);
   margin-bottom:18px;
 }
 .profile-stat-card{
-  padding:16px 10px;
+  padding:var(--mizan-space-4) 10px;
   text-align:center;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-wide);
@@ -132,7 +132,7 @@
   font-size:var(--mizan-font-size-2xs);
 }
 .profile-panel{
-  margin-bottom:16px;
+  margin-bottom:var(--mizan-space-4);
   padding:18px;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-lg);
@@ -142,11 +142,11 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:var(--mizan-space-3);
   margin-bottom:13px;
 }
 .profile-panel-heading h3{
-  margin:0 0 4px;
+  margin:0 0 var(--mizan-space-1);
 }
 .profile-panel-heading p{
   margin:0;
@@ -161,7 +161,7 @@
   color:var(--primary,var(--mizan-primary-500));
   font-size:48px;
   line-height:1;
-  margin:12px 0;
+  margin:var(--mizan-space-3) 0;
 }
 .student-highlight-panel p{
   color:var(--text-secondary,var(--mizan-muted-dark));
@@ -173,7 +173,7 @@
 .history-item{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:var(--mizan-space-3);
   padding:13px;
   border-radius:var(--mizan-radius-13);
   border:1px solid var(--mizan-glass-white-055);
@@ -219,13 +219,13 @@
   font-size:var(--mizan-font-size-2xs);
 }
 .profile-empty{
-  padding:25px 12px;
+  padding:25px var(--mizan-space-3);
   text-align:center;
   color:var(--text-secondary,var(--mizan-muted-dark));
 }
 .student-wrong-item{
   display:flex;
-  gap:12px;
+  gap:var(--mizan-space-3);
   padding:15px;
   border:1px solid var(--mizan-glass-white-060);
   border-radius:var(--mizan-radius-md);
@@ -263,7 +263,7 @@
 .student-progress-top{
   display:flex;
   justify-content:space-between;
-  gap:12px;
+  gap:var(--mizan-space-3);
   margin-bottom:7px;
 }
 .student-progress-top span{
@@ -290,13 +290,13 @@
 }
 .student-empty-feature{
   text-align:center;
-  padding:45px 20px;
+  padding:45px var(--mizan-space-5);
 }
 .student-empty-feature .coming-icon{
   font-size:38px;
 }
 .student-empty-feature h3{
-  margin:12px 0 6px;
+  margin:var(--mizan-space-3) 0 6px;
 }
 .student-empty-feature p{
   margin:0;
@@ -331,7 +331,7 @@
     font-size:var(--mizan-font-size-xl);
   }
   .student-profile-card{
-    padding:16px;
+    padding:var(--mizan-space-4);
   }
   .profile-avatar{
     width:56px;
@@ -355,7 +355,7 @@
     margin-inline-start:auto;
   }
   .student-wrong-item{
-    padding:12px;
+    padding:var(--mizan-space-3);
   }
   .student-big-score{
     font-size:40px;
@@ -366,7 +366,7 @@
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   align-items:center;
-  gap:16px;
+  gap:var(--mizan-space-4);
   min-width:0;
   border-color:color-mix(in srgb,var(--mizan-deco-green-54) 28%,transparent);
   background:var(--mizan-gradient-student-sidebar-success);
@@ -410,7 +410,7 @@
 .resume-exam-actions{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:var(--mizan-space-2);
   flex:0 0 auto;
   margin-inline-start:auto;
 }
@@ -442,7 +442,7 @@
   .resume-exam-panel{
     grid-template-columns:1fr;
     align-items:stretch;
-    gap:12px;
+    gap:var(--mizan-space-3);
   }
   .resume-exam-actions{
     width:100%;
