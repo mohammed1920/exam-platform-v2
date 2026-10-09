@@ -130,6 +130,10 @@
   --mizan-gradient-lawyer-card:linear-gradient(145deg,var(--mizan-surface),var(--mizan-ink-deep));
   --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-500),var(--mizan-primary-500));
   --mizan-gradient-home-card-shine:linear-gradient(135deg,var(--mizan-glass-white-035),transparent 45%);
+  --mizan-gradient-home-hero:linear-gradient(135deg,color-mix(in srgb,var(--mizan-primary-900) 90%,var(--mizan-black) 10%) 0%,color-mix(in srgb,var(--mizan-primary-900) 78%,var(--mizan-info-700) 22%) 57%,color-mix(in srgb,var(--mizan-primary-900) 58%,var(--mizan-info-700) 42%) 100%);
+  --mizan-shadow-home-hero:0 24px 70px color-mix(in srgb,var(--mizan-primary-900) 22%,transparent);
+  --mizan-shadow-home-hero-mark:inset 0 1px 0 var(--mizan-glass-white-080);
+  --mizan-home-hero-border:var(--mizan-glass-white-080);
   --mizan-gradient-home-featured:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-primary-900));
   --mizan-gradient-home-featured-light:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-14a) 78%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 94%,transparent));
   --mizan-gradient-lawyer-primary:linear-gradient(135deg,var(--mizan-primary-500),var(--mizan-primary-500-muted));
