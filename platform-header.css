@@ -60,7 +60,7 @@
       margin:0;
       padding: 0;
       color: var(--mizan-wordmark);
-      font-family: 'Reem Kufi', 'Amiri', 'Noto Naskh Arabic', serif;
+      font-family:var(--mizan-font-family-display);
       font-size: clamp(2.6rem, 5.4vw, 4.6rem);
       font-weight: 700;
       line-height: 1.15;
@@ -72,7 +72,7 @@
     .mizan-header-tagline {
       margin:0;
       color: var(--text-secondary, var(--mizan-neutral-400));
-      font-family: 'Tajawal', 'Cairo', sans-serif;
+      font-family:var(--mizan-font-family-arabic);
       font-size: clamp(.82rem, 1.7vw, 1.08rem);
       font-weight: 500;
       line-height: 1.5;
