@@ -58,7 +58,7 @@ async function checkLocalReference(ownerFile, raw, label) {
   const clean = value.split(/[?#]/, 1)[0];
   if (!clean) return;
   const ownerDir = clean.startsWith("/") ? root : path.dirname(ownerFile);
-  const resolved = path.resolve(ownerDir, clean.replace(/^\\//, ""));
+  const resolved = path.resolve(ownerDir, clean.startsWith("/") ? clean.slice(1) : clean);
   if (resolved !== root && !resolved.startsWith(root + path.sep)) {
     failures.push(`Unsafe local ${label} in ${display(ownerFile)}: ${value}`);
     return;
