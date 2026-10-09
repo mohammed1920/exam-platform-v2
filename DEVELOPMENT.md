@@ -23,7 +23,7 @@ find . -type f -name '*.js' -not -path './.git/*' -not -path './node_modules/*' 
 - `question-sharing.js`: إنشاء روابط الأسئلة وبطاقات المشاركة.
 - `contact-info.js`: تحميل بطاقات التواصل ورسمها.
 - `home.js`: إجراءات الصفحة الرئيسية والتحميل الكسول للأقسام.
-- `platform-bootstrap.js`: سلوك زر تثبيت التطبيق وعدّاد الزيارات.
+- `platform-bootstrap.js`: سلوك زر تثبيت التطبيق وعدّاد الزيارات وتنظيف تسجيلات Service Worker القديمة كما هو قائم حاليًا؛ لا تغيّر هذا السلوك دون اختبار تحديثات PWA والتخزين المؤقت.
 - `platform-header-fix.js`: تركيب شعار Lottie في الهيدر.
 
 ### الإدارة والمصادقة
