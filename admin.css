@@ -131,7 +131,7 @@ button { cursor: pointer; }
   transform: translateX(100%);
   background: var(--admin-surface);
   border-inline-start: 1px solid var(--admin-border);
-  box-shadow: var(--mizan-shadow-md, 0 12px 30px var(--mizan-shadow-md));
+  box-shadow: var(--mizan-shadow-md);
   transition: transform var(--mizan-duration-medium, 180ms) var(--mizan-ease-standard, ease);
 }
 .sidebar.open { transform: translateX(0); }
