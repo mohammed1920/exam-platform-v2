@@ -254,7 +254,7 @@
   margin-top:5px;
 }
 .student-wrong-item small{
-  color:var(--mizan-primary-300);
+  color:var(--mizan-accent-tile-fg);
 }
 .student-progress-list{
   display:grid;
