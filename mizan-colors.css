@@ -482,3 +482,17 @@ html[data-theme="light"]{
   --mizan-install-hint-shadow:0 8px 24px color-mix(in srgb,var(--mizan-bg-dark) 14%,transparent);
   --mizan-install-hint-heading:var(--mizan-primary-700);
 }
+
+
+/* Petition-specific surface, border and shadow tokens. */
+:root{
+  --mizan-petition-search-border:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-petition-search-bg:color-mix(in srgb,var(--mizan-white) 2.5%,transparent);
+  --mizan-petition-template-border:color-mix(in srgb,var(--mizan-warning-500) 20%,transparent);
+  --mizan-petition-template-border-hover:color-mix(in srgb,var(--mizan-warning-500) 52%,transparent);
+  --mizan-petition-template-shadow-hover:0 14px 35px color-mix(in srgb,var(--mizan-black) 20%,transparent);
+  --mizan-petition-panel-bg:color-mix(in srgb,var(--mizan-deco-blue-11a) 82%,transparent);
+  --mizan-petition-document-shadow:0 10px 30px color-mix(in srgb,var(--mizan-black) 25%,transparent);
+  --mizan-petition-watermark:color-mix(in srgb,var(--mizan-deco-amber-54) 4.5%,transparent);
+  --mizan-petition-letterhead-rule:linear-gradient(90deg,var(--mizan-primary-800) 0%,var(--mizan-primary-500) 50%,var(--mizan-primary-800) 100%);
+}
