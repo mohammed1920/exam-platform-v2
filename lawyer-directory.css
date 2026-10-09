@@ -313,7 +313,7 @@
 /* تحسين بطاقة المحامي ونافذة التفاصيل */
 .lawyer-card{
   cursor:pointer;
-  transition:transform .2s,border-color .2s,box-shadow .2s;
+  transition:transform var(--mizan-duration-regular) ease,border-color var(--mizan-duration-regular) ease,box-shadow var(--mizan-duration-regular) ease;
 }
 .lawyer-card:hover,
 .lawyer-card:focus-visible{
