@@ -89,7 +89,7 @@ button { cursor: pointer; }
   padding: 10px 20px;
   transform: translateX(-50%);
   border-radius: var(--mizan-radius-xs, 8px);
-  box-shadow: 0 8px 24px var(--mizan-shadow-md);
+  box-shadow: var(--mizan-shadow-md);
   font-size: 14px;
   font-weight: 700;
   text-align: center;
@@ -286,7 +286,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   gap: 12px;
   padding: 14px 16px;
   background: linear-gradient(135deg, var(--admin-warning), var(--admin-accent));
-  box-shadow: 0 -4px 12px var(--mizan-shadow-md);
+  box-shadow: var(--mizan-shadow-md);
 }
 .batch-save-bar.active { display: flex; }
 .batch-save-bar-text { color: var(--mizan-white); font-size: 13px; font-weight: 800; text-align: center; }
