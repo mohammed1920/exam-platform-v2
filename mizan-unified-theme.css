@@ -306,26 +306,26 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .footer-faq-list 
 /* ===== v2.1 contrast + CTA + contact repair ===== */
 /* Theme toggle remains explicit here; menu trigger styling is owned by
    theme-aware tokens in mizan-colors.css and platform-sidebar.css. */
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle{
   background:var(--mizan-white);
   color:var(--mizan-primary-900);
   border:1px solid var(--mizan-text-dark);
-  box-shadow:var(--mizan-shadow-navigation-active);
+  box-shadow:none;
   opacity:1;
 }
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle i,
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle svg{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle i,
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle svg{
   color:var(--mizan-primary-900);
   background-color:currentColor;
   opacity:1;
 }
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover{
   background:var(--mizan-neutral-100);
   border-color:var(--mizan-accent-text);
   color:var(--mizan-primary-600);
 }
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover i,
-html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover svg{
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover i,
+html:is([data-theme="light"],[data-admin-theme="light"]) #theme-toggle.theme-toggle:hover svg{
   color:var(--mizan-primary-600);
   background-color:currentColor;
 }
