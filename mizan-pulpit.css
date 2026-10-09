@@ -708,7 +708,7 @@ html[data-theme="light"] .mizan-modal-close{
   border:1px solid var(--mizan-border-dark);
 }
 .mizan-form-grid textarea::placeholder{
-  color:var(--mizan-muted-dark);
+  color:var(--mizan-muted);
 }
 .mizan-form-grid select:focus,
 .mizan-form-grid textarea:focus{
