@@ -61,7 +61,7 @@ header h1{
   font-size:13px;
   font-weight:800;
   cursor:pointer;
-  box-shadow:0 8px 22px var(--mizan-glass-black-120);
+  box-shadow:var(--mizan-shadow-student-ui-compact);
   z-index:5;
 }
 .firebase-admin-tab:hover{
