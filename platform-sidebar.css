@@ -3,7 +3,7 @@
   position:absolute;top:var(--mizan-header-tools-offset);left:var(--mizan-header-tools-offset);right:var(--mizan-header-tools-offset);
   height:var(--mizan-header-tools-height);z-index:9000;display:flex;align-items:center;justify-content:space-between;
   padding:var(--mizan-header-tools-padding);border:1px solid var(--mizan-header-tools-border);border-radius:var(--mizan-radius-wide);
-  background:var(--mizan-header-tools-bg);box-shadow:var(--mizan-header-tools-shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:var(--mizan-header-tools-bg);box-shadow:var(--mizan-header-tools-shadow);backdrop-filter:blur(var(--mizan-blur-glass));-webkit-backdrop-filter:blur(var(--mizan-blur-glass));
 }
 .mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:var(--mizan-header-tools-glow);opacity:var(--mizan-header-tools-glow-opacity)}
 #mizan-header-tools .theme-toggle,#mizan-header-tools .platform-menu-trigger{
@@ -13,7 +13,7 @@
 .platform-menu-trigger:hover{border-color:var(--mizan-menu-button-border-hover);transform:translateY(-1px)}
 .platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
 .platform-sidebar.is-open{pointer-events:auto;visibility:visible}
-.platform-sidebar-backdrop{position:absolute;inset:0;background:var(--mizan-sidebar-backdrop);opacity:0;transition:opacity var(--mizan-sidebar-backdrop-duration) ease;backdrop-filter:blur(3px)}
+.platform-sidebar-backdrop{position:absolute;inset:0;background:var(--mizan-sidebar-backdrop);opacity:0;transition:opacity var(--mizan-sidebar-backdrop-duration) ease;backdrop-filter:blur(var(--mizan-blur-backdrop))}
 .platform-sidebar.is-open .platform-sidebar-backdrop{opacity:1}
 .platform-sidebar-panel{
   position:absolute;top:0;right:0;width:min(var(--mizan-sidebar-panel-width),var(--mizan-sidebar-panel-viewport-cap));height:100%;overflow-y:auto;
@@ -91,7 +91,7 @@
   position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-install-button-gap);
   margin:0;padding:var(--mizan-install-button-padding);border:1px solid var(--mizan-install-button-border);border-radius:var(--mizan-radius-11);
   background:var(--mizan-install-button-bg);color:var(--mizan-install-button-fg);box-shadow:var(--mizan-install-button-shadow);
-  font:inherit;font-size:var(--mizan-install-button-font-size);font-weight:800;line-height:var(--mizan-install-button-line-height);white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font:inherit;font-size:var(--mizan-install-button-font-size);font-weight:800;line-height:var(--mizan-install-button-line-height);white-space:nowrap;cursor:pointer;backdrop-filter:blur(var(--mizan-blur-install));-webkit-backdrop-filter:blur(var(--mizan-blur-install));
   transition:transform var(--mizan-duration-regular) ease,border-color var(--mizan-duration-regular) ease;
 }
 #install-app-btn:hover{transform:translateY(-1px);border-color:var(--mizan-install-button-border-hover)}
@@ -99,7 +99,7 @@
   position:absolute;top:calc(100% + var(--mizan-install-hint-offset));right:0;z-index:3;max-width:min(var(--mizan-install-hint-max-width),calc(100vw - var(--mizan-install-hint-viewport-gap)));margin:0;padding:var(--mizan-install-hint-padding);
   border:1px solid var(--mizan-install-hint-border);border-radius:var(--mizan-radius-11);background:var(--mizan-install-hint-bg);
   color:var(--mizan-install-hint-fg);box-shadow:var(--mizan-install-hint-shadow);font-size:var(--mizan-install-hint-font-size);line-height:var(--mizan-install-hint-line-height);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(var(--mizan-blur-hint));-webkit-backdrop-filter:blur(var(--mizan-blur-hint));
 }
 #ios-install-hint strong{color:var(--mizan-install-hint-heading)}
 body.platform-sidebar-open{overflow:hidden}
@@ -118,7 +118,7 @@ body.platform-sidebar-open{overflow:hidden}
 }
 @media(max-width:680px){
   body.platform-mobile-nav-enabled{
-    padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));
+    padding-bottom:calc(var(--mizan-mobile-nav-safe-space) + env(safe-area-inset-bottom,0px));
   }
   .platform-mobile-nav{
     position:fixed;
@@ -133,13 +133,13 @@ body.platform-sidebar-open{overflow:hidden}
     border-radius:var(--mizan-radius-xl);
     background:var(--mizan-mobile-nav-bg);
     box-shadow:var(--mizan-mobile-nav-shadow);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(var(--mizan-blur-mobile-nav));
+    -webkit-backdrop-filter:blur(var(--mizan-blur-mobile-nav));
   }
   .platform-mobile-nav-item{
     display:flex;
     min-width:0;
-    min-height:56px;
+    min-height:var(--mizan-mobile-nav-min-height);
     flex-direction:column;
     align-items:center;
     justify-content:center;
