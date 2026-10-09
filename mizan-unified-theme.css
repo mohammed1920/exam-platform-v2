@@ -11,7 +11,7 @@
   --mu-muted:var(--mizan-muted);
   --mu-primary:var(--mizan-primary-500);
 }
-html[data-theme="light"]{
+html:is([data-theme="light"],[data-admin-theme="light"]){
   --mu-bg:var(--mizan-bg-light);
   --mu-card:var(--mizan-card-light);
   --mu-border:var(--mizan-border-light);
@@ -312,26 +312,26 @@ html:not([data-theme="light"]) .footer-faq-list details{
 /* ===== v2.1 contrast + CTA + contact repair ===== */
 /* Theme toggle remains explicit here; menu trigger styling is owned by
    theme-aware tokens in mizan-colors.css and platform-sidebar.css. */
-html[data-theme="light"] .mizan-header-tools .theme-toggle{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle{
   background:var(--mizan-white);
   color:var(--mizan-primary-900);
   border:1px solid var(--mizan-text-dark);
   box-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
   opacity:1;
 }
-html[data-theme="light"] .mizan-header-tools .theme-toggle i,
-html[data-theme="light"] .mizan-header-tools .theme-toggle svg{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle i,
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle svg{
   color:var(--mizan-primary-900);
   background-color:currentColor;
   opacity:1;
 }
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover{
   background:var(--mizan-neutral-100);
   border-color:var(--mizan-primary-500);
   color:var(--mizan-primary-600);
 }
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover i,
-html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover i,
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover svg{
   color:var(--mizan-primary-600);
   background-color:currentColor;
 }
@@ -340,7 +340,7 @@ html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
 .contact-info-grid .contact-card{
   border-width:1px;
 }
-html[data-theme="light"] .contact-info-grid .contact-card{
+html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .contact-card{
   box-shadow:0 8px 24px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
 }
 .contact-info-grid .contact-card-whatsapp{
@@ -880,7 +880,7 @@ textarea::placeholder{
   color:var(--mizan-btn-primary-fg);
 }
 /* ===== Accessibility & state refinements (merged from the design audit) ===== */
-html[data-theme="light"] .question-card .question-text{
+html:is([data-theme="light"],[data-admin-theme="light"]) .question-card .question-text{
   color:var(--mizan-heading);
   text-shadow:none;
 }
@@ -901,12 +901,12 @@ html:not([data-theme="light"]) .option-btn.incorrect:hover{
   border-color:var(--mizan-danger-500);
   color:var(--mizan-danger-200);
 }
-html[data-theme="light"] .option-btn.correct:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) .option-btn.correct:hover{
   background:var(--mizan-success-100);
   border-color:var(--mizan-success-500);
   color:var(--mizan-success-700);
 }
-html[data-theme="light"] .option-btn.incorrect:hover{
+html:is([data-theme="light"],[data-admin-theme="light"]) .option-btn.incorrect:hover{
   background:var(--mizan-danger-100);
   border-color:var(--mizan-danger-500);
   color:var(--mizan-danger-700);
@@ -981,7 +981,7 @@ html body footer .footer-links button{
 html body footer .footer-links button:hover{
   color:var(--mizan-heading-dark);
 }
-html[data-theme="light"] .footer-links span{
+html:is([data-theme="light"],[data-admin-theme="light"]) .footer-links span{
   color:var(--mizan-muted-dark);
 }
 .auth-submit-btn{
@@ -1210,7 +1210,7 @@ html body .petition-design button.active{
   border-color:var(--mizan-gold-line);
   color:var(--mizan-gold-text);
 }
-html[data-theme="light"] body .petition-design button.active{
+html:is([data-theme="light"],[data-admin-theme="light"]) body .petition-design button.active{
   background:var(--mizan-primary-100);
   border-color:var(--mizan-primary-500);
   color:var(--mizan-primary-700);
@@ -1325,13 +1325,13 @@ html:not([data-theme="light"]) :is(.profile-stat-card strong,.student-big-score,
 .student-ok{
   color:var(--mizan-success-text);
 }
-html[data-theme="light"] .exam-dashboard-tabs button.is-active{
+html:is([data-theme="light"],[data-admin-theme="light"]) .exam-dashboard-tabs button.is-active{
   color:var(--mizan-primary-700);
 }
-html[data-theme="light"] .exam-dashboard-tabs button{
+html:is([data-theme="light"],[data-admin-theme="light"]) .exam-dashboard-tabs button{
   color:var(--mizan-muted);
 }
-html[data-theme="light"] .mizan-article-author>i{
+html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-article-author>i{
   color:var(--mizan-primary-600);
 }
 .mizan-article-meta span:first-child{
