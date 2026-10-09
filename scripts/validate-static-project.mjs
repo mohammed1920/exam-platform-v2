@@ -93,7 +93,7 @@ for (const htmlFile of htmlFiles) {
 }
 
 // Validate the PWA manifest's local launch page and icons.
-const manifestFiles = files.filter(file => /(^|\\/)manifest\\.json$/i.test(file));
+const manifestFiles = files.filter(file => /(^|\/)manifest\.json$/i.test(file));
 for (const manifestFile of manifestFiles) {
   try {
     const manifest = JSON.parse(await readFile(manifestFile, "utf8"));
