@@ -178,6 +178,61 @@
     updateAccountState();
   }
 
+
+  function ensureMobileNav(){
+    if(document.getElementById('platform-mobile-nav')) return;
+    const nav=document.createElement('nav');
+    nav.id='platform-mobile-nav';
+    nav.className='platform-mobile-nav';
+    nav.setAttribute('aria-label','التنقل السريع');
+    nav.innerHTML=`
+      <button type="button" class="platform-mobile-nav-item" data-mobile-action="home" aria-label="الصفحة الرئيسية">
+        <i class="fas fa-house" aria-hidden="true"></i><span>الرئيسية</span>
+      </button>
+      <button type="button" class="platform-mobile-nav-item" data-mobile-action="books" aria-label="اختبارات الكتب">
+        <i class="fas fa-book-open" aria-hidden="true"></i><span>الكتب</span>
+      </button>
+      <button type="button" class="platform-mobile-nav-item" data-mobile-action="search" aria-label="البحث">
+        <i class="fas fa-magnifying-glass" aria-hidden="true"></i><span>بحث</span>
+      </button>
+      <button type="button" class="platform-mobile-nav-item" data-mobile-action="profile" aria-label="الملف الشخصي">
+        <i class="fas fa-user" aria-hidden="true"></i><span>حسابي</span>
+      </button>`;
+    document.body.appendChild(nav);
+    document.body.classList.add('platform-mobile-nav-enabled');
+
+    nav.querySelectorAll('[data-mobile-action]').forEach(btn=>btn.addEventListener('click',()=>{
+      const action=btn.dataset.mobileAction;
+      if(action==='search'){
+        window.app?.navigateTo('home');
+        close();
+        const input=document.getElementById('search-input');
+        if(input){
+          input.focus({preventScroll:true});
+          input.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+        return;
+      }
+      run(action);
+    }));
+
+    const sync=()=>{
+      const active=document.querySelector('.view-section.active');
+      let current=active ? null : 'home';
+      if(active && active.id==='student-dashboard-section') current='profile';
+      if(active && ['books-section','chapters-section','exam-section','results-section','review-section','custom-exam-setup-section'].includes(active.id)) current='books';
+      nav.querySelectorAll('[data-mobile-action]').forEach(btn=>{
+        const selected=btn.dataset.mobileAction===current;
+        btn.classList.toggle('is-active',selected);
+        if(selected) btn.setAttribute('aria-current','page');
+        else btn.removeAttribute('aria-current');
+      });
+    };
+    const observer=new MutationObserver(sync);
+    observer.observe(document.querySelector('main')||document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+    sync();
+  }
+
   function placeAdminTab(){
     const adminTab=document.getElementById('firebase-admin-tab');
     const toolsWrap=document.getElementById('mizan-header-tools');
@@ -217,6 +272,7 @@
 
   function install(){
     ensure();
+    ensureMobileNav();
     const header=document.querySelector('header');
     if(!header)return;
     if(!document.getElementById('platform-menu-trigger')){
