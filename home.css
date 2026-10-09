@@ -1,8 +1,8 @@
 /* الصفحة الرئيسية الجديدة - مستقلة عن تنسيقات محرك الاختبارات */
 .platform-home{
-  max-width:1200px;
+  max-width:var(--mizan-content-width);
   margin:0 auto;
-  padding:24px 20px 8px;
+  padding:var(--mizan-space-6) var(--mizan-content-padding) var(--mizan-space-2);
 }
 .home-hero{
   position:relative;
@@ -221,7 +221,7 @@
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:var(--mizan-space-4);
-  margin:16px 0 24px;
+  margin:var(--mizan-space-4) 0 var(--mizan-space-6);
 }
 .home-feature-strip>div{
   position:relative;
