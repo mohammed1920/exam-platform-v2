@@ -73,6 +73,6 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 
 فرع العمل الحالي هو `refactor/architecture-foundation`، ولا يُعدّ نشر Vercel ناجحاً لمجرد نجاح GitHub Actions. راجع حالة النشر الفعلية وحدود البناء قبل إعلان جاهزية الإصدار. لا تنفّذ نشر إنتاج أو دمجاً إلى `main` كجزء من التنظيف دون تحقق مستقل.
 
-- `scripts/build-pages-bundle.sh` هو المصدر الوحيد لقائمة ملفات GitHub Pages: ينسخ ملفات HTML وJavaScript وCSS في الجذر ومجلدات `engine/` و`icons/` و`data/` و`assets/`، ويتحقق من الملفات الأساسية قبل النشر. يستخدمه كل من `.github/workflows/update.yml` وCI؛ عند إضافة أصل تشغيل جديد، حدّث هذا السكربت واختبارات الحزمة فقط.
+- `scripts/build-pages-bundle.sh` هو المصدر الوحيد لقائمة ملفات GitHub Pages: ينسخ ملفات HTML وJavaScript وCSS في الجذر ومجلدات `engine/` و`icons/` و`data/` و`assets/`، ويتحقق من الملفات الأساسية قبل النشر. يستخدمه كل من `.github/workflows/update.yml` وCI؛ عند إضافة أصل تشغيل جديد، حدّث هذا السكربت واختبارات الحزمة فقط. يسمح السكربت بمخرجات `dist/` داخل المستودع أو مجلد مؤقت مخصص يبدأ اسمه بـ `mizan-pages-bundle` فقط، حمايةً من حذف مسار عشوائي.
 
 **آخر تحديث:** 9 أكتوبر 2026
