@@ -33,7 +33,7 @@ html[data-theme="light"] #search-input{
   background:var(--mizan-surface-light);
   color:var(--mizan-text-light);
   border-color:var(--mizan-border-light);
-  box-shadow:0 4px 18px var(--mizan-glass-primary-900-050);
+  box-shadow:var(--mizan-shadow-theme-header);
 }
 html[data-theme="light"] #search-input::placeholder{
   color:var(--mizan-muted-light);
@@ -167,7 +167,7 @@ html[data-theme="light"] .question-search-results{
   background:var(--mizan-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text-light);
-  box-shadow:0 6px 20px color-mix(in srgb,var(--mizan-primary-900) 4%,transparent);
+  box-shadow:var(--mizan-shadow-theme-subtle);
 }
 html[data-theme="light"] .custom-exam-count-row input{
   background:var(--mizan-bg-light);
