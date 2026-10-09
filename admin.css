@@ -55,7 +55,7 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   gap:var(--mizan-space-3, var(--mizan-space-3));
-  padding: var(--mizan-space-3) 15px;
+  padding: var(--mizan-space-3) var(--mizan-space-inset-roomy);
   background: var(--admin-surface);
   border-bottom: 1px solid var(--admin-border);
 }
@@ -86,7 +86,7 @@ button { cursor: pointer; }
   z-index: 2100;
   display: none;
   max-width: 90vw;
-  padding:10px var(--mizan-space-5);
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-5);
   transform: translateX(-50%);
   border-radius:var(--mizan-radius-xs, var(--mizan-radius-xs));
   box-shadow: var(--mizan-shadow-md);
@@ -104,7 +104,7 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   gap:10px;
-  padding: 10px 15px;
+  padding: var(--mizan-space-inset-compact) var(--mizan-space-inset-roomy);
   background: var(--admin-surface);
   border-bottom: 1px solid var(--admin-border);
 }
@@ -126,7 +126,7 @@ button { cursor: pointer; }
   z-index: 1500;
   width: min(86vw, 340px);
   height: 100%;
-  padding:15px;
+  padding:var(--mizan-space-inset-roomy);
   overflow-y: auto;
   transform: translateX(100%);
   background: var(--admin-surface);
@@ -149,7 +149,7 @@ button { cursor: pointer; }
 .books-list { max-height: 55vh; margin-bottom:var(--mizan-space-3); overflow-y: auto; }
 .book-item {
   margin-bottom:var(--mizan-space-2);
-  padding: 10px var(--mizan-space-3);
+  padding: var(--mizan-space-inset-compact) var(--mizan-space-3);
   border: 1px solid var(--admin-border);
   border-radius:var(--mizan-radius-9, var(--mizan-radius-9));
   background: var(--admin-bg);
@@ -175,7 +175,7 @@ button { cursor: pointer; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn {
   flex-shrink: 0;
-  padding:10px 14px;
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-inset-medium);
   border: 0;
   border-bottom: 3px solid transparent;
   background: transparent;
@@ -191,7 +191,7 @@ button { cursor: pointer; }
 /* Buttons and form fields */
 .btn {
   min-height: 40px;
-  padding:10px var(--mizan-space-4);
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-4);
   border: 1px solid transparent;
   border-radius:var(--mizan-radius-xs, var(--mizan-radius-xs));
   font-size: var(--mizan-font-size-sm);
@@ -212,7 +212,7 @@ button { cursor: pointer; }
 label { display: block; margin-bottom:5px; color: var(--admin-accent); font-size: 13px; font-weight: 700; }
 input, textarea, select {
   width: 100%;
-  padding:10px;
+  padding:var(--mizan-space-inset-compact);
   border: 1px solid var(--admin-border);
   border-radius:var(--mizan-radius-xs, var(--mizan-radius-xs));
   background: var(--admin-bg);
@@ -284,7 +284,7 @@ input::placeholder, textarea::placeholder { color: var(--admin-muted); opacity: 
   align-items: center;
   justify-content: space-between;
   gap:var(--mizan-space-3);
-  padding: 14px var(--mizan-space-4);
+  padding: var(--mizan-space-inset-medium) var(--mizan-space-4);
   background: var(--mizan-gradient-admin-warning-accent);
   box-shadow: var(--mizan-shadow-md);
 }
