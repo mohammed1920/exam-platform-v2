@@ -310,13 +310,13 @@ body.batch-active { padding-bottom:130px; }
 
 /* Wider screens use a persistent book list and centered dialog sheets. */
 @media (min-width: 900px) {
-  .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap:var(--mizan-space-4); max-width: var(--mizan-content-width, 1200px); margin:0 auto; padding: 16px; }
+  .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap:var(--mizan-space-4); max-width: var(--mizan-content-width); margin:0 auto; padding: var(--mizan-space-4); }
   .book-bar { display: none; }
   .sidebar { position: static; width: auto; height: fit-content; max-height: 82vh; transform: none; border: 1px solid var(--admin-border); border-radius:var(--mizan-radius-lg, var(--mizan-radius-lg)); box-shadow: none; }
   .sidebar-head { display: none; }
   .sidebar-backdrop { display: none; }
   .modal { align-items: center; padding:15px; }
-  .modal-content { max-width: 520px; max-height: 90vh; border-radius:var(--mizan-radius-md, var(--mizan-radius-md)); }
+  .modal-content { max-width: 520px; max-height: 90vh; border-radius:var(--mizan-radius-md); }
   .batch-save-bar { flex-direction: row; padding:15px var(--mizan-space-5); }
   .batch-save-bar-text { flex: 1; text-align: right; }
   .batch-save-bar .btn { width: auto; padding:10px var(--mizan-space-5); font-size: 13px; }
