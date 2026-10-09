@@ -86,10 +86,10 @@
 .mizan-header-tools .platform-menu-trigger:hover .menu-lines i:nth-child(2){width:100%}
 
 /* App installation prompt */
-.install-slot{display:flex;justify-content:flex-end;align-items:center;gap:var(--mizan-space-2);width:100%;margin:0 0 10px;padding:0 2px;position:relative;z-index:2}
+.install-slot{display:flex;justify-content:flex-end;align-items:center;gap:var(--mizan-space-2);width:100%;margin:0 0 var(--mizan-install-slot-bottom-margin);padding:0 var(--mizan-install-slot-horizontal-padding);position:relative;z-index:2}
 #install-app-btn{
-  position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:5px;
-  margin:0;padding:7px 11px;border:1px solid var(--mizan-install-button-border);border-radius:var(--mizan-radius-11);
+  position:relative;left:auto;right:auto;bottom:auto;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-install-button-gap);
+  margin:0;padding:var(--mizan-install-button-padding);border:1px solid var(--mizan-install-button-border);border-radius:var(--mizan-radius-11);
   background:var(--mizan-install-button-bg);color:var(--mizan-install-button-fg);box-shadow:var(--mizan-install-button-shadow);
   font:inherit;font-size:var(--mizan-install-button-font-size);font-weight:800;line-height:var(--mizan-install-button-line-height);white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   transition:transform var(--mizan-duration-regular) ease,border-color var(--mizan-duration-regular) ease;
@@ -106,7 +106,7 @@ body.platform-sidebar-open{overflow:hidden}
 @media(max-width:600px){
   .mizan-header-tools{border-radius:var(--mizan-radius-15)}
   .platform-sidebar-panel{width:min(var(--mizan-sidebar-panel-width-mobile),var(--mizan-sidebar-panel-viewport-cap-mobile))}
-  .install-slot{justify-content:flex-start;margin-bottom:8px;padding:0}
+  .install-slot{justify-content:flex-start;margin-bottom:var(--mizan-install-slot-bottom-margin-mobile);padding:0}
   #install-app-btn{padding:var(--mizan-install-button-padding-mobile);font-size:var(--mizan-install-button-font-size-mobile)}
   #ios-install-hint{right:auto;left:0;max-width:calc(100vw - var(--mizan-install-hint-viewport-gap))}
 }
