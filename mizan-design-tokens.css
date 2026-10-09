@@ -31,6 +31,13 @@
   --mizan-space-10:64px;
   --mizan-content-width:1200px;
   --mizan-content-padding:20px;
+  --mizan-blur-glass:14px;
+  --mizan-blur-backdrop:3px;
+  --mizan-blur-install:8px;
+  --mizan-blur-hint:10px;
+  --mizan-blur-mobile-nav:18px;
+  --mizan-mobile-nav-safe-space:92px;
+  --mizan-mobile-nav-min-height:56px;
   --mizan-ease-out:cubic-bezier(.22,1,.36,1);
   --mizan-ease-standard:cubic-bezier(.2,.8,.2,1);
   --mizan-duration-fast:160ms;
