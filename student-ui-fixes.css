@@ -15,7 +15,7 @@ header h1{
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-lg);
   background:var(--mizan-gradient-card-glass-primary);
-  box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-black) 10%,transparent);
+  box-shadow:var(--mizan-shadow-student-ui-card);
 }
 .profile-name-editor label{
   margin-bottom:7px;
@@ -84,7 +84,7 @@ header h1{
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-lg);
   background:var(--mizan-gradient-card-glass-primary);
-  box-shadow:0 14px 34px var(--mizan-glass-black-120);
+  box-shadow:var(--mizan-shadow-student-ui-card-hover);
 }
 .firebase-admin-kicker{
   color:var(--primary,var(--mizan-primary-500));
@@ -261,9 +261,9 @@ header h1{
 }
 /* Light theme audit repair */
 html[data-theme="light"] .profile-name-editor{
-  background:linear-gradient(145deg,var(--mizan-surface),var(--mizan-surface));
+  background:var(--mizan-surface);
   border-color:var(--mizan-primary-500-paper);
-  box-shadow:0 12px 30px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
+  box-shadow:var(--mizan-shadow-surface-soft);
 }
 html[data-theme="light"] .firebase-admin-head,
 html[data-theme="light"] .firebase-admin-stat,
