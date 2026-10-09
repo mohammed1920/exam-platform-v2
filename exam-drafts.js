@@ -87,7 +87,6 @@
 
   window.MizanExamDrafts = Object.freeze({
     read: readExamDrafts,
-    write: writeExamDrafts,
     save: saveExamDraft,
     clear: clearExamDraft,
     summaries: getExamDraftSummaries,
