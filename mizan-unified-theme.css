@@ -25,8 +25,6 @@ html,
 body{
   background:var(--mu-bg);
   color:var(--mu-text);
-}
-body{
   border-color:var(--mu-border);
 }
 /* Header: exact navy in BOTH modes */
@@ -164,8 +162,7 @@ html body header .btn-primary{
 .lawyer-identity-btn,
 .petition-primary,
 .mizan-pulpit-primary,
-.mizan-read-btn,
-.mizan-form-submit{
+.mizan-read-btn{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
@@ -751,15 +748,13 @@ html body{
   color:var(--mizan-muted);
 }
 .mizan-pulpit-primary,
-.mizan-read-btn,
-.mizan-form-submit{
+.mizan-read-btn{
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
 }
 .mizan-pulpit-primary:hover,
-.mizan-read-btn:hover,
-.mizan-form-submit:hover{
+.mizan-read-btn:hover{
   background:var(--mizan-btn-primary-bg-hover);
 }
 .mizan-pulpit-secondary{
