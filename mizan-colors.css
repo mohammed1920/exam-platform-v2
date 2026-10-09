@@ -437,8 +437,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-field-bg:color-mix(in srgb,var(--mizan-black) 22%,transparent);
   --mizan-field-border:var(--mizan-neutral-500);
   --mizan-field-border-hover:var(--mizan-neutral-400);
-  --mizan-field-focus:var(--mizan-gold-primary);
-  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-primary) 24%,transparent);
+  --mizan-field-focus:var(--mizan-primary-500);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-primary-500) 24%,transparent);
   --mizan-warning-text:var(--mizan-warning-200);
   --mizan-info-text:var(--mizan-info-300);
 }
@@ -447,8 +447,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-field-bg:var(--mizan-white);
   --mizan-field-border:#7B8799;
   --mizan-field-border-hover:#5F6C80;
-  --mizan-field-focus:var(--mizan-gold-mid);
-  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-gold-mid) 22%,transparent);
+  --mizan-field-focus:var(--mizan-primary-600);
+  --mizan-field-focus-ring:color-mix(in srgb,var(--mizan-primary-500) 22%,transparent);
   --mizan-warning-text:var(--mizan-warning-700);
   --mizan-info-text:var(--mizan-info-700);
 }
