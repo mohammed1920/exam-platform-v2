@@ -1,8 +1,6 @@
 (function () {
   'use strict';
 
-  
-
   function mountMizanLogo() {
     const container = document.getElementById('mizan-header-logo');
     if (!container || !window.lottie) return;
