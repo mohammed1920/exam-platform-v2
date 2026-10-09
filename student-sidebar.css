@@ -21,13 +21,13 @@
 .student-page-header span{
   display:block;
   color:var(--primary,var(--mizan-primary-500));
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   font-weight:800;
   margin-bottom:3px;
 }
 .student-page-header h2{
   margin:0 0 4px;
-  font-size:24px;
+  font-size:var(--mizan-font-size-2xl);
 }
 .student-page-header p{
   margin:0;
@@ -69,7 +69,7 @@
   overflow-wrap:anywhere;
 }
 .profile-identity span{
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   font-weight:700;
 }
 .student-info-grid{
@@ -87,7 +87,7 @@
 .student-info-grid small{
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   margin-bottom:6px;
 }
 .student-info-grid strong{
@@ -129,7 +129,7 @@
 }
 .profile-stat-card small{
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .profile-panel{
   margin-bottom:16px;
@@ -198,11 +198,11 @@
 }
 .history-main span{
   color:var(--primary,var(--mizan-primary-500));
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 .history-main small{
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   margin-top:3px;
 }
 .history-score{
@@ -216,7 +216,7 @@
 }
 .history-score span{
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .profile-empty{
   padding:25px 12px;
@@ -250,7 +250,7 @@
 .student-wrong-item small{
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   margin-top:5px;
 }
 .student-wrong-item small{
@@ -285,7 +285,7 @@
 .student-progress-item small{
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   margin-top:6px;
 }
 .student-empty-feature{
@@ -328,7 +328,7 @@
     flex-basis:46px;
   }
   .student-page-header h2{
-    font-size:20px;
+    font-size:var(--mizan-font-size-xl);
   }
   .student-profile-card{
     padding:16px;
@@ -340,7 +340,7 @@
     font-size:22px;
   }
   .profile-identity h3{
-    font-size:18px;
+    font-size:var(--mizan-font-size-lg);
   }
   .profile-panel{
     padding:13px;
@@ -374,7 +374,7 @@
 .resume-exam-label{
   display:block;
   color:var(--mizan-success);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
   font-weight:800;
   margin-bottom:5px;
 }
@@ -385,7 +385,7 @@
 .resume-exam-panel p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 .profile-resume-btn{
   flex:1 1 auto;
@@ -418,7 +418,7 @@
   width:46px;
   height:46px;
   flex:0 0 46px;
-  font-size:18px;
+  font-size:var(--mizan-font-size-lg);
   border-radius:var(--mizan-radius-compact);
 }
 .profile-delete-btn{
