@@ -58,7 +58,7 @@ header:not(.mizan-header) h1{
   background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
   font:inherit;
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   font-weight:800;
   cursor:pointer;
   box-shadow:var(--mizan-shadow-student-ui-compact);
@@ -88,7 +88,7 @@ header:not(.mizan-header) h1{
 }
 .firebase-admin-kicker{
   color:var(--primary,var(--mizan-primary-500));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
   font-weight:900;
   margin-bottom:5px;
 }
@@ -99,7 +99,7 @@ header:not(.mizan-header) h1{
 .firebase-admin-head p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 .firebase-admin-action,
 .firebase-admin-back{
@@ -119,7 +119,7 @@ header:not(.mizan-header) h1{
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 .firebase-admin-status.error{
   border-color:color-mix(in srgb,var(--mizan-danger-500) 35%,transparent);
