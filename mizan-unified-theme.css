@@ -256,7 +256,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
 }
 
 .option-btn:hover{
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
 }
 /* Forum / pulpit */
 .mizan-pulpit-kicker,
@@ -320,7 +320,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .th
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover{
   background:var(--mizan-neutral-100);
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
   color:var(--mizan-primary-600);
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .theme-toggle:hover i,
@@ -449,7 +449,7 @@ html body{
 .home-category-card b,
 .home-section-heading span,
 .home-feature-strip i{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .home-feature-strip button{
   color:var(--mizan-primary-600);
@@ -476,7 +476,7 @@ html body{
   border-color:var(--mizan-border);
 }
 .book-card>.book-stats .book-stat-icon{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .book-card>.book-stats .book-stat-value{
   color:var(--mizan-heading);
@@ -536,7 +536,7 @@ html body{
   border-color:var(--mizan-border);
 }
 .option-btn:hover:not(:disabled){
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
   background:var(--mizan-accent-tile-bg);
 }
 .option-btn.correct{
@@ -648,7 +648,7 @@ html body{
 }
 .lawyers-hero>span,
 .lawyer-form-head span{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .lawyers-hero p,
 .lawyer-form-head p,
@@ -691,7 +691,7 @@ html body{
 .petitions-hero span,
 .petition-builder-head span,
 .petition-tools label i{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .petitions-hero p,
 .petition-builder-head p,
@@ -714,7 +714,7 @@ html body{
 .petition-primary{
   background:var(--mizan-primary-500);
   color:var(--mizan-white);
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
 }
 .petition-primary:hover{
   background:var(--mizan-primary-600);
@@ -770,7 +770,7 @@ html body footer{
   border-color:var(--mizan-border);
 }
 .footer-info-heading span{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 .footer-info-heading h2{
   color:var(--mizan-heading);
@@ -813,7 +813,7 @@ html body footer{
   border-color:var(--mizan-primary-200);
 }
 .platform-sidebar-item i{
-  color:var(--mizan-primary-500);
+  color:var(--mizan-accent-text);
 }
 /* Forms */
 input:not(.book-card input):not(.petition-tools input),
@@ -829,7 +829,7 @@ textarea:not(.book-card textarea),
 input:not(.book-card input):focus,
 select:not(.book-card select):focus,
 textarea:not(.book-card textarea):focus{
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
   box-shadow:var(--mizan-shadow-focus-primary);
   outline:none;
 }
@@ -1195,7 +1195,7 @@ html body .petition-design button.active{
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) body .petition-design button.active{
   background:var(--mizan-accent-tile-bg);
-  border-color:var(--mizan-primary-500);
+  border-color:var(--mizan-accent-text);
   color:var(--mizan-primary-700);
 }
 /* ---- 5. A4 petition sheet: always paper-white with black ink ---- */
