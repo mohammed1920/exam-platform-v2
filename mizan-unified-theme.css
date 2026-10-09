@@ -871,7 +871,7 @@ textarea::placeholder{
   background-image:none;
   color:var(--mizan-btn-primary-fg);
   border-color:var(--mizan-btn-primary-border);
-  box-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent) !important;
+  box-shadow:var(--mizan-btn-primary-shadow);
 }
 .book-card .test-btn:hover,
 .book-card>.test-btn:hover{
@@ -1008,9 +1008,13 @@ textarea:not(.book-card textarea),
 #search-input{
   border-color:var(--mizan-border-control);
 }
-:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
-  outline:3px solid var(--mizan-focus-ring) !important;
-  outline-offset:2px !important;
+html body :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible,
+html body .book-card button:focus-visible,
+html body .card button:focus-visible,
+html body .start-exam-btn:focus-visible,
+html body #search-input:focus-visible{
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 #result-grade{
   color:var(--mizan-accent-text);
