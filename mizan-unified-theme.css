@@ -805,7 +805,7 @@ html body footer{
   border-color:var(--mizan-border);
 }
 .platform-sidebar-backdrop{
-  background:color-mix(in srgb,var(--mizan-primary-900) 62%,transparent);
+  background:var(--mizan-sidebar-backdrop);
 }
 .platform-sidebar-close{
   background:var(--mizan-card);
