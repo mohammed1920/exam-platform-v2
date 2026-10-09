@@ -437,7 +437,7 @@
   font-size:var(--mizan-font-size-2xs);
   font-weight:800;
   cursor:pointer;
-  transition:.2s;
+  transition:var(--mizan-duration-regular) ease;
 }
 .mizan-article-back:hover{
   background:var(--mizan-accent-tile-bg);
@@ -597,7 +597,7 @@
   cursor:pointer;
   position:relative;
   padding-left:28px;
-  transition:.2s;
+  transition:var(--mizan-duration-regular) ease;
 }
 .mizan-article-reading-author:hover{
   opacity:.92;
