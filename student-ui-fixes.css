@@ -141,7 +141,7 @@ header h1{
 .firebase-admin-stat span{
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 .firebase-admin-stat strong{
   display:block;
@@ -171,7 +171,7 @@ header h1{
 }
 .firebase-admin-card-head span{
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .firebase-admin-table-wrap{
   overflow:auto;
@@ -187,7 +187,7 @@ header h1{
   padding:10px 11px;
   text-align:right;
   border-bottom:1px solid var(--mizan-glass-white-055);
-  font-size:12px;
+  font-size:var(--mizan-font-size-xs);
 }
 .firebase-admin-card th{
   color:var(--primary,var(--mizan-primary-500));
@@ -230,7 +230,7 @@ header h1{
     align-items:flex-start;
   }
   .firebase-admin-head h2{
-    font-size:18px;
+    font-size:var(--mizan-font-size-lg);
   }
   .firebase-admin-stats{
     gap:8px;
