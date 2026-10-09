@@ -1026,10 +1026,9 @@ html body #search-input:focus-visible{
   content:" ✗";
   font-weight:900;
 }
-/* Brand wordmark follows Mizan V5: crisp white on the navy header.
-   Gold remains a restrained accent for metadata and premium details. */
+/* Brand wordmark uses the active semantic heading color in both themes. */
 html body header .mizan-header-copy h1{
-  color:var(--mizan-white);
+  color:var(--mizan-heading);
   background:none;
   -webkit-text-fill-color:currentColor;
   text-shadow:none;
