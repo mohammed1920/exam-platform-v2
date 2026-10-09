@@ -98,7 +98,7 @@
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-btn-primary-bg);
   color:var(--mizan-btn-primary-fg);
-  padding:10px 15px;
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-inset-roomy);
   cursor:pointer;
   font:inherit;
   font-weight:800;
