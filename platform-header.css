@@ -11,8 +11,8 @@
 
     .mizan-header-brand {
       width:min(100%,calc(100% - var(--mizan-header-brand-reserve)));
-      margin-inline-start:auto;
-      margin-inline-end:0;
+      margin-inline-start:0;
+      margin-inline-end:auto;
       display: flex;
       flex-direction: column;
       direction: rtl;
