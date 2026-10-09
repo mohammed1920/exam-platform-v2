@@ -188,3 +188,66 @@
   --mizan-petitions-footer-margin-mobile:11mm;
   --mizan-petitions-footer-gap-mobile:8mm;
 }
+
+/* ===== Shared typography, interaction and layout tokens =====
+   Added for the Mizan global design direction. Palette values remain in
+   mizan-colors.css; keep book-specific artwork and geometry isolated.
+*/
+:root{
+  --mizan-font-family-arabic:"IBM Plex Sans Arabic","Cairo",sans-serif;
+  --mizan-font-family-display:"Cairo","IBM Plex Sans Arabic",sans-serif;
+  --mizan-font-size-2xs:0.6875rem;
+  --mizan-font-size-xs:0.75rem;
+  --mizan-font-size-sm:0.875rem;
+  --mizan-font-size-md:1rem;
+  --mizan-font-size-lg:1.125rem;
+  --mizan-font-size-xl:1.25rem;
+  --mizan-font-size-2xl:1.5rem;
+  --mizan-font-size-3xl:1.875rem;
+  --mizan-font-size-4xl:2.25rem;
+  --mizan-line-height-tight:1.25;
+  --mizan-line-height-heading:1.4;
+  --mizan-line-height-body:1.75;
+  --mizan-line-height-relaxed:1.9;
+  --mizan-font-weight-regular:400;
+  --mizan-font-weight-medium:500;
+  --mizan-font-weight-semibold:600;
+  --mizan-font-weight-bold:700;
+  --mizan-font-weight-extrabold:800;
+  --mizan-font-weight-black:900;
+  --mizan-radius-card:var(--mizan-radius-lg);
+  --mizan-radius-card-featured:var(--mizan-radius-xl);
+  --mizan-radius-control:var(--mizan-radius-compact);
+  --mizan-radius-field:var(--mizan-radius-md);
+  --mizan-radius-dialog:var(--mizan-radius-2xl);
+  --mizan-content-width-wide:1440px;
+  --mizan-content-padding-mobile:10px;
+  --mizan-content-padding-tablet:16px;
+  --mizan-section-gap:var(--mizan-space-9);
+  --mizan-component-gap:var(--mizan-space-3);
+  --mizan-card-padding:var(--mizan-space-4);
+  --mizan-card-padding-comfortable:var(--mizan-space-5);
+  --mizan-control-min-height:44px;
+  --mizan-control-min-height-compact:40px;
+  --mizan-transition-standard:var(--mizan-duration-regular) var(--mizan-ease-standard);
+  --mizan-transition-emphasized:var(--mizan-duration-slow) var(--mizan-ease-out);
+  --mizan-transition-color:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease;
+  --mizan-transition-elevation:box-shadow var(--mizan-duration-regular) var(--mizan-ease-standard),transform var(--mizan-duration-regular) var(--mizan-ease-standard);
+  --mizan-focus-outline-style:solid;
+}
+@media (max-width:650px){
+  :root{
+    --mizan-section-gap:var(--mizan-space-7);
+    --mizan-card-padding:var(--mizan-space-3);
+    --mizan-card-padding-comfortable:var(--mizan-space-4);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  :root{
+    --mizan-transition-standard:0ms linear;
+    --mizan-transition-emphasized:0ms linear;
+    --mizan-transition-color:color 0ms linear,background-color 0ms linear,border-color 0ms linear;
+    --mizan-transition-elevation:box-shadow 0ms linear,transform 0ms linear;
+  }
+}
+
