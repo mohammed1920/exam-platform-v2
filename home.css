@@ -68,8 +68,8 @@
 .home-category-card:hover:after{opacity:1;}
 .home-category-card:active{transform:translateY(-1px) scale(.992);}
 .home-category-card:focus-visible{
-  outline:2px solid color-mix(in srgb,var(--card-accent,var(--mizan-primary-500)) 75%,var(--mizan-white));
-  outline-offset:3px;
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
 }
 .home-category-card:hover i{transform:translateY(-2px) scale(1.035);}
 .home-category-card i{
