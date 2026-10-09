@@ -310,14 +310,8 @@ html:not([data-theme="light"]) .footer-faq-list details{
   border-color:var(--mizan-neutral-700);
 }
 /* ===== v2.1 contrast + CTA + contact repair ===== */
-/* Top utility icons must remain clearly visible in light mode. */
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger{
-  background:var(--mizan-white) !important;
-  color:var(--mizan-primary-900) !important;
-  border:1px solid var(--mizan-text-dark) !important;
-  box-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent) !important;
-  opacity:1;
-}
+/* Theme toggle remains explicit here; menu trigger styling is owned by
+   theme-aware tokens in mizan-colors.css and platform-sidebar.css. */
 html[data-theme="light"] .mizan-header-tools .theme-toggle{
   background:var(--mizan-white);
   color:var(--mizan-primary-900);
@@ -325,26 +319,17 @@ html[data-theme="light"] .mizan-header-tools .theme-toggle{
   box-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
   opacity:1;
 }
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger i,
 html[data-theme="light"] .mizan-header-tools .theme-toggle i,
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger svg,
-html[data-theme="light"] .mizan-header-tools .theme-toggle svg,
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger .menu-lines i{
+html[data-theme="light"] .mizan-header-tools .theme-toggle svg{
   color:var(--mizan-primary-900);
   background-color:currentColor;
   opacity:1;
-}
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover{
-  background:var(--mizan-neutral-100) !important;
-  border-color:var(--mizan-primary-500) !important;
-  color:var(--mizan-primary-600) !important;
 }
 html[data-theme="light"] .mizan-header-tools .theme-toggle:hover{
   background:var(--mizan-neutral-100);
   border-color:var(--mizan-primary-500);
   color:var(--mizan-primary-600);
 }
-html[data-theme="light"] .mizan-header-tools .platform-menu-trigger:hover .menu-lines i,
 html[data-theme="light"] .mizan-header-tools .theme-toggle:hover i,
 html[data-theme="light"] .mizan-header-tools .theme-toggle:hover svg{
   color:var(--mizan-primary-600);
