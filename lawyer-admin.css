@@ -7,7 +7,7 @@
 }
 .lawyer-admin-table th,
 .lawyer-admin-table td{
-  padding:10px var(--mizan-space-2);
+  padding:var(--mizan-space-inset-compact) var(--mizan-space-2);
   border-bottom:1px solid var(--mizan-glass-white-060);
   text-align:right;
   font-size:var(--mizan-font-size-2xs);
@@ -171,7 +171,7 @@
     grid-template-columns:1fr;
   }
   .firebase-admin-menu-card{
-    padding:14px;
+    padding:var(--mizan-space-inset-medium);
   }
 }
 /* Light theme audit repair */
