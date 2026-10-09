@@ -338,3 +338,27 @@ html[data-theme="light"]{
   --mizan-warning-text:var(--mizan-warning-700);
   --mizan-info-text:var(--mizan-info-700);
 }
+
+/* ===== Central theme-aware menu trigger tokens =====
+   The menu button's surface, border, icon color, and elevation are owned here.
+   Component styles consume these tokens; they must not hard-code theme colors.
+*/
+:root{
+  --mizan-menu-button-bg:linear-gradient(145deg,var(--mizan-primary-100),color-mix(in srgb,var(--mizan-white) 3.5%,transparent));
+  --mizan-menu-button-fg:var(--mizan-primary-300);
+  --mizan-menu-button-border:var(--mizan-primary-500-border);
+  --mizan-menu-button-shadow:0 4px 14px var(--mizan-shadow-sm),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 6%,transparent);
+  --mizan-menu-button-bg-hover:linear-gradient(145deg,var(--mizan-primary-500-border),color-mix(in srgb,var(--mizan-white) 5.5%,transparent));
+  --mizan-menu-button-fg-hover:var(--mizan-primary-300);
+  --mizan-menu-button-border-hover:var(--mizan-primary-300);
+  --mizan-menu-button-shadow-hover:0 6px 16px color-mix(in srgb,var(--mizan-black) 20%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 8%,transparent);
+}
+html[data-theme="light"]{
+  --mizan-menu-button-bg:var(--mizan-white);
+  --mizan-menu-button-fg:var(--mizan-primary-900);
+  --mizan-menu-button-border:var(--mizan-text-dark);
+  --mizan-menu-button-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
+  --mizan-menu-button-bg-hover:var(--mizan-neutral-100);
+  --mizan-menu-button-fg-hover:var(--mizan-primary-600);
+  --mizan-menu-button-border-hover:var(--mizan-primary-500);
+}
