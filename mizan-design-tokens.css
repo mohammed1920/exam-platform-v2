@@ -53,6 +53,7 @@
   --mizan-duration-regular:200ms;
   --mizan-duration-ui:220ms;
   --mizan-duration-slow:320ms;
+  --mizan-duration-interaction:250ms;
 }
 
 /* Shared keyboard focus geometry; focus color is owned by mizan-colors.css. */
