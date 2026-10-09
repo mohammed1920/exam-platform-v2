@@ -279,7 +279,6 @@
     }
   }
 
-
   window.MizanQuestionSharing = Object.freeze({
     shareQuestion: app => shareQuestion(app)
   });
