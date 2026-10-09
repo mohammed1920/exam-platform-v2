@@ -11,12 +11,13 @@
 
     .mizan-header-brand {
       width:min(100%,calc(100% - var(--mizan-header-brand-reserve)));
-      margin:0 auto;
+      margin-inline-start:auto;
+      margin-inline-end:0;
       display: flex;
       flex-direction: column;
       direction: rtl;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       gap:var(--mizan-header-brand-gap);
       min-height:var(--mizan-header-brand-min-height);
     }
@@ -26,7 +27,7 @@
       flex-direction: row;
       direction: rtl;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       width: max-content;
       max-width: 100%;
       gap:var(--mizan-space-2);
@@ -52,7 +53,7 @@
       flex: 0 0 auto;
       width: auto;
       min-width: 0;
-      text-align: center;
+      text-align: right;
     }
     .mizan-header-copy h1 {
       margin:0;
@@ -74,7 +75,7 @@
       font-size:var(--mizan-header-tagline-size);
       font-weight: 500;
       line-height: 1.5;
-      text-align: center;
+      text-align: right;
     }
 
     .mizan-header .mizan-header-brand + #install-app-btn {
