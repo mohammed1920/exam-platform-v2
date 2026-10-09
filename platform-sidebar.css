@@ -1,16 +1,22 @@
 /* Mizan platform navigation — visual values are owned by central tokens. */
-.mizan-header-tools{
-  position:absolute;top:var(--mizan-header-tools-offset);left:auto;right:var(--mizan-header-tools-offset);
-  width:max-content;max-width:calc(100% - var(--mizan-header-tools-offset) * 2);
-  height:var(--mizan-header-tools-height);z-index:9000;display:flex;direction:ltr;flex-direction:row-reverse;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);
-  padding:var(--mizan-header-tools-padding);border:1px solid var(--mizan-header-tools-border);border-radius:var(--mizan-radius-wide);
-  background:var(--mizan-header-tools-bg);box-shadow:var(--mizan-header-tools-shadow);backdrop-filter:blur(var(--mizan-blur-glass));-webkit-backdrop-filter:blur(var(--mizan-blur-glass));
+#theme-toggle.theme-toggle{
+  position:absolute;top:var(--mizan-header-tools-offset);left:var(--mizan-header-tools-offset);right:auto;z-index:9000;
+  width:var(--mizan-header-control-size);height:var(--mizan-header-control-size);margin:0;
+  box-shadow:none;
 }
-.mizan-header-tools::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:var(--mizan-header-tools-glow);opacity:var(--mizan-header-tools-glow-opacity)}
-#mizan-header-tools .theme-toggle,#mizan-header-tools .platform-menu-trigger{
-  position:relative;inset:auto;z-index:1;
-  width:var(--mizan-header-control-size);height:var(--mizan-header-control-size);margin:0;flex:0 0 var(--mizan-header-control-size);
+#platform-menu-trigger.platform-menu-trigger{
+  position:absolute;top:var(--mizan-header-tools-offset);right:var(--mizan-header-tools-offset);left:auto;z-index:9000;
+  width:var(--mizan-header-control-size);height:var(--mizan-header-control-size);margin:0;
+  box-shadow:none;
 }
+#firebase-admin-tab.firebase-admin-tab{
+  position:absolute;top:var(--mizan-header-tools-offset);left:calc(var(--mizan-header-tools-offset) + var(--mizan-header-control-size) + var(--mizan-space-2));right:auto;z-index:9000;
+  width:var(--mizan-header-control-size);height:var(--mizan-header-control-size);min-width:0;padding:0;
+  display:flex;align-items:center;justify-content:center;gap:0;border-radius:var(--mizan-radius-compact);
+  box-shadow:none;
+}
+#firebase-admin-tab.firebase-admin-tab span{display:none}
+#firebase-admin-tab.firebase-admin-tab[hidden]{display:none}
 .platform-menu-trigger:hover{border-color:var(--mizan-menu-button-border-hover);transform:translateY(-1px)}
 .platform-sidebar{position:fixed;inset:0;z-index:12000;pointer-events:none;visibility:hidden}
 .platform-sidebar.is-open{pointer-events:auto;visibility:visible}
