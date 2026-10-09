@@ -362,3 +362,9 @@ html[data-theme="light"]{
   --mizan-menu-button-fg-hover:var(--mizan-primary-600);
   --mizan-menu-button-border-hover:var(--mizan-primary-500);
 }
+
+/* ===== Central button elevation tokens ===== */
+:root{
+  --mizan-btn-primary-shadow:0 7px 16px color-mix(in srgb,var(--mizan-btn-primary-glow) 18%,transparent);
+  --mizan-btn-primary-shadow-hover:0 10px 22px color-mix(in srgb,var(--mizan-btn-primary-glow) 24%,transparent),0 0 18px color-mix(in srgb,var(--mizan-btn-primary-glow) 14%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 28%,transparent);
+}
