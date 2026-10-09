@@ -496,3 +496,11 @@ html[data-theme="light"]{
   --mizan-petition-watermark:color-mix(in srgb,var(--mizan-deco-amber-54) 4.5%,transparent);
   --mizan-petition-letterhead-rule:linear-gradient(90deg,var(--mizan-primary-800) 0%,var(--mizan-primary-500) 50%,var(--mizan-primary-800) 100%);
 }
+
+
+/* Petition component gradients; palette values remain centralized here. */
+:root{
+  --mizan-petition-hero-bg:linear-gradient(145deg,color-mix(in srgb,var(--mizan-primary-900) 88%,var(--mizan-warning-700) 12%),color-mix(in srgb,var(--mizan-deco-blue-10b) 97%,transparent));
+  --mizan-petition-template-bg:linear-gradient(145deg,color-mix(in srgb,var(--mizan-deco-blue-19) 92%,transparent),color-mix(in srgb,var(--mizan-deco-blue-10) 98%,transparent));
+  --mizan-petition-light-surface-gradient:linear-gradient(145deg,var(--mizan-surface),var(--mizan-bg-light));
+}
