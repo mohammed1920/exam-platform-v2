@@ -39,7 +39,7 @@
       } catch (_) {}
     })();
   </script>
-  <style>
+  
     .exam-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .share-question-btn { flex-shrink:0; background:var(--mizan-btn-outline-bg); border:2px solid var(--mizan-btn-outline-border); color:var(--mizan-btn-outline-fg); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:6px 14px; border-radius:12px; transition:all .25s ease; }
     .share-question-btn .share-icon { font-size:18px; line-height:1; }
@@ -71,9 +71,9 @@
     .question-search-item:active { background:var(--mizan-primary-100); }
     .question-search-text { font-size:14px; line-height:1.5; margin-bottom:4px; }
     .question-search-source { font-size:12px; color:var(--text-secondary,var(--mizan-muted-dark)); }
-  </style>
+
   <link rel="stylesheet" href="theme.css?v=1.5">
-  <link rel="stylesheet" href="mizan-unified-theme.css?v=6.14">
+  <link rel="stylesheet" href="mizan-unified-theme.css?v=6.15">
   <link rel="stylesheet" href="platform-header.css?v=1.0">
   <!-- Unified Mizan theme loads last so it controls the shared palette; mizan-colors.css remains the source of truth. -->
   
@@ -109,7 +109,7 @@
     <section class="platform-home">
       <div class="install-slot"><button id="install-app-btn" type="button" aria-label="تثبيت ميزان على هاتفك">📲 ثبّت التطبيق على هاتفك</button><p id="ios-install-hint" hidden>📲 اضغط زر المشاركة <strong>⬆️</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p></div>
       <div class="search-container home-search-container"><div class="search-wrapper"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="ابحث عن كتاب أو فصل أو سؤال..."></div></div>
-      <div id="question-search-results" class="question-search-results home-question-search-results" style="display:none;"></div>
+      <div id="question-search-results" class="question-search-results home-question-search-results" hidden></div>
       <div class="home-section-heading"><h2>كل ما تحتاجه في مكان واحد</h2><span>الأقسام الرئيسية</span></div>
       <div class="home-category-grid">
         <button class="home-category-card featured" data-home-action="books"><i class="fas fa-book-open"></i><strong>اختبارات كتب القانون</strong><small>الكتب والفصول والأسئلة التفاعلية</small><b>الدخول ←</b></button>
@@ -192,10 +192,10 @@
     <section id="petitions-section" class="view-section"></section>
     <section id="books-section" class="view-section"><button class="custom-exam-entry-btn" id="custom-exam-entry-btn">🎲 اختبار عشوائي شامل</button><div class="books-grid" id="books-container"></div></section>
     <section id="custom-exam-setup-section" class="view-section"><button class="back-btn" id="custom-exam-back-btn"><i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية</button><h2 class="custom-exam-title">🎲 اختبار عشوائي شامل</h2><p class="custom-exam-desc">اختر الكتب اللي تريد تختبر نفسك فيها، وحدد عدد الأسئلة.</p><div id="custom-exam-books-list" class="custom-exam-books-list"></div><div class="custom-exam-count-row"><label for="custom-exam-count">عدد الأسئلة</label><input type="number" id="custom-exam-count" min="1" value="20"></div><button class="custom-exam-start-btn" id="custom-exam-start-btn">🚀 ابدأ الاختبار</button></section>
-    <section id="chapters-section" class="view-section"><button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button><div id="chapters-header" style="margin-bottom:25px;"></div><div class="chapters-list" id="chapters-container"></div></section>
+    <section id="chapters-section" class="view-section"><button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button><div id="chapters-header" class="chapters-header"></div><div class="chapters-list" id="chapters-container"></div></section>
     <section id="exam-section" class="view-section"><div class="exam-box"><div class="exam-stats-bar"><div class="stat-item stat-wrong"><span class="stat-label">خطأ</span><span class="stat-value" id="stat-wrong">0</span></div><div class="stat-item stat-correct"><span class="stat-label">صح</span><span class="stat-value" id="stat-correct">0</span></div><div class="stat-item stat-progress"><span class="stat-label">التقدم</span><span class="stat-value" id="stat-progress">0/0</span></div><div class="stat-item stat-time"><span class="stat-label">الوقت</span><span class="stat-value" id="exam-timer">00:00</span></div></div><div class="exam-header"><div class="exam-title" id="exam-book-chapter">اسم الكتاب - الفصل</div><button class="share-question-btn" id="share-question-btn" title="شارك هذا السؤال"><span class="share-icon">📤</span><span class="share-label">مشاركة</span></button></div><div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div><div class="question-container" id="question-container"></div><div class="exam-footer"><button class="exam-btn prev" id="prev-btn">السؤال السابق</button><button class="exam-btn next" id="next-btn">التالي</button></div><button class="exam-home-btn" id="exam-home-btn"><i class="fas fa-home"></i> الصفحة الرئيسية</button></div></section>
-    <section id="results-section" class="view-section"><div class="results-box"><div class="result-emoji" id="result-emoji">🏆</div><div class="result-grade" id="result-grade">ممتاز</div><div class="result-score" id="result-score">النتيجة: 0 / 0</div><div class="result-details"><div class="detail-item"><span class="detail-label">نسبة النجاح:</span><span class="detail-value" id="result-percent">0%</span></div><div class="detail-item"><span class="detail-label">الوقت المستغرق:</span><span class="detail-value" id="result-time">0 ثانية</span></div></div><div class="results-actions"><button class="start-exam-btn" id="restart-exam-btn" style="background:var(--primary);color:var(--bg-dark);">إعادة الاختبار</button><button class="back-btn" id="back-books-btn" style="margin-bottom:0;">الرئيسية</button></div><button class="back-btn" id="review-exam-btn" style="margin-top:15px;width:100%;">📄 مراجعة الأخطاء</button></div></section>
-    <section id="review-section" class="view-section"><button class="back-btn" id="back-from-review"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><h2 style="margin-bottom:20px;">📄 مراجعة الإجابات الخاطئة</h2><div id="review-content"></div></section>
+    <section id="results-section" class="view-section"><div class="results-box"><div class="result-emoji" id="result-emoji">🏆</div><div class="result-grade" id="result-grade">ممتاز</div><div class="result-score" id="result-score">النتيجة: 0 / 0</div><div class="result-details"><div class="detail-item"><span class="detail-label">نسبة النجاح:</span><span class="detail-value" id="result-percent">0%</span></div><div class="detail-item"><span class="detail-label">الوقت المستغرق:</span><span class="detail-value" id="result-time">0 ثانية</span></div></div><div class="results-actions"><button class="start-exam-btn" id="restart-exam-btn" class="start-exam-btn">إعادة الاختبار</button><button class="back-btn" id="back-books-btn" class="back-btn back-books-action">الرئيسية</button></div><button class="back-btn" id="review-exam-btn" class="back-btn review-exam-action">📄 مراجعة الأخطاء</button></div></section>
+    <section id="review-section" class="view-section"><button class="back-btn" id="back-from-review"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><h2 class="review-section-heading">📄 مراجعة الإجابات الخاطئة</h2><div id="review-content"></div></section>
   <div id="mizan-contributor-profile-modal" class="mizan-modal" aria-hidden="true"></div>
 </main>
   <section id="about-section" class="view-section footer-info-section"><div class="footer-info-box"><button class="back-btn footer-info-back" type="button" data-footer-back>← العودة للرئيسية</button><div class="footer-info-heading"><span>عن المنصة</span><h2>عن منصة ميزان</h2><p>منصة تعليمية واختبارية تهدف إلى تنظيم المراجعة والتدريب على المحتوى القانوني بطريقة تفاعلية.</p></div></div></section>
