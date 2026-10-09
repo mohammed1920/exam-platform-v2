@@ -264,7 +264,7 @@
   position:relative;
 }
 .home-category-card strong{
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
   margin-bottom:5px;
 }
 .home-category-card small{
@@ -410,7 +410,7 @@
 }
 .home-feature-strip i{
   color:var(--mizan-accent-text);
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
   width:28px;
   text-align:center;
 }
@@ -586,7 +586,7 @@ footer{
 }
 .contact-heading h2{
   margin:0 0 7px;
-  font-size:25px;
+  font-size:var(--mizan-font-size-heading-lg);
 }
 .contact-heading p{
   margin:0;
@@ -623,7 +623,7 @@ footer{
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-tile-fg);
-  font-size:21px;
+  font-size:var(--mizan-font-size-heading-sm);
 }
 .contact-card span{
   min-width:0;
@@ -634,7 +634,7 @@ footer{
   display:block;
 }
 .contact-card strong{
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
   margin-bottom:5px;
 }
 .contact-card small{
@@ -706,7 +706,7 @@ footer{
     grid-template-columns:1fr;
   }
   .contact-heading h2{
-    font-size:22px;
+    font-size:var(--mizan-font-size-heading-md);
   }
   .contact-card{
     min-height:86px;
@@ -1014,7 +1014,7 @@ footer{
   border-radius:7px;
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-text);
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
   vertical-align:middle;
 }
 .footer-faq-list details[open] summary:before{
@@ -1083,7 +1083,7 @@ footer{
   border-radius:var(--mizan-radius-11);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-primary-600);
-  font-size:15px;
+  font-size:var(--mizan-font-size-compact-strong);
 }
 .home-coming-soon span{
   flex:1;
