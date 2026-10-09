@@ -79,7 +79,7 @@
   margin-bottom:var(--mizan-space-4);
 }
 .student-info-grid>div{
-  padding:15px;
+  padding:var(--mizan-space-inset-roomy);
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-15);
   background:var(--mizan-glass-white-025);
@@ -111,7 +111,7 @@
   margin-bottom:18px;
 }
 .profile-stat-card{
-  padding:var(--mizan-space-4) 10px;
+  padding:var(--mizan-space-4) var(--mizan-space-inset-compact);
   text-align:center;
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-wide);
@@ -226,7 +226,7 @@
 .student-wrong-item{
   display:flex;
   gap:var(--mizan-space-3);
-  padding:15px;
+  padding:var(--mizan-space-inset-roomy);
   border:1px solid var(--mizan-glass-white-060);
   border-radius:var(--mizan-radius-md);
   background:color-mix(in srgb,var(--mizan-primary-900) 25%,transparent);
@@ -320,7 +320,7 @@
 @media(max-width:560px){
         .student-page-header{
     gap:11px;
-    padding:14px 0;
+    padding:var(--mizan-space-inset-medium) 0;
   }
   .student-page-icon{
     width:46px;
@@ -392,7 +392,7 @@
   min-width:0;
   border:1px solid color-mix(in srgb,var(--mizan-deco-green-54) 35%,transparent);
   border-radius:var(--mizan-radius-sm);
-  padding:10px 13px;
+  padding:var(--mizan-space-inset-compact) 13px;
   background:color-mix(in srgb,var(--mizan-deco-green-54) 12%,transparent);
   color:var(--mizan-success);
   cursor:pointer;
