@@ -46,7 +46,7 @@ header:not(.mizan-header) h1{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:6px;
+  gap:var(--mizan-gap-micro);
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 42%,transparent);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-accent-tile-bg);
@@ -154,7 +154,7 @@ header:not(.mizan-header) h1{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:var(--mizan-gap-compact);
   padding:var(--mizan-space-inset-medium) var(--mizan-space-inset-roomy);
   border-bottom:1px solid var(--mizan-surface-soft);
 }
