@@ -196,36 +196,6 @@
   font-size:12px;
   line-height:1.6;
 }
-.exam-dashboard-tabs{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin:0 0 18px;
-  padding:7px;
-  border:1px solid var(--mizan-primary-100);
-  border-radius:var(--mizan-radius-wide);
-}
-.exam-dashboard-tabs button{
-  flex:1 1 125px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  padding:10px 12px;
-  border:1px solid transparent;
-  border-radius:var(--mizan-radius-11);
-  background:transparent;
-  color:var(--mizan-muted-dark);
-  font:inherit;
-  font-size:12px;
-  font-weight:800;
-  cursor:pointer;
-}
-.exam-dashboard-tabs button.is-active{
-  background:var(--mizan-primary-100);
-  border-color:var(--mizan-primary-500-border);
-  color:var(--mizan-primary-300);
-}
 @media(max-width:900px){
   .home-category-grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
