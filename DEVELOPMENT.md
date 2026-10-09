@@ -9,6 +9,7 @@
 ```bash
 node scripts/validate-static-project.mjs
 find . -type f \( -name '*.js' -o -name '*.mjs' \) -not -path './.git/*' -not -path './node_modules/*' -not -path './.vercel/*' -not -path './.next/*' -print0 | xargs -0 -r -n1 node --check
+bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 ```
 
 يشمل الفحص الساكن صحة ملفات JSON ومراجع الروابط والأصول المحلية في HTML وCSS، وروابط `src`/`href` الثابتة في JavaScript، وعنوان التشغيل وأيقونات `manifest.json`، ومراجع رموز أنصاف الأقطار `--mizan-radius-*`. فحص الصياغة لا يثبت وحده سلامة الوظائف داخل المتصفح؛ يجب اختبار التغييرات الوظيفية على المعاينة.
