@@ -341,14 +341,14 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-header-tools .th
   border-width:1px;
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .contact-card{
-  box-shadow:0 8px 24px color-mix(in srgb,var(--mizan-primary-900) 6%,transparent);
+  box-shadow:var(--mizan-contact-panel-shadow);
 }
 .contact-info-grid .contact-card-whatsapp{
-  border-color:var(--mizan-success-500);
+  border-color:var(--mizan-contact-whatsapp-icon-fg);
   background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-success-100));
 }
 .contact-info-grid .contact-card-telegram{
-  border-color:var(--mizan-info-500);
+  border-color:var(--mizan-contact-telegram-icon-fg);
   background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-info-100));
 }
 .contact-info-grid .contact-card-telegram>i{
@@ -360,32 +360,32 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .contact-info-grid .con
   color:var(--mizan-info-700);
 }
 .contact-info-grid .contact-card-phone{
-  border-color:var(--mizan-warning-200);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-warning-100));
+  border-color:var(--mizan-contact-phone-border);
+  background:var(--mizan-contact-phone-bg);
 }
 .contact-info-grid .contact-card-email{
-  border-color:var(--mizan-text-dark);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light));
+  border-color:var(--mizan-contact-email-border);
+  background:var(--mizan-contact-email-bg);
 }
 .contact-info-grid .contact-card-email>i{
-  background:var(--mizan-border-light);
-  color:var(--mizan-secondary-text);
+  background:var(--mizan-contact-email-icon-bg);
+  color:var(--mizan-contact-email-icon-fg);
 }
 .contact-info-grid .contact-card-instagram{
-  border-color:var(--mizan-primary-300);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  border-color:var(--mizan-contact-instagram-border);
+  background:var(--mizan-contact-social-bg);
 }
 .contact-info-grid .contact-card-instagram>i{
-  background:var(--mizan-primary-100);
-  color:var(--mizan-primary-700);
+  background:var(--mizan-contact-instagram-icon-bg);
+  color:var(--mizan-contact-instagram-icon-fg);
 }
 .contact-info-grid .contact-card-instagram .contact-card-action{
   background:var(--mizan-primary-100);
   color:var(--mizan-primary-700);
 }
 .contact-info-grid .contact-card-facebook{
-  border-color:var(--mizan-primary-300);
-  background:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+  border-color:var(--mizan-contact-facebook-border);
+  background:var(--mizan-contact-social-bg);
 }
 .contact-info-grid .contact-card-facebook>i{
   background:var(--mizan-primary-100);
@@ -1049,9 +1049,9 @@ html body header .mizan-header-copy h1{
   filter:drop-shadow(0 4px 18px color-mix(in srgb,var(--mizan-gold-primary) 22%,transparent));
 }
 .home-coming-soon b{
-  background:var(--mizan-gold-tint);
-  color:var(--mizan-gold-text);
-  border-color:var(--mizan-gold-tint-border);
+  background:var(--mizan-contact-phone-icon-bg-dark);
+  color:var(--mizan-contact-phone-icon-fg-dark);
+  border-color:var(--mizan-contact-phone-border-dark);
 }
 .results-box,
 .home-category-card[data-home-action],
@@ -1250,18 +1250,18 @@ html:not([data-theme="light"]) .contact-info-grid .contact-card .contact-card-ac
   border:1px solid var(--mizan-accent-tile-border);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp{
-  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 45%,transparent);
+  border-color:var(--mizan-contact-whatsapp-border-dark);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-whatsapp>i{
-  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,transparent);
-  color:var(--mizan-brand-whatsapp);
+  background:var(--mizan-contact-whatsapp-icon-bg-dark);
+  color:var(--mizan-contact-whatsapp-icon-fg);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram{
-  border-color:color-mix(in srgb,var(--mizan-brand-telegram) 45%,transparent);
+  border-color:var(--mizan-contact-telegram-border-dark);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-telegram>i{
-  background:color-mix(in srgb,var(--mizan-brand-telegram) 16%,transparent);
-  color:var(--mizan-brand-telegram);
+  background:var(--mizan-contact-telegram-icon-bg-dark);
+  color:var(--mizan-contact-telegram-icon-fg);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-phone{
   border-color:var(--mizan-gold-tint-border);
@@ -1272,18 +1272,18 @@ html:not([data-theme="light"]) .contact-info-grid .contact-card-phone .contact-c
   color:var(--mizan-gold-text);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram{
-  border-color:color-mix(in srgb,var(--mizan-brand-instagram) 45%,transparent);
+  border-color:var(--mizan-contact-instagram-border-dark);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-instagram>i{
-  background:color-mix(in srgb,var(--mizan-brand-instagram) 16%,transparent);
-  color:var(--mizan-brand-instagram);
+  background:var(--mizan-contact-instagram-icon-bg-dark);
+  color:var(--mizan-contact-instagram-icon-fg);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook{
-  border-color:color-mix(in srgb,var(--mizan-brand-facebook) 45%,transparent);
+  border-color:var(--mizan-contact-facebook-border-dark);
 }
 html:not([data-theme="light"]) .contact-info-grid .contact-card-facebook>i{
-  background:color-mix(in srgb,var(--mizan-brand-facebook) 18%,transparent);
-  color:var(--mizan-info-300);
+  background:var(--mizan-contact-facebook-icon-bg-dark);
+  color:var(--mizan-contact-facebook-icon-fg-dark);
 }
 html body .petition-a4 footer{
   background:transparent;
