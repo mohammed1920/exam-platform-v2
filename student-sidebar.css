@@ -32,7 +32,7 @@
 .student-page-header p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 .student-profile-card{
   display:flex;
@@ -151,7 +151,7 @@
 .profile-panel-heading p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 .student-highlight-panel{
   text-align:center;
@@ -301,7 +301,7 @@
 .student-empty-feature p{
   margin:0;
   color:var(--text-secondary,var(--mizan-muted-dark));
-  font-size:13px;
+  font-size:var(--mizan-font-size-compact);
 }
 @media(max-width:800px){
   .profile-stats-grid{
