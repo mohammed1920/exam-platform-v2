@@ -10,7 +10,7 @@
   padding:10px 8px;
   border-bottom:1px solid var(--mizan-glass-white-060);
   text-align:right;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   vertical-align:top;
 }
 .lawyer-admin-table th{
@@ -56,7 +56,7 @@
   border-radius:var(--mizan-radius-sm);
   padding:8px 12px;
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
   cursor:pointer;
 }
 .lawyer-admin-tab.active{
@@ -117,11 +117,11 @@
   transition:.2s;
 }
 .firebase-admin-menu-card i{
-  font-size:20px;
+  font-size:var(--mizan-font-size-xl);
   color:var(--mizan-primary-500);
 }
 .firebase-admin-menu-card strong{
-  font-size:14px;
+  font-size:var(--mizan-font-size-sm);
 }
 .firebase-admin-menu-card span{
   font-size:10px;
@@ -154,7 +154,7 @@
   margin-bottom:14px;
   cursor:pointer;
   font:inherit;
-  font-size:11px;
+  font-size:var(--mizan-font-size-2xs);
 }
 .firebase-admin-subview-back:hover{
   border-color:var(--mizan-primary-500-border);
