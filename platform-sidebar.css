@@ -2,7 +2,7 @@
 .mizan-header-tools{
   position:absolute;top:var(--mizan-header-tools-offset);left:var(--mizan-header-tools-offset);right:auto;
   width:max-content;max-width:calc(100% - var(--mizan-header-tools-offset) * 2);
-  height:var(--mizan-header-tools-height);z-index:9000;display:flex;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);
+  height:var(--mizan-header-tools-height);z-index:9000;display:flex;direction:ltr;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);
   padding:var(--mizan-header-tools-padding);border:1px solid var(--mizan-header-tools-border);border-radius:var(--mizan-radius-wide);
   background:var(--mizan-header-tools-bg);box-shadow:var(--mizan-header-tools-shadow);backdrop-filter:blur(var(--mizan-blur-glass));-webkit-backdrop-filter:blur(var(--mizan-blur-glass));
 }
@@ -67,24 +67,25 @@
 .platform-sidebar-account-action[hidden]{display:none}
 .platform-sidebar-item[hidden]{display:none}
 
-/* Menu trigger visuals are shared with the central button palette. */
+/* Header action icons use the existing central button tokens. */
 .mizan-header-tools .platform-menu-trigger{
   display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);
   background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow);
+  font-size:var(--mizan-font-size-lg);transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
 }
-.mizan-header-tools .platform-menu-trigger .menu-lines{
-  width:var(--mizan-menu-lines-width);height:var(--mizan-menu-lines-height);display:flex;flex-direction:column;justify-content:center;gap:var(--mizan-menu-lines-gap);
-}
-.mizan-header-tools .platform-menu-trigger .menu-lines i{
-  display:block;width:100%;height:var(--mizan-menu-line-height);border-radius:var(--mizan-radius-xs);background:currentColor;
-  transition:width var(--mizan-duration-regular) ease,opacity var(--mizan-duration-regular) ease,transform var(--mizan-duration-regular) ease;
-}
-.mizan-header-tools .platform-menu-trigger .menu-lines i:nth-child(2){width:var(--mizan-menu-line-short-width);align-self:flex-end}
 .mizan-header-tools .platform-menu-trigger:hover{
   background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
   color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
 }
-.mizan-header-tools .platform-menu-trigger:hover .menu-lines i:nth-child(2){width:100%}
+.mizan-header-tools .theme-toggle{
+  display:grid;place-items:center;border:1px solid var(--mizan-menu-button-border);border-radius:var(--mizan-radius-compact);
+  background:var(--mizan-menu-button-bg);color:var(--mizan-menu-button-fg);box-shadow:var(--mizan-menu-button-shadow);
+  font-size:var(--mizan-font-size-lg);transition:var(--mizan-transition-color),var(--mizan-transition-elevation);
+}
+.mizan-header-tools .theme-toggle:hover{
+  background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
+  color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
+}
 
 /* App installation prompt */
 .install-slot{display:flex;justify-content:flex-end;align-items:center;gap:var(--mizan-space-2);width:100%;margin:0 0 var(--mizan-install-slot-bottom-margin);padding:0 var(--mizan-install-slot-horizontal-padding);position:relative;z-index:2}
