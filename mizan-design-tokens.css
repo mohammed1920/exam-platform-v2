@@ -265,6 +265,7 @@
   --mizan-card-padding-comfortable:var(--mizan-space-5);
   --mizan-control-min-height:44px;
   --mizan-control-min-height-compact:40px;
+  --mizan-control-height-prominent:46px;
   --mizan-install-slot-bottom-margin:10px;
   --mizan-install-slot-horizontal-padding:2px;
   --mizan-install-slot-bottom-margin-mobile:8px;
