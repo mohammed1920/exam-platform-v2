@@ -319,7 +319,7 @@
 .lawyer-card:focus-visible{
   transform:translateY(-2px);
   border-color:var(--mizan-primary-500-border);
-  box-shadow:0 12px 28px var(--mizan-shadow-sm);
+  box-shadow:var(--mizan-shadow-card-rest);
   outline:none;
 }
 .lawyer-card-topline{
@@ -601,7 +601,7 @@ html[data-theme="light"] .lawyer-card{
   background:var(--mizan-gradient-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
-  box-shadow:0 8px 24px var(--mizan-glass-primary-900-050);
+  box-shadow:var(--mizan-shadow-card);
 }
 html[data-theme="light"] .lawyer-details-backdrop{
   background:color-mix(in srgb,var(--mizan-primary-900) 42%,transparent);
@@ -610,7 +610,7 @@ html[data-theme="light"] .lawyer-details-dialog{
   background:var(--mizan-gradient-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
-  box-shadow:0 24px 70px var(--mizan-glass-primary-900-180);
+  box-shadow:var(--mizan-shadow-elevated-card);
 }
 html[data-theme="light"] .lawyer-details-head,
 html[data-theme="light"] .lawyer-detail-item{
@@ -621,7 +621,7 @@ html[data-theme="light"] .lawyer-my-application{
   background:var(--mizan-gradient-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
-  box-shadow:0 8px 24px var(--mizan-glass-primary-900-050);
+  box-shadow:var(--mizan-shadow-card);
 }
 html[data-theme="light"] .lawyer-my-application-head span,
 html[data-theme="light"] .lawyer-my-application p{
