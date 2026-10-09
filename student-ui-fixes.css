@@ -4,7 +4,7 @@ header{
 }
 header:not(.mizan-header) h1{
   padding-inline-start:clamp(92px, 12vw, 150px);
-  padding-inline-end:12px;
+  padding-inline-end:var(--mizan-space-3);
 }
 .auth-modal,
 #login-modal{
@@ -79,7 +79,7 @@ header:not(.mizan-header) h1{
   align-items:center;
   justify-content:space-between;
   gap:var(--mizan-space-4);
-  padding:20px;
+  padding:var(--mizan-space-5);
   margin-bottom:var(--mizan-space-4);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-lg);
@@ -130,7 +130,7 @@ header:not(.mizan-header) h1{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:var(--mizan-space-3);
-  margin-bottom:16px;
+  margin-bottom:var(--mizan-space-4);
 }
 .firebase-admin-stat{
   padding:var(--mizan-space-4);
