@@ -4,7 +4,7 @@
   margin-inline:auto;
 }
 .profile-avatar{
-  box-shadow:0 0 24px var(--mizan-primary-500-border);
+  box-shadow:var(--mizan-shadow-avatar-glow);
 }
 .profile-identity{
   flex:1;
@@ -91,7 +91,7 @@
 }
 .profile-name-editor-row input:focus{
   border-color:color-mix(in srgb,var(--mizan-primary-500) 62%,transparent);
-  box-shadow:0 0 0 3px var(--mizan-primary-100);
+  box-shadow:var(--mizan-shadow-profile-focus);
 }
 .profile-name-editor-row button{
   border:1px solid var(--mizan-btn-primary-border);
