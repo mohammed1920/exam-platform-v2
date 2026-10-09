@@ -83,6 +83,8 @@
   <main class="container">
     <section class="platform-home">
       <div class="install-slot"><button id="install-app-btn" type="button" aria-label="تثبيت ميزان على هاتفك">📲 ثبّت التطبيق على هاتفك</button><p id="ios-install-hint" hidden>📲 اضغط زر المشاركة <strong>⬆️</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p></div>
+      <div class="search-container home-search-container"><div class="search-wrapper"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="ابحث في الكتب والفصول والأسئلة والأقسام القانونية..." aria-label="البحث في منصة ميزان"></div></div>
+      <div id="question-search-results" class="question-search-results home-question-search-results" hidden></div>
       <section class="home-hero" aria-labelledby="home-hero-title">
         <div class="home-hero-copy">
           <span class="home-hero-eyebrow"><i class="fas fa-scale-balanced" aria-hidden="true"></i> منصة المعرفة القانونية العراقية</span>
@@ -90,14 +92,11 @@
           <p>اختبر فهمك القانوني، راجع إجاباتك، وتابع تقدمك في تجربة واحدة منظمة.</p>
           <div class="home-hero-actions">
             <button type="button" class="home-hero-primary" data-home-action="books">استكشف الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-            <button type="button" class="home-hero-secondary" data-home-action="dashboard"><i class="fas fa-chart-line" aria-hidden="true"></i> لوحة الاختبارات</button>
             <button type="button" class="home-hero-secondary" data-home-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i> دليل المحامين</button>
           </div>
         </div>
 
       </section>
-      <div class="search-container home-search-container"><div class="search-wrapper"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="ابحث في الكتب والفصول والأسئلة والأقسام القانونية..." aria-label="البحث في منصة ميزان"></div></div>
-      <div id="question-search-results" class="question-search-results home-question-search-results" hidden></div>
       <div class="home-section-heading"><h2>كل ما تحتاجه في مكان واحد</h2><span>الأقسام الرئيسية</span></div>
       <div class="home-category-grid">
         <button class="home-category-card featured" data-home-action="books"><i class="fas fa-book-open"></i><strong>اختبارات كتب القانون</strong><small>الكتب والفصول والأسئلة التفاعلية</small><b>الدخول ←</b></button>
