@@ -566,7 +566,7 @@ footer{
 .contact-section{
   max-width:1000px;
   margin:0 auto;
-  padding:34px 20px 20px;
+  padding:34px var(--mizan-space-5) var(--mizan-space-5);
 }
 .contact-box{
   padding:28px;
@@ -719,7 +719,7 @@ footer{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  padding:12px 15px;
+  padding:var(--mizan-space-3) 15px;
   border-bottom:1px solid var(--mizan-surface-soft);
   color:var(--mizan-primary-500-pale-text);
   font-size:13px;
@@ -942,7 +942,7 @@ footer{
 .footer-info-section{
   max-width:900px;
   margin:0 auto;
-  padding:34px 20px 24px;
+  padding:34px var(--mizan-space-5) var(--mizan-space-6);
 }
 .footer-info-box{
   padding:28px;
@@ -1022,7 +1022,7 @@ footer{
 }
 .footer-faq-list p{
   margin:0;
-  padding:0 16px 15px;
+  padding:0 var(--mizan-space-4) 15px;
   color:var(--mizan-muted);
   font-size:var(--mizan-font-size-2xs);
   line-height:1.9;
@@ -1046,7 +1046,7 @@ footer{
   display:grid;
   grid-template-columns:1fr;
   gap:10px;
-  margin:14px 0 16px;
+  margin:14px 0 var(--mizan-space-4);
 }
 .home-coming-soon{
   display:flex;
@@ -1102,7 +1102,7 @@ footer{
 @media(max-width:600px){
   .home-coming-soon-list{
     gap:var(--mizan-space-2);
-    margin:12px 0 14px;
+    margin:var(--mizan-space-3) 0 14px;
   }
   .home-coming-soon{
     min-height:60px;
