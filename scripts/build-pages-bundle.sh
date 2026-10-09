@@ -24,12 +24,12 @@ done
 rm -rf -- "$OUTPUT_DIR"
 mkdir -p -- "$OUTPUT_DIR"
 
-find "$ROOT" -maxdepth 1 -type f \\( \
+find "$ROOT" -maxdepth 1 -type f \( \
   -name '*.html' -o \
   -name '*.js' -o \
   -name '*.css' -o \
   -name 'manifest.json' \
-\\) -exec cp {} "$OUTPUT_DIR/" \\;
+\) -exec cp {} "$OUTPUT_DIR/" \;
 
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 
