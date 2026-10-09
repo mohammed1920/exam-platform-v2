@@ -385,8 +385,8 @@
   overflow:auto;
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-22);
-  background:linear-gradient(145deg,var(--mizan-surface),var(--mizan-ink-deep));
-  box-shadow:0 24px 70px color-mix(in srgb,var(--mizan-black) 40%,transparent);
+  background:var(--mizan-gradient-lawyer-card);
+  box-shadow:var(--mizan-shadow-lawyer-dialog);
   padding:24px;
 }
 .lawyer-details-close{
