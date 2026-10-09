@@ -467,13 +467,13 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-menu-button-shadow-hover:0 6px 16px color-mix(in srgb,var(--mizan-black) 20%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 8%,transparent);
 }
 html:is([data-theme="light"],[data-admin-theme="light"]){
-  --mizan-menu-button-bg:var(--mizan-white);
-  --mizan-menu-button-fg:var(--mizan-primary-900);
-  --mizan-menu-button-border:var(--mizan-text-dark);
-  --mizan-menu-button-shadow:0 3px 12px color-mix(in srgb,var(--mizan-primary-900) 12%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 90%,transparent);
-  --mizan-menu-button-bg-hover:var(--mizan-neutral-100);
-  --mizan-menu-button-fg-hover:var(--mizan-primary-600);
-  --mizan-menu-button-border-hover:var(--mizan-primary-500);
+  --mizan-menu-button-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-bg-light));
+  --mizan-menu-button-fg:var(--mizan-primary-700);
+  --mizan-menu-button-border:color-mix(in srgb,var(--mizan-primary-700) 14%,transparent);
+  --mizan-menu-button-shadow:0 3px 10px color-mix(in srgb,var(--mizan-primary-900) 7%,transparent),inset 0 1px 0 color-mix(in srgb,var(--mizan-white) 72%,transparent);
+  --mizan-menu-button-bg-hover:linear-gradient(145deg,var(--mizan-primary-100),var(--mizan-surface-light));
+  --mizan-menu-button-fg-hover:var(--mizan-primary-800);
+  --mizan-menu-button-border-hover:var(--mizan-primary-500-border);
 }
 
 /* ===== Central button elevation tokens ===== */
