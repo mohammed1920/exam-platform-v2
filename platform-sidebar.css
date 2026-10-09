@@ -16,9 +16,9 @@
 .platform-sidebar-backdrop{position:absolute;inset:0;background:var(--mizan-sidebar-backdrop);opacity:0;transition:opacity var(--mizan-sidebar-backdrop-duration) ease;backdrop-filter:blur(3px)}
 .platform-sidebar.is-open .platform-sidebar-backdrop{opacity:1}
 .platform-sidebar-panel{
-  position:absolute;top:0;right:0;width:min(var(--mizan-sidebar-panel-width),92vw);height:100%;overflow-y:auto;
+  position:absolute;top:0;right:0;width:min(var(--mizan-sidebar-panel-width),var(--mizan-sidebar-panel-viewport-cap));height:100%;overflow-y:auto;
   background:var(--mizan-sidebar-panel-bg);border-left:1px solid var(--mizan-sidebar-panel-border);box-shadow:var(--mizan-sidebar-panel-shadow);
-  transform:translateX(105%);transition:transform var(--mizan-sidebar-panel-duration) var(--mizan-ease-standard);padding:var(--mizan-sidebar-panel-padding);
+  transform:translateX(var(--mizan-sidebar-hidden-offset));transition:transform var(--mizan-sidebar-panel-duration) var(--mizan-ease-standard);padding:var(--mizan-sidebar-panel-padding);
 }
 .platform-sidebar.is-open .platform-sidebar-panel{transform:translateX(0)}
 .platform-sidebar-close{
@@ -78,7 +78,7 @@
   display:block;width:100%;height:var(--mizan-menu-line-height);border-radius:var(--mizan-radius-xs);background:currentColor;
   transition:width var(--mizan-duration-regular) ease,opacity var(--mizan-duration-regular) ease,transform var(--mizan-duration-regular) ease;
 }
-.mizan-header-tools .platform-menu-trigger .menu-lines i:nth-child(2){width:14px;align-self:flex-end}
+.mizan-header-tools .platform-menu-trigger .menu-lines i:nth-child(2){width:var(--mizan-menu-line-short-width);align-self:flex-end}
 .mizan-header-tools .platform-menu-trigger:hover{
   background:var(--mizan-menu-button-bg-hover);border-color:var(--mizan-menu-button-border-hover);
   color:var(--mizan-menu-button-fg-hover);box-shadow:var(--mizan-menu-button-shadow-hover);
@@ -105,7 +105,7 @@
 body.platform-sidebar-open{overflow:hidden}
 @media(max-width:600px){
   .mizan-header-tools{border-radius:var(--mizan-radius-15)}
-  .platform-sidebar-panel{width:min(var(--mizan-sidebar-panel-width-mobile),94vw)}
+  .platform-sidebar-panel{width:min(var(--mizan-sidebar-panel-width-mobile),var(--mizan-sidebar-panel-viewport-cap-mobile))}
   .install-slot{justify-content:flex-start;margin-bottom:8px;padding:0}
   #install-app-btn{padding:var(--mizan-install-button-padding-mobile);font-size:var(--mizan-install-button-font-size-mobile)}
   #ios-install-hint{right:auto;left:0;max-width:calc(100vw - var(--mizan-install-hint-viewport-gap))}
