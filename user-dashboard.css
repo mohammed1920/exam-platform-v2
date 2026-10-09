@@ -136,6 +136,11 @@
   }
 }
 /* ===== Theme-aware dashboard surfaces — merged ===== */
+html[data-theme="light"] .profile-name-editor{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-primary-500-paper);
+  box-shadow:var(--mizan-shadow-surface-soft);
+}
 html[data-theme="light"] .student-profile-card,
 html[data-theme="light"] .profile-panel,
 html[data-theme="light"] .profile-stat-card,
