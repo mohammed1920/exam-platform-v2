@@ -55,7 +55,7 @@
   border:0;
   border-radius:var(--mizan-radius-13);
   padding:12px 16px;
-  background:linear-gradient(135deg,var(--mizan-primary-500),var(--mizan-primary-500-muted));
+  background:var(--mizan-gradient-lawyer-primary);
   color:var(--mizan-primary-900-deep);
   font:inherit;
   font-weight:900;
