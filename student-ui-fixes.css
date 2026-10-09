@@ -101,7 +101,7 @@ header:not(.mizan-header) h1{
   border-radius:var(--mizan-radius-sm);
   background:var(--mizan-accent-tile-bg);
   color:var(--primary,var(--mizan-primary-500));
-  padding:9px 14px;
+  padding:9px var(--mizan-space-inset-medium);
   font:inherit;
   font-weight:800;
   cursor:pointer;
@@ -155,7 +155,7 @@ header:not(.mizan-header) h1{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  padding:14px 15px;
+  padding:var(--mizan-space-inset-medium) var(--mizan-space-inset-roomy);
   border-bottom:1px solid var(--mizan-surface-soft);
 }
 .firebase-admin-card-head h3{
@@ -178,7 +178,7 @@ header:not(.mizan-header) h1{
 }
 .firebase-admin-card th,
 .firebase-admin-card td{
-  padding:10px 11px;
+  padding:var(--mizan-space-inset-compact) 11px;
   text-align:right;
   border-bottom:1px solid var(--mizan-glass-white-055);
   font-size:var(--mizan-font-size-xs);
@@ -220,7 +220,7 @@ header:not(.mizan-header) h1{
     display:none;
   }
   .firebase-admin-head{
-    padding:15px;
+    padding:var(--mizan-space-inset-roomy);
     align-items:flex-start;
   }
   .firebase-admin-head h2{
