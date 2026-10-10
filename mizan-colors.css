@@ -754,18 +754,18 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 }
 
 
-/* Responsive quick navigation inherits the upper header's theme surfaces. */
+/* Mobile navigation shares the page/header surface and follows the active theme. */
 :root{
-  --mizan-mobile-nav-bg:var(--mizan-header-tools-bg);
-  --mizan-mobile-nav-border:var(--mizan-header-tools-border);
-  --mizan-mobile-nav-text:var(--mizan-text-dark);
+  --mizan-mobile-nav-bg:var(--mizan-bg);
+  --mizan-mobile-nav-border:var(--mizan-border);
+  --mizan-mobile-nav-text:var(--mizan-text);
   --mizan-mobile-nav-active-bg:color-mix(in srgb,var(--mizan-primary-500) 16%,var(--mizan-surface-dark));
   --mizan-mobile-nav-active-text:var(--mizan-primary-200);
   --mizan-mobile-nav-shadow:var(--mizan-header-tools-shadow);
 }
 html:is([data-theme="light"],[data-admin-theme="light"]){
-  --mizan-mobile-nav-bg:var(--mizan-header-tools-bg);
-  --mizan-mobile-nav-border:var(--mizan-header-tools-border);
+  --mizan-mobile-nav-bg:var(--mizan-bg);
+  --mizan-mobile-nav-border:var(--mizan-border);
   --mizan-mobile-nav-text:var(--mizan-heading);
   --mizan-mobile-nav-active-bg:var(--mizan-primary-100);
   --mizan-mobile-nav-active-text:var(--mizan-primary-700);
