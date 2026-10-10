@@ -1447,15 +1447,10 @@ html[data-theme="light"] .chapter-item .chapter-info p{
   outline-offset:var(--mizan-focus-ring-offset);
 }
 .review-exam-action{width:100%;margin-top:10px}
-#review-section{margin-top:24px;text-align:right}
-#review-section .results-review-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
-#review-section .results-review-heading h3{margin:0;color:var(--mizan-heading);font-size:1.1rem}
-#review-section .results-review-heading span{color:var(--mizan-muted);font-size:.85rem}
 #review-section .review-item{margin:0 0 12px;padding:clamp(14px,3vw,20px);background:var(--mizan-bg);border-color:var(--mizan-border);border-radius:var(--mizan-radius-lg,16px)}
 #review-section .review-question{color:var(--mizan-heading);line-height:1.85}
 #review-section .review-answer{line-height:1.8;overflow-wrap:anywhere}
 #review-section .review-explanation{background:var(--mizan-card);color:var(--mizan-muted);border-right-color:var(--mizan-primary-500);line-height:1.9}
-#review-section .results-review-empty{padding:18px;border:1px solid var(--mizan-success-500);background:var(--mizan-success-100);color:var(--mizan-success-700);border-radius:var(--mizan-radius-md,14px);text-align:center;font-weight:700}
 .question-card{background:var(--mizan-card);border-color:var(--mizan-border);border-right-color:var(--mizan-primary-500)}
 .question-label{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-primary-200);color:var(--mizan-primary-700)}
 .option-btn{background:var(--mizan-card);color:var(--mizan-text);border-color:var(--mizan-border);border-radius:var(--mizan-radius-control,12px);text-align:right;line-height:1.8}
@@ -1473,6 +1468,5 @@ html[data-theme="light"] .option-btn{background:var(--mizan-card-light);color:va
   .result-details .detail-item{flex-direction:row;align-items:center;justify-content:space-between;padding:12px}
   .result-details .detail-value{font-size:1rem}
   .results-actions{grid-template-columns:1fr}
-  #review-section .results-review-heading{align-items:flex-start;flex-direction:column}
 }
 
