@@ -108,7 +108,7 @@
   .home-hero h2{font-size:clamp(1.9rem,7.5vw,2.6rem)}
       .home-book-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
     .home-hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
-  .home-hero-actions button{width:100%;min-width:0;padding-inline:var(--mizan-space-2);white-space:normal}
+  .home-hero-actions button{width:100%;min-width:0;padding-inline:var(--mizan-space-2);gap:var(--mizan-space-1);font-size:var(--mizan-font-size-compact);white-space:nowrap}
 }
 .home-section-heading{
   display:flex;
