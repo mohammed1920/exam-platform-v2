@@ -1015,11 +1015,12 @@ class ExamApp {
   // الأقسام الفرعية ترجع دائماً إلى الأب المباشر فقط.
   getNavigationParent(viewId) {
     const parents = {
+      books: 'home',
       chapters: 'books',
       exam: 'chapters',
-      results: 'home',
-      review: 'home',
-      'custom-exam-setup': 'home',
+      results: 'exam',
+      review: 'results',
+      'custom-exam-setup': 'books',
       'student-dashboard': 'home',
       lawyers: 'home',
       petitions: 'home',
@@ -1040,7 +1041,6 @@ class ExamApp {
     return new Set([
       'home',
       'books',
-      'custom-exam-setup',
       'student-dashboard',
       'lawyers',
       'petitions',
@@ -1073,32 +1073,39 @@ class ExamApp {
             ...params
           };
 
-      const currentView = history.state?.view || 'home';
-      const parentView = this.getNavigationParent(viewId);
+      const parentView = viewId === 'exam' && params.custom
+        ? 'custom-exam-setup'
+        : this.getNavigationParent(viewId);
 
       if (viewId === 'home') {
-        // الرئيسية دائماً جذر: لا نسمح بتراكم صفحات خلفها.
+        // الرئيسية هي جذر سجل التنقل.
         history.replaceState(state, '', window.location.href);
       } else if (parentView && !this.isTopLevelView(viewId)) {
-        // قسم فرعي:
-        // مثال الكتب -> الفصول، ثم الفصول -> الاختبار.
-        // نضع الأب في مكان الصفحة الحالية ثم نضيف الفرعي.
+        // احفظ الأب المباشر قبل فتح القسم الحالي حتى يرجع زر الهاتف إليه.
         const parentState = {
           view: parentView,
-          bookId: (parentView === 'books' || parentView === 'chapters') && this.currentBook ? this.currentBook.id : null,
-          chapter: parentView === 'chapters' ? null : (parentView === 'books' ? this.currentChapter : null)
+          bookId: this.currentBook ? this.currentBook.id : null,
+          chapter: this.currentChapter == null ? null : this.currentChapter
         };
+
+        if (parentView === 'home' || parentView === 'books' || parentView === 'custom-exam-setup') {
+          parentState.bookId = null;
+          parentState.chapter = null;
+        } else if (parentView === 'chapters') {
+          parentState.chapter = null;
+        }
+        if (parentView === 'exam' && this.isCustomExam) parentState.custom = true;
+
         history.replaceState(parentState, '', window.location.href);
         history.pushState(state, '', window.location.href);
       } else if (this.isTopLevelView(viewId)) {
-        if (currentView === 'home') {
-          // الرئيسية -> قسم رئيسي: زر الرجوع يرجع للرئيسية.
-          history.pushState(state, '', window.location.href);
-        } else {
-          // من أي قسم إلى قسم رئيسي آخر:
-          // نبدأ مساراً جديداً، لذلك الرجوع يكون للرئيسية وليس للقسم السابق.
-          history.replaceState(state, '', window.location.href);
-        }
+        // كل قسم رئيسي يبدأ من الرئيسية، حتى لو فُتح من قسم آخر.
+        history.replaceState(
+          { view: 'home', bookId: null, chapter: null },
+          '',
+          window.location.href
+        );
+        history.pushState(state, '', window.location.href);
       } else {
         history.pushState(state, '', window.location.href);
       }
@@ -1111,16 +1118,7 @@ class ExamApp {
   setupEventListeners() {
     document.getElementById('back-to-books').onclick = () => this.backToBooks();
     document.getElementById('back-books-btn').onclick = () => this.backToBooks();
-    document.getElementById('back-from-review').onclick = () => {
-      if (this.isCustomExam) {
-        this.backToBooks();
-      } else if (this.currentBook) {
-        this.navigateTo('chapters');
-        this.renderChapters();
-      } else {
-        this.backToBooks();
-      }
-    };
+    document.getElementById('back-from-review').onclick = () => this.navigateTo('results');
     document.getElementById('prev-btn').onclick = () => this.prevQuestion();
     document.getElementById('next-btn').onclick = () => this.nextQuestion();
 
@@ -1179,8 +1177,20 @@ class ExamApp {
           window.publicAuth.requireAuth(() => this.restoreState(state));
           return;
         }
-        this.navigateTo('exam', {}, false);
-        this.renderQuestion();
+        if (state.custom) this.isCustomExam = true;
+        if (examEngine.questions.length && this.currentBook) {
+          this.currentChapter = state.chapter == null ? this.currentChapter : state.chapter;
+          this.examActive = true;
+          document.body.classList.add('exam-mode');
+          this.navigateTo('exam', {}, false);
+          const elapsed = examEngine.startTime
+            ? Math.max(0, Math.round((Date.now() - examEngine.startTime.getTime()) / 1000))
+            : 0;
+          this.startTimer(elapsed);
+          this.renderQuestion();
+        } else {
+          this.restoreState(state);
+        }
       } else if (view === 'petitions') {
         this.navigateTo('petitions', {}, false);
         if (window.petitions && typeof window.petitions.renderHome === 'function') window.petitions.renderHome();
