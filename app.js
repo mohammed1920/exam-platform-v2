@@ -1269,7 +1269,7 @@ class ExamApp {
   color:var(--mizan-text);
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-xl,20px);
-  box-shadow:var(--mizan-shadow-md,0 12px 32px rgba(0,0,0,.12));
+  box-shadow:var(--mizan-shadow-surface-soft,0 12px 32px rgba(0,0,0,.12));
 }
 .result-emoji{margin-bottom:8px;font-size:clamp(2.5rem,7vw,4rem)}
 .result-grade{color:var(--mizan-heading);font-size:clamp(1.45rem,4vw,2rem)}
