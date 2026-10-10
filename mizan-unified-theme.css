@@ -768,6 +768,17 @@ html body footer{
   color:var(--mizan-muted);
   border-color:var(--mizan-section-heading-dark);
 }
+html:is([data-theme="light"],[data-admin-theme="light"]) body footer{
+  background:var(--mizan-surface-light);
+  color:var(--mizan-muted-light);
+  border-color:var(--mizan-border-light);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) body footer .footer-bottom,
+html:is([data-theme="light"],[data-admin-theme="light"]) body footer .footer-bottom p,
+html:is([data-theme="light"],[data-admin-theme="light"]) body footer .footer-links button,
+html:is([data-theme="light"],[data-admin-theme="light"]) body footer .footer-links span{
+  color:var(--mizan-muted-light);
+}
 html body .footer-info-section .footer-info-box{
   background:var(--mizan-gradient-home-hero);
   color:var(--mizan-white);
