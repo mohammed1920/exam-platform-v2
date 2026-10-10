@@ -59,20 +59,20 @@
         startedAt: examEngine.startTime ? examEngine.startTime.toISOString() : new Date().toISOString(),
         savedAt: new Date().toISOString()
       };
-      const drafts = app.readExamDrafts().filter(item => item.id !== draft.id);
+      const drafts = readExamDrafts().filter(item => item.id !== draft.id);
       drafts.unshift(draft);
-      app.writeExamDrafts(drafts);
+      writeExamDrafts(drafts);
     } catch (error) { console.warn('تعذر حفظ الاختبار غير المكتمل:', error); }
   }
 
   function clearExamDraft(app) {
     const draftId = app.currentBook && app.currentChapter ? `${app.currentBook.id}::${app.currentChapter}` : null;
     if (!draftId) return;
-    app.writeExamDrafts(app.readExamDrafts().filter(item => item.id !== draftId));
+    writeExamDrafts(readExamDrafts().filter(item => item.id !== draftId));
   }
 
   function getExamDraftSummaries(app) {
-    return app.readExamDrafts().filter(draft => draft && draft.bookId && draft.chapter).map(draft => ({
+    return readExamDrafts().filter(draft => draft && draft.bookId && draft.chapter).map(draft => ({
       id: draft.id || `${draft.bookId}::${draft.chapter}`,
       title: `${draft.bookTitle || 'اختبار'} · الفصل ${draft.chapter}`,
       questionNumber: Number(draft.questionIndex || 0) + 1,
@@ -82,7 +82,7 @@
   }
 
   function deleteExamDraft(app, draftId) {
-    app.writeExamDrafts(app.readExamDrafts().filter(draft => draft.id !== draftId));
+    writeExamDrafts(readExamDrafts().filter(draft => draft.id !== draftId));
   }
 
   window.MizanExamDrafts = Object.freeze({
