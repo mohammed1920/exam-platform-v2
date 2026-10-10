@@ -936,43 +936,7 @@ class ExamApp {
     const secs = res.duration % 60;
     if (time) time.innerText = mins > 0 ? `${mins} دقيقة و ${secs} ثانية` : `${secs} ثانية`;
 
-    // عرض مراجعة جميع الإجابات مباشرة أسفل النتيجة، دون تغيير حساب الدرجات أو تدفق الاختبار.
-    const resultsBox = document.querySelector('#results-section .results-box');
-    if (resultsBox) {
-      let summary = document.getElementById('results-review-summary');
-      if (!summary) {
-        summary = document.createElement('section');
-        summary.id = 'results-review-summary';
-        summary.setAttribute('aria-live', 'polite');
-        resultsBox.appendChild(summary);
-      }
-      const answers = Array.isArray(res.answers) ? res.answers : [];
-      const total = Number(res.totalQuestions) || 0;
-      const answered = answers.length;
-      const correct = answers.filter(answer => answer.isCorrect).length;
-      const wrong = answers.filter(answer => !answer.isCorrect).length;
-      const safe = value => this.escapeHtml(value == null || value === '' ? 'لم تتم الإجابة' : String(value));
-      const rows = answers.map((answer, index) => `
-        <article class="review-item">
-          <div class="review-question"><strong>السؤال ${index + 1}:</strong> ${safe(answer.questionText)}</div>
-          <div class="review-answer ${answer.isCorrect ? 'correct' : 'incorrect'}">${answer.isCorrect ? '✓ إجابتك الصحيحة' : '× إجابتك'}: ${safe(answer.userAnswer)}</div>
-          ${answer.isCorrect ? '' : `<div class="review-answer correct">الإجابة الصحيحة: ${safe(answer.correctAnswer)}</div>`}
-          ${answer.explanation ? `<div class="review-explanation"><strong>الشرح:</strong> ${safe(answer.explanation)}</div>` : ''}
-        </article>
-      `).join('');
-      summary.innerHTML = `
-        <div class="results-review-heading">
-          <h3>مراجعة الأسئلة والإجابات</h3>
-          <span>${answered} من ${total} سؤالاً تمت الإجابة عنها</span>
-        </div>
-        <div class="result-details" aria-label="ملخص الإجابات">
-          <div class="detail-item"><span class="detail-label">الإجابات الصحيحة</span><span class="detail-value">${correct}</span></div>
-          <div class="detail-item"><span class="detail-label">الإجابات الخاطئة</span><span class="detail-value">${wrong}</span></div>
-          <div class="detail-item"><span class="detail-label">بدون إجابة</span><span class="detail-value">${Math.max(0, total - answered)}</span></div>
-        </div>
-        ${rows || '<div class="results-review-empty">لا توجد إجابات محفوظة للمراجعة في هذه المحاولة.</div>'}
-      `;
-    }
+
   }
 
   showReview() {
