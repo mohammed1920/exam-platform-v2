@@ -133,8 +133,7 @@
     const button = document.createElement('button');
     button.id = BUTTON_ID;
     button.type = 'button';
-    button.className = 'back-btn';
-    button.style.cssText = 'margin-top:10px;width:100%;border-color:var(--mizan-primary-500);color:var(--mizan-primary-500);';
+    button.className = 'back-btn review-exam-action';
     button.textContent = state && state.active
       ? `🔄 أعد اختبار الأخطاء (${wrongAnswers.length})`
       : `🔄 اختبرني بالأخطاء (${wrongAnswers.length})`;
