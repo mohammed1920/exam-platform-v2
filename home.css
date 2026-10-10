@@ -1130,7 +1130,7 @@ html[data-theme="light"] .home-category-card[data-home-action]:hover{
   box-shadow:var(--mizan-shadow-card-rest);
 }
 .home-resume-card-random{
-  background:var(--mizan-gradient-surface-light);
+  background:var(--mizan-home-random-card-bg);
 }
 .home-resume-kicker{
   display:inline-block;
