@@ -325,8 +325,10 @@
         if (this.__studentHistorySaving) return originalEndExam();
         this.__studentHistorySaving = true;
         try {
-          const result = originalEndExam();
-          saveExamResult(result, this);
+          // ExamApp.endExam() updates the results UI but does not return its result.
+          // Read the canonical finished result so student history and wrong answers are saved.
+          const result = originalEndExam() || (window.examEngine && window.examEngine.finishedResult);
+          if (result) saveExamResult(result, this);
           return result;
         } finally {
           setTimeout(() => { this.__studentHistorySaving = false; }, 0);
