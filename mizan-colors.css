@@ -775,3 +775,11 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 html[data-admin-theme="light"]{
   --mizan-gradient-admin-warning-accent:linear-gradient(135deg,var(--mizan-warning-700),var(--mizan-primary-700));
 }
+
+/* Home quick-training card: theme-aware surface with readable text contrast. */
+:root{
+  --mizan-home-random-card-bg:linear-gradient(145deg,var(--mizan-card-dark),var(--mizan-surface-dark));
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-home-random-card-bg:linear-gradient(145deg,var(--mizan-surface-light),var(--mizan-primary-100));
+}
