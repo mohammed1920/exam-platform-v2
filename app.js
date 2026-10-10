@@ -920,14 +920,59 @@ class ExamApp {
     this.clearExamDraft();
 
     this.navigateTo('results', { book: this.currentBook.id, chapter: this.currentChapter, status: 'done' });
-    
-    document.getElementById('result-grade').innerText = `${res.grade.emoji} ${res.grade.grade}`;
-    document.getElementById('result-score').innerText = `النتيجة: ${res.score} / ${res.totalQuestions}`;
-    document.getElementById('result-percent').innerText = `${res.percentage}%`;
-    
+
+    const grade = document.getElementById('result-grade');
+    const score = document.getElementById('result-score');
+    const percent = document.getElementById('result-percent');
+    const time = document.getElementById('result-time');
+    const emoji = document.getElementById('result-emoji');
+
+    if (grade) grade.innerText = `${res.grade.emoji} ${res.grade.grade}`;
+    if (score) score.innerText = `النتيجة: ${res.score} / ${res.totalQuestions}`;
+    if (percent) percent.innerText = `${res.percentage}%`;
+    if (emoji) emoji.innerText = res.grade.emoji;
+
     const mins = Math.floor(res.duration / 60);
     const secs = res.duration % 60;
-    document.getElementById('result-time').innerText = mins > 0 ? `${mins} دقيقة و ${secs} ثانية` : `${secs} ثانية`;
+    if (time) time.innerText = mins > 0 ? `${mins} دقيقة و ${secs} ثانية` : `${secs} ثانية`;
+
+    // عرض مراجعة جميع الإجابات مباشرة أسفل النتيجة، دون تغيير حساب الدرجات أو تدفق الاختبار.
+    const resultsBox = document.querySelector('#results-section .results-box');
+    if (resultsBox) {
+      let summary = document.getElementById('results-review-summary');
+      if (!summary) {
+        summary = document.createElement('section');
+        summary.id = 'results-review-summary';
+        summary.setAttribute('aria-live', 'polite');
+        resultsBox.appendChild(summary);
+      }
+      const answers = Array.isArray(res.answers) ? res.answers : [];
+      const total = Number(res.totalQuestions) || 0;
+      const answered = answers.length;
+      const correct = answers.filter(answer => answer.isCorrect).length;
+      const wrong = answers.filter(answer => !answer.isCorrect).length;
+      const safe = value => this.escapeHtml(value == null || value === '' ? 'لم تتم الإجابة' : String(value));
+      const rows = answers.map((answer, index) => `
+        <article class="review-item">
+          <div class="review-question"><strong>السؤال ${index + 1}:</strong> ${safe(answer.questionText)}</div>
+          <div class="review-answer ${answer.isCorrect ? 'correct' : 'incorrect'}">${answer.isCorrect ? '✓ إجابتك الصحيحة' : '× إجابتك'}: ${safe(answer.userAnswer)}</div>
+          ${answer.isCorrect ? '' : `<div class="review-answer correct">الإجابة الصحيحة: ${safe(answer.correctAnswer)}</div>`}
+          ${answer.explanation ? `<div class="review-explanation"><strong>الشرح:</strong> ${safe(answer.explanation)}</div>` : ''}
+        </article>
+      `).join('');
+      summary.innerHTML = `
+        <div class="results-review-heading">
+          <h3>مراجعة الأسئلة والإجابات</h3>
+          <span>${answered} من ${total} سؤالاً تمت الإجابة عنها</span>
+        </div>
+        <div class="result-details" aria-label="ملخص الإجابات">
+          <div class="detail-item"><span class="detail-label">الإجابات الصحيحة</span><span class="detail-value">${correct}</span></div>
+          <div class="detail-item"><span class="detail-label">الإجابات الخاطئة</span><span class="detail-value">${wrong}</span></div>
+          <div class="detail-item"><span class="detail-label">بدون إجابة</span><span class="detail-value">${Math.max(0, total - answered)}</span></div>
+        </div>
+        ${rows || '<div class="results-review-empty">لا توجد إجابات محفوظة للمراجعة في هذه المحاولة.</div>'}
+      `;
+    }
   }
 
   showReview() {
@@ -1213,6 +1258,65 @@ class ExamApp {
       }
     };
   }
+}
+
+
+/* Exam answer and final-result presentation — uses existing Mizan central tokens. */
+.results-box{
+  max-width:880px;
+  padding:clamp(20px,4vw,36px);
+  background:var(--mizan-card);
+  color:var(--mizan-text);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-xl,20px);
+  box-shadow:var(--mizan-shadow-md,0 12px 32px rgba(0,0,0,.12));
+}
+.result-emoji{margin-bottom:8px;font-size:clamp(2.5rem,7vw,4rem)}
+.result-grade{color:var(--mizan-heading);font-size:clamp(1.45rem,4vw,2rem)}
+.result-score{color:var(--mizan-muted);font-size:1rem;margin-bottom:18px}
+.result-details{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  padding:0;margin:22px 0;background:transparent;
+}
+.result-details .detail-item{
+  display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+  min-width:0;padding:14px;text-align:right;background:var(--mizan-bg);
+  border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md,14px);
+}
+.result-details .detail-label{color:var(--mizan-muted);font-size:.82rem}
+.result-details .detail-value{color:var(--mizan-heading);font-size:1.15rem}
+.results-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.results-actions button,.review-exam-action{
+  min-height:46px;border-radius:var(--mizan-radius-control,12px);
+}
+.review-exam-action{width:100%;margin-top:10px}
+#results-review-summary{margin-top:24px;text-align:right}
+#results-review-summary .results-review-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
+#results-review-summary .results-review-heading h3{margin:0;color:var(--mizan-heading);font-size:1.1rem}
+#results-review-summary .results-review-heading span{color:var(--mizan-muted);font-size:.85rem}
+#results-review-summary .review-item{margin:0 0 12px;padding:clamp(14px,3vw,20px);background:var(--mizan-bg);border-color:var(--mizan-border);border-radius:var(--mizan-radius-lg,16px)}
+#results-review-summary .review-question{color:var(--mizan-heading);line-height:1.85}
+#results-review-summary .review-answer{line-height:1.8;overflow-wrap:anywhere}
+#results-review-summary .review-explanation{background:var(--mizan-card);color:var(--mizan-muted);border-right-color:var(--mizan-primary-500);line-height:1.9}
+#results-review-summary .results-review-empty{padding:18px;border:1px solid var(--mizan-success-500);background:var(--mizan-success-100);color:var(--mizan-success-700);border-radius:var(--mizan-radius-md,14px);text-align:center;font-weight:700}
+.question-card{background:var(--mizan-card);border-color:var(--mizan-border);border-right-color:var(--mizan-primary-500)}
+.question-label{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-primary-200);color:var(--mizan-primary-700)}
+.option-btn{background:var(--mizan-card);color:var(--mizan-text);border-color:var(--mizan-border);border-radius:var(--mizan-radius-control,12px);text-align:right;line-height:1.8}
+.option-btn.correct{background:var(--mizan-success-100);border-color:var(--mizan-success-500);color:var(--mizan-success-700)}
+.option-btn.incorrect{background:var(--mizan-danger-100);border-color:var(--mizan-danger-500);color:var(--mizan-danger-700)}
+html[data-theme="light"] .results-box{background:var(--mizan-card-light);border-color:var(--mizan-border-light);color:var(--mizan-text-light)}
+html[data-theme="light"] .result-details .detail-item{background:var(--mizan-bg-light);border-color:var(--mizan-border-light)}
+html[data-theme="light"] #results-review-summary .review-item{background:var(--mizan-bg-light);border-color:var(--mizan-border-light)}
+html[data-theme="light"] #results-review-summary .review-explanation{background:var(--mizan-surface-light);color:var(--mizan-muted-light)}
+html[data-theme="light"] #results-review-summary .review-question{color:var(--mizan-heading-light)}
+html[data-theme="light"] .option-btn{background:var(--mizan-card-light);color:var(--mizan-text-light);border-color:var(--mizan-border-light)}
+@media(max-width:600px){
+  .results-box{padding:18px 14px;border-radius:var(--mizan-radius-lg,16px)}
+  .result-details{grid-template-columns:1fr;gap:8px}
+  .result-details .detail-item{flex-direction:row;align-items:center;justify-content:space-between;padding:12px}
+  .result-details .detail-value{font-size:1rem}
+  .results-actions{grid-template-columns:1fr}
+  #results-review-summary .results-review-heading{align-items:flex-start;flex-direction:column}
 }
 
 window.app = new ExamApp();
