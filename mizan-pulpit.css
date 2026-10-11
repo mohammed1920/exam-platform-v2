@@ -344,12 +344,19 @@
 .mizan-article-card-footer{
   display:flex;
   flex-direction:row;
+  direction:rtl;
   justify-content:space-between;
   align-items:center;
   gap:var(--mizan-space-2);
   margin-top:10px;
   padding-top:var(--mizan-space-inset-compact);
   border-top:1px solid var(--mizan-glass-white-050);
+}
+.mizan-article-card-footer>.mizan-article-author{
+  order:0;
+}
+.mizan-article-card-footer>.mizan-read-btn{
+  order:1;
 }
 .mizan-read-btn{
   margin:0;
