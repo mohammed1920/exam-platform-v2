@@ -36,9 +36,14 @@
         html[data-theme="light"] .mizan-admin-grid input,html[data-theme="light"] .mizan-admin-grid select,html[data-theme="light"] .mizan-admin-grid textarea{background:var(--mizan-white);color:var(--mizan-deco-blue-17);border-color:var(--mizan-deco-blue-88)}
         html[data-theme="light"] .mizan-admin-content,html[data-theme="light"] .mizan-admin-detail-item{background:var(--mizan-neutral-50)}
         .mizan-admin-head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-        .mizan-admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
-        .mizan-admin-tabs button{border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 25%,transparent);background:color-mix(in srgb,var(--mizan-white) 4%,transparent);color:inherit;border-radius:10px;padding:9px 12px;cursor:pointer;font:inherit}
-        .mizan-admin-tabs button.active{background:color-mix(in srgb,var(--mizan-gold-primary) 16%,transparent);border-color:color-mix(in srgb,var(--mizan-gold-primary) 65%,transparent)}
+        .mizan-admin-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mizan-space-2);margin:16px 0;padding:var(--mizan-space-2);border:1px solid var(--mizan-glass-white-060);border-radius:var(--mizan-radius-md);background:var(--mizan-glass-white-025)}
+        .mizan-admin-tabs button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;border:1px solid transparent;background:transparent;color:var(--mizan-muted);border-radius:var(--mizan-radius-sm);padding:var(--mizan-space-2) var(--mizan-space-3);cursor:pointer;font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:700;line-height:1.4;text-align:center;transition:var(--mizan-transition-standard)}
+        .mizan-admin-tabs button:hover{background:var(--mizan-glass-white-060);color:var(--mizan-text-dark)}
+        .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-primary-500-border);color:var(--mizan-accent-tile-fg);box-shadow:var(--mizan-shadow-lawyer-admin-card)}
+        html[data-theme="light"] .mizan-admin-tabs{background:var(--mizan-surface);border-color:var(--mizan-border-light)}
+        html[data-theme="light"] .mizan-admin-tabs button{background:transparent;color:var(--mizan-muted-light);border-color:transparent}
+        html[data-theme="light"] .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-accent-tile-fg);color:var(--mizan-primary-700)}
+        @media(max-width:650px){.mizan-admin-tabs{grid-template-columns:1fr;gap:var(--mizan-space-1)}.mizan-admin-tabs button{justify-content:space-between;text-align:right;padding:var(--mizan-space-2) var(--mizan-space-3)}}
         .mizan-admin-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:14px 0}
         .mizan-admin-stat{border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 18%,transparent);border-radius:14px;padding:14px;background:color-mix(in srgb,var(--mizan-white) 3.5%,transparent);text-align:center}
         .mizan-admin-stat strong{display:block;font-size:25px;margin-bottom:4px}
