@@ -40,6 +40,10 @@
         .mizan-admin-tabs button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;border:1px solid transparent;background:transparent;color:var(--mizan-muted);border-radius:var(--mizan-radius-sm);padding:var(--mizan-space-2) var(--mizan-space-3);cursor:pointer;font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:700;line-height:1.4;text-align:center;transition:var(--mizan-transition-standard)}
         .mizan-admin-tabs button:hover{background:var(--mizan-glass-white-060);color:var(--mizan-text-dark)}
         .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-primary-500-border);color:var(--mizan-accent-tile-fg);box-shadow:var(--mizan-shadow-lawyer-admin-card)}
+        .mizan-admin-tab-count{display:inline-grid;place-items:center;min-width:24px;min-height:24px;margin-inline-start:8px;padding:0 6px;border-radius:var(--mizan-radius-pill);background:var(--mizan-glass-white-060);color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+        .mizan-admin-tabs button.active .mizan-admin-tab-count{background:var(--mizan-primary-500-border);color:var(--mizan-text-dark)}
+        html[data-theme="light"] .mizan-admin-tab-count{background:var(--mizan-bg-light);color:var(--mizan-heading)}
+        html[data-theme="light"] .mizan-admin-tabs button.active .mizan-admin-tab-count{background:var(--mizan-primary-500);color:var(--mizan-white)}
         html[data-theme="light"] .mizan-admin-tabs{background:var(--mizan-surface);border-color:var(--mizan-border-light)}
         html[data-theme="light"] .mizan-admin-tabs button{background:transparent;color:var(--mizan-muted-light);border-color:transparent}
         html[data-theme="light"] .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-accent-tile-fg);color:var(--mizan-primary-700)}
@@ -242,6 +246,25 @@
     document.getElementById('fa-admin-home').hidden=false;
   }
 
+  function updateTabCounts(counts){
+    document.querySelectorAll('#mizan-admin-view [data-mizan-status]').forEach(button=>{
+      const status=button.dataset.mizanStatus;
+      const count=counts[status];
+      let badge=button.querySelector('.mizan-admin-tab-count');
+      if(count===undefined){
+        badge?.remove();
+        return;
+      }
+      if(!badge){
+        badge=document.createElement('span');
+        badge.className='mizan-admin-tab-count';
+        badge.setAttribute('aria-label','العدد');
+        button.appendChild(badge);
+      }
+      badge.textContent=String(count);
+    });
+  }
+
   function setTab(status){
     document.querySelectorAll('#mizan-admin-view [data-mizan-status]').forEach(x=>x.classList.toggle('active',x.dataset.mizanStatus===status));
   }
@@ -325,9 +348,20 @@
     try{
       const statuses=['pending','published','rejected','hidden'];
       const snaps=await Promise.all(statuses.map(s=>firestore.collection(COLLECTION).where('status','==',s).get()));
-      const contributorSnap=await firestore.collection(CONTRIBUTORS).where('status','==','pending').get();
+      const [contributorSnap,approvedContributorSnap]=await Promise.all([
+        firestore.collection(CONTRIBUTORS).where('status','==','pending').get(),
+        firestore.collection(CONTRIBUTORS).where('status','==','approved').get()
+      ]);
       const counts={};
       statuses.forEach((s,i)=>counts[s]=snaps[i].size);
+      updateTabCounts({
+        contributors:contributorSnap.size,
+        'approved-contributors':approvedContributorSnap.size,
+        pending:counts.pending,
+        published:counts.published,
+        rejected:counts.rejected,
+        hidden:counts.hidden
+      });
       const stats=document.getElementById('mizan-admin-stats');
       if(stats)stats.innerHTML='<div class="mizan-admin-stat"><strong>'+Object.values(counts).reduce((a,b)=>a+b,0)+'</strong><span>إجمالي المشاركات</span></div><div class="mizan-admin-stat"><strong>'+counts.pending+'</strong><span>قيد المراجعة</span></div><div class="mizan-admin-stat"><strong>'+counts.published+'</strong><span>منشور</span></div><div class="mizan-admin-stat"><strong>'+counts.rejected+'</strong><span>مرفوض</span></div><div class="mizan-admin-stat"><strong>'+contributorSnap.size+'</strong><span>طلبات اعتماد</span></div>';
       body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">اختر من تبويبات منبر ميزان أعلاه لإدارة المشاركات وطلبات الاعتماد.<br><br>يمكنك مراجعة الطلبات، تعديل المحتوى، نشره، رفضه مع حفظ السبب، إخفاء المنشورات أو إعادة نشرها، وحذفها نهائياً.</td></tr>';
