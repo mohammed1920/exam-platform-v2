@@ -352,10 +352,10 @@
   padding-top:var(--mizan-space-inset-compact);
   border-top:1px solid var(--mizan-glass-white-050);
 }
-.mizan-article-card-footer>.mizan-article-author{
+.mizan-article-card-footer>.mizan-read-btn{
   order:0;
 }
-.mizan-article-card-footer>.mizan-read-btn{
+.mizan-article-card-footer>.mizan-article-author{
   order:1;
 }
 .mizan-read-btn{
