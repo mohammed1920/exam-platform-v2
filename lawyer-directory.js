@@ -333,19 +333,19 @@
       <article class="lawyer-card" tabindex="0" role="button" data-lawyer-details="${esc(p.id)}" aria-label="عرض تفاصيل ${esc(p.name)}">
         <div class="lawyer-card-icon"><i class="fas fa-user-tie"></i></div>
         <div class="lawyer-card-main">
-          <div class="lawyer-card-topline">
-            <h3>${esc(p.name)}</h3>
-            <span class="lawyer-verified">✓ معتمد</span>
+          <h3>${esc(p.name)}</h3>
+          <div class="lawyer-card-meta">
+            <p class="lawyer-card-location"><i class="fas fa-location-dot"></i> ${esc([p.governorate,p.district].filter(Boolean).join(' — ') || 'الموقع غير متوفر')}</p>
+            ${p.office ? '<p class="lawyer-card-office"><i class="fas fa-building"></i> '+esc(p.office)+'</p>' : ''}
+            ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
           </div>
-          <p class="lawyer-card-location"><i class="fas fa-location-dot"></i> ${esc([p.governorate,p.district].filter(Boolean).join(' — ') || 'الموقع غير متوفر')}</p>
-          ${p.office ? '<p class="lawyer-card-office"><i class="fas fa-building"></i> '+esc(p.office)+'</p>' : ''}
-          ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
-          <div class="lawyer-tags">${(p.specializations||[]).slice(0,3).map(s => '<span>'+esc(s)+'</span>').join('')}${(p.specializations||[]).length>3?'<span>+'+((p.specializations||[]).length-3)+'</span>':''}</div>
+          ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty"><span><i class="fas fa-scale-balanced"></i> '+esc(p.specializations[0])+'</span></div>' : ''}
           <div class="lawyer-card-actions">
-            ${p.phone ? '<a href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
+            ${p.phone ? '<a class="lawyer-card-contact" href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
             <span class="lawyer-details-link"><i class="fas fa-circle-info"></i> عرض التفاصيل</span>
           </div>
         </div>
+        <span class="lawyer-verified"><i class="fas fa-circle-check"></i> معتمد</span>
       </article>`).join('');
     list.querySelectorAll('[data-lawyer-details]').forEach(card => {
       card.addEventListener('click', event => {
