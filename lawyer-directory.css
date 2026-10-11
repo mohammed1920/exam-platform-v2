@@ -273,21 +273,24 @@
 }
 .lawyer-card-actions .lawyer-card-contact{
   border-color:var(--mizan-success-500);
-  background:var(--mizan-success-100);
+  background:var(--mizan-gradient-status-success);
   color:var(--mizan-success-700);
+  box-shadow:var(--mizan-shadow-tone-success);
 }
 .lawyer-card-actions .lawyer-card-contact:hover{
-  background:var(--mizan-success-200);
+  background:linear-gradient(145deg,var(--mizan-success-200),var(--mizan-success-100));
   border-color:var(--mizan-success-700);
 }
 .lawyer-card-actions .lawyer-details-link{
-  border-color:var(--mizan-primary-500);
-  background:var(--mizan-primary-500);
+  border-color:var(--mizan-btn-primary-border);
+  background:var(--mizan-btn-surface-gradient);
   color:var(--mizan-white);
+  box-shadow:var(--mizan-btn-surface-shadow);
 }
 .lawyer-card-actions .lawyer-details-link:hover{
-  border-color:var(--mizan-primary-600);
-  background:var(--mizan-primary-600);
+  border-color:var(--mizan-btn-primary-border-hover);
+  background:var(--mizan-btn-surface-gradient-hover);
+  box-shadow:var(--mizan-btn-surface-shadow-hover);
 }
 .lawyer-card-actions a:focus-visible,
 .lawyer-details-link:focus-visible{
@@ -784,14 +787,16 @@ html[data-theme="light"] .lawyer-card .lawyer-card-meta p{
   color:var(--mizan-muted);
 }
 html[data-theme="light"] .lawyer-card-actions .lawyer-card-contact{
-  background:var(--mizan-success-100);
+  background:var(--mizan-gradient-status-success);
   border-color:var(--mizan-success-500);
   color:var(--mizan-success-700);
+  box-shadow:var(--mizan-shadow-tone-success);
 }
 html[data-theme="light"] .lawyer-card-actions .lawyer-details-link{
-  background:var(--mizan-primary-500);
-  border-color:var(--mizan-primary-500);
+  background:var(--mizan-btn-surface-gradient);
+  border-color:var(--mizan-btn-primary-border);
   color:var(--mizan-white);
+  box-shadow:var(--mizan-btn-surface-shadow);
 }
 html[data-theme="light"] .lawyer-detail-item{
   background:var(--mizan-bg-light);
