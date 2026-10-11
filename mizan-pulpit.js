@@ -42,8 +42,8 @@
         '<div class="mizan-article-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
         '<h3>' + esc(a.title || 'مشاركة قانونية') + '</h3>' +
         '<p>' + esc(a.excerpt || '') + '</p>' +
-        '<button type="button" class="mizan-article-author" data-contributor-id="' + esc(a.authorUid || '') + '" ' + (a.authorUid ? '' : 'disabled') + '><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></span></button>' +
-        '<div class="mizan-article-card-footer"><button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '"><i class="fas fa-book-open"></i> قراءة المقال</button></div>' +
+        '<div class="mizan-article-card-footer"><button type="button" class="mizan-read-btn" data-article-id="' + esc(doc.id) + '"><i class="fas fa-book-open"></i> قراءة المقال</button>' +
+        '<button type="button" class="mizan-article-author" data-contributor-id="' + esc(a.authorUid || '') + '" ' + (a.authorUid ? '' : 'disabled') + '><i class="fas fa-user-tie"></i><span><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><small>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</small></span></button></div>' +
         '</article>';
     }).join('');
   }
