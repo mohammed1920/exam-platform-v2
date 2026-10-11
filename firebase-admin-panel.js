@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   let isAdmin=false,panelOpen=false,mainViewState=[],els={};
+  let lawyerApplications=[],lawyerProfiles=[];
   function publishAdminState(){ window.firebaseAdminPanel={open:openPanel,isAdmin}; window.dispatchEvent(new CustomEvent('firebase-admin-state-changed',{detail:{isAdmin}})); }
   const esc=v=>String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
@@ -50,6 +51,21 @@ els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCan
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
+  function switchLawyerView(view){
+    const panels={
+      pending:els.section.querySelector('#fa-lawyers-pending-panel'),
+      published:els.section.querySelector('#fa-lawyers-published-panel'),
+      edits:els.section.querySelector('#fa-lawyers-edit-requests-panel')
+    };
+    if(!Object.prototype.hasOwnProperty.call(panels,view))return;
+    Object.entries(panels).forEach(([name,panel])=>{if(panel)panel.hidden=name!==view;});
+    els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>{
+      const active=btn.dataset.lawyerView===view;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-selected',active?'true':'false');
+    });
+    if(els.lawyerEdit)closeLawyerEdit();
+  }
   function switchAdminView(view){
     const home=els.section.querySelector('#fa-admin-home');
     if(home)home.hidden=true;
