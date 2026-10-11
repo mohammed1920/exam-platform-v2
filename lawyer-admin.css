@@ -44,25 +44,70 @@
   color:var(--mizan-muted);
 }
 .lawyer-admin-tabs{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:var(--mizan-space-2);
-  flex-wrap:wrap;
   margin:var(--mizan-space-inset-medium) 0;
+  padding:var(--mizan-space-2);
+  border:1px solid var(--mizan-glass-white-060);
+  border-radius:var(--mizan-radius-md);
+  background:var(--mizan-glass-white-025);
 }
 .lawyer-admin-tab{
-  border:1px solid var(--mizan-primary-500-border);
-  background:var(--mizan-glass-white-025);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--mizan-space-2);
+  min-width:0;
+  min-height:44px;
+  border:1px solid transparent;
+  background:transparent;
   color:var(--mizan-muted);
   border-radius:var(--mizan-radius-sm);
   padding:var(--mizan-space-2) var(--mizan-space-3);
   font:inherit;
   font-size:var(--mizan-font-size-2xs);
+  font-weight:700;
+  line-height:1.4;
+  text-align:center;
   cursor:pointer;
+  transition:var(--mizan-transition-standard);
+}
+.lawyer-admin-tab span{
+  display:inline-grid;
+  place-items:center;
+  min-width:24px;
+  min-height:24px;
+  padding:0 6px;
+  border-radius:var(--mizan-radius-pill);
+  background:var(--mizan-glass-white-060);
+  font-size:var(--mizan-font-size-micro);
+}
+.lawyer-admin-tab:hover{
+  background:var(--mizan-glass-white-060);
+  color:var(--mizan-text-dark);
 }
 .lawyer-admin-tab.active{
   border-color:var(--mizan-primary-500-border);
   color:var(--mizan-accent-tile-fg);
   background:var(--mizan-accent-tile-bg);
+  box-shadow:var(--mizan-shadow-lawyer-admin-card);
+}
+.lawyer-admin-tab.active span{
+  background:var(--mizan-primary-500-border);
+  color:var(--mizan-text-dark);
+}
+html[data-theme="light"] .lawyer-admin-tabs{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .lawyer-admin-tab span{
+  background:var(--mizan-bg-light);
+  color:var(--mizan-heading);
+}
+@media(max-width:520px){
+  .lawyer-admin-tabs{grid-template-columns:1fr;gap:var(--mizan-space-1);}
+  .lawyer-admin-tab{justify-content:space-between;text-align:right;padding:var(--mizan-space-2) var(--mizan-space-3);}
 }
 .lawyer-admin-tab strong{
   margin-right:5px;
