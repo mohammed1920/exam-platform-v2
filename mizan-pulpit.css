@@ -343,22 +343,82 @@
 }
 .mizan-article-card-footer{
   display:flex;
-  justify-content:flex-start;
+  flex-direction:row;
+  justify-content:space-between;
   align-items:center;
+  gap:var(--mizan-space-2);
   margin-top:10px;
   padding-top:var(--mizan-space-inset-compact);
   border-top:1px solid var(--mizan-glass-white-050);
 }
 .mizan-read-btn{
   margin:0;
-  padding:7px 0;
+  padding:var(--mizan-space-2) var(--mizan-space-3);
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:var(--mizan-gap-tight);
-  color:var(--mizan-accent-text);
+  border:1px solid var(--mizan-accent-tile-border);
+  border-radius:var(--mizan-radius-sm);
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-tile-fg);
+  font:inherit;
+  font-size:var(--mizan-font-size-2xs);
+  font-weight:700;
+  line-height:1.4;
+  cursor:pointer;
+  transition:var(--mizan-transition-standard);
+}
+.mizan-read-btn:hover{
+  border-color:var(--mizan-primary-500-border);
+  background:var(--mizan-primary-900);
+  color:var(--mizan-primary-300);
+}
+.mizan-read-btn:focus-visible{
+  outline:2px solid var(--mizan-primary-300);
+  outline-offset:2px;
 }
 .mizan-read-btn i{
   font-size:var(--mizan-font-size-micro);
+}
+.mizan-article-card-footer .mizan-article-author{
+  width:auto;
+  flex:0 1 auto;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--mizan-muted);
+  gap:var(--mizan-space-1);
+  font-size:var(--mizan-font-size-micro);
+  line-height:1.4;
+}
+.mizan-article-card-footer .mizan-article-author>i{
+  display:none;
+}
+.mizan-article-card-footer .mizan-article-author span{
+  min-width:0;
+}
+.mizan-article-card-footer .mizan-article-author strong{
+  font-size:var(--mizan-font-size-micro);
+  font-weight:600;
+  overflow-wrap:anywhere;
+}
+.mizan-article-card-footer .mizan-article-author small{
+  display:none;
+}
+html[data-theme="light"] .mizan-article-card-footer{
+  border-color:var(--mizan-border-light);
+}
+html[data-theme="light"] .mizan-read-btn{
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-tile-fg);
+  border-color:var(--mizan-accent-tile-border);
+}
+html[data-theme="light"] .mizan-read-btn:hover{
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-800);
 }
 .mizan-profile-modal-box{
   width:min(620px,100%);
