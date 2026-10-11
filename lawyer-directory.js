@@ -340,12 +340,12 @@
             ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
           </div>
           ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty"><span><i class="fas fa-scale-balanced"></i> '+esc(p.specializations[0])+'</span></div>' : ''}
-          <div class="lawyer-card-actions">
-            ${p.phone ? '<a class="lawyer-card-contact" href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
-            <span class="lawyer-details-link"><i class="fas fa-circle-info"></i> عرض التفاصيل</span>
-          </div>
         </div>
         <span class="lawyer-verified"><i class="fas fa-circle-check"></i> معتمد</span>
+        <div class="lawyer-card-actions">
+          ${p.phone ? '<a class="lawyer-card-contact" href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
+          <span class="lawyer-details-link"><i class="fas fa-circle-info"></i> عرض التفاصيل</span>
+        </div>
       </article>`).join('');
     list.querySelectorAll('[data-lawyer-details]').forEach(card => {
       card.addEventListener('click', event => {
