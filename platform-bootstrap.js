@@ -14,19 +14,24 @@ if ('serviceWorker' in navigator) {
 
   if (!installButton) return;
 
-  const isStandalone =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
+  const displayMode = window.matchMedia('(display-mode: standalone)');
+  const isInstalledMode = () =>
+    displayMode.matches || window.navigator.standalone === true;
 
-  if (isStandalone) {
+  const hideInstallPrompt = () => {
     installButton.hidden = true;
+    if (iosHint) iosHint.hidden = true;
+  };
+
+  if (isInstalledMode()) {
+    hideInstallPrompt();
     return;
   }
 
-  installButton.hidden = false;
-
   let deferredPrompt = null;
   const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+
+  installButton.hidden = false;
 
   window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
@@ -35,9 +40,18 @@ if ('serviceWorker' in navigator) {
 
   installButton.addEventListener('click', async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
+      const installPrompt = deferredPrompt;
       deferredPrompt = null;
+      installPrompt.prompt();
+
+      try {
+        const choice = await installPrompt.userChoice;
+        if (choice && choice.outcome === 'accepted') {
+          hideInstallPrompt();
+        }
+      } catch (_) {
+        // يبقى الزر متاحاً إذا لم تكتمل عملية التثبيت.
+      }
       return;
     }
 
@@ -57,12 +71,23 @@ if ('serviceWorker' in navigator) {
   });
 
   window.addEventListener('appinstalled', () => {
-    installButton.hidden = true;
-    if (iosHint) iosHint.hidden = true;
     deferredPrompt = null;
+    hideInstallPrompt();
   });
-})();
 
+  const syncInstallButton = () => {
+    if (isInstalledMode()) hideInstallPrompt();
+  };
+
+  if (typeof displayMode.addEventListener === 'function') {
+    displayMode.addEventListener('change', syncInstallButton);
+  } else if (typeof displayMode.addListener === 'function') {
+    displayMode.addListener(syncInstallButton);
+  }
+
+  window.addEventListener('pageshow', syncInstallButton);
+  window.addEventListener('focus', syncInstallButton);
+})();
 (function setupVisitorCounter() {
   const countElement = document.getElementById('visitor-count');
   if (!countElement) return;
