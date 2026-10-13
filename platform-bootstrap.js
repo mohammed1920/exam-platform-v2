@@ -15,8 +15,13 @@ if ('serviceWorker' in navigator) {
   if (!installButton) return;
 
   const displayMode = window.matchMedia('(display-mode: standalone)');
+  const installDismissedKey = 'mizan-install-completed';
+  const isInstallCompleted = () => {
+    try { return localStorage.getItem(installDismissedKey) === '1'; }
+    catch (_) { return false; }
+  };
   const isInstalledMode = () =>
-    displayMode.matches || window.navigator.standalone === true;
+    displayMode.matches || window.navigator.standalone === true || isInstallCompleted();
 
   const hideInstallPrompt = () => {
     installButton.hidden = true;
@@ -47,6 +52,7 @@ if ('serviceWorker' in navigator) {
       try {
         const choice = await installPrompt.userChoice;
         if (choice && choice.outcome === 'accepted') {
+          try { localStorage.setItem(installDismissedKey, '1'); } catch (_) {}
           hideInstallPrompt();
         }
       } catch (_) {
@@ -72,6 +78,7 @@ if ('serviceWorker' in navigator) {
 
   window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
+    try { localStorage.setItem(installDismissedKey, '1'); } catch (_) {}
     hideInstallPrompt();
   });
 
