@@ -331,7 +331,7 @@
         await navigator.share({ title: 'سؤال من منصة ميزان', text: shareUrl, url: shareUrl });
       } else {
         await navigator.clipboard.writeText(shareUrl);
-        alert('تم نسخ رابط السؤال (الالمشاركة المباشرة غير مدعومة بهذا المتصفح).');
+        alert('تم نسخ رابط السؤال (المشاركة المباشرة غير مدعومة بهذا المتصفح).');
       }
     } catch (err) {
       if (err.name !== 'AbortError') console.error('فشلت المشاركة:', err);
