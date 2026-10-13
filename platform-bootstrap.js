@@ -21,7 +21,11 @@ if ('serviceWorker' in navigator) {
     catch (_) { return false; }
   };
   const isInstalledMode = () =>
-    displayMode.matches || window.navigator.standalone === true || isInstallCompleted();
+    displayMode.matches ||
+    window.matchMedia('(display-mode: fullscreen)').matches ||
+    window.matchMedia('(display-mode: minimal-ui)').matches ||
+    window.navigator.standalone === true ||
+    isInstallCompleted();
 
   const hideInstallPrompt = () => {
     installButton.hidden = true;
@@ -32,6 +36,12 @@ if ('serviceWorker' in navigator) {
     hideInstallPrompt();
     return;
   }
+
+  // Recheck after launch because some Android launchers expose the installed
+  // app display mode only after the first rendering cycle.
+  window.addEventListener('DOMContentLoaded', () => {
+    if (isInstalledMode()) hideInstallPrompt();
+  }, { once: true });
 
   let deferredPrompt = null;
   const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
