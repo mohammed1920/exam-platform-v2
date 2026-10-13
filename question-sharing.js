@@ -61,184 +61,246 @@
 
   async function generateShareCard(app, q) {
     const W = 1080;
+    const PAD = 72;
+    const CONTENT_W = W - PAD * 2;
 
     try {
       await Promise.all([
         document.fonts.load('700 46px "Aref Ruqaa"'),
         document.fonts.load('500 30px "Tajawal"'),
         document.fonts.load('700 26px "Tajawal"'),
-        document.fonts.load('800 32px "Tajawal"')
+        document.fonts.load('800 32px "Tajawal"'),
+        document.fonts.load('700 34px "IBM Plex Sans Arabic"')
       ]);
       await document.fonts.ready;
-    } catch (e) { /* لو فشل تحميل الخط نكمل بالخط الاحتياطي */ }
+    } catch (e) { /* نستمر بالخطوط الاحتياطية إذا تعذر التحميل */ }
 
-    // كانفاس مؤقت فقط لقياس عدد أسطر السؤال قبل تحديد طول البطاقة النهائي
     const measureCanvas = document.createElement('canvas');
     const mctx = measureCanvas.getContext('2d');
     mctx.font = '700 46px "Aref Ruqaa", serif';
-    const lines = wrapText(mctx, q.question, W - 220);
+    const lines = wrapText(mctx, q.question, CONTENT_W - 88);
+    const optLetters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
+    const optionFont = '500 29px Tajawal, sans-serif';
+    const optionTextWidth = CONTENT_W - 148;
+    const optionRows = q.options.map(opt => {
+      mctx.font = optionFont;
+      const wrapped = wrapText(mctx, opt, optionTextWidth);
+      return Math.max(82, wrapped.length * 38 + 34);
+    });
 
-    // هوامش أمان أعلى وأسفل الصورة: فراغ فاضي (نفس لون الورقة) نتركه عمداً
-    // حتى لو تيليجرام أو أي تطبيق قص/غطّى حواف الصورة عند عرضها مع رابط أو تعليق،
-    // يبقى المحتوى المهم (الختم، الأسئلة، الخيارات) بعيد عن منطقة القص
-    const TOP_SAFE = 90;
-    const BOTTOM_SAFE = 110;
-    const sealCenterY = TOP_SAFE + 70;
-    const optHeight = 74;
-
-    // نحسب الارتفاع الكلي المطلوب مسبقاً بنفس منطق الرسم بالأسفل بالضبط
-    let estimatedY = sealCenterY + 105 + 48 + 34 + 70 + (lines.length * 62) + 55;
-    estimatedY += q.options.length * (optHeight + 20);
-    estimatedY += 20 + 70 + 62;
-    const H = Math.round(estimatedY + BOTTOM_SAFE);
+    const TOP = 64;
+    const logoSize = 110;
+    const titleY = TOP + logoSize + 53;
+    const subtitleY = titleY + 52;
+    const dividerY = subtitleY + 31;
+    const questionTop = dividerY + 70;
+    const questionHeight = Math.max(160, lines.length * 64 + 82);
+    const optionsTop = questionTop + questionHeight + 30;
+    const optionsGap = 16;
+    const optionsHeight = optionRows.reduce((sum, h) => sum + h, 0) + Math.max(0, q.options.length - 1) * optionsGap;
+    const footerTop = optionsTop + optionsHeight + 34;
+    const H = Math.round(footerTop + 166 + 54);
 
     const canvas = document.createElement('canvas');
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext('2d');
-
     const C = {
-      paper: '#FFFFFF', paperLine: '#E2E8F0', navy: '#0F172A',
-      gold: '#D4AF37', goldLight: '#F3E5AB', ink: '#0F172A', inkSoft: '#64748B'
+      paper: '#F6F8FB',
+      surface: '#FFFFFF',
+      navy: '#0F172A',
+      navySoft: '#172B4D',
+      blue: '#2563EB',
+      gold: '#D4AF37',
+      goldSoft: '#F3E5AB',
+      ink: '#111827',
+      muted: '#66758A',
+      line: '#DCE4ED',
+      paleBlue: '#EEF4FF'
     };
     const cx = W / 2;
 
+    // خلفية نظيفة بإطار رفيع ولمسة علوية من هوية ميزان.
     ctx.fillStyle = C.paper;
     ctx.fillRect(0, 0, W, H);
-    ctx.strokeStyle = C.paperLine;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(32, 32, W - 64, H - 64);
-    ctx.strokeStyle = 'rgba(37,99,235,0.35)';
+    ctx.fillStyle = C.navy;
+    ctx.fillRect(0, 0, W, 14);
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(0, 14, W, 5);
+    roundRect(ctx, 28, 28, W - 56, H - 56, 30);
+    ctx.fillStyle = C.surface;
+    ctx.fill();
+    ctx.strokeStyle = C.line;
     ctx.lineWidth = 2;
-    ctx.strokeRect(44, 44, W - 88, H - 88);
+    ctx.stroke();
 
-    let y = sealCenterY;
+    // استخدام شعار ميزان الموجود بالمشروع نفسه بدلاً من رمز ميزان عام.
+    const logoUrl = new URL('icons/icon-512.png', window.location.href).href;
+    const logo = await new Promise(resolve => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => resolve(null);
+      image.src = logoUrl;
+    });
+
+    let y = TOP + 10;
     ctx.save();
-    ctx.translate(cx, y);
-    ctx.rotate(-8 * Math.PI / 180);
     ctx.beginPath();
-    ctx.arc(0, 0, 62, 0, Math.PI * 2);
+    ctx.arc(cx, y + logoSize / 2, logoSize / 2 + 7, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fill();
     ctx.strokeStyle = C.gold;
     ctx.lineWidth = 4;
     ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(0, 0, 52, 0, Math.PI * 2);
-    ctx.setLineDash([5, 5]);
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.font = '54px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('⚖️', 0, 6);
+    if (logo) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, y + logoSize / 2, logoSize / 2 - 2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(logo, cx - logoSize / 2, y, logoSize, logoSize);
+      ctx.restore();
+    } else {
+      // بديل بسيط عند تعذر تحميل ملف الأيقونة.
+      ctx.fillStyle = C.navy;
+      ctx.font = '700 30px "IBM Plex Sans Arabic", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('ميزان', cx, y + logoSize / 2);
+    }
     ctx.restore();
 
-    y += 105;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
-    ctx.fillStyle = C.inkSoft;
-    ctx.font = '700 26px Tajawal, sans-serif';
-    ctx.fillText('منصة الاختبارات القانونية', cx, y);
+    ctx.fillStyle = C.navy;
+    ctx.font = '800 38px "IBM Plex Sans Arabic", "Tajawal", sans-serif';
+    ctx.fillText('منصة ميزان', cx, titleY);
+    ctx.fillStyle = C.muted;
+    ctx.font = '500 24px "Tajawal", sans-serif';
+    ctx.fillText('حيث يُقاس الفهم القانوني بدقة', cx, titleY + 36);
 
-    y += 48;
     const bookTitle = (app.isCustomExam && q.sourceBook) ? q.sourceBook : app.currentBook.title;
     const chapterNum = (app.isCustomExam && q.sourceChapter) ? q.sourceChapter : app.currentChapter;
-    ctx.font = '500 28px Tajawal, sans-serif';
-    ctx.fillStyle = C.navy;
-    ctx.fillText(`${bookTitle} · الفصل ${chapterNum}`, cx, y);
+    const meta = `${bookTitle}  ·  الفصل ${chapterNum}`;
+    const metaY = subtitleY + 37;
+    const metaW = Math.min(CONTENT_W, Math.max(340, (() => {
+      ctx.font = '700 25px Tajawal, sans-serif';
+      return ctx.measureText(meta).width + 64;
+    })()));
+    roundRect(ctx, cx - metaW / 2, metaY - 33, metaW, 50, 25);
+    ctx.fillStyle = C.paleBlue;
+    ctx.fill();
+    ctx.strokeStyle = '#D6E4FF';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = C.navySoft;
+    ctx.font = '700 25px Tajawal, sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(meta, cx, metaY - 8);
 
-    y += 34;
+    // خط فاصل باللون الذهبي قبل نص السؤال.
     ctx.strokeStyle = C.gold;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.moveTo(cx - 60, y);
-    ctx.lineTo(cx + 60, y);
+    ctx.moveTo(cx - 64, dividerY);
+    ctx.lineTo(cx + 64, dividerY);
     ctx.stroke();
 
-    y += 70;
-    ctx.font = '700 46px "Aref Ruqaa", serif';
+    // سؤال رئيسي داخل بطاقة واضحة، مع ارتفاع محسوب من عدد الأسطر.
+    roundRect(ctx, PAD, questionTop, CONTENT_W, questionHeight, 24);
+    ctx.fillStyle = '#FBFCFE';
+    ctx.fill();
+    ctx.strokeStyle = C.line;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = C.blue;
+    roundRect(ctx, W - PAD - 8, questionTop + 28, 5, questionHeight - 56, 3);
+    ctx.fill();
     ctx.fillStyle = C.ink;
+    ctx.font = '700 46px "Aref Ruqaa", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    let textY = questionTop + (questionHeight - lines.length * 64) / 2 + 42;
     lines.forEach(line => {
-      y += 62;
-      ctx.fillText(line, cx, y);
+      ctx.fillText(line, cx, textY);
+      textY += 64;
     });
-    y += 55;
 
-    const optLetters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
-    const optX = 80;
-    const optWidth = W - 160;
+    let optionY = optionsTop;
     q.options.forEach((opt, i) => {
-      roundRect(ctx, optX, y, optWidth, optHeight, 8);
-      ctx.fillStyle = 'rgba(255,255,255,0.45)';
+      const rowH = optionRows[i];
+      roundRect(ctx, PAD, optionY, CONTENT_W, rowH, 18);
+      ctx.fillStyle = C.surface;
       ctx.fill();
-      ctx.strokeStyle = C.paperLine;
+      ctx.strokeStyle = C.line;
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      const circleR = 24;
-      const circleCx = W - optX - 40;
-      const circleCy = y + optHeight / 2;
+      const circleR = 25;
+      const circleCx = W - PAD - 37;
+      const circleCy = optionY + rowH / 2;
       ctx.beginPath();
       ctx.arc(circleCx, circleCy, circleR, 0, Math.PI * 2);
-      ctx.strokeStyle = C.navy;
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
       ctx.fillStyle = C.navy;
-      ctx.font = '800 26px Tajawal, sans-serif';
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '800 25px Tajawal, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(optLetters[i] || '', circleCx, circleCy + 2);
+      ctx.fillText(optLetters[i] || String(i + 1), circleCx, circleCy + 1);
 
-      ctx.textAlign = 'right';
+      ctx.font = optionFont;
       ctx.fillStyle = C.ink;
-      ctx.font = '500 30px Tajawal, sans-serif';
-      ctx.fillText(opt, circleCx - circleR - 20, circleCy);
-
-      y += optHeight + 20;
+      ctx.textAlign = 'right';
+      const wrappedOption = wrapText(ctx, opt, optionTextWidth);
+      const lineHeight = 38;
+      const firstY = circleCy - ((wrappedOption.length - 1) * lineHeight) / 2;
+      wrappedOption.forEach((line, lineIndex) => {
+        ctx.fillText(line, circleCx - circleR - 23, firstY + lineIndex * lineHeight);
+      });
+      optionY += rowH + optionsGap;
     });
 
-    y += 20;
-    ctx.strokeStyle = C.paperLine;
+    // التذييل يركز على الدعوة للتجربة والرابط فقط.
+    const footerLineY = footerTop;
+    ctx.strokeStyle = C.line;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(80, y);
-    ctx.lineTo(W - 80, y);
+    ctx.moveTo(PAD, footerLineY);
+    ctx.lineTo(W - PAD, footerLineY);
     ctx.stroke();
 
-    y += 70;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const ctaText = '✋ جاوب بنفسك الآن';
-    ctx.font = '800 32px Tajawal, sans-serif';
-    const ctaWidth = ctx.measureText(ctaText).width + 80;
-    const ctaHeight = 64;
-    roundRect(ctx, cx - ctaWidth / 2, y - ctaHeight / 2, ctaWidth, ctaHeight, 32);
+    const ctaY = footerTop + 52;
+    const ctaText = 'جاوب بنفسك الآن';
+    ctx.font = '800 31px "Tajawal", sans-serif';
+    const ctaWidth = Math.min(CONTENT_W, ctx.measureText(ctaText).width + 116);
+    const ctaHeight = 62;
+    roundRect(ctx, cx - ctaWidth / 2, ctaY - ctaHeight / 2, ctaWidth, ctaHeight, 31);
     ctx.fillStyle = C.navy;
     ctx.fill();
-    ctx.fillStyle = C.goldLight;
-    ctx.fillText(ctaText, cx, y + 2);
+    ctx.fillStyle = C.goldSoft;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✋  ' + ctaText, cx, ctaY + 1);
 
-    y += 62;
     const domain = window.location.host + (examEngine.basePath || '');
-    ctx.direction = 'ltr';
-    const linkText = `🔗  ${domain}`;
-    ctx.font = '700 30px Tajawal, sans-serif';
-    const linkPadX = 40;
-    const linkWidth = ctx.measureText(linkText).width + linkPadX * 2;
-    const linkHeight = 60;
-    roundRect(ctx, cx - linkWidth / 2, y - linkHeight / 2, linkWidth, linkHeight, 30);
-    ctx.fillStyle = C.navy;
+    const linkY = footerTop + 124;
+    const linkText = domain;
+    ctx.font = '700 27px "Tajawal", sans-serif';
+    const linkWidth = Math.min(CONTENT_W, ctx.measureText(linkText).width + 82);
+    roundRect(ctx, cx - linkWidth / 2, linkY - 27, linkWidth, 54, 27);
+    ctx.fillStyle = '#FFFFFF';
     ctx.fill();
     ctx.strokeStyle = C.gold;
     ctx.lineWidth = 2;
     ctx.stroke();
-    ctx.fillStyle = C.goldLight;
+    ctx.fillStyle = C.navy;
+    ctx.direction = 'ltr';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(linkText, cx, y + 2);
+    ctx.fillText('↗  ' + linkText, cx, linkY);
     ctx.direction = 'rtl';
 
-    return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+    return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.94));
   }
 
   async function shareQuestion(app) {
@@ -262,14 +324,14 @@
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
-          title: 'سؤال من منصة الاختبارات القانونية',
+          title: 'سؤال من منصة ميزان',
           text: `جرب تجاوب على هذا السؤال 👇\n${shareUrl}`
         });
       } else if (navigator.share) {
-        await navigator.share({ title: 'سؤال من منصة الاختبارات القانونية', text: shareUrl, url: shareUrl });
+        await navigator.share({ title: 'سؤال من منصة ميزان', text: shareUrl, url: shareUrl });
       } else {
         await navigator.clipboard.writeText(shareUrl);
-        alert('تم نسخ رابط السؤال (المشاركة المباشرة غير مدعومة بهذا المتصفح).');
+        alert('تم نسخ رابط السؤال (الالمشاركة المباشرة غير مدعومة بهذا المتصفح).');
       }
     } catch (err) {
       if (err.name !== 'AbortError') console.error('فشلت المشاركة:', err);
