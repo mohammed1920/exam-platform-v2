@@ -29,7 +29,11 @@ if ('serviceWorker' in navigator) {
 
   const hideInstallPrompt = () => {
     installButton.hidden = true;
-    if (iosHint) iosHint.hidden = true;
+    installButton.style.setProperty('display', 'none', 'important');
+    if (iosHint) {
+      iosHint.hidden = true;
+      iosHint.style.setProperty('display', 'none', 'important');
+    }
   };
 
   if (isInstalledMode()) {
@@ -47,6 +51,8 @@ if ('serviceWorker' in navigator) {
   const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 
   installButton.hidden = false;
+  installButton.style.removeProperty('display');
+  if (iosHint) iosHint.style.removeProperty('display');
 
   window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
