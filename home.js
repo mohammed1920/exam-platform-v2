@@ -36,7 +36,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'mizan-pulpit.js?v=1.6';
+      script.src = 'mizan-pulpit.js?v=1.7';
       script.dataset.mizanPulpitLoader = '1';
       script.onload = () => resolve(window.mizanPulpit);
       script.onerror = () => reject(new Error('تعذر تحميل منبر ميزان'));
