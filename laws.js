@@ -189,9 +189,9 @@
       }
       const preamble = data.preamble ? '<section class="law-preamble"><h2>الديباجة</h2><div>' + escapeHtml(data.preamble) + '</div></section>' : '';
       const contentsIndex = articles.length
-        ? '<nav class="law-contents-index" aria-label="فهرس المواد"><h2>فهرس المواد</h2><div class="law-contents-links">' +
-          articles.map(article => '<a href="#law-article-' + Number(article.number) + '">المادة (' +
-            Number(article.number) + ')</a>').join('') + '</div></nav>'
+        ? '<form class="law-contents-index" aria-label="الانتقال إلى مادة"><label for="law-article-number">الانتقال إلى رقم المادة</label><div class="law-contents-search"><input id="law-article-number" name="articleNumber" type="number" min="1" max="' +
+          Math.max(...articles.map(article => Number(article.number) || 0)) + '" step="1" inputmode="numeric" placeholder="اكتب رقم المادة" required><button type="submit">انتقال</button></div><p class="law-contents-status" role="status" aria-live="polite">عدد المواد: ' +
+          articles.length + '</p></form>'
         : '';
       const closing = data.closing || data.conclusion || data.epilogue;
       const closingMarkup = typeof closing === 'string' && closing.trim()
@@ -199,14 +199,21 @@
         : '';
       content.innerHTML = '<div class="laws-reading-toolbar"><strong>نص القانون</strong><span>' + articles.length + ' مادة</span></div>' +
         preamble + contentsIndex + articles.map(renderArticle).join('') + closingMarkup;
-      content.querySelectorAll('.law-contents-links a').forEach(link => {
-        link.addEventListener('click', event => {
-          const id = link.getAttribute('href');
-          const article = id ? content.querySelector(id) : null;
-          if (!article) return;
-          event.preventDefault();
-          article.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+      const contentsForm = content.querySelector('.law-contents-index');
+      contentsForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        const input = contentsForm.querySelector('input[name="articleNumber"]');
+        const status = contentsForm.querySelector('.law-contents-status');
+        const number = Number(input.value);
+        const article = articles.find(item => Number(item.number) === number);
+        if (!article) {
+          status.textContent = 'لم يُعثر على المادة رقم ' + number + ' في هذا القانون.';
+          input.setAttribute('aria-invalid', 'true');
+          return;
+        }
+        input.removeAttribute('aria-invalid');
+        status.textContent = 'تم العثور على المادة (' + number + ').';
+        content.querySelector('#law-article-' + number)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
       bindCopyButtons(content);
     }).catch(() => {
