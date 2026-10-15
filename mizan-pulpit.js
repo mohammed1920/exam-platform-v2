@@ -30,6 +30,39 @@
 
   let publishedArticlesCache = null;
 
+  function getArticleUrl(id) {
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set('article', id);
+    else url.searchParams.delete('article');
+    return url.href;
+  }
+
+  async function shareArticle(id, title) {
+    const url = getArticleUrl(id);
+    const shareData = {
+      title: title || 'مقال من منبر ميزان',
+      text: (title || 'مقال من منبر ميزان') + ' — منبر ميزان',
+      url
+    };
+
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (error) {
+        if (error?.name === 'AbortError') return;
+      }
+    }
+
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(url);
+      window.app?.showHomeNotice?.('رابط المقال', 'تم نسخ رابط المقال لمشاركته.');
+    } catch (_) {
+      window.prompt('انسخ رابط المقال لمشاركته:', url);
+    }
+  }
+
   function renderPublishedArticles(list, docs) {
     if (!docs.length) {
       list.innerHTML = '<div class="mizan-pulpit-empty"><i class="fas fa-feather-pointed"></i><strong>لم تُنشر مشاركات بعد</strong><span>كن من أوائل المساهمين في منبر ميزان.</span></div>';
@@ -116,12 +149,19 @@
     }
   }
 
-  async function openArticle(id) {
+  async function openArticle(id, options = {}) {
     const db = window.publicAuth?.firestore;
     const page = document.getElementById('mizan-article-section');
     if (!db || !page) return;
     page.innerHTML = '<div class="mizan-article-page-loading"><i class="fas fa-spinner fa-spin"></i><span>جارٍ فتح المقال...</span></div>';
-    if (window.app?.navigateTo) window.app.navigateTo('mizan-article');
+    if (window.app?.navigateTo) {
+      window.app.navigateTo('mizan-article', { articleId: id }, !options.fromUrl);
+    }
+    history.replaceState(
+      { ...(history.state || {}), view: 'mizan-article', articleId: id },
+      '',
+      getArticleUrl(id)
+    );
     try {
       const doc = await db.collection(COLLECTION).doc(id).get();
       if (!doc.exists || doc.data().status !== 'published') {
@@ -134,6 +174,7 @@
           '<div class="mizan-article-page-topbar">' +
             '<button type="button" class="mizan-article-back" data-mizan-article-back><i class="fas fa-arrow-right"></i><span>العودة إلى المشاركات</span></button>' +
             '<span class="mizan-article-page-label"><i class="fas fa-feather-pointed"></i> منبر ميزان</span>' +
+            '<button type="button" class="mizan-article-share" data-mizan-share-article="' + esc(doc.id) + '" data-article-title="' + esc(a.title || 'مقال من منبر ميزان') + '"><i class="fas fa-share-nodes"></i><span>مشاركة المقال</span></button>' +
           '</div>' +
           '<article class="mizan-article-reading">' +
             '<div class="mizan-article-reading-meta"><span>' + esc(a.type || 'مقالة قانونية') + '</span><time>' + esc(formatDate(a.publishedAt || a.createdAt)) + '</time></div>' +
@@ -320,14 +361,26 @@
   }
 
   function open() {
+    if (window.location.search.includes('article=')) {
+      history.replaceState({ ...(history.state || {}), articleId: null }, '', getArticleUrl(null));
+    }
     if (window.app?.navigateTo) window.app.navigateTo('mizan-pulpit');
     loadPublished();
+  }
+
+  function openArticleFromUrl(id) {
+    if (id) openArticle(id, { fromUrl: true });
   }
 
   function install() {
     if (initialized) return;
     initialized = true;
     document.addEventListener('click', event => {
+      const share = event.target.closest('[data-mizan-share-article]');
+      if (share) {
+        shareArticle(share.dataset.mizanShareArticle, share.dataset.articleTitle);
+        return;
+      }
       const read = event.target.closest('[data-article-id]');
       if (read) openArticle(read.dataset.articleId);
       const contributor = event.target.closest('[data-contributor-id]');
@@ -346,7 +399,7 @@
     });
     document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
-    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, openContributorProfile, getContributor };
+    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, openContributorProfile, openArticleFromUrl, getContributor };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
