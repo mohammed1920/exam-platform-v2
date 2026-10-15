@@ -161,10 +161,20 @@
       '',
       getArticleUrl(id)
     );
-    await window.publicAuth?.whenFirestoreReady?.();
-    const db = window.publicAuth?.firestore;
+    let db = window.publicAuth?.firestore;
+    if (!db && typeof window.publicAuth?.whenFirestoreReady === 'function') {
+      try {
+        await Promise.race([
+          window.publicAuth.whenFirestoreReady(),
+          new Promise((_, reject) => window.setTimeout(() => reject(new Error('Firestore initialization timed out')), 10000))
+        ]);
+      } catch (error) {
+        console.error('Mizan Firestore initialization error:', error);
+      }
+      db = window.publicAuth?.firestore;
+    }
     if (!db) {
-      page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر الاتصال بقاعدة البيانات لفتح المقال.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+      page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر الاتصال بقاعدة البيانات لفتح المقال. تحقق من الاتصال ثم أعد المحاولة.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
       page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
       return;
     }
