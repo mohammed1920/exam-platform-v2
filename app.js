@@ -21,12 +21,11 @@ class ExamApp {
     console.log('Initializing Exam App...');
     try {
       await window.publicAuth.whenReady();
-      await this.loadBooks();
       this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
 
-      // افتح المقال المشترك بعد اكتمال تهيئة التطبيق والمصادقة.
+      // افتح المقال المشترك مباشرة بعد تهيئة المصادقة، دون انتظار تحميل مكتبة الكتب.
       // ترك هذا المسار لـ home.js يسبب سباقاً مع init() الذي يعيد الواجهة للرئيسية.
       const urlParams = new URLSearchParams(window.location.search);
       const sharedArticleId = urlParams.get('article');
@@ -46,6 +45,9 @@ class ExamApp {
           this.navigateTo('home', {}, false);
         }
       }
+
+      // تحميل الكتب مطلوب لبقية أقسام المنصة، لكنه ليس شرطاً لفتح مقال مشترك.
+      await this.loadBooks();
 
       // فحص رابط مباشر (Deep Link) لسؤال محدد — مثلاً رابط ناتج من زر "مشاركة"
       // شكله: ?book=BOOK_ID&chapter=N&qid=QUESTION_ID (أو &q=N كبديل احتياطي بدون id)
