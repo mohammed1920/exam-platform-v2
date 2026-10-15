@@ -171,7 +171,8 @@
     try {
       const doc = await db.collection(COLLECTION).doc(id).get();
       if (!doc.exists || doc.data().status !== 'published') {
-        page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+        page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو لم يعد متاحاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+        page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
         return;
       }
       const a = doc.data() || {};
