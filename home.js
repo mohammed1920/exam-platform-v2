@@ -105,7 +105,7 @@
     if (!document.querySelector('link[data-mizan-laws-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'laws.css?v=1.1';
+      css.href = 'laws.css?v=1.2';
       css.dataset.mizanLawsCss = '1';
       document.head.appendChild(css);
     }
