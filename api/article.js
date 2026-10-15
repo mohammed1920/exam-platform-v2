@@ -1,0 +1,105 @@
+const FIRESTORE_PROJECT = 'iraq-law-test';
+const FIREBASE_API_KEY = 'AIzaSyDDZNWGjUfcuyXHyWtILZ06hnOWW-ZxGIM';
+const SITE_URL = 'https://www.mizan-iraq.com';
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[character]);
+}
+
+function field(fields, name) {
+  const value = fields?.[name];
+  if (!value) return '';
+  if (typeof value.stringValue === 'string') return value.stringValue;
+  if (typeof value.timestampValue === 'string') return value.timestampValue;
+  if (typeof value.integerValue === 'string') return value.integerValue;
+  if (typeof value.doubleValue === 'number') return String(value.doubleValue);
+  return '';
+}
+
+function dateLabel(value) {
+  if (!value) return '';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('ar-IQ', {
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Baghdad'
+  }).format(date);
+}
+
+function page(status, title, description, canonical, body) {
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+  return `<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${safeTitle}</title>
+<meta name="description" content="${safeDescription}">
+<meta name="robots" content="${status === 200 ? 'index,follow' : 'noindex,nofollow'}">
+<link rel="canonical" href="${escapeHtml(canonical)}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="منبر ميزان">
+<meta property="og:locale" content="ar_IQ">
+<meta property="og:title" content="${safeTitle}">
+<meta property="og:description" content="${safeDescription}">
+<meta property="og:url" content="${escapeHtml(canonical)}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="${safeTitle}">
+<meta name="twitter:description" content="${safeDescription}">
+<style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f4f6f8;color:#1d2939;font-family:Tahoma,Arial,sans-serif;line-height:1.9}.top{background:#102b46;color:#fff;padding:18px max(20px,calc((100% - 900px)/2));font-weight:700}.wrap{max-width:900px;margin:28px auto;padding:0 18px}.article{background:#fff;border:1px solid #e4e7ec;border-radius:18px;padding:clamp(22px,5vw,48px);box-shadow:0 8px 30px #1018280b}.meta{color:#667085;font-size:14px;display:flex;gap:12px;flex-wrap:wrap}h1{font-size:clamp(25px,4vw,38px);line-height:1.5;margin:14px 0 18px;color:#102b46}.excerpt{font-size:18px;color:#475467;border-right:3px solid #c59b55;padding:4px 15px;margin:20px 0}.content{white-space:pre-wrap;overflow-wrap:anywhere;font-size:17px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.actions a,.actions button{border:0;border-radius:10px;padding:11px 16px;font:inherit;text-decoration:none;cursor:pointer;background:#102b46;color:#fff}.actions a.secondary{background:#edf1f5;color:#102b46}footer{text-align:center;color:#667085;font-size:13px;padding:20px}
+</style>
+</head>
+<body>
+<header class="top"><a href="/" style="color:inherit;text-decoration:none">⚖ ميزان — منبر المقالات القانونية</a></header>
+<main class="wrap">${body}</main>
+<footer>© ميزان. المحتوى للتعلم والمعرفة القانونية ولا يغني عن الرجوع إلى المصادر الرسمية.</footer>
+</body>
+</html>`;
+}
+
+module.exports = async function handler(req, res) {
+  const rawId = req.query?.id;
+  const id = Array.isArray(rawId) ? rawId[0] : rawId;
+  if (req.method !== 'GET' || typeof id !== 'string' || !id.trim() || id.length > 512) {
+    res.setHeader('Allow', 'GET');
+    res.status(400).send('طلب غير صالح');
+    return;
+  }
+
+  const canonical = `${SITE_URL}/pulpit/${encodeURIComponent(id)}`;
+  try {
+    const endpoint = `https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents/mizanArticles/${encodeURIComponent(id)}?key=${FIREBASE_API_KEY}`;
+    const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+    if (!response.ok) {
+      res.setHeader('Cache-Control', 'no-store');
+      res.status(response.status === 404 ? 404 : 502).send(page(404, 'المقال غير متاح | ميزان', 'هذا المقال غير متاح أو غير منشور.', canonical, '<section class="article"><h1>المقال غير متاح</h1><p>قد يكون المقال غير منشور أو لم يعد متاحاً.</p><div class="actions"><a href="/">العودة إلى ميزان</a></div></section>'));
+      return;
+    }
+
+    const document = await response.json();
+    const fields = document.fields || {};
+    if (field(fields, 'status') !== 'published') {
+      res.setHeader('Cache-Control', 'no-store');
+      res.status(404).send(page(404, 'المقال غير متاح | ميزان', 'هذا المقال غير متاح أو غير منشور.', canonical, '<section class="article"><h1>المقال غير متاح</h1><p>قد يكون المقال غير منشور أو لم يعد متاحاً.</p><div class="actions"><a href="/">العودة إلى ميزان</a></div></section>'));
+      return;
+    }
+
+    const title = field(fields, 'title') || 'مقال قانوني من منبر ميزان';
+    const excerpt = field(fields, 'excerpt');
+    const content = field(fields, 'content');
+    const author = field(fields, 'authorName') || 'كاتب مساهم';
+    const type = field(fields, 'type') || 'مقالة قانونية';
+    const publishedAt = dateLabel(field(fields, 'publishedAt') || field(fields, 'createdAt'));
+    const description = (excerpt || content).replace(/\s+/g, ' ').trim().slice(0, 240) || 'مقال قانوني منشور في منبر ميزان.';
+    const body = `<article class="article"><div class="meta"><span>${escapeHtml(type)}</span>${publishedAt ? `<time>${escapeHtml(publishedAt)}</time>` : ''}<span>${escapeHtml(author)}</span></div><h1>${escapeHtml(title)}</h1>${excerpt ? `<div class="excerpt">${escapeHtml(excerpt)}</div>` : ''}<div class="content">${escapeHtml(content)}</div><div class="actions"><button type="button" id="share">مشاركة المقال</button><a class="secondary" href="/">العودة إلى ميزان</a></div></article><script>document.getElementById('share').addEventListener('click',async()=>{const data={title:document.title,text:document.title,url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('تم نسخ رابط المقال')}}catch(e){if(e.name!=='AbortError')alert('تعذرت المشاركة؛ انسخ الرابط من شريط العنوان')}});</script>`;
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+    res.status(200).send(page(200, `${title} | منبر ميزان`, description, canonical, body));
+  } catch (error) {
+    console.error('Article page render failed:', error);
+    res.setHeader('Cache-Control', 'no-store');
+    res.status(500).send(page(500, 'تعذر تحميل المقال | ميزان', 'تعذر تحميل المقال حالياً.', canonical, '<section class="article"><h1>تعذر تحميل المقال</h1><p>حاول مرة أخرى بعد قليل.</p><div class="actions"><a href="/">العودة إلى ميزان</a></div></section>'));
+  }
+};
