@@ -55,6 +55,7 @@
                 <button class="tab-btn" id="tab-btn-questions" onclick="switchTab('questions', event)">الأسئلة</button>
                 <button class="tab-btn" onclick="switchTab('spellcheck', event); loadSpellingReport();">🔤 الإملاء</button>
                 <button class="tab-btn" onclick="switchTab('qa-audit', event); loadQaReport();">🔍 الجودة</button>
+                <button class="tab-btn" onclick="switchTab('laws', event); loadLawsRegistry()">⚖️ القوانين</button>
             </nav>
 
             <section id="overview" class="tab-content active">
@@ -169,6 +170,28 @@
                 <button class="btn btn-primary admin-apply-action" id="apply-qa-btn"  onclick="guardedOp(applyQaDecisions)">
                     🚀 حفظ القرارات وتنظيف السجل
                 </button>
+            </section>
+
+            <section id="laws" class="tab-content">
+                <div class="panel">
+                    <h3>⚖️ إضافة قانون من ملف JSON</h3>
+                    <p>ارفع ملف القانون حسب الصيغة المتفق عليها، وستُستخرج بياناته الأساسية ويُضاف إلى فهرس القوانين تلقائياً. يُحفظ ملف القانون والفهرس معاً في commit واحد.</p>
+                    <div class="form-group">
+                        <label for="law-json-file">ملف القانون (.json)</label>
+                        <input id="law-json-file" type="file" accept=".json,application/json">
+                        <small class="admin-field-hint">يجب أن يحتوي الملف على id واسم القانون ومصفوفة articles، مع رقم ونص لكل مادة.</small>
+                    </div>
+                    <div id="law-import-preview" class="admin-summary" aria-live="polite">اختر ملف JSON لعرض معلوماته قبل الحفظ.</div>
+                    <div class="btn-row">
+                        <button type="button" class="btn btn-secondary" onclick="previewLawJson()">فحص الملف</button>
+                        <button type="button" class="btn btn-primary" onclick="guardedOp(importLawJson)">إضافة القانون إلى القسم</button>
+                        <button type="button" class="btn btn-secondary" onclick="loadLawsRegistry()">تحديث القائمة</button>
+                    </div>
+                </div>
+                <div class="panel">
+                    <h3>القوانين المسجلة</h3>
+                    <div id="admin-laws-list">اضغط «تحديث القائمة» لعرض القوانين المسجلة.</div>
+                </div>
             </section>
 
             <div id="batch-save-bar" class="batch-save-bar">
