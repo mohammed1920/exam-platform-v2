@@ -26,9 +26,26 @@ class ExamApp {
       this.setupEventListeners();
       this.setupHistoryListener();
 
+      // افتح المقال المشترك بعد اكتمال تهيئة التطبيق والمصادقة.
+      // ترك هذا المسار لـ home.js يسبب سباقاً مع init() الذي يعيد الواجهة للرئيسية.
+      const urlParams = new URLSearchParams(window.location.search);
+      const sharedArticleId = urlParams.get('article');
+      if (sharedArticleId) {
+        try {
+          const pulpit = await window.loadMizanPulpit?.();
+          if (!pulpit?.openArticleFromUrl) throw new Error('Mizan Pulpit is unavailable');
+          history.replaceState({ view: 'mizan-article', articleId: sharedArticleId }, '', window.location.href);
+          await pulpit.openArticleFromUrl(sharedArticleId);
+          return;
+        } catch (error) {
+          console.error('Mizan shared article initialization error:', error);
+          history.replaceState({ view: 'home' }, '', window.location.pathname);
+          this.navigateTo('home', {}, false);
+        }
+      }
+
       // فحص رابط مباشر (Deep Link) لسؤال محدد — مثلاً رابط ناتج من زر "مشاركة"
       // شكله: ?book=BOOK_ID&chapter=N&qid=QUESTION_ID (أو &q=N كبديل احتياطي بدون id)
-      const urlParams = new URLSearchParams(window.location.search);
       const deepBook = urlParams.get('book');
       const deepChapter = urlParams.get('chapter');
       if (deepBook && deepChapter) {
