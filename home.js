@@ -71,6 +71,7 @@
       return;
     }
     if (action === 'mizan-pulpit') { loadMizanPulpit().then(api => api?.open?.()).catch(() => showNotice('منبر ميزان', 'تعذر تحميل المنبر. تحقق من الاتصال ثم أعد المحاولة.')); return; }
+    if (action === 'laws') { loadLaws().then(api => api?.open?.()).catch(() => showNotice('القوانين العراقية', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.')); return; }
     if (action === 'contact') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
       return;
@@ -96,6 +97,35 @@
     }
     if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
+
+  let lawsLoadPromise = null;
+  function loadLaws() {
+    if (window.mizanLaws && typeof window.mizanLaws.open === 'function') return Promise.resolve(window.mizanLaws);
+    if (lawsLoadPromise) return lawsLoadPromise;
+    if (!document.querySelector('link[data-mizan-laws-css]')) {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'laws.css?v=1.0';
+      css.dataset.mizanLawsCss = '1';
+      document.head.appendChild(css);
+    }
+    lawsLoadPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-mizan-laws-loader]');
+      if (existing) {
+        existing.addEventListener('load', () => window.mizanLaws ? resolve(window.mizanLaws) : reject(new Error('تعذر تهيئة قسم القوانين')), { once: true });
+        existing.addEventListener('error', () => reject(new Error('تعذر تحميل قسم القوانين')), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'laws.js?v=1.0';
+      script.dataset.mizanLawsLoader = '1';
+      script.onload = () => window.mizanLaws ? resolve(window.mizanLaws) : reject(new Error('تعذر تهيئة قسم القوانين'));
+      script.onerror = () => reject(new Error('تعذر تحميل قسم القوانين'));
+      document.body.appendChild(script);
+    }).catch(error => { lawsLoadPromise = null; throw error; });
+    return lawsLoadPromise;
+  }
+  window.loadMizanLaws = loadLaws;
 
   function syncVisibility() {
     const home = document.querySelector('.platform-home');
