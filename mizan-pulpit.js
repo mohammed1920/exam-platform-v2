@@ -31,10 +31,10 @@
   let publishedArticlesCache = null;
 
   function getArticleUrl(id) {
-    const url = new URL(window.location.href);
-    if (id) url.searchParams.set('article', id);
-    else url.searchParams.delete('article');
-    return url.href;
+    const currentUrl = new URL(window.location.href);
+    if (id) return new URL('/pulpit/' + encodeURIComponent(id), currentUrl.origin).href;
+    currentUrl.searchParams.delete('article');
+    return currentUrl.href;
   }
 
   async function shareArticle(id, title) {
