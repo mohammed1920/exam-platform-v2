@@ -157,10 +157,13 @@
     if (window.app?.navigateTo) {
       window.app.navigateTo('mizan-article', { articleId: id }, !options.fromUrl);
     }
+    const articleLocation = options.fromUrl
+      ? new URL('/?article=' + encodeURIComponent(id), window.location.origin).href
+      : getArticleUrl(id);
     history.replaceState(
       { ...(history.state || {}), view: 'mizan-article', articleId: id },
       '',
-      getArticleUrl(id)
+      articleLocation
     );
     let db = window.publicAuth?.firestore;
     if (!db && typeof window.publicAuth?.whenFirestoreReady === 'function') {
