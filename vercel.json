@@ -1,5 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/pulpit/:id",
+      "destination": "/api/article?id=:id"
+    }
+  ],
   "functions": {
     "api/search-questions.js": {
       "includeFiles": "data/search-index.json"
