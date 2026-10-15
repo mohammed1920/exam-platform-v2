@@ -1277,7 +1277,25 @@
             const preview = document.getElementById('law-import-preview');
             try {
                 const parsed = await readSelectedLawFile();
-                preview.textContent = 'الملف صالح مبدئياً: ' + parsed.meta.name + ' | المعرف: ' + parsed.meta.id + ' | عدد المواد: ' + parsed.meta.articlesCount + ' | المسار: ' + parsed.meta.file;
+                const remote = await ghRequest('data/laws/laws.json');
+                const registry = JSON.parse(decode(remote.content));
+                if (!registry || !Array.isArray(registry.laws)) {
+                    throw new Error('تعذر التحقق من تكرار المعرّف: فهرس القوانين غير صالح.');
+                }
+                const existing = registry.laws.find(law =>
+                    String(law.id || '').trim().toLowerCase() === parsed.meta.id
+                );
+                if (existing) {
+                    preview.textContent = 'تحذير: الملف صالح من ناحية البنية، لكن المعرّف موجود مسبقاً (' +
+                        parsed.meta.id + ') باسم: ' + (existing.name || existing.id) +
+                        '. لن يتم الاستبدال إلا بعد تأكيد صريح عند الإضافة.';
+                    preview.classList.add('error');
+                    showAlert('المعرّف موجود مسبقاً. راجع التنبيه قبل الإضافة.', 'error');
+                    return;
+                }
+                preview.textContent = 'الملف صالح، والمعرّف غير مستخدم: ' + parsed.meta.name +
+                    ' | المعرف: ' + parsed.meta.id + ' | عدد المواد: ' +
+                    parsed.meta.articlesCount + ' | المسار: ' + parsed.meta.file;
                 preview.classList.remove('error');
             } catch (e) {
                 preview.textContent = e.message;
