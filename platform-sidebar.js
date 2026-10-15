@@ -90,6 +90,19 @@
       }
       return;
     }
+    if(action==='laws'){
+      if (typeof window.loadMizanLaws === 'function') {
+        window.loadMizanLaws()
+          .then(api => {
+            if (!api || typeof api.open !== 'function') throw new Error('تعذر تهيئة قسم القوانين');
+            api.open();
+          })
+          .catch(() => window.app?.showHomeNotice?.('القوانين العراقية','تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.'));
+      } else {
+        window.app?.showHomeNotice?.('القوانين العراقية','جارٍ تجهيز قسم القوانين، أعد المحاولة بعد لحظة.');
+      }
+      return;
+    }
     if(action==='mizan-pulpit'){
       if (typeof window.loadMizanPulpit === 'function') {
         window.loadMizanPulpit().then(api => api?.open?.()).catch(() => window.app?.showHomeNotice?.('منبر ميزان','تعذر تحميل المنبر. تحقق من الاتصال ثم أعد المحاولة.'));
