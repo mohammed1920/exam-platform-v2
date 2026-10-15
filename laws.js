@@ -60,7 +60,7 @@
           <p class="laws-subtitle">تصفح القوانين والمواد القانونية من مكان واحد</p>
         </header>
         <div class="laws-list-toolbar">
-          <div><h2>التشريعات المتاحة</h2><p>تُحمّل بيانات كل قانون عند فتحه فقط.</p></div>
+          <div><h2>التشريعات المتاحة</h2></div>
           <span class="laws-count" data-laws-count>—</span>
         </div>
         <div class="laws-list" data-laws-list><div class="laws-loading" role="status">جارٍ تحميل فهرس القوانين…</div></div>
@@ -133,7 +133,7 @@
   }
 
   function renderArticle(article) {
-    const text = Array.isArray(article.paragraphs) ? article.paragraphs.join('\n\n') : (article.text || '');
+    const text = Array.isArray(article.paragraphs) ? article.paragraphs.join('\\n\\n') : (article.text || '');
     return `
       <article class="law-article" id="law-article-${Number(article.number)}">
         <div class="law-article-heading"><span>المادة (${Number(article.number)})</span><button type="button" data-copy-article="${Number(article.number)}" aria-label="نسخ نص المادة"><i class="fas fa-copy"></i><span>نسخ</span></button></div>
@@ -147,7 +147,7 @@
       button.addEventListener('click', async () => {
         const article = currentLaw?.articles.find(item => Number(item.number) === Number(button.dataset.copyArticle));
         if (!article) return;
-        const text = 'المادة (' + article.number + ')\n' + (article.text || (article.paragraphs || []).join('\n'));
+        const text = 'المادة (' + article.number + ')\\n' + (article.text || (article.paragraphs || []).join('\\n'));
         try {
           await navigator.clipboard.writeText(text);
           button.querySelector('span').textContent = 'تم النسخ';
