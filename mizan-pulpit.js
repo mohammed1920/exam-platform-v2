@@ -150,10 +150,16 @@
   }
 
   async function openArticle(id, options = {}) {
-    const db = window.publicAuth?.firestore;
     const page = document.getElementById('mizan-article-section');
-    if (!db || !page) return;
+    if (!page) return;
     page.innerHTML = '<div class="mizan-article-page-loading"><i class="fas fa-spinner fa-spin"></i><span>جارٍ فتح المقال...</span></div>';
+    await window.publicAuth?.whenFirestoreReady?.();
+    const db = window.publicAuth?.firestore;
+    if (!db) {
+      page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر الاتصال بقاعدة البيانات لفتح المقال.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+      page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
+      return;
+    }
     if (window.app?.navigateTo) {
       window.app.navigateTo('mizan-article', { articleId: id }, !options.fromUrl);
     }
