@@ -20,15 +20,16 @@ class ExamApp {
   async init() {
     console.log('Initializing Exam App...');
     try {
-      await window.publicAuth.whenReady();
+      const urlParams = new URLSearchParams(window.location.search);
+      const sharedArticleId = urlParams.get('article');
+
+      // جهّز التنقل فوراً؛ فتح المقال العام لا يحتاج انتظار اكتمال المصادقة.
       this.loadContactInfo();
       this.setupEventListeners();
       this.setupHistoryListener();
 
-      // افتح المقال المشترك مباشرة بعد تهيئة المصادقة، دون انتظار تحميل مكتبة الكتب.
+      // افتح المقال المشترك قبل انتظار المصادقة أو تحميل مكتبة الكتب.
       // ترك هذا المسار لـ home.js يسبب سباقاً مع init() الذي يعيد الواجهة للرئيسية.
-      const urlParams = new URLSearchParams(window.location.search);
-      const sharedArticleId = urlParams.get('article');
       if (sharedArticleId) {
         try {
           if (typeof window.loadMizanPulpit !== 'function' && document.readyState === 'loading') {
@@ -46,7 +47,8 @@ class ExamApp {
         }
       }
 
-      // تحميل الكتب مطلوب لبقية أقسام المنصة، لكنه ليس شرطاً لفتح مقال مشترك.
+      // بقية أقسام المنصة تحتاج جاهزية المصادقة وتحميل الكتب.
+      await window.publicAuth.whenReady();
       await this.loadBooks();
 
       // فحص رابط مباشر (Deep Link) لسؤال محدد — مثلاً رابط ناتج من زر "مشاركة"
