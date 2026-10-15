@@ -69,6 +69,16 @@ module.exports = async function handler(req, res) {
   }
 
   const canonical = `${SITE_URL}/pulpit/${encodeURIComponent(id)}`;
+  // Human visitors go straight to the real Mizan app. Social crawlers still
+  // receive server-rendered Open Graph metadata for link previews.
+  const userAgent = String(req.headers['user-agent'] || '');
+  const isPreviewCrawler = /WhatsApp|facebookexternalhit|Facebot|Twitterbot|LinkedInBot|TelegramBot|Slackbot|Discordbot|Googlebot|bingbot|Applebot|Pinterestbot|Embedly|Quora Link Preview|vkShare|W3C_Validator/i.test(userAgent);
+  if (!isPreviewCrawler) {
+    res.setHeader('Cache-Control', 'no-store');
+    res.redirect(302, `${SITE_URL}/?article=${encodeURIComponent(id)}`);
+    return;
+  }
+
   try {
     const endpoint = `https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents/mizanArticles/${encodeURIComponent(id)}?key=${FIREBASE_API_KEY}`;
     const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
@@ -93,7 +103,7 @@ module.exports = async function handler(req, res) {
     const type = field(fields, 'type') || 'مقالة قانونية';
     const publishedAt = dateLabel(field(fields, 'publishedAt') || field(fields, 'createdAt'));
     const description = (excerpt || content).replace(/\s+/g, ' ').trim().slice(0, 240) || 'مقال قانوني منشور في منبر ميزان.';
-    const body = `<article class="article"><div class="meta"><span>${escapeHtml(type)}</span>${publishedAt ? `<time>${escapeHtml(publishedAt)}</time>` : ''}<span>${escapeHtml(author)}</span></div><h1>${escapeHtml(title)}</h1>${excerpt ? `<div class="excerpt">${escapeHtml(excerpt)}</div>` : ''}<div class="content">${escapeHtml(content)}</div><div class="actions"><button type="button" id="share">مشاركة المقال</button><a class="secondary" href="/">العودة إلى ميزان</a></div></article><script>document.getElementById('share').addEventListener('click',async()=>{const data={title:document.title,text:document.title,url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('تم نسخ رابط المقال')}}catch(e){if(e.name!=='AbortError')alert('تعذرت المشاركة؛ انسخ الرابط من شريط العنوان')}});if(location.pathname.indexOf('/pulpit/')===0){location.replace('/?article='+encodeURIComponent(${JSON.stringify(id)}));}</script>`;
+    const body = `<article class="article"><div class="meta"><span>${escapeHtml(type)}</span>${publishedAt ? `<time>${escapeHtml(publishedAt)}</time>` : ''}<span>${escapeHtml(author)}</span></div><h1>${escapeHtml(title)}</h1>${excerpt ? `<div class="excerpt">${escapeHtml(excerpt)}</div>` : ''}<div class="content">${escapeHtml(content)}</div><div class="actions"><button type="button" id="share">مشاركة المقال</button><a class="secondary" href="/">العودة إلى ميزان</a></div></article><script>document.getElementById('share').addEventListener('click',async()=>{const data={title:document.title,text:document.title,url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);alert('تم نسخ رابط المقال')}}catch(e){if(e.name!=='AbortError')alert('تعذرت المشاركة؛ انسخ الرابط من شريط العنوان')}});</script>`;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
     res.status(200).send(page(200, `${title} | منبر ميزان`, description, canonical, body));
