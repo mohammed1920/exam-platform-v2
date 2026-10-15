@@ -32,6 +32,9 @@ class ExamApp {
       const sharedArticleId = urlParams.get('article');
       if (sharedArticleId) {
         try {
+          if (typeof window.loadMizanPulpit !== 'function' && document.readyState === 'loading') {
+            await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+          }
           const pulpit = await window.loadMizanPulpit?.();
           if (!pulpit?.openArticleFromUrl) throw new Error('Mizan Pulpit is unavailable');
           history.replaceState({ view: 'mizan-article', articleId: sharedArticleId }, '', window.location.href);
