@@ -179,7 +179,13 @@
       return;
     }
     try {
-      const doc = await db.collection(COLLECTION).doc(id).get();
+      let timeoutId;
+      const doc = await Promise.race([
+        db.collection(COLLECTION).doc(id).get(),
+        new Promise((_, reject) => {
+          timeoutId = window.setTimeout(() => reject(new Error('Article read timed out')), 15000);
+        })
+      ]).finally(() => window.clearTimeout(timeoutId));
       if (!doc.exists || doc.data().status !== 'published') {
         page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو لم يعد متاحاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
         page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
@@ -386,7 +392,7 @@
   }
 
   function openArticleFromUrl(id) {
-    if (id) openArticle(id, { fromUrl: true });
+    if (id) return openArticle(id, { fromUrl: true });
   }
 
   function install() {
