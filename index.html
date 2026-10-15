@@ -113,11 +113,11 @@
           <span>اختبارات المعهد القضائي</span>
           <b>قادم قريباً</b>
         </div>
-        <div class="home-coming-soon" aria-label="القوانين العراقية - قادم قريباً">
+        <button type="button" class="home-coming-soon home-laws-entry" data-home-action="laws" aria-label="فتح القوانين العراقية">
           <i class="fas fa-scale-balanced" aria-hidden="true"></i>
           <span>القوانين العراقية</span>
-          <b>قادم قريباً</b>
-        </div>
+          <b>تصفح القوانين ←</b>
+        </button>
         <div class="home-coming-soon" aria-label="إجراءات الدعاوى - قادم قريباً">
           <i class="fas fa-file-signature" aria-hidden="true"></i>
           <span>إجراءات الدعاوى</span>
@@ -206,6 +206,7 @@
     </div>
         </section>
     <section id="petitions-section" class="view-section"></section>
+    <section id="laws-section" class="view-section laws-section" aria-label="القوانين العراقية"></section>
     <section id="books-section" class="view-section"><button class="custom-exam-entry-btn" id="custom-exam-entry-btn">🎲 اختبار عشوائي شامل</button><div class="books-grid" id="books-container"></div></section>
     <section id="custom-exam-setup-section" class="view-section"><button class="back-btn" id="custom-exam-back-btn"><i class="fas fa-arrow-right"></i> العودة للكتب</button><h2 class="custom-exam-title">🎲 اختبار عشوائي شامل</h2><p class="custom-exam-desc">اختر الكتب اللي تريد تختبر نفسك فيها، وحدد عدد الأسئلة.</p><div id="custom-exam-books-list" class="custom-exam-books-list"></div><div class="custom-exam-count-row"><label for="custom-exam-count">عدد الأسئلة</label><input type="number" id="custom-exam-count" min="1" value="20"></div><button class="custom-exam-start-btn" id="custom-exam-start-btn">🚀 ابدأ الاختبار</button></section>
     <section id="chapters-section" class="view-section"><button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button><div id="chapters-header" class="chapters-header"></div><div class="chapters-list" id="chapters-container"></div></section>
