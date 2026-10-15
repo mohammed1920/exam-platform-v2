@@ -912,8 +912,14 @@
       ]
     },
     "law_execution": {
-      "questionCount": 0,
-      "chapters": []
+      "questionCount": 100,
+      "chapters": [
+        {
+          "number": 2,
+          "title": "أسئلة قانون التنفيذ",
+          "questionCount": 100
+        }
+      ]
     }
   }
 }
