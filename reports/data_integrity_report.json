@@ -1,11 +1,16 @@
 {
-  "generated_at": "2026-10-09T23:03:41+00:00",
+  "generated_at": "2026-10-15T12:20:53+00:00",
   "summary": {
     "books": 11,
     "questions": 14929,
-    "issues": 16
+    "issues": 17
   },
   "items": [
+    {
+      "type": "orphan_book_folder",
+      "book_id": "laws",
+      "message": "مجلد بيانات غير موجود في books.json؛ لا يُحذف تلقائياً."
+    },
     {
       "type": "too_few_options",
       "book_id": "law_international_humanitarian",
