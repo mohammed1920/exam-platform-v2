@@ -961,7 +961,9 @@
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
-                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيُستخدم اسم الفصل الموجود داخل الملف أو الاسم الافتراضي.</small></div>
+                    <div class="form-group"><label for="m-chapter-json">ملف الفصل (JSON — اختياري)</label><input id="m-chapter-json" type="file" accept=".json,application/json" onchange="previewChapterJson()"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا لم تختر ملفًا، سيُنشأ فصل فارغ كما في السابق.</small></div>
+                    <div id="m-chapter-preview" class="admin-summary" aria-live="polite">يمكنك إنشاء فصل فارغ أو اختيار ملف JSON جاهز.</div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
             } else if (type === 'editChapter') {
                 const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
@@ -1082,6 +1084,47 @@
             } catch (e) { showAlert('فشلت إضافة الكتاب: ' + e.message, 'error'); }
         }
 
+        async function readChapterJsonFile() {
+            const input = document.getElementById('m-chapter-json');
+            const file = input?.files?.[0];
+            if (!file) return null;
+            if (!file.name.toLowerCase().endsWith('.json')) throw new Error('اختر ملف فصل بامتداد .json.');
+            if (file.size > 5 * 1024 * 1024) throw new Error('حجم ملف الفصل يجب ألا يتجاوز 5 ميغابايت.');
+            let data;
+            try { data = JSON.parse(await file.text()); }
+            catch { throw new Error('ملف الفصل ليس JSON صالحاً.'); }
+            if (Array.isArray(data)) data = { questions: data };
+            if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('يجب أن يكون ملف الفصل كائناً يحتوي على questions أو مصفوفة أسئلة مباشرة.');
+            const questions = data.questions;
+            if (!Array.isArray(questions) || questions.length === 0) throw new Error('يجب أن يحتوي ملف الفصل على مصفوفة questions غير فارغة.');
+            questions.forEach((q, i) => {
+                if (!q || typeof q !== 'object' || Array.isArray(q)) throw new Error('صيغة السؤال رقم ' + (i + 1) + ' غير صحيحة.');
+                const question = String(q.question ?? q.q ?? '').trim();
+                const options = q.options ?? q.opts;
+                const answerRaw = q.answer ?? q.ans ?? q.correct;
+                const answer = Number(answerRaw);
+                if (!question) throw new Error('نص السؤال رقم ' + (i + 1) + ' فارغ.');
+                if (!Array.isArray(options) || options.length < 2 || options.some(option => !String(option ?? '').trim())) throw new Error('خيارات السؤال رقم ' + (i + 1) + ' غير مكتملة.');
+                if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) throw new Error('رقم الإجابة الصحيحة للسؤال رقم ' + (i + 1) + ' غير صالح؛ يجب أن يكون صفراً-based (يبدأ من 0).');
+            });
+            return { data, fileName: file.name, questionCount: questions.length };
+        }
+
+        async function previewChapterJson() {
+            const preview = document.getElementById('m-chapter-preview');
+            if (!preview) return;
+            try {
+                const parsed = await readChapterJsonFile();
+                preview.textContent = parsed
+                    ? 'الملف صالح مبدئياً: ' + parsed.fileName + ' | عدد الأسئلة: ' + parsed.questionCount
+                    : 'يمكنك إنشاء فصل فارغ أو اختيار ملف JSON جاهز.';
+                preview.classList.remove('error');
+            } catch (e) {
+                preview.textContent = e.message;
+                preview.classList.add('error');
+            }
+        }
+
         async function saveChapter() {
             const title = document.getElementById('m-title').value.trim();
             if (!currentBook) { showAlert('لم يتم اختيار كتاب', 'error'); return; }
@@ -1095,11 +1138,35 @@
                     if (ch) ch.title = title || `الفصل ${editingChapterNum}`;
                     showAlert(title ? 'تم تعديل اسم الموضوع بنجاح' : 'تم إلغاء الاسم المخصص، وسيظهر الاسم الافتراضي');
                 } else {
+                    const imported = await readChapterJsonFile();
                     const maxNum = bookChapterFiles.length ? Math.max(...bookChapterFiles.map(c => c.num)) : 0;
                     const newNum = maxNum + 1;
-                    const newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title: title || `الفصل ${newNum}`, description: '', questions: [] };
-                    await commitFiles([{ path: `data/${currentBook.id}/chapter_${newNum}.json`, content: JSON.stringify(newChapter, null, 2) }], title ? `إضافة فصل ${newNum}: ${title}` : `إضافة فصل ${newNum}`);
-                    showAlert(`تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائيًا.`);
+                    const chapterTitle = title || String(imported?.data?.title || imported?.data?.topic || '').trim() || `الفصل ${newNum}`;
+                    let newChapter;
+                    if (imported) {
+                        const source = imported.data;
+                        const sourceQuestions = Array.isArray(source.questions) ? source.questions : source;
+                        newChapter = {
+                            ...source,
+                            id: `${currentBook.id}_ch${newNum}`,
+                            book_id: currentBook.id,
+                            chapter: newNum,
+                            title: chapterTitle,
+                            questions: sourceQuestions.map((q, index) => {
+                                const options = q.options ?? q.opts;
+                                const answer = Number(q.answer ?? q.ans ?? q.correct);
+                                const question = String(q.question ?? q.q).trim();
+                                const normalized = { ...q, id: q.id || `${currentBook.id}_ch${newNum}_q${index + 1}`, uid: q.uid || createQuestionUid(), question, options, answer, explanation: String(q.explanation || '') };
+                                delete normalized.q; delete normalized.opts; delete normalized.ans; delete normalized.correct;
+                                return normalized;
+                            })
+                        };
+                    } else {
+                        newChapter = { id: `${currentBook.id}_ch${newNum}`, book_id: currentBook.id, chapter: newNum, title: chapterTitle, description: '', questions: [] };
+                    }
+                    const targetPath = `data/${currentBook.id}/chapter_${newNum}.json`;
+                    await commitFiles([{ path: targetPath, content: JSON.stringify(newChapter, null, 2) }], imported ? `استيراد فصل ${newNum} من ملف JSON: ${chapterTitle}` : (title ? `إضافة فصل ${newNum}: ${title}` : `إضافة فصل ${newNum}`));
+                    showAlert(imported ? `تم استيراد الفصل بنجاح: ${targetPath} | ${newChapter.questions.length} سؤال. سيتم تحديث الفهارس تلقائياً.` : `تمت إضافة الفصل بنجاح (chapter_${newNum}.json). سيتم تحديث عدد الفصول تلقائيًا.`);
                 }
                 closeModal();
                 await loadBookChapters();
