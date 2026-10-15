@@ -24,7 +24,7 @@
     if (!document.querySelector('link[data-mizan-pulpit-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'mizan-pulpit.css?v=3.2';
+      css.href = 'mizan-pulpit.css?v=3.3';
       css.dataset.mizanPulpitCss = '1';
       document.head.appendChild(css);
     }
@@ -36,7 +36,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'mizan-pulpit.js?v=1.2';
+      script.src = 'mizan-pulpit.js?v=1.3';
       script.dataset.mizanPulpitLoader = '1';
       script.onload = () => resolve(window.mizanPulpit);
       script.onerror = () => reject(new Error('تعذر تحميل منبر ميزان'));
@@ -46,6 +46,20 @@
   }
 
   window.loadMizanPulpit = loadMizanPulpit;
+
+  function openArticleFromSharedUrl() {
+    const articleId = new URLSearchParams(window.location.search).get('article');
+    if (!articleId) return;
+    loadMizanPulpit()
+      .then(api => api?.openArticleFromUrl?.(articleId))
+      .catch(() => showNotice('منبر ميزان', 'تعذر فتح رابط المقال. تحقق من الاتصال ثم أعد المحاولة.'));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openArticleFromSharedUrl, { once: true });
+  } else {
+    openArticleFromSharedUrl();
+  }
 
   function run(action) {
     if (action === 'books') {
