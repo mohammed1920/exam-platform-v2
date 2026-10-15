@@ -47,20 +47,6 @@
 
   window.loadMizanPulpit = loadMizanPulpit;
 
-  function openArticleFromSharedUrl() {
-    const articleId = new URLSearchParams(window.location.search).get('article');
-    if (!articleId) return;
-    loadMizanPulpit()
-      .then(api => api?.openArticleFromUrl?.(articleId))
-      .catch(() => showNotice('منبر ميزان', 'تعذر فتح رابط المقال. تحقق من الاتصال ثم أعد المحاولة.'));
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', openArticleFromSharedUrl, { once: true });
-  } else {
-    openArticleFromSharedUrl();
-  }
-
   function run(action) {
     if (action === 'books') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('books');
