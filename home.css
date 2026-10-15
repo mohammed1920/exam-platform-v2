@@ -1187,3 +1187,20 @@ html[data-theme="light"] .home-category-card[data-home-action]:hover{
   .home-category-card{min-height:160px;padding:var(--mizan-space-4)}
   .home-resume-card{padding:var(--mizan-space-5)}
 }
+
+
+/* تفعيل بطاقة القوانين الحالية مع الحفاظ على تصميم الأقسام القادمة. */
+button.home-coming-soon{
+  width:100%;
+  font:inherit;
+  text-align:right;
+  color:inherit;
+  cursor:pointer;
+}
+.home-laws-entry b{
+  color:var(--mizan-primary-700);
+}
+.home-laws-entry:hover{
+  border-color:var(--mizan-primary-500);
+  box-shadow:var(--mizan-shadow-card-raised);
+}
