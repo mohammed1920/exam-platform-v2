@@ -1216,6 +1216,7 @@ class ExamApp {
       } else if (
         view === 'lawyers' ||
         view === 'petitions' ||
+        view === 'laws' ||
         view === 'contact' ||
         view === 'about' ||
         view === 'terms' ||
