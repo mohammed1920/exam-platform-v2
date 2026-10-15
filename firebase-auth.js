@@ -205,6 +205,7 @@
     get user() { return state.user; },
     get ready() { return state.ready; },
     whenReady: () => state.readyPromise,
+    whenFirestoreReady: () => firestoreReady,
     requireAuth,
     openLogin: openModal,
     closeLogin: closeModal,
