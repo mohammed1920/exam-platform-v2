@@ -913,13 +913,7 @@
     },
     "law_execution": {
       "questionCount": 0,
-      "chapters": [
-        {
-          "number": 1,
-          "title": "الفصل الاول",
-          "questionCount": 0
-        }
-      ]
+      "chapters": []
     }
   }
 }
