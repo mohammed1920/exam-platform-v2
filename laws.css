@@ -45,9 +45,16 @@ button.laws-choice-card{cursor:pointer}
 .law-article-heading>span{font-weight:900;font-size:18px;color:var(--mizan-primary-700,#1d4ed8)}
 .law-article-heading button{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:9px;background:transparent;color:var(--mizan-primary-700,#1d4ed8);font:inherit;font-size:12px;font-weight:800;cursor:pointer}
 .law-article h3{margin:0 0 10px;font-size:15px}
-.laws-structure{display:grid;gap:8px;margin:12px 0}
-.laws-structure-item{display:grid;gap:4px;padding:12px;border-radius:12px;background:var(--mizan-surface,var(--mizan-neutral-50));border:1px solid var(--mizan-border,var(--mizan-neutral-200))}
-.laws-structure-item small{color:var(--mizan-muted,var(--mizan-neutral-500));font-size:12px}
+.laws-structure{display:grid;gap:18px;margin:14px 0}
+.laws-book-group{min-width:0}
+.laws-book-title{margin:22px 0 12px;padding:13px 15px;border-right:4px solid var(--mizan-primary-600,#2563eb);border-radius:10px;background:var(--mizan-surface,var(--mizan-neutral-50));color:var(--mizan-heading);font-size:18px;line-height:1.8;overflow-wrap:anywhere}
+.laws-section-group{min-width:0;margin:12px 0 20px}
+.laws-section-title{margin:0 0 10px;padding:10px 12px;border-bottom:1px solid var(--mizan-border,var(--mizan-neutral-200));color:var(--mizan-primary-700,#1d4ed8);font-size:16px;line-height:1.85;overflow-wrap:anywhere}
+.laws-section-articles{min-width:0}
+.laws-section-articles .law-article{margin:10px 0}
+.laws-unassigned-group{margin-top:18px}
+html[data-theme="dark"] .laws-book-title{background:var(--mizan-surface,var(--mizan-neutral-800));color:var(--mizan-text,var(--mizan-neutral-100))}
+html[data-theme="dark"] .laws-section-title{color:var(--mizan-primary-300,#93c5fd)}
 html[data-theme="dark"] .laws-section{color:var(--mizan-text,var(--mizan-neutral-100))}
 html[data-theme="light"] .laws-section{color:var(--mizan-text-light,var(--mizan-heading))}
 html[data-theme="light"] .laws-card,html[data-theme="light"] .laws-choice-card,html[data-theme="light"] .law-preamble,html[data-theme="light"] .law-article,html[data-theme="light"] .laws-empty-state,html[data-theme="light"] .laws-error,html[data-theme="light"] .laws-loading{background:var(--mizan-white,#fff);color:var(--mizan-text-light,var(--mizan-heading))}
