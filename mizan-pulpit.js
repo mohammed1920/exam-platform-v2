@@ -34,6 +34,7 @@
     const currentUrl = new URL(window.location.href);
     if (id) return new URL('/pulpit/' + encodeURIComponent(id), currentUrl.origin).href;
     currentUrl.searchParams.delete('article');
+    if (/^\/pulpit\/[^/]+\/?$/.test(currentUrl.pathname)) currentUrl.pathname = '/';
     return currentUrl.href;
   }
 
