@@ -1162,6 +1162,25 @@ class ExamApp {
         this.currentBook = null;
         this.currentChapter = null;
         this.navigateTo('home', {}, false);
+      } else if (view === 'mizan-pulpit') {
+        this.navigateTo('mizan-pulpit', {}, false);
+        if (typeof window.loadMizanPulpit === 'function') {
+          window.loadMizanPulpit().then(api => api?.loadPublished?.()).catch(() => {});
+        }
+      } else if (view === 'mizan-article') {
+        const articleId = state.articleId || new URLSearchParams(window.location.search).get('article');
+        if (!articleId) {
+          this.navigateTo('mizan-pulpit', {}, false);
+          if (typeof window.loadMizanPulpit === 'function') {
+            window.loadMizanPulpit().then(api => api?.loadPublished?.()).catch(() => {});
+          }
+        } else if (typeof window.loadMizanPulpit === 'function') {
+          window.loadMizanPulpit().then(api => api?.openArticleFromUrl?.(articleId)).catch(() => {
+            this.navigateTo('home', {}, false);
+          });
+        } else {
+          this.navigateTo('home', {}, false);
+        }
       } else if (view === 'books') {
         this.currentBook = null;
         this.currentChapter = null;
