@@ -385,8 +385,8 @@
   }
 
   function open() {
-    if (window.location.search.includes('article=')) {
-      history.replaceState({ ...(history.state || {}), articleId: null }, '', getArticleUrl(null));
+    if (window.location.search.includes('article=') || /^\/pulpit\/[^/]+\/?$/.test(window.location.pathname)) {
+      history.replaceState({ ...(history.state || {}), articleId: null, view: 'mizan-pulpit' }, '', getArticleUrl(null));
     }
     if (window.app?.navigateTo) window.app.navigateTo('mizan-pulpit');
     loadPublished();
