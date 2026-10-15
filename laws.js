@@ -188,42 +188,26 @@
         return;
       }
       const preamble = data.preamble ? '<section class="law-preamble"><h2>الديباجة</h2><div>' + escapeHtml(data.preamble) + '</div></section>' : '';
-      const articleByNumber = new Map(articles.map(article => [Number(article.number), article]));
-      const renderedNumbers = new Set();
-      const renderSectionArticles = numbers => {
-        if (!Array.isArray(numbers)) return '';
-        return numbers.map(number => {
-          const key = Number(number);
-          const article = articleByNumber.get(key);
-          if (!article || renderedNumbers.has(key)) return '';
-          renderedNumbers.add(key);
-          return renderArticle(article);
-        }).join('');
-      };
-      let structure = '';
-      if (Array.isArray(data.chapters) && data.chapters.length) {
-        structure = '<div class="laws-structure">' + data.chapters.map(chapter => {
-          const sections = Array.isArray(chapter.sections) ? chapter.sections : [];
-          const chapterArticles = Array.isArray(chapter.articles) ? renderSectionArticles(chapter.articles) : '';
-          const sectionMarkup = sections.map(section => {
-            const sectionArticles = renderSectionArticles(section.articles);
-            if (!sectionArticles) return '';
-            return '<section class="laws-section-group"><h3 class="laws-section-title">' +
-              escapeHtml(section.title || 'مواد الفصل') + '</h3><div class="laws-section-articles">' +
-              sectionArticles + '</div></section>';
-          }).join('');
-          if (!chapterArticles && !sectionMarkup) return '';
-          return '<section class="laws-book-group">' +
-            (chapter.title ? '<h2 class="laws-book-title">' + escapeHtml(chapter.title) + '</h2>' : '') +
-            chapterArticles + sectionMarkup + '</section>';
-        }).join('') + '</div>';
-      }
-      const unassigned = articles.filter(article => !renderedNumbers.has(Number(article.number)));
-      const unassignedMarkup = unassigned.length
-        ? '<section class="laws-section-group laws-unassigned-group"><h3 class="laws-section-title">مواد غير مصنفة</h3><div class="laws-section-articles">' + unassigned.map(renderArticle).join('') + '</div></section>'
+      const contentsIndex = articles.length
+        ? '<nav class="law-contents-index" aria-label="فهرس المواد"><h2>فهرس المواد</h2><div class="law-contents-links">' +
+          articles.map(article => '<a href="#law-article-' + Number(article.number) + '">المادة (' +
+            Number(article.number) + ')</a>').join('') + '</div></nav>'
+        : '';
+      const closing = data.closing || data.conclusion || data.epilogue;
+      const closingMarkup = typeof closing === 'string' && closing.trim()
+        ? '<section class="law-closing"><h2>الخاتمة</h2><div>' + escapeHtml(closing) + '</div></section>'
         : '';
       content.innerHTML = '<div class="laws-reading-toolbar"><strong>نص القانون</strong><span>' + articles.length + ' مادة</span></div>' +
-        preamble + structure + unassignedMarkup;
+        preamble + contentsIndex + articles.map(renderArticle).join('') + closingMarkup;
+      content.querySelectorAll('.law-contents-links a').forEach(link => {
+        link.addEventListener('click', event => {
+          const id = link.getAttribute('href');
+          const article = id ? content.querySelector(id) : null;
+          if (!article) return;
+          event.preventDefault();
+          article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
       bindCopyButtons(content);
     }).catch(() => {
       content.innerHTML = '<div class="laws-error" role="alert">تعذر تحميل ملف هذا القانون. تحقق من مسار ملف JSON وصحة تنسيقه.</div>';
