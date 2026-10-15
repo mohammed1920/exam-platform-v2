@@ -1237,8 +1237,6 @@
 
 
         // ===== استيراد القوانين من ملفات JSON =====
-        let selectedLawFileData = null;
-
         function validateLawJson(data) {
             if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('محتوى JSON يجب أن يكون كائناً.');
             const id = String(data.id || '').trim().toLowerCase();
@@ -1249,7 +1247,7 @@
             const numbers = new Set();
             for (const [index, article] of data.articles.entries()) {
                 const number = Number(article?.number);
-                const text = String(article?.text || (Array.isArray(article?.paragraphs) ? article.paragraphs.join('\\n') : '')).trim();
+                const text = String(article?.text || (Array.isArray(article?.paragraphs) ? article.paragraphs.join('\n') : '')).trim();
                 if (!Number.isInteger(number) || number < 1) throw new Error('رقم المادة غير صالح عند ترتيب المادة ' + (index + 1) + '.');
                 if (numbers.has(number)) throw new Error('رقم المادة (' + number + ') مكرر داخل الملف.');
                 if (!text) throw new Error('نص المادة (' + number + ') فارغ.');
@@ -1279,11 +1277,9 @@
             const preview = document.getElementById('law-import-preview');
             try {
                 const parsed = await readSelectedLawFile();
-                selectedLawFileData = parsed.data;
                 preview.textContent = 'الملف صالح مبدئياً: ' + parsed.meta.name + ' | المعرف: ' + parsed.meta.id + ' | عدد المواد: ' + parsed.meta.articlesCount + ' | المسار: ' + parsed.meta.file;
                 preview.classList.remove('error');
             } catch (e) {
-                selectedLawFileData = null;
                 preview.textContent = e.message;
                 preview.classList.add('error');
                 showAlert('تعذر فحص ملف القانون: ' + e.message, 'error');
@@ -1323,7 +1319,6 @@
                     { path: meta.file, content: JSON.stringify(normalizedLaw, null, 2) },
                     { path: 'data/laws/laws.json', content: JSON.stringify(nextRegistry, null, 2) }
                 ], 'إضافة/تحديث قانون من لوحة الإدارة: ' + meta.name);
-                selectedLawFileData = normalizedLaw;
                 preview.textContent = 'تم الحفظ بنجاح: ' + meta.name + ' | ' + meta.articlesCount + ' مادة. سيظهر القانون في قسم القوانين بعد نشر التحديث.';
                 preview.classList.remove('error');
                 const input = document.getElementById('law-json-file');
