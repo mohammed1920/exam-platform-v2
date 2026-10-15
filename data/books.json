@@ -93,5 +93,13 @@
     "description": "",
     "icon": "penSignature",
     "chapters": 14
+  },
+  {
+    "id": "law_execution",
+    "title": "قانون التنفيذ",
+    "author": "مستشار",
+    "description": "",
+    "icon": "stamp",
+    "chapters": 0
   }
 ]
