@@ -1235,6 +1235,108 @@
             }
         }
 
+
+        // ===== استيراد القوانين من ملفات JSON =====
+        let selectedLawFileData = null;
+
+        function validateLawJson(data) {
+            if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('محتوى JSON يجب أن يكون كائناً.');
+            const id = String(data.id || '').trim().toLowerCase();
+            if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) throw new Error('المعرف id مطلوب، ويجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطة أو underscore فقط.');
+            const name = String(data.name || data.title || '').trim();
+            if (!name) throw new Error('اسم القانون مفقود. أضف name أو title إلى الملف.');
+            if (!Array.isArray(data.articles) || data.articles.length === 0) throw new Error('يجب أن يحتوي الملف على مصفوفة articles غير فارغة.');
+            const numbers = new Set();
+            for (const [index, article] of data.articles.entries()) {
+                const number = Number(article?.number);
+                const text = String(article?.text || (Array.isArray(article?.paragraphs) ? article.paragraphs.join('\\n') : '')).trim();
+                if (!Number.isInteger(number) || number < 1) throw new Error('رقم المادة غير صالح عند ترتيب المادة ' + (index + 1) + '.');
+                if (numbers.has(number)) throw new Error('رقم المادة (' + number + ') مكرر داخل الملف.');
+                if (!text) throw new Error('نص المادة (' + number + ') فارغ.');
+                numbers.add(number);
+            }
+            return {
+                id, name,
+                category: String(data.category || 'تشريع عراقي').trim(),
+                description: String(data.description || (data.source ? 'المصدر: ' + data.source + '. يُرجى مراجعة النص الأصلي عند الاستشهاد القانوني.' : 'نص قانوني عراقي؛ يُرجى مراجعة المصدر الرسمي عند الاستشهاد القانوني.')).trim(),
+                articlesCount: data.articles.length,
+                file: 'data/laws/' + id + '.json'
+            };
+        }
+
+        async function readSelectedLawFile() {
+            const input = document.getElementById('law-json-file');
+            const file = input?.files?.[0];
+            if (!file) throw new Error('اختر ملف القانون بصيغة JSON أولاً.');
+            if (!file.name.toLowerCase().endsWith('.json')) throw new Error('الملف المختار يجب أن يكون بامتداد .json.');
+            let data;
+            try { data = JSON.parse(await file.text()); }
+            catch { throw new Error('الملف ليس JSON صالحاً.'); }
+            return { data, meta: validateLawJson(data), fileName: file.name };
+        }
+
+        async function previewLawJson() {
+            const preview = document.getElementById('law-import-preview');
+            try {
+                const parsed = await readSelectedLawFile();
+                selectedLawFileData = parsed.data;
+                preview.textContent = 'الملف صالح مبدئياً: ' + parsed.meta.name + ' | المعرف: ' + parsed.meta.id + ' | عدد المواد: ' + parsed.meta.articlesCount + ' | المسار: ' + parsed.meta.file;
+                preview.classList.remove('error');
+            } catch (e) {
+                selectedLawFileData = null;
+                preview.textContent = e.message;
+                preview.classList.add('error');
+                showAlert('تعذر فحص ملف القانون: ' + e.message, 'error');
+            }
+        }
+
+        async function loadLawsRegistry() {
+            const list = document.getElementById('admin-laws-list');
+            if (!list) return;
+            list.textContent = 'جارٍ تحميل فهرس القوانين...';
+            try {
+                const remote = await ghRequest('data/laws/laws.json');
+                const registry = JSON.parse(decode(remote.content));
+                if (!Array.isArray(registry.laws)) throw new Error('تنسيق فهرس القوانين غير صحيح.');
+                list.innerHTML = registry.laws.length ? registry.laws.map(law =>
+                    '<div class="item-card"><div class="item-card-header"><div class="item-card-title">' + escapeHtml(law.name || law.id) + '</div><span>' + Number(law.articlesCount || 0) + ' مادة</span></div><div style="font-size:12px;color:var(--text-dim);">' + escapeHtml(law.id) + ' · ' + escapeHtml(law.file) + '</div></div>'
+                ).join('') : '<p class="empty-hint">لا توجد قوانين مسجلة.</p>';
+            } catch (e) { list.textContent = 'تعذر تحميل القائمة: ' + e.message; }
+        }
+
+        async function importLawJson() {
+            const preview = document.getElementById('law-import-preview');
+            try {
+                const parsed = await readSelectedLawFile();
+                const { data, meta } = parsed;
+                if (!confirm('سيتم إضافة القانون «' + meta.name + '» (' + meta.articlesCount + ' مادة) إلى ' + meta.file + ' وتحديث فهرس القوانين. هل تريد المتابعة؟')) return;
+                const registryRemote = await ghRequest('data/laws/laws.json');
+                const registry = JSON.parse(decode(registryRemote.content));
+                if (!registry || !Array.isArray(registry.laws)) throw new Error('فهرس القوانين غير صالح؛ لم يتم حفظ أي تغيير.');
+                const existingIndex = registry.laws.findIndex(law => law.id === meta.id);
+                if (existingIndex >= 0 && !confirm('يوجد قانون مسجل بنفس المعرف (' + meta.id + '). سيتم استبدال ملفه وتحديث بياناته. هل أنت متأكد؟')) return;
+                const nextRegistry = { ...registry, schemaVersion: Number(registry.schemaVersion) || 1, laws: [...registry.laws] };
+                if (existingIndex >= 0) nextRegistry.laws[existingIndex] = meta;
+                else nextRegistry.laws.push(meta);
+                const normalizedLaw = { ...data, id: meta.id, name: meta.name };
+                await commitFiles([
+                    { path: meta.file, content: JSON.stringify(normalizedLaw, null, 2) },
+                    { path: 'data/laws/laws.json', content: JSON.stringify(nextRegistry, null, 2) }
+                ], 'إضافة/تحديث قانون من لوحة الإدارة: ' + meta.name);
+                selectedLawFileData = normalizedLaw;
+                preview.textContent = 'تم الحفظ بنجاح: ' + meta.name + ' | ' + meta.articlesCount + ' مادة. سيظهر القانون في قسم القوانين بعد نشر التحديث.';
+                preview.classList.remove('error');
+                const input = document.getElementById('law-json-file');
+                if (input) input.value = '';
+                await loadLawsRegistry();
+                showAlert('تم حفظ ملف القانون وتحديث فهرس القوانين بنجاح.');
+            } catch (e) {
+                preview.textContent = 'فشل استيراد القانون: ' + e.message;
+                preview.classList.add('error');
+                showAlert('فشل استيراد القانون: ' + e.message, 'error');
+            }
+        }
+
         window.onload = () => {
             if (config.token) loadBooks();
             else openSettings();
