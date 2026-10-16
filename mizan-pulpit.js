@@ -278,7 +278,7 @@
             '<h1>' + esc(a.title || 'مشاركة قانونية') + '</h1>' +
             '<button type="button" class="mizan-article-reading-author" data-contributor-id="' + esc(a.authorUid || '') + '"' + (a.authorUid ? '' : ' disabled') + ' aria-label="عرض بروفايل المساهم"><div class="mizan-article-reading-avatar"><i class="fas fa-user-tie"></i></div><div><strong>' + esc(a.authorName || 'كاتب مساهم') + '</strong><span>' + esc(a.authorTitle || 'مساهم في منبر ميزان') + '</span></div><i class="fas fa-chevron-left mizan-author-profile-arrow"></i></button>' +
             (a.excerpt ? '<div class="mizan-article-reading-excerpt">' + esc(a.excerpt) + '</div>' : '') +
-            '<div class="mizan-article-reading-content">' + esc(a.content || '').replace(/\n/g, '<br>') + '</div>' +
+            '<div class="mizan-article-reading-content">' + sanitizeArticleHtml(a.content || '') + '</div>' +
             '<div class="mizan-article-reading-footer"><span>نُشر في منبر ميزان</span><button type="button" class="mizan-article-back" data-mizan-article-back><i class="fas fa-arrow-right"></i> العودة إلى المشاركات</button></div>' +
           '</article>' +
         '</div>';
