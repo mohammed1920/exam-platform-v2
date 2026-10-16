@@ -7,6 +7,14 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
   const ARTICLE_TAGS = new Set(['P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
   const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9']);
+  function normalizeArticleColor(raw) {
+    const value = String(raw || '').trim().toLowerCase();
+    if (ARTICLE_COLORS.has(value)) return value;
+    const rgb = value.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/);
+    if (!rgb) return '';
+    const hex = '#'+rgb.slice(1).map(part => Math.max(0, Math.min(255, Number(part))).toString(16).padStart(2,'0')).join('');
+    return ARTICLE_COLORS.has(hex) ? hex : '';
+  }
   function sanitizeArticleHtml(value) {
     const input = String(value ?? '');
     if (!input.includes('<')) return esc(input).replace(/\r?\n/g, '<br>');
@@ -21,12 +29,14 @@
       if (!ARTICLE_TAGS.has(tag)) return children;
       const el = document.createElement(tag.toLowerCase());
       if (node.hasAttribute('style')) {
-        const colorMatch = node.getAttribute('style').match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i);
-        const color = colorMatch?.[1]?.toLowerCase();
-        if (color && ARTICLE_COLORS.has(color)) el.style.color = color;
-        const bgMatch = node.getAttribute('style').match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i);
-        const bg = bgMatch?.[1]?.toLowerCase();
-        if (bg && ARTICLE_COLORS.has(bg)) el.style.backgroundColor = bg;
+        const colorMatch = node.getAttribute('style').match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i);
+        const color = normalizeArticleColor(colorMatch?.[1]);
+        if (color) el.style.color = color;
+        const bgMatch = node.getAttribute('style').match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i);
+        const bg = normalizeArticleColor(bgMatch?.[1]);
+        if (bg) el.style.backgroundColor = bg;
+        const align = node.getAttribute('style').match(/(?:^|;)\s*text-align\s*:\s*(left|right|center|justify)\s*(?:;|$)/i)?.[1]?.toLowerCase();
+        if (align) el.style.textAlign = align;
       }
       el.append(children);
       return el;
