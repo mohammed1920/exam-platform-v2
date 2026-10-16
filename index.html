@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="ميزان">
   <meta name="twitter:description" content="ميزان.. حيث يُقاس الفهم القانوني بدقة. منصة تفاعلية للاختبارات والمراجعة في المواد القانونية العراقية.">
   <meta name="twitter:image" content="https://www.mizan-iraq.com/icons/icon-512.png">
-  <link rel="stylesheet" href="mizan-pulpit.css?v=3.4">
+  <link rel="stylesheet" href="mizan-pulpit.css?v=3.5">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="var(--mizan-primary-900)">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=2">
@@ -171,6 +171,8 @@
       </div>
       <div class="mizan-pulpit-toolbar"><h3>أحدث المشاركات</h3><span>محتوى قانوني من أهل الاختصاص</span></div>
       <div id="mizan-pulpit-list" class="mizan-pulpit-list"></div>
+      <div class="mizan-my-articles-toolbar"><button type="button" class="mizan-pulpit-secondary" data-mizan-my-articles-toggle aria-expanded="false"><i class="fas fa-file-pen"></i> مقالاتي: تعديل أو حذف</button></div>
+      <div id="mizan-my-articles-panel" class="mizan-my-articles-panel" hidden><div id="mizan-my-articles-list" class="mizan-my-articles-list"></div></div>
     <div id="mizan-contributor-modal" class="mizan-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="mizan-contributor-modal-title">
       <div class="mizan-modal-box">
         <div class="mizan-modal-head"><h3 id="mizan-contributor-modal-title">الانضمام إلى منبر ميزان</h3><button type="button" class="mizan-modal-close" data-mizan-close aria-label="إغلاق">×</button></div>
@@ -190,7 +192,7 @@
     <div id="mizan-submit-modal" class="mizan-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="mizan-submit-modal-title">
       <div class="mizan-modal-box">
         <div class="mizan-modal-head"><h3 id="mizan-submit-modal-title">إرسال مشاركة إلى منبر ميزان</h3><button type="button" class="mizan-modal-close" data-mizan-close aria-label="إغلاق">×</button></div>
-        <p class="mizan-form-help">أرسل مقالة أو بحثاً أو فكرة قانونية. تبقى المشاركة قيد المراجعة ولا تُنشر إلا بعد اعتمادها.</p>
+        <p class="mizan-form-help" data-mizan-submit-help>أرسل مقالة أو بحثاً أو فكرة قانونية. تبقى المشاركة الجديدة قيد المراجعة ولا تُنشر إلا بعد اعتمادها من الإدارة.</p>
         <form id="mizan-submit-form">
           <div class="mizan-form-grid">
             <label>نوع المشاركة<select name="type"><option>مقالة قانونية</option><option>بحث ودراسة</option><option>فكرة ورأي قانوني</option><option>تجربة مهنية</option><option>قراءة في تشريع أو حكم</option></select></label>
@@ -241,7 +243,7 @@
   <script src="contact-info.js?v=1.1"></script>
   <script src="exam-drafts.js?v=1.1"></script>
   <script src="question-sharing.js?v=1.0"></script>
-  <script src="mizan-pulpit.js?v=1.9" data-mizan-pulpit-loader="1"></script>
+  <script src="mizan-pulpit.js?v=2.0" data-mizan-pulpit-loader="1"></script>
   <script src="app.js?v=3.8"></script>
   <script src="global-search.js?v=1.0"></script>
   <script src="home.js?v=3.3"></script>
