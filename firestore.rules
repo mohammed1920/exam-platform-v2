@@ -60,7 +60,8 @@ service cloud.firestore {
 
     match /mizanArticles/{articleId} {
       allow read: if isAdmin()
-                  || resource.data.status == 'published';
+                  || resource.data.status == 'published'
+                  || (signedIn() && resource.data.authorUid == request.auth.uid);
 
       allow create: if isAdmin()
                     || (
@@ -71,7 +72,18 @@ service cloud.firestore {
                       && request.resource.data.status == 'pending'
                     );
 
-      allow update, delete: if isAdmin();
+      allow update: if isAdmin()
+                    || (
+                      signedIn()
+                      && resource.data.authorUid == request.auth.uid
+                      && request.resource.data.authorUid == resource.data.authorUid
+                      && request.resource.data.status == resource.data.status
+                      && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['title', 'type', 'excerpt', 'content', 'updatedAt'])
+                    );
+
+      allow delete: if isAdmin()
+                    || (signedIn() && resource.data.authorUid == request.auth.uid);
     }
 
     match /mizanContributors/{userId} {
