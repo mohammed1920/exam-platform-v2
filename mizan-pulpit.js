@@ -5,6 +5,77 @@
   const COLLECTION = 'mizanArticles';
   let initialized = false;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  const ARTICLE_TAGS = new Set(['P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
+  const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9']);
+  function sanitizeArticleHtml(value) {
+    const input = String(value ?? '');
+    if (!input.includes('<')) return esc(input).replace(/\r?\n/g, '<br>');
+    const parsed = new DOMParser().parseFromString(input, 'text/html');
+    const cleanNode = node => {
+      if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.nodeValue || '');
+      if (node.nodeType !== Node.ELEMENT_NODE) return document.createDocumentFragment();
+      const tag = node.tagName.toUpperCase();
+      if (['SCRIPT','STYLE','IFRAME','OBJECT','SVG','MATH','FORM','INPUT','BUTTON','IMG','VIDEO','AUDIO'].includes(tag)) return document.createDocumentFragment();
+      const children = document.createDocumentFragment();
+      Array.from(node.childNodes).forEach(child => children.append(cleanNode(child)));
+      if (!ARTICLE_TAGS.has(tag)) return children;
+      const el = document.createElement(tag.toLowerCase());
+      if (node.hasAttribute('style')) {
+        const colorMatch = node.getAttribute('style').match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i);
+        const color = colorMatch?.[1]?.toLowerCase();
+        if (color && ARTICLE_COLORS.has(color)) el.style.color = color;
+        const bgMatch = node.getAttribute('style').match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i);
+        const bg = bgMatch?.[1]?.toLowerCase();
+        if (bg && ARTICLE_COLORS.has(bg)) el.style.backgroundColor = bg;
+      }
+      el.append(children);
+      return el;
+    };
+    const out = document.createElement('div');
+    Array.from(parsed.body.childNodes).forEach(node => out.append(cleanNode(node)));
+    return out.innerHTML;
+  }
+  function editorFor(form) { return form?.querySelector('[data-mizan-editor]'); }
+  function setEditorContent(form, value) {
+    const editor = editorFor(form);
+    if (editor) editor.innerHTML = sanitizeArticleHtml(value);
+    if (form?.elements?.content) form.elements.content.value = String(value ?? '');
+  }
+  function readEditorContent(form) {
+    const editor = editorFor(form);
+    const value = editor ? sanitizeArticleHtml(editor.innerHTML) : String(form?.elements?.content?.value || '');
+    if (form?.elements?.content) form.elements.content.value = value;
+    return value;
+  }
+  function initArticleEditor(form) {
+    const editor = editorFor(form);
+    if (!editor || editor.dataset.initialized) return;
+    editor.dataset.initialized = 'true';
+    form.querySelectorAll('[data-editor-command]').forEach(button => {
+      button.addEventListener('click', () => {
+        editor.focus();
+        const command = button.dataset.editorCommand;
+        if (command === 'formatBlock') document.execCommand(command, false, button.dataset.editorValue || 'p');
+        else document.execCommand(command, false, null);
+        form.elements.content.value = readEditorContent(form);
+      });
+    });
+    form.querySelectorAll('[data-editor-color]').forEach(button => {
+      button.addEventListener('click', () => {
+        editor.focus();
+        document.execCommand(button.dataset.editorBackground === 'true' ? 'hiliteColor' : 'foreColor', false, button.dataset.editorColor);
+        form.elements.content.value = readEditorContent(form);
+      });
+    });
+    editor.addEventListener('input', () => { form.elements.content.value = readEditorContent(form); });
+    editor.addEventListener('paste', event => {
+      event.preventDefault();
+      const text = (event.clipboardData || window.clipboardData).getData('text/plain');
+      document.execCommand('insertText', false, text);
+    });
+    setEditorContent(form, form.elements.content?.value || '');
+  }
+
 
   function formatDate(value) {
     if (!value) return '';
@@ -270,6 +341,8 @@
       form.title.value = article.title || '';
       form.excerpt.value = article.excerpt || '';
       form.content.value = article.content || '';
+      initArticleEditor(form);
+      setEditorContent(form, article.content || '');
       form.authorName.value = article.authorName || '';
       form.authorTitle.value = article.authorTitle || '';
       form.authorSpecialization.value = article.authorSpecialization || '';
@@ -446,7 +519,8 @@
     button.disabled = true;
     try {
       const editId = form.dataset.editArticleId;
-      const editable = { title: form.title.value.trim(), type: form.type.value, excerpt: form.excerpt.value.trim(), content: form.content.value.trim() };
+      const articleContent = readEditorContent(form).trim();
+      const editable = { title: form.title.value.trim(), type: form.type.value, excerpt: form.excerpt.value.trim(), content: articleContent };
       if (!editable.title || !editable.content) throw new Error('missing');
       if (editId) {
         const ref = db.collection(COLLECTION).doc(editId), current = await ref.get();
@@ -476,6 +550,7 @@
         if (!data.authorName) throw new Error('missing');
         await db.collection(COLLECTION).add(data);
         form.reset();
+        setEditorContent(form, '');
         closeMizanModal(document.getElementById('mizan-submit-modal'));
         window.app?.showHomeNotice?.('تم استلام المشاركة', 'ستظهر بعد مراجعتها واعتمادها من إدارة المنصة.');
       }
@@ -535,7 +610,8 @@
       if (event.key !== 'Escape') return;
       document.querySelectorAll('.mizan-modal.is-open, #mizan-contributor-profile-modal.is-open').forEach(closeMizanModal);
     });
-    document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
+    const articleForm = document.getElementById('mizan-submit-form');
+    if (articleForm) { initArticleEditor(articleForm); articleForm.addEventListener('submit', submitArticle); }
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
     window.mizanPulpit = { open, loadPublished, loadMyArticles, openSubmit, openContributorEdit, openContributorProfile, openArticleFromUrl, getContributor };
   }
