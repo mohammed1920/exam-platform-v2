@@ -24,7 +24,7 @@
     if (!document.querySelector('link[data-mizan-pulpit-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'mizan-pulpit.css?v=3.3';
+      css.href = 'mizan-pulpit.css?v=3.4';
       css.dataset.mizanPulpitCss = '1';
       document.head.appendChild(css);
     }
@@ -36,7 +36,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'mizan-pulpit.js?v=1.7';
+      script.src = 'mizan-pulpit.js?v=1.9';
       script.dataset.mizanPulpitLoader = '1';
       script.onload = () => resolve(window.mizanPulpit);
       script.onerror = () => reject(new Error('تعذر تحميل منبر ميزان'));
