@@ -893,3 +893,22 @@ html[data-theme="light"] .mizan-form-grid textarea::placeholder{
 .mizan-my-article-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 10px;border:1px solid var(--mizan-accent-tile-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font:inherit;font-size:var(--mizan-font-size-2xs);cursor:pointer}
 .mizan-my-article-actions .mizan-my-article-delete{border-color:var(--mizan-danger-border, var(--mizan-accent-tile-border));color:var(--mizan-danger-text, var(--mizan-accent-tile-fg))}
 @media(max-width:560px){.mizan-my-article-card{align-items:stretch;flex-direction:column}.mizan-my-article-actions{justify-content:flex-start}}
+
+html[data-theme="light"] .mizan-my-articles-panel,
+html[data-theme="light"] .mizan-my-article-card{
+  background:var(--mizan-surface-light);
+  border-color:var(--mizan-border-light);
+  color:var(--mizan-text);
+}
+html[data-theme="light"] .mizan-my-article-info h4{color:var(--mizan-text)}
+html[data-theme="light"] .mizan-my-article-info small{color:var(--mizan-muted)}
+html[data-theme="light"] .mizan-my-article-actions button{
+  background:var(--mizan-bg-light);
+  border-color:var(--mizan-border-light);
+  color:var(--mizan-primary-700);
+}
+html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
+  color:var(--mizan-danger, #b91c1c);
+  border-color:var(--mizan-border-light);
+}
+
