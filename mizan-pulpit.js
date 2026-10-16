@@ -186,13 +186,14 @@
       });
       articleRequests.set(id, request);
       const response = await request;
-      if (articleRequests.get(id) === request) articleRequests.delete(id);
       if (!response.ok) {
+        if (articleRequests.get(id) === request) articleRequests.delete(id);
         page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو الاتصال بطيئاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
         page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
         return;
       }
       const a = await response.json();
+      if (articleRequests.get(id) === request) articleRequests.delete(id);
       const doc = { id, data: () => a, exists: true };
       page.innerHTML =
         '<div class="mizan-article-page">' +
