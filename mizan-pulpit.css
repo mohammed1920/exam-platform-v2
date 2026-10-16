@@ -888,7 +888,7 @@ html[data-theme="light"] .mizan-form-grid textarea::placeholder{
 .mizan-my-article-info small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
 .mizan-my-article-status{width:max-content;max-width:100%;padding:2px 8px;border-radius:999px;background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font-size:var(--mizan-font-size-micro)}
 .mizan-my-article-status[data-status="published"]{background:var(--mizan-success-soft, var(--mizan-accent-tile-bg));color:var(--mizan-success-text, var(--mizan-accent-tile-fg))}
-.mizan-my-article-status[data-status="rejected"]{background:var(--mizan-warning-soft, var(--mizan-accent-tile-bg));color:var(--mizan-warning-text, var(--mizan-accent-tile-fg))}
+.mizan-my-article-status[data-status="rejected"]{background:var(--mizan-accent-tile-bg);color:var(--mizan-warning-text, var(--mizan-accent-tile-fg))}
 .mizan-my-article-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .mizan-my-article-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 10px;border:1px solid var(--mizan-accent-tile-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font:inherit;font-size:var(--mizan-font-size-2xs);cursor:pointer}
 .mizan-my-article-actions .mizan-my-article-delete{border-color:var(--mizan-danger-border, var(--mizan-accent-tile-border));color:var(--mizan-danger-text, var(--mizan-accent-tile-fg))}
