@@ -5,7 +5,7 @@
   const COLLECTION = 'mizanArticles';
   let initialized = false;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  const ARTICLE_TAGS = new Set(['P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
+  const ARTICLE_TAGS = new Set(['DIV','P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
   const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9']);
   function normalizeArticleColor(raw) {
     const value = String(raw || '').trim().toLowerCase();
