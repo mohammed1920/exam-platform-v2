@@ -17,6 +17,14 @@
       "description": "قانون العقوبات العراقي رقم 111 لسنة 1969 بحسب النص المستخرج من منصة التشريعات العراقية؛ يُرجى مراجعة المصدر للتحقق من التعديلات والنص النافذ.",
       "articlesCount": 506,
       "file": "data/laws/iraqi-penal-code-111-1969.json"
+    },
+    {
+      "id": "iraqi-civil-procedure-code-83-1969",
+      "name": "قانون المرافعات المدنية رقم ٨٣ لسنة ١٩٦٩",
+      "category": "قوانين عراقية",
+      "description": "قانون المرافعات المدنية العراقي رقم ٨٣ لسنة ١٩٦٩ كما ورد في المصدر المرفق.",
+      "articlesCount": 325,
+      "file": "data/laws/iraqi-civil-procedure-code-83-1969.json"
     }
   ]
 }
