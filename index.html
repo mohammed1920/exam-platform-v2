@@ -201,7 +201,32 @@
             <label>التخصص<input name="authorSpecialization" readonly></label>
             <label>عنوان المشاركة<input name="title" required placeholder="عنوان المقال أو البحث"></label>
             <label class="full">نبذة مختصرة<textarea name="excerpt" rows="3" placeholder="ملخص قصير يظهر في بطاقة المقال"></textarea></label>
-            <label class="full">المحتوى<textarea name="content" required placeholder="اكتب النص الكامل للمشاركة هنا..."></textarea></label>
+            <div class="full mizan-rich-editor-field">
+              <label for="mizan-article-editor">محتوى المشاركة</label>
+              <div class="mizan-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق المقال">
+                <button type="button" data-editor-command="bold" aria-label="خط عريض" title="خط عريض"><strong>B</strong></button>
+                <button type="button" data-editor-command="italic" aria-label="خط مائل" title="خط مائل"><em>I</em></button>
+                <button type="button" data-editor-command="underline" aria-label="تسطير" title="تسطير"><u>U</u></button>
+                <span class="mizan-editor-separator"></span>
+                <button type="button" data-editor-command="formatBlock" data-editor-value="h2" title="عنوان فرعي">عنوان فرعي</button>
+                <button type="button" data-editor-command="formatBlock" data-editor-value="h3" title="عنوان أصغر">عنوان صغير</button>
+                <button type="button" data-editor-command="insertUnorderedList" title="قائمة نقطية">• قائمة</button>
+                <button type="button" data-editor-command="insertOrderedList" title="قائمة مرقمة">١. قائمة</button>
+                <button type="button" data-editor-command="justifyRight" title="محاذاة لليمين"><i class="fas fa-align-right"></i></button>
+                <button type="button" data-editor-command="justifyCenter" title="توسيط"><i class="fas fa-align-center"></i></button>
+                <button type="button" data-editor-command="justifyLeft" title="محاذاة لليسار"><i class="fas fa-align-left"></i></button>
+                <span class="mizan-editor-separator"></span>
+                <button type="button" data-editor-color="#1d4ed8" title="لون أزرق" aria-label="لون أزرق"><span class="mizan-editor-color-dot" style="background:#1d4ed8"></span></button>
+                <button type="button" data-editor-color="#047857" title="لون أخضر" aria-label="لون أخضر"><span class="mizan-editor-color-dot" style="background:#047857"></span></button>
+                <button type="button" data-editor-color="#b45309" title="لون ذهبي" aria-label="لون ذهبي"><span class="mizan-editor-color-dot" style="background:#b45309"></span></button>
+                <button type="button" data-editor-color="#b91c1c" title="لون أحمر" aria-label="لون أحمر"><span class="mizan-editor-color-dot" style="background:#b91c1c"></span></button>
+                <button type="button" data-editor-color="#6d28d9" title="لون بنفسجي" aria-label="لون بنفسجي"><span class="mizan-editor-color-dot" style="background:#6d28d9"></span></button>
+                <button type="button" data-editor-color="#1d4ed8" data-editor-background="true" title="تمييز النص بالأزرق الفاتح">تمييز</button>
+              </div>
+              <div id="mizan-article-editor" class="mizan-rich-editor" data-mizan-editor contenteditable="true" role="textbox" aria-multiline="true" aria-label="محتوى المقال" data-placeholder="اكتب المقال هنا، وحدد النص لتنسيقه..." dir="rtl"></div>
+              <textarea class="mizan-editor-source" name="content" required aria-label="محتوى المقال"></textarea>
+              <p class="mizan-editor-help">حدد النص ثم اختر التنسيق المناسب. التنسيق الآمن فقط يُحفظ ويظهر للقراء.</p>
+            </div>
           </div>
           <button class="mizan-form-submit" type="submit">إرسال للمراجعة</button>
         </form>
