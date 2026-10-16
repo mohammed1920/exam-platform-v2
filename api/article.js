@@ -69,6 +69,42 @@ module.exports = async function handler(req, res) {
   }
 
   const canonical = `${SITE_URL}/pulpit/${encodeURIComponent(id)}`;
+  if (req.query?.format === 'json') {
+    try {
+      const endpoint = `https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents/mizanArticles/${encodeURIComponent(id)}?key=${FIREBASE_API_KEY}`;
+      const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+      if (!response.ok) {
+        res.setHeader('Cache-Control', 'no-store');
+        res.status(response.status === 404 ? 404 : 502).json({ error: 'article_unavailable' });
+        return;
+      }
+      const document = await response.json();
+      const fields = document.fields || {};
+      if (field(fields, 'status') !== 'published') {
+        res.setHeader('Cache-Control', 'no-store');
+        res.status(404).json({ error: 'article_unavailable' });
+        return;
+      }
+      const value = name => field(fields, name);
+      res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+      res.status(200).json({
+        id,
+        title: value('title') || 'مقال قانوني من منبر ميزان',
+        excerpt: value('excerpt'),
+        content: value('content'),
+        authorName: value('authorName') || 'كاتب مساهم',
+        type: value('type') || 'مقالة قانونية',
+        publishedAt: value('publishedAt') || value('createdAt'),
+        status: 'published'
+      });
+      return;
+    } catch (error) {
+      console.error('Mizan article JSON endpoint error:', error);
+      res.setHeader('Cache-Control', 'no-store');
+      res.status(502).json({ error: 'article_fetch_failed' });
+      return;
+    }
+  }
   // Human visitors go straight to the real Mizan app. Social crawlers still
   // receive server-rendered Open Graph metadata for link previews.
   const userAgent = String(req.headers['user-agent'] || '');
