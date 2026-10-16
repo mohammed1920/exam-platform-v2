@@ -876,3 +876,20 @@ html[data-theme="light"] .mizan-form-grid input::placeholder,
 html[data-theme="light"] .mizan-form-grid textarea::placeholder{
   color:var(--mizan-muted);
 }
+
+
+/* إدارة مقالات المساهم داخل منبر ميزان */
+.mizan-my-articles-toolbar{display:flex;justify-content:flex-start;margin:18px 0 10px}
+.mizan-my-articles-panel{margin:0 0 24px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-lg);background:var(--mizan-gradient-pulpit-highlight)}
+.mizan-my-articles-list{display:grid;gap:10px}
+.mizan-my-article-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-md);background:var(--mizan-surface)}
+.mizan-my-article-info{min-width:0;display:grid;gap:5px}
+.mizan-my-article-info h4{margin:0;overflow-wrap:anywhere;font-size:var(--mizan-font-size-sm)}
+.mizan-my-article-info small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
+.mizan-my-article-status{width:max-content;max-width:100%;padding:2px 8px;border-radius:999px;background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font-size:var(--mizan-font-size-micro)}
+.mizan-my-article-status[data-status="published"]{background:var(--mizan-success-soft, var(--mizan-accent-tile-bg));color:var(--mizan-success-text, var(--mizan-accent-tile-fg))}
+.mizan-my-article-status[data-status="rejected"]{background:var(--mizan-warning-soft, var(--mizan-accent-tile-bg));color:var(--mizan-warning-text, var(--mizan-accent-tile-fg))}
+.mizan-my-article-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.mizan-my-article-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 10px;border:1px solid var(--mizan-accent-tile-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font:inherit;font-size:var(--mizan-font-size-2xs);cursor:pointer}
+.mizan-my-article-actions .mizan-my-article-delete{border-color:var(--mizan-danger-border, var(--mizan-accent-tile-border));color:var(--mizan-danger-text, var(--mizan-accent-tile-fg))}
+@media(max-width:560px){.mizan-my-article-card{align-items:stretch;flex-direction:column}.mizan-my-article-actions{justify-content:flex-start}}
