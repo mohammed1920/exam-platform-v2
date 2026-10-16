@@ -115,7 +115,7 @@ module.exports = async function handler(req, res) {
         return;
       }
       const value = name => field(fields, name);
-      res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=60, stale-while-revalidate=300');
       res.status(200).json({
         id,
         title: value('title') || 'مقال قانوني من منبر ميزان',
@@ -137,16 +137,8 @@ module.exports = async function handler(req, res) {
       return;
     }
   }
-  // Human visitors go straight to the real Mizan app. Social crawlers still
-  // receive server-rendered Open Graph metadata for link previews.
-  const userAgent = String(req.headers['user-agent'] || '');
-  const isPreviewCrawler = /WhatsApp|facebookexternalhit|Facebot|Twitterbot|LinkedInBot|TelegramBot|Slackbot|Discordbot|Googlebot|bingbot|Applebot|Pinterestbot|Embedly|Quora Link Preview|vkShare|W3C_Validator/i.test(userAgent);
-  if (!isPreviewCrawler) {
-    res.setHeader('Cache-Control', 'no-store');
-    res.redirect(302, `${SITE_URL}/?article=${encodeURIComponent(id)}`);
-    return;
-  }
-
+  // Serve rendered article HTML to visitors and crawlers so deep links work
+  // without requiring the SPA and Firebase client to boot first.
   try {
     const endpoint = `https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents/mizanArticles/${encodeURIComponent(id)}?key=${FIREBASE_API_KEY}`;
     const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
