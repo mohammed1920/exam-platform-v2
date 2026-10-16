@@ -8,7 +8,7 @@ function escapeHtml(value) {
   })[character]);
 }
 const ARTICLE_TAGS = new Set(['div','p','br','strong','b','em','i','u','h2','h3','h4','ul','ol','li','blockquote']);
-const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9']);
+const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9','#dbeafe','#d1fae5','#fef3c7','#fee2e2']);
 function renderArticleContent(value) {
   const source = String(value ?? '');
   if (!source.includes('<')) return escapeHtml(source).replace(/\r?\n/g, '<br>');
