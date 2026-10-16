@@ -224,6 +224,86 @@
     }
   }
 
+  function articleStatusLabel(status) {
+    return ({published:'منشور', pending:'قيد المراجعة', rejected:'مرفوض', hidden:'مخفي'})[status] || 'غير محدد';
+  }
+
+  async function loadMyArticles() {
+    const db = window.publicAuth?.firestore, user = window.publicAuth?.user;
+    const list = document.getElementById('mizan-my-articles-list');
+    if (!list) return;
+    if (!user) { window.publicAuth?.openLogin(); return; }
+    if (!db) { list.innerHTML = '<div class="mizan-pulpit-empty">يتعذر تحميل مقالاتك حالياً.</div>'; return; }
+    list.innerHTML = '<div class="mizan-pulpit-loading"><i class="fas fa-spinner fa-spin"></i> جارٍ تحميل مقالاتك...</div>';
+    try {
+      const snap = await db.collection(COLLECTION).where('authorUid', '==', user.uid).limit(50).get();
+      const docs = snap.docs.sort((a,b) => {
+        const av = a.data()?.updatedAt?.toDate?.()?.getTime?.() || a.data()?.createdAt?.toDate?.()?.getTime?.() || 0;
+        const bv = b.data()?.updatedAt?.toDate?.()?.getTime?.() || b.data()?.createdAt?.toDate?.()?.getTime?.() || 0;
+        return bv - av;
+      });
+      if (!docs.length) {
+        list.innerHTML = '<div class="mizan-pulpit-empty"><strong>لا توجد مقالات مرتبطة بحسابك</strong><span>عندما ترسل مشاركة ستظهر هنا لمتابعتها وتعديلها.</span></div>';
+        return;
+      }
+      list.innerHTML = docs.map(doc => {
+        const a = doc.data() || {};
+        return '<article class="mizan-my-article-card"><div class="mizan-my-article-info"><span class="mizan-my-article-status" data-status="' + esc(a.status || '') + '">' + esc(articleStatusLabel(a.status)) + '</span><h4>' + esc(a.title || 'مشاركة بلا عنوان') + '</h4><small>آخر تحديث: ' + esc(formatDate(a.updatedAt || a.createdAt) || '—') + '</small></div><div class="mizan-my-article-actions"><button type="button" data-mizan-edit-article="' + esc(doc.id) + '"><i class="fas fa-pen"></i> تعديل</button><button type="button" class="mizan-my-article-delete" data-mizan-delete-article="' + esc(doc.id) + '"><i class="fas fa-trash"></i> حذف</button></div></article>';
+      }).join('');
+    } catch (error) {
+      console.error('Mizan my articles load error:', error);
+      list.innerHTML = '<div class="mizan-pulpit-empty">تعذر تحميل مقالاتك. تحقق من تسجيل الدخول ثم حاول مجدداً.</div>';
+    }
+  }
+
+  async function openEditArticle(id) {
+    const auth = window.publicAuth, db = auth?.firestore, user = auth?.user;
+    if (!user || !db) { auth?.openLogin(); return; }
+    const form = document.getElementById('mizan-submit-form'), modal = document.getElementById('mizan-submit-modal');
+    if (!form || !modal) return;
+    try {
+      const snap = await db.collection(COLLECTION).doc(id).get();
+      if (!snap.exists || snap.data()?.authorUid !== user.uid) { alert('لا يمكنك تعديل هذه المشاركة.'); return; }
+      const article = snap.data() || {};
+      form.dataset.editArticleId = id;
+      form.type.value = article.type || 'مقالة قانونية';
+      form.title.value = article.title || '';
+      form.excerpt.value = article.excerpt || '';
+      form.content.value = article.content || '';
+      form.authorName.value = article.authorName || '';
+      form.authorTitle.value = article.authorTitle || '';
+      form.authorSpecialization.value = article.authorSpecialization || '';
+      const heading = modal.querySelector('.mizan-modal-head h3'), help = modal.querySelector('[data-mizan-submit-help]'), submit = form.querySelector('button[type="submit"]');
+      if (heading) heading.textContent = 'تعديل المشاركة';
+      if (help) help.textContent = article.status === 'published' ? 'سيظهر تعديلك مباشرة على المقال المنشور، دون تغيير رابط المقال أو حالة نشره.' : 'سيتم حفظ التعديلات مع الاحتفاظ بحالة المشاركة الحالية.';
+      if (submit) submit.textContent = 'حفظ التعديلات';
+      openMizanModal(modal);
+    } catch (error) {
+      console.error('Mizan article edit load error:', error);
+      alert('تعذر فتح المقال للتعديل حالياً.');
+    }
+  }
+
+  async function deleteMyArticle(id) {
+    const db = window.publicAuth?.firestore, user = window.publicAuth?.user;
+    if (!db || !user) return window.publicAuth?.openLogin();
+    if (!window.confirm('هل أنت متأكد من حذف هذه المشاركة؟ لا يمكن التراجع عن الحذف.')) return;
+    try {
+      const ref = db.collection(COLLECTION).doc(id), snap = await ref.get();
+      if (!snap.exists || snap.data()?.authorUid !== user.uid) { alert('لا يمكنك حذف هذه المشاركة.'); return; }
+      await ref.delete();
+      articleHtmlCache.delete(id);
+      articleRequests.delete(id);
+      publishedArticlesCache = null;
+      await loadMyArticles();
+      await loadPublished();
+      window.app?.showHomeNotice?.('تم حذف المشاركة', 'حُذفت المشاركة من منبر ميزان.');
+    } catch (error) {
+      console.error('Mizan article delete error:', error);
+      alert('تعذر حذف المشاركة. تحقق من الاتصال ثم حاول مرة أخرى.');
+    }
+  }
+
   const CONTRIBUTORS = 'mizanContributors';
 
   async function getContributor() {
@@ -297,6 +377,12 @@
     if (modal) {
       const form=document.getElementById('mizan-submit-form');
       if(form){
+        delete form.dataset.editArticleId;
+        form.reset();
+        const heading = modal.querySelector('.mizan-modal-head h3'), help = modal.querySelector('[data-mizan-submit-help]'), submit = form.querySelector('button[type="submit"]');
+        if (heading) heading.textContent = 'إرسال مشاركة إلى منبر ميزان';
+        if (help) help.textContent = 'أرسل مقالة أو بحثاً أو فكرة قانونية. تبقى المشاركة الجديدة قيد المراجعة ولا تُنشر إلا بعد اعتمادها من الإدارة.';
+        if (submit) submit.textContent = 'إرسال للمراجعة';
         if(form.authorName) form.authorName.value=contributor.fullName||auth.user.displayName||'';
         if(form.authorTitle) form.authorTitle.value=contributor.role||'';
         if(form.authorSpecialization) form.authorSpecialization.value=contributor.specialization||'';
@@ -364,24 +450,40 @@
         await openSubmit();
         return;
       }
-      const data = {
-        title: form.title.value.trim(),
-        type: form.type.value,
-        authorName: contributor.fullName || user.displayName || '',
-        authorTitle: contributor.role || '',
-        authorSpecialization: contributor.specialization || '',
-        excerpt: form.excerpt.value.trim(),
-        content: form.content.value.trim(),
-        authorUid: user.uid,
-        authorEmail: user.email || null,
-        status: 'pending',
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      };
-      if (!data.title || !data.authorName || !data.content) throw new Error('missing');
-      await db.collection(COLLECTION).add(data);
-      form.reset();
-      closeMizanModal(document.getElementById('mizan-submit-modal'));
-      window.app?.showHomeNotice?.('تم استلام المشاركة', 'ستظهر بعد مراجعتها واعتمادها من إدارة المنصة.');
+      const editId = form.dataset.editArticleId;
+      const editable = { title: form.title.value.trim(), type: form.type.value, excerpt: form.excerpt.value.trim(), content: form.content.value.trim() };
+      if (!editable.title || !editable.content) throw new Error('missing');
+      if (editId) {
+        const ref = db.collection(COLLECTION).doc(editId), current = await ref.get();
+        if (!current.exists || current.data()?.authorUid !== user.uid) throw new Error('not-owner');
+        await ref.update({...editable, updatedAt: firebase.firestore.FieldValue.serverTimestamp()});
+        articleHtmlCache.delete(editId);
+        articleRequests.delete(editId);
+        publishedArticlesCache = null;
+        delete form.dataset.editArticleId;
+        closeMizanModal(document.getElementById('mizan-submit-modal'));
+        window.app?.showHomeNotice?.('تم تحديث المشاركة', current.data()?.status === 'published' ? 'تم حفظ التعديلات وظهرت مباشرة على المقال المنشور.' : 'تم حفظ التعديلات مع الاحتفاظ بحالة المشاركة الحالية.');
+        await loadMyArticles();
+        await loadPublished();
+      } else {
+        const contributor = await getContributor();
+        if (!contributor || contributor.status !== 'approved') { await openSubmit(); return; }
+        const data = {
+          ...editable,
+          authorName: contributor.fullName || user.displayName || '',
+          authorTitle: contributor.role || '',
+          authorSpecialization: contributor.specialization || '',
+          authorUid: user.uid,
+          authorEmail: user.email || null,
+          status: 'pending',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        if (!data.authorName) throw new Error('missing');
+        await db.collection(COLLECTION).add(data);
+        form.reset();
+        closeMizanModal(document.getElementById('mizan-submit-modal'));
+        window.app?.showHomeNotice?.('تم استلام المشاركة', 'ستظهر بعد مراجعتها واعتمادها من إدارة المنصة.');
+      }
     } catch (error) {
       console.error('Mizan Pulpit submit error:', error);
       alert('تعذر إرسال المشاركة حالياً. حاول مرة أخرى.');
@@ -404,6 +506,19 @@
     if (initialized) return;
     initialized = true;
     document.addEventListener('click', event => {
+      const editArticle = event.target.closest('[data-mizan-edit-article]');
+      if (editArticle) { openEditArticle(editArticle.dataset.mizanEditArticle); return; }
+      const deleteArticle = event.target.closest('[data-mizan-delete-article]');
+      if (deleteArticle) { deleteMyArticle(deleteArticle.dataset.mizanDeleteArticle); return; }
+      const myArticlesToggle = event.target.closest('[data-mizan-my-articles-toggle]');
+      if (myArticlesToggle) {
+        const panel = document.getElementById('mizan-my-articles-panel');
+        const show = panel?.hidden !== false;
+        if (panel) panel.hidden = !show;
+        myArticlesToggle.setAttribute('aria-expanded', String(show));
+        if (show) loadMyArticles();
+        return;
+      }
       const share = event.target.closest('[data-mizan-share-article]');
       if (share) {
         shareArticle(share.dataset.mizanShareArticle, share.dataset.articleTitle);
@@ -427,7 +542,7 @@
     });
     document.getElementById('mizan-submit-form')?.addEventListener('submit', submitArticle);
     document.getElementById('mizan-contributor-form')?.addEventListener('submit', submitContributor);
-    window.mizanPulpit = { open, loadPublished, openSubmit, openContributorEdit, openContributorProfile, openArticleFromUrl, getContributor };
+    window.mizanPulpit = { open, loadPublished, loadMyArticles, openSubmit, openContributorEdit, openContributorProfile, openArticleFromUrl, getContributor };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
