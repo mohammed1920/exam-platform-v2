@@ -21,8 +21,9 @@ function renderArticleContent(value) {
       let style = '';
       const match = String(rawAttrs).match(/\bstyle\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
       const value = match ? (match[1] || match[2] || match[3] || '') : '';
-      const color = value.match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i)?.[1]?.toLowerCase();
-      const background = value.match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6})\s*(?:;|$)/i)?.[1]?.toLowerCase();
+      const normalizeColor = raw => { const v=String(raw||'').toLowerCase(); if (ARTICLE_COLORS.has(v)) return v; const rgb=v.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/); if(!rgb)return ''; const hex='#'+rgb.slice(1).map(n=>Math.max(0,Math.min(255,Number(n))).toString(16).padStart(2,'0')).join(''); return ARTICLE_COLORS.has(hex)?hex:''; };
+      const color = normalizeColor(value.match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i)?.[1]);
+      const background = normalizeColor(value.match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i)?.[1]);
       const align = value.match(/(?:^|;)\s*text-align\s*:\s*(left|right|center|justify)\s*(?:;|$)/i)?.[1]?.toLowerCase();
       const styles = [];
       if (color && ARTICLE_COLORS.has(color)) styles.push('color:'+color);
