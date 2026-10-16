@@ -93,6 +93,9 @@ module.exports = async function handler(req, res) {
         excerpt: value('excerpt'),
         content: value('content'),
         authorName: value('authorName') || 'كاتب مساهم',
+        authorUid: value('authorUid'),
+        authorTitle: value('authorTitle'),
+        authorSpecialization: value('authorSpecialization'),
         type: value('type') || 'مقالة قانونية',
         publishedAt: value('publishedAt') || value('createdAt'),
         status: 'published'
