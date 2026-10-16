@@ -483,7 +483,7 @@ html[data-theme="light"] .mizan-read-btn:hover{
 }
 .mizan-profile-stats>div{
   padding:13px;
-  border-radius:var(--mizan-radius-md);
+  border-radius:var(--mizan-radius-sm);
   background:var(--mizan-glass-white-040);
   border:1px solid var(--mizan-glass-white-060);
 }
@@ -656,7 +656,7 @@ html[data-theme="light"] .mizan-read-btn:hover{
 .mizan-article-reading-content{
   padding:var(--mizan-space-6) 0;
   color:var(--mizan-deco-blue-84);
-  font-size:var(--mizan-font-size-sm);
+  font-size:var(--mizan-font-size-2xs);
   line-height:2.35;
   word-break:break-word;
 }
@@ -692,7 +692,7 @@ html[data-theme="light"] .mizan-read-btn:hover{
 }
 .mizan-article-page-error strong{
   color:var(--mizan-text-dark);
-  font-size:var(--mizan-font-size-sm);
+  font-size:var(--mizan-font-size-2xs);
 }
 @media(max-width:600px){
   .mizan-article-section{
@@ -882,9 +882,9 @@ html[data-theme="light"] .mizan-form-grid textarea::placeholder{
 .mizan-my-articles-toolbar{display:flex;justify-content:flex-start;margin:18px 0 10px}
 .mizan-my-articles-panel{margin:0 0 24px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-lg);background:var(--mizan-gradient-pulpit-highlight)}
 .mizan-my-articles-list{display:grid;gap:10px}
-.mizan-my-article-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-md);background:var(--mizan-surface)}
+.mizan-my-article-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-sm);background:var(--mizan-gradient-pulpit-highlight)}
 .mizan-my-article-info{min-width:0;display:grid;gap:5px}
-.mizan-my-article-info h4{margin:0;overflow-wrap:anywhere;font-size:var(--mizan-font-size-sm)}
+.mizan-my-article-info h4{margin:0;overflow-wrap:anywhere;font-size:var(--mizan-font-size-2xs)}
 .mizan-my-article-info small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
 .mizan-my-article-status{width:max-content;max-width:100%;padding:2px 8px;border-radius:999px;background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font-size:var(--mizan-font-size-micro)}
 .mizan-my-article-status[data-status="published"]{background:var(--mizan-success-soft, var(--mizan-accent-tile-bg));color:var(--mizan-success-text, var(--mizan-accent-tile-fg))}
