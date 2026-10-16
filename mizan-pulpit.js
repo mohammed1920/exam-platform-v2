@@ -176,7 +176,7 @@
       return;
     }
     if (articleRequests.has(id)) {
-      await articleRequests.get(id);
+      try { await articleRequests.get(id); } catch (_) {}
       return;
     }
     try {
