@@ -165,37 +165,18 @@
       '',
       articleLocation
     );
-    let db = window.publicAuth?.firestore;
-    if (!db && typeof window.publicAuth?.whenFirestoreReady === 'function') {
-      try {
-        await Promise.race([
-          window.publicAuth.whenFirestoreReady(),
-          new Promise((_, reject) => window.setTimeout(() => reject(new Error('Firestore initialization timed out')), 10000))
-        ]);
-      } catch (error) {
-        console.error('Mizan Firestore initialization error:', error);
-      }
-      db = window.publicAuth?.firestore;
-    }
-    if (!db) {
-      page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر الاتصال بقاعدة البيانات لفتح المقال. تحقق من الاتصال ثم أعد المحاولة.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
-      page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
-      return;
-    }
     try {
-      let timeoutId;
-      const doc = await Promise.race([
-        db.collection(COLLECTION).doc(id).get(),
-        new Promise((_, reject) => {
-          timeoutId = window.setTimeout(() => reject(new Error('Article read timed out')), 15000);
-        })
-      ]).finally(() => window.clearTimeout(timeoutId));
-      if (!doc.exists || doc.data().status !== 'published') {
-        page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو لم يعد متاحاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
+      const response = await fetch('/api/article?id=' + encodeURIComponent(id) + '&format=json', {
+        headers: { Accept: 'application/json' },
+        cache: 'default'
+      });
+      if (!response.ok) {
+        page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو الاتصال بطيئاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
         page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
         return;
       }
-      const a = doc.data() || {};
+      const a = await response.json();
+      const doc = { id, data: () => a, exists: true };
       page.innerHTML =
         '<div class="mizan-article-page">' +
           '<div class="mizan-article-page-topbar">' +
