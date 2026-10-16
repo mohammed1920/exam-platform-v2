@@ -6,7 +6,7 @@
   let initialized = false;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
   const ARTICLE_TAGS = new Set(['DIV','P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
-  const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9']);
+  const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9','#dbeafe','#d1fae5','#fef3c7','#fee2e2']);
   function normalizeArticleColor(raw) {
     const value = String(raw || '').trim().toLowerCase();
     if (ARTICLE_COLORS.has(value)) return value;
@@ -462,6 +462,7 @@
       if(form){
         delete form.dataset.editArticleId;
         form.reset();
+        setEditorContent(form, '');
         const heading = modal.querySelector('.mizan-modal-head h3'), help = modal.querySelector('[data-mizan-submit-help]'), submit = form.querySelector('button[type="submit"]');
         if (heading) heading.textContent = 'إرسال مشاركة إلى منبر ميزان';
         if (help) help.textContent = 'أرسل مقالة أو بحثاً أو فكرة قانونية. تبقى المشاركة الجديدة قيد المراجعة ولا تُنشر إلا بعد اعتمادها من الإدارة.';
