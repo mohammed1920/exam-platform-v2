@@ -917,7 +917,7 @@ html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
 .mizan-editor-toolbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:9px;border:1px solid var(--mizan-border-light, var(--mizan-border));border-radius:12px;background:var(--mizan-surface-light, var(--mizan-card-bg));}
 .mizan-editor-toolbar button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:34px;min-height:34px;padding:6px 9px;border:1px solid var(--mizan-border-light, var(--mizan-border));border-radius:8px;background:var(--mizan-bg-light, var(--mizan-card-bg));color:var(--mizan-text);font:inherit;font-size:13px;cursor:pointer}
 .mizan-editor-toolbar button:focus-visible,.mizan-rich-editor:focus-visible{outline:2px solid var(--mizan-primary-500, var(--mizan-primary));outline-offset:2px}
-.mizan-editor-toolbar button:hover{background:var(--mizan-primary-100, var(--mizan-accent-tile-bg))}
+.mizan-editor-toolbar button:hover{background:var(--mizan-accent-tile-bg)}
 .mizan-editor-separator{width:1px;height:24px;background:var(--mizan-border-light, var(--mizan-border));margin:0 3px}
 .mizan-editor-color-dot{display:inline-block;width:17px;height:17px;border:1px solid rgba(127,127,127,.3);border-radius:50%}
 .mizan-rich-editor{min-height:260px;max-height:60vh;overflow:auto;padding:15px;border:1px solid var(--mizan-border-light, var(--mizan-border));border-radius:12px;background:var(--mizan-surface-light, var(--mizan-card-bg));color:var(--mizan-text);font:inherit;line-height:1.95;direction:rtl;text-align:right;overflow-wrap:anywhere}
