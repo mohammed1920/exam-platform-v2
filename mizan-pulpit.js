@@ -445,11 +445,6 @@
     const button = form.querySelector('button[type="submit"]');
     button.disabled = true;
     try {
-      const contributor = await getContributor();
-      if (!contributor || contributor.status !== 'approved') {
-        await openSubmit();
-        return;
-      }
       const editId = form.dataset.editArticleId;
       const editable = { title: form.title.value.trim(), type: form.type.value, excerpt: form.excerpt.value.trim(), content: form.content.value.trim() };
       if (!editable.title || !editable.content) throw new Error('missing');
