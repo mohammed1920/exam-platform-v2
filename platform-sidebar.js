@@ -205,8 +205,8 @@
       <button type="button" class="platform-mobile-nav-item" data-mobile-action="books" aria-label="اختبارات الكتب">
         <i class="fas fa-book-open" aria-hidden="true"></i><span>الكتب</span>
       </button>
-      <button type="button" class="platform-mobile-nav-item" data-mobile-action="search" aria-label="البحث">
-        <i class="fas fa-magnifying-glass" aria-hidden="true"></i><span>بحث</span>
+      <button type="button" class="platform-mobile-nav-item" data-mobile-action="laws" aria-label="القوانين العراقية">
+        <i class="fas fa-scale-balanced" aria-hidden="true"></i><span>القوانين</span>
       </button>
       <button type="button" class="platform-mobile-nav-item" data-mobile-action="profile" aria-label="الملف الشخصي">
         <i class="fas fa-user" aria-hidden="true"></i><span>حسابي</span>
@@ -216,16 +216,6 @@
 
     nav.querySelectorAll('[data-mobile-action]').forEach(btn=>btn.addEventListener('click',()=>{
       const action=btn.dataset.mobileAction;
-      if(action==='search'){
-        window.app?.navigateTo('home');
-        close();
-        const input=document.getElementById('search-input');
-        if(input){
-          input.focus({preventScroll:true});
-          input.scrollIntoView({behavior:'smooth',block:'center'});
-        }
-        return;
-      }
       run(action);
     }));
 
@@ -233,6 +223,7 @@
       const active=document.querySelector('.view-section.active');
       let current=active ? null : 'home';
       if(active && active.id==='student-dashboard-section') current='profile';
+      if(active && active.id==='laws-section') current='laws';
       if(active && ['books-section','chapters-section','exam-section','results-section','review-section','custom-exam-setup-section'].includes(active.id)) current='books';
       nav.querySelectorAll('[data-mobile-action]').forEach(btn=>{
         const selected=btn.dataset.mobileAction===current;
