@@ -29,6 +29,8 @@
   }
 
   let publishedArticlesCache = null;
+  const articleHtmlCache = new Map();
+  const articleRequests = new Map();
 
   function getArticleUrl(id) {
     const currentUrl = new URL(window.location.href);
@@ -153,7 +155,8 @@
   async function openArticle(id, options = {}) {
     const page = document.getElementById('mizan-article-section');
     if (!page) return;
-    page.innerHTML = '<div class="mizan-article-page-loading"><i class="fas fa-spinner fa-spin"></i><span>جارٍ فتح المقال...</span></div>';
+    const cachedHtml = articleHtmlCache.get(id);
+    page.innerHTML = cachedHtml || '<div class="mizan-article-page-loading"><i class="fas fa-spinner fa-spin"></i><span>جارٍ فتح المقال...</span></div>';
     if (window.app?.navigateTo) {
       window.app.navigateTo('mizan-article', { articleId: id }, !options.fromUrl);
     }
@@ -165,11 +168,25 @@
       '',
       articleLocation
     );
+    if (cachedHtml) {
+      page.querySelectorAll('[data-mizan-article-back]').forEach(btn => {
+        btn.onclick = () => window.mizanPulpit?.open();
+      });
+      window.scrollTo({top:0, behavior:'smooth'});
+      return;
+    }
+    if (articleRequests.has(id)) {
+      await articleRequests.get(id);
+      return;
+    }
     try {
-      const response = await fetch('/api/article?id=' + encodeURIComponent(id) + '&format=json', {
+      const request = fetch('/api/article?id=' + encodeURIComponent(id) + '&format=json', {
         headers: { Accept: 'application/json' },
         cache: 'default'
       });
+      articleRequests.set(id, request);
+      const response = await request;
+      if (articleRequests.get(id) === request) articleRequests.delete(id);
       if (!response.ok) {
         page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر فتح المقال؛ قد يكون غير منشور أو الاتصال بطيئاً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
         page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
@@ -196,8 +213,10 @@
       page.querySelectorAll('[data-mizan-article-back]').forEach(btn => {
         btn.onclick = () => window.mizanPulpit?.open();
       });
+      articleHtmlCache.set(id, page.innerHTML);
       window.scrollTo({top:0, behavior:'smooth'});
     } catch (error) {
+      articleRequests.delete(id);
       console.error('Mizan article open error:', error);
       page.innerHTML = '<div class="mizan-article-page-error"><i class="fas fa-circle-exclamation"></i><strong>تعذر تحميل المقال حالياً.</strong><button type="button" data-mizan-article-back>العودة إلى المشاركات</button></div>';
       page.querySelector('[data-mizan-article-back]')?.addEventListener('click', () => window.mizanPulpit?.open());
