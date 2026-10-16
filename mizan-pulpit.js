@@ -5,7 +5,7 @@
   const COLLECTION = 'mizanArticles';
   let initialized = false;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  const ARTICLE_TAGS = new Set(['DIV','P','BR','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
+  const ARTICLE_TAGS = new Set(['DIV','P','BR','SPAN','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
   const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9','#dbeafe','#d1fae5','#fef3c7','#fee2e2']);
   function normalizeArticleColor(raw) {
     const value = String(raw || '').trim().toLowerCase();
@@ -26,13 +26,16 @@
       if (['SCRIPT','STYLE','IFRAME','OBJECT','SVG','MATH','FORM','INPUT','BUTTON','IMG','VIDEO','AUDIO'].includes(tag)) return document.createDocumentFragment();
       const children = document.createDocumentFragment();
       Array.from(node.childNodes).forEach(child => children.append(cleanNode(child)));
-      if (!ARTICLE_TAGS.has(tag)) return children;
-      const el = document.createElement(tag.toLowerCase());
-      if (node.hasAttribute('style')) {
-        const colorMatch = node.getAttribute('style').match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i);
+      if (!ARTICLE_TAGS.has(tag) && tag !== 'FONT') return children;
+      const el = document.createElement(tag === 'FONT' ? 'span' : tag.toLowerCase());
+      const sourceStyle = node.getAttribute('style') || '';
+      const legacyColor = tag === 'FONT' ? normalizeArticleColor(node.getAttribute('color')) : '';
+      if (legacyColor) el.style.color = legacyColor;
+      if (sourceStyle) {
+        const colorMatch = sourceStyle.match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{3,6}|rgb\([^)]*\))\s*(?:;|$)/i);
         const color = normalizeArticleColor(colorMatch?.[1]);
         if (color) el.style.color = color;
-        const bgMatch = node.getAttribute('style').match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{6}|rgb\([^)]*\))\s*(?:;|$)/i);
+        const bgMatch = sourceStyle.match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{3,6}|rgb\([^)]*\))\s*(?:;|$)/i);
         const bg = normalizeArticleColor(bgMatch?.[1]);
         if (bg) el.style.backgroundColor = bg;
         const align = node.getAttribute('style').match(/(?:^|;)\s*text-align\s*:\s*(left|right|center|justify)\s*(?:;|$)/i)?.[1]?.toLowerCase();
