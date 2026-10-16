@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
         return;
       }
       const value = name => field(fields, name);
-      res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+      res.setHeader('Cache-Control', 'no-store');
       res.status(200).json({
         id,
         title: value('title') || 'مقال قانوني من منبر ميزان',
