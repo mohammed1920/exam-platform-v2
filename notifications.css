@@ -19,3 +19,21 @@
 .mizan-notification-date{display:block;margin-top:5px;color:var(--mizan-muted,#777);font-size:11px}
 .mizan-notification-link{display:inline-block;margin-top:7px;color:var(--mizan-accent-text,#175ca8);font-size:12px;text-decoration:underline;overflow-wrap:anywhere}
 @media(max-width:420px){.mizan-header.mizan-notifications-open{z-index:10}.mizan-notifications-panel{position:fixed;top:120px;right:12px;left:12px;width:auto;max-height:calc(100vh - 136px);max-height:calc(100dvh - 136px);overflow:auto;z-index:1}}
+
+
+/* Prevent copying public page content while preserving forms and notification text. */
+body * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body :is(input, textarea, select, option, [contenteditable="true"], [contenteditable=""], .mizan-rich-editor, .mizan-editor-source) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.mizan-notifications-panel,
+.mizan-notifications-panel * {
+  -webkit-user-select: text;
+  user-select: text;
+}
