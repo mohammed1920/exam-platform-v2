@@ -227,10 +227,22 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
 
         const submitted=freshRequest.data&&typeof freshRequest.data==='object'?freshRequest.data:{};
         const updateData={};
-        allowedFields.forEach(key=>{
-          if(Object.prototype.hasOwnProperty.call(submitted,key)) updateData[key]=submitted[key];
+        const stringFields=['name','governorate','district','phone','office','address','workingHours','description','logoUrl'];
+        stringFields.forEach(key=>{
+          if(!Object.prototype.hasOwnProperty.call(submitted,key))return;
+          if(typeof submitted[key]!=='string')throw new Error('حقل غير صالح: '+key);
+          updateData[key]=submitted[key].trim();
         });
+        if(Object.prototype.hasOwnProperty.call(submitted,'specializations')){
+          if(!Array.isArray(submitted.specializations)||!submitted.specializations.every(value=>typeof value==='string')){
+            throw new Error('قائمة الاختصاصات غير صالحة.');
+          }
+          updateData.specializations=submitted.specializations.map(value=>value.trim()).filter(Boolean).slice(0,10);
+        }
         if(!Object.keys(updateData).length)throw new Error('لا توجد حقول صالحة للتحديث.');
+        if(!String(updateData.name||profile.name||'').trim()||!String(updateData.governorate||profile.governorate||'').trim()){
+          throw new Error('اسم المحامي والمحافظة مطلوبان.');
+        }
         updateData.updatedAt=firebase.firestore.FieldValue.serverTimestamp();
 
         transaction.update(profileRef,updateData);
