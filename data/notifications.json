@@ -1,4 +1,14 @@
 {
   "schemaVersion": 1,
-  "notifications": []
+  "notifications": [
+    {
+      "id": "48efe551-7b14-4afa-b8a8-a9f3e013a2e8",
+      "title": "تحديث تطبيق ميزان",
+      "message": "المستخدمين الكرام يرجى حذف التطبيق من شاشة التطبيقات والدخول على الرابط الرسمي للتطبيق وتثبيتة من جديد\nالرابط الرسمي للموقع:\nwww.mizan-iraq.com",
+      "link": "",
+      "active": true,
+      "createdAt": "2026-10-17T14:24:39.832Z",
+      "updatedAt": "2026-10-17T14:24:39.832Z"
+    }
+  ]
 }
