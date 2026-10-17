@@ -126,9 +126,15 @@ class ExamApp {
     this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
     examEngine.questions = this.currentQuestions;
     examEngine.userAnswers = Array.isArray(draft.userAnswers) ? draft.userAnswers : [];
-    examEngine.score = Number(draft.score) || examEngine.userAnswers.filter(answer => answer.isCorrect).length;
-    examEngine.currentQuestionIndex = Math.min(Number(draft.questionIndex) || 0, Math.max(0, examEngine.totalQuestions - 1));
-    examEngine.startTime = draft.startedAt ? new Date(draft.startedAt) : new Date();
+    examEngine.score = Number.isFinite(Number(draft.score))
+      ? Number(draft.score)
+      : examEngine.userAnswers.filter(answer => answer.isCorrect).length;
+    examEngine.currentQuestionIndex = Math.min(
+      Math.max(0, Number(draft.questionIndex) || 0),
+      Math.max(0, examEngine.totalQuestions - 1)
+    );
+    const savedStart = draft.startedAt ? new Date(draft.startedAt) : new Date();
+    examEngine.startTime = Number.isNaN(savedStart.getTime()) ? new Date() : savedStart;
     this.isCustomExam = false;
     this.examActive = true;
     document.body.classList.add('exam-mode');
@@ -151,10 +157,29 @@ class ExamApp {
         this.currentQuestions = this.prepareChapterQuestions(examEngine.questions);
         examEngine.questions = this.currentQuestions;
 
+        const draftId = `${book.id}::${state.chapter}`;
+        const draft = this.readExamDrafts().find(item => item.id === draftId);
+        if (draft) {
+          examEngine.userAnswers = Array.isArray(draft.userAnswers) ? draft.userAnswers : [];
+          examEngine.score = Number.isFinite(Number(draft.score))
+            ? Number(draft.score)
+            : examEngine.userAnswers.filter(answer => answer.isCorrect).length;
+          examEngine.currentQuestionIndex = Math.min(
+            Math.max(0, Number(draft.questionIndex) || 0),
+            Math.max(0, examEngine.totalQuestions - 1)
+          );
+          const savedStart = draft.startedAt ? new Date(draft.startedAt) : new Date();
+          examEngine.startTime = Number.isNaN(savedStart.getTime()) ? new Date() : savedStart;
+        }
+
+        this.isCustomExam = false;
         this.examActive = true;
         document.body.classList.add('exam-mode');
-        this.navigateTo('exam', {}, false); // false: لا ننشئ سجل تاريخ جديد، الحالة أصلاً موجودة
-        this.startTimer();
+        this.navigateTo('exam', {}, false); // الحالة موجودة في سجل التنقل مسبقاً
+        const elapsed = draft
+          ? Math.max(0, Math.round((Date.now() - examEngine.startTime.getTime()) / 1000))
+          : undefined;
+        this.startTimer(elapsed);
         this.renderQuestion();
         return true;
       }
@@ -165,7 +190,7 @@ class ExamApp {
         return true;
       }
 
-      // حالات ثانية (نتائج/مراجعة): أسلم رجعة لقائمة فصول نفس الكتاب بدل قائمة الكتب بالكامل
+      // حالات ثانية (نتائج/مراجعة): الرجوع لقائمة فصول نفس الكتاب.
       this.navigateTo('chapters', {}, false);
       this.renderChapters();
       return true;
@@ -617,6 +642,19 @@ class ExamApp {
       window.publicAuth.requireAuth(() => this.startExam(chapterNum));
       return;
     }
+
+    const draftId = `${this.currentBook.id}::${chapterNum}`;
+    const savedDraft = this.readExamDrafts().find(item => item.id === draftId);
+    if (savedDraft) {
+      const resume = confirm(
+        'يوجد اختبار محفوظ لهذا الفصل. اضغط «موافق» لمتابعة الاختبار السابق، أو «إلغاء» لبدء اختبار جديد واستبدال المسودة.'
+      );
+      if (resume) {
+        await this.resumeSavedExam(draftId);
+        return;
+      }
+    }
+
     this.currentChapter = chapterNum;
     const success = await examEngine.loadChapter(this.currentBook.id, chapterNum);
     if (!success) {
