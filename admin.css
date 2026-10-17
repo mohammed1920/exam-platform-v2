@@ -333,3 +333,15 @@ body.batch-active { padding-bottom:130px; }
 .admin-notification-status.is-active { color: var(--admin-success); background: color-mix(in srgb, var(--admin-success) 12%, transparent); }
 .admin-notification-status.is-paused { color: var(--admin-muted); background: var(--admin-surface-raised); }
 .admin-notification-actions { margin-top: var(--mizan-space-3); }
+
+
+/* Keep admin content non-selectable while allowing normal data entry and editing. */
+body * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body :is(input, textarea, select, option, [contenteditable="true"], [contenteditable=""], .mizan-rich-editor, .mizan-editor-source) {
+  -webkit-user-select: text;
+  user-select: text;
+}
