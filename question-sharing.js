@@ -18,9 +18,10 @@
       chapterNum = app.currentChapter;
     }
 
-    if (!bookId || !chapterNum) return `${origin}${basePath}/`;
+    const routeBase = `${origin}${basePath}${basePath ? '/' : ''}`;
+    if (!bookId || !chapterNum) return routeBase;
 
-    let url = `${origin}${basePath}/?book=${encodeURIComponent(bookId)}&chapter=${chapterNum}`;
+    let url = `${routeBase}?book=${encodeURIComponent(bookId)}&chapter=${chapterNum}`;
     const stableQuestionId = q.uid || q.id;
     if (stableQuestionId) {
       url += `&qid=${encodeURIComponent(stableQuestionId)}`;
