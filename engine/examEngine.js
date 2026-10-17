@@ -113,10 +113,23 @@ class ExamEngine {
     if (!q) return false;
     const questionUid = q.uid || null;
     const questionId = q.id || null;
-    const existingAnswer = this.userAnswers.find(a => questionUid ? a.questionUid === questionUid : (questionId ? a.questionId === questionId : false));
+    const existingAnswer = this.userAnswers.find(a => {
+      if (questionUid) return a.questionUid === questionUid;
+      if (questionId) return a.questionId === questionId;
+      return Number.isInteger(a.questionIndex) && a.questionIndex === this.currentQuestionIndex;
+    });
     if (existingAnswer) return existingAnswer.isCorrect;
     const isCorrect = optionIndex === q.answer;
-    this.userAnswers.push({ questionUid, questionId, questionText: q.question, userAnswer: q.options[optionIndex], correctAnswer: q.options[q.answer], isCorrect, explanation: q.explanation });
+    this.userAnswers.push({
+      questionUid,
+      questionId,
+      questionIndex: this.currentQuestionIndex,
+      questionText: q.question,
+      userAnswer: q.options[optionIndex],
+      correctAnswer: q.options[q.answer],
+      isCorrect,
+      explanation: q.explanation
+    });
     if (isCorrect) this.score++;
     return isCorrect;
   }
