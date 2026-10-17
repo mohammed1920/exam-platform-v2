@@ -193,15 +193,63 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   async function approveLawyerEditRequest(request){
     if(!request||!confirm('هل تريد اعتماد تعديلات بيانات هذا المحامي ونشرها؟'))return;
     try{
-      const db=window.publicAuth.firestore, data=request.data||{};
-      const profile=lawyerProfiles.find(p=>p.id===request.profileId);
-      if(!profile)throw new Error('ملف المحامي غير موجود.');
-      const updateData={...data,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
-      await db.collection('lawyerProfiles').doc(request.profileId).update(updateData);
-      if(request.applicationId)await db.collection('lawyerApplications').doc(request.applicationId).update(updateData);
-      await db.collection('lawyerEditRequests').doc(request.id).update({status:'approved',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
-      await loadLawyerManagement();if(window.lawyerDirectory?.load)window.lawyerDirectory.load();setStatus('تم اعتماد تعديل بيانات المحامي.',false);
-    }catch(e){console.error(e);setStatus('تعذر اعتماد التعديل.',true);}
+      const db=window.publicAuth.firestore;
+      const requestRef=db.collection('lawyerEditRequests').doc(request.id);
+      const profileRef=db.collection('lawyerProfiles').doc(request.profileId);
+      const applicationId=String(request.applicationId||'').trim();
+      if(!applicationId)throw new Error('طلب التعديل لا يرتبط بطلب محامٍ صالح.');
+      const applicationRef=db.collection('lawyerApplications').doc(applicationId);
+      const allowedFields=['name','governorate','district','phone','office','address','specializations','workingHours','description','logoUrl'];
+
+      await db.runTransaction(async transaction=>{
+        const requestSnap=await transaction.get(requestRef);
+        const profileSnap=await transaction.get(profileRef);
+        const applicationSnap=await transaction.get(applicationRef);
+        if(!requestSnap.exists||!profileSnap.exists||!applicationSnap.exists){
+          throw new Error('تعذر العثور على الطلب أو الملف أو طلب المحامي المرتبط.');
+        }
+
+        const freshRequest=requestSnap.data()||{};
+        const profile=profileSnap.data()||{};
+        const application=applicationSnap.data()||{};
+        if(String(freshRequest.status||'').toLowerCase()!=='pending'){
+          throw new Error('تمت مراجعة هذا الطلب مسبقاً.');
+        }
+        if(freshRequest.profileId!==profileRef.id||freshRequest.applicationId!==applicationRef.id){
+          throw new Error('معرّفات الطلب لا تتطابق مع السجلات المستهدفة.');
+        }
+        if(!freshRequest.applicantUid
+          || freshRequest.applicantUid!==profile.applicantUid
+          || freshRequest.applicantUid!==application.applicantUid
+          || profile.applicationId!==applicationRef.id){
+          throw new Error('ملكية طلب التعديل لا تطابق ملف المحامي وطلبه.');
+        }
+
+        const submitted=freshRequest.data&&typeof freshRequest.data==='object'?freshRequest.data:{};
+        const updateData={};
+        allowedFields.forEach(key=>{
+          if(Object.prototype.hasOwnProperty.call(submitted,key)) updateData[key]=submitted[key];
+        });
+        if(!Object.keys(updateData).length)throw new Error('لا توجد حقول صالحة للتحديث.');
+        updateData.updatedAt=firebase.firestore.FieldValue.serverTimestamp();
+
+        transaction.update(profileRef,updateData);
+        transaction.update(applicationRef,updateData);
+        transaction.update(requestRef,{
+          status:'approved',
+          reviewedBy:window.publicAuth.user.uid,
+          reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+        });
+      });
+
+      await loadLawyerManagement();
+      if(window.lawyerDirectory?.load)window.lawyerDirectory.load();
+      setStatus('تم اعتماد تعديل بيانات المحامي.',false);
+    }catch(e){
+      console.error('Lawyer edit request approval failed:',e);
+      setStatus('تعذر اعتماد التعديل. تحقق من ارتباط الطلب بملف المحامي وطلبه الأصلي.',true);
+    }
   }
 
   async function rejectLawyerEditRequest(request){
