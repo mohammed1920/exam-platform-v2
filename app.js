@@ -895,7 +895,7 @@ class ExamApp {
     const pastAns = examEngine.userAnswers.find(a => {
       if (questionUid) return a.questionUid === questionUid;
       if (questionId) return a.questionId === questionId;
-      return false;
+      return Number.isInteger(a.questionIndex) && a.questionIndex === qIdx;
     });
 
     container.innerHTML = `
