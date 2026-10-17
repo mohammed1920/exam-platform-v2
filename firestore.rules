@@ -108,13 +108,26 @@ service cloud.firestore {
 
     match /mizanContributorPublic/{userId} {
       allow read: if resource.data.status == 'approved' && resource.data.fullName is string;
-      allow create, update: if isAdmin()
-                            || (signedIn()
-                            && request.auth.uid == userId
-                            && request.resource.data.fullName is string
-                            && request.resource.data.role is string
-                            && request.resource.data.specialization is string
-                            && request.resource.data.bio is string);
+
+      // Only admins can create/approve a public contributor profile.
+      allow create: if isAdmin();
+
+      // An approved contributor may edit profile fields, but cannot change
+      // the approval state or add privileged fields.
+      allow update: if isAdmin()
+                    || (
+                      signedIn()
+                      && request.auth.uid == userId
+                      && resource.data.status == 'approved'
+                      && request.resource.data.status == resource.data.status
+                      && request.resource.data.fullName is string
+                      && request.resource.data.role is string
+                      && request.resource.data.specialization is string
+                      && request.resource.data.bio is string
+                      && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['fullName', 'role', 'specialization', 'bio', 'updatedAt'])
+                    );
+
       allow delete: if isAdmin();
     }
 
