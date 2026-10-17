@@ -25,6 +25,14 @@
       "description": "قانون المرافعات المدنية العراقي رقم ٨٣ لسنة ١٩٦٩ كما ورد في المصدر المرفق.",
       "articlesCount": 325,
       "file": "data/laws/iraqi-civil-procedure-code-83-1969.json"
+    },
+    {
+      "id": "iraqi-execution-law-45-1980",
+      "name": "قانون التنفيذ رقم (٤٥) لسنة ١٩٨٠",
+      "category": "قوانين عراقية",
+      "description": "قانون التنفيذ العراقي رقم (٤٥) لسنة ١٩٨٠.",
+      "articlesCount": 130,
+      "file": "data/laws/iraqi-execution-law-45-1980.json"
     }
   ]
 }
