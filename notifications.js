@@ -18,7 +18,7 @@ function ensureUI(){
  wrapper.innerHTML='<button type="button" class="mizan-notifications-toggle" id="mizan-notifications-toggle" aria-label="الإشعارات" aria-expanded="false" aria-controls="mizan-notifications-panel">🔔<span class="mizan-notifications-badge" id="mizan-notifications-badge" aria-live="polite"></span></button><section class="mizan-notifications-panel" id="mizan-notifications-panel" role="dialog" aria-label="إشعارات ميزان" hidden><div class="mizan-notifications-panel-head"><strong>إشعارات ميزان</strong><button type="button" class="mizan-notifications-close" id="mizan-notifications-close" aria-label="إغلاق">×</button></div><div id="mizan-notifications-list"><p class="mizan-notifications-empty">جاري تحميل الإشعارات...</p></div></section>';
  header.appendChild(wrapper);
  const toggle=document.getElementById('mizan-notifications-toggle');const panel=document.getElementById('mizan-notifications-panel');
- toggle.addEventListener('click',function(){panelOpen=!panelOpen;panel.hidden=!panelOpen;toggle.setAttribute('aria-expanded',String(panelOpen));});
+ toggle.addEventListener('click',function(){panelOpen=!panelOpen;panel.hidden=!panelOpen;header.classList.toggle('mizan-notifications-open',panelOpen);toggle.setAttribute('aria-expanded',String(panelOpen));});
  document.getElementById('mizan-notifications-close').addEventListener('click',closePanel);
  document.addEventListener('click',function(event){if(panelOpen&&!wrapper.contains(event.target))closePanel();});
  document.addEventListener('keydown',function(event){if(event.key==='Escape')closePanel();});
@@ -27,7 +27,7 @@ function ensureUI(){
   const id=control.getAttribute('data-notification-read')||control.getAttribute('data-notification-link');if(id){readIds.add(id);saveReadIds();renderNotifications();}
  });
 }
-function closePanel(){panelOpen=false;const panel=document.getElementById('mizan-notifications-panel');const toggle=document.getElementById('mizan-notifications-toggle');if(panel)panel.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');}
+function closePanel(){panelOpen=false;const panel=document.getElementById('mizan-notifications-panel');const toggle=document.getElementById('mizan-notifications-toggle');const header=document.querySelector('.mizan-header');if(panel)panel.hidden=true;if(header)header.classList.remove('mizan-notifications-open');if(toggle)toggle.setAttribute('aria-expanded','false');}
 function renderNotifications(){
  const badge=document.getElementById('mizan-notifications-badge');const list=document.getElementById('mizan-notifications-list');if(!badge||!list)return;
  const active=notifications.filter(item=>item&&item.active!==false&&typeof item.id==='string');
