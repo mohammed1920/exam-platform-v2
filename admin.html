@@ -56,6 +56,7 @@
                 <button class="tab-btn" onclick="switchTab('spellcheck', event); loadSpellingReport();">🔤 الإملاء</button>
                 <button class="tab-btn" onclick="switchTab('qa-audit', event); loadQaReport();">🔍 الجودة</button>
                 <button class="tab-btn" onclick="switchTab('laws', event); loadLawsRegistry()">⚖️ القوانين</button>
+                <button class="tab-btn" onclick="switchTab('notifications', event); loadNotifications()">🔔 الإشعارات</button>
             </nav>
 
             <section id="overview" class="tab-content active">
@@ -194,6 +195,22 @@
                 </div>
             </section>
 
+            <section id="notifications" class="tab-content">
+                <div class="panel">
+                    <h3>🔔 إدارة إشعارات ميزان</h3>
+                    <p>انشر تنبيهات التحديثات المهمة للمستخدمين. تُحفظ الإشعارات في GitHub ولا تستخدم قراءات Firestore.</p>
+                    <input type="hidden" id="notification-edit-id">
+                    <div class="form-group"><label for="notification-title">عنوان الإشعار</label><input type="text" id="notification-title" maxlength="120" placeholder="مثال: تحديث جديد في منصة ميزان"></div>
+                    <div class="form-group"><label for="notification-message">محتوى الإشعار</label><textarea id="notification-message" rows="4" maxlength="1200" placeholder="اكتب تفاصيل التحديث للمستخدمين..."></textarea></div>
+                    <div class="form-group"><label for="notification-link">رابط اختياري</label><input type="url" id="notification-link" placeholder="https://www.mizan-iraq.com/..."><small class="admin-field-hint">اتركه فارغاً إذا لم يكن هناك رابط.</small></div>
+                    <div class="btn-row">
+                        <button type="button" class="btn btn-primary" id="notification-save-btn" onclick="guardedOp(saveNotification)">نشر الإشعار</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearNotificationForm()">تفريغ الحقول</button>
+                        <button type="button" class="btn btn-secondary" onclick="loadNotifications()">تحديث القائمة</button>
+                    </div>
+                </div>
+                <div class="panel"><h3>الإشعارات المنشورة</h3><div id="admin-notifications-list">اضغط «تحديث القائمة» لعرض الإشعارات.</div></div>
+            </section>
             <div id="batch-save-bar" class="batch-save-bar">
                 <span class="batch-save-bar-text">⚠️ لديك <span id="batch-save-count">0</span> تعديلات معلقة على إجابات هذا الفصل.</span>
                 <button class="btn btn-primary" onclick="guardedOp(saveAllStagedAnswers)">🚀 حفظ ودفع جميع التعديلات دفعة واحدة</button>

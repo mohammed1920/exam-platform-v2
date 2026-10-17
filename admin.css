@@ -321,3 +321,15 @@ body.batch-active { padding-bottom:130px; }
   .batch-save-bar-text { flex: 1; text-align: right; }
   .batch-save-bar .btn { width: auto; padding:var(--mizan-space-inset-compact) var(--mizan-space-5); font-size: var(--mizan-font-size-compact); }
 }
+
+
+/* Administrative notification management */
+.admin-notification-card { margin-top: var(--mizan-space-3); padding: var(--mizan-space-inset-medium); border: 1px solid var(--admin-border); border-radius: var(--mizan-radius-md, 12px); background: var(--admin-bg); }
+.admin-notification-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--mizan-space-2); margin-bottom: var(--mizan-space-2); }
+.admin-notification-card-head strong { overflow-wrap: anywhere; }
+.admin-notification-card p { margin-bottom: var(--mizan-space-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.admin-notification-card small, .admin-notification-link { display: block; color: var(--admin-muted); font-size: var(--mizan-font-size-xs); overflow-wrap: anywhere; }
+.admin-notification-status { flex-shrink: 0; padding: 3px 8px; border-radius: 999px; font-size: var(--mizan-font-size-2xs); font-weight: 700; }
+.admin-notification-status.is-active { color: var(--admin-success); background: color-mix(in srgb, var(--admin-success) 12%, transparent); }
+.admin-notification-status.is-paused { color: var(--admin-muted); background: var(--admin-surface-raised); }
+.admin-notification-actions { margin-top: var(--mizan-space-3); }

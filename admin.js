@@ -1417,6 +1417,125 @@
             }
         }
 
+
+        // ===== الإشعارات الإدارية المخزنة في data/notifications.json =====
+        let adminNotificationsCache = [];
+        async function readNotificationsRegistry() {
+            const remote = await ghRequest('data/notifications.json');
+            const parsed = JSON.parse(decode(remote.content));
+            if (!parsed || !Array.isArray(parsed.notifications)) throw new Error('ملف الإشعارات غير صالح.');
+            return parsed;
+        }
+        function renderAdminNotifications(registry) {
+            const list = document.getElementById('admin-notifications-list');
+            adminNotificationsCache = registry.notifications.slice().sort((a, b) =>
+                String(b.updatedAt || b.createdAt || '').localeCompare(String(a.updatedAt || a.createdAt || ''))
+            );
+            if (!adminNotificationsCache.length) {
+                list.innerHTML = '<p class="empty-hint">لا توجد إشعارات حالياً. يمكنك إضافة تنبيه مهم من النموذج أعلاه.</p>';
+                return;
+            }
+            list.innerHTML = adminNotificationsCache.map(item => {
+                const active = item.active !== false;
+                const date = item.updatedAt || item.createdAt || '';
+                return '<article class="admin-notification-card">' +
+                    '<div class="admin-notification-card-head"><strong>' + escapeHtml(item.title || 'بدون عنوان') + '</strong>' +
+                    '<span class="admin-notification-status ' + (active ? 'is-active' : 'is-paused') + '">' + (active ? 'منشور' : 'متوقف') + '</span></div>' +
+                    '<p>' + escapeHtml(item.message || '') + '</p>' +
+                    (item.link ? '<div class="admin-notification-link">' + escapeHtml(item.link) + '</div>' : '') +
+                    '<small>' + escapeHtml(date ? new Date(date).toLocaleString('ar-IQ') : '') + '</small>' +
+                    '<div class="btn-row admin-notification-actions">' +
+                    '<button type="button" class="btn btn-secondary btn-sm" onclick="editNotification(\'' + escapeAttr(item.id) + '\')">تعديل</button>' +
+                    '<button type="button" class="btn btn-secondary btn-sm" onclick="guardedOp(() => toggleNotification(\'' + escapeAttr(item.id) + '\'))">' + (active ? 'إيقاف' : 'نشر') + '</button>' +
+                    '<button type="button" class="btn btn-secondary btn-sm" onclick="guardedOp(() => deleteNotification(\'' + escapeAttr(item.id) + '\'))">حذف</button>' +
+                    '</div></article>';
+            }).join('');
+        }
+        async function loadNotifications() {
+            const list = document.getElementById('admin-notifications-list');
+            if (!list) return;
+            list.textContent = 'جاري تحميل الإشعارات...';
+            try { renderAdminNotifications(await readNotificationsRegistry()); }
+            catch (e) { list.textContent = 'تعذر تحميل الإشعارات: ' + e.message; }
+        }
+        function clearNotificationForm() {
+            document.getElementById('notification-edit-id').value = '';
+            document.getElementById('notification-title').value = '';
+            document.getElementById('notification-message').value = '';
+            document.getElementById('notification-link').value = '';
+            document.getElementById('notification-save-btn').textContent = 'نشر الإشعار';
+        }
+        function editNotification(id) {
+            const item = adminNotificationsCache.find(notification => notification.id === id);
+            if (!item) { showAlert('لم يتم العثور على الإشعار المطلوب.', 'error'); return; }
+            document.getElementById('notification-edit-id').value = item.id;
+            document.getElementById('notification-title').value = item.title || '';
+            document.getElementById('notification-message').value = item.message || '';
+            document.getElementById('notification-link').value = item.link || '';
+            document.getElementById('notification-save-btn').textContent = 'حفظ التعديلات';
+            document.getElementById('notification-title').focus();
+            document.getElementById('notifications').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        async function saveNotification() {
+            const title = document.getElementById('notification-title').value.trim();
+            const message = document.getElementById('notification-message').value.trim();
+            const link = document.getElementById('notification-link').value.trim();
+            const editingId = document.getElementById('notification-edit-id').value;
+            if (!title || !message) { showAlert('يرجى كتابة عنوان الإشعار ومحتواه.', 'error'); return; }
+            if (link) {
+                let parsedLink;
+                try { parsedLink = new URL(link, window.location.origin); }
+                catch (_) { showAlert('رابط الإشعار غير صالح.', 'error'); return; }
+                if (!['http:', 'https:'].includes(parsedLink.protocol)) { showAlert('يسمح فقط بروابط HTTP أو HTTPS.', 'error'); return; }
+            }
+            try {
+                const registry = await readNotificationsRegistry();
+                const now = new Date().toISOString();
+                if (editingId) {
+                    const index = registry.notifications.findIndex(item => item.id === editingId);
+                    if (index < 0) throw new Error('الإشعار الذي تريد تعديله لم يعد موجوداً. حدّث القائمة وحاول مجدداً.');
+                    registry.notifications[index] = { ...registry.notifications[index], title, message, link: link || '', updatedAt: now };
+                } else {
+                    const id = window.crypto && typeof window.crypto.randomUUID === 'function'
+                        ? window.crypto.randomUUID()
+                        : 'notice-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+                    registry.notifications.push({ id, title, message, link: link || '', active: true, createdAt: now, updatedAt: now });
+                }
+                registry.schemaVersion = Number(registry.schemaVersion) || 1;
+                await commitFiles([{ path: 'data/notifications.json', content: JSON.stringify(registry, null, 2) }],
+                    editingId ? 'تعديل إشعار إداري' : 'إضافة إشعار إداري');
+                clearNotificationForm();
+                await loadNotifications();
+                showAlert(editingId ? 'تم حفظ تعديلات الإشعار بنجاح.' : 'تم نشر الإشعار بنجاح.');
+            } catch (e) { showAlert('تعذر حفظ الإشعار: ' + e.message, 'error'); }
+        }
+        async function toggleNotification(id) {
+            try {
+                const registry = await readNotificationsRegistry();
+                const item = registry.notifications.find(notification => notification.id === id);
+                if (!item) throw new Error('لم يتم العثور على الإشعار.');
+                item.active = item.active === false;
+                item.updatedAt = new Date().toISOString();
+                await commitFiles([{ path: 'data/notifications.json', content: JSON.stringify(registry, null, 2) }],
+                    item.active ? 'إعادة نشر إشعار إداري' : 'إيقاف إشعار إداري');
+                await loadNotifications();
+                showAlert(item.active ? 'تم نشر الإشعار.' : 'تم إيقاف الإشعار.');
+            } catch (e) { showAlert('تعذر تغيير حالة الإشعار: ' + e.message, 'error'); }
+        }
+        async function deleteNotification(id) {
+            if (!confirm('هل تريد حذف هذا الإشعار نهائياً؟')) return;
+            try {
+                const registry = await readNotificationsRegistry();
+                const next = registry.notifications.filter(notification => notification.id !== id);
+                if (next.length === registry.notifications.length) throw new Error('لم يتم العثور على الإشعار.');
+                registry.notifications = next;
+                await commitFiles([{ path: 'data/notifications.json', content: JSON.stringify(registry, null, 2) }], 'حذف إشعار إداري');
+                clearNotificationForm();
+                await loadNotifications();
+                showAlert('تم حذف الإشعار.');
+            } catch (e) { showAlert('تعذر حذف الإشعار: ' + e.message, 'error'); }
+        }
+
         window.onload = () => {
             if (config.token) loadBooks();
             else openSettings();
