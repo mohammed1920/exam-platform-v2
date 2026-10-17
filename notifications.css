@@ -1,5 +1,5 @@
 /* Administrative notices bell and dropdown */
-.mizan-notifications{position:absolute;top:var(--mizan-header-tools-offset);right:var(--mizan-header-tools-offset);z-index:30;direction:rtl}
+.mizan-notifications{position:absolute;top:var(--mizan-header-tools-offset);right:calc(var(--mizan-header-tools-offset) + var(--mizan-header-control-size) + var(--mizan-space-2));z-index:9001;direction:rtl}
 .mizan-notifications-toggle{position:relative;display:grid;place-items:center;width:var(--mizan-header-control-size,42px);height:var(--mizan-header-control-size,42px);padding:0;border:1px solid var(--mizan-primary-500-border,currentColor);border-radius:50%;background:var(--mizan-primary-900,#14243a);color:var(--mizan-primary-300,#f3c969);font-size:21px;line-height:1;cursor:pointer}
 .mizan-notifications-toggle:focus-visible{outline:3px solid var(--mizan-focus-ring,#e9b949);outline-offset:3px}
 .mizan-notifications-badge{position:absolute;top:-5px;left:-5px;display:none;min-width:19px;height:19px;padding:0 4px;border:2px solid var(--mizan-bg,#fff);border-radius:999px;background:#c62828;color:#fff;font:700 11px/15px Arial,sans-serif;text-align:center}
