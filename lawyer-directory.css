@@ -145,50 +145,74 @@
   gap:13px;
 }
 
-/* Skeleton loading مدمج مع تنسيق الدليل الحالي وألوان ميزان المركزية. */
+/* Skeleton mirrors the real lawyer card grid, spacing, icon, verification badge and actions. */
 .lawyer-skeleton-card{
   display:grid;
   grid-template-columns:auto minmax(0,1fr) 88px;
+  direction:rtl;
   align-items:start;
   gap:var(--mizan-space-3);
   min-width:0;
+  margin:0;
   padding:var(--mizan-space-5);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-xl);
   background:var(--mizan-gradient-lawyer-card);
+  box-shadow:var(--mizan-shadow-card-rest);
 }
 .lawyer-skeleton-icon,
 .lawyer-skeleton-line,
-.lawyer-skeleton-badge{
+.lawyer-skeleton-badge,
+.lawyer-skeleton-action{
   display:block;
   background:linear-gradient(100deg,var(--mizan-border) 20%,var(--mizan-surface) 45%,var(--mizan-border) 70%);
   background-size:220% 100%;
   animation:lawyer-skeleton-shimmer 1.35s ease-in-out infinite;
 }
 .lawyer-skeleton-icon{
+  grid-column:1;
+  grid-row:1;
   width:88px;
   height:88px;
   border:1px solid var(--mizan-gold-tint-border);
   border-radius:var(--mizan-radius-xl);
+  background-color:var(--mizan-gold-tint);
 }
 .lawyer-skeleton-main{
+  grid-column:2;
+  grid-row:1;
   display:flex;
   min-width:0;
   flex-direction:column;
   align-items:flex-start;
-  gap:10px;
+  gap:var(--mizan-space-3);
   padding-top:4px;
 }
 .lawyer-skeleton-line{
   height:12px;
   border-radius:6px;
 }
-.lawyer-skeleton-line.title{width:48%;height:18px}
-.lawyer-skeleton-line.medium{width:76%}
-.lawyer-skeleton-line.short{width:42%}
+.lawyer-skeleton-line.title{width:58%;height:20px}
+.lawyer-skeleton-line.medium{width:82%}
+.lawyer-skeleton-line.short{width:54%}
 .lawyer-skeleton-badge{
-  width:70px;
-  height:24px;
+  grid-column:3;
+  grid-row:1;
+  width:72px;
+  height:28px;
+  border:1px solid var(--mizan-gold-tint-border);
+  border-radius:var(--mizan-radius-pill);
+  background-color:var(--mizan-gold-tint);
+}
+.lawyer-skeleton-actions{
+  grid-column:1 / -1;
+  display:flex;
+  gap:var(--mizan-space-2);
+  margin-top:var(--mizan-space-1);
+}
+.lawyer-skeleton-action{
+  width:94px;
+  height:34px;
   border-radius:var(--mizan-radius-md);
 }
 .lawyers-list[aria-busy="true"]{pointer-events:none}
@@ -210,7 +234,8 @@
 @media(prefers-reduced-motion:reduce){
   .lawyer-skeleton-icon,
   .lawyer-skeleton-line,
-  .lawyer-skeleton-badge{animation:none}
+  .lawyer-skeleton-badge,
+  .lawyer-skeleton-action{animation:none}
 }
 .lawyer-card{
   display:grid;
@@ -416,14 +441,10 @@
     gap:var(--mizan-space-2);
     padding:var(--mizan-space-3);
   }
-  .lawyer-skeleton-icon{
-    width:64px;
-    height:64px;
-  }
-  .lawyer-skeleton-badge{
-    width:48px;
-    height:20px;
-  }
+  .lawyer-skeleton-icon{width:64px;height:64px}
+  .lawyer-skeleton-badge{width:48px;height:22px}
+  .lawyer-skeleton-actions{gap:var(--mizan-space-1)}
+  .lawyer-skeleton-action{width:76px;height:32px}
   .lawyer-card-icon{
     grid-column:1;
     grid-row:1;
