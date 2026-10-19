@@ -149,7 +149,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'lawyer-directory.css?v=2.9';
+          css.href = 'lawyer-directory.css?v=3.0';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
@@ -160,7 +160,7 @@
           return;
         }
         const script = document.createElement('script');
-        script.src = 'lawyer-directory.js?v=1.0';
+        script.src = 'lawyer-directory.js?v=1.1';
         script.dataset.lawyerDirectory = '1';
         script.onload = finish;
         script.onerror = () => reject(new Error('تعذر تحميل دليل المحامين'));
