@@ -343,7 +343,8 @@
       const db = window.publicAuth?.firestore;
       if (!db) {
         if (!profiles.length) {
-          list.innerHTML = '<div class="lawyers-empty">تعذر الاتصال بقاعدة البيانات. تحقق من الاتصال ثم حاول مرة أخرى.</div>';
+          list.innerHTML = '<div class="lawyers-empty"><i class="fas fa-triangle-exclamation"></i><strong>تعذر الاتصال بقاعدة البيانات</strong><span>تحقق من الاتصال ثم حاول مرة أخرى.</span><button type="button" class="lawyers-retry-btn" id="lawyers-retry-btn">إعادة المحاولة</button></div>';
+          document.getElementById('lawyers-retry-btn')?.addEventListener('click', () => loadProfiles({force:true}));
         }
         return;
       }
