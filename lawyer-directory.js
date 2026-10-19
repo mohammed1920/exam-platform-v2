@@ -77,6 +77,7 @@
       </div>
     `;
     main.appendChild(section);
+    renderProfilesSkeleton();
 
     document.getElementById('lawyers-back-btn').onclick = () => window.app?.navigateTo('home');
     document.getElementById('lawyer-apply-btn').onclick = () => openApplication();
