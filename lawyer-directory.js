@@ -67,7 +67,7 @@
       </div>
 
       <div id="lawyer-my-application" class="lawyer-my-application" hidden></div>
-      <div id="lawyers-list" class="lawyers-list"><div class="lawyers-empty">جاري تحميل دليل المحامين...</div></div>
+      <div id="lawyers-list" class="lawyers-list" aria-live="polite" aria-busy="true"><div class="lawyers-empty">جاري تجهيز الدليل...</div></div>
       <div id="lawyer-details-modal" class="lawyer-details-modal" hidden aria-hidden="true">
         <div class="lawyer-details-backdrop" data-lawyer-close></div>
         <div class="lawyer-details-dialog" role="dialog" aria-modal="true" aria-labelledby="lawyer-details-title">
@@ -296,25 +296,84 @@
   }
 
   let profiles = [];
+  let profilesLoaded = false;
+  let profilesRequest = null;
 
-  async function loadProfiles() {
-    buildSection();
-    await loadMyApplication();
+  function renderProfilesSkeleton(count = 3) {
     const list = document.getElementById('lawyers-list');
     if (!list) return;
-    const db = window.publicAuth?.firestore;
-    if (!db) {
-      list.innerHTML = '<div class="lawyers-empty">تعذر الاتصال بقاعدة البيانات.</div>';
+    list.setAttribute('aria-busy', 'true');
+    list.innerHTML = Array.from({length: count}, () => `
+      <div class="lawyer-skeleton-card" aria-hidden="true">
+        <div class="lawyer-skeleton-icon"></div>
+        <div class="lawyer-skeleton-main">
+          <span class="lawyer-skeleton-line title"></span>
+          <span class="lawyer-skeleton-line medium"></span>
+          <span class="lawyer-skeleton-line short"></span>
+        </div>
+        <span class="lawyer-skeleton-badge"></span>
+      </div>
+    `).join('');
+  }
+
+  function finishProfilesLoading() {
+    document.getElementById('lawyers-list')?.removeAttribute('aria-busy');
+  }
+
+  async function loadProfiles(options = {}) {
+    buildSection();
+    const list = document.getElementById('lawyers-list');
+    if (!list) return;
+
+    // عرض القائمة المحفوظة فوراً عند الرجوع إلى الدليل.
+    if (profilesLoaded && !options.force) {
+      renderProfiles();
+      loadMyApplication().catch(error => console.warn('Lawyer application refresh failed:', error));
       return;
     }
-    try {
-      const snap = await db.collection('lawyerProfiles').where('published','==',true).get();
-      profiles = snap.docs.map(d => ({id:d.id, ...d.data()}));
-      renderProfiles();
-    } catch (error) {
-      console.error('Lawyer profiles load failed:', error);
-      list.innerHTML = '<div class="lawyers-empty">تعذر تحميل الدليل حالياً.</div>';
-    }
+
+    // مشاركة الطلب الجاري بدلاً من تكرار طلب Firestore.
+    if (profilesRequest) return profilesRequest;
+
+    // عند التحديث نُبقي النتائج السابقة ظاهرة، والهيكل يظهر في أول تحميل فقط.
+    if (!profiles.length) renderProfilesSkeleton();
+
+    profilesRequest = (async () => {
+      const db = window.publicAuth?.firestore;
+      if (!db) {
+        if (!profiles.length) {
+          list.innerHTML = '<div class="lawyers-empty">تعذر الاتصال بقاعدة البيانات. تحقق من الاتصال ثم حاول مرة أخرى.</div>';
+        }
+        return;
+      }
+
+      // بيانات الدليل العامة لا تنتظر تحميل طلب المستخدم الشخصي.
+      const applicationPromise = loadMyApplication().catch(error => {
+        console.warn('Lawyer application load failed:', error);
+      });
+
+      try {
+        const snap = await db.collection('lawyerProfiles').where('published','==',true).get();
+        profiles = snap.docs.map(d => ({id:d.id, ...d.data()}));
+        profilesLoaded = true;
+        renderProfiles();
+      } catch (error) {
+        console.error('Lawyer profiles load failed:', error);
+        if (!profiles.length) {
+          list.innerHTML = '<div class="lawyers-empty"><i class="fas fa-triangle-exclamation"></i><strong>تعذر تحميل الدليل حالياً</strong><span>تحقق من اتصالك ثم حاول مرة أخرى.</span><button type="button" class="lawyers-retry-btn" id="lawyers-retry-btn">إعادة المحاولة</button></div>';
+          document.getElementById('lawyers-retry-btn')?.addEventListener('click', () => loadProfiles({force:true}));
+        } else {
+          renderProfiles();
+        }
+      }
+
+      await applicationPromise;
+    })().finally(() => {
+      profilesRequest = null;
+      finishProfilesLoading();
+    });
+
+    return profilesRequest;
   }
 
   function renderProfiles() {
