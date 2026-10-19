@@ -313,6 +313,10 @@
           <span class="lawyer-skeleton-line short"></span>
         </div>
         <span class="lawyer-skeleton-badge"></span>
+        <div class="lawyer-skeleton-actions">
+          <span class="lawyer-skeleton-action"></span>
+          <span class="lawyer-skeleton-action"></span>
+        </div>
       </div>
     `).join('');
   }
