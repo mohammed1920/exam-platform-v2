@@ -266,7 +266,6 @@ class ExamApp {
   async loadBooks() {
     this.books = await examEngine.loadBooks();
     this.renderBooks(this.books);
-    this.renderHomeBookPreview();
   }
 
   async loadContactInfo() {
@@ -275,40 +274,6 @@ class ExamApp {
       return;
     }
     return window.MizanContactInfo.load();
-  }
-
-  renderHomeBookPreview() {
-    const preview = document.getElementById('home-book-preview-grid');
-    const container = document.getElementById('books-container');
-    if (!preview || !container) return;
-
-    preview.replaceChildren();
-    const cards = Array.from(container.querySelectorAll('.book-card')).slice(0, 3);
-    if (!cards.length) {
-      const empty = document.createElement('p');
-      empty.className = 'home-book-preview-empty';
-      empty.textContent = 'ستظهر الكتب المتاحة هنا عند تحميل المكتبة.';
-      preview.appendChild(empty);
-      return;
-    }
-
-    cards.forEach(card => {
-      const clone = card.cloneNode(true);
-      clone.classList.add('home-book-preview-card');
-      clone.addEventListener('click', event => {
-        if (event.target.closest('.test-btn')) return;
-        clone.classList.toggle('is-open');
-      });
-      const button = clone.querySelector('.test-btn');
-      if (button) {
-        button.addEventListener('click', event => {
-          event.stopPropagation();
-          const bookId = button.dataset.bookId;
-          if (bookId) this.selectBook(bookId);
-        });
-      }
-      preview.appendChild(clone);
-    });
   }
 
   renderBooks(booksList) {
