@@ -38,7 +38,8 @@ find "$ROOT" -maxdepth 1 -type f \( \
   -name '*.html' -o \
   -name '*.js' -o \
   -name '*.css' -o \
-  -name 'manifest.json' \
+  -name 'manifest.json' -o \
+  -name 'procedures-index.json' \
 \) -exec cp {} "$OUTPUT_DIR/" \;
 
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
@@ -56,6 +57,7 @@ required_files=(
   data/books.json
   data/search-index.json
   manifest.json
+  procedures-index.json
 )
 
 for relative_path in "${required_files[@]}"; do
