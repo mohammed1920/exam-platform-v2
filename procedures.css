@@ -25,7 +25,7 @@
 .procedures-request-form label span { color: #b45309; font-size: .78rem; }
 .procedures-request-form textarea { width: 100%; resize: vertical; min-height: 94px; padding: 12px 14px; border: 1px solid var(--mizan-border, #cbd5e1); border-radius: 12px; background: var(--mizan-surface, var(--card-bg, #fff)); color: inherit; font: inherit; line-height: 1.8; }
 .procedures-primary, .procedures-secondary { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 44px; padding: 11px 18px; border-radius: 12px; font: inherit; font-weight: 800; cursor: pointer; }
-.procedures-primary { border: 1px solid #1d4ed8; background: #2563eb; color: var(--mizan-procedures-hero-fg); }
+.procedures-primary { border: 1px solid var(--mizan-procedures-primary-border); background: var(--mizan-procedures-primary-bg); color: var(--mizan-white); }
 .procedures-primary:hover { background: var(--mizan-procedures-primary-hover); }
 .procedures-primary:disabled { opacity: .6; cursor: wait; }
 .procedures-secondary { border: 1px solid var(--mizan-border, #cbd5e1); background: transparent; color: inherit; }
@@ -64,10 +64,10 @@
   .procedures-workflow-steps { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .procedures-primary, .procedures-secondary { width: 100%; }
 }
-[data-theme="dark"] .procedures-approved-banner { border-color: var(--mizan-procedures-success-border); background: var(--mizan-procedures-success-bg); color: var(--mizan-procedures-success-fg); }
-[data-theme="dark"] .procedures-approved-banner span { color: var(--mizan-procedures-success-muted); }
-[data-theme="dark"] .procedures-category-icon { background: var(--mizan-procedures-category-bg); color: var(--mizan-procedures-category-fg); }
-[data-theme="dark"] .procedures-workflow-steps span { background: #1e293b; color: var(--mizan-procedures-hero-muted); }
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-approved-banner { border-color: var(--mizan-procedures-success-border); background: var(--mizan-procedures-success-bg); color: var(--mizan-procedures-success-fg); }
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-approved-banner span { color: var(--mizan-procedures-success-muted); }
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-category-icon { background: var(--mizan-procedures-category-bg); color: var(--mizan-procedures-category-fg); }
+html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workflow-steps span { background: var(--mizan-procedures-workflow-bg); color: var(--mizan-procedures-workflow-fg); }
 
 
 .procedures-title-list{display:grid;gap:10px;margin-top:16px}
