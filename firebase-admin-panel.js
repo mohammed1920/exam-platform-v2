@@ -490,7 +490,29 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     try{await window.publicAuth.firestore.collection('lawyerApplications').doc(app.id).update({status:'rejected',rejectedBy:window.publicAuth.user.uid,rejectedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadLawyerApplications();setStatus('تم رفض الطلب ولم تُنشر بياناته.',false);}
     catch(e){console.error(e);setStatus('تعذر رفض الطلب.',true);}
   }
-  async function syncAdminState(){buildUI();if(!window.publicAuth||!window.publicAuth.user){isAdmin=false;if(panelOpen)closePanel();showTab(false);return;}const user=window.publicAuth.user;const allowed=await checkAdmin(user);isAdmin=allowed;showTab(allowed);publishAdminState();if(!allowed&&panelOpen)closePanel();if(allowed&&els.welcome)els.welcome.textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;}
+  async function syncAdminState(){
+    buildUI();
+    if(!window.publicAuth||!window.publicAuth.user){
+      isAdmin=false;
+      if(panelOpen)closePanel();
+      showTab(false);
+      publishAdminState();
+      return;
+    }
+    // Auth can become ready before the Firestore SDK finishes loading.
+    // Wait for Firestore before checking admins/{uid}, otherwise the crown
+    // can be hidden during the first page load and never checked again.
+    if(typeof window.publicAuth.whenFirestoreReady==='function'){
+      try{await window.publicAuth.whenFirestoreReady();}catch(error){console.warn('تعذر تهيئة Firestore للتحقق من الإدارة:',error);}
+    }
+    const user=window.publicAuth.user;
+    const allowed=await checkAdmin(user);
+    isAdmin=allowed;
+    showTab(allowed);
+    publishAdminState();
+    if(!allowed&&panelOpen)closePanel();
+    if(allowed&&els.welcome)els.welcome.textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;
+  }
   function install(){buildUI();publishAdminState();if(!window.publicAuth)return;window.publicAuth.whenReady().then(syncAdminState).catch(syncAdminState);window.addEventListener('public-auth-state-changed',syncAdminState);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
