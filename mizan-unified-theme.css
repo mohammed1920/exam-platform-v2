@@ -206,7 +206,7 @@ textarea:not(.book-card textarea),
 /* Home cards: exact white/dark surfaces; book cards are untouched */
 .home-category-card[data-home-action],
 .home-coming-soon{
-  background:var(--mu-card);
+  background-color:var(--mu-card);
   border-color:var(--mu-border);
   color:var(--mu-text);
 }
@@ -431,7 +431,7 @@ html body{
 .home-category-card.featured,
 .home-coming-soon,
 .home-feature-strip>div{
-  background:var(--mizan-card);
+  background-color:var(--mizan-card);
   color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
