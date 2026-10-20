@@ -70,7 +70,12 @@
       if(window.app) window.app.navigateTo('faq');
       return;
     }
-    if(action==='procedures') {\n      if (typeof window.procedures?.open === 'function') window.procedures.open();\n      else window.app?.showHomeNotice?.('إجراءات الدعاوى','تعذر تهيئة القسم. حدّث الصفحة ثم أعد المحاولة.');\n      return;\n    }\n    if(action==='lawyers'){
+    if(action==='procedures') {
+      if (typeof window.procedures?.open === 'function') window.procedures.open();
+      else window.app?.showHomeNotice?.('إجراءات الدعاوى','تعذر تهيئة القسم. حدّث الصفحة ثم أعد المحاولة.');
+      return;
+    }
+    if(action==='lawyers'){
       if(typeof window.loadLawyerDirectory === 'function'){
         window.loadLawyerDirectory()
           .then(()=>window.app?.navigateTo('lawyers'))
