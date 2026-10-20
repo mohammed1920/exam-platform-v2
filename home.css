@@ -1101,7 +1101,7 @@ html[data-theme="light"] .footer-faq-list p{
 
 /* Design reference v5 — learning shortcuts, kept in the existing home layer. */
 .home-category-card-random{
-  background:var(--mizan-gradient-home-featured-light,var(--mizan-card));
+  background-color:var(--mizan-gradient-home-featured-light,var(--mizan-card));
   border-color:var(--mizan-border);
 }
 .home-resume-random{
