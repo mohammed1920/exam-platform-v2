@@ -359,3 +359,46 @@ html[data-theme="light"] #mizan-header-tools .firebase-admin-tab{
 :is(.firebase-admin-table-wrap,.mizan-admin-modal-box,.mizan-admin-head-actions) :is([data-mizan-action="view"],[data-mizan-action="view-contributor"]){
   --btn-tone:var(--mizan-info-text);
 }
+
+/* Procedure-content editor: styles stay in the existing admin stylesheet. */
+.procedures-admin-management{
+  margin-top:var(--mizan-space-4);
+}
+.procedures-admin-form{
+  display:grid;
+  gap:var(--mizan-space-3);
+  padding:var(--mizan-space-4);
+}
+.procedures-admin-form>label{
+  display:grid;
+  gap:var(--mizan-space-1);
+  color:var(--mizan-text);
+  font-size:var(--mizan-font-size-2xs);
+  font-weight:700;
+}
+.procedures-admin-form :is(input:not([type="checkbox"]),textarea){
+  width:100%;
+  min-width:0;
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-sm);
+  padding:var(--mizan-space-2) var(--mizan-space-3);
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+  font:inherit;
+  font-weight:400;
+}
+.procedures-admin-form textarea{
+  resize:vertical;
+  line-height:1.7;
+}
+.procedures-admin-form>label:has(input[type="checkbox"]){
+  display:flex;
+  align-items:center;
+  gap:var(--mizan-space-2);
+}
+.procedures-admin-form input[type="checkbox"]{
+  accent-color:var(--mizan-primary-600);
+}
+@media(max-width:600px){
+  .procedures-admin-form{padding:var(--mizan-space-3)}
+}
