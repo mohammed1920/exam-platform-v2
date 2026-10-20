@@ -239,6 +239,49 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(e){console.error('Legal procedures load failed:',e);body.innerHTML='<tr><td colspan="4">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</td></tr>';return false;}
   }
 
+
+  async function saveLegalProcedure(event){
+    event.preventDefault();
+    if(!isAdmin||!window.publicAuth?.firestore)return;
+    const f=els.procedureForm,id=String(f.elements.id.value||'').trim();
+    const data={
+      title:String(f.elements.title.value||'').trim().slice(0,180),
+      summary:String(f.elements.summary.value||'').trim().slice(0,2000),
+      requirements:String(f.elements.requirements.value||'').trim().slice(0,5000),
+      documents:String(f.elements.documents.value||'').trim().slice(0,5000),
+      steps:String(f.elements.steps.value||'').trim().slice(0,10000),
+      legalBasis:String(f.elements.legalBasis.value||'').trim().slice(0,5000),
+      fees:String(f.elements.fees.value||'').trim().slice(0,500),
+      duration:String(f.elements.duration.value||'').trim().slice(0,500),
+      published:Boolean(f.elements.published.checked),
+      updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if(data.title.length<3){
+      setStatus('عنوان الإجراء مطلوب ويجب ألا يقل عن 3 محارف.',true);
+      return;
+    }
+    try{
+      const db=window.publicAuth.firestore;
+      if(id)await db.collection('legalProcedures').doc(id).update(data);
+      else{
+        data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
+        data.createdBy=window.publicAuth.user.uid;
+        await db.collection('legalProcedures').add(data);
+      }
+      resetLegalProcedure();
+      const indexSynced=await loadLegalProcedures();
+      setStatus(
+        indexSynced
+          ? 'تم حفظ الإجراء وتحديث الفهرس العام في Firebase.'
+          : 'تم حفظ الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',
+        !indexSynced
+      );
+    }catch(e){
+      console.error('Legal procedure save failed:',e);
+      setStatus('تعذر حفظ الإجراء. تحقق من قواعد Firestore المنشورة.',true);
+    }
+  }
+
   async function loadProcedureAccessRequests(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresRequestsBody)return;
     const body=els.proceduresRequestsBody;
