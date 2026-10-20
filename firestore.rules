@@ -174,7 +174,13 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-    // Procedure documents must live in Firestore, not in public static JSON files.
+    // Public catalog exposes only procedure IDs and titles; only admins can update it.
+    match /publicIndexes/procedures {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Procedure documents and legal details remain protected.
     match /legalProcedures/{procedureId} {
       allow read: if isAdmin()
                   || (
