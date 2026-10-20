@@ -49,7 +49,7 @@
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المستخدم</th><th>سبب الطلب</th><th>التقديم</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="fa-procedures-requests-body"><tr><td colspan="5">اختر هذا القسم لتحميل الطلبات.</td></tr></tbody></table></div>
       </div>
       <div class="firebase-admin-card lawyer-admin-card procedures-admin-management">
-        <div class="firebase-admin-card-head"><h3>إدارة محتوى الإجراءات</h3><span>التفاصيل في Firebase والعناوين في فهرس GitHub</span></div>
+        <div class="firebase-admin-card-head"><h3>إدارة محتوى الإجراءات</h3><span>التفاصيل والفهرس في Firebase</span></div>
         <form id="fa-procedure-form" class="procedures-admin-form">
           <input type="hidden" name="id">
           <label>عنوان الإجراء *<input name="title" required maxlength="180"></label>
@@ -61,21 +61,21 @@
           <label>الرسوم<input name="fees" maxlength="500"></label>
           <label>المدد القانونية أو المتوقعة<input name="duration" maxlength="500"></label>
           <label><input type="checkbox" name="published" checked> نشر الإجراء وإظهاره في الفهرس</label>
-          <div class="lawyer-admin-actions"><button class="approve" type="submit">حفظ الإجراء</button><button type="button" id="fa-procedure-reset">جديد / إلغاء التعديل</button><button type="button" id="fa-procedure-sync-index">فتح مزامنة فهرس GitHub</button></div>
-          <p class="lawyer-admin-note">بعد إضافة إجراء أو تعديله أو نشره/إخفائه، افتح مزامنة الفهرس وشغّل مهمة "Sync Published Procedure Titles" حتى تتحدث العناوين العامة. تفاصيل الإجراءات لا تُرفع إلى GitHub.</p>
+          <div class="lawyer-admin-actions"><button class="approve" type="submit">حفظ الإجراء</button><button type="button" id="fa-procedure-reset">جديد / إلغاء التعديل</button></div>
+          <p class="lawyer-admin-note">تُحدّث قائمة العناوين المنشورة تلقائياً في Firebase عند حفظ الإجراء أو نشره أو إخفائه أو حذفه، ولا تُحمّل تفاصيل الإجراءات إلا عند فتحها.</p>
         </form>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>عنوان الإجراء</th><th>الحالة</th><th>آخر تحديث</th><th>الإجراء</th></tr></thead><tbody id="fa-procedures-content-body"><tr><td colspan="4">اختر هذا القسم لتحميل الإجراءات.</td></tr></tbody></table></div>
       </div>
     </section></div>
     <button id="firebase-admin-back" class="firebase-admin-back" type="button">← العودة للموقع</button>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),proceduresContentBody:section.querySelector('#fa-procedures-content-body'),procedureReset:section.querySelector('#fa-procedure-reset'),procedureSyncIndex:section.querySelector('#fa-procedure-sync-index'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),proceduresContentBody:section.querySelector('#fa-procedures-content-body'),procedureReset:section.querySelector('#fa-procedure-reset'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
     els.section.querySelectorAll('[data-admin-home]').forEach(btn=>btn.addEventListener('click',showAdminHome));
 els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCancel?.addEventListener('click',closeLawyerEdit);els.lawyerEditForm?.addEventListener('submit',saveLawyerEdit);
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
-     els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.procedureSyncIndex?.addEventListener('click',()=>window.open('https://github.com/mohammed1920/exam-platform-v2/actions/workflows/sync-procedures-index.yml','_blank','noopener,noreferrer'));
+     els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
@@ -196,24 +196,35 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
 
   function resetLegalProcedure(){if(!els.procedureForm)return;els.procedureForm.reset();els.procedureForm.elements.id.value='';els.procedureForm.elements.published.checked=true;}
+  async function syncPublicProcedureIndex(items){
+    const db=window.publicAuth?.firestore;
+    if(!isAdmin||!db)return false;
+    const published=items.filter(item=>item.published===true&&typeof item.title==='string'&&item.title.trim())
+      .map(item=>({id:item.id,title:item.title.trim()}))
+      .sort((a,b)=>a.title.localeCompare(b.title,'ar'));
+    const indexRef=db.collection('publicIndexes').doc('procedures');
+    const indexSnap=await indexRef.get();
+    const current=indexSnap.exists&&Array.isArray(indexSnap.data()?.items)?indexSnap.data().items:[];
+    if(JSON.stringify(current)!==JSON.stringify(published)){
+      await indexRef.set({items:published,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    }
+    return true;
+  }
+
   async function loadLegalProcedures(){
-    if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresContentBody)return;
+    if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresContentBody)return false;
     const body=els.proceduresContentBody;body.innerHTML='<tr><td colspan="4">جارٍ تحميل الإجراءات...</td></tr>';
     try{
       const snap=await window.publicAuth.firestore.collection('legalProcedures').get();
       const items=snap.docs.map(doc=>({id:doc.id,...doc.data()})).sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'ar'));
+      let indexSynced=false;
+      try{indexSynced=await syncPublicProcedureIndex(items);}catch(indexError){console.error('Public procedure index sync failed:',indexError);}
       body.innerHTML=items.length?items.map(item=>'<tr><td><strong>'+esc(item.title||'بدون عنوان')+'</strong></td><td><span class="lawyer-admin-status '+(item.published?'is-live':'is-off')+'">'+(item.published?'منشور':'مسودة / مخفي')+'</span></td><td>'+esc(dateValue(item.updatedAt))+'</td><td><div class="lawyer-admin-actions"><button type="button" data-procedure-edit="'+esc(item.id)+'">تعديل</button><button type="button" class="'+(item.published?'reject':'approve')+'" data-procedure-toggle="'+esc(item.id)+'">'+(item.published?'إخفاء':'نشر')+'</button><button type="button" class="reject" data-procedure-delete="'+esc(item.id)+'">حذف</button></div></td></tr>').join(''):'<tr><td colspan="4">لا توجد إجراءات بعد. أضف أول إجراء من النموذج أعلاه.</td></tr>';
       body.querySelectorAll('[data-procedure-edit]').forEach(btn=>btn.addEventListener('click',()=>{const item=items.find(x=>x.id===btn.dataset.procedureEdit);if(!item)return;const f=els.procedureForm;f.elements.id.value=item.id;f.elements.title.value=item.title||'';f.elements.summary.value=item.summary||'';f.elements.requirements.value=item.requirements||'';f.elements.documents.value=item.documents||'';f.elements.steps.value=item.steps||'';f.elements.legalBasis.value=item.legalBasis||'';f.elements.fees.value=item.fees||'';f.elements.duration.value=item.duration||'';f.elements.published.checked=item.published===true;f.scrollIntoView({behavior:'smooth',block:'start'});}));
-      body.querySelectorAll('[data-procedure-toggle]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureToggle);if(!item)return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).update({published:item.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadLegalProcedures();setStatus('تم تحديث حالة الإجراء في Firebase. شغّل مزامنة فهرس GitHub لتحديث العنوان الظاهر للمستخدمين.',false);}catch(e){console.error(e);setStatus('تعذر تحديث حالة الإجراء.',true);}}));
-      body.querySelectorAll('[data-procedure-delete]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureDelete);if(!item||!confirm('حذف هذا الإجراء نهائياً؟'))return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).delete();resetLegalProcedure();await loadLegalProcedures();setStatus('تم حذف الإجراء. شغّل مزامنة فهرس GitHub لإزالة عنوانه من الفهرس العام.',false);}catch(e){console.error(e);setStatus('تعذر حذف الإجراء.',true);}}));
-    }catch(e){console.error('Legal procedures load failed:',e);body.innerHTML='<tr><td colspan="4">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</td></tr>';}
-  }
-  async function saveLegalProcedure(event){
-    event.preventDefault();if(!isAdmin||!window.publicAuth?.firestore)return;
-    const f=els.procedureForm,id=String(f.elements.id.value||'').trim();
-    const data={title:String(f.elements.title.value||'').trim().slice(0,180),summary:String(f.elements.summary.value||'').trim().slice(0,2000),requirements:String(f.elements.requirements.value||'').trim().slice(0,5000),documents:String(f.elements.documents.value||'').trim().slice(0,5000),steps:String(f.elements.steps.value||'').trim().slice(0,10000),legalBasis:String(f.elements.legalBasis.value||'').trim().slice(0,5000),fees:String(f.elements.fees.value||'').trim().slice(0,500),duration:String(f.elements.duration.value||'').trim().slice(0,500),published:Boolean(f.elements.published.checked),updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
-    if(data.title.length<3){setStatus('عنوان الإجراء مطلوب ويجب ألا يقل عن 3 محارف.',true);return;}
-    try{const db=window.publicAuth.firestore;if(id)await db.collection('legalProcedures').doc(id).update(data);else{data.createdAt=firebase.firestore.FieldValue.serverTimestamp();data.createdBy=window.publicAuth.user.uid;await db.collection('legalProcedures').add(data);}resetLegalProcedure();await loadLegalProcedures();setStatus('تم حفظ الإجراء في Firebase. شغّل مزامنة فهرس GitHub لإظهار عنوانه إذا كان منشوراً.',false);}catch(e){console.error('Legal procedure save failed:',e);setStatus('تعذر حفظ الإجراء. تحقق من قواعد Firestore المنشورة.',true);}
+      body.querySelectorAll('[data-procedure-toggle]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureToggle);if(!item)return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).update({published:item.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});const synced=await loadLegalProcedures();setStatus(synced?'تم تحديث حالة الإجراء والفهرس العام في Firebase.':'تم تحديث حالة الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',!synced);}catch(e){console.error(e);setStatus('تعذر تحديث حالة الإجراء.',true);}}));
+      body.querySelectorAll('[data-procedure-delete]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureDelete);if(!item||!confirm('حذف هذا الإجراء نهائياً؟'))return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).delete();resetLegalProcedure();const synced=await loadLegalProcedures();setStatus(synced?'تم حذف الإجراء وتحديث الفهرس العام.':'تم حذف الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',!synced);}catch(e){console.error(e);setStatus('تعذر حذف الإجراء.',true);}}));
+      return indexSynced;
+    }catch(e){console.error('Legal procedures load failed:',e);body.innerHTML='<tr><td colspan="4">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</td></tr>';return false;}
   }
 
   async function loadProcedureAccessRequests(){
