@@ -166,18 +166,26 @@
     if (!db) { renderRequestState('error'); return; }
     try {
       const isAdmin = window.firebaseAdminPanel?.isAdmin === true;
-      const [accessSnap, requestSnap] = await Promise.all([
-        db.collection(collectionNames.access).doc(currentUser.uid).get(),
-        db.collection(collectionNames.requests).doc(currentUser.uid).get()
-      ]);
-      currentRequest = requestSnap.exists ? { id: requestSnap.id, ...requestSnap.data() } : null;
-      hasAccess = isAdmin || Boolean(accessSnap.exists && accessSnap.data()?.enabled === true);
-      if (hasAccess) {
+      if (isAdmin) {
+        hasAccess = true;
+        currentRequest = null;
         try { await loadTitleIndex(); renderCatalog(); }
         catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
         return;
       }
+
+      const accessSnap = await db.collection(collectionNames.access).doc(currentUser.uid).get();
+      hasAccess = Boolean(accessSnap.exists && accessSnap.data()?.enabled === true);
+      if (hasAccess) {
+        currentRequest = null;
+        try { await loadTitleIndex(); renderCatalog(); }
+        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
+        return;
+      }
+
       detailCache.clear();
+      const requestSnap = await db.collection(collectionNames.requests).doc(currentUser.uid).get();
+      currentRequest = requestSnap.exists ? { id: requestSnap.id, ...requestSnap.data() } : null;
       if (!currentRequest) { renderNewRequest(); return; }
       if (currentRequest.status === 'pending') { renderPending(); return; }
       if (currentRequest.status === 'rejected') { renderRequestState('rejected'); return; }
@@ -206,7 +214,6 @@
     if (button) { button.disabled = true; button.textContent = 'جارٍ إرسال الطلب...'; }
     try {
       const ref = db.collection(collectionNames.requests).doc(user.uid);
-      const snapshot = await ref.get();
       const now = firebase.firestore.FieldValue.serverTimestamp();
       const payload = {
         uid: user.uid,
@@ -216,9 +223,8 @@
         status: 'pending',
         updatedAt: now
       };
-      if (snapshot.exists) {
-        const old = snapshot.data() || {};
-        if (!['rejected', 'revoked'].includes(old.status)) {
+      if (currentRequest) {
+        if (!['rejected', 'revoked'].includes(currentRequest.status)) {
           setMessage('لديك طلب سابق؛ لا يمكن إرسال طلب مكرر.', true);
           return;
         }
