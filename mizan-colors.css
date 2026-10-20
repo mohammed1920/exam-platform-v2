@@ -648,6 +648,50 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
 }
 
 
+/* ===== Home category card artwork and theme-aware gradients =====
+   Single source of truth for card artwork, section gradients, borders and text.
+*/
+:root{
+  --mizan-home-card-books-image:url("assets/images/home-cards/law-books-burgundy.webp");
+  --mizan-home-card-petitions-image:url("assets/images/home-cards/petitions-teal.webp");
+  --mizan-home-card-lawyers-image:url("assets/images/home-cards/law-courthouse-blue.webp");
+  --mizan-home-card-pulpit-image:url("assets/images/home-cards/mizan-forum-green.webp");
+  --mizan-home-card-random-image:url("assets/images/home-cards/law-tests-purple.webp");
+  --mizan-home-card-judicial-image:url("assets/images/home-cards/law-courthouse-blue.webp");
+  --mizan-home-card-laws-image:url("assets/images/home-cards/law-courthouse-blue.webp");
+  --mizan-home-card-procedures-image:url("assets/images/home-cards/legal-writing-gold.webp");
+  --mizan-home-card-books-bg:linear-gradient(110deg,color-mix(in srgb,#250610 78%,transparent),color-mix(in srgb,#6F1028 84%,transparent));
+  --mizan-home-card-petitions-bg:linear-gradient(110deg,color-mix(in srgb,#032632 82%,transparent),color-mix(in srgb,#00677C 82%,transparent));
+  --mizan-home-card-lawyers-bg:linear-gradient(110deg,color-mix(in srgb,#1F1C18 82%,transparent),color-mix(in srgb,#725A35 76%,transparent));
+  --mizan-home-card-pulpit-bg:linear-gradient(110deg,color-mix(in srgb,#032A20 84%,transparent),color-mix(in srgb,#075640 78%,transparent));
+  --mizan-home-card-random-bg:linear-gradient(110deg,color-mix(in srgb,#25192B 84%,transparent),color-mix(in srgb,#59334F 80%,transparent));
+  --mizan-home-card-judicial-bg:linear-gradient(110deg,color-mix(in srgb,#071D3B 84%,transparent),color-mix(in srgb,#184A78 80%,transparent));
+  --mizan-home-card-laws-bg:linear-gradient(110deg,color-mix(in srgb,#071D3B 84%,transparent),color-mix(in srgb,#184A78 80%,transparent));
+  --mizan-home-card-procedures-bg:linear-gradient(110deg,color-mix(in srgb,#302313 80%,transparent),color-mix(in srgb,#80602D 78%,transparent));
+  --mizan-home-card-fg:var(--mizan-heading-dark);
+  --mizan-home-card-muted:var(--mizan-muted-dark);
+  --mizan-home-card-border:color-mix(in srgb,var(--mizan-white) 12%,transparent);
+  --mizan-home-card-action:var(--mizan-gold-light);
+  --mizan-home-card-icon-bg:color-mix(in srgb,var(--mizan-white) 10%,transparent);
+  --mizan-home-card-overlay:linear-gradient(90deg,color-mix(in srgb,var(--mizan-bg-dark) 10%,transparent),color-mix(in srgb,var(--mizan-bg-dark) 38%,transparent));
+}
+html:is([data-theme="light"],[data-admin-theme="light"]){
+  --mizan-home-card-books-bg:linear-gradient(110deg,color-mix(in srgb,#F6E6EA 88%,transparent),color-mix(in srgb,#E9C3CD 86%,transparent));
+  --mizan-home-card-petitions-bg:linear-gradient(110deg,color-mix(in srgb,#E2F4F7 90%,transparent),color-mix(in srgb,#B8E4EB 88%,transparent));
+  --mizan-home-card-lawyers-bg:linear-gradient(110deg,color-mix(in srgb,#F3EEE3 90%,transparent),color-mix(in srgb,#E6D8BD 88%,transparent));
+  --mizan-home-card-pulpit-bg:linear-gradient(110deg,color-mix(in srgb,#E2F4E9 90%,transparent),color-mix(in srgb,#BFE7D0 88%,transparent));
+  --mizan-home-card-random-bg:linear-gradient(110deg,color-mix(in srgb,#F0EAF4 90%,transparent),color-mix(in srgb,#D9C9E5 88%,transparent));
+  --mizan-home-card-judicial-bg:linear-gradient(110deg,color-mix(in srgb,#E8F0FC 90%,transparent),color-mix(in srgb,#C6D9F5 88%,transparent));
+  --mizan-home-card-laws-bg:linear-gradient(110deg,color-mix(in srgb,#E8F0FC 90%,transparent),color-mix(in srgb,#C6D9F5 88%,transparent));
+  --mizan-home-card-procedures-bg:linear-gradient(110deg,color-mix(in srgb,#F7EFDA 90%,transparent),color-mix(in srgb,#E8D6A6 88%,transparent));
+  --mizan-home-card-fg:var(--mizan-heading-light);
+  --mizan-home-card-muted:var(--mizan-text-light);
+  --mizan-home-card-border:color-mix(in srgb,var(--mizan-primary-900) 12%,transparent);
+  --mizan-home-card-action:var(--mizan-primary-700);
+  --mizan-home-card-icon-bg:color-mix(in srgb,var(--mizan-white) 66%,transparent);
+  --mizan-home-card-overlay:linear-gradient(90deg,color-mix(in srgb,var(--mizan-white) 32%,transparent),color-mix(in srgb,var(--mizan-white) 62%,transparent));
+}
+
 /* ===== Home test dashboard and contact section semantic tokens =====
    Shared visual values for home.css and theme-aware section styling.
    Keep component files focused on layout and behavior.
