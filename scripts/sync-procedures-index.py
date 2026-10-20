@@ -26,9 +26,9 @@ def fail(message: str) -> None:
 
 def main() -> None:
     raw = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
-    project_id = os.environ.get("FIREBASE_PROJECT_ID", "").strip()
-    if not raw or not project_id:
-        fail("Set FIREBASE_SERVICE_ACCOUNT_JSON and FIREBASE_PROJECT_ID in GitHub Actions secrets/variables.")
+    project_id = os.environ.get("FIREBASE_PROJECT_ID", "").strip() or "iraq-law-test"
+    if not raw:
+        fail("Set FIREBASE_SERVICE_ACCOUNT_JSON in GitHub Actions secrets. The default project ID is iraq-law-test.")
 
     try:
         service_info = json.loads(raw)
