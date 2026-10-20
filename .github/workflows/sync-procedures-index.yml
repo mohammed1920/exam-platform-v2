@@ -33,7 +33,7 @@ jobs:
       - name: Query published procedure titles
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID || 'iraq-law-test' }}
         run: python scripts/sync-procedures-index.py
 
       - name: Commit updated public title index
