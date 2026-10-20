@@ -105,9 +105,14 @@
   function renderPending() { renderRequestState('pending'); }
 
   async function loadTitleIndex() {
-    const response = await fetch('procedures-index.json', { cache: 'no-cache' });
-    if (!response.ok) throw new Error('تعذر تحميل فهرس الإجراءات');
-    const data = await response.json();
+    const db = window.publicAuth?.firestore;
+    if (!db) throw new Error('خدمة قاعدة البيانات غير متاحة');
+    const snapshot = await db.collection('publicIndexes').doc('procedures').get();
+    if (!snapshot.exists) {
+      titles = [];
+      return;
+    }
+    const data = snapshot.data()?.items;
     if (!Array.isArray(data)) throw new Error('صيغة فهرس الإجراءات غير صحيحة');
     titles = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim()).map(item => ({ id: item.id, title: item.title.trim() }));
   }
@@ -170,7 +175,7 @@
         hasAccess = true;
         currentRequest = null;
         try { await loadTitleIndex(); renderCatalog(); }
-        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
+        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من قاعدة البيانات.', true); }
         return;
       }
 
@@ -179,7 +184,7 @@
       if (hasAccess) {
         currentRequest = null;
         try { await loadTitleIndex(); renderCatalog(); }
-        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
+        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من قاعدة البيانات.', true); }
         return;
       }
 
