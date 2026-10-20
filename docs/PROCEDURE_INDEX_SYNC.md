@@ -6,7 +6,7 @@
 
 1. في GitHub افتح **Settings → Secrets and variables → Actions**.
 2. أضف Repository Secret باسم `FIREBASE_SERVICE_ACCOUNT_JSON`، واجعل قيمته JSON لحساب خدمة مخصص بصلاحية قراءة مجموعة `legalProcedures` فقط قدر الإمكان. لا تضع هذا المفتاح في ملفات JavaScript أو في المستودع.
-3. أضف Repository Variable باسم `FIREBASE_PROJECT_ID` وقيمته معرّف مشروع Firebase.
+3. معرّف المشروع الافتراضي هو `iraq-law-test`. يمكن تغييره بإضافة Repository Variable باسم `FIREBASE_PROJECT_ID` عند الحاجة.
 4. افتح **Actions → Sync Published Procedure Titles → Run workflow** لتجربة أول مزامنة.
 
 ## سير العمل
