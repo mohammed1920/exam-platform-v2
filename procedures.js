@@ -168,6 +168,7 @@
       renderRequestState('login');
       return;
     }
+    if (currentUser?.uid && currentUser.uid !== window.publicAuth.user.uid) detailCache.clear();
     currentUser = window.publicAuth.user;
     const db = window.publicAuth.firestore;
     if (!db) { renderRequestState('error'); return; }
@@ -184,6 +185,7 @@
         catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
         return;
       }
+      detailCache.clear();
       if (!currentRequest) { renderNewRequest(); return; }
       if (currentRequest.status === 'pending') { renderPending(); return; }
       if (currentRequest.status === 'rejected') { renderRequestState('rejected'); return; }
@@ -192,6 +194,7 @@
     } catch (error) {
       console.error('Mizan procedures access check failed:', error);
       hasAccess = false;
+      detailCache.clear();
       renderRequestState('error');
     }
   }
