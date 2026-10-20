@@ -8,10 +8,22 @@
   function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
   function timeValue(v){const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'':d.toLocaleTimeString('ar-IQ',{hour:'2-digit',minute:'2-digit'});}
   function buildUI(){
-    if(document.getElementById('firebase-admin-tab'))return;
+    const existingTab=document.getElementById('firebase-admin-tab');
+    const existingSection=document.getElementById('firebase-admin-section');
+    if(existingTab&&existingSection){
+      els.tab=existingTab;
+      els.section=existingSection;
+      return;
+    }
     if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='lawyer-admin.css?v=1.19';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
-    const tab=document.createElement('button');tab.id='firebase-admin-tab';tab.type='button';tab.className='firebase-admin-tab';tab.innerHTML='<i class="fas fa-crown" aria-hidden="true"></i><span>الإدارة</span>';tab.title='لوحة إدارة Firebase';tab.setAttribute('aria-label','لوحة إدارة Firebase');tab.hidden=true;tab.addEventListener('click',openPanel);header.appendChild(tab);
+    const tab=existingTab||document.createElement('button');
+    if(!existingTab){
+      tab.id='firebase-admin-tab';tab.type='button';tab.className='firebase-admin-tab';
+      tab.innerHTML='<i class="fas fa-crown" aria-hidden="true"></i><span>الإدارة</span>';
+      tab.title='لوحة إدارة Firebase';tab.setAttribute('aria-label','لوحة إدارة Firebase');
+      tab.hidden=true;tab.addEventListener('click',openPanel);header.appendChild(tab);
+    }
     const main=document.querySelector('main.container');if(!main)return;const section=document.createElement('section');section.id='firebase-admin-section';section.className='view-section firebase-admin-view';section.hidden=true;
     section.innerHTML=`<div class="firebase-admin-head"><div><div class="firebase-admin-kicker">⚖️ لوحة الإدارة</div><h2>لوحة إدارة المنصة</h2><p id="firebase-admin-welcome">تم التحقق من صلاحية الإدارة.</p></div><button id="firebase-admin-refresh" class="firebase-admin-action" type="button">↻ تحديث البيانات</button></div><div id="firebase-admin-status" class="firebase-admin-status" hidden></div><div id="fa-admin-home" class="firebase-admin-home"><div class="firebase-admin-menu"><button type="button" class="firebase-admin-menu-card" data-admin-view="students"><i class="fas fa-users"></i><strong>الطلاب المسجلون</strong><span>عرض حسابات الطلاب المسجلين</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="lawyers"><i class="fas fa-user-tie"></i><strong>إدارة دليل المحامين</strong><span>الطلبات والملفات المنشورة</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="procedures"><i class="fas fa-file-signature"></i><strong>طلبات إجراءات الدعاوى</strong><span>مراجعة طلبات الوصول ومنح الصلاحية أو سحبها</span></button></div></div><div class="firebase-admin-subviews"><section id="fa-admin-view-students" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-stats"><div class="firebase-admin-stat"><span>إجمالي الطلاب</span><strong id="fa-students-count">—</strong></div></div><div class="firebase-admin-card"><div class="firebase-admin-card-head"><h3>👥 الطلاب المسجلون</h3><span id="fa-students-updated"></span></div><div class="firebase-admin-table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>التسجيل</th></tr></thead><tbody id="fa-students-body"><tr><td colspan="3">جارٍ التحميل...</td></tr></tbody></table></div></div></section><section id="fa-admin-view-lawyers" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-card lawyer-admin-card">
       <div class="firebase-admin-card-head"><h3>👨‍⚖️ إدارة دليل المحامين</h3><span>الطلبات والملفات المنشورة</span></div>
