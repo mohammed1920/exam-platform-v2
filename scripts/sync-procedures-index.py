@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the public procedure-title index from published Firestore documents.
 
-Requires FIREBASE_SERVICE_ACCOUNT_JSON (service-account JSON) and
-FIREBASE_PROJECT_ID in the environment. Writes ONLY document IDs and titles.
+Requires FIREBASE_SERVICE_ACCOUNT_JSON (service-account JSON). The project ID
+can be overridden via FIREBASE_PROJECT_ID. Writes ONLY document IDs and titles.
 """
 import json
 import os
@@ -48,7 +48,6 @@ def main() -> None:
                     "value": {"booleanValue": True}
                 }
             },
-            "orderBy": [{"field": {"fieldPath": "title"}, "direction": "ASCENDING"}],
             "select": {"fields": [{"fieldPath": "title"}]}
         }
     }
@@ -63,6 +62,8 @@ def main() -> None:
 
     result = []
     for row in response.json():
+        if row.get("error"):
+            fail(f"Firestore query returned an error: {row['error']}")
         document = row.get("document")
         if not document:
             continue
