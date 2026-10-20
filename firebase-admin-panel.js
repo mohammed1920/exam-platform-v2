@@ -48,9 +48,9 @@
         <p class="lawyer-admin-note">لا يحصل المستخدم على الوصول إلا بعد منح الصلاحية. سحب الصلاحية يمنع قراءة محتوى الإجراءات المحمي في Firestore.</p>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المستخدم</th><th>سبب الطلب</th><th>التقديم</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="fa-procedures-requests-body"><tr><td colspan="5">اختر هذا القسم لتحميل الطلبات.</td></tr></tbody></table></div>
       </div>
-      <div class="firebase-admin-card lawyer-admin-card" style="margin-top:18px">
+      <div class="firebase-admin-card lawyer-admin-card procedures-admin-management">
         <div class="firebase-admin-card-head"><h3>إدارة محتوى الإجراءات</h3><span>التفاصيل في Firebase والعناوين في فهرس GitHub</span></div>
-        <form id="fa-procedure-form" style="display:grid;gap:12px;padding:16px">
+        <form id="fa-procedure-form" class="procedures-admin-form">
           <input type="hidden" name="id">
           <label>عنوان الإجراء *<input name="title" required maxlength="180"></label>
           <label>نبذة عن الإجراء<textarea name="summary" rows="2" maxlength="2000"></textarea></label>
