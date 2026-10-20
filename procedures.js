@@ -3,15 +3,6 @@
   'use strict';
 
   const collectionNames = { requests: 'procedureAccessRequests', access: 'procedureAccess' };
-  const categories = [
-    { id: 'civil', icon: 'fa-scale-balanced', title: 'الدعاوى المدنية', desc: 'المطالبات المالية والالتزامات والعقود والتعويض والملكية.', topics: ['المطالبة بالدين', 'التعويض والمسؤولية المدنية', 'المنازعات العقدية', 'الملكية والحيازة'] },
-    { id: 'criminal', icon: 'fa-gavel', title: 'الإجراءات الجزائية', desc: 'الشكوى والتحقيق والمحاكمة وطرق الطعن وفق نوع القضية.', topics: ['تقديم الشكوى', 'إجراءات التحقيق', 'المحاكمة والأدلة', 'الطعن بالقرارات والأحكام'] },
-    { id: 'personal', icon: 'fa-people-roof', title: 'الأحوال الشخصية', desc: 'إجراءات الدعاوى الأسرية مع مراعاة القانون المنطبق والاختصاص.', topics: ['النفقة', 'التفريق والطلاق', 'الحضانة والمشاهدة', 'تصديق الحجج والمعاملات'] },
-    { id: 'administrative', icon: 'fa-landmark', title: 'الدعاوى الإدارية', desc: 'الطعن بالقرارات والمنازعات الإدارية بحسب جهة الاختصاص.', topics: ['تحديد القرار المطعون فيه', 'شروط ومدة الطعن', 'تقديم الدعوى', 'آثار الحكم الإداري'] },
-    { id: 'execution', icon: 'fa-file-circle-check', title: 'التنفيذ', desc: 'متابعة تنفيذ السندات والأحكام والاعتراضات المتصلة بالتنفيذ.', topics: ['فتح الإضبارة التنفيذية', 'تبليغ المدين', 'إجراءات التنفيذ', 'الاعتراضات وطرق المراجعة'] },
-    { id: 'appeals', icon: 'fa-arrow-rotate-left', title: 'الطعن والمراجعة', desc: 'التعرّف على طرق الطعن ومددها وشروط قبولها بحسب نوع القرار.', topics: ['التمييز بين طرق الطعن', 'احتساب المدد', 'متطلبات لائحة الطعن', 'آثار الطعن'] }
-  ];
-
   let root = null;
   let currentUser = null;
   let currentRequest = null;
@@ -164,6 +155,7 @@
   async function refreshAccess() {
     ensureSection();
     if (!window.publicAuth?.user) {
+      detailCache.clear();
       currentUser = null; currentRequest = null; hasAccess = false;
       renderRequestState('login');
       return;
@@ -250,6 +242,7 @@
 
   async function open(pushState = true) {
     ensureSection();
+    if (!root.querySelector('.procedures-shell')) renderIntro();
     if (pushState) window.app?.navigateTo('procedures');
     else window.app?.navigateTo('procedures', {}, false);
     await refreshAccess();
@@ -257,6 +250,7 @@
 
   function init() {
     ensureSection();
+    if (!root.querySelector('.procedures-shell')) renderIntro();
     window.addEventListener('public-auth-state-changed', () => {
       if (root?.classList.contains('active')) refreshAccess();
     });
