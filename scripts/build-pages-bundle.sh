@@ -57,7 +57,6 @@ required_files=(
   data/books.json
   data/search-index.json
   manifest.json
-  procedures-index.json
 )
 
 for relative_path in "${required_files[@]}"; do
