@@ -38,19 +38,23 @@ jobs:
         run: python scripts/sync-procedures-index.py
 
       - name: Commit updated public title index
+        id: index
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add procedures-index.json
           if git diff --cached --quiet; then
             echo "The public procedure index is already current."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "chore: sync published procedure title index"
           git pull --rebase origin main
           git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Publish website with updated index
+        if: steps.index.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run update.yml --ref main
