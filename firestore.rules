@@ -179,6 +179,7 @@ service cloud.firestore {
       allow read: if isAdmin()
                   || (
                     signedIn()
+                    && resource.data.published == true
                     && exists(/databases/$(database)/documents/procedureAccess/$(request.auth.uid))
                     && get(/databases/$(database)/documents/procedureAccess/$(request.auth.uid)).data.enabled == true
                   );
