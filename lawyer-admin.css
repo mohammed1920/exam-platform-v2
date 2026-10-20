@@ -270,6 +270,9 @@ html[data-theme="light"] .lawyer-admin-status{
   z-index:20;
   cursor:pointer;
 }
+.firebase-admin-tab[hidden]{
+  display:none !important;
+}
 .firebase-admin-tab span{
   display:none;
 }
