@@ -131,6 +131,60 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+
+    // Access requests for the protected legal procedures section.
+    match /procedureAccessRequests/{userId} {
+      allow create: if signedIn()
+                    && request.auth.uid == userId
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.reason is string
+                    && request.resource.data.reason.size() >= 10
+                    && request.resource.data.reason.size() <= 1000
+                    && request.resource.data.displayName is string
+                    && request.resource.data.email is string
+                    && request.resource.data.keys().hasOnly([
+                      'uid', 'displayName', 'email', 'reason', 'status', 'createdAt', 'updatedAt'
+                    ]);
+
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+
+      allow update: if isAdmin()
+                    || (
+                      signedIn()
+                      && request.auth.uid == userId
+                      && resource.data.uid == request.auth.uid
+                      && resource.data.status in ['rejected', 'revoked']
+                      && request.resource.data.uid == request.auth.uid
+                      && request.resource.data.status == 'pending'
+                      && request.resource.data.reason is string
+                      && request.resource.data.reason.size() >= 10
+                      && request.resource.data.reason.size() <= 1000
+                      && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+                        'displayName', 'email', 'reason', 'status', 'updatedAt'
+                      ])
+                    );
+
+      allow delete: if isAdmin();
+    }
+
+    // The grant is authoritative. Only an admin may grant or revoke access.
+    match /procedureAccess/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Procedure documents must live in Firestore, not in public static JSON files.
+    match /legalProcedures/{procedureId} {
+      allow read: if isAdmin()
+                  || (
+                    signedIn()
+                    && exists(/databases/$(database)/documents/procedureAccess/$(request.auth.uid))
+                    && get(/databases/$(database)/documents/procedureAccess/$(request.auth.uid)).data.enabled == true
+                  );
+      allow create, update, delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
