@@ -17,6 +17,8 @@
   let currentRequest = null;
   let hasAccess = false;
   let busy = false;
+  let titles = [];
+  const detailCache = new Map();
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[ch]));
 
@@ -111,23 +113,54 @@
 
   function renderPending() { renderRequestState('pending'); }
 
+  async function loadTitleIndex() {
+    const response = await fetch('procedures-index.json', { cache: 'no-cache' });
+    if (!response.ok) throw new Error('تعذر تحميل فهرس الإجراءات');
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error('صيغة فهرس الإجراءات غير صحيحة');
+    titles = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim()).map(item => ({ id: item.id, title: item.title.trim() }));
+  }
+
   function renderCatalog() {
     const host = root.querySelector('#procedures-access-state');
     host.innerHTML = `
-      <div class="procedures-approved-banner"><i class="fas fa-circle-check" aria-hidden="true"></i><div><strong>تم تفعيل وصولك</strong><span>يمكنك تصفح التصنيفات أدناه. ستُربط صفحات الإجراءات التفصيلية بنصوصها القانونية المعتمدة عند إدخال محتواها.</span></div></div>
-      <div class="procedures-catalog-heading"><div><span>دليل الإجراءات</span><h3>اختر نوع الإجراء</h3></div><span class="procedures-count">${categories.length} تصنيفات</span></div>
-      <div class="procedures-category-grid">${categories.map(category => `
-        <article class="procedures-category-card">
-          <div class="procedures-category-top"><span class="procedures-category-icon"><i class="fas ${category.icon}" aria-hidden="true"></i></span><span class="procedures-category-count">${category.topics.length} موضوعات</span></div>
-          <h4>${category.title}</h4><p>${category.desc}</p>
-          <ul>${category.topics.map(topic => `<li><i class="fas fa-angle-left" aria-hidden="true"></i><span>${topic}</span></li>`).join('')}</ul>
-        </article>`).join('')}</div>
-      <div class="procedures-workflow">
-        <div class="procedures-workflow-heading"><i class="fas fa-route" aria-hidden="true"></i><div><h3>طريقة تنظيم كل إجراء</h3><p>سيُعرض كل إجراء تفصيلياً ضمن قالب موحّد.</p></div></div>
-        <div class="procedures-workflow-steps"><span>الشروط والاختصاص</span><span>المستندات المطلوبة</span><span>خطوات الإجراء</span><span>المدد القانونية</span><span>السند القانوني</span><span>النماذج ذات الصلة</span></div>
-      </div>`;
+      <div class="procedures-approved-banner"><i class="fas fa-circle-check" aria-hidden="true"></i><div><strong>تم تفعيل وصولك</strong><span>اختر عنوان الإجراء لتحميل تفاصيله فقط عند الحاجة.</span></div></div>
+      <div class="procedures-catalog-heading"><div><span>فهرس الإجراءات</span><h3>اختر الإجراء المطلوب</h3></div><span class="procedures-count">${titles.length} إجراء</span></div>
+      <div class="procedures-title-list">${titles.length ? titles.map(item => `<button type="button" class="procedures-title-item" data-procedure-id="${esc(item.id)}"><span>${esc(item.title)}</span><i class="fas fa-angle-left" aria-hidden="true"></i></button>`).join('') : '<div class="procedures-empty">لا توجد إجراءات منشورة حالياً. ستظهر العناوين هنا بعد إضافة الإجراءات واعتماد نشرها.</div>'}</div>
+      <div id="procedures-detail" class="procedures-detail" hidden></div>`;
+    host.querySelectorAll('[data-procedure-id]').forEach(button => button.addEventListener('click', () => openDetail(button.dataset.procedureId)));
   }
 
+  function detailBlock(title, value) {
+    const values = Array.isArray(value) ? value : String(value || '').split(/\\r?\\n/);
+    const clean = values.map(v => String(v || '').trim()).filter(Boolean);
+    if (!clean.length) return '';
+    return `<section class="procedures-detail-section"><h4>${esc(title)}</h4>${clean.length > 1 ? `<ol>${clean.map(v => `<li>${esc(v)}</li>`).join('')}</ol>` : `<p>${esc(clean[0])}</p>`}</section>`;
+  }
+
+  async function openDetail(id) {
+    if (!hasAccess || !currentUser) return;
+    const host = root.querySelector('#procedures-detail');
+    if (!host) return;
+    host.hidden = false;
+    host.innerHTML = '<p class="procedures-loading" role="status">جارٍ تحميل الإجراء...</p>';
+    try {
+      let data = detailCache.get(id);
+      if (!data) {
+        const snap = await window.publicAuth.firestore.collection('legalProcedures').doc(id).get();
+        if (!snap.exists || snap.data()?.published !== true) throw new Error('الإجراء غير متاح أو لم يعد منشوراً');
+        data = { id: snap.id, ...snap.data() };
+        detailCache.set(id, data);
+      }
+      host.innerHTML = `<button type="button" class="procedures-detail-back" id="procedures-detail-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى الفهرس</button><article class="procedures-detail-card"><div class="procedures-detail-kicker">إجراءات الدعاوى · ميزان</div><h3>${esc(data.title || titles.find(item => item.id === id)?.title || 'إجراء قانوني')}</h3>${detailBlock('نبذة عن الإجراء', data.summary)}${detailBlock('الشروط والاختصاص', data.requirements)}${detailBlock('المستندات المطلوبة', data.documents)}${detailBlock('خطوات الإجراء', data.steps)}${detailBlock('السند القانوني', data.legalBasis)}${detailBlock('الرسوم', data.fees)}${detailBlock('المدد القانونية أو المتوقعة', data.duration)}<p class="procedures-detail-disclaimer">تحقّق من النصوص الرسمية النافذة قبل اتخاذ أي إجراء.</p></article>`;
+      host.querySelector('#procedures-detail-back')?.addEventListener('click', () => { host.hidden = true; host.innerHTML = ''; });
+      host.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (error) {
+      console.error('Mizan procedure detail load failed:', error);
+      host.innerHTML = '<div class="procedures-lock-card"><div class="procedures-lock-copy"><h3>تعذر تحميل الإجراء</h3><p>تحقق من الاتصال والصلاحية ثم أعد المحاولة.</p></div><button type="button" class="procedures-secondary" id="procedures-detail-retry">إعادة المحاولة</button></div>';
+      host.querySelector('#procedures-detail-retry')?.addEventListener('click', () => openDetail(id));
+    }
+  }
   async function refreshAccess() {
     ensureSection();
     if (!window.publicAuth?.user) {
@@ -146,7 +179,11 @@
       ]);
       currentRequest = requestSnap.exists ? { id: requestSnap.id, ...requestSnap.data() } : null;
       hasAccess = isAdmin || Boolean(accessSnap.exists && accessSnap.data()?.enabled === true);
-      if (hasAccess) { renderCatalog(); return; }
+      if (hasAccess) {
+        try { await loadTitleIndex(); renderCatalog(); }
+        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من GitHub.', true); }
+        return;
+      }
       if (!currentRequest) { renderNewRequest(); return; }
       if (currentRequest.status === 'pending') { renderPending(); return; }
       if (currentRequest.status === 'rejected') { renderRequestState('rejected'); return; }
