@@ -684,39 +684,59 @@ footer{
     flex-basis:35px;
   }
 }
-/* ألوان بطاقات أقسام الصفحة الرئيسية — كل قسم له هوية لونية مستقلة مع الحفاظ على طابع المنصة */
-/* الأقسام غير الجاهزة — بطاقات طولية أسفل الأقسام الجاهزة */
+/* Home section identities are owned by mizan-colors.css. */
+.home-category-card[data-home-action]{
+  background-color:var(--mizan-card);
+  background-image:var(--mizan-home-card-overlay),var(--card-artwork),var(--card-gradient);
+  background-size:cover,cover,cover;
+  background-position:center,left center,center;
+  background-repeat:no-repeat;
+  border-color:var(--mizan-home-card-border);
+  color:var(--mizan-home-card-fg);
+}
 .home-category-card[data-home-action="books"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
-}
-.home-category-card[data-home-action="judicial"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
-}
-.home-category-card[data-home-action="random"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
-}
-.home-category-card[data-home-action="laws"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
-}
-.home-category-card[data-home-action="procedures"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
+  --card-artwork:var(--mizan-home-card-books-image);
+  --card-gradient:var(--mizan-home-card-books-bg);
 }
 .home-category-card[data-home-action="petitions"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
+  --card-artwork:var(--mizan-home-card-petitions-image);
+  --card-gradient:var(--mizan-home-card-petitions-bg);
 }
 .home-category-card[data-home-action="lawyers"]{
-  --card-accent:var(--mizan-primary-500);
-  --card-bg:var(--mizan-card);
+  --card-artwork:var(--mizan-home-card-lawyers-image);
+  --card-gradient:var(--mizan-home-card-lawyers-bg);
 }
-.home-category-card[data-home-action="leaderboard"]{
-  --card-accent:var(--mizan-gold-accent);
-  --card-bg:var(--mizan-card);
+.home-category-card[data-home-action="mizan-pulpit"]{
+  --card-artwork:var(--mizan-home-card-pulpit-image);
+  --card-gradient:var(--mizan-home-card-pulpit-bg);
+}
+.home-category-card[data-home-action="random"]{
+  --card-artwork:var(--mizan-home-card-random-image);
+  --card-gradient:var(--mizan-home-card-random-bg);
+}
+.home-category-card[data-home-action="judicial"]{
+  --card-artwork:var(--mizan-home-card-judicial-image);
+  --card-gradient:var(--mizan-home-card-judicial-bg);
+}
+.home-category-card[data-home-action="laws"]{
+  --card-artwork:var(--mizan-home-card-laws-image);
+  --card-gradient:var(--mizan-home-card-laws-bg);
+}
+.home-category-card[data-home-action="procedures"]{
+  --card-artwork:var(--mizan-home-card-procedures-image);
+  --card-gradient:var(--mizan-home-card-procedures-bg);
+}
+.home-category-card[data-home-action] strong{color:var(--mizan-home-card-fg);}
+.home-category-card[data-home-action] small{color:var(--mizan-home-card-muted);}
+.home-category-card[data-home-action] b{color:var(--mizan-home-card-action);}
+.home-category-card[data-home-action] i{
+  background:var(--mizan-home-card-icon-bg);
+  color:var(--mizan-gold-text);
+  border:1px solid var(--mizan-home-card-border);
+  box-shadow:var(--mizan-shadow-sm);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) .home-category-card[data-home-action] i{
+  color:var(--mizan-primary-700);
 }
 .home-category-card[data-home-action]:focus-visible{
   outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
@@ -1040,36 +1060,9 @@ html[data-theme="light"] .footer-faq-list summary:before{
 html[data-theme="light"] .footer-faq-list p{
   color:var(--mizan-ice);
 }
-/* ===== Unified Mizan section palette ===== */
-.home-category-card[data-home-action]{
-  box-shadow:var(--mizan-shadow-card-rest);
-}
-.home-category-card[data-home-action] i{
-  background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-accent-tile-fg);
-}
-.home-category-card[data-home-action] b{
-  color:var(--mizan-accent-text);
-}
-.home-category-card[data-home-action]:hover{
-  box-shadow:var(--mizan-shadow-card-raised);
-}
-html[data-theme="light"] .home-category-card[data-home-action] strong{
-  color:var(--mizan-heading-light);
-}
-html[data-theme="light"] .home-category-card[data-home-action] small{
-  color:var(--mizan-text-light);
-}
-html[data-theme="light"] .home-category-card[data-home-action] b{
-  color:var(--mizan-primary-700);
-}
-html[data-theme="light"] .home-category-card[data-home-action] i{
-  background:var(--mizan-primary-500-pale);
-  color:var(--mizan-primary-700);
-}
-html[data-theme="light"] .home-category-card[data-home-action]:hover{
-  box-shadow:var(--mizan-shadow-home-floating);
-}
+/* Unified card states consume the central palette without duplicate color overrides. */
+.home-category-card[data-home-action]{box-shadow:var(--mizan-shadow-card-rest);}
+.home-category-card[data-home-action]:hover{box-shadow:var(--mizan-shadow-card-raised);}
 
 
 /* Exam interaction and custom-test components migrated from index.html. */
