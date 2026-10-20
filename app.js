@@ -1239,6 +1239,10 @@ class ExamApp {
         } else {
           this.restoreState(state);
         }
+      } else if (view === 'procedures') {
+        if (typeof window.procedures?.open === 'function') window.procedures.open(false);
+        else this.navigateTo('home', {}, false);
+
       } else if (view === 'petitions') {
         this.navigateTo('petitions', {}, false);
         if (window.petitions && typeof window.petitions.renderHome === 'function') window.petitions.renderHome();
@@ -1263,6 +1267,7 @@ class ExamApp {
         this.navigateTo(view, {}, false);
       } else if (
         view === 'lawyers' ||
+        view === 'procedures' ||
         view === 'petitions' ||
         view === 'laws' ||
         view === 'contact' ||
