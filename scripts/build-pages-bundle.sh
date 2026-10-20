@@ -39,6 +39,7 @@ find "$ROOT" -maxdepth 1 -type f \( \
   -name '*.js' -o \
   -name '*.css' -o \
   -name 'manifest.json' -o \
+  -name 'procedures-index.json' \
 \) -exec cp {} "$OUTPUT_DIR/" \;
 
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
