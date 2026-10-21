@@ -51,8 +51,9 @@
   max-width:760px;
   margin:var(--mizan-space-3) 0;
   color:var(--mizan-white);
+  font-family:"IBM Plex Sans Arabic",sans-serif;
   font-size:clamp(2rem,4.3vw,3rem);
-  font-weight:800;
+  font-weight:700;
   line-height:1.2;
   letter-spacing:normal;
   word-spacing:normal;
@@ -110,7 +111,7 @@
     margin:var(--mizan-space-4) 0 var(--mizan-space-5);
   }
   .home-hero-copy{padding:var(--mizan-space-6) var(--mizan-space-5)}
-  .home-hero h2{font-size:clamp(1.55rem,5.8vw,2rem);line-height:1.25;max-width:100%;}
+  .home-hero h2{font-size:clamp(1.55rem,5.8vw,2rem);line-height:1.25;max-width:100%;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:700;}
       .home-book-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
     .home-hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
   .home-hero-actions button{width:100%;min-width:0;padding-inline:var(--mizan-space-2);gap:var(--mizan-space-1);font-size:var(--mizan-font-size-compact);white-space:nowrap}
