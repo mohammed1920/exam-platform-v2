@@ -65,6 +65,15 @@
         <form id="fa-procedure-form" class="procedures-admin-form">
           <input type="hidden" name="id">
           <label>عنوان الإجراء *<input name="title" required maxlength="180"></label>
+          <label>تصنيف الدعوى *
+            <select name="category" required>
+              <option value="">اختر تصنيف الدعوى</option>
+              <option value="civil">الدعاوى المدنية</option>
+              <option value="criminal">الدعاوى الجزائية</option>
+              <option value="administrative">الدعاوى الإدارية</option>
+              <option value="personal">دعاوى الأحوال الشخصية</option>
+            </select>
+          </label>
           <label>نبذة عن الإجراء<textarea name="summary" rows="2" maxlength="2000"></textarea></label>
           <label>الشروط والاختصاص<textarea name="requirements" rows="3"></textarea></label>
           <label>المستندات المطلوبة<textarea name="documents" rows="3"></textarea></label>
@@ -207,12 +216,13 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(e){console.error('Lawyer profiles load failed:',e);els.lawyersPublishedBody.innerHTML='<tr><td colspan="5">تعذر تحميل ملفات المحامين. تحقق من قواعد Firestore.</td></tr>';}
   }
 
-  function resetLegalProcedure(){if(!els.procedureForm)return;els.procedureForm.reset();els.procedureForm.elements.id.value='';els.procedureForm.elements.published.checked=true;}
+  function resetLegalProcedure(){if(!els.procedureForm)return;els.procedureForm.reset();els.procedureForm.elements.id.value='';els.procedureForm.elements.category.value='';els.procedureForm.elements.published.checked=true;}
   async function syncPublicProcedureIndex(items){
     const db=window.publicAuth?.firestore;
     if(!isAdmin||!db)return false;
-    const published=items.filter(item=>item.published===true&&typeof item.title==='string'&&item.title.trim())
-      .map(item=>({id:item.id,title:item.title.trim()}))
+    const categoryTitles={civil:'الدعاوى المدنية',criminal:'الدعاوى الجزائية',administrative:'الدعاوى الإدارية',personal:'دعاوى الأحوال الشخصية'};
+    const published=items.filter(item=>item.published===true&&typeof item.title==='string'&&item.title.trim()&&Object.prototype.hasOwnProperty.call(categoryTitles,item.category))
+      .map(item=>({id:item.id,title:item.title.trim(),category:item.category,categoryTitle:categoryTitles[item.category]}))
       .sort((a,b)=>a.title.localeCompare(b.title,'ar'));
     const indexRef=db.collection('publicIndexes').doc('procedures');
     const indexSnap=await indexRef.get();
@@ -232,7 +242,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       let indexSynced=false;
       try{indexSynced=await syncPublicProcedureIndex(items);}catch(indexError){console.error('Public procedure index sync failed:',indexError);}
       body.innerHTML=items.length?items.map(item=>'<tr><td><strong>'+esc(item.title||'بدون عنوان')+'</strong></td><td><span class="lawyer-admin-status '+(item.published?'is-live':'is-off')+'">'+(item.published?'منشور':'مسودة / مخفي')+'</span></td><td>'+esc(dateValue(item.updatedAt))+'</td><td><div class="lawyer-admin-actions"><button type="button" data-procedure-edit="'+esc(item.id)+'">تعديل</button><button type="button" class="'+(item.published?'reject':'approve')+'" data-procedure-toggle="'+esc(item.id)+'">'+(item.published?'إخفاء':'نشر')+'</button><button type="button" class="reject" data-procedure-delete="'+esc(item.id)+'">حذف</button></div></td></tr>').join(''):'<tr><td colspan="4">لا توجد إجراءات بعد. أضف أول إجراء من النموذج أعلاه.</td></tr>';
-      body.querySelectorAll('[data-procedure-edit]').forEach(btn=>btn.addEventListener('click',()=>{const item=items.find(x=>x.id===btn.dataset.procedureEdit);if(!item)return;const f=els.procedureForm;f.elements.id.value=item.id;f.elements.title.value=item.title||'';f.elements.summary.value=item.summary||'';f.elements.requirements.value=item.requirements||'';f.elements.documents.value=item.documents||'';f.elements.steps.value=item.steps||'';f.elements.legalBasis.value=item.legalBasis||'';f.elements.fees.value=item.fees||'';f.elements.duration.value=item.duration||'';f.elements.published.checked=item.published===true;f.scrollIntoView({behavior:'smooth',block:'start'});}));
+      body.querySelectorAll('[data-procedure-edit]').forEach(btn=>btn.addEventListener('click',()=>{const item=items.find(x=>x.id===btn.dataset.procedureEdit);if(!item)return;const f=els.procedureForm;f.elements.id.value=item.id;f.elements.title.value=item.title||'';f.elements.category.value=item.category||'';f.elements.summary.value=item.summary||'';f.elements.requirements.value=item.requirements||'';f.elements.documents.value=item.documents||'';f.elements.steps.value=item.steps||'';f.elements.legalBasis.value=item.legalBasis||'';f.elements.fees.value=item.fees||'';f.elements.duration.value=item.duration||'';f.elements.published.checked=item.published===true;f.scrollIntoView({behavior:'smooth',block:'start'});}));
       body.querySelectorAll('[data-procedure-toggle]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureToggle);if(!item)return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).update({published:item.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});const synced=await loadLegalProcedures();setStatus(synced?'تم تحديث حالة الإجراء والفهرس العام في Firebase.':'تم تحديث حالة الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',!synced);}catch(e){console.error(e);setStatus('تعذر تحديث حالة الإجراء.',true);}}));
       body.querySelectorAll('[data-procedure-delete]').forEach(btn=>btn.addEventListener('click',async()=>{const item=items.find(x=>x.id===btn.dataset.procedureDelete);if(!item||!confirm('حذف هذا الإجراء نهائياً؟'))return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(item.id).delete();resetLegalProcedure();const synced=await loadLegalProcedures();setStatus(synced?'تم حذف الإجراء وتحديث الفهرس العام.':'تم حذف الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',!synced);}catch(e){console.error(e);setStatus('تعذر حذف الإجراء.',true);}}));
       return indexSynced;
@@ -244,8 +254,16 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     event.preventDefault();
     if(!isAdmin||!window.publicAuth?.firestore)return;
     const f=els.procedureForm,id=String(f.elements.id.value||'').trim();
+    const category=String(f.elements.category.value||'').trim();
+    const validCategories=['civil','criminal','administrative','personal'];
+    if(!validCategories.includes(category)){
+      setStatus('اختر تصنيف الدعوى الصحيح قبل حفظ الإجراء.',true);
+      f.elements.category.focus();
+      return;
+    }
     const data={
       title:String(f.elements.title.value||'').trim().slice(0,180),
+      category,
       summary:String(f.elements.summary.value||'').trim().slice(0,2000),
       requirements:String(f.elements.requirements.value||'').trim().slice(0,5000),
       documents:String(f.elements.documents.value||'').trim().slice(0,5000),
