@@ -108,15 +108,12 @@
     const db = window.publicAuth?.firestore;
     if (!db) throw new Error('خدمة قاعدة البيانات غير متاحة');
     const snapshot = await db.collection('publicIndexes').doc('procedures').get();
-    if (!snapshot.exists) {
-      titles = [];
-      return;
-    }
+    if (!snapshot.exists) { titles = []; return; }
     const data = snapshot.data()?.items;
     if (!Array.isArray(data)) throw new Error('صيغة فهرس الإجراءات غير صحيحة');
-    titles = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim()).map(item => ({ id: item.id, title: item.title.trim() }));
+    titles = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim())
+      .map(item => ({ id: item.id, title: item.title.trim(), category: typeof item.category === 'string' ? item.category : '', type: typeof item.type === 'string' ? item.type : '', summary: typeof item.summary === 'string' ? item.summary : '' }));
   }
-
   const procedureCategories = [{id:'civil',title:'الدعاوى المدنية',description:'المطالبة بالحقوق المدنية والديون والعقود والتعويض.'},{id:'criminal',title:'الدعاوى الجزائية',description:'الشكوى والتحقيق والمحاكمة والطعن في الدعاوى الجزائية.'},{id:'administrative',title:'الدعاوى الإدارية',description:'الطعن بالقرارات الإدارية وطلبات الإلغاء بحسب الاختصاص.'},{id:'personal',title:'دعاوى الأحوال الشخصية',description:'الزواج والطلاق والنفقة والحضانة وما يتصل بها.'}];
   function normalizeProcedureSearch(value){return String(value||'').toLocaleLowerCase('ar').replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();}
   function procedureCategory(item){const text=normalizeProcedureSearch([item.category,item.type,item.title,item.summary].filter(Boolean).join(' '));const rules=[['criminal',/جزائي|جنائي|شكوى|تحقيق|محاكمه|جريمه|عقوبه|متهم/],['administrative',/اداري|قرار اداري|الغاء قرار|مجلس الدوله|وظيفه عامه/],['personal',/احوال شخصيه|زواج|طلاق|نفقه|حضان|ميراث|تفريق/],['civil',/مدني|دين|عقد|تعويض|مطالبه|ملكيه|دعوي مدنيه/]];for(const [id,pattern] of rules)if(pattern.test(text))return id;return 'civil';}
