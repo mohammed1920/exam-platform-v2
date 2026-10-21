@@ -214,7 +214,7 @@ textarea:not(.book-card textarea),
   color:var(--mu-heading);
 }
 .home-category-card[data-home-action] small{
-  color:var(--mu-muted);
+  color:var(--mizan-home-card-muted);
 }
 .home-category-card[data-home-action] i,
 .home-category-card[data-home-action] b,
