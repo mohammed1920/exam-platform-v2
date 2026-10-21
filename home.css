@@ -53,8 +53,11 @@
   color:var(--mizan-white);
   font-size:clamp(2rem,4.3vw,3rem);
   font-weight:800;
-  line-height:1.15;
-  letter-spacing:-.6px;
+  line-height:1.28;
+  /* Avoid tight negative tracking that visually merges Arabic letterforms on mobile. */
+  letter-spacing:normal;
+  word-spacing:0.04em;
+  text-wrap:balance;
 }
 .home-hero p{
   max-width:650px;
