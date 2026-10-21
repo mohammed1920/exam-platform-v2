@@ -154,13 +154,7 @@
   transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-ui) var(--mizan-ease-out),background var(--mizan-duration-ui) ease;
 }
 .home-category-card:before{
-  content:"";
-  position:absolute;
-  inset:auto -20px -45px auto;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  filter:blur(3px);
+  content:none;
 }
 .home-category-card:hover{
   transform:translateY(-4px);
