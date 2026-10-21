@@ -117,3 +117,14 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-category-results .procedures-title-item,.procedures-search-results .procedures-title-item{background:var(--mizan-procedures-results-card-bg);box-shadow:none}
 @media(max-width:600px){.procedures-category-grid{gap:var(--mizan-space-2)}.procedures-category-card{min-height:132px;padding:var(--mizan-space-3)}.procedures-category-title{font-size:.94rem}.procedures-category-description{font-size:.8rem}.procedures-search-panel{padding:var(--mizan-space-3)}}
 @media(prefers-reduced-motion:reduce){.procedures-category-card{transition:none}.procedures-category-card:hover{transform:none}}
+/* Layout refinements: section search first; category results replace the cards in-place. */
+.procedures-search-panel{margin-top:0;margin-bottom:var(--mizan-space-4)}
+.procedures-search-panel>p{display:none}
+.procedures-content-panel{min-width:0;scroll-margin-top:16px}
+.procedures-category-grid[hidden],.procedures-category-results[hidden],.procedures-detail[hidden]{display:none!important}
+.procedures-category-results{margin-top:0}
+.procedures-category-back{margin-bottom:var(--mizan-space-3)}
+.procedures-category-results .procedures-results-heading{margin-top:0}
+.procedures-category-results .procedures-title-list{margin-top:var(--mizan-space-3)}
+.procedures-detail{margin-top:0}
+@media(max-width:600px){.procedures-search-panel{margin-bottom:var(--mizan-space-3)}}
