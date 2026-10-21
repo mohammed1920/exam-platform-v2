@@ -1187,7 +1187,7 @@ html[data-theme="light"] .footer-faq-list p{
   display:block;
   width:100%;
   color:var(--mizan-home-card-muted);
-  font-size:var(--mizan-font-size-2xs);
+  font-size:var(--mizan-font-size-xs);
   font-weight:500;
   line-height:1.6;
 }
@@ -1211,7 +1211,7 @@ html[data-theme="light"] .footer-faq-list p{
   .home-legal-resources .home-coming-soon{
     padding:var(--mizan-space-3);
     gap:var(--mizan-space-2);
-    border-radius:var(--mizan-radius-xl);
+    border-radius:var(--mizan-radius-2xl);
   }
   .home-legal-resources .home-coming-soon i{
     width:42px;
@@ -1222,7 +1222,7 @@ html[data-theme="light"] .footer-faq-list p{
     font-size:var(--mizan-font-size-sm);
   }
   .home-legal-resources .home-coming-soon small{
-    font-size:var(--mizan-font-size-micro);
+    font-size:var(--mizan-font-size-xs);
     line-height:1.5;
   }
 }
@@ -1235,7 +1235,7 @@ html[data-theme="light"] .footer-faq-list p{
     height:36px;
   }
   .home-legal-resources .home-coming-soon span{
-    font-size:var(--mizan-font-size-xs);
+    font-size:var(--mizan-font-size-compact);
   }
 }
 @media(prefers-reduced-motion:reduce){
