@@ -191,8 +191,7 @@
   transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),background var(--mizan-duration-medium) ease;
 }
 .home-category-card strong,
-.home-category-card small,
-.home-category-card b{
+.home-category-card small{
   display:block;
   position:relative;
 }
@@ -205,11 +204,6 @@
   font-size:var(--mizan-font-size-2xs);
   line-height:1.7;
   min-height:36px;
-}
-.home-category-card b{
-  color:var(--mizan-accent-text);
-  font-size:var(--mizan-font-size-2xs);
-  margin-top:var(--mizan-space-3);
 }
 .home-book-preview{
   margin:var(--mizan-space-7) 0 var(--mizan-space-5);
