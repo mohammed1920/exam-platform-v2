@@ -153,9 +153,7 @@
   box-shadow:var(--mizan-shadow-card-rest);
   transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-ui) var(--mizan-ease-out),background var(--mizan-duration-ui) ease;
 }
-.home-category-card:before{
-  content:none;
-}
+
 .home-category-card:hover{
   transform:translateY(-4px);
   box-shadow:var(--mizan-shadow-card-raised);
