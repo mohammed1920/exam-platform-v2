@@ -1107,7 +1107,7 @@ html[data-theme="light"] .footer-faq-list p{
 }
 
 
-/* مجموعة القوانين والإجراءات: بطاقتان أفقيتان بألوان من النظام المركزي. */
+/* المراجع القانونية: بطاقتان متناسقتان ضمن شبكة موحدة مع النظام المركزي. */
 .home-legal-resources{
   margin:var(--mizan-space-5) 0 var(--mizan-space-6);
   padding:var(--mizan-space-4);
@@ -1133,15 +1133,28 @@ html[data-theme="light"] .footer-faq-list p{
 }
 .home-legal-resources-list{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:var(--mizan-space-3);
+  align-items:stretch;
 }
 .home-legal-resources .home-coming-soon{
-  min-height:72px;
-  justify-content:flex-start;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:space-between;
+  aspect-ratio:0.94 / 1;
+  min-width:0;
+  min-height:0;
+  padding:var(--mizan-space-4);
+  gap:var(--mizan-space-2);
+  overflow:hidden;
   border-color:var(--mizan-home-card-border);
+  border-radius:var(--mizan-radius-2xl);
   color:var(--mizan-home-card-fg);
+  text-align:right;
   box-shadow:var(--mizan-shadow-card-rest);
+  white-space:normal;
 }
 .home-legal-resources .home-laws-entry{
   background:var(--mizan-home-card-overlay),var(--mizan-home-card-laws-bg);
@@ -1150,38 +1163,87 @@ html[data-theme="light"] .footer-faq-list p{
   background:var(--mizan-home-card-overlay),var(--mizan-home-card-procedures-bg);
 }
 .home-legal-resources .home-coming-soon i{
+  display:grid;
+  place-items:center;
+  width:var(--mizan-icon-tile-size);
+  height:var(--mizan-icon-tile-size);
+  flex:0 0 auto;
+  border:1px solid var(--mizan-home-card-border);
+  border-radius:var(--mizan-radius-11);
   background:var(--mizan-home-card-icon-bg);
   color:var(--mizan-home-card-action);
-  border-color:var(--mizan-home-card-border);
+  font-size:var(--mizan-font-size-lg);
 }
 .home-legal-resources .home-coming-soon span{
+  display:block;
+  flex:0 0 auto;
+  width:100%;
   color:var(--mizan-home-card-fg);
+  font-size:var(--mizan-font-size-compact-strong);
+  font-weight:800;
+  line-height:1.45;
 }
-.home-legal-resources .home-coming-soon b{
-  border-color:var(--mizan-home-card-border);
-  color:var(--mizan-home-card-action);
-  background:var(--mizan-home-card-icon-bg);
+.home-legal-resources .home-coming-soon small{
+  display:block;
+  width:100%;
+  color:var(--mizan-home-card-muted);
+  font-size:var(--mizan-font-size-2xs);
+  font-weight:500;
+  line-height:1.6;
 }
 .home-legal-resources .home-coming-soon:hover{
   border-color:var(--mizan-home-card-action);
   box-shadow:var(--mizan-shadow-card-raised);
+  transform:translateY(-2px);
+}
+.home-legal-resources .home-coming-soon:focus-visible{
+  outline:2px solid var(--mizan-home-card-action);
+  outline-offset:3px;
 }
 @media(max-width:600px){
   .home-legal-resources{
     margin:var(--mizan-space-4) 0 var(--mizan-space-5);
     padding:var(--mizan-space-3);
   }
-  .home-legal-resources .home-coming-soon{
-    min-height:64px;
-    padding:9px var(--mizan-space-3);
+  .home-legal-resources-list{
     gap:var(--mizan-space-2);
+  }
+  .home-legal-resources .home-coming-soon{
+    padding:var(--mizan-space-3);
+    gap:var(--mizan-space-2);
+    border-radius:var(--mizan-radius-xl);
+  }
+  .home-legal-resources .home-coming-soon i{
+    width:42px;
+    height:42px;
+    font-size:var(--mizan-font-size-compact-strong);
   }
   .home-legal-resources .home-coming-soon span{
     font-size:var(--mizan-font-size-sm);
   }
-  .home-legal-resources .home-coming-soon b{
-    padding:5px 7px;
-    font-size:9px;
+  .home-legal-resources .home-coming-soon small{
+    font-size:var(--mizan-font-size-micro);
+    line-height:1.5;
+  }
+}
+@media(max-width:360px){
+  .home-legal-resources .home-coming-soon{
+    padding:var(--mizan-space-2);
+  }
+  .home-legal-resources .home-coming-soon i{
+    width:36px;
+    height:36px;
+  }
+  .home-legal-resources .home-coming-soon span{
+    font-size:var(--mizan-font-size-xs);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .home-legal-resources .home-coming-soon{
+    transition:none;
+  }
+  .home-legal-resources .home-coming-soon:hover{
+    transform:none;
   }
 }
 
