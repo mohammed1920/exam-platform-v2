@@ -53,11 +53,9 @@
   color:var(--mizan-white);
   font-size:clamp(2rem,4.3vw,3rem);
   font-weight:800;
-  line-height:1.28;
-  /* Avoid tight negative tracking that visually merges Arabic letterforms on mobile. */
+  line-height:1.2;
   letter-spacing:normal;
-  word-spacing:0.04em;
-  text-wrap:balance;
+  word-spacing:normal;
 }
 .home-hero p{
   max-width:650px;
@@ -108,7 +106,7 @@
     margin:var(--mizan-space-4) 0 var(--mizan-space-5);
   }
   .home-hero-copy{padding:var(--mizan-space-6) var(--mizan-space-5)}
-  .home-hero h2{font-size:clamp(1.9rem,7.5vw,2.6rem)}
+  .home-hero h2{font-size:clamp(1.7rem,6vw,2.15rem);line-height:1.2;max-width:100%;}
       .home-book-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
     .home-hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
   .home-hero-actions button{width:100%;min-width:0;padding-inline:var(--mizan-space-2);gap:var(--mizan-space-1);font-size:var(--mizan-font-size-compact);white-space:nowrap}
