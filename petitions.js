@@ -78,7 +78,7 @@
       const drafts=readDrafts();
       state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
       state.savedBody=state.editedBody;
-      state.editedLetterhead=drafts[uid]?.letterhead||'';
+      state.editedLetterhead=normalizeLetterheadHtml(drafts[uid]?.letterhead||'');
       state.savedLetterhead=state.editedLetterhead;
       state.mode='read';
       renderDocument();
@@ -94,13 +94,23 @@
   function documentBodyHtml(){
     return plainTextToEditor(state.editedBody??'');
   }
-  function letterheadHtml(){
+  function letterheadHtml(nameOverride,logoOverride){
     if(!state.branded)return '';
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
-    const imgUrl=logoBase+'assets/iraqi-bar-association-modern.svg';
-    const name=state.lawyer.name||(window.publicAuth?.user?.displayName||'');
-    const office=state.lawyer.office||'',phone=state.lawyer.phone||'';
-    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+imgUrl+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name||'اسم المحامي')+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>';
+    const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
+    const name=nameOverride||(state.lawyer.name||(window.publicAuth?.user?.displayName||''));
+    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><b>نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name||'اسم المحامي')+'</strong></div></header>';
+  }
+  function normalizeLetterheadHtml(source){
+    if(!source)return '';
+    try{
+      const doc=new DOMParser().parseFromString(String(source),'text/html');
+      const header=doc.body.querySelector('.petition-letterhead');
+      if(!header)return '';
+      const name=header.querySelector('.petition-head-right strong')?.textContent?.trim()||'';
+      const logo=header.querySelector('.petition-bar-logo img')?.getAttribute('src')||'';
+      return letterheadHtml(name,logo||undefined);
+    }catch(e){return '';}
   }
   function brandingToggleHtml(){
     return '<button type="button" class="petition-brand-toggle" id="petition-brand-toggle" aria-pressed="'+String(state.branded)+'"><i class="fas fa-scale-balanced"></i> '+(state.branded?'إخفاء ترويسة المحامي':'إظهار تصميم المحامي')+'</button>';
@@ -131,11 +141,44 @@
       '<button type="button" data-command="insertOrderedList" title="قائمة مرقمة">١. قائمة</button>'+
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
-      brandingToggleHtml()+
+      brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden>'+
       '</div><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div>'+
       '<article class="petition-a4 petition-live-preview '+(state.branded?'is-branded':'')+'" id="petition-live-preview" aria-label="معاينة العريضة" hidden>'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    const logoInput=document.getElementById('petition-logo-file');
+    const logoImage=editor?.querySelector('.petition-bar-logo img');
+    if(logoImage&&logoInput){
+      logoImage.title='اضغط لاستبدال الشعار';
+      logoImage.style.cursor='pointer';
+      logoImage.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();logoInput.click();});
+      logoInput.addEventListener('change',()=>{
+        const file=logoInput.files&&logoInput.files[0];
+        if(!file)return;
+        if(!file.type.startsWith('image/')){alert('يرجى اختيار ملف صورة صالح.');logoInput.value='';return;}
+        if(file.size>5*1024*1024){alert('حجم الصورة كبير. اختر صورة لا يتجاوز حجمها 5 ميغابايت.');logoInput.value='';return;}
+        const reader=new FileReader();
+        reader.onload=()=>{
+          const image=new Image();
+          image.onload=()=>{
+            const scale=Math.min(1,360/Math.max(image.naturalWidth,image.naturalHeight));
+            const canvas=document.createElement('canvas');
+            canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));
+            canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+            canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);
+            logoImage.src=canvas.toDataURL('image/webp',0.82);
+            syncEditorContent(editor);
+            const preview=document.getElementById('petition-live-preview');
+            if(preview&&!preview.hidden)preview.innerHTML=(state.branded?state.editedLetterhead:'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';
+          };
+          image.onerror=()=>alert('تعذر قراءة الصورة. جرّب صورة أخرى.');
+          image.src=String(reader.result);
+        };
+        reader.onerror=()=>alert('تعذر تحميل الصورة.');
+        reader.readAsDataURL(file);
+        logoInput.value='';
+      });
+    }
     let dotPressTimer=null,dotPressStart=null;
     const clearDotPress=()=>{if(dotPressTimer!==null){clearTimeout(dotPressTimer);dotPressTimer=null;}};
     const selectDottedPlaceholder=(x,y)=>{
