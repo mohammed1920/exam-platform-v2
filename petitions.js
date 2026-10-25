@@ -121,6 +121,46 @@
       '<article class="petition-a4 petition-live-preview" id="petition-live-preview" aria-label="معاينة العريضة" hidden><div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    let dotPressTimer=null,dotPressStart=null;
+    const clearDotPress=()=>{if(dotPressTimer!==null){clearTimeout(dotPressTimer);dotPressTimer=null;}};
+    const selectDottedPlaceholder=(x,y)=>{
+      let caret=null;
+      if(document.caretPositionFromPoint){
+        const point=document.caretPositionFromPoint(x,y);
+        if(point)caret={node:point.offsetNode,offset:point.offset};
+      }else if(document.caretRangeFromPoint){
+        const point=document.caretRangeFromPoint(x,y);
+        if(point)caret={node:point.startContainer,offset:point.startOffset};
+      }
+      if(!caret||caret.node.nodeType!==Node.TEXT_NODE||!editor.contains(caret.node))return;
+      const text=caret.node.nodeValue||'';
+      const pattern=/[.．…]{4,}/g;
+      let match;
+      while((match=pattern.exec(text))){
+        const end=match.index+match[0].length;
+        if(caret.offset>=match.index&&caret.offset<=end){
+          const range=document.createRange();
+          range.setStart(caret.node,match.index);
+          range.setEnd(caret.node,end);
+          const selection=window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          return;
+        }
+      }
+    };
+    editor.addEventListener('pointerdown',event=>{
+      if(event.pointerType==='mouse'&&event.button!==0)return;
+      clearDotPress();
+      dotPressStart={x:event.clientX,y:event.clientY};
+      const x=event.clientX,y=event.clientY;
+      dotPressTimer=setTimeout(()=>{selectDottedPlaceholder(x,y);dotPressTimer=null;},500);
+    });
+    editor.addEventListener('pointermove',event=>{
+      if(!dotPressStart)return;
+      if(Math.abs(event.clientX-dotPressStart.x)>10||Math.abs(event.clientY-dotPressStart.y)>10)clearDotPress();
+    });
+    ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
     document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
