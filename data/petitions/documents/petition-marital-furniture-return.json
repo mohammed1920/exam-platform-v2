@@ -1,0 +1,76 @@
+{
+  "uid": "petition-marital-furniture-return",
+  "name": "عريضة دعوى إعادة أثاث الزوجية",
+  "category": "دعاوى الأحوال الشخصية",
+  "description": "دعوى مطالبة بإعادة أثاث الزوجية عيناً، وعند التعذر المطالبة بقيمته وفق القائمة المرفقة.",
+  "icon": "fas fa-house",
+  "fields": [
+    {
+      "key": "court",
+      "label": "اسم محكمة الأحوال الشخصية",
+      "placeholder": "محكمة الأحوال الشخصية في ...",
+      "required": true
+    },
+    {
+      "key": "plaintiff",
+      "label": "اسم المدعية",
+      "placeholder": "الاسم الكامل",
+      "required": true
+    },
+    {
+      "key": "plaintiffAddress",
+      "label": "عنوان المدعية",
+      "placeholder": "العنوان",
+      "required": true
+    },
+    {
+      "key": "defendant",
+      "label": "اسم المدعى عليه",
+      "placeholder": "الاسم الكامل",
+      "required": true
+    },
+    {
+      "key": "defendantAddress",
+      "label": "عنوان المدعى عليه",
+      "placeholder": "العنوان",
+      "required": true
+    },
+    {
+      "key": "marriageNumber",
+      "label": "رقم عقد الزواج",
+      "placeholder": "رقم العقد",
+      "required": true
+    },
+    {
+      "key": "marriageDate",
+      "label": "تاريخ عقد الزواج",
+      "placeholder": "التاريخ",
+      "required": true
+    },
+    {
+      "key": "divorceNumber",
+      "label": "رقم عقد الطلاق",
+      "placeholder": "رقم العقد",
+      "required": true
+    },
+    {
+      "key": "divorceDate",
+      "label": "تاريخ عقد الطلاق",
+      "placeholder": "التاريخ",
+      "required": true
+    },
+    {
+      "key": "furnitureAmount",
+      "label": "قيمة الأثاث",
+      "placeholder": "المبلغ بالدينار العراقي",
+      "required": true
+    },
+    {
+      "key": "lawyerName",
+      "label": "اسم المحامي",
+      "placeholder": "اسم المحامي",
+      "required": false
+    }
+  ],
+  "body": "السيد قاضي محكمة الأحوال الشخصية في [court] المحترم\n\nالمدعية: [plaintiff] عنوانها [plaintiffAddress]\nالمدعى عليه: [defendant] عنوانه [defendantAddress]\n\nإن المدعى عليه هو زوجي والداخل بي شرعاً وقانوناً بموجب عقد الزواج المرقم [marriageNumber] بتاريخ [marriageDate] الصادر من محكمتكم الموقرة، وقد طلقني بموجب عقد الطلاق المرقم [divorceNumber] بتاريخ [divorceDate]، وقد غصب أثاث الزوجية العائد لي والمدرج تفاصيله في الجدول المرفق باللائحة وأقيامها [furnitureAmount] دينار عراقي، وقد امتنع عن إعادتها لي رغم المطالبة بها.\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليه للمرافعة بعد تبليغه بنسخة من عريضة الدعوى والحكم عليه بإعادة الأثاث عيناً، وإن تعذر ذلك فالحكم بأقيامها المذكورة في القائمة المرفقة بعريضة الدعوى، مع تحميله كافة الرسوم والمصاريف وأتعاب المحاماة.\n\nمع الشكر والتقدير\n\nالمدعية\nوكيلها المحامي\nبموجب الوكالة المرفقة"
+}
