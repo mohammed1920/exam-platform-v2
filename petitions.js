@@ -10,7 +10,7 @@
   const resolveKey=k=>placeholderKeys[k.trim()]||k.trim();
   const replacePlaceholders=t=>String(t||'').replace(/\[([^\]]+)\]/g,(_,k)=>val(resolveKey(k))||'['+k+']');
   const dataCache=new Map();
-  function dataUrl(path){const base=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'';return base+'/'+path.replace(/^\\//,'');}
+  function dataUrl(path){const base=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'';return base+'/'+path;}
   async function fetchJson(path){if(dataCache.has(path))return dataCache.get(path);const pending=fetch(dataUrl(path),{cache:'default'}).then(r=>{if(!r.ok)throw new Error('تعذر تحميل '+path);return r.json();});dataCache.set(path,pending);try{return await pending;}catch(e){dataCache.delete(path);throw e;}}
   async function loadCategories(){if(state.categoriesLoaded)return state.categories;state.categories=await fetchJson('data/petitions/categories.json');state.categoriesLoaded=true;return state.categories;}
   async function loadTemplates(categoryId){if(!categoryId){await loadCategories();state.templates=[];state.templatesLoaded=true;return state.templates;}if(state.categoryTemplates?.[categoryId])return state.categoryTemplates[categoryId];const category=state.categories?.find(c=>c.id===categoryId);if(!category)return [];const items=await fetchJson(category.manifest);state.categoryTemplates=state.categoryTemplates||{};state.categoryTemplates[categoryId]=items;state.templates=items;state.templatesLoaded=true;return items;}
