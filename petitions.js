@@ -1,7 +1,7 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
+  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const dataCache=new Map();
@@ -78,6 +78,8 @@
       const drafts=readDrafts();
       state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
       state.savedBody=state.editedBody;
+      state.editedLetterhead=drafts[uid]?.letterhead||'';
+      state.savedLetterhead=state.editedLetterhead;
       state.mode='read';
       renderDocument();
     }catch(e){
@@ -130,8 +132,8 @@
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
       brandingToggleHtml()+
-      '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
-      '<article class="petition-a4 petition-live-preview '+(state.branded?'is-branded':'')+'" id="petition-live-preview" aria-label="معاينة العريضة" hidden>'+letterheadHtml()+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
+      '</div><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div>'+
+      '<article class="petition-a4 petition-live-preview '+(state.branded?'is-branded':'')+'" id="petition-live-preview" aria-label="معاينة العريضة" hidden>'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     let dotPressTimer=null,dotPressStart=null;
@@ -174,14 +176,16 @@
       if(Math.abs(event.clientX-dotPressStart.x)>10||Math.abs(event.clientY-dotPressStart.y)>10)clearDotPress();
     });
     ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
-    document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
-    document.getElementById('petition-brand-toggle').onclick=()=>{state.editedBody=editor.innerHTML;state.branded=!state.branded;renderEditor();};
+    document.getElementById('petition-editor-back').onclick=()=>{syncEditorContent(editor);renderDocument();};
+    document.getElementById('petition-brand-toggle').onclick=()=>{syncEditorContent(editor);state.branded=!state.branded;renderEditor();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
     document.getElementById('petition-editor-restore').onclick=()=>{
       if(!window.confirm('هل تريد استعادة النص الأصلي للعريضة؟ ستُحذف نسخة العمل المحفوظة لهذا النموذج.'))return;
       state.editedBody=plainTextToEditor(t.body);
       state.savedBody=state.editedBody;
+      state.editedLetterhead='';
+      state.savedLetterhead='';
       try{
         const drafts=readDrafts();
         delete drafts[t.uid];
@@ -193,18 +197,18 @@
       renderEditor();
     };
     document.getElementById('petition-editor-preview').onclick=()=>{
-      state.editedBody=editor.innerHTML;
+      syncEditorContent(editor);
       const preview=document.getElementById('petition-live-preview');
       const panel=document.querySelector('.petition-editor-panel');
       const button=document.getElementById('petition-editor-preview');
       const showing=preview&&!preview.hidden;
-      if(preview){preview.innerHTML='<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';preview.hidden=showing;}
+      if(preview){preview.innerHTML=(state.branded?state.editedLetterhead:'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';preview.classList.toggle('is-branded',state.branded);preview.hidden=showing;}
       if(panel)panel.hidden=!showing;
       if(button)button.innerHTML=showing?'<i class="fas fa-eye"></i> معاينة':'<i class="fas fa-pen"></i> متابعة التعديل';
       if(showing)editor.focus();
     };
-    document.getElementById('petition-editor-print').onclick=()=>{state.editedBody=editor.innerHTML;printPetition();};
-    document.getElementById('petition-editor-word').onclick=()=>{state.editedBody=editor.innerHTML;exportWord();};
+    document.getElementById('petition-editor-print').onclick=()=>{syncEditorContent(editor);printPetition();};
+    document.getElementById('petition-editor-word').onclick=()=>{syncEditorContent(editor);exportWord();};
     root.querySelectorAll('[data-command]').forEach(btn=>btn.onclick=()=>{
       editor.focus();
       document.execCommand(btn.dataset.command,false,null);
@@ -215,16 +219,25 @@
     if(/<\/?(?:p|br|strong|b|em|i|u|ul|ol|li|div|h[1-6])\b/i.test(value))return value;
     return esc(value).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
   }
+  function syncEditorContent(editor){
+    if(!editor)return;
+    const doc=new DOMParser().parseFromString(editor.innerHTML,'text/html');
+    const header=doc.body.querySelector('.petition-letterhead');
+    state.editedLetterhead=header?header.outerHTML:'';
+    const body=doc.body.querySelector('.petition-doc-body');
+    state.editedBody=body?body.innerHTML:editor.innerHTML;
+  }
   function readDrafts(){
     try{return JSON.parse(localStorage.getItem('mizan-petition-drafts')||'{}');}
     catch(e){return {};}
   }
   function saveDraft(editor){
-    state.editedBody=editor.innerHTML;
+    syncEditorContent(editor);
     state.savedBody=state.editedBody;
+    state.savedLetterhead=state.editedLetterhead;
     try{
       const drafts=readDrafts();
-      drafts[state.template.uid]={name:state.template.name,body:state.editedBody,updatedAt:new Date().toISOString()};
+      drafts[state.template.uid]={name:state.template.name,body:state.editedBody,letterhead:state.editedLetterhead,updatedAt:new Date().toISOString()};
       localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
       const button=document.getElementById('petition-editor-save');
       if(button){button.innerHTML='<i class="fas fa-check"></i> تم حفظ نسخة العمل';setTimeout(()=>{if(button.isConnected)button.textContent='حفظ نسخة العمل';},1800);}
@@ -238,7 +251,7 @@
     const t=state.template;if(!t)return '';
     const body=plainTextToEditor(state.editedBody??t.body);
     const branded=state.branded;
-    const header=letterheadHtml();
+    const header=state.editedLetterhead||letterheadHtml();
     const css='@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:visible;break-after:page}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 34mm minmax(0,1fr);align-items:center;gap:7mm;padding:1mm 2mm 7mm;margin:0 0 7mm;border-bottom:.7mm solid #172b45}.petition-head-side{text-align:center;color:#172b45;line-height:1.25}.petition-head-side strong{display:block;font-size:18px}.petition-head-side small{display:block;font-size:8.5px;color:#5d6875}.petition-head-side b{display:block;margin-top:2mm;font-size:12px}.petition-head-right strong{font-size:23px}.petition-bar-logo{width:34mm;height:46mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:13.6px;line-height:2.05;text-align:justify;overflow-wrap:anywhere}.petition-doc-body p{margin:0 0 .5em}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:16px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
   }
