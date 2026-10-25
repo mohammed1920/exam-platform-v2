@@ -96,7 +96,7 @@
     return '<div class="petition-builder-head"><div><span>'+esc(t.category||'نموذج قانوني')+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.description||'')+'</p></div></div>';
   }
   function documentBodyHtml(){
-    return esc(state.editedBody??'').replace(/\n/g,'<br>');
+    return plainTextToEditor(state.editedBody??'');
   }
   function renderDocument(){
     const root=document.getElementById('petitions-section'),t=state.template;
