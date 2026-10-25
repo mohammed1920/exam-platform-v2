@@ -138,13 +138,19 @@
     });
   }
   function plainTextToEditor(text){
-    return esc(String(text??'')).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
+    const value=String(text??'');
+    if(/<\/?(?:p|br|strong|b|em|i|u|ul|ol|li|div|h[1-6])\b/i.test(value))return value;
+    return esc(value).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
+  }
+  function readDrafts(){
+    try{return JSON.parse(localStorage.getItem('mizan-petition-drafts')||'{}');}
+    catch(e){return {};}
   }
   function saveDraft(editor){
-    state.editedBody=editor.innerText;
+    state.editedBody=editor.innerHTML;
     state.savedBody=state.editedBody;
     try{
-      const drafts=JSON.parse(localStorage.getItem('mizan-petition-drafts')||'{}');
+      const drafts=readDrafts();
       drafts[state.template.uid]={name:state.template.name,body:state.editedBody,updatedAt:new Date().toISOString()};
       localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
       const button=document.getElementById('petition-editor-save');
@@ -153,11 +159,11 @@
   }
   function syncPreview(){
     const editor=document.getElementById('petition-rich-editor');
-    if(editor)state.editedBody=editor.innerText;
+    if(editor)state.editedBody=editor.innerHTML;
   }
   function buildPrintHtml(){
     const t=state.template;if(!t)return '';
-    const body=esc(state.editedBody??replacePlaceholders(t.body)).replace(/\n/g,'<br>');
+    const body=plainTextToEditor(state.editedBody??replacePlaceholders(t.body));
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoBase+'assets/iraqi-bar-association-modern.svg';
     const branded=state.branded;
