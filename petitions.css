@@ -760,3 +760,77 @@ html:not([data-theme="light"]) .petition-category-card{
 html:not([data-theme="light"]) .petition-category-copy strong{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-muted);}
 html:not([data-theme="light"]) .petition-category-copy b{color:var(--mizan-primary-300);}
+
+/* Correct the category CARDS themselves; keep the "عرض النماذج" action unchanged. */
+.petition-category-card{
+  background:var(--mizan-card);
+  border-color:var(--mizan-border-light);
+}
+.petition-category-card[data-category="family"]{
+  background:color-mix(in srgb,var(--mizan-warning-100) 42%,var(--mizan-card));
+  border-color:color-mix(in srgb,var(--mizan-warning-700) 18%,var(--mizan-border-light));
+}
+.petition-category-card[data-category="civil"]{
+  background:color-mix(in srgb,var(--mizan-primary-100) 48%,var(--mizan-card));
+  border-color:color-mix(in srgb,var(--mizan-primary-700) 18%,var(--mizan-border-light));
+}
+.petition-category-card[data-category="criminal"]{
+  background:color-mix(in srgb,var(--mizan-danger-100) 42%,var(--mizan-card));
+  border-color:color-mix(in srgb,var(--mizan-danger-700) 17%,var(--mizan-border-light));
+}
+.petition-category-card[data-category="administrative"]{
+  background:color-mix(in srgb,var(--mizan-success-100) 42%,var(--mizan-card));
+  border-color:color-mix(in srgb,var(--mizan-success-700) 17%,var(--mizan-border-light));
+}
+.petition-category-copy strong{
+  width:100%;
+  text-wrap:balance;
+  word-break:normal;
+  overflow-wrap:normal;
+  hyphens:none;
+}
+html:not([data-theme="light"]) .petition-category-card{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-border);
+}
+html:not([data-theme="light"]) .petition-category-card[data-category="family"]{border-color:color-mix(in srgb,var(--mizan-warning-700) 30%,var(--mizan-border));}
+html:not([data-theme="light"]) .petition-category-card[data-category="civil"]{border-color:color-mix(in srgb,var(--mizan-primary-500) 30%,var(--mizan-border));}
+html:not([data-theme="light"]) .petition-category-card[data-category="criminal"]{border-color:color-mix(in srgb,var(--mizan-danger-500) 30%,var(--mizan-border));}
+html:not([data-theme="light"]) .petition-category-card[data-category="administrative"]{border-color:color-mix(in srgb,var(--mizan-success-600) 30%,var(--mizan-border));}
+@media(max-width:600px){
+  .petition-category-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    gap:var(--mizan-space-2);
+    min-height:154px;
+    padding:var(--mizan-space-3) var(--mizan-space-2);
+    text-align:center;
+  }
+  .petition-category-icon{flex:0 0 auto;}
+  .petition-category-copy{
+    align-items:center;
+    width:100%;
+    gap:var(--mizan-space-1);
+  }
+  .petition-category-copy strong{
+    font-size:var(--mizan-font-size-compact);
+    line-height:1.35;
+    text-align:center;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+  }
+  .petition-category-copy small{
+    font-size:11px;
+    line-height:1.4;
+    text-align:center;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+  }
+  .petition-category-copy b{margin-top:2px;}
+}
