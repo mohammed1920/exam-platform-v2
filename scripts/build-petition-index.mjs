@@ -20,7 +20,7 @@ for (const file of files) {
   if (seenUids.has(doc.uid)) throw new Error('Duplicate petition uid "' + doc.uid + '" in ' + file);
   seenUids.add(doc.uid);
   if (typeof doc.name !== 'string' || !doc.name.trim()) throw new Error('Missing name in ' + file);
-  if (!Array.isArray(doc.fields) || typeof doc.body !== 'string') throw new Error('Document must contain fields[] and body string: ' + file);
+  if (typeof doc.body !== 'string' || !doc.body.trim()) throw new Error('Document must contain a non-empty body string: ' + file);
   if (!categoryById.has(doc.categoryId)) throw new Error('Missing/invalid categoryId in ' + file + '. Allowed: ' + [...categoryById.keys()].join(', '));
   grouped.get(doc.categoryId).push({uid:doc.uid,baseName:doc.name.trim(),category:categoryById.get(doc.categoryId).name,description:typeof doc.description==='string'?doc.description:'',icon:typeof doc.icon==='string'&&doc.icon?doc.icon:'fas fa-file-signature',document:'data/petitions/documents/'+file});
 }
