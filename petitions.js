@@ -70,47 +70,115 @@
     grid.querySelectorAll('[data-template]').forEach(btn=>btn.onclick=()=>start(btn.dataset.template));
   }
   async function start(uid){
-    const meta=state.templates.find(t=>t.uid===uid);if(!meta)return;
+    const meta=Object.values(state.categoryTemplates).flat().find(t=>t.uid===uid)||state.templates.find(t=>t.uid===uid);
+    if(!meta)return;
     const root=document.getElementById('petitions-section');if(!root)return;
     root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-loading-back"><i class="fas fa-arrow-right"></i> العودة للنماذج</button><div class="petition-loading">جاري تحميل العريضة...</div></div>';
     document.getElementById('petition-loading-back').onclick=()=>openCategory(state.categoryId);
-    try{state.template=await loadDocument(uid);if(state.categoryId===null)return;const u=window.publicAuth&&window.publicAuth.user;state.values={lawyerName:state.lawyer.name||(u?(u.displayName||u.email||''):'')};state.branded=true;renderBuilder();}
-    catch(e){root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-load-fail-back">العودة للنماذج</button><div class="petition-empty">تعذر تحميل العريضة. حاول مرة أخرى.</div></div>';document.getElementById('petition-load-fail-back').onclick=()=>openCategory(state.categoryId);}
+    try{
+      state.template=await loadDocument(uid);
+      if(state.categoryId===null)return;
+      const u=window.publicAuth&&window.publicAuth.user;
+      state.values={lawyerName:state.lawyer.name||(u?(u.displayName||u.email||''):'')};
+      state.branded=true;
+      state.editedBody=replacePlaceholders(state.template.body);
+      state.mode='read';
+      renderDocument();
+    }catch(e){
+      root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-load-fail-back">العودة للنماذج</button><div class="petition-empty">تعذر تحميل العريضة. حاول مرة أخرى.</div></div>';
+      document.getElementById('petition-load-fail-back').onclick=()=>openCategory(state.categoryId);
+    }
   }
-  function renderBuilder(){
+  function documentHeader(){
+    const t=state.template;
+    return '<div class="petition-builder-head"><div><span>'+esc(t.category||'نموذج قانوني')+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.description||'')+'</p></div></div>';
+  }
+  function documentBodyHtml(){
+    return esc(state.editedBody??'').replace(/\n/g,'<br>');
+  }
+  function renderDocument(){
     const root=document.getElementById('petitions-section'),t=state.template;
-    root.innerHTML='<div class="petitions-shell petition-builder-shell"><button class="back-btn" id="petition-builder-back"><i class="fas fa-arrow-right"></i> النماذج</button><div class="petition-builder-head"><div><span>'+esc(t.category||'نموذج قانوني')+'</span><h2>'+esc(t.name)+'</h2><p>'+esc(t.description||'')+'</p></div><div class="petition-status"><i class="fas fa-shield-halved"></i> نسخة عمل خاصة بك</div></div><div class="petition-layout"><div class="petition-form-panel"><div class="petition-panel-title"><i class="fas fa-pen-to-square"></i> بيانات العريضة</div><div class="petition-fields">'+(t.fields||[]).map(f=>'<label><span>'+esc(f.label)+(f.required?' *':'')+'</span><input data-field="'+esc(f.key)+'" value="'+esc(val(f.key))+'" placeholder="'+esc(f.placeholder||'')+'"></label>').join('')+'</div><label class="petition-long-field"><span>نص العريضة</span><textarea id="petition-body-editor" rows="16">'+esc(replacePlaceholders(t.body))+'</textarea></label><div class="petition-design"><span>شكل العريضة</span><button type="button" class="'+(state.branded?'active':'')+'" data-brand="1"><i class="fas fa-user-tie"></i> بتصميم المحامي</button><button type="button" class="'+(!state.branded?'active':'')+'" data-brand="0"><i class="fas fa-file-lines"></i> بدون تصميم</button></div><div class="petition-actions"><button class="petition-primary" id="petition-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button class="petition-secondary" id="petition-word"><i class="fas fa-file-word"></i> تصدير Word</button></div></div><div class="petition-preview-panel"><div class="petition-panel-title"><i class="fas fa-eye"></i> معاينة A4</div><div id="petition-a4-wrap"></div></div></div></div>';
-    document.getElementById('petition-builder-back').onclick=()=>openCategory(state.categoryId);
-    root.querySelectorAll('[data-field]').forEach(input=>input.oninput=()=>{state.values[input.dataset.field]=input.value;syncPreview();});
-    document.getElementById('petition-body-editor').oninput=syncPreview;
-    root.querySelectorAll('[data-brand]').forEach(btn=>btn.onclick=()=>{state.branded=btn.dataset.brand==='1';renderBuilder();});
-    document.getElementById('petition-print').onclick=printPetition;document.getElementById('petition-word').onclick=exportWord;syncPreview();
+    if(!root||!t)return;
+    root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+
+      '<article class="petition-a4 '+(state.branded?'is-branded':'')+'" aria-label="نص العريضة"><div class="petition-doc-body" id="petition-document-body">'+documentBodyHtml()+'</div></article>'+
+      '<div class="petition-document-actions"><button type="button" class="petition-primary" id="petition-edit"><i class="fas fa-pen-to-square"></i> تعديل العريضة</button></div></div>';
+    document.getElementById('petition-document-back').onclick=()=>openCategory(state.categoryId);
+    document.getElementById('petition-edit').onclick=()=>{state.mode='edit';renderEditor();};
+  }
+  function renderEditor(){
+    const root=document.getElementById('petitions-section'),t=state.template;
+    if(!root||!t)return;
+    root.innerHTML='<div class="petitions-shell petition-editor-shell"><button class="back-btn" id="petition-editor-back"><i class="fas fa-arrow-right"></i> العودة للقراءة</button>'+documentHeader()+
+      '<div class="petition-editor-panel"><div class="petition-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق العريضة">'+
+      '<button type="button" data-command="bold" aria-label="خط عريض" title="خط عريض"><strong>B</strong></button>'+
+      '<button type="button" data-command="italic" aria-label="خط مائل" title="خط مائل"><em>I</em></button>'+
+      '<button type="button" data-command="underline" aria-label="تسطير" title="تسطير"><u>U</u></button>'+
+      '<span class="petition-editor-separator"></span>'+
+      '<button type="button" data-command="justifyRight" aria-label="محاذاة لليمين" title="محاذاة لليمين"><i class="fas fa-align-right"></i></button>'+
+      '<button type="button" data-command="justifyCenter" aria-label="توسيط" title="توسيط"><i class="fas fa-align-center"></i></button>'+
+      '<button type="button" data-command="justifyLeft" aria-label="محاذاة لليسار" title="محاذاة لليسار"><i class="fas fa-align-left"></i></button>'+
+      '<button type="button" data-command="insertUnorderedList" title="قائمة نقطية">• قائمة</button>'+
+      '<button type="button" data-command="insertOrderedList" title="قائمة مرقمة">١. قائمة</button>'+
+      '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
+      '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
+      '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
+      '<div class="petition-document-actions petition-editor-actions"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word"><i class="fas fa-file-word"></i> تصدير Word</button></div></div>';
+    const editor=document.getElementById('petition-rich-editor');
+    document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerText;renderDocument();};
+    document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??replacePlaceholders(t.body);renderDocument();};
+    document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
+    document.getElementById('petition-editor-preview').onclick=()=>{state.editedBody=editor.innerText;renderDocument();};
+    document.getElementById('petition-editor-print').onclick=()=>{state.editedBody=editor.innerText;printPetition();};
+    document.getElementById('petition-editor-word').onclick=()=>{state.editedBody=editor.innerText;exportWord();};
+    root.querySelectorAll('[data-command]').forEach(btn=>btn.onclick=()=>{
+      editor.focus();
+      document.execCommand(btn.dataset.command,false,null);
+    });
+  }
+  function plainTextToEditor(text){
+    return esc(String(text??'')).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
+  }
+  function saveDraft(editor){
+    state.editedBody=editor.innerText;
+    state.savedBody=state.editedBody;
+    try{
+      const drafts=JSON.parse(localStorage.getItem('mizan-petition-drafts')||'{}');
+      drafts[state.template.uid]={name:state.template.name,body:state.editedBody,updatedAt:new Date().toISOString()};
+      localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
+      const button=document.getElementById('petition-editor-save');
+      if(button){button.innerHTML='<i class="fas fa-check"></i> تم حفظ نسخة العمل';setTimeout(()=>{if(button.isConnected)button.textContent='حفظ نسخة العمل';},1800);}
+    }catch(e){alert('تعذر حفظ نسخة العمل على هذا الجهاز. انسخ النص أو صدّره إلى Word.');}
   }
   function syncPreview(){
-    const editor=document.getElementById('petition-body-editor');if(!editor)return;
-    const name=val('lawyerName')||state.lawyer.name||(window.publicAuth?.user?.displayName||'اسم المحامي');
-    const office=state.lawyer.office||'',phone=state.lawyer.phone||'';
-    const rawBody=replacePlaceholders(editor.value);
-    const cleanBody=rawBody.replace(/\n?\s*(?:مع التقدير(?: والاحترام)?\.?|مع الشكر والتقدير\.?|ولكم الشكر والاحترام\.?|ولكم وافر الشكر والتقدير\.?) [\s\S]*$/,'').replace(/\n?\s*(?:المحامي|المدعي|المدعية|وكيله? المحامي|وكيلها المحامي|بموجب الوكالة المرفقة|بموجب الوكالة المرقمة.*)$/,'');
-    const body=esc(cleanBody.trim()).replace(/\n/g,'<br>');
-    const plaintiff=val('plaintiff')||'';
-    const attachments=String(val('attachments')||'').split(/\n|،/).map(x=>x.trim()).filter(Boolean);
-    const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
-    const logoUrl=logoBase+'assets/iraqi-bar-association-modern.svg';
-    const attachmentHtml=attachments.length?attachments.map((x,i)=>'<div class="attachment-item">'+(i+1)+'- '+esc(x)+'</div>').join(''):'<div class="attachment-item">1- </div><div class="attachment-item">2- </div>';
-    document.getElementById('petition-a4-wrap').innerHTML='<article class="petition-a4 '+(state.branded?'is-branded':'')+'">'+(state.branded?'<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+logoUrl+'" alt="شعار نقابة المحامين العراقيين" onerror="this.onerror=null;this.src=\"https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-modern.svg\";"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name)+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>':'')+'<div class="petition-doc-body">'+body+'</div><footer><div class="petition-signature"><strong>المدعي</strong><small>'+esc(plaintiff)+'</small></div><div class="petition-attachments"><strong>المرفقات</strong><div class="attachments-line"></div>'+attachmentHtml+'</div></footer></article>';
-    const logo=document.querySelector('.petition-bar-logo img');
-    if(logo){logo.loading='eager';logo.addEventListener('error',()=>{logo.onerror=null;logo.src='https://raw.githubusercontent.com/mohammed1920/exam-platform-v2/main/assets/iraqi-bar-association-modern.svg';},{once:true});}
+    const editor=document.getElementById('petition-rich-editor');
+    if(editor)state.editedBody=editor.innerText;
   }
   function buildPrintHtml(){
-    const a4=document.querySelector('.petition-a4');if(!a4)return '';
-    const css=`@page{size:A4;margin:0}body{margin:0;background:#fff;font-family:Arial,Tahoma,sans-serif}.petition-a4{box-sizing:border-box;width:210mm;min-height:297mm;padding:12mm 14mm 17mm;background:#fffdf8;color:#20252b;direction:rtl;position:relative;overflow:hidden;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 34mm minmax(0,1fr);align-items:center;gap:7mm;padding:1mm 2mm 7mm;margin:0 0 7mm}.petition-letterhead:after{content:"";position:absolute;left:0;right:0;bottom:0;height:.7mm;background:linear-gradient(90deg,#172b45,#c59b4d 50%,#172b45)}.petition-head-side{text-align:center;color:#172b45;line-height:1.25}.petition-head-side strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.25}.petition-head-side small{display:block;font-size:8.5px;color:#5d6875;line-height:1.4}.petition-head-side b{display:block;margin-top:2mm;font-size:12px}.petition-head-right small{color:#8c6b2d}.petition-head-right strong{display:block;font-family:"Amiri","Noto Naskh Arabic",Tahoma,serif;font-size:23px;line-height:1.35;color:#172b45}.petition-head-right b{font-size:10px;margin-top:1.5mm}.petition-head-right em{display:block;font-style:normal;font-size:8.5px;color:#68727c;margin-top:1mm}.petition-bar-logo{width:34mm;height:46mm;margin:auto;display:flex;align-items:center;justify-content:center}.petition-bar-logo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}.petition-doc-body{position:relative;z-index:1;font-size:13.6px;line-height:2.05;text-align:justify;padding:0 2mm}.petition-a4 footer{position:relative;z-index:1;margin-top:15mm;display:grid;grid-template-columns:1fr 1fr;gap:18mm;align-items:start;border-top:.25mm solid #d7d0c0;padding-top:6mm;direction:ltr}.petition-signature{text-align:left;padding-left:4mm}.petition-signature strong,.petition-signature small{display:block}.petition-signature strong{font-size:12px}.petition-signature small{font-size:10px;margin-top:2mm}.petition-attachments{text-align:right;direction:rtl}.petition-attachments strong{display:block;font-size:12px;color:#172b45;margin-bottom:3mm}.attachments-line{height:1px;background:#333;width:100%;margin-bottom:4mm}.attachment-item{font-size:10px;line-height:1.8;margin-bottom:1mm}`;
+    const t=state.template;if(!t)return '';
+    const body=esc(state.editedBody??replacePlaceholders(t.body)).replace(/\n/g,'<br>');
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoBase+'assets/iraqi-bar-association-modern.svg';
-    const html=a4.outerHTML.replace(/src="[^"]*"/,'src="'+imgUrl+'"');
-    return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>'+esc(state.template.name)+'</title><style>'+css+'</style></head><body>'+html+'</body></html>';
+    const branded=state.branded;
+    const name=state.lawyer.name||(window.publicAuth?.user?.displayName||'');
+    const office=state.lawyer.office||'',phone=state.lawyer.phone||'';
+    const header=branded?'<header class="petition-letterhead"><div class="petition-head-side petition-head-left"><strong>جمهورية العراق</strong><small>The Republic of Iraq</small><b>نقابة المحامين العراقيين</b><small>Iraqi Bar Association</small></div><div class="petition-bar-logo"><img src="'+imgUrl+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right"><small>المحامي</small><strong>'+esc(name)+'</strong><b>محامٍ لدى المحاكم العراقية</b>'+(office?'<em>'+esc(office)+'</em>':'')+(phone?'<small>'+esc(phone)+'</small>':'')+'</div></header>':'';
+    const css='@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:visible;break-after:page}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 34mm minmax(0,1fr);align-items:center;gap:7mm;padding:1mm 2mm 7mm;margin:0 0 7mm;border-bottom:.7mm solid #172b45}.petition-head-side{text-align:center;color:#172b45;line-height:1.25}.petition-head-side strong{display:block;font-size:18px}.petition-head-side small{display:block;font-size:8.5px;color:#5d6875}.petition-head-side b{display:block;margin-top:2mm;font-size:12px}.petition-head-right strong{font-size:23px}.petition-bar-logo{width:34mm;height:46mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:13.6px;line-height:2.05;text-align:justify;overflow-wrap:anywhere}.petition-doc-body p{margin:0 0 .5em}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:16px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
+    return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
   }
-  function printPetition(){const html=buildPrintHtml();if(!html)return;const w=window.open('','_blank');if(!w)return alert('اسمح للنوافذ المنبثقة من المتصفح ثم أعد المحاولة.');w.document.write(html);w.document.close();setTimeout(()=>w.print(),300);}
-  function exportWord(){const html=buildPrintHtml();if(!html)return;const blob=new Blob(['\\ufeff',html],{type:'application/msword'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(state.template.name||'عريضة').replace(/[\\/:*?"<>|]/g,'_')+'.doc';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
+  function printPetition(){
+    const html=buildPrintHtml();if(!html)return;
+    const w=window.open('','_blank');
+    if(!w)return alert('اسمح بالنوافذ المنبثقة من المتصفح ثم أعد المحاولة.');
+    w.document.open();w.document.write(html);w.document.close();
+    const print=()=>{w.focus();w.print();};
+    if(w.document.readyState==='complete')setTimeout(print,100);else w.onload=()=>setTimeout(print,100);
+  }
+  function exportWord(){
+    const html=buildPrintHtml();if(!html)return;
+    const blob=new Blob(['\ufeff',html],{type:'application/msword'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=(state.template.name||'عريضة').replace(/[\\/:*?"<>|]/g,'_')+'.doc';a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }
   Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding});
 })();
