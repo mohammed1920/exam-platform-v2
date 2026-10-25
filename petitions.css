@@ -920,3 +920,30 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   .petition-rich-editor{min-height:55vh;padding:var(--mizan-space-3);}
   .petition-editor-toolbar{top:var(--mizan-space-1);padding:var(--mizan-space-2);}
 }
+
+
+.petition-brand-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--mizan-space-2);
+  min-height:var(--mizan-control-min-height);
+  margin:var(--mizan-space-2) 0;
+  padding:var(--mizan-space-2) var(--mizan-space-3);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-control);
+  color:var(--mizan-text);
+  background:var(--mizan-surface);
+  font:inherit;
+  font-weight:var(--mizan-font-weight-bold);
+  cursor:pointer;
+}
+.petition-brand-toggle[aria-pressed="true"]{
+  color:var(--mizan-white);
+  background:var(--mizan-primary-600);
+  border-color:var(--mizan-primary-600);
+}
+.petition-editor-toolbar .petition-brand-toggle{
+  flex-basis:100%;
+  margin:0;
+}
