@@ -718,7 +718,7 @@ html:not([data-theme="light"]) .petition-category-card[data-category="criminal"]
 }
 html:not([data-theme="light"]) .petition-category-card[data-category="administrative"]{
   background:color-mix(in srgb,var(--mizan-success-700) 18%,var(--mizan-surface));
-  border-color:color-mix(in srgb,var(--mizan-success-600) 45%,var(--mizan-border));
+  border-color:color-mix(in srgb,var(--mizan-success-500) 45%,var(--mizan-border));
 }
 html:not([data-theme="light"]) .petition-category-copy strong{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-muted);}
