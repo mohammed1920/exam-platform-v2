@@ -167,6 +167,23 @@
 }
 
 
+/* Petition category and template-card geometry; shared by desktop and mobile. */
+:root{
+  --mizan-petitions-category-card-min-height:154px;
+  --mizan-petitions-category-icon-size:42px;
+  --mizan-petitions-category-icon-size-mobile:40px;
+  --mizan-petitions-template-icon-column:34px;
+  --mizan-petitions-template-arrow-column:18px;
+  --mizan-petitions-template-card-min-height:64px;
+  --mizan-petitions-template-icon-width:32px;
+  --mizan-petitions-template-icon-height:36px;
+  --mizan-petitions-template-icon-column-mobile:30px;
+  --mizan-petitions-template-arrow-column-mobile:12px;
+  --mizan-petitions-template-card-min-height-mobile:60px;
+  --mizan-petitions-template-icon-width-mobile:28px;
+  --mizan-petitions-template-icon-height-mobile:32px;
+}
+
 /* Petition builder and A4 letterhead geometry. */
 :root{
   --mizan-petitions-shell-max-width:1220px;
