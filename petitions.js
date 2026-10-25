@@ -1,13 +1,9 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,values:{},branded:true,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
+  const state={templates:[],template:null,branded:true,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-  const val=k=>state.values[k]||'';
-  const placeholderKeys={'المحكمة':'court','اسم المحكمة':'court','اسم المدعي':'plaintiff','اسم مقدم الطلب':'plaintiff','اسم المدعى عليه':'defendant','الجهة المقابلة':'defendant','موضوع العريضة':'subject','موضوع الطلب':'subject','مبلغ المطالبة':'amount','رقم الدعوى':'caseNumber','التاريخ':'date','اسم المحامي':'lawyerName'};
-  const resolveKey=k=>placeholderKeys[k.trim()]||k.trim();
-  const replacePlaceholders=t=>String(t||'').replace(/\[([^\]]+)\]/g,(_,k)=>val(resolveKey(k))||'['+k+']');
   const dataCache=new Map();
   function dataUrl(path){const base=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'';return base+'/'+path;}
   async function fetchJson(path){if(dataCache.has(path))return dataCache.get(path);const pending=fetch(dataUrl(path),{cache:'default'}).then(r=>{if(!r.ok)throw new Error('تعذر تحميل '+path);return r.json();});dataCache.set(path,pending);try{return await pending;}catch(e){dataCache.delete(path);throw e;}}
@@ -36,7 +32,7 @@
   }
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;
-    root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petitions-back"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><div class="petitions-hero"><span>ميزان • العرائض والطلبات</span><h2>أنشئ عريضتك القانونية بطريقة منظمة</h2><p>اختر القسم القانوني المناسب، ثم افتح النموذج المطلوب وعبّئ بياناته قبل المعاينة والطباعة أو التصدير.</p></div><div id="petition-browse"></div></div>';
+    root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petitions-back"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><div class="petitions-hero"><span>ميزان • العرائض والطلبات</span><h2>أنشئ عريضتك القانونية بطريقة منظمة</h2><p>اختر العريضة، اقرأها، ثم عدّل نصها بحرية واحفظها أو اطبعها.</p></div><div id="petition-browse"></div></div>';
     document.getElementById('petitions-back').onclick=()=>window.app.navigateTo('home');
   }
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
@@ -78,11 +74,9 @@
     try{
       state.template=await loadDocument(uid);
       if(state.categoryId===null)return;
-      const u=window.publicAuth&&window.publicAuth.user;
-      state.values={lawyerName:state.lawyer.name||(u?(u.displayName||u.email||''):'')};
       state.branded=true;
       const drafts=readDrafts();
-      state.editedBody=plainTextToEditor(drafts[uid]?.body??replacePlaceholders(state.template.body));
+      state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
       state.savedBody=state.editedBody;
       state.mode='read';
       renderDocument();
@@ -128,7 +122,7 @@
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
-    document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??replacePlaceholders(t.body);renderDocument();};
+    document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
     document.getElementById('petition-editor-preview').onclick=()=>{
       state.editedBody=editor.innerHTML;
@@ -174,7 +168,7 @@
   }
   function buildPrintHtml(){
     const t=state.template;if(!t)return '';
-    const body=plainTextToEditor(state.editedBody??replacePlaceholders(t.body));
+    const body=plainTextToEditor(state.editedBody??t.body);
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoBase+'assets/iraqi-bar-association-modern.svg';
     const branded=state.branded;
