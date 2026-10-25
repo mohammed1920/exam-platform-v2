@@ -767,7 +767,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
 
 @media(max-width:600px){
   .petition-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2);}
-  .petition-category-card{min-height:154px;padding:var(--mizan-space-3) var(--mizan-space-2);}
+  .petition-category-card{min-height:var(--mizan-petitions-category-card-min-height);padding:var(--mizan-space-3) var(--mizan-space-2);}
   .petition-category-icon{width:var(--mizan-petitions-category-icon-size-mobile);height:var(--mizan-petitions-category-icon-size-mobile);font-size:19px;}
   .petition-category-copy strong{font-size:var(--mizan-font-size-compact);line-height:1.35;}
   .petition-category-copy small{font-size:11px;line-height:1.4;}
