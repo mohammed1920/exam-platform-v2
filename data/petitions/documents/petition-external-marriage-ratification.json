@@ -84,5 +84,6 @@
       "required": false
     }
   ],
-  "body": "السيد قاضي الأحوال الشخصية في [court] المحترم\n\nالمدعي: [plaintiff] عنوانه [plaintiffAddress]\nالمدعى عليها: [defendant] عنوانها [defendantAddress]\n\nإن المدعى عليها هي زوجتي والداخل بي شرعاً بموجب وثيقة الزواج الصادرة من رجل الدين [religiousMan] بتاريخ [marriageDocumentDate] وبحضور الشاهدين [witness1] و[witness2]، بمهر معجله [immediateDower] دينار مقبوض ومؤجله [deferredDower] دينار تستحقه عند [deferredCondition].\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليها للمرافعة وتصديق الزواج الخارجي.\n\nمع الشكر والتقدير\n\nالمدعي\nوكيله المحامي\nبموجب الوكالة المرفقة"
+  "body": "السيد قاضي الأحوال الشخصية في [court] المحترم\n\nالمدعي: [plaintiff] عنوانه [plaintiffAddress]\nالمدعى عليها: [defendant] عنوانها [defendantAddress]\n\nإن المدعى عليها هي زوجتي والداخل بي شرعاً بموجب وثيقة الزواج الصادرة من رجل الدين [religiousMan] بتاريخ [marriageDocumentDate] وبحضور الشاهدين [witness1] و[witness2]، بمهر معجله [immediateDower] دينار مقبوض ومؤجله [deferredDower] دينار تستحقه عند [deferredCondition].\n\nعليه أطلب من محكمتكم الموقرة دعوة المدعى عليها للمرافعة وتصديق الزواج الخارجي.\n\nمع الشكر والتقدير\n\nالمدعي\nوكيله المحامي\nبموجب الوكالة المرفقة",
+  "categoryId": "family"
 }
