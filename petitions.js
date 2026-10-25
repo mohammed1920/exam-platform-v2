@@ -178,7 +178,7 @@
     ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
     document.getElementById('petition-editor-back').onclick=()=>{syncEditorContent(editor);renderDocument();};
     document.getElementById('petition-brand-toggle').onclick=()=>{syncEditorContent(editor);state.branded=!state.branded;renderEditor();};
-    document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
+    document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;state.editedLetterhead=state.savedLetterhead||'';renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
     document.getElementById('petition-editor-restore').onclick=()=>{
       if(!window.confirm('هل تريد استعادة النص الأصلي للعريضة؟ ستُحذف نسخة العمل المحفوظة لهذا النموذج.'))return;
