@@ -43,7 +43,7 @@
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
   function renderCategories(){
     const root=document.getElementById('petition-browse');if(!root)return;
-    root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>'<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><h3>'+esc(c.name)+'</h3><p>'+esc(c.description)+'</p><b>عرض النماذج <i class="fas fa-arrow-left" aria-hidden="true"></i></b></button>').join('')+'</div>';
+    root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>'<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small><b>عرض النماذج <i class="fas fa-arrow-left" aria-hidden="true"></i></b></span><i class="fas fa-chevron-left petition-category-chevron" aria-hidden="true"></i></button>').join('')+'</div>';
     root.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>openCategory(b.dataset.category));
   }
   async function openCategory(categoryId){
