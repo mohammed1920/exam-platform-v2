@@ -439,13 +439,13 @@ html[data-theme="light"] .petition-template-card p{
 }
 .petition-head-left strong{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:19px;
+  font-size:16px;
   line-height:1.3;
 }
 .petition-head-left b{
   display:block;
-  margin-top:2.5mm;
-  font-size:var(--mizan-font-size-compact);
+  margin-top:1.5mm;
+  font-size:var(--mizan-font-size-xs);
 }
 .petition-head-side small{
   display:block;
@@ -464,18 +464,6 @@ html[data-theme="light"] .petition-template-card p{
   line-height:1.35;
   color:var(--mizan-primary-800);
   font-weight:900;
-  margin-top:1mm;
-}
-.petition-head-right b{
-  display:block;
-  font-size:10.5px;
-  margin-top:1.5mm;
-}
-.petition-a4 .petition-head-right em{
-  display:block;
-  font-style:normal;
-  font-size:8.5px;
-  color:var(--mizan-muted-light);
   margin-top:1mm;
 }
 .petition-bar-logo{
@@ -500,6 +488,9 @@ html[data-theme="light"] .petition-template-card p{
   max-height:none;
   object-fit:contain;
   object-position:center;
+}
+.petition-rich-editor .petition-bar-logo img{
+  cursor:pointer;
 }
 .petition-doc-body{
   font-size:var(--mizan-petitions-document-font-size);
