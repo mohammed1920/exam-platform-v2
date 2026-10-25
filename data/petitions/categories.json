@@ -1,0 +1,30 @@
+[
+  {
+    "id": "family",
+    "name": "عرائض أحوال شخصية",
+    "description": "نماذج دعاوى وطلبات الأحوال الشخصية",
+    "icon": "fas fa-people-roof",
+    "manifest": "data/petitions/family.json"
+  },
+  {
+    "id": "civil",
+    "name": "عرائض البداءة (الدعاوى المدنية)",
+    "description": "نماذج الدعاوى المدنية والمطالبات أمام محاكم البداءة",
+    "icon": "fas fa-scale-balanced",
+    "manifest": "data/petitions/civil.json"
+  },
+  {
+    "id": "criminal",
+    "name": "عرائض جزائية وتحقيق",
+    "description": "طلبات وعرائض الدعاوى الجزائية والتحقيق",
+    "icon": "fas fa-shield-halved",
+    "manifest": "data/petitions/criminal.json"
+  },
+  {
+    "id": "administrative",
+    "name": "عرائض إدارية",
+    "description": "طلبات عامة وعرائض موجهة إلى الجهات الرسمية",
+    "icon": "fas fa-landmark",
+    "manifest": "data/petitions/administrative.json"
+  }
+]
