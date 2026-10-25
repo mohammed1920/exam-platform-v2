@@ -119,7 +119,7 @@
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
       '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
       '<article class="petition-a4 petition-live-preview" id="petition-live-preview" aria-label="معاينة العريضة" hidden><div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
-      '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
+      '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     let dotPressTimer=null,dotPressStart=null;
     const clearDotPress=()=>{if(dotPressTimer!==null){clearTimeout(dotPressTimer);dotPressTimer=null;}};
@@ -164,6 +164,20 @@
     document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
+    document.getElementById('petition-editor-restore').onclick=()=>{
+      if(!window.confirm('هل تريد استعادة النص الأصلي للعريضة؟ ستُحذف نسخة العمل المحفوظة لهذا النموذج.'))return;
+      state.editedBody=plainTextToEditor(t.body);
+      state.savedBody=state.editedBody;
+      try{
+        const drafts=readDrafts();
+        delete drafts[t.uid];
+        localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
+      }catch(e){
+        alert('تعذّر حذف نسخة العمل المحفوظة. حاول مرة أخرى.');
+        return;
+      }
+      renderEditor();
+    };
     document.getElementById('petition-editor-preview').onclick=()=>{
       state.editedBody=editor.innerHTML;
       const preview=document.getElementById('petition-live-preview');
