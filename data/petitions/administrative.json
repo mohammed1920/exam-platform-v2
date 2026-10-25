@@ -1,0 +1,10 @@
+[
+  {
+    "uid": "petition-general-request",
+    "name": "طلب قانوني عام",
+    "category": "عرائض إدارية",
+    "description": "قالب مرن لطلب موجه إلى جهة أو محكمة، مع إمكانية تعديل النص بالكامل.",
+    "icon": "fas fa-file-signature",
+    "document": "data/petitions/documents/petition-general-request.json"
+  }
+]
