@@ -1,7 +1,7 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,values:{},branded:true,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null};
+  const state={templates:[],template:null,values:{},branded:true,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const val=k=>state.values[k]||'';
@@ -81,7 +81,9 @@
       const u=window.publicAuth&&window.publicAuth.user;
       state.values={lawyerName:state.lawyer.name||(u?(u.displayName||u.email||''):'')};
       state.branded=true;
-      state.editedBody=replacePlaceholders(state.template.body);
+      const drafts=readDrafts();
+      state.editedBody=drafts[uid]?.body??replacePlaceholders(state.template.body);
+      state.savedBody=state.editedBody;
       state.mode='read';
       renderDocument();
     }catch(e){
@@ -124,12 +126,12 @@
       '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
       '<div class="petition-document-actions petition-editor-actions"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word"><i class="fas fa-file-word"></i> تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
-    document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerText;renderDocument();};
+    document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??replacePlaceholders(t.body);renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
-    document.getElementById('petition-editor-preview').onclick=()=>{state.editedBody=editor.innerText;renderDocument();};
-    document.getElementById('petition-editor-print').onclick=()=>{state.editedBody=editor.innerText;printPetition();};
-    document.getElementById('petition-editor-word').onclick=()=>{state.editedBody=editor.innerText;exportWord();};
+    document.getElementById('petition-editor-preview').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
+    document.getElementById('petition-editor-print').onclick=()=>{state.editedBody=editor.innerHTML;printPetition();};
+    document.getElementById('petition-editor-word').onclick=()=>{state.editedBody=editor.innerHTML;exportWord();};
     root.querySelectorAll('[data-command]').forEach(btn=>btn.onclick=()=>{
       editor.focus();
       document.execCommand(btn.dataset.command,false,null);
