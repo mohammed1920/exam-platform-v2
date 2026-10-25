@@ -614,23 +614,22 @@ html[data-theme="light"] .petition-template-card b{
 }
 
 
-/* Petition category navigation — colors resolve through the central Mizan theme. */
+/* Petition category grid and compact document rows — central Mizan theme tokens only. */
 .petition-category-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--mizan-space-4);
+  gap:var(--mizan-space-3);
   margin-top:var(--mizan-space-4);
 }
 .petition-category-card{
   position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:var(--mizan-space-2);
-  min-height:180px;
-  padding:var(--mizan-petitions-card-padding);
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 14px;
+  align-items:center;
+  gap:var(--mizan-space-3);
+  min-width:0;
+  min-height:148px;
+  padding:var(--mizan-space-4);
   text-align:right;
   font:inherit;
   color:var(--mizan-text);
@@ -640,17 +639,6 @@ html[data-theme="light"] .petition-template-card b{
   cursor:pointer;
   transition:transform var(--mizan-duration-ui),border-color var(--mizan-duration-ui),box-shadow var(--mizan-duration-ui),background-color var(--mizan-duration-ui);
 }
-.petition-category-card::after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  width:116px;height:116px;
-  left:-24px;top:-24px;
-  border-radius:50%;
-  background:var(--mizan-primary-500);
-  opacity:.07;
-  pointer-events:none;
-}
 .petition-category-card:hover{
   transform:translateY(-2px);
   border-color:var(--mizan-primary-500-border);
@@ -659,34 +647,77 @@ html[data-theme="light"] .petition-template-card b{
 .petition-category-card:focus-visible{outline:2px solid var(--mizan-primary-500);outline-offset:3px;}
 .petition-category-icon{
   display:grid;place-items:center;
-  width:var(--mizan-petitions-card-icon-size);height:var(--mizan-petitions-card-icon-size);
+  width:48px;height:48px;
   border-radius:var(--mizan-radius-md);
   color:var(--mizan-primary-700);
   background:var(--mizan-primary-100);
-  font-size:22px;
+  font-size:21px;
 }
-.petition-category-card h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-compact-strong);font-weight:900;line-height:1.5;}
-.petition-category-card p{margin:0;color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7;}
-.petition-category-card b{margin-top:auto;color:var(--mizan-primary-700);font-size:var(--mizan-font-size-2xs);}
+.petition-category-copy{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-space-1);min-width:0;}
+.petition-category-copy strong{display:block;color:var(--mizan-heading);font-size:var(--mizan-font-size-compact-strong);font-weight:900;line-height:1.45;}
+.petition-category-copy small{display:block;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.55;}
+.petition-category-copy b{display:block;margin-top:var(--mizan-space-1);color:var(--mizan-primary-700);font-size:var(--mizan-font-size-2xs);}
+.petition-category-chevron{color:var(--mizan-muted);font-size:12px;}
 .petition-category-card[data-category="family"] .petition-category-icon{color:var(--mizan-warning-700);background:var(--mizan-warning-100);}
 .petition-category-card[data-category="civil"] .petition-category-icon{color:var(--mizan-primary-700);background:var(--mizan-primary-100);}
 .petition-category-card[data-category="criminal"] .petition-category-icon{color:var(--mizan-danger-700);background:var(--mizan-danger-100);}
 .petition-category-card[data-category="administrative"] .petition-category-icon{color:var(--mizan-success-700);background:var(--mizan-success-100);}
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-category-card{
-  background:var(--mizan-surface);
-  color:var(--mizan-text);
-}
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-category-card h3{color:var(--mizan-heading);}
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-category-card p{color:var(--mizan-muted);}
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .petition-category-card b{color:var(--mizan-primary-300);}
-.petition-category-heading{margin:var(--mizan-space-4) 0 var(--mizan-space-3);}
-.petition-category-heading span{color:var(--mizan-primary-500);font-size:var(--mizan-font-size-xs);font-weight:900;}
-.petition-category-heading h2{margin:var(--mizan-space-1) 0;font-size:var(--mizan-petitions-heading-size);}
-.petition-category-heading p,.petition-loading{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);}
-.petition-category-back{margin-top:var(--mizan-space-3);}
-@media(max-width:600px){
-  .petition-category-grid{grid-template-columns:1fr;}
-  .petition-category-card{min-height:145px;}
-}
 
-@media(max-width:600px){.petition-category-grid{grid-template-columns:1fr}.petition-category-card{min-height:145px;padding:var(--mizan-space-5)}}
+/* Templates use tidy horizontal rows, matching the approved reference. */
+.petition-template-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--mizan-space-2);
+}
+.petition-template-card{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:var(--mizan-space-3);
+  width:100%;
+  min-height:64px;
+  padding:var(--mizan-space-3) var(--mizan-space-4);
+  text-align:right;
+  color:var(--mizan-text);
+  background:var(--mizan-card);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-md);
+  font:inherit;
+  cursor:pointer;
+  transition:border-color var(--mizan-duration-ui),background-color var(--mizan-duration-ui),transform var(--mizan-duration-ui);
+}
+.petition-template-card:hover{transform:translateY(-1px);border-color:var(--mizan-primary-500-border);}
+.petition-template-icon{
+  display:grid;place-items:center;
+  width:32px;height:36px;
+  margin:0;
+  border-radius:var(--mizan-radius-sm);
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-700);
+  font-size:19px;
+}
+.petition-template-card>div:nth-child(2){min-width:0;}
+.petition-template-card span{display:none;}
+.petition-template-card h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-compact);font-weight:900;line-height:1.45;}
+.petition-template-card p{margin:2px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.45;}
+.petition-template-card b{display:none;}
+.petition-template-card:after{content:"›";color:var(--mizan-muted);font-size:25px;line-height:1;}
+html:not([data-theme="light"]) .petition-category-card,
+html:not([data-theme="light"]) .petition-template-card{background:var(--mizan-surface);color:var(--mizan-text);}
+html:not([data-theme="light"]) .petition-category-copy strong,
+html:not([data-theme="light"]) .petition-template-card h3{color:var(--mizan-heading);}
+html:not([data-theme="light"]) .petition-category-copy small,
+html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted);}
+html:not([data-theme="light"]) .petition-category-copy b{color:var(--mizan-primary-300);}
+@media(max-width:600px){
+  .petition-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2);}
+  .petition-category-card{grid-template-columns:36px minmax(0,1fr);gap:var(--mizan-space-2);min-height:150px;padding:var(--mizan-space-3);align-content:center;}
+  .petition-category-icon{width:34px;height:34px;font-size:17px;}
+  .petition-category-chevron{display:none;}
+  .petition-category-copy strong{font-size:var(--mizan-font-size-xs);}
+  .petition-category-copy small{font-size:11px;}
+  .petition-category-copy b{font-size:11px;}
+  .petition-template-card{grid-template-columns:30px minmax(0,1fr) 12px;gap:var(--mizan-space-2);min-height:60px;padding:var(--mizan-space-2) var(--mizan-space-3);}
+  .petition-template-icon{width:28px;height:32px;font-size:17px;}
+  .petition-template-card h3{font-size:var(--mizan-font-size-xs);}
+}
