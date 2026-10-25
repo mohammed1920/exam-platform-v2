@@ -1,7 +1,7 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,branded:true,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
+  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const dataCache=new Map();
@@ -74,7 +74,7 @@
     try{
       state.template=await loadDocument(uid);
       if(state.categoryId===null)return;
-      state.branded=true;
+      state.branded=false;
       const drafts=readDrafts();
       state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
       state.savedBody=state.editedBody;
@@ -92,13 +92,17 @@
   function documentBodyHtml(){
     return plainTextToEditor(state.editedBody??'');
   }
+  function brandingToggleHtml(){
+    return '<button type="button" class="petition-brand-toggle" id="petition-brand-toggle" aria-pressed="'+String(state.branded)+'"><i class="fas fa-scale-balanced"></i> '+(state.branded?'إخفاء ترويسة المحامي':'إظهار تصميم المحامي')+'</button>';
+  }
   function renderDocument(){
     const root=document.getElementById('petitions-section'),t=state.template;
     if(!root||!t)return;
-    root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+
+    root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+brandingToggleHtml()+
       '<article class="petition-a4 '+(state.branded?'is-branded':'')+'" aria-label="نص العريضة"><div class="petition-doc-body" id="petition-document-body">'+documentBodyHtml()+'</div></article>'+
       '<div class="petition-document-actions"><button type="button" class="petition-primary" id="petition-edit"><i class="fas fa-pen-to-square"></i> تعديل العريضة</button></div></div>';
     document.getElementById('petition-document-back').onclick=()=>openCategory(state.categoryId);
+    document.getElementById('petition-brand-toggle').onclick=()=>{state.branded=!state.branded;renderDocument();};
     document.getElementById('petition-edit').onclick=()=>{state.mode='edit';renderEditor();};
   }
   function renderEditor(){
@@ -117,6 +121,7 @@
       '<button type="button" data-command="insertOrderedList" title="قائمة مرقمة">١. قائمة</button>'+
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
+      brandingToggleHtml()+
       '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
       '<article class="petition-a4 petition-live-preview" id="petition-live-preview" aria-label="معاينة العريضة" hidden><div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
@@ -162,6 +167,7 @@
     });
     ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
     document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
+    document.getElementById('petition-brand-toggle').onclick=()=>{state.editedBody=editor.innerHTML;state.branded=!state.branded;renderEditor();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
     document.getElementById('petition-editor-restore').onclick=()=>{
