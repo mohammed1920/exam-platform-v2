@@ -82,7 +82,7 @@
       state.values={lawyerName:state.lawyer.name||(u?(u.displayName||u.email||''):'')};
       state.branded=true;
       const drafts=readDrafts();
-      state.editedBody=drafts[uid]?.body??replacePlaceholders(state.template.body);
+      state.editedBody=plainTextToEditor(drafts[uid]?.body??replacePlaceholders(state.template.body));
       state.savedBody=state.editedBody;
       state.mode='read';
       renderDocument();
