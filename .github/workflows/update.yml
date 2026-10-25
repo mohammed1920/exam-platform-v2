@@ -37,7 +37,9 @@ jobs:
           python3 validate_project.py
 
       - name: Build public site only
-        run: bash scripts/build-pages-bundle.sh dist
+        run: |
+          bash scripts/build-pages-bundle.sh dist
+          node scripts/build-petition-index.mjs dist/data/petitions
 
       - uses: actions/configure-pages@v5
 
