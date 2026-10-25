@@ -124,12 +124,23 @@
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
       '</div><div id="petition-rich-editor" class="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير نص العريضة" dir="rtl">'+plainTextToEditor(state.editedBody)+'</div></div>'+
-      '<div class="petition-document-actions petition-editor-actions"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word"><i class="fas fa-file-word"></i> تصدير Word</button></div></div>';
+      '<article class="petition-a4 petition-live-preview" id="petition-live-preview" aria-label="معاينة العريضة" hidden><div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
+      '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     document.getElementById('petition-editor-back').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??replacePlaceholders(t.body);renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
-    document.getElementById('petition-editor-preview').onclick=()=>{state.editedBody=editor.innerHTML;renderDocument();};
+    document.getElementById('petition-editor-preview').onclick=()=>{
+      state.editedBody=editor.innerHTML;
+      const preview=document.getElementById('petition-live-preview');
+      const panel=document.querySelector('.petition-editor-panel');
+      const button=document.getElementById('petition-editor-preview');
+      const showing=preview&&!preview.hidden;
+      if(preview){preview.innerHTML='<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';preview.hidden=showing;}
+      if(panel)panel.hidden=!showing;
+      if(button)button.innerHTML=showing?'<i class="fas fa-eye"></i> معاينة':'<i class="fas fa-pen"></i> متابعة التعديل';
+      if(showing)editor.focus();
+    };
     document.getElementById('petition-editor-print').onclick=()=>{state.editedBody=editor.innerHTML;printPetition();};
     document.getElementById('petition-editor-word').onclick=()=>{state.editedBody=editor.innerHTML;exportWord();};
     root.querySelectorAll('[data-command]').forEach(btn=>btn.onclick=()=>{
