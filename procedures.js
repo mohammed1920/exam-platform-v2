@@ -42,7 +42,6 @@
   function renderIntro() {
     root.innerHTML = `
       <div class="procedures-shell">
-        <button class="procedures-back" id="procedures-back" type="button"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة للرئيسية</button>
         <section class="procedures-hero">
           <div class="procedures-hero-mark"><i class="fas fa-file-signature" aria-hidden="true"></i></div>
           <div class="procedures-eyebrow">مكتبة ميزان القانونية</div>
@@ -53,7 +52,6 @@
         <div id="procedures-access-state" class="procedures-access-state"></div>
         <p class="procedures-disclaimer">المحتوى للتثقيف والمعرفة القانونية، ويجب مراجعة النصوص الرسمية النافذة والتحقق من المدد والاختصاص قبل اتخاذ أي إجراء.</p>
       </div>`;
-    root.querySelector('#procedures-back').addEventListener('click', () => window.app?.navigateTo('home'));
   }
 
   function renderRequestState(kind, detail) {
