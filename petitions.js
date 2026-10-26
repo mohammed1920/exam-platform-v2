@@ -168,7 +168,7 @@
             logoImage.src=canvas.toDataURL('image/webp',0.82);
             syncEditorContent(editor);
             const preview=document.getElementById('petition-live-preview');
-            if(preview&&!preview.hidden){const frame=preview.querySelector('.petition-a4-preview-frame');if(frame){frame.dataset.previewScale='';fitPetitionPreview(frame,preview);}}
+            if(preview&&!preview.hidden){const frame=preview.querySelector('.petition-a4-preview-frame');if(frame){fitPetitionPreview(frame,preview,true);}}
           };
           image.onerror=()=>alert('تعذر قراءة الصورة. جرّب صورة أخرى.');
           image.src=String(reader.result);
@@ -248,7 +248,7 @@
         const frame=preview.querySelector('.petition-a4-preview-frame');
         if(!showing){
           preview.hidden=false;
-          if(frame){fitPetitionPreview(frame,preview);}
+          if(frame){fitPetitionPreview(frame,preview,true);}
         }else{
           preview.hidden=true;
         }
@@ -305,9 +305,9 @@
     const css='@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:visible;break-after:page}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right strong{font-size:17px;white-space:nowrap;overflow:visible}.petition-bar-logo{width:17mm;height:22mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:13.6px;line-height:2.05;text-align:justify;overflow-wrap:anywhere}.petition-doc-body p{margin:0 0 .5em}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:16px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
   }
-  function fitPetitionPreview(frame,container){
+  function fitPetitionPreview(frame,container,refresh=false){
     if(!frame||!container)return;
-    const fit=()=>{
+    const applyPageScale=()=>{
       const pageWidth=210*96/25.4;
       const availableWidth=Math.max(1,container.clientWidth);
       const scale=Math.min(1,availableWidth/pageWidth);
@@ -317,14 +317,36 @@
       frame.style.height=(pageHeight*scale)+'px';
       frame.style.border='0';
       frame.style.margin='0';
-      frame.style.transform='none';
+      const doc=frame.contentDocument;
+      if(!doc)return;
+      const page=doc.querySelector('.petition-a4');
+      if(!page)return;
+      doc.documentElement.style.width='210mm';
+      doc.documentElement.style.minWidth='210mm';
+      doc.documentElement.style.margin='0';
+      doc.documentElement.style.padding='0';
+      doc.documentElement.style.overflow='hidden';
+      doc.body.style.width='210mm';
+      doc.body.style.minWidth='210mm';
+      doc.body.style.margin='0';
+      doc.body.style.padding='0';
+      doc.body.style.overflow='hidden';
+      page.style.width='210mm';
+      page.style.minHeight='297mm';
+      page.style.margin='0';
+      page.style.transformOrigin='top left';
+      page.style.transform='scale('+scale+')';
+    };
+    if(refresh||!frame.srcdoc){
       const html=buildPrintHtml();
       if(!html)return;
-      frame.srcdoc=html.replace('</style>','@media screen{html,body{width:210mm!important;min-width:210mm!important;margin:0!important;padding:0!important;overflow:hidden!important}.petition-a4{width:210mm!important;min-height:297mm!important;margin:0!important;transform:scale('+scale+')!important;transform-origin:top left!important;}}</style>');
-    };
-    fit();
+      frame.onload=applyPageScale;
+      frame.srcdoc=html;
+    }else{
+      applyPageScale();
+    }
     if(!container.dataset.fitBound){
-      window.addEventListener('resize',fit,{passive:true});
+      window.addEventListener('resize',applyPageScale,{passive:true});
       container.dataset.fitBound='true';
     }
   }
