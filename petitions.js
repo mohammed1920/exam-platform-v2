@@ -393,5 +393,31 @@
     a.download=(state.template.name||'عريضة').replace(/[\\/:*?"<>|]/g,'_')+'.doc';a.click();
     setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   }
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding});
+  async function restoreHistoryState(historyState={}){
+    const level=historyState.petitionLevel||'categories';
+    try{
+      await loadCategories();
+      if(level==='document'&&historyState.categoryId&&historyState.templateUid){
+        state.categoryId=historyState.categoryId;
+        await loadTemplates(state.categoryId);
+        await start(historyState.templateUid,false);
+        return;
+      }
+      if(level==='category'&&historyState.categoryId){
+        state.template=null;
+        await openCategory(historyState.categoryId,false);
+        return;
+      }
+      state.template=null;
+      state.categoryId=null;
+      renderHome();
+      renderCategories();
+    }catch(e){
+      state.template=null;
+      state.categoryId=null;
+      renderHome();
+      renderLoadError('تعذر استعادة قسم العرائض. حاول مرة أخرى.');
+    }
+  }
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState});
 })();
