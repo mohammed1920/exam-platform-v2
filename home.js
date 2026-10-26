@@ -103,13 +103,13 @@
   function loadLaws() {
     if (window.mizanLaws && typeof window.mizanLaws.open === 'function') return Promise.resolve(window.mizanLaws);
     if (lawsLoadPromise) return lawsLoadPromise;
-    if (!document.querySelector('link[data-mizan-laws-css]')) {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'laws.css?v=1.3';
-      css.dataset.mizanLawsCss = '1';
-      document.head.appendChild(css);
-    }
+    const lawStylesheets = Array.from(document.querySelectorAll('link[href*="laws.css"]'));
+    const css = lawStylesheets.shift() || document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'laws.css?v=1.9';
+    css.dataset.mizanLawsCss = '1';
+    if (!css.isConnected) document.head.appendChild(css);
+    lawStylesheets.forEach(link => link.remove());
     lawsLoadPromise = new Promise((resolve, reject) => {
       const existing = document.querySelector('script[data-mizan-laws-loader]');
       if (existing) {
@@ -118,7 +118,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'laws.js?v=1.2';
+      script.src = 'laws.js?v=1.3';
       script.dataset.mizanLawsLoader = '1';
       script.onload = () => window.mizanLaws ? resolve(window.mizanLaws) : reject(new Error('تعذر تهيئة قسم القوانين'));
       script.onerror = () => reject(new Error('تعذر تحميل قسم القوانين'));
