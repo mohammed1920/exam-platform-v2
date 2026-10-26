@@ -15,6 +15,57 @@
 
   function section() { return document.getElementById(sectionId); }
 
+  let titleFitFrame = 0;
+
+  function fitResponsiveLawTitles(root = section()) {
+    if (!root) return;
+    const titles = root.querySelectorAll(
+      '.laws-detail-heading h1, .laws-page-header h1, .laws-card-copy strong'
+    );
+
+    titles.forEach(title => {
+      title.style.removeProperty('font-size');
+      title.style.whiteSpace = 'nowrap';
+      title.style.overflow = 'visible';
+      title.style.textOverflow = 'clip';
+
+      const baseSize = Number.parseFloat(getComputedStyle(title).fontSize) || 18;
+      const minSize = Math.min(9, baseSize);
+      title.style.fontSize = baseSize + 'px';
+      if (!title.clientWidth || title.scrollWidth <= title.clientWidth + 1) return;
+
+      title.style.fontSize = minSize + 'px';
+      if (title.scrollWidth > title.clientWidth + 1) {
+        title.style.fontSize = Math.min(8, baseSize) + 'px';
+        return;
+      }
+
+      let low = minSize;
+      let high = baseSize;
+      for (let i = 0; i < 9; i += 1) {
+        const size = (low + high) / 2;
+        title.style.fontSize = size + 'px';
+        if (title.scrollWidth <= title.clientWidth + 1) low = size;
+        else high = size;
+      }
+      title.style.fontSize = Math.floor(low * 10) / 10 + 'px';
+    });
+  }
+
+  function scheduleLawTitleFit() {
+    if (titleFitFrame) cancelAnimationFrame(titleFitFrame);
+    titleFitFrame = requestAnimationFrame(() => {
+      titleFitFrame = 0;
+      fitResponsiveLawTitles();
+    });
+  }
+
+  window.addEventListener('resize', scheduleLawTitleFit, { passive: true });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleLawTitleFit).catch(() => {});
+  }
+
+
   function loadRegistry() {
     if (!registryPromise) {
       registryPromise = fetch(REGISTRY_URL, { cache: 'default' })
@@ -62,6 +113,7 @@
         </div>
         <div class="laws-list" data-laws-list><div class="laws-loading" role="status">جارٍ تحميل فهرس القوانين…</div></div>
       </div>`;
+    fitResponsiveLawTitles(target);
     loadRegistry().then(data => {
       const list = target.querySelector('[data-laws-list]');
       const count = target.querySelector('[data-laws-count]');
@@ -83,6 +135,7 @@
           <span class="laws-card-copy"><strong>${escapeHtml(law.name)}</strong><small>${escapeHtml(law.category || 'تشريع عراقي')}${Number.isInteger(law.articlesCount) ? ' · ' + law.articlesCount + ' مادة' : ''}</small></span>
           <span class="laws-card-arrow" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
         </button>`).join('');
+      fitResponsiveLawTitles(target);
       list.querySelectorAll('[data-law-id]').forEach(button => {
         button.addEventListener('click', () => {
           const meta = data.laws.find(item => item.id === button.dataset.lawId);
@@ -119,6 +172,7 @@
         </div>
         <div class="laws-content" data-law-content><div class="laws-loading" role="status">سيتم تحميل نص القانون عند اختيار القراءة أو البحث عن مادة.</div></div>
       </div>`;
+    fitResponsiveLawTitles(target);
     target.querySelector('[data-laws-list-back]').addEventListener('click', renderLawList);
     target.querySelector('[data-law-read]').addEventListener('click', () => loadAndRender(meta, null));
     target.querySelector('[data-law-search-form]').addEventListener('submit', event => {
