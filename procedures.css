@@ -56,7 +56,7 @@
 .procedures-workflow-steps span { padding: 11px 12px; border-radius: 10px; background: var(--mizan-procedures-workflow-bg); color: var(--mizan-procedures-workflow-fg); font-size: .86rem; text-align: center; }
 @media (max-width: 680px) {
   .procedures-shell { padding: 14px 12px 36px; }
-  .procedures-hero { border-radius: 18px; }
+  
   .procedures-lock-card { grid-template-columns: auto minmax(0,1fr); gap: 12px; }
   .procedures-lock-icon { width: 44px; height: 44px; border-radius: 13px; }
   .procedures-category-grid { grid-template-columns: 1fr; gap: 12px; }
