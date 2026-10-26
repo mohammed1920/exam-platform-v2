@@ -1517,3 +1517,57 @@ html[data-theme="light"] .lawyers-hero{
     padding:var(--mizan-intro-card-padding-mobile);
   }
 }
+
+/* Section intro cards: keep text contrast paired with the centralized theme gradient.
+   These component-specific rules intentionally override generic card normalization above. */
+.petitions-hero{
+  background:var(--mizan-gradient-intro-petitions);
+  color:var(--mizan-intro-fg);
+}
+.lawyers-hero{
+  background:var(--mizan-gradient-intro-lawyers);
+  color:var(--mizan-intro-fg);
+}
+.procedures-hero{
+  background:var(--mizan-gradient-intro-procedures);
+  color:var(--mizan-intro-fg);
+}
+.laws-detail-header{
+  background:var(--mizan-gradient-intro-laws);
+  color:var(--mizan-intro-fg);
+}
+.mizan-pulpit-hero{
+  background:var(--mizan-gradient-intro-pulpit);
+  color:var(--mizan-intro-fg);
+}
+.petitions-hero h1,
+.petitions-hero h2,
+.lawyers-hero h1,
+.lawyers-hero h2,
+.procedures-hero h1,
+.procedures-hero h2,
+.laws-detail-header h1,
+.mizan-pulpit-hero h1,
+.mizan-pulpit-hero h2{
+  color:var(--mizan-intro-fg);
+}
+.petitions-hero p,
+.lawyers-hero p,
+.procedures-hero p,
+.procedures-hero .procedures-hero-meta,
+.laws-detail-header .laws-subtitle,
+.mizan-pulpit-hero p{
+  color:var(--mizan-intro-muted);
+}
+.petitions-hero>span,
+.lawyers-hero>span,
+.procedures-hero .procedures-eyebrow,
+.laws-detail-header .laws-eyebrow,
+.mizan-pulpit-hero .mizan-pulpit-kicker{
+  color:var(--mizan-intro-kicker);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) .procedures-hero .procedures-eyebrow,
+html:is([data-theme="light"],[data-admin-theme="light"]) .lawyers-hero>span,
+html:is([data-theme="light"],[data-admin-theme="light"]) .petitions-hero>span{
+  color:var(--mizan-intro-kicker);
+}
