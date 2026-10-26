@@ -54,9 +54,7 @@
       <div class="laws-page">
         <header class="laws-page-header">
           <div class="laws-heading-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
-          <p class="laws-eyebrow">مكتبة التشريعات</p>
           <h1>القوانين العراقية</h1>
-          <p class="laws-subtitle">تصفح القوانين والمواد القانونية من مكان واحد</p>
         </header>
         <div class="laws-list-toolbar">
           <div><h2>التشريعات المتاحة</h2></div>
