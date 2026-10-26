@@ -423,6 +423,9 @@ html[data-theme="light"] .petition-template-card p{
   margin:var(--mizan-petitions-letterhead-margin);
   border:0;
 }
+.petition-a4 .petition-letterhead{
+  direction:ltr;
+}
 .petition-letterhead:after{
   content:"";
   position:absolute;
@@ -453,18 +456,16 @@ html[data-theme="light"] .petition-template-card p{
   color:var(--mizan-muted-light);
   line-height:1.4;
 }
-.petition-head-right small:first-child{
-  color:var(--mizan-primary-700);
-  font-size:var(--mizan-font-size-micro);
-}
 .petition-head-right strong{
   display:block;
+  max-width:100%;
   font-family:"Amiri","Noto Naskh Arabic",Tahoma,serif;
-  font-size:var(--mizan-petitions-heading-size);
-  line-height:1.35;
+  font-size:var(--mizan-petitions-lawyer-name-size);
+  line-height:1.3;
   color:var(--mizan-primary-800);
   font-weight:900;
-  margin-top:1mm;
+  white-space:nowrap;
+  overflow:visible;
 }
 .petition-bar-logo{
   width:var(--mizan-petitions-logo-width);
