@@ -277,11 +277,7 @@
   .petitions-shell{
     padding:var(--mizan-petitions-shell-padding-mobile);
   }
-  .petitions-hero{
-    padding:var(--mizan-petitions-hero-padding-mobile);
-    border-radius:var(--mizan-radius-lg);
-  }
-  .petitions-hero h2,
+.petitions-hero h2,
   .petition-builder-head h2{
     font-size:var(--mizan-petitions-heading-size-mobile);
   }
@@ -573,7 +569,6 @@ html[data-theme="light"] .petition-template-card p{
   }
 }
 /* Light theme audit repair */
-html[data-theme="light"] .petitions-hero,
 html[data-theme="light"] .petition-builder-head{
   background:var(--mizan-petition-light-surface-gradient);
   border-color:var(--mizan-border-light);
