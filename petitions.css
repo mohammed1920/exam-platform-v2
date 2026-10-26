@@ -892,8 +892,23 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
 #petition-editor-print{grid-column:1/-1;}
 #petition-editor-word{grid-column:1/-1;}
 .petition-editor-actions button{min-height:46px;}
+.petition-live-preview{
+  display:block;
+  width:100%;
+  overflow:hidden;
+  margin:var(--mizan-space-3) auto var(--mizan-space-4);
+  background:var(--mizan-surface);
+}
 .petition-live-preview[hidden],
 .petition-editor-panel[hidden]{display:none!important;}
+.petition-a4-preview-frame{
+  display:block;
+  width:100%;
+  border:0;
+  margin:0;
+  padding:0;
+  background:#fff;
+}
 @media(max-width:600px){
   .petition-document-shell .petition-a4,
   .petition-live-preview{padding:var(--mizan-petitions-a4-padding-mobile);}
@@ -938,25 +953,4 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
 .petition-editor-toolbar .petition-brand-toggle{
   flex-basis:100%;
   margin:0;
-}
-
-/* A4 preview reuses the exact print/PDF document in a responsive frame. */
-.petition-live-preview{
-  display:block;
-  width:100%;
-  overflow:hidden;
-  margin:var(--mizan-space-3) auto var(--mizan-space-4);
-  background:var(--mizan-surface);
-}
-.petition-live-preview[hidden]{display:none!important;}
-.petition-a4-preview-frame{
-  display:block;
-  width:210mm;
-  height:297mm;
-  max-width:none;
-  border:0;
-  margin:0 auto;
-  padding:0;
-  background:#fff;
-  transform-origin:top center;
 }
