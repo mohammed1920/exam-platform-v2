@@ -910,10 +910,10 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   background:#fff;
 }
 @media(max-width:600px){
-  .petition-document-shell .petition-a4,
-  .petition-live-preview{padding:var(--mizan-petitions-a4-padding-mobile);}
+  .petition-document-shell .petition-a4{padding:var(--mizan-petitions-a4-padding-mobile);}
   .petition-document-actions{display:grid;grid-template-columns:1fr;}
-  .petition-editor-shell{padding-bottom:var(--mizan-space-4);}
+  .petition-live-preview{padding:0;}
+  .petition-editor-shell{padding-bottom:calc(var(--mizan-mobile-nav-safe-space) + env(safe-area-inset-bottom,0px));}
   .petition-editor-actions{
     position:static;
     width:100%;
