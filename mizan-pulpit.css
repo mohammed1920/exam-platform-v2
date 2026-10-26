@@ -817,7 +817,9 @@ html[data-theme="light"] .mizan-pulpit-hero h2{
 html[data-theme="light"] .mizan-pulpit-hero-meta{
   border-color:var(--mizan-border-light);
 }
-html[data-theme="light"] .mizan-pulpit-hero p,
+html[data-theme="light"] .mizan-pulpit-hero p{
+  color:var(--mizan-neutral-200);
+}
 html[data-theme="light"] .mizan-pulpit-toolbar span,
 html[data-theme="light"] .mizan-article-meta time,
 html[data-theme="light"] .mizan-article-card>p,
