@@ -103,9 +103,10 @@
       <div class="laws-page">
         <div class="laws-top-actions"><button type="button" class="laws-back-btn" data-laws-list-back><i class="fas fa-arrow-right"></i> قائمة القوانين</button></div>
         <header class="laws-detail-header">
-          <div class="laws-heading-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
-          <p class="laws-eyebrow">${escapeHtml(meta.category || 'تشريع عراقي')}</p>
-          <h1>${escapeHtml(meta.name)}</h1>
+          <div class="laws-detail-heading">
+            <div class="laws-heading-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
+            <h1>${escapeHtml(meta.name)}</h1>
+          </div>
           <p class="laws-subtitle">${escapeHtml(meta.description || 'اختر طريقة الاطلاع على نص القانون')}</p>
         </header>
         <div class="laws-choice-grid">
