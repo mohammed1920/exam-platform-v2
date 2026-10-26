@@ -150,7 +150,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'lawyer-directory.css?v=3.0';
+          css.href = 'lawyer-directory.css?v=3.1';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
@@ -161,7 +161,7 @@
           return;
         }
         const script = document.createElement('script');
-        script.src = 'lawyer-directory.js?v=1.1';
+        script.src = 'lawyer-directory.js?v=1.2';
         script.dataset.lawyerDirectory = '1';
         script.onload = finish;
         script.onerror = () => reject(new Error('تعذر تحميل دليل المحامين'));
@@ -195,7 +195,7 @@
     if (!document.querySelector('link[data-petitions-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'petitions.css?v=3.1';
+      css.href = 'petitions.css?v=3.2';
       css.dataset.petitionsCss = '1';
       document.head.appendChild(css);
     }
@@ -207,7 +207,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'petitions.js?v=1.7';
+      script.src = 'petitions.js?v=1.8';
       script.dataset.petitionsLoader = '1';
       script.onload = () => resolve(window.petitions);
       script.onerror = () => reject(new Error('تعذر تحميل قسم العرائض والطلبات'));
