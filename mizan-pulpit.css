@@ -9,14 +9,14 @@
   display:flex;
   flex-direction:column;
   align-items:stretch;
-  min-height:330px;
-  padding:clamp(24px,4vw,42px);
+  min-height:var(--mizan-intro-card-min-height);
+  padding:var(--mizan-intro-card-padding);
   margin-bottom:18px;
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:var(--mizan-radius-xl);
-  background:var(--mizan-gradient-pulpit-hero);
-  box-shadow:none;
-  color:var(--mizan-text-dark);
+  border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200);
+  border-radius:var(--mizan-intro-card-radius);
+  background:var(--mizan-gradient-intro-pulpit);
+  box-shadow:var(--mizan-shadow-card-rest);
+  color:var(--mizan-white);
   overflow:hidden;
   isolation:isolate;
 }
