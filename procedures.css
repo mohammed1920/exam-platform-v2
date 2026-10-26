@@ -2,7 +2,7 @@
 .procedures-view { width: 100%; }
 .procedures-shell { width: min(1120px, 100%); margin: 0 auto; padding: 20px 16px 48px; color: var(--mizan-text, var(--text-primary, #172033)); }
 .procedures-back { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 18px; padding: 10px 14px; border: 1px solid var(--mizan-border, var(--border-color, #dbe2ea)); border-radius: 12px; background: var(--mizan-surface, var(--card-bg, #fff)); color: inherit; font: inherit; cursor: pointer; }
-.procedures-hero { position: relative; overflow: hidden; padding:var(--mizan-intro-card-padding); border-radius:var(--mizan-intro-card-radius); color:var(--mizan-white); background:var(--mizan-gradient-intro-procedures); box-shadow:var(--mizan-shadow-card-rest);min-height:var(--mizan-intro-card-min-height);border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200)}
+.procedures-hero { position: relative; overflow: hidden}
 .procedures-hero::after { content: "⚖"; position: absolute; left: 5%; bottom: -48px; color: var(--mizan-procedures-hero-watermark); font-size: clamp(140px, 24vw, 260px); line-height: 1; pointer-events: none; }
 .procedures-hero-mark { display: grid; place-items: center; width: 54px; height: 54px; margin-bottom: 18px; border: 1px solid var(--mizan-procedures-hero-gold-border); border-radius: 16px; background: var(--mizan-procedures-hero-gold-surface); color: var(--mizan-procedures-hero-gold); font-size: 23px; }
 .procedures-eyebrow { color: var(--mizan-procedures-hero-gold); font-size: .88rem; font-weight: 700; }
