@@ -246,8 +246,12 @@
       const showing=preview&&!preview.hidden;
       if(preview){
         const frame=preview.querySelector('.petition-a4-preview-frame');
-        if(!showing&&frame){frame.srcdoc=buildPrintHtml();fitPetitionPreview(frame,preview);}
-        preview.hidden=showing;
+        if(!showing){
+          preview.hidden=false;
+          if(frame){frame.srcdoc=buildPrintHtml();fitPetitionPreview(frame,preview);}
+        }else{
+          preview.hidden=true;
+        }
       }
       if(panel)panel.hidden=!showing;
       if(button)button.innerHTML=showing?'<i class="fas fa-eye"></i> معاينة':'<i class="fas fa-pen"></i> متابعة التعديل';
