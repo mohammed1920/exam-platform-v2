@@ -52,7 +52,7 @@ button.laws-choice-card{cursor:pointer}
 .law-contents-index label{display:block;margin-bottom:10px;font-size:16px;font-weight:800;color:var(--mizan-primary-700,var(--mizan-primary-600))}
 .law-contents-search{display:flex;gap:8px}
 .law-contents-search input{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--mizan-border,var(--mizan-neutral-300));border-radius:10px;background:var(--mizan-surface);color:var(--mizan-text);font:inherit}
-.law-contents-search input[aria-invalid="true"]{border-color:var(--mizan-danger-500,#ef4444)}
+.law-contents-search input[aria-invalid="true"]{border-color:var(--mizan-danger-500,var(--mizan-danger-500))}
 .law-contents-search button{flex:0 0 auto;padding:10px 16px;border:0;border-radius:10px;background:var(--mizan-primary-600,var(--mizan-primary-500));color:var(--mizan-surface-light);font:inherit;font-weight:800;cursor:pointer}
 .law-contents-status{margin:9px 0 0;color:var(--mizan-muted,var(--mizan-neutral-500));font-size:12px}
 .law-closing h2{margin:0 0 12px;font-size:17px;color:var(--mizan-primary-700,var(--mizan-primary-600))}
