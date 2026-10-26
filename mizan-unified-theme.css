@@ -1477,3 +1477,49 @@ html:is([data-theme="light"],[data-admin-theme="light"]) body .exam-dashboard-ta
     font-size:var(--mizan-font-size-2xs);
   }
 }
+
+
+
+/* Mizan section introduction cards — single source of visual design */
+.laws-page-header,
+.procedures-hero,
+.mizan-pulpit-hero,
+.petitions-hero,
+.lawyers-hero{
+  box-sizing:border-box;
+  min-height:var(--mizan-intro-card-min-height);
+  padding:var(--mizan-intro-card-padding);
+  border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200);
+  border-radius:var(--mizan-intro-card-radius);
+  box-shadow:var(--mizan-shadow-card-rest);
+  color:var(--mizan-white);
+  text-align:right;
+  background:var(--mizan-intro-card-gradient,var(--mizan-gradient-intro-light));
+}
+.laws-page-header{--mizan-intro-card-gradient:var(--mizan-gradient-intro-laws)}
+.procedures-hero{--mizan-intro-card-gradient:var(--mizan-gradient-intro-procedures)}
+.mizan-pulpit-hero{--mizan-intro-card-gradient:var(--mizan-gradient-intro-pulpit)}
+.petitions-hero{--mizan-intro-card-gradient:var(--mizan-gradient-intro-petitions)}
+.lawyers-hero{--mizan-intro-card-gradient:var(--mizan-gradient-intro-lawyers)}
+html[data-theme="light"] .laws-page-header,
+html[data-theme="light"] .procedures-hero,
+html[data-theme="light"] .mizan-pulpit-hero,
+html[data-theme="light"] .petitions-hero,
+html[data-theme="light"] .lawyers-hero{
+  color:var(--mizan-white);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+.laws-page-header h1,.laws-page-header h2,
+.procedures-hero h1,.procedures-hero h2,
+.mizan-pulpit-hero h1,.mizan-pulpit-hero h2,
+.petitions-hero h1,.petitions-hero h2,
+.lawyers-hero h1,.lawyers-hero h2{color:var(--mizan-white)}
+.laws-page-header p,.procedures-hero p,.mizan-pulpit-hero p,
+.petitions-hero p,.lawyers-hero p{color:var(--mizan-neutral-200)}
+@media(max-width:600px){
+  .laws-page-header,.procedures-hero,.mizan-pulpit-hero,.petitions-hero,.lawyers-hero{
+    min-height:var(--mizan-intro-card-min-height);
+    padding:var(--mizan-intro-card-padding);
+    border-radius:var(--mizan-intro-card-radius);
+  }
+}
