@@ -311,16 +311,16 @@
       const pageWidth=210*96/25.4;
       const availableWidth=Math.max(1,container.clientWidth);
       const scale=Math.min(1,availableWidth/pageWidth);
+      const pageHeight=pageWidth*(297/210);
+      frame.style.display='block';
       frame.style.width='100%';
-      frame.style.height=(pageWidth*(297/210)*scale)+'px';
+      frame.style.height=(pageHeight*scale)+'px';
+      frame.style.border='0';
+      frame.style.margin='0';
       frame.style.transform='none';
-      frame.style.transformOrigin='top left';
-      container.style.setProperty('--petition-preview-scale',String(scale));
-      if(frame.dataset.previewScale!==String(scale)){
-        frame.dataset.previewScale=String(scale);
-        const html=buildPrintHtml();
-        frame.srcdoc=html.replace('</style>','@media screen{body{width:210mm!important;margin:0!important;overflow:hidden!important}.petition-a4{transform:scale('+scale+')!important;transform-origin:top left!important;margin:0!important;}}</style>');
-      }
+      const html=buildPrintHtml();
+      if(!html)return;
+      frame.srcdoc=html.replace('</style>','@media screen{html,body{width:210mm!important;min-width:210mm!important;margin:0!important;padding:0!important;overflow:hidden!important}.petition-a4{width:210mm!important;min-height:297mm!important;margin:0!important;transform:scale('+scale+')!important;transform-origin:top left!important;}}</style>');
     };
     fit();
     if(!container.dataset.fitBound){
