@@ -168,7 +168,7 @@
             logoImage.src=canvas.toDataURL('image/webp',0.82);
             syncEditorContent(editor);
             const preview=document.getElementById('petition-live-preview');
-            if(preview&&!preview.hidden){const frame=preview.querySelector('.petition-a4-preview-frame');if(frame)frame.srcdoc=buildPrintHtml();}
+            if(preview&&!preview.hidden){const frame=preview.querySelector('.petition-a4-preview-frame');if(frame){frame.dataset.previewScale='';fitPetitionPreview(frame,preview);}}
           };
           image.onerror=()=>alert('تعذر قراءة الصورة. جرّب صورة أخرى.');
           image.src=String(reader.result);
@@ -248,7 +248,7 @@
         const frame=preview.querySelector('.petition-a4-preview-frame');
         if(!showing){
           preview.hidden=false;
-          if(frame){frame.srcdoc=buildPrintHtml();fitPetitionPreview(frame,preview);}
+          if(frame){fitPetitionPreview(frame,preview);}
         }else{
           preview.hidden=true;
         }
@@ -308,12 +308,19 @@
   function fitPetitionPreview(frame,container){
     if(!frame||!container)return;
     const fit=()=>{
-      const pageWidth=frame.offsetWidth||794;
+      const pageWidth=210*96/25.4;
       const availableWidth=Math.max(1,container.clientWidth);
       const scale=Math.min(1,availableWidth/pageWidth);
-      frame.style.transform='scale('+scale+')';
+      frame.style.width='100%';
+      frame.style.height=(pageWidth*(297/210)*scale)+'px';
+      frame.style.transform='none';
+      frame.style.transformOrigin='top left';
       container.style.setProperty('--petition-preview-scale',String(scale));
-      container.style.height=(pageWidth*(297/210)*scale)+'px';
+      if(frame.dataset.previewScale!==String(scale)){
+        frame.dataset.previewScale=String(scale);
+        const html=buildPrintHtml();
+        frame.srcdoc=html.replace('</style>','@media screen{body{width:210mm!important;margin:0!important;overflow:hidden!important}.petition-a4{transform:scale('+scale+')!important;transform-origin:top left!important;margin:0!important;}}</style>');
+      }
     };
     fit();
     if(!container.dataset.fitBound){
