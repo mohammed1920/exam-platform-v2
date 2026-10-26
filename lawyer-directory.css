@@ -6,10 +6,17 @@
 .lawyers-hero{
   
   margin:var(--mizan-space-2) auto 22px;
-  max-width:760px}
+  max-width:760px;
+  padding:clamp(22px,4vw,36px);
+  background:var(--mizan-gradient-intro-lawyers);
+  color:var(--mizan-intro-fg);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-2xl,24px);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
 .lawyers-hero>span{
   display:block;
-  color:var(--mizan-accent-text);
+  color:var(--mizan-intro-kicker);
   font-size:var(--mizan-font-size-xs);
   font-weight:900;
   margin-bottom:5px;
@@ -20,7 +27,7 @@
 }
 .lawyers-hero p{
   margin:0;
-  color:var(--mizan-muted-blue);
+  color:var(--mizan-intro-muted);
   font-size:var(--mizan-font-size-xs);
   line-height:1.9;
 }
