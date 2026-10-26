@@ -726,7 +726,6 @@ html body{
 }
 /* Pulpit */
 .mizan-pulpit-section,
-.mizan-pulpit-hero,
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
@@ -735,6 +734,12 @@ html body{
   background:var(--mizan-card);
   color:var(--mizan-text);
   border-color:var(--mizan-border);
+}
+/* The section introduction keeps its dedicated central gradient token. */
+.mizan-pulpit-hero{
+  background:var(--mizan-gradient-intro-pulpit);
+  color:var(--mizan-white);
+  border-color:var(--mizan-primary-200);
 }
 .mizan-pulpit-hero:after{
   color:var(--mizan-accent-tile-fg);
@@ -1305,10 +1310,10 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) :is(.profile-stat
   color:var(--mizan-gold-text);
 }
 .mizan-pulpit-hero h2{
-  color:var(--mizan-heading);
+  color:var(--mizan-white);
 }
 .mizan-pulpit-hero p{
-  color:var(--mizan-muted);
+  color:var(--mizan-neutral-200);
 }
 .mizan-article-card .mizan-btn,
 .mizan-article-card button{
