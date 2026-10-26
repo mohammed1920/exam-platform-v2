@@ -9,6 +9,7 @@
   --mizan-intro-card-min-height:280px;
   --mizan-intro-card-border-width:1px;
   --mizan-intro-card-gap:var(--mizan-space-4);
+  --mizan-intro-card-gradient:var(--mizan-gradient-intro-light);
 
   --mizan-radius-xs:8px;
   --mizan-radius-9:9px;
