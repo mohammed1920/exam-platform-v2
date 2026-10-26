@@ -7,7 +7,7 @@
   text-align:center;
   margin:var(--mizan-space-2) auto 22px;
   max-width:760px;
-}
+;border-radius:var(--mizan-intro-card-radius);padding:var(--mizan-intro-card-padding);min-height:var(--mizan-intro-card-min-height);background:var(--mizan-gradient-intro-lawyers);border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200);box-shadow:var(--mizan-shadow-card-rest);color:var(--mizan-white)}
 .lawyers-hero>span{
   display:block;
   color:var(--mizan-accent-text);
