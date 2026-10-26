@@ -24,17 +24,26 @@
     }catch(e){console.warn('تعذر تحميل بيانات المحامي للعريضة',e);}
   }
   function navigateBack(target){
-    const current=history.state;
-    if(current?.view==='petitions'&&current.parentView===target){
-      history.back();
-      return;
-    }
+    // All petition screens share one app view, so browser history alone cannot
+    // distinguish their visible sub-screens. Restore the requested parent UI directly.
     if(target==='home'){
       window.app.navigateTo('home');
-    }else if(target==='petitions'){
-      open(false);
-    }else if(target==='category'){
-      openCategory(state.categoryId,false);
+      return;
+    }
+    if(target==='categories'){
+      state.template=null;
+      state.categoryId=null;
+      renderHome();
+      renderCategories();
+      return;
+    }
+    if(target==='category'){
+      if(state.categoryId)openCategory(state.categoryId,false);
+      else {
+        state.template=null;
+        renderHome();
+        renderCategories();
+      }
     }
   }
   async function open(pushHistory=true){
@@ -69,7 +78,7 @@
     const q=String(query||'').trim().toLowerCase();const source=items||state.templates;
     const filtered=source.filter(t=>!q||[t.name,t.category,t.description].join(' ').toLowerCase().includes(q));
     root.innerHTML='<button class="back-btn petition-category-back" id="petition-category-back"><i class="fas fa-arrow-right"></i> الأقسام</button><div class="petition-category-heading"><span>'+esc(category.name)+'</span><h2>النماذج المتاحة</h2><p>يُحمّل نص النموذج الكامل عند فتحه فقط.</p></div><div class="petition-tools"><label><i class="fas fa-search"></i><input id="petition-search" placeholder="ابحث ضمن نماذج هذا القسم..."></label><span id="petition-count">'+filtered.length+' نموذج</span></div><div id="petition-template-grid" class="petition-template-grid"></div>';
-    document.getElementById('petition-category-back').onclick=()=>navigateBack('petitions');
+    document.getElementById('petition-category-back').onclick=()=>navigateBack('categories');
     document.getElementById('petition-search').oninput=e=>drawTemplateCards(e.target.value,category,source);
     drawTemplateCards(q,category,source);
   }
@@ -86,7 +95,7 @@
     const root=document.getElementById('petitions-section');if(!root)return;
     if(pushHistory)window.app.navigateTo('petitions',{parentView:'petitions',petitionLevel:'document',categoryId:state.categoryId,templateUid:uid});
     root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-loading-back"><i class="fas fa-arrow-right"></i> العودة للنماذج</button><div class="petition-loading">جاري تحميل العريضة...</div></div>';
-    document.getElementById('petition-loading-back').onclick=()=>navigateBack('petitions');
+    document.getElementById('petition-loading-back').onclick=()=>navigateBack('category');
     try{
       state.template=await loadDocument(uid);
       if(state.categoryId===null)return;
@@ -100,7 +109,7 @@
       renderDocument();
     }catch(e){
       root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-load-fail-back">العودة للنماذج</button><div class="petition-empty">تعذر تحميل العريضة. حاول مرة أخرى.</div></div>';
-      document.getElementById('petition-load-fail-back').onclick=()=>navigateBack('petitions');
+      document.getElementById('petition-load-fail-back').onclick=()=>navigateBack('category');
     }
   }
   function documentHeader(){
@@ -136,7 +145,7 @@
     root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+brandingToggleHtml()+
       '<article class="petition-a4 '+(state.branded?'is-branded':'')+'" aria-label="نص العريضة">'+(state.branded?letterheadHtml():'')+'<div class="petition-doc-body" id="petition-document-body">'+documentBodyHtml()+'</div></article>'+
       '<div class="petition-document-actions"><button type="button" class="petition-primary" id="petition-edit"><i class="fas fa-pen-to-square"></i> تعديل العريضة</button></div></div>';
-    document.getElementById('petition-document-back').onclick=()=>navigateBack('petitions');
+    document.getElementById('petition-document-back').onclick=()=>navigateBack('category');
     document.getElementById('petition-brand-toggle').onclick=()=>{state.branded=!state.branded;renderDocument();};
     document.getElementById('petition-edit').onclick=()=>{state.mode='edit';renderEditor();};
   }
