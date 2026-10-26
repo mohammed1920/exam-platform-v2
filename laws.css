@@ -2,7 +2,7 @@
 .laws-section{padding:var(--mizan-space-4,16px);direction:rtl}
 .laws-page{width:min(100%,1000px);margin:0 auto;padding-bottom:32px;color:var(--mizan-text,var(--mizan-heading))}
 .laws-detail-header{text-align:center;padding:24px 16px 20px;background:var(--mizan-card);color:var(--mizan-heading);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
-.laws-page-header{padding:var(--mizan-intro-card-padding);min-height:var(--mizan-intro-card-min-height);margin-bottom:22px}
+.laws-page-header{margin-bottom:22px}
 .laws-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-md,12px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));font:inherit;font-weight:700;cursor:pointer}
 .laws-page-header>.laws-back-btn{float:right;color:var(--mizan-text);background:var(--mizan-surface);border-color:var(--mizan-border)}
 .laws-heading-icon{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;border-radius:18px;background:var(--mizan-warning-200,#fde68a);color:var(--mizan-primary-900,#0f172a);font-size:25px}
@@ -62,5 +62,5 @@ html[data-theme="dark"] .law-contents-status{color:var(--mizan-muted,var(--mizan
 html[data-theme="dark"] .laws-section{color:var(--mizan-text,var(--mizan-neutral-100))}
 html[data-theme="light"] .laws-section{color:var(--mizan-text-light,var(--mizan-heading))}
 html[data-theme="light"] .laws-card,html[data-theme="light"] .laws-choice-card,html[data-theme="light"] .law-preamble,html[data-theme="light"] .law-article,html[data-theme="light"] .laws-empty-state,html[data-theme="light"] .laws-error,html[data-theme="light"] .laws-loading{background:var(--mizan-white,#fff);color:var(--mizan-text-light,var(--mizan-heading))}
-@media(max-width:600px){.laws-section{padding:12px}.laws-page-header{padding:var(--mizan-intro-card-padding);border-radius:var(--mizan-intro-card-radius);min-height:var(--mizan-intro-card-min-height)}.laws-detail-header{padding:20px 12px 16px;border-radius:15px}.laws-choice-grid{grid-template-columns:1fr}.laws-card{padding:12px}.laws-card-icon{width:42px;height:42px;flex-basis:42px}.law-preamble,.law-article{padding:14px}.law-article-text,.law-preamble>div{font-size:14px;line-height:2}}
+@media(max-width:600px){.laws-section{padding:12px}.laws-detail-header{padding:20px 12px 16px;border-radius:15px}.laws-choice-grid{grid-template-columns:1fr}.laws-card{padding:12px}.laws-card-icon{width:42px;height:42px;flex-basis:42px}.law-preamble,.law-article{padding:14px}.law-article-text,.law-preamble>div{font-size:14px;line-height:2}}
 @media(prefers-reduced-motion:reduce){.laws-card{transition:none}.laws-card:hover{transform:none}}
