@@ -939,3 +939,24 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   flex-basis:100%;
   margin:0;
 }
+
+/* A4 preview reuses the exact print/PDF document in a responsive frame. */
+.petition-live-preview{
+  display:block;
+  width:100%;
+  overflow:hidden;
+  margin:var(--mizan-space-3) auto var(--mizan-space-4);
+  background:var(--mizan-surface);
+}
+.petition-live-preview[hidden]{display:none!important;}
+.petition-a4-preview-frame{
+  display:block;
+  width:210mm;
+  height:297mm;
+  max-width:none;
+  border:0;
+  margin:0 auto;
+  padding:0;
+  background:#fff;
+  transform-origin:top center;
+}
