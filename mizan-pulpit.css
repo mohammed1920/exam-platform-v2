@@ -284,11 +284,7 @@
   .mizan-pulpit-section{
     padding:var(--mizan-space-4) var(--mizan-space-3);
   }
-  .mizan-pulpit-hero{
-    padding:22px 18px;
-    border-radius:var(--mizan-radius-19);
-  }
-  .mizan-pulpit-hero h2{
+.mizan-pulpit-hero h2{
     font-size:23px;
   }
   .mizan-pulpit-hero-actions{
@@ -747,13 +743,6 @@ html[data-theme="light"] .mizan-read-btn:hover{
   font-size:var(--mizan-font-size-micro);
   opacity:.8;
 }
-/* Light theme audit repair */
-html[data-theme="light"] .mizan-pulpit-hero{
-  border-color:var(--mizan-border-light);
-}
-html[data-theme="light"] .mizan-pulpit-hero p{
-  color:var(--mizan-neutral-200);
-}
 html[data-theme="light"] .mizan-pulpit-toolbar span,
 html[data-theme="light"] .mizan-article-card>p,
 html[data-theme="light"] .mizan-article-author small,
@@ -800,24 +789,12 @@ html[data-theme="light"] .mizan-profile-section{
 html[data-theme="light"] .mizan-profile-modal-box h2{
   color:var(--mizan-primary-800);
 }
-/* ===== Theme-aware article surfaces ===== */
-html[data-theme="light"] .mizan-pulpit-hero{
-  background:var(--mizan-gradient-intro-pulpit);
-  color:var(--mizan-white);
-  border-color:var(--mizan-primary-200);
-  box-shadow:var(--mizan-shadow-card-rest);
-}
+/* Section introduction card geometry and surface are owned by mizan-unified-theme.css. */
 html[data-theme="light"] .mizan-pulpit-hero:before{
   background:none;
 }
-html[data-theme="light"] .mizan-pulpit-hero h2{
-  color:var(--mizan-white);
-}
 html[data-theme="light"] .mizan-pulpit-hero-meta{
   border-color:var(--mizan-border-light);
-}
-html[data-theme="light"] .mizan-pulpit-hero p{
-  color:var(--mizan-neutral-200);
 }
 html[data-theme="light"] .mizan-pulpit-toolbar span,
 html[data-theme="light"] .mizan-article-meta time,
