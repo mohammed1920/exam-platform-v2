@@ -47,8 +47,7 @@
           <div class="procedures-hero-mark"><i class="fas fa-file-signature" aria-hidden="true"></i></div>
           <div class="procedures-eyebrow">مكتبة ميزان القانونية</div>
           <h2>إجراءات الدعاوى</h2>
-          <p>دليل عملي منظم للإجراءات القضائية في العراق، يربط خطوات العمل بالسند القانوني والنماذج ذات الصلة.</p>
-          <div class="procedures-hero-meta"><span><i class="fas fa-book-open" aria-hidden="true"></i> إجراءات مرتبة حسب الموضوع</span><span><i class="fas fa-shield-halved" aria-hidden="true"></i> دخول بموافقة الإدارة</span></div>
+          <p>دليل عملي منظم للإجراءات القضائية في العراق</p>
         </section>
         <div id="procedures-feedback" class="procedures-feedback" role="status" hidden></div>
         <div id="procedures-access-state" class="procedures-access-state"></div>
