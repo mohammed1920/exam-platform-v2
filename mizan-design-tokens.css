@@ -6,6 +6,8 @@
   /* Shared geometry for section introduction cards. */
   --mizan-intro-card-radius:var(--mizan-radius-xl);
   --mizan-intro-card-padding:clamp(22px,4vw,36px);
+  --mizan-intro-card-padding-mobile:20px;
+  --mizan-intro-card-min-height-mobile:auto;
   --mizan-intro-card-min-height:280px;
   --mizan-intro-card-border-width:1px;
   --mizan-intro-card-gap:var(--mizan-space-4);
