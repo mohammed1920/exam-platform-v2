@@ -752,7 +752,9 @@ html[data-theme="light"] .mizan-read-btn:hover{
 html[data-theme="light"] .mizan-pulpit-hero{
   border-color:var(--mizan-border-light);
 }
-html[data-theme="light"] .mizan-pulpit-hero p,
+html[data-theme="light"] .mizan-pulpit-hero p{
+  color:var(--mizan-neutral-200);
+}
 html[data-theme="light"] .mizan-pulpit-toolbar span,
 html[data-theme="light"] .mizan-article-card>p,
 html[data-theme="light"] .mizan-article-author small,
@@ -801,16 +803,16 @@ html[data-theme="light"] .mizan-profile-modal-box h2{
 }
 /* ===== Theme-aware article surfaces ===== */
 html[data-theme="light"] .mizan-pulpit-hero{
-  background:var(--mizan-gradient-surface-light);
-  color:var(--mizan-heading);
-  border-color:var(--mizan-border-light);
-  box-shadow:none;
+  background:var(--mizan-gradient-intro-pulpit);
+  color:var(--mizan-white);
+  border-color:var(--mizan-primary-200);
+  box-shadow:var(--mizan-shadow-card-rest);
 }
 html[data-theme="light"] .mizan-pulpit-hero:before{
   background:none;
 }
 html[data-theme="light"] .mizan-pulpit-hero h2{
-  color:var(--mizan-heading);
+  color:var(--mizan-white);
 }
 html[data-theme="light"] .mizan-pulpit-hero-meta{
   border-color:var(--mizan-border-light);
