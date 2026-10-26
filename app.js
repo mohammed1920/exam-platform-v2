@@ -1121,6 +1121,12 @@ class ExamApp {
           chapter: this.currentChapter == null ? null : this.currentChapter
         };
 
+        // A petition document's direct parent is its category, not the petition landing screen.
+        if (viewId === 'petitions' && params.petitionLevel === 'document' && params.categoryId) {
+          parentState.petitionLevel = 'category';
+          parentState.categoryId = params.categoryId;
+        }
+
         if (parentView === 'home' || parentView === 'books' || parentView === 'custom-exam-setup') {
           parentState.bookId = null;
           parentState.chapter = null;
@@ -1249,7 +1255,11 @@ class ExamApp {
 
       } else if (view === 'petitions') {
         this.navigateTo('petitions', {}, false);
-        if (window.petitions && typeof window.petitions.renderHome === 'function') window.petitions.renderHome();
+        if (window.petitions && typeof window.petitions.restoreHistoryState === 'function') {
+          window.petitions.restoreHistoryState(state);
+        } else if (window.petitions && typeof window.petitions.renderHome === 'function') {
+          window.petitions.renderHome();
+        }
       } else if (view === 'custom-exam-setup') {
         this.isCustomExam = false;
         this.navigateTo('custom-exam-setup', {}, false);
