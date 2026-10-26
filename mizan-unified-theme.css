@@ -735,12 +735,6 @@ html body{
   color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
-/* The section introduction keeps its dedicated central gradient token. */
-.mizan-pulpit-hero{
-  background:var(--mizan-gradient-intro-pulpit);
-  color:var(--mizan-white);
-  border-color:var(--mizan-primary-200);
-}
 .mizan-pulpit-hero:after{
   color:var(--mizan-accent-tile-fg);
 }
@@ -1518,8 +1512,7 @@ html[data-theme="light"] .lawyers-hero{
 .petitions-hero p,.lawyers-hero p{color:var(--mizan-neutral-200)}
 @media(max-width:600px){
   .laws-page-header,.procedures-hero,.mizan-pulpit-hero,.petitions-hero,.lawyers-hero{
-    min-height:var(--mizan-intro-card-min-height);
-    padding:var(--mizan-intro-card-padding);
-    border-radius:var(--mizan-intro-card-radius);
+    min-height:var(--mizan-intro-card-min-height-mobile);
+    padding:var(--mizan-intro-card-padding-mobile);
   }
 }
