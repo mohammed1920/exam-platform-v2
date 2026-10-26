@@ -1503,6 +1503,7 @@ html[data-theme="light"] .lawyers-hero{
   color:var(--mizan-white);
   box-shadow:var(--mizan-shadow-card-rest);
 }
+.laws-page-header h1{white-space:nowrap;font-size:clamp(1.1rem,5vw,2rem);}
 .laws-page-header h1,.laws-page-header h2,
 .procedures-hero h1,.procedures-hero h2,
 .mizan-pulpit-hero h1,.mizan-pulpit-hero h2,
