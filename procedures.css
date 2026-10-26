@@ -1,13 +1,13 @@
 /* Dedicated styles for the Mizan legal procedures section. Uses the central theme tokens. */
 .procedures-view { width: 100%; }
 .procedures-shell { width: min(1120px, 100%); margin: 0 auto; padding: 20px 16px 48px; color: var(--mizan-text, var(--text-primary, #172033)); }
-.procedures-hero { position: relative; overflow: hidden}
+.procedures-hero { position: relative; overflow: hidden; background:var(--mizan-gradient-intro-procedures); color:var(--mizan-intro-fg); border:1px solid var(--mizan-border); border-radius:var(--mizan-radius-2xl,24px); box-shadow:var(--mizan-shadow-card-rest); }
 .procedures-hero::after { content: "⚖"; position: absolute; left: 5%; bottom: -48px; color: var(--mizan-procedures-hero-watermark); font-size: clamp(140px, 24vw, 260px); line-height: 1; pointer-events: none; }
 .procedures-hero-mark { display: grid; place-items: center; width: 54px; height: 54px; margin-bottom: 18px; border: 1px solid var(--mizan-procedures-hero-gold-border); border-radius: 16px; background: var(--mizan-procedures-hero-gold-surface); color: var(--mizan-procedures-hero-gold); font-size: 23px; }
 .procedures-eyebrow { color: var(--mizan-procedures-hero-gold); font-size: .88rem; font-weight: 700; }
-.procedures-hero h2 { position: relative; z-index: 1; margin: 8px 0 12px; color: var(--mizan-white); font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.35; }
-.procedures-hero p { position: relative; z-index: 1; max-width: 760px; margin: 0; color: var(--mizan-neutral-200); font-size: 1rem; line-height: 1.9; }
-.procedures-hero-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 24px; color: var(--mizan-neutral-200); font-size: .86rem; }
+.procedures-hero h2 { position: relative; z-index: 1; margin: 8px 0 12px; color: var(--mizan-intro-fg); font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.35; }
+.procedures-hero p { position: relative; z-index: 1; max-width: 760px; margin: 0; color: var(--mizan-intro-muted); font-size: 1rem; line-height: 1.9; }
+.procedures-hero-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 24px; color: var(--mizan-intro-muted); font-size: .86rem; }
 .procedures-hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
 .procedures-hero-meta i { color: var(--mizan-procedures-hero-gold); }
 .procedures-feedback { margin: 16px 0 0; padding: 12px 14px; border: 1px solid var(--mizan-border, #dbe2ea); border-radius: 12px; background: var(--mizan-surface, #fff); color: var(--mizan-text, #172033); line-height: 1.7; }
