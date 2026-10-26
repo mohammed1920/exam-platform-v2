@@ -24,7 +24,6 @@
     section.id = 'lawyers-section';
     section.className = 'view-section lawyers-section';
     section.innerHTML = `
-      <button class="back-btn" type="button" id="lawyers-back-btn"><i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية</button>
       <div class="lawyers-hero">
         <span>👨‍⚖️ دليل المحامين</span>
         <h2>دليل المحامين العراقيين</h2>
@@ -79,7 +78,6 @@
     main.appendChild(section);
     renderProfilesSkeleton();
 
-    document.getElementById('lawyers-back-btn').onclick = () => window.app?.navigateTo('home');
     document.getElementById('lawyer-apply-btn').onclick = () => openApplication();
     document.getElementById('lawyer-form-close').onclick = () => closeApplication();
     document.getElementById('lawyer-application-form').addEventListener('submit', submitApplication);
