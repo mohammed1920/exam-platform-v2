@@ -6,12 +6,12 @@
 }
 .petitions-hero{
   margin:var(--mizan-petitions-hero-margin);
-  padding:var(--mizan-petitions-hero-padding);
-  border:1px solid var(--mizan-primary-500-border);
-  border-radius:var(--mizan-radius-xl);
-  background:var(--mizan-petition-hero-bg);
+  padding:var(--mizan-intro-card-padding);
+  border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200);
+  border-radius:var(--mizan-intro-card-radius);
+  background:var(--mizan-gradient-intro-petitions);
   text-align:right;
-}
+;min-height:var(--mizan-intro-card-min-height);box-shadow:var(--mizan-shadow-card-rest);color:var(--mizan-white)}
 .petitions-hero span,
 .petition-builder-head span{
   color:var(--mizan-primary-300);
