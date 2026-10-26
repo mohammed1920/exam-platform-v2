@@ -1106,7 +1106,9 @@ class ExamApp {
 
       const parentView = viewId === 'exam' && params.custom
         ? 'custom-exam-setup'
-        : this.getNavigationParent(viewId);
+        : (viewId === 'petitions' && params.parentView
+            ? params.parentView
+            : this.getNavigationParent(viewId));
 
       if (viewId === 'home') {
         // الرئيسية هي جذر سجل التنقل.
