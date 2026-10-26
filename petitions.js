@@ -142,7 +142,7 @@
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
       brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden>'+
       '</div><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div>'+
-      '<article class="petition-a4 petition-live-preview '+(state.branded?'is-branded':'')+'" id="petition-live-preview" aria-label="معاينة العريضة" hidden>'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article>'+
+      '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     const logoInput=document.getElementById('petition-logo-file');
@@ -168,7 +168,7 @@
             logoImage.src=canvas.toDataURL('image/webp',0.82);
             syncEditorContent(editor);
             const preview=document.getElementById('petition-live-preview');
-            if(preview&&!preview.hidden)preview.innerHTML=(state.branded?state.editedLetterhead:'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';
+            if(preview&&!preview.hidden){const frame=preview.querySelector('.petition-a4-preview-frame');if(frame)frame.srcdoc=buildPrintHtml();}
           };
           image.onerror=()=>alert('تعذر قراءة الصورة. جرّب صورة أخرى.');
           image.src=String(reader.result);
@@ -244,7 +244,11 @@
       const panel=document.querySelector('.petition-editor-panel');
       const button=document.getElementById('petition-editor-preview');
       const showing=preview&&!preview.hidden;
-      if(preview){preview.innerHTML=(state.branded?state.editedLetterhead:'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div>';preview.classList.toggle('is-branded',state.branded);preview.hidden=showing;}
+      if(preview){
+        const frame=preview.querySelector('.petition-a4-preview-frame');
+        if(!showing&&frame){frame.srcdoc=buildPrintHtml();fitPetitionPreview(frame,preview);}
+        preview.hidden=showing;
+      }
       if(panel)panel.hidden=!showing;
       if(button)button.innerHTML=showing?'<i class="fas fa-eye"></i> معاينة':'<i class="fas fa-pen"></i> متابعة التعديل';
       if(showing)editor.focus();
@@ -296,6 +300,22 @@
     const header=branded?(state.editedLetterhead||letterheadHtml()):'';
     const css='@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:visible;break-after:page}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right strong{font-size:17px;white-space:nowrap;overflow:visible}.petition-bar-logo{width:17mm;height:22mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:13.6px;line-height:2.05;text-align:justify;overflow-wrap:anywhere}.petition-doc-body p{margin:0 0 .5em}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:16px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
+  }
+  function fitPetitionPreview(frame,container){
+    if(!frame||!container)return;
+    const fit=()=>{
+      const pageWidth=frame.offsetWidth||794;
+      const availableWidth=Math.max(1,container.clientWidth);
+      const scale=Math.min(1,availableWidth/pageWidth);
+      frame.style.transform='scale('+scale+')';
+      container.style.setProperty('--petition-preview-scale',String(scale));
+      container.style.height=(1122*scale)+'px';
+    };
+    fit();
+    if(!container.dataset.fitBound){
+      window.addEventListener('resize',fit,{passive:true});
+      container.dataset.fitBound='true';
+    }
   }
   function printPetition(){
     const html=buildPrintHtml();if(!html)return;
