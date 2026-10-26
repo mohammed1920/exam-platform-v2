@@ -309,7 +309,7 @@
       const scale=Math.min(1,availableWidth/pageWidth);
       frame.style.transform='scale('+scale+')';
       container.style.setProperty('--petition-preview-scale',String(scale));
-      container.style.height=(1122*scale)+'px';
+      container.style.height=(pageWidth*(297/210)*scale)+'px';
     };
     fit();
     if(!container.dataset.fitBound){
