@@ -70,20 +70,20 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 
 
 .procedures-title-list{display:grid;gap:10px;margin-top:16px}
-.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--border-color,var(--mizan-border-light)));border-radius:14px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
 .procedures-title-item:hover{border-color:var(--mizan-primary-600,var(--mizan-primary-500));transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.07)}
 .procedures-title-item i{color:var(--mizan-primary-600,var(--mizan-primary-500))}
-.procedures-empty{padding:22px;border:1px dashed var(--mizan-border,var(--border-color,var(--mizan-border-light)));border-radius:14px;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)));text-align:center;line-height:1.8}
+.procedures-empty{padding:22px;border:1px dashed var(--mizan-border,var(--mizan-border-light));border-radius:14px;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)));text-align:center;line-height:1.8}
 .procedures-detail{margin-top:20px;scroll-margin-top:20px}
-.procedures-detail-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:10px 14px;border:1px solid var(--mizan-border,var(--border-color,var(--mizan-border-light)));border-radius:12px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:inherit;font:inherit;cursor:pointer}
-.procedures-detail-card{padding:clamp(18px,3vw,30px);border:1px solid var(--mizan-border,var(--border-color,var(--mizan-border-light)));border-radius:20px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));box-shadow:var(--mizan-procedures-shadow-card)}
+.procedures-detail-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:10px 14px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:12px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:inherit;font:inherit;cursor:pointer}
+.procedures-detail-card{padding:clamp(18px,3vw,30px);border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:20px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));box-shadow:var(--mizan-procedures-shadow-card)}
 .procedures-detail-kicker{color:var(--mizan-primary-600,var(--mizan-primary-500));font-size:.85rem;font-weight:800}
 .procedures-detail-card>h3{margin:8px 0 22px;font-size:clamp(1.35rem,3vw,1.9rem);line-height:1.6}
-.procedures-detail-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--mizan-border,var(--border-color,var(--mizan-border-light)))}
+.procedures-detail-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--mizan-border,var(--mizan-border-light))}
 .procedures-detail-section h4{margin:0 0 10px;font-size:1.05rem}
 .procedures-detail-section p,.procedures-detail-section li{line-height:1.95;color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)))}
 .procedures-detail-section ol{padding-inline-start:24px;margin:8px 0}
-.procedures-detail-disclaimer{margin-top:24px;padding-top:14px;border-top:1px dashed var(--mizan-border,var(--border-color,var(--mizan-border-light)));font-size:.88rem;line-height:1.8;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
+.procedures-detail-disclaimer{margin-top:24px;padding-top:14px;border-top:1px dashed var(--mizan-border,var(--mizan-border-light));font-size:.88rem;line-height:1.8;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
 .procedures-loading{padding:20px;text-align:center;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
 @media(max-width:600px){.procedures-title-item{padding:14px}.procedures-detail-card{padding:18px}}
 
