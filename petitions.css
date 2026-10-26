@@ -10,8 +10,7 @@
   border:var(--mizan-intro-card-border-width) solid var(--mizan-primary-200);
   border-radius:var(--mizan-intro-card-radius);
   background:var(--mizan-gradient-intro-petitions);
-  text-align:right;
-;min-height:var(--mizan-intro-card-min-height);box-shadow:var(--mizan-shadow-card-rest);color:var(--mizan-white)}
+  text-align:right;min-height:var(--mizan-intro-card-min-height);box-shadow:var(--mizan-shadow-card-rest);color:var(--mizan-white)}
 .petitions-hero span,
 .petition-builder-head span{
   color:var(--mizan-primary-300);
