@@ -53,7 +53,6 @@
     target.innerHTML = `
       <div class="laws-page">
         <header class="laws-page-header">
-          <button type="button" class="laws-back-btn" data-laws-home>العودة للرئيسية</button>
           <div class="laws-heading-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
           <p class="laws-eyebrow">مكتبة التشريعات</p>
           <h1>القوانين العراقية</h1>
@@ -65,7 +64,6 @@
         </div>
         <div class="laws-list" data-laws-list><div class="laws-loading" role="status">جارٍ تحميل فهرس القوانين…</div></div>
       </div>`;
-    target.querySelector('[data-laws-home]').addEventListener('click', () => window.app?.navigateTo?.('home'));
     loadRegistry().then(data => {
       const list = target.querySelector('[data-laws-list]');
       const count = target.querySelector('[data-laws-count]');
