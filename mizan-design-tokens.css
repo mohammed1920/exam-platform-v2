@@ -308,6 +308,11 @@
   --mizan-transition-color:color var(--mizan-duration-fast) ease,background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease;
   --mizan-transition-elevation:box-shadow var(--mizan-duration-regular) var(--mizan-ease-standard),transform var(--mizan-duration-regular) var(--mizan-ease-standard);
   --mizan-focus-outline-style:solid;
+  --mizan-laws-title-size:clamp(18px,3.2vw,29px);
+  --mizan-laws-title-size-mobile:clamp(14px,3.8vw,22px);
+  --mizan-laws-title-min-size:12px;
+  --mizan-laws-section-title-size:clamp(18px,3.5vw,30px);
+  --mizan-laws-card-title-size:clamp(14px,1.7vw,18px);
 }
 @media (max-width:650px){
   :root{
