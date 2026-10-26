@@ -1,11 +1,16 @@
 /* واجهة القوانين العراقية — تستخدم نظام ألوان ميزان المركزي. */
 .laws-section{padding:var(--mizan-space-4,16px);direction:rtl}
 .laws-page{width:min(100%,1000px);margin:0 auto;padding-bottom:32px;color:var(--mizan-text,var(--mizan-heading))}
-.laws-detail-header{text-align:center;padding:24px 16px 20px;background:var(--mizan-gradient-intro-laws);color:var(--mizan-intro-fg);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
+.laws-detail-header{text-align:right;padding:24px 22px 20px;background:var(--mizan-gradient-intro-laws);color:var(--mizan-intro-fg);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
+.laws-detail-heading{display:flex;align-items:center;gap:16px;min-width:0}
+.laws-detail-heading .laws-heading-icon{flex:0 0 82px;width:82px;height:82px;margin:0;border-radius:22px;font-size:32px}
+.laws-detail-heading h1{flex:1;min-width:0;margin:0;color:var(--mizan-intro-fg);font-size:clamp(22px,5vw,32px);line-height:1.45;overflow-wrap:anywhere}
+.laws-detail-header .laws-subtitle{margin:16px 0 0;color:var(--mizan-intro-muted);font-size:15px;line-height:1.8}
+@media(max-width:600px){.laws-detail-header{padding:18px 14px 16px}.laws-detail-heading{gap:12px}.laws-detail-heading .laws-heading-icon{flex-basis:64px;width:64px;height:64px;border-radius:18px;font-size:27px}.laws-detail-heading h1{font-size:clamp(20px,5.3vw,27px)}.laws-detail-header .laws-subtitle{margin-top:12px}}
 .laws-detail-header h1{color:var(--mizan-intro-fg)}
 html:is([data-theme="light"],[data-admin-theme="light"]) .laws-page .laws-detail-header h1{color:var(--mizan-heading-light)}
 .laws-detail-header .laws-subtitle{color:var(--mizan-intro-muted)}
-.laws-detail-header .laws-eyebrow{color:var(--mizan-intro-kicker)}
+.
 .laws-page-header{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:22px;text-align:right;box-sizing:border-box;width:100%;min-width:0;padding-inline:16px;overflow:hidden}.laws-page-header .laws-heading-icon{flex:0 0 58px;width:58px;height:58px;margin:0}.laws-page-header h1{flex:1 1 0;min-width:0;margin:0;color:var(--mizan-heading);overflow-wrap:normal;word-break:normal;white-space:normal;line-height:1.35;font-size:clamp(20px,5vw,30px)}
 .laws-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-md,12px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));font:inherit;font-weight:700;cursor:pointer}
 .laws-page-header>.laws-back-btn{float:right;color:var(--mizan-text);background:var(--mizan-surface);border-color:var(--mizan-border)}
