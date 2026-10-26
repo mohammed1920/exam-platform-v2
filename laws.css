@@ -1,7 +1,10 @@
 /* واجهة القوانين العراقية — تستخدم نظام ألوان ميزان المركزي. */
 .laws-section{padding:var(--mizan-space-4,16px);direction:rtl}
 .laws-page{width:min(100%,1000px);margin:0 auto;padding-bottom:32px;color:var(--mizan-text,var(--mizan-heading))}
-.laws-detail-header{text-align:center;padding:24px 16px 20px;background:var(--mizan-card);color:var(--mizan-heading);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
+.laws-detail-header{text-align:center;padding:24px 16px 20px;background:var(--mizan-gradient-intro-laws);color:var(--mizan-intro-fg);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
+.laws-detail-header h1{color:var(--mizan-intro-fg)}
+.laws-detail-header .laws-subtitle{color:var(--mizan-intro-muted)}
+.laws-detail-header .laws-eyebrow{color:var(--mizan-intro-kicker)}
 .laws-page-header{margin-bottom:22px}
 .laws-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-md,12px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));font:inherit;font-weight:700;cursor:pointer}
 .laws-page-header>.laws-back-btn{float:right;color:var(--mizan-text);background:var(--mizan-surface);border-color:var(--mizan-border)}
