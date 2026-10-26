@@ -1113,7 +1113,7 @@ class ExamApp {
       if (viewId === 'home') {
         // الرئيسية هي جذر سجل التنقل.
         history.replaceState(state, '', window.location.href);
-      } else if (parentView && !this.isTopLevelView(viewId)) {
+      } else if (parentView && (!this.isTopLevelView(viewId) || (viewId === 'petitions' && params.petitionLevel))) {
         // احفظ الأب المباشر قبل فتح القسم الحالي حتى يرجع زر الهاتف إليه.
         const parentState = {
           view: parentView,
