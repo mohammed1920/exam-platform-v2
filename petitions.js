@@ -23,8 +23,22 @@
       else state.lawyer=approved;
     }catch(e){console.warn('تعذر تحميل بيانات المحامي للعريضة',e);}
   }
-  async function open(){
-    window.app.navigateTo('petitions');
+  function navigateBack(target){
+    const current=history.state;
+    if(current?.view==='petitions'&&current.parentView===target){
+      history.back();
+      return;
+    }
+    if(target==='home'){
+      window.app.navigateTo('home');
+    }else if(target==='petitions'){
+      open(false);
+    }else if(target==='category'){
+      openCategory(state.categoryId,false);
+    }
+  }
+  async function open(pushHistory=true){
+    if(pushHistory)window.app.navigateTo('petitions',{parentView:'home'});
     state.template=null;state.categoryId=null;
     renderHome();
     loadLawyerBranding().catch(()=>{});
@@ -33,7 +47,7 @@
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;
     root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petitions-back"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button><div class="petitions-hero"><span>ميزان • العرائض والطلبات</span><h2>أنشئ عريضتك القانونية بطريقة منظمة</h2><p>اختر العريضة، اقرأها، ثم عدّل نصها بحرية واحفظها أو اطبعها.</p></div><div id="petition-browse"></div></div>';
-    document.getElementById('petitions-back').onclick=()=>window.app.navigateTo('home');
+    document.getElementById('petitions-back').onclick=()=>navigateBack('home');
   }
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
   function renderCategories(){
@@ -41,9 +55,10 @@
     root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>'<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small></span></button>').join('')+'</div>';
     root.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>openCategory(b.dataset.category));
   }
-  async function openCategory(categoryId){
+  async function openCategory(categoryId,pushHistory=true){
     const category=state.categories.find(c=>c.id===categoryId);if(!category)return;
     state.categoryId=categoryId;state.templates=[];
+    if(pushHistory)window.app.navigateTo('petitions',{parentView:'petitions',petitionLevel:'category',categoryId});
     const root=document.getElementById('petition-browse');if(!root)return;
     root.innerHTML='<div class="petition-loading">جاري تحميل نماذج القسم...</div>';
     try{const items=await loadTemplates(categoryId);if(state.categoryId!==categoryId)return;renderCards('',category,items);}
@@ -54,7 +69,7 @@
     const q=String(query||'').trim().toLowerCase();const source=items||state.templates;
     const filtered=source.filter(t=>!q||[t.name,t.category,t.description].join(' ').toLowerCase().includes(q));
     root.innerHTML='<button class="back-btn petition-category-back" id="petition-category-back"><i class="fas fa-arrow-right"></i> الأقسام</button><div class="petition-category-heading"><span>'+esc(category.name)+'</span><h2>النماذج المتاحة</h2><p>يُحمّل نص النموذج الكامل عند فتحه فقط.</p></div><div class="petition-tools"><label><i class="fas fa-search"></i><input id="petition-search" placeholder="ابحث ضمن نماذج هذا القسم..."></label><span id="petition-count">'+filtered.length+' نموذج</span></div><div id="petition-template-grid" class="petition-template-grid"></div>';
-    document.getElementById('petition-category-back').onclick=()=>{state.categoryId=null;renderCategories();};
+    document.getElementById('petition-category-back').onclick=()=>navigateBack('petitions');
     document.getElementById('petition-search').oninput=e=>drawTemplateCards(e.target.value,category,source);
     drawTemplateCards(q,category,source);
   }
@@ -65,12 +80,13 @@
     grid.innerHTML=filtered.length?filtered.map(t=>'<button class="petition-template-card" data-template="'+esc(t.uid)+'"><div class="petition-template-icon"><i class="'+esc(t.icon||'fas fa-file-signature')+'"></i></div><div><span>'+esc(category.name)+'</span><h3>'+esc(t.name)+'</h3><p>'+esc(t.description||'نموذج قابل للتعبئة والتعديل')+'</p></div><b>إنشاء العريضة ←</b></button>').join(''):'<div class="petition-empty">لا توجد نماذج مطابقة حالياً.</div>';
     grid.querySelectorAll('[data-template]').forEach(btn=>btn.onclick=()=>start(btn.dataset.template));
   }
-  async function start(uid){
+  async function start(uid,pushHistory=true){
     const meta=Object.values(state.categoryTemplates).flat().find(t=>t.uid===uid)||state.templates.find(t=>t.uid===uid);
     if(!meta)return;
     const root=document.getElementById('petitions-section');if(!root)return;
+    if(pushHistory)window.app.navigateTo('petitions',{parentView:'petitions',petitionLevel:'document',categoryId:state.categoryId,templateUid:uid});
     root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-loading-back"><i class="fas fa-arrow-right"></i> العودة للنماذج</button><div class="petition-loading">جاري تحميل العريضة...</div></div>';
-    document.getElementById('petition-loading-back').onclick=()=>openCategory(state.categoryId);
+    document.getElementById('petition-loading-back').onclick=()=>navigateBack('petitions');
     try{
       state.template=await loadDocument(uid);
       if(state.categoryId===null)return;
@@ -84,7 +100,7 @@
       renderDocument();
     }catch(e){
       root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-load-fail-back">العودة للنماذج</button><div class="petition-empty">تعذر تحميل العريضة. حاول مرة أخرى.</div></div>';
-      document.getElementById('petition-load-fail-back').onclick=()=>openCategory(state.categoryId);
+      document.getElementById('petition-load-fail-back').onclick=()=>navigateBack('petitions');
     }
   }
   function documentHeader(){
@@ -120,7 +136,7 @@
     root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+brandingToggleHtml()+
       '<article class="petition-a4 '+(state.branded?'is-branded':'')+'" aria-label="نص العريضة">'+(state.branded?letterheadHtml():'')+'<div class="petition-doc-body" id="petition-document-body">'+documentBodyHtml()+'</div></article>'+
       '<div class="petition-document-actions"><button type="button" class="petition-primary" id="petition-edit"><i class="fas fa-pen-to-square"></i> تعديل العريضة</button></div></div>';
-    document.getElementById('petition-document-back').onclick=()=>openCategory(state.categoryId);
+    document.getElementById('petition-document-back').onclick=()=>navigateBack('petitions');
     document.getElementById('petition-brand-toggle').onclick=()=>{state.branded=!state.branded;renderDocument();};
     document.getElementById('petition-edit').onclick=()=>{state.mode='edit';renderEditor();};
   }
