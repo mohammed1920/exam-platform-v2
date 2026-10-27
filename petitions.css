@@ -911,7 +911,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   border:0;
   margin:0;
   padding:0;
-  background:#fff;
+  background:var(--mizan-white);
 }
 @media(max-width:600px){
   .petition-document-shell .petition-a4{padding:var(--mizan-petitions-a4-padding-mobile);}
