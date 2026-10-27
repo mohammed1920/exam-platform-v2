@@ -103,6 +103,7 @@
     grid.querySelectorAll('[data-template]').forEach(btn=>btn.onclick=()=>start(btn.dataset.template));
   }
   async function start(uid,pushHistory=true){
+    const categoryId=state.categoryId;
     const meta=Object.values(state.categoryTemplates).flat().find(t=>t.uid===uid)||state.templates.find(t=>t.uid===uid);
     if(!meta)return;
     const root=document.getElementById('petitions-section');if(!root)return;
@@ -111,7 +112,7 @@
     document.getElementById('petition-loading-back').onclick=()=>navigateBack('category');
     try{
       state.template=await loadDocument(uid);
-      if(state.categoryId===null)return;
+      if(state.categoryId!==categoryId||!document.getElementById('petitions-section')?.isConnected)return;
       state.branded=false;
       const drafts=readDrafts();
       state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
@@ -121,6 +122,7 @@
       state.mode='read';
       renderDocument();
     }catch(e){
+      if(state.categoryId!==categoryId)return;
       root.innerHTML='<div class="petitions-shell"><button class="back-btn" id="petition-load-fail-back">العودة للنماذج</button><div class="petition-empty">تعذر تحميل العريضة. حاول مرة أخرى.</div></div>';
       document.getElementById('petition-load-fail-back').onclick=()=>navigateBack('category');
     }
