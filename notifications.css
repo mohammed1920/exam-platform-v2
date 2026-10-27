@@ -4,13 +4,13 @@
 .mizan-notifications-toggle:focus-visible{outline:3px solid var(--mizan-focus-ring,var(--mizan-focus-ring));outline-offset:3px}
 .mizan-notifications-badge{position:absolute;top:-5px;left:-5px;display:none;min-width:19px;height:19px;padding:0 4px;border:2px solid var(--mizan-bg,var(--mizan-card));border-radius:999px;background:var(--mizan-danger-700);color:var(--mizan-card);font:700 11px/15px Arial,sans-serif;text-align:center}
 .mizan-notifications-badge.is-visible{display:block}
-.mizan-notifications-panel{position:absolute;top:calc(100% + 10px);right:0;width:min(360px,calc(100vw - 24px));max-height:min(70vh,520px);overflow:auto;padding:12px;border:1px solid var(--mizan-border,rgba(128,128,128,.35));border-radius:14px;background:var(--mizan-card,var(--mizan-card));color:var(--mizan-text,var(--mizan-text));box-shadow:0 12px 36px rgba(0,0,0,.22)}
+.mizan-notifications-panel{position:absolute;top:calc(100% + 10px);right:0;width:min(360px,calc(100vw - 24px));max-height:min(70vh,520px);overflow:auto;padding:12px;border:1px solid var(--mizan-border);border-radius:14px;background:var(--mizan-card,var(--mizan-card));color:var(--mizan-text,var(--mizan-text));box-shadow:var(--mizan-shadow-card-raised)}
 .mizan-notifications-panel[hidden]{display:none}
 .mizan-notifications-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
 .mizan-notifications-panel-head strong{font-size:15px}
 .mizan-notifications-close{border:0;background:transparent;color:inherit;font-size:20px;padding:2px 6px;cursor:pointer}
 .mizan-notifications-empty{padding:20px 8px;color:var(--mizan-muted,var(--mizan-muted));font-size:13px;text-align:center}
-.mizan-notification-entry{padding:10px 0;border-top:1px solid var(--mizan-border,rgba(128,128,128,.25))}
+.mizan-notification-entry{padding:10px 0;border-top:1px solid var(--mizan-border)}
 .mizan-notification-entry:first-of-type{border-top:0}
 .mizan-notification-title{display:flex;align-items:flex-start;gap:7px;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:right;cursor:pointer}
 .mizan-notification-title strong{flex:1;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
