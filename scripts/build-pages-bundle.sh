@@ -50,6 +50,7 @@ required_files=(
   assets/js/book-icons.js
   assets/js/exam-drafts.js
   assets/js/question-sharing.js
+  assets/js/global-search.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
