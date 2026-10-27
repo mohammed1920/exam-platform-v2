@@ -26,6 +26,7 @@
   --mizan-primary-800:#1E3A8A;
   --mizan-primary-900:#0F172A;
   --mizan-article-violet:#6D28D9;
+  --mizan-article-body:var(--mizan-text);
   --mizan-success-100:#D1FAE5;
   --mizan-success-200:#A7F3D0;
   --mizan-success-500:#10B981;
