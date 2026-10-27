@@ -63,6 +63,7 @@ required_files=(
   assets/js/user-dashboard.js
   assets/js/theme.js
   assets/js/procedures.js
+  assets/js/platform-sidebar.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
