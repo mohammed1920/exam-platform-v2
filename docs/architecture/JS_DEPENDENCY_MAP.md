@@ -1,6 +1,6 @@
 # خريطة اعتماديات JavaScript — منصة ميزان
 
-> هذه الخريطة توثّق ترتيب التحميل الفعلي في `index.html` بعد فصل الوحدات. هي أداة مراجعة ساكنة وليست بديلًا عن اختبار السلوك داخل المتصفح.
+> هذه الخريطة توثّق ترتيب التحميل الفعلي في `index.html` بعد مطابقة القائمة مع مراجع `script src` الحالية بتاريخ 2026-10-28. هي أداة مراجعة ساكنة وليست بديلًا عن اختبار السلوك داخل المتصفح.
 
 ## قواعد لا يجوز كسرها أثناء التنظيم
 
@@ -21,18 +21,21 @@
 5. `contact-info.js` — تحميل بيانات الاتصال ورسم البطاقات عبر `window.MizanContactInfo`.
 6. `exam-drafts.js` — قراءة/كتابة/ترحيل مسودات الاختبارات عبر `window.MizanExamDrafts`.
 7. `question-sharing.js` — الروابط المباشرة وبطاقات المشاركة عبر `window.MizanQuestionSharing`.
-8. `app.js` — التطبيق الرئيسي `window.app` وواجهات التفويض للوحدات المفصولة.
-9. `global-search.js` — البحث العام، يعتمد على المصادقة والتطبيق.
-10. `home.js` — تحميل المنبر ودليل المحامين والعرائض وإضافات التطبيق.
-11. `platform-sidebar.js` — التنقل وفتح الأقسام.
-12. `user-dashboard.js` — لوحة الطالب `window.studentDashboard`.
-13. `student-account-patch.js` — تكييف واجهة الحساب مع أحداث المصادقة.
-14. `wrong-answers-limit.js` ثم `wrong-answers-retest.js` — سلوك مراجعة الإجابات الخاطئة وإعادة الاختبار.
-15. `platform-header-fix.js` — تركيب شعار Lottie؛ قواعد CSS موجودة في `platform-header.css`.
-16. `theme.js` — `window.platformTheme`.
-17. `firebase-admin-panel.js` — واجهات الإدارة المعتمدة على Firebase.
-18. `mizan-pulpit-admin.js` — إدارة منبر ميزان.
-19. `platform-bootstrap.js` — سلوك التهيئة النهائي، بما فيه Service Worker وسلوك التثبيت والعداد.
+8. `mizan-pulpit.js` — واجهة منبر ميزان العامة؛ يسبق التطبيق الرئيسي في ترتيب التحميل.
+9. `app.js` — التطبيق الرئيسي `window.app` وواجهات التفويض للوحدات المفصولة.
+10. `global-search.js` — البحث العام، يعتمد على المصادقة والتطبيق.
+11. `home.js` — تحميل الأقسام وإضافات الصفحة الرئيسية.
+12. `platform-sidebar.js` — التنقل وفتح الأقسام.
+13. `procedures.js` — واجهة إجراءات الدعاوى.
+14. `user-dashboard.js` — لوحة الطالب `window.studentDashboard`.
+15. `student-account-patch.js` — تكييف واجهة الحساب مع أحداث المصادقة.
+16. `wrong-answers-limit.js` ثم `wrong-answers-retest.js` — سلوك مراجعة الإجابات الخاطئة وإعادة الاختبار.
+17. `platform-header-fix.js` — تركيب شعار Lottie؛ قواعد CSS موجودة في `platform-header.css`.
+18. `theme.js` — `window.platformTheme`.
+19. `firebase-admin-panel.js` — واجهات الإدارة المعتمدة على Firebase.
+20. `mizan-pulpit-admin.js` — إدارة منبر ميزان.
+21. `platform-bootstrap.js` — سلوك التهيئة النهائي.
+22. `notifications.js` — تهيئة/عرض الإشعارات، محمّل بعد بقية وحدات الصفحة.
 
 ## وحدات تم فصلها مع إبقاء واجهات التوافق
 
