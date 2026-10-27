@@ -38,9 +38,22 @@
       return;
     }
     if(target==='category'){
-      if(state.categoryId)openCategory(state.categoryId,false);
-      else {
-        state.template=null;
+      // Prefer the selected category's cached manifest, and never depend on
+      // the document-loading promise to finish before restoring the list UI.
+      state.template=null;
+      state.mode='read';
+      if(state.categoryId){
+        const category=state.categories.find(c=>c.id===state.categoryId);
+        const items=state.categoryTemplates[state.categoryId];
+        if(category&&items){
+          renderHome();
+          renderCards('',category,items);
+        }else{
+          renderHome();
+          openCategory(state.categoryId,false);
+        }
+      }else{
+        state.categoryId=null;
         renderHome();
         renderCategories();
       }
