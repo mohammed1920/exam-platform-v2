@@ -57,6 +57,7 @@ required_files=(
   assets/js/notifications.js
   assets/js/platform-header-fix.js
   assets/js/admin-theme.js
+  assets/js/admin.js
   assets/js/theme.js
   assets/js/procedures.js
   mizan-colors.css
