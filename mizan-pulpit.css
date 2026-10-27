@@ -644,13 +644,13 @@ html[data-theme="light"] .mizan-read-btn:hover{
   border-right:3px solid var(--mizan-primary-500);
   border-radius:var(--mizan-radius-compact);
   background:color-mix(in srgb,var(--mizan-warning-500) 5.5%,transparent);
-  color:var(--mizan-deco-blue-76);
+  color:var(--mizan-article-body);
   font-size:var(--mizan-font-size-compact);
   line-height:2.1;
 }
 .mizan-article-reading-content{
   padding:var(--mizan-space-6) 0;
-  color:var(--mizan-deco-blue-84);
+  color:var(--mizan-article-body);
   font-size:var(--mizan-font-size-2xs);
   line-height:2.35;
   word-break:break-word;
@@ -677,7 +677,7 @@ html[data-theme="light"] .mizan-read-btn:hover{
   place-items:center;
   align-content:center;
   gap:var(--mizan-space-3);
-  color:var(--mizan-deco-blue-58);
+  color:var(--mizan-muted);
   text-align:center;
 }
 .mizan-article-page-loading i,
@@ -775,7 +775,7 @@ html[data-theme="light"] .mizan-article-reading h1{
   color:var(--mizan-primary-800);
 }
 html[data-theme="light"] .mizan-article-reading-content{
-  color:var(--mizan-heading);
+  color:var(--mizan-article-body);
 }
 html[data-theme="light"] .mizan-article-reading-excerpt{
   color:var(--mizan-muted);
