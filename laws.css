@@ -1,6 +1,6 @@
 /* واجهة القوانين العراقية — تستخدم نظام ألوان ميزان المركزي. */
 .laws-section{padding:var(--mizan-space-4,16px);direction:rtl}
-.laws-page{width:min(100%,1000px);margin:0 auto;padding-bottom:32px;color:var(--mizan-text,var(--mizan-heading))}
+.laws-page{width:min(100%,1000px);margin:0 auto;padding-bottom:32px;color:var(--mizan-text)}
 .laws-detail-header{text-align:right;padding:24px 22px 20px;background:var(--mizan-gradient-intro-laws);color:var(--mizan-intro-fg);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl,20px);margin-bottom:22px;box-shadow:var(--mizan-shadow-card-rest)}
 .laws-detail-heading{display:block;direction:rtl;min-width:0;width:100%}
 .laws-detail-heading h1{display:block;width:100%;min-width:0;max-width:none;box-sizing:border-box;margin:0;color:var(--mizan-intro-fg);font-family:var(--mizan-font-family-display);font-size:var(--mizan-laws-title-size);font-weight:var(--mizan-font-weight-bold);line-height:var(--mizan-line-height-heading);text-align:right;white-space:normal;overflow-wrap:anywhere;word-break:normal;letter-spacing:-.015em}
@@ -10,7 +10,7 @@
 html:is([data-theme="light"],[data-admin-theme="light"]) .laws-page .laws-detail-header h1{color:var(--mizan-heading-light)}
 .laws-detail-header .laws-subtitle{color:var(--mizan-intro-muted)}
 .laws-page-header{display:block;margin-bottom:22px;text-align:right;box-sizing:border-box;width:100%;min-width:0;padding-inline:var(--mizan-space-2)}.laws-page-header h1{display:block;width:100%;min-width:0;margin:0;color:var(--mizan-heading);font-family:var(--mizan-font-family-display);font-size:var(--mizan-laws-section-title-size);font-weight:var(--mizan-font-weight-bold);line-height:var(--mizan-line-height-heading);white-space:normal;overflow-wrap:anywhere;word-break:normal}
-.laws-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-md,12px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));font:inherit;font-weight:700;cursor:pointer}
+.laws-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md,12px);background:var(--mizan-card);color:var(--mizan-text,var(--mizan-heading));font:inherit;font-weight:700;cursor:pointer}
 .laws-page-header>.laws-back-btn{float:right;color:var(--mizan-text);background:var(--mizan-surface);border-color:var(--mizan-border)}
 .laws-eyebrow{margin:0 0 5px;color:var(--mizan-primary-600);font-size:12px;font-weight:800}
 .laws-subtitle{margin:6px 0 0;color:var(--mizan-muted);font-size:14px;line-height:1.8}
@@ -20,13 +20,13 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .laws-page .laws-detail
 .laws-count{padding:6px 10px;border-radius:999px;background:var(--mizan-primary-500-pale,var(--mizan-primary-100));color:var(--mizan-primary-700,var(--mizan-primary-600));font-size:12px;font-weight:800;white-space:nowrap}
 .laws-list{display:grid;gap:10px}
 .laws-card{display:flex;align-items:center;gap:var(--mizan-component-gap);width:100%;min-width:0;padding:var(--mizan-card-padding-comfortable);text-align:right;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);cursor:pointer;box-shadow:var(--mizan-shadow-card-rest);transition:var(--mizan-transition-elevation)}
-.laws-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500,var(--mizan-primary-500));box-shadow:var(--mizan-shadow-card-raised)}
+.laws-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .laws-card-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:var(--mizan-accent-tile-bg,var(--mizan-primary-100));color:var(--mizan-accent-tile-fg,var(--mizan-primary-600));font-size:21px}
 .laws-card-copy{display:grid;gap:var(--mizan-gap-micro);flex:1 1 auto;min-width:0}
 .laws-card-copy strong{display:block;min-width:0;font-family:var(--mizan-font-family-display);font-size:var(--mizan-laws-card-title-size);font-weight:var(--mizan-font-weight-bold);line-height:var(--mizan-line-height-heading);white-space:normal;overflow-wrap:anywhere;word-break:normal}
 .laws-card-copy small{color:var(--mizan-muted,var(--mizan-neutral-500));font-size:12px}
 .laws-card-arrow{color:var(--mizan-primary-600,var(--mizan-primary-500))}
-.laws-empty-state,.laws-error,.laws-loading{padding:25px 18px;text-align:center;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-lg,16px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading))}
+.laws-empty-state,.laws-error,.laws-loading{padding:25px 18px;text-align:center;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-lg);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading))}
 .laws-empty-icon{display:grid;place-items:center;width:54px;height:54px;margin:0 auto 12px;border-radius:16px;background:var(--mizan-primary-500-pale,var(--mizan-primary-100));color:var(--mizan-primary-700,var(--mizan-primary-600));font-size:24px}
 .laws-empty-state h3{margin:0 0 8px;font-size:18px}
 .laws-empty-state p{max-width:560px;margin:0 auto 12px;color:var(--mizan-muted,var(--mizan-neutral-500));font-size:14px;line-height:1.9}
