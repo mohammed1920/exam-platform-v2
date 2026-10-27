@@ -53,7 +53,6 @@
     target.innerHTML = `
       <div class="laws-page">
         <header class="laws-page-header">
-          <div class="laws-heading-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
           <h1>القوانين العراقية</h1>
         </header>
         <div class="laws-list-toolbar">
