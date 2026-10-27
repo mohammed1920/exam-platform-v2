@@ -60,6 +60,7 @@ required_files=(
   assets/js/admin.js
   assets/js/home.js
   assets/js/platform-bootstrap.js
+  assets/js/user-dashboard.js
   assets/js/theme.js
   assets/js/procedures.js
   mizan-colors.css
