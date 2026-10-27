@@ -68,3 +68,16 @@ html[data-theme="light"] .laws-section{color:var(--mizan-text-light,var(--mizan-
 html[data-theme="light"] .laws-card,html[data-theme="light"] .laws-choice-card,html[data-theme="light"] .law-preamble,html[data-theme="light"] .law-article,html[data-theme="light"] .laws-empty-state,html[data-theme="light"] .laws-error,html[data-theme="light"] .laws-loading{background:var(--mizan-white,var(--mizan-surface-light));color:var(--mizan-text-light,var(--mizan-heading))}
 @media(max-width:600px){.laws-section{padding:12px}.laws-detail-header{padding:18px 12px 16px;border-radius:15px}.laws-choice-grid{grid-template-columns:1fr}.laws-card{padding:12px;gap:10px}.laws-card-icon{width:42px;height:42px;flex-basis:42px}.laws-card-copy strong{font-size:var(--mizan-laws-card-title-size,clamp(14px,1.7vw,18px))}.laws-page-header{padding-inline:2px}.laws-page-header h1{font-size:clamp(13px,4vw,22px)}.law-preamble,.law-article{padding:14px}.law-article-text,.law-preamble>div{font-size:14px;line-height:2}}
 @media(prefers-reduced-motion:reduce){.laws-card{transition:none}.laws-card:hover{transform:none}}
+/* Keep the law title full-width and right-aligned after the decorative icon was removed. */
+.laws-page .laws-detail-heading,
+.laws-page .laws-detail-heading h1{
+  width:100%;
+  min-width:0;
+  max-width:none;
+  text-align:right;
+}
+.laws-page .laws-detail-heading h1{
+  display:block;
+  margin-inline:0;
+  justify-self:stretch;
+}
