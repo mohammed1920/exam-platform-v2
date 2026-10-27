@@ -340,13 +340,13 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
    Contrast (WCAG AA): gold-primary #D4AF37 = 8.49:1 on #0F172A and 6.96:1 on #1E293B (dark surfaces);
    gold-light #F3E5AB = 14.1:1 / 11.6:1. On light surfaces the bright gold fails (2.1:1), so the
    theme-aware tokens below switch to deeper tones: gold-deep #7C5E00 (text, 6.07:1 on white) and
-   gold-mid #9A7B12 (lines/icons/focus ring, 4.03:1 on white, 3.85:1 on #F8FAFC). */
+   gold-mid #7C5E00 (semantic text/action color, 5.71:1 on #F6F8FB). For decorative borders/icons, use a separate border token. */
 :root{
   --mizan-gold-primary:#D4AF37;
   --mizan-gold-light:#F3E5AB;
   --mizan-gold-subtle:rgba(212,175,55,.15);
   --mizan-gold-deep:#7C5E00;
-  --mizan-gold-mid:#9A7B12;
+  --mizan-gold-mid:#7C5E00;
   --mizan-gold-accent:var(--mizan-gold-primary);
   --mizan-gold-text:var(--mizan-gold-light);
   --mizan-gold-line:var(--mizan-gold-primary);
