@@ -15,7 +15,6 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .laws-page .laws-detail
 .laws-page-header>.laws-back-btn{float:right;color:var(--mizan-text);background:var(--mizan-surface);border-color:var(--mizan-border)}
 .laws-heading-icon{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;border-radius:18px;background:var(--mizan-warning-200,var(--mizan-warning-200));color:var(--mizan-primary-900,var(--mizan-primary-900));font-size:25px}
 .laws-eyebrow{margin:0 0 5px;color:var(--mizan-primary-600);font-size:12px;font-weight:800}
-.laws-page h1{margin:0;font-size:clamp(22px,4vw,30px);line-height:1.5}
 .laws-subtitle{margin:6px 0 0;color:var(--mizan-muted);font-size:14px;line-height:1.8}
 .laws-list-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 12px}
 .laws-list-toolbar h2{margin:0;font-size:18px}

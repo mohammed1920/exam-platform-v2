@@ -29,11 +29,22 @@
   }
 
   function fitResponsiveLawTitles(root = section()) {
-    if (!root || !titleMeasureContext) return;
-    root.querySelectorAll('.laws-detail-heading h1, .laws-page-header h1, .laws-card-copy strong').forEach(title => {
+    if (!root) return;
+    const titles = root.querySelectorAll(
+      '.laws-detail-heading h1, .laws-page-header h1, .laws-card-copy strong'
+    );
+
+    titles.forEach(title => {
       title.style.removeProperty('font-size');
+      title.style.whiteSpace = 'nowrap';
+      title.style.overflowWrap = 'normal';
+
       const width = title.clientWidth;
-      if (!width) return;
+      if (!titleMeasureContext || !width) {
+        title.style.whiteSpace = 'normal';
+        title.style.overflowWrap = 'anywhere';
+        return;
+      }
 
       const baseSize = Number.parseFloat(getComputedStyle(title).fontSize) || 20;
       const configuredMin = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mizan-laws-title-min-size')) || 12;
@@ -42,6 +53,8 @@
       if (lawTitleFitsAtSize(title, width, baseSize)) return;
       if (!lawTitleFitsAtSize(title, width, minSize)) {
         title.style.fontSize = minSize + 'px';
+        title.style.whiteSpace = 'normal';
+        title.style.overflowWrap = 'anywhere';
         return;
       }
 
@@ -193,7 +206,7 @@
         </div>
         <div class="laws-content" data-law-content><div class="laws-loading" role="status">سيتم تحميل نص القانون عند اختيار القراءة أو البحث عن مادة.</div></div>
       </div>`;
-    fitResponsiveLawTitles(target);
+    observeLawTitleLayout(target);
     target.querySelector('[data-laws-list-back]').addEventListener('click', renderLawList);
     target.querySelector('[data-law-read]').addEventListener('click', () => loadAndRender(meta, null));
     target.querySelector('[data-law-search-form]').addEventListener('submit', event => {
