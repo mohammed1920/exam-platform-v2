@@ -888,7 +888,7 @@ html[data-theme="light"] .mizan-my-article-actions button{
   color:var(--mizan-primary-700);
 }
 html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
-  color:var(--mizan-danger, #b91c1c);
+  color:var(--mizan-danger);
   border-color:var(--mizan-border-light);
 }
 
@@ -899,7 +899,7 @@ html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
 .mizan-editor-toolbar button:focus-visible,.mizan-rich-editor:focus-visible{outline:2px solid var(--mizan-primary-500, var(--mizan-primary-500));outline-offset:2px}
 .mizan-editor-toolbar button:hover{background:var(--mizan-accent-tile-bg)}
 .mizan-editor-separator{width:1px;height:24px;background:var(--mizan-border-light, var(--mizan-border));margin:0 3px}
-.mizan-editor-color-dot{display:inline-block;width:17px;height:17px;border:1px solid rgba(127,127,127,.3);border-radius:50%}
+.mizan-editor-color-dot{display:inline-block;width:17px;height:17px;border:1px solid var(--mizan-border-control);border-radius:50%}
 .mizan-rich-editor{min-height:260px;max-height:60vh;overflow:auto;padding:15px;border:1px solid var(--mizan-border-light, var(--mizan-border));border-radius:12px;background:var(--mizan-surface-light, var(--mizan-surface-light));color:var(--mizan-text);font:inherit;line-height:1.95;direction:rtl;text-align:right;overflow-wrap:anywhere}
 .mizan-rich-editor:empty:before{content:attr(data-placeholder);color:var(--mizan-muted);pointer-events:none}
 .mizan-rich-editor h2,.mizan-article-reading-content h2{font-size:1.35em;font-weight:800;margin:1.1em 0 .5em;color:var(--mizan-primary-700, var(--mizan-primary-500))}
@@ -909,5 +909,5 @@ html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
 .mizan-rich-editor blockquote,.mizan-article-reading-content blockquote{margin:1em 0;padding:.7em 1em;border-inline-start:3px solid var(--mizan-primary-500, var(--mizan-primary-500));background:var(--mizan-accent-tile-bg);border-radius:8px}
 .mizan-editor-source{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .mizan-editor-help{margin:0;color:var(--mizan-muted);font-size:12px;line-height:1.7}
-html[data-theme="light"] .mizan-editor-toolbar,html[data-theme="light"] .mizan-rich-editor{background:var(--mizan-surface-light, #fff);border-color:var(--mizan-border-light, #e2e8f0);color:var(--mizan-text)}
+html[data-theme="light"] .mizan-editor-toolbar,html[data-theme="light"] .mizan-rich-editor{background:var(--mizan-surface-light);border-color:var(--mizan-border-light);color:var(--mizan-text)}
 @media(max-width:560px){.mizan-rich-editor{min-height:220px}.mizan-editor-toolbar{gap:4px;padding:7px}.mizan-editor-toolbar button{padding:6px 7px;min-height:36px}}
