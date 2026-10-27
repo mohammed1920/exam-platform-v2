@@ -58,6 +58,7 @@ required_files=(
   assets/js/platform-header-fix.js
   assets/js/admin-theme.js
   assets/js/theme.js
+  assets/js/procedures.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
