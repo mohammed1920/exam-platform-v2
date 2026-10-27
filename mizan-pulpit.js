@@ -7,9 +7,24 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
   const ARTICLE_TAGS = new Set(['DIV','P','BR','SPAN','STRONG','B','EM','I','U','H2','H3','H4','UL','OL','LI','BLOCKQUOTE']);
   const ARTICLE_COLORS = new Set(['#0f172a','#1d4ed8','#047857','#b45309','#b91c1c','#6d28d9','#dbeafe','#d1fae5','#fef3c7','#fee2e2']);
+  const ARTICLE_COLOR_ALIASES = new Map([
+    ['#0f172a', '--mizan-primary-900'],
+    ['#1d4ed8', '--mizan-primary-600'],
+    ['#047857', '--mizan-success-700'],
+    ['#b45309', '--mizan-warning-700'],
+    ['#b91c1c', '--mizan-danger-700'],
+    ['#6d28d9', '--mizan-article-violet'],
+    ['#dbeafe', '--mizan-primary-100'],
+    ['#d1fae5', '--mizan-success-100'],
+    ['#fef3c7', '--mizan-warning-100'],
+    ['#fee2e2', '--mizan-danger-100']
+  ]);
   function normalizeArticleColor(raw) {
     const value = String(raw || '').trim().toLowerCase();
-    if (ARTICLE_COLORS.has(value)) return value;
+    if (ARTICLE_COLORS.has(value)) {
+      const token = ARTICLE_COLOR_ALIASES.get(value);
+      return token ? 'var(' + token + ')' : value;
+    }
     const rgb = value.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/);
     if (!rgb) return '';
     const hex = '#'+rgb.slice(1).map(part => Math.max(0, Math.min(255, Number(part))).toString(16).padStart(2,'0')).join('');
@@ -34,10 +49,10 @@
       if (sourceStyle) {
         const colorMatch = sourceStyle.match(/(?:^|;)\s*color\s*:\s*(#[0-9a-f]{3,6}|rgb\([^)]*\))\s*(?:;|$)/i);
         const color = normalizeArticleColor(colorMatch?.[1]);
-        if (color) el.style.color = color;
+        if (color) el.style.setProperty('color', color);
         const bgMatch = sourceStyle.match(/(?:^|;)\s*background-color\s*:\s*(#[0-9a-f]{3,6}|rgb\([^)]*\))\s*(?:;|$)/i);
         const bg = normalizeArticleColor(bgMatch?.[1]);
-        if (bg) el.style.backgroundColor = bg;
+        if (bg) el.style.setProperty('background-color', bg);
         const align = node.getAttribute('style').match(/(?:^|;)\s*text-align\s*:\s*(left|right|center|justify)\s*(?:;|$)/i)?.[1]?.toLowerCase();
         if (align) el.style.textAlign = align;
       }
