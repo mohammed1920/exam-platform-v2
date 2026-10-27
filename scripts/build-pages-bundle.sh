@@ -51,6 +51,7 @@ required_files=(
   assets/js/exam-drafts.js
   assets/js/question-sharing.js
   assets/js/global-search.js
+  assets/js/wrong-answers-limit.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
