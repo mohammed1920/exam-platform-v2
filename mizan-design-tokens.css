@@ -310,7 +310,7 @@
   --mizan-focus-outline-style:solid;
   --mizan-laws-title-size:clamp(18px,3.2vw,29px);
   --mizan-laws-title-size-mobile:clamp(14px,3.8vw,22px);
-  --mizan-laws-title-gap:clamp(8px,2vw,16px);
+  --mizan-laws-title-gap:var(--mizan-gap-tight);
   --mizan-laws-title-icon-size:clamp(48px,8vw,82px);
   --mizan-laws-title-icon-size-mobile:clamp(48px,13vw,64px);
   --mizan-laws-section-title-size:clamp(18px,3.5vw,30px);
