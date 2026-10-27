@@ -20,7 +20,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .laws-page .laws-detail
 .laws-count{padding:6px 10px;border-radius:999px;background:var(--mizan-primary-500-pale,var(--mizan-primary-100));color:var(--mizan-primary-700,var(--mizan-primary-600));font-size:12px;font-weight:800;white-space:nowrap}
 .laws-list{display:grid;gap:10px}
 .laws-card{display:flex;align-items:center;gap:var(--mizan-component-gap);width:100%;min-width:0;padding:var(--mizan-card-padding-comfortable);text-align:right;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);cursor:pointer;box-shadow:var(--mizan-shadow-card-rest);transition:var(--mizan-transition-elevation)}
-.laws-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500,var(--mizan-primary-500));box-shadow:var(--mizan-shadow-card-raised,0 8px 22px rgba(15,23,42,.1))}
+.laws-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500,var(--mizan-primary-500));box-shadow:var(--mizan-shadow-card-raised)}
 .laws-card-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:var(--mizan-accent-tile-bg,var(--mizan-primary-100));color:var(--mizan-accent-tile-fg,var(--mizan-primary-600));font-size:21px}
 .laws-card-copy{display:grid;gap:var(--mizan-gap-micro);flex:1 1 auto;min-width:0}
 .laws-card-copy strong{display:block;min-width:0;font-family:var(--mizan-font-family-display);font-size:var(--mizan-laws-card-title-size);font-weight:var(--mizan-font-weight-bold);line-height:var(--mizan-line-height-heading);white-space:normal;overflow-wrap:anywhere;word-break:normal}
@@ -43,7 +43,7 @@ button.laws-choice-card{cursor:pointer}
 .laws-search-row input{width:100%;min-width:0;padding:10px;border:1px solid var(--mizan-border,var(--mizan-neutral-300));border-radius:10px;background:var(--mizan-surface);color:var(--mizan-text);font:inherit}
 .laws-search-row button{padding:9px 14px;border:0;border-radius:10px;background:var(--mizan-primary-600,var(--mizan-primary-500));color:var(--mizan-surface-light);font:inherit;font-weight:800;cursor:pointer}
 .laws-reading-toolbar,.laws-results-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 10px;padding:12px 14px;border-radius:12px;background:var(--mizan-primary-500-pale,var(--mizan-primary-100));color:var(--mizan-primary-800,var(--mizan-primary-700));font-weight:800}
-.law-preamble,.law-article{margin:12px 0;padding:18px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-lg,16px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));box-shadow:var(--mizan-shadow-card-rest,0 2px 8px rgba(15,23,42,.04));scroll-margin-top:18px}
+.law-preamble,.law-article{margin:12px 0;padding:18px;border:1px solid var(--mizan-border,var(--mizan-neutral-200));border-radius:var(--mizan-radius-lg,16px);background:var(--mizan-card,var(--mizan-white));color:var(--mizan-text,var(--mizan-heading));box-shadow:var(--mizan-shadow-card-rest);scroll-margin-top:18px}
 .law-preamble h2{margin:0 0 12px;font-size:18px;color:var(--mizan-primary-700,var(--mizan-primary-600))}
 .law-preamble>div,.law-article-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:2.05}
 .law-article-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--mizan-border,var(--mizan-neutral-200))}
