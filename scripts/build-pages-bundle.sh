@@ -56,6 +56,7 @@ required_files=(
   assets/js/student-account-patch.js
   assets/js/notifications.js
   assets/js/platform-header-fix.js
+  assets/js/admin-theme.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
