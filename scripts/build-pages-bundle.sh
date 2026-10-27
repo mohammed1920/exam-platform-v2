@@ -52,6 +52,7 @@ required_files=(
   assets/js/question-sharing.js
   assets/js/global-search.js
   assets/js/wrong-answers-limit.js
+  assets/js/wrong-answers-retest.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
