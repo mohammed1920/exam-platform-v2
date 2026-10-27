@@ -71,7 +71,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 
 .procedures-title-list{display:grid;gap:10px;margin-top:16px}
 .procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
-.procedures-title-item:hover{border-color:var(--mizan-primary-600,var(--mizan-primary-500));transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.07)}
+.procedures-title-item:hover{border-color:var(--mizan-primary-600,var(--mizan-primary-500));transform:translateY(-1px);box-shadow:var(--mizan-shadow-card-raised)}
 .procedures-title-item i{color:var(--mizan-primary-600,var(--mizan-primary-500))}
 .procedures-empty{padding:22px;border:1px dashed var(--mizan-border,var(--mizan-border-light));border-radius:14px;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)));text-align:center;line-height:1.8}
 .procedures-detail{margin-top:20px;scroll-margin-top:20px}
