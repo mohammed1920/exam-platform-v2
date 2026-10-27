@@ -46,7 +46,7 @@ cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 required_files=(
   index.html
   admin.html
-  contact-info.js
+  assets/js/contact-info.js
   assets/js/book-icons.js
   assets/js/exam-drafts.js
   question-sharing.js
