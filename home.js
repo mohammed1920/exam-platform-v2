@@ -106,7 +106,7 @@
     const lawStylesheets = Array.from(document.querySelectorAll('link[href*="laws.css"]'));
     const css = lawStylesheets.shift() || document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'laws.css?v=1.11';
+    css.href = 'laws.css?v=1.12';
     css.dataset.mizanLawsCss = '1';
     if (!css.isConnected) document.head.appendChild(css);
     lawStylesheets.forEach(link => link.remove());
@@ -118,7 +118,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'laws.js?v=1.5';
+      script.src = 'laws.js?v=1.6';
       script.dataset.mizanLawsLoader = '1';
       script.onload = () => window.mizanLaws ? resolve(window.mizanLaws) : reject(new Error('تعذر تهيئة قسم القوانين'));
       script.onerror = () => reject(new Error('تعذر تحميل قسم القوانين'));

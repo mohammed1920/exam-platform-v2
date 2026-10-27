@@ -15,91 +15,6 @@
 
   function section() { return document.getElementById(sectionId); }
 
-  let titleFitFrame = 0;
-  let titleFitObserver = null;
-  const titleMeasureCanvas = document.createElement('canvas');
-  const titleMeasureContext = titleMeasureCanvas.getContext('2d');
-
-  function lawTitleFitsAtSize(title, width, size) {
-    if (!titleMeasureContext) return false;
-    const style = getComputedStyle(title);
-    titleMeasureContext.direction = 'rtl';
-    titleMeasureContext.font = `${style.fontStyle} ${style.fontWeight} ${size}px ${style.fontFamily}`;
-    return titleMeasureContext.measureText(title.textContent.trim()).width <= width - 2;
-  }
-
-  function fitResponsiveLawTitles(root = section()) {
-    if (!root) return;
-    const titles = root.querySelectorAll(
-      '.laws-detail-heading h1, .laws-page-header h1, .laws-card-copy strong'
-    );
-
-    titles.forEach(title => {
-      title.style.removeProperty('font-size');
-      title.style.whiteSpace = 'nowrap';
-      title.style.overflowWrap = 'normal';
-
-      const width = title.clientWidth;
-      if (!titleMeasureContext || !width) {
-        title.style.whiteSpace = 'normal';
-        title.style.overflowWrap = 'anywhere';
-        return;
-      }
-
-      const baseSize = Number.parseFloat(getComputedStyle(title).fontSize) || 20;
-      const configuredMin = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mizan-laws-title-min-size')) || 12;
-      const minSize = Math.min(configuredMin, baseSize);
-
-      if (lawTitleFitsAtSize(title, width, baseSize)) return;
-      if (!lawTitleFitsAtSize(title, width, minSize)) {
-        title.style.fontSize = minSize + 'px';
-        title.style.whiteSpace = 'normal';
-        title.style.overflowWrap = 'anywhere';
-        return;
-      }
-
-      let low = minSize;
-      let high = baseSize;
-      for (let i = 0; i < 10; i += 1) {
-        const size = (low + high) / 2;
-        if (lawTitleFitsAtSize(title, width, size)) low = size;
-        else high = size;
-      }
-      title.style.fontSize = Math.floor(low * 10) / 10 + 'px';
-    });
-  }
-
-  function scheduleLawTitleFit(root = section()) {
-    if (titleFitFrame) cancelAnimationFrame(titleFitFrame);
-    titleFitFrame = requestAnimationFrame(() => {
-      titleFitFrame = requestAnimationFrame(() => {
-        titleFitFrame = 0;
-        fitResponsiveLawTitles(root);
-      });
-    });
-  }
-
-  function observeLawTitleLayout(root) {
-    if (!root || typeof ResizeObserver !== 'function') {
-      scheduleLawTitleFit(root);
-      return;
-    }
-    if (!titleFitObserver) {
-      titleFitObserver = new ResizeObserver(() => scheduleLawTitleFit(root));
-    }
-    titleFitObserver.disconnect();
-    titleFitObserver.observe(root);
-    root.querySelectorAll('.laws-detail-heading, .laws-page-header, .laws-card').forEach(element => {
-      titleFitObserver.observe(element);
-    });
-    scheduleLawTitleFit(root);
-  }
-
-  window.addEventListener('resize', () => scheduleLawTitleFit(), { passive: true });
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => scheduleLawTitleFit()).catch(() => {});
-  }
-
   function loadRegistry() {
     if (!registryPromise) {
       registryPromise = fetch(REGISTRY_URL, { cache: 'default' })
@@ -147,7 +62,6 @@
         </div>
         <div class="laws-list" data-laws-list><div class="laws-loading" role="status">جارٍ تحميل فهرس القوانين…</div></div>
       </div>`;
-    observeLawTitleLayout(target);
     loadRegistry().then(data => {
       const list = target.querySelector('[data-laws-list]');
       const count = target.querySelector('[data-laws-count]');
@@ -169,7 +83,6 @@
           <span class="laws-card-copy"><strong>${escapeHtml(law.name)}</strong><small>${escapeHtml(law.category || 'تشريع عراقي')}${Number.isInteger(law.articlesCount) ? ' · ' + law.articlesCount + ' مادة' : ''}</small></span>
           <span class="laws-card-arrow" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
         </button>`).join('');
-      fitResponsiveLawTitles(target);
       list.querySelectorAll('[data-law-id]').forEach(button => {
         button.addEventListener('click', () => {
           const meta = data.laws.find(item => item.id === button.dataset.lawId);
@@ -206,7 +119,6 @@
         </div>
         <div class="laws-content" data-law-content><div class="laws-loading" role="status">سيتم تحميل نص القانون عند اختيار القراءة أو البحث عن مادة.</div></div>
       </div>`;
-    observeLawTitleLayout(target);
     target.querySelector('[data-laws-list-back]').addEventListener('click', renderLawList);
     target.querySelector('[data-law-read]').addEventListener('click', () => loadAndRender(meta, null));
     target.querySelector('[data-law-search-form]').addEventListener('submit', event => {

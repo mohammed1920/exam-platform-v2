@@ -313,7 +313,6 @@
   --mizan-laws-title-gap:clamp(8px,2vw,16px);
   --mizan-laws-title-icon-size:clamp(48px,8vw,82px);
   --mizan-laws-title-icon-size-mobile:clamp(48px,13vw,64px);
-  --mizan-laws-title-min-size:12px;
   --mizan-laws-section-title-size:clamp(18px,3.5vw,30px);
   --mizan-laws-card-title-size:clamp(14px,1.7vw,18px);
 }
@@ -332,4 +331,3 @@
     --mizan-transition-elevation:box-shadow 0ms linear,transform 0ms linear;
   }
 }
-
