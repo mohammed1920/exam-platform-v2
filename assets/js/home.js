@@ -118,7 +118,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'laws.js?v=1.6';
+      script.src = 'assets/js/laws.js?v=1.6';
       script.dataset.mizanLawsLoader = '1';
       script.onload = () => window.mizanLaws ? resolve(window.mizanLaws) : reject(new Error('تعذر تهيئة قسم القوانين'));
       script.onerror = () => reject(new Error('تعذر تحميل قسم القوانين'));

@@ -66,6 +66,7 @@ required_files=(
   assets/js/platform-sidebar.js
   assets/js/mizan-pulpit-admin.js
   assets/js/firebase-admin-panel.js
+  assets/js/laws.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
