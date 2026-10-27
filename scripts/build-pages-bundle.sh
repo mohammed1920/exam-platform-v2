@@ -47,6 +47,7 @@ required_files=(
   index.html
   admin.html
   contact-info.js
+  assets/js/book-icons.js
   exam-drafts.js
   question-sharing.js
   mizan-colors.css
