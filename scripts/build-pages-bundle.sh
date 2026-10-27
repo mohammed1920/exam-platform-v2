@@ -49,6 +49,7 @@ required_files=(
   assets/js/contact-info.js
   assets/js/book-icons.js
   assets/js/exam-drafts.js
+  assets/js/question-sharing.js
   question-sharing.js
   mizan-colors.css
   mizan-design-tokens.css
