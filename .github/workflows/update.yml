@@ -35,12 +35,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          find . -type f \\( -name '*.js' -o -name '*.mjs' \\) \\
-            -not -path './.git/*' \\
-            -not -path './node_modules/*' \\
-            -not -path './dist/*' \\
+          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            -not -path './dist/*' \
             -print0 | xargs -0 -r -n1 node --check
-
       - name: Validate project before deployment
         run: |
           node scripts/validate-static-project.mjs
