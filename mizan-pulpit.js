@@ -17,7 +17,7 @@
     ['#dbeafe', '--mizan-primary-100'],
     ['#d1fae5', '--mizan-success-100'],
     ['#fef3c7', '--mizan-warning-100'],
-    ['#fee2e2', '--mizan-danger-100']
+    ['#fee2e3', '--mizan-danger-100']
   ]);
   function normalizeArticleColor(raw) {
     const value = String(raw || '').trim().toLowerCase();
