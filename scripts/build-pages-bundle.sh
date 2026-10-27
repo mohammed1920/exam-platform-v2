@@ -54,6 +54,7 @@ required_files=(
   assets/js/wrong-answers-limit.js
   assets/js/wrong-answers-retest.js
   assets/js/student-account-patch.js
+  assets/js/notifications.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
