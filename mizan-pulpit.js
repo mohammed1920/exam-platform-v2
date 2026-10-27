@@ -27,7 +27,9 @@
     }
     const rgb = value.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/);
     if (!rgb) return '';
-    const hex = '#'+rgb.slice(1).map(part => Math.max(0, Math.min(255, Number(part))).toString(16).padStart(2,'0')).join('');
+    const values = rgb.slice(1).map(part => Number(part));
+    if (values.some(part => part < 0 || part > 255)) return '';
+    const hex = '#' + values.map(part => part.toString(16).padStart(2, '0')).join('');
     if (!ARTICLE_COLORS.has(hex)) return '';
     const token = ARTICLE_COLOR_ALIASES.get(hex);
     return token ? 'var(' + token + ')' : hex;
