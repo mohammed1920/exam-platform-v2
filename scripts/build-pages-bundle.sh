@@ -53,6 +53,7 @@ required_files=(
   assets/js/global-search.js
   assets/js/wrong-answers-limit.js
   assets/js/wrong-answers-retest.js
+  assets/js/student-account-patch.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
