@@ -87,7 +87,7 @@ required_files=(
   assets/css/petitions.css
   assets/css/lawyer-admin.css
   mizan-colors.css
-  mizan-design-tokens.css
+  assets/css/mizan-design-tokens.css
   assets/branding/meezan-assemble.json
   engine/examEngine.js
   data/books.json
