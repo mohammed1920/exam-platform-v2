@@ -85,6 +85,7 @@ required_files=(
   assets/css/mizan-pulpit.css
   assets/css/home.css
   assets/css/petitions.css
+  assets/css/lawyer-admin.css
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
