@@ -72,6 +72,7 @@ required_files=(
   assets/js/petitions.js
   assets/js/firebase-auth.js
   assets/js/app.js
+  assets/css/platform-sidebar.css
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
