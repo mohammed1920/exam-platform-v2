@@ -79,6 +79,7 @@ required_files=(
   assets/css/student-ui-fixes.css
   assets/css/admin.css
   assets/css/lawyer-directory.css
+  assets/css/user-dashboard.css
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
