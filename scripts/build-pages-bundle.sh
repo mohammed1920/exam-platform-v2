@@ -90,6 +90,7 @@ required_files=(
   assets/css/style.css \
   assets/css/mizan-colors.css
   assets/css/mizan-design-tokens.css
+  assets/css/theme.css
   assets/branding/meezan-assemble.json
   engine/examEngine.js
   data/books.json
