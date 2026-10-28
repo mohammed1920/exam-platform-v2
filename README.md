@@ -254,6 +254,6 @@ body {
 
 - ابدأ من [دليل التطوير](DEVELOPMENT.md) قبل تعديل الملفات.
 - راجع [خريطة اعتماديات JavaScript](docs/architecture/JS_DEPENDENCY_MAP.md) قبل نقل أو حذف أي وظيفة.
-- راجع [خطة التنظيم المعماري](docs/architecture/ARCHITECTURE_REORGANIZATION_PLAN.md) وحالة الفحوصات قبل اعتماد تغييرات بنيوية.
+- راجع [ضوابط تنظيم المشروع](docs/architecture/MIZAN_PROJECT_ORGANIZATION_RULES.md) و[سجل تقدم إعادة التنظيم](docs/architecture/PROJECT_REORGANIZATION_STATUS.md) لمعرفة القواعد والحالة الحالية.
 
-راجع `SECURITY.md` و`ADMIN_SETUP.md` قبل تفعيل لوحة الإدارة على الإنترنت.
+راجع `SECURITY.md` قبل استخدام لوحة إدارة المحتوى أو تفعيلها على الإنترنت.
