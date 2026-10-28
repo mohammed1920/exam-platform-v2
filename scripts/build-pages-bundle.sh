@@ -71,6 +71,7 @@ required_files=(
   assets/js/lawyer-directory.js
   assets/js/petitions.js
   assets/js/firebase-auth.js
+  assets/js/app.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
