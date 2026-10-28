@@ -207,7 +207,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'petitions.js?v=1.8';
+      script.src = 'assets/js/petitions.js?v=1.8';
       script.dataset.petitionsLoader = '1';
       script.onload = () => resolve(window.petitions);
       script.onerror = () => reject(new Error('تعذر تحميل قسم العرائض والطلبات'));

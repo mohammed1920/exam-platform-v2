@@ -69,6 +69,7 @@ required_files=(
   assets/js/laws.js
   assets/js/mizan-pulpit.js
   assets/js/lawyer-directory.js
+  assets/js/petitions.js
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
