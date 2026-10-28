@@ -161,7 +161,7 @@
           return;
         }
         const script = document.createElement('script');
-        script.src = 'lawyer-directory.js?v=1.2';
+        script.src = 'assets/js/lawyer-directory.js?v=1.2';
         script.dataset.lawyerDirectory = '1';
         script.onload = finish;
         script.onerror = () => reject(new Error('تعذر تحميل دليل المحامين'));
