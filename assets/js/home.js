@@ -195,7 +195,7 @@
     if (!document.querySelector('link[data-petitions-css]')) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'petitions.css?v=3.2';
+      css.href = 'assets/css/petitions.css?v=3.2';
       css.dataset.petitionsCss = '1';
       document.head.appendChild(css);
     }
