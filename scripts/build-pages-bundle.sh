@@ -75,6 +75,7 @@ required_files=(
   assets/css/platform-sidebar.css
  assets/css/platform-header.css
   assets/css/notifications.css
+  assets/css/student-sidebar.css
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
