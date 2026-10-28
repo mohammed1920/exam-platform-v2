@@ -106,7 +106,7 @@
     const lawStylesheets = Array.from(document.querySelectorAll('link[href*="laws.css"]'));
     const css = lawStylesheets.shift() || document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'laws.css?v=1.15';
+    css.href = 'assets/css/laws.css?v=1.15';
     css.dataset.mizanLawsCss = '1';
     if (!css.isConnected) document.head.appendChild(css);
     lawStylesheets.forEach(link => link.remove());
