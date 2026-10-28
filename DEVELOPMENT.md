@@ -43,7 +43,8 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 - `platform-header-fix.js`: تركيب شعار Lottie في الهيدر.
 
 ### الإدارة والمصادقة
-- `admin.html`: هيكل لوحة إدارة الكتب والفصول والأسئلة.
+- `admin.html`: هيكل لوحة إدارة الكتب والفصول والأسئلة؛ تُستخدم محليًا مع GitHub Token محدود الصلاحيات عند عمليات الكتابة.
+- `firebase-admin-panel.js` (الموجود في `assets/js/`): لوحة التاج داخل المنصة لإدارة الطلاب والنتائج والمحامين والمساهمين عبر Firebase/Firestore. هذه لوحة منفصلة تمامًا عن `admin.html`؛ لا تدمج النظامين ولا تستبدل أحدهما بالآخر.
 - `admin.js`: منطق لوحة الإدارة.
 - `admin.css`: تنسيقات لوحة الإدارة.
 - `admin-theme.js`: تبديل مظهر لوحة الإدارة.
@@ -56,6 +57,14 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 - `home.css`: تنسيقات الصفحة الرئيسية.
 - `mizan-unified-theme.css` و`theme.css`: قواعد الثيم الحالي؛ افحص ترتيب التحميل والتداخل قبل تغييرهما.
 - ملفات CSS الخاصة بالأقسام مثل `lawyer-directory.css` و`petitions.css` و`mizan-pulpit.css`: تنسيقات القسم المقابل.
+
+## وثائق المشروع المعتمدة
+- `README.md`: تعريف المنصة وطريقة تشغيلها.
+- `DEVELOPMENT.md`: دليل التطوير والصيانة وأوامر الفحص.
+- `SECURITY.md`: الأمان واستخدام لوحة إدارة المحتوى.
+- `docs/architecture/MIZAN_PROJECT_ORGANIZATION_RULES.md`: الضوابط المعتمدة للتنظيم.
+- `docs/architecture/PROJECT_REORGANIZATION_STATUS.md`: الحالة الحالية وسجل مراحل التنظيم.
+- تقارير الجرد والاعتماديات داخل `docs/architecture/` هي مراجع فنية مساندة؛ التقارير المؤرخة لقطات زمنية وليست بديلًا عن فحص `main` الحالي.
 
 ## قواعد إلزامية للصيانة
 
