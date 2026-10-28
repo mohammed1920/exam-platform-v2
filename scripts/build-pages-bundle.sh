@@ -81,6 +81,7 @@ required_files=(
   assets/css/lawyer-directory.css
   assets/css/user-dashboard.css
   assets/css/laws.css
+  assets/css/procedures.css
   mizan-colors.css
   mizan-design-tokens.css
   assets/branding/meezan-assemble.json
