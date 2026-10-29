@@ -195,20 +195,6 @@
                 </div>
             </section>
 
-            <section id="petition-templates" class="admin-section">
-                <h2>إدارة نماذج العرائض</h2>
-                <p class="admin-field-hint">يُحفظ كل نموذج تلقائياً داخل مجلد التصنيف الذي تختاره، ثم يُحدّث فهرس التصنيف أثناء النشر.</p>
-                <div class="panel">
-                    <div class="form-group"><label for="petition-template-name">اسم النموذج</label><input type="text" id="petition-template-name" maxlength="180" placeholder="مثال: عريضة دعوى مطالبة بدين"></div>
-                    <div class="form-group"><label for="petition-template-category">تصنيف النموذج</label><select id="petition-template-category"><option value="">جارٍ تحميل التصنيفات...</option></select></div>
-                    <div class="form-group"><label for="petition-template-description">وصف مختصر</label><textarea id="petition-template-description" rows="2" maxlength="600" placeholder="وصف مختصر يظهر ضمن بطاقة النموذج"></textarea></div>
-                    <div class="form-group"><label for="petition-template-body">نص العريضة</label><textarea id="petition-template-body" rows="12" placeholder="اكتب نص العريضة هنا..." required></textarea></div>
-                    <div class="form-group"><label for="petition-template-icon">أيقونة (اختياري)</label><input type="text" id="petition-template-icon" value="fas fa-file-signature" maxlength="80"></div>
-                    <div class="btn-row"><button type="button" class="btn btn-primary" id="petition-template-save-btn" onclick="guardedOp(savePetitionTemplate)">حفظ نموذج العريضة</button><button type="button" class="btn btn-secondary" onclick="clearPetitionTemplateForm()">تفريغ الحقول</button></div>
-                    <small class="admin-field-hint">سيُحفظ الملف في data/petitions/documents/<span id="petition-template-path-preview">[التصنيف]</span>/، ولا يُعد منشوراً حتى يكتمل سير النشر.</small>
-                </div>
-            </section>
-
             <section id="notifications" class="tab-content">
                 <div class="panel">
                     <h3>🔔 إدارة إشعارات ميزان</h3>
