@@ -57,7 +57,16 @@ async function checkLocalReference(ownerFile, raw, label) {
   if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/|#|data:|blob:)/i.test(value)) return;
   const clean = value.split(/[?#]/, 1)[0];
   if (!clean) return;
-  const ownerDir = clean.startsWith("/") ? root : path.dirname(ownerFile);
+  // Home-card artwork tokens are declared in the shared palette but consumed by
+  // assets/features/home/css/home.css. Keep their established working URL base
+  // aligned with that feature stylesheet while validating the real asset exists.
+  const isHomeCardArtworkToken = display(ownerFile) === "assets/shared/css/mizan-colors.css"
+    && clean.includes("images/home-cards/");
+  const ownerDir = clean.startsWith("/")
+    ? root
+    : isHomeCardArtworkToken
+      ? path.join(root, "assets/features/home/css")
+      : path.dirname(ownerFile);
   const resolved = path.resolve(ownerDir, clean.startsWith("/") ? clean.slice(1) : clean);
   if (resolved !== root && !resolved.startsWith(root + path.sep)) {
     failures.push(`Unsafe local ${label} in ${display(ownerFile)}: ${value}`);
@@ -136,7 +145,7 @@ for (const jsFile of jsFiles) {
   }
 }
 
-// CSS url(...) references are relative to the stylesheet.
+// CSS url(...) references are relative to the stylesheet, except the shared home-card artwork tokens handled above.
 // @import accepts a quoted path or url(...); avoid parsing the url keyword as a filename.
 const cssUrlPattern = /url\(\s*(?:(['"])(.*?)\1|([^)]*?))\s*\)/gi;
 const cssImportPattern = /@import\s+(?!url\s*\()(['"])(.*?)\1/gi;
