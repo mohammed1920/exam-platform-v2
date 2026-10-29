@@ -40,6 +40,13 @@ jobs:
         with:
           node-version: 20
 
+      # Rebase onto the latest main before generating tracked outputs. This prevents
+      # generated reports from conflicting with newer commits made during a prior run.
+      - name: Sync with latest main before maintenance
+        run: |
+          git fetch origin main
+          git rebase origin/main
+
       - name: Repair question identities and update chapter counts
         run: python3 update_questions.py
 
