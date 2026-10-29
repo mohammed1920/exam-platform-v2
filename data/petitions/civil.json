@@ -5,6 +5,6 @@
     "category": "عرائض البداءة (الدعاوى المدنية)",
     "description": "نموذج أولي قابل للتعبئة والتحرير مع بيانات الأطراف والمحكمة وموضوع المطالبة.",
     "icon": "fas fa-file-invoice-dollar",
-    "document": "data/petitions/documents/petition-claim-termination.json"
+    "document": "data/petitions/documents/civil/petition-claim-termination.json"
   }
 ]

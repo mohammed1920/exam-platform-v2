@@ -5,7 +5,7 @@
     "category": "عرائض أحوال شخصية",
     "description": "دعوى لتصديق الطلاق الواقع خارج المحكمة وفق البيانات الواردة في النموذج.",
     "icon": "fas fa-ring",
-    "document": "data/petitions/documents/petition-external-divorce-ratification.json"
+    "document": "data/petitions/documents/family/petition-external-divorce-ratification.json"
   },
   {
     "uid": "petition-marital-furniture-return",
@@ -13,7 +13,7 @@
     "category": "عرائض أحوال شخصية",
     "description": "دعوى مطالبة بإعادة أثاث الزوجية عيناً، وعند التعذر المطالبة بقيمته وفق القائمة المرفقة.",
     "icon": "fas fa-house",
-    "document": "data/petitions/documents/petition-marital-furniture-return.json"
+    "document": "data/petitions/documents/family/petition-marital-furniture-return.json"
   },
   {
     "uid": "petition-deferred-dower",
@@ -21,7 +21,7 @@
     "category": "عرائض أحوال شخصية",
     "description": "دعوى مطالبة بالمهر المؤجل غير المقبوض بعد الطلاق.",
     "icon": "fas fa-coins",
-    "document": "data/petitions/documents/petition-deferred-dower.json"
+    "document": "data/petitions/documents/family/petition-deferred-dower.json"
   },
   {
     "uid": "petition-external-marriage-ratification",
@@ -29,6 +29,6 @@
     "category": "عرائض أحوال شخصية",
     "description": "طلب تصديق الزواج الواقع خارج المحكمة مع بيانات وثيقة الزواج ورجل الدين والشهود والمهر.",
     "icon": "fas fa-heart",
-    "document": "data/petitions/documents/petition-external-marriage-ratification.json"
+    "document": "data/petitions/documents/family/petition-external-marriage-ratification.json"
   }
 ]

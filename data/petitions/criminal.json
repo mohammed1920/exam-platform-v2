@@ -5,6 +5,6 @@
     "category": "عرائض جزائية وتحقيق",
     "description": "طلب موجه إلى قاضي محكمة التحقيق لإخلاء سبيل المتهم بكفالة مالية.",
     "icon": "fas fa-scale-balanced",
-    "document": "data/petitions/documents/petition-release-on-bail.json"
+    "document": "data/petitions/documents/criminal/petition-release-on-bail.json"
   }
 ]
