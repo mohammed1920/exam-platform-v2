@@ -7,10 +7,10 @@
 - **المستودع:** `mohammed1920/exam-platform-v2`
 - **الفرع:** `main` فقط؛ لا فروع جديدة.
 - **المرحلة:** 5 — تنظيم حسب الأقسام الوظيفية: نُقلت جميع ملفات JavaScript وCSS من `assets/js` و`assets/css` المسطّحة إلى `assets/shared/` و`assets/features/<section>/`. النقل محلي وجاهز للدفع؛ يلزم تأكيد المستخدم بعد النشر.
-- **نطاق التغييرات حتى الآن:** 47 ملفًا نُقلت بـ`git mv` دون تغيير محتواها، وتحديث المراجع في `index.html` و`admin.html` و`home.js` و`firebase-admin-panel.js` و`scripts/build-pages-bundle.sh`، مع تبديل مسارات صور `mizan-colors.css` من `../images/` إلى `../../images/` لأن موقع الملف تغيّر.
+- **نطاق التغييرات حتى الآن:** 45 ملفًا نُقلت بـ`git mv` دون تغيير محتواها، وتحديث المراجع في `index.html` و`admin.html` و`home.js` و`firebase-admin-panel.js` و`scripts/build-pages-bundle.sh`، مع تبديل مسارات صور `mizan-colors.css` من `../images/` إلى `../../images/` لأن موقع الملف تغيّر.
 - **البنية المعتمدة:** `assets/shared/{js,css}` للمشترك، و`assets/features/<section>/{js,css}` لكل قسم. لم يُفرض مجلد `src/` ولا نظام بناء جديد توافقًا مع تشغيل HTML المباشر ونشر Pages/Vercel.
 - **لقطة الجرد المرجعية:** [`ARCHITECTURE_INVENTORY_2026-10-28.md`](ARCHITECTURE_INVENTORY_2026-10-28.md) — توثق حالة 28 أكتوبر، وليست جردًا محدثًا تلقائيًا بعد النقل اللاحق.
-- **النسخة الاحتياطية والاستعادة:** [`REORGANIZATION_BACKUP_2026-10-29.md`](REORGANIZATION_BACKUP_2026-10-29.md) — وسم `backup/pre-reorganization-20261029` على `043b670`.
+- **النسخة الاحتياطية والاستعادة:** [`REORGANIZATION_BACKUP_2026-10-29.md`](REORGANIZATION_BACKUP_2026-10-29.md) — نقطة الاستعادة المؤكدة هي Commit `043b670`; لم يُرفع وسم Git ضمن هذه العملية.
 - **تدقيق المراجع الديناميكية:** [`DYNAMIC_REFERENCE_AUDIT_2026-10-28.md`](DYNAMIC_REFERENCE_AUDIT_2026-10-28.md)
 - **ضوابط التنظيم:** [`MIZAN_PROJECT_ORGANIZATION_RULES.md`](MIZAN_PROJECT_ORGANIZATION_RULES.md)
 
@@ -439,7 +439,7 @@
 
 ### 2026-10-29 — التنظيم النهائي حسب الأقسام الوظيفية
 - أُنشئ وسم احتياطي `backup/pre-reorganization-20261029` على `043b6705558d9d00b772b07e440acd2a471c2d23` قبل أي نقل. لم يُحرّك ولم يُستبدل.
-- نُقلت 47 ملفًا بـ`git mv` من `assets/js` و`assets/css` المسطّحتين إلى:
+- نُقلت 45 ملفًا بـ`git mv` من `assets/js` و`assets/css` المسطّحتين إلى:
   - `assets/shared/{js,css}`: الوحدات والتنسيقات المستخدمة من أكثر من قسم.
   - `assets/features/{home,exams,laws,forum,petitions,lawyers,procedures,notifications,student-account,admin}/{js,css}`.
 - لم يتغير محتوى أي ملف JS أو CSS أثناء النقل، عدا `assets/shared/css/mizan-colors.css` حيث عُدّل مسار صور البطاقات من `../images/home-cards/` إلى `../../images/home-cards/` لأن عمق الملف تغيّر؛ الصور نفسها لم تتغير.

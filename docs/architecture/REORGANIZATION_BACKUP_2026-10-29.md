@@ -1,18 +1,18 @@
 # النسخة الاحتياطية والاستعادة — إعادة تنظيم 2026-10-29
 
-> وثيقة تشغيلية تشرح نقطة الاستعادة الخاصة بإعادة التنظيم حسب الأقسام الوظيفية، وكيفية الرجوع إليها. لا تعني أن الوسم مرفوع إلى المستودع بعد؛ راجع «حالة الرفع» أدناه.
+> وثيقة تشغيلية تشرح نقطة الاستعادة الخاصة بإعادة التنظيم حسب الأقسام الوظيفية، وكيفية الرجوع إليها. نقطة الاستعادة المؤكدة هي Commit `043b6705558d9d00b772b07e440acd2a471c2d23`؛ لم يتم إنشاء أو رفع وسم Git ضمن هذه العملية.
 
 ## 1. نقطة الاستعادة
 
 | البند | القيمة |
 |---|---|
-| الوسم | `backup/pre-reorganization-20261029` (annotated tag) |
+| الوسم | غير منشور؛ الاسم المقترح `backup/pre-reorganization-20261029` |
 | الـCommit المشار إليه | `043b6705558d9d00b772b07e440acd2a471c2d23` |
 | الفرع | `main` |
 | تاريخ الإنشاء | 2026-10-29 |
 | الرسالة | Backup before professional reorganization (pre-change state of main) |
 
-الوسم يشير إلى حالة `main` **قبل** أي نقل للملفات. لم يُستبدل وسم موجود ولم يُحرَّك بعد إنشائه.
+يشير الـCommit `043b6705558d9d00b772b07e440acd2a471c2d23` إلى حالة `main` **قبل** أي نقل للملفات.
 
 ## 2. ماذا تتضمن النسخة
 
@@ -32,13 +32,12 @@
 | الـCommit | الوصف |
 |---|---|
 | `043b670` | الحالة الأصلية المحفوظة في الوسم الاحتياطي |
-| `a08192a` | نقل الملفات إلى `assets/shared/` و`assets/features/<section>/` وتحديث المراجع |
+| `8fc9f21` | نقل الملفات إلى `assets/shared/` و`assets/features/<section>/` وتحديث المراجع |
 
 ## 4. حالة الرفع
 
-- الوسم أُنشئ محليًا في نسخة العمل ولم يُدفع بعد إلى `origin`.
-- يجب أن يُدفع الوسم صراحةً: `git push origin backup/pre-reorganization-20261029`
-- حتى يتم الدفع، لا تُعدّ النسخة الاحتياطية متاحة في المستودع البعيد.
+- لم يتم إنشاء أو رفع الوسم إلى المستودع البعيد ضمن هذه العملية.
+- يمكن إنشاء الوسم لاحقًا محليًا على نقطة الاستعادة المؤكدة ثم رفعه: `git tag -a backup/pre-reorganization-20261029 043b6705558d9d00b772b07e440acd2a471c2d23 -m "Backup before professional reorganization"` ثم `git push origin backup/pre-reorganization-20261029`.
 
 ## 5. استعادة الملفات البرمجية
 
@@ -47,7 +46,7 @@
 ```bash
 git fetch origin
 git checkout main
-git reset --hard backup/pre-reorganization-20261029
+git reset --hard 043b6705558d9d00b772b07e440acd2a471c2d23
 ```
 
 ### فحص ما تغيّر دون تعديل
@@ -60,13 +59,13 @@ git diff backup/pre-reorganization-20261029..main -- index.html admin.html
 ### استعادة ملف واحد فقط
 
 ```bash
-git checkout backup/pre-reorganization-20261029 -- assets/css/mizan-colors.css
+git checkout 043b6705558d9d00b772b07e440acd2a471c2d23 -- assets/css/mizan-colors.css
 ```
 
 ### تراجع جزئي عن آخر commit تنظيمي فقط
 
 ```bash
-git revert a08192a
+git revert 8fc9f2115d244186835208b78a21d2af5ce0b7ba
 ```
 
 هذا الخيار مفضّل إذا كانت هناك تغييرات سليمة لاحقة يجب الحفاظ عليها.
