@@ -666,8 +666,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-home-card-lawyers-image:url("../../../images/home-cards/law-courthouse-blue.svg");
   --mizan-home-card-pulpit-image:url("../../../images/home-cards/mizan-forum-green.svg");
   --mizan-home-card-random-image:url("../../../images/home-cards/law-tests-purple.svg");
-  --mizan-home-card-judicial-image:url("../../../images/home-cards/law-courthouse-blue.svg");
-  --mizan-home-card-laws-image:url("../../../images/home-cards/law-courthouse-blue.svg");
+  --mizan-home-card-judicial-image:none;
+  --mizan-home-card-laws-image:none;
   --mizan-home-card-procedures-image:url("../../../images/home-cards/legal-writing-gold.svg");
   --mizan-home-card-books-bg:linear-gradient(110deg,color-mix(in srgb,#250610 78%,transparent),color-mix(in srgb,#6F1028 84%,transparent));
   --mizan-home-card-petitions-bg:linear-gradient(110deg,color-mix(in srgb,#032632 82%,transparent),color-mix(in srgb,#00677C 82%,transparent));
