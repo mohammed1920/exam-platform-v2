@@ -1186,6 +1186,23 @@ class ExamApp {
       const state = event.state;
       const view = state && state.view;
 
+      // إذا كان المستخدم داخل عريضة مفتوحة، فالرجوع في الهاتف يجب أن يعيده
+      // إلى قائمة نماذج القسم أولاً، بصرف النظر عن حالة السجل التي أرجعها المتصفح.
+      const activeDocumentCategory = window.petitions?.getCurrentDocumentCategory?.();
+      if (activeDocumentCategory) {
+        const categoryState = {
+          view: 'petitions',
+          petitionLevel: 'category',
+          categoryId: activeDocumentCategory,
+          bookId: null,
+          chapter: null
+        };
+        history.replaceState(categoryState, '', window.location.href);
+        this.navigateTo('petitions', {}, false);
+        await window.petitions.restoreHistoryState(categoryState);
+        return;
+      }
+
       // إذا خرجنا من الاختبار، نوقف المؤقت ونحفظ المسودة.
       if (view !== 'exam' && this.timerInterval) {
         this.saveExamDraft();
