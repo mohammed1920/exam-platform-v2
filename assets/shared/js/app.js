@@ -1267,8 +1267,12 @@ class ExamApp {
           this.restoreState(state);
         }
       } else if (view === 'procedures') {
-        if (typeof window.procedures?.open === 'function') window.procedures.open(false);
-        else this.navigateTo('home', {}, false);
+        this.navigateTo('procedures', {}, false);
+        if (typeof window.procedures?.restoreHistoryState === 'function') {
+          window.procedures.restoreHistoryState(state).catch(error => console.error('تعذر استعادة حالة إجراءات الدعاوى:', error));
+        } else if (typeof window.procedures?.open === 'function') {
+          window.procedures.open(false);
+        } else this.navigateTo('home', {}, false);
 
       } else if (view === 'petitions') {
         // When leaving an open petition document, always restore its category list
