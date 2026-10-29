@@ -44,7 +44,7 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 
 ### الإدارة والمصادقة
 - `admin.html`: هيكل لوحة إدارة الكتب والفصول والأسئلة؛ تُستخدم محليًا مع GitHub Token محدود الصلاحيات عند عمليات الكتابة.
-- `firebase-admin-panel.js` (الموجود في `assets/js/`): لوحة التاج داخل المنصة لإدارة الطلاب والنتائج والمحامين والمساهمين عبر Firebase/Firestore. هذه لوحة منفصلة تمامًا عن `admin.html`؛ لا تدمج النظامين ولا تستبدل أحدهما بالآخر.
+- `firebase-admin-panel.js` (الموجود في `assets/features/admin/js/`): لوحة التاج داخل المنصة لإدارة الطلاب والنتائج والمحامين والمساهمين عبر Firebase/Firestore. هذه لوحة منفصلة تمامًا عن `admin.html`؛ لا تدمج النظامين ولا تستبدل أحدهما بالآخر.
 - `admin.js`: منطق لوحة الإدارة.
 - `admin.css`: تنسيقات لوحة الإدارة.
 - `admin-theme.js`: تبديل مظهر لوحة الإدارة.

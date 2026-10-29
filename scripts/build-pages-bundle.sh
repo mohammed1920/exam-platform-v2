@@ -46,51 +46,51 @@ cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 required_files=(
   index.html
   admin.html
-  assets/js/contact-info.js
-  assets/js/book-icons.js
-  assets/js/exam-drafts.js
-  assets/js/question-sharing.js
-  assets/js/global-search.js
-  assets/js/wrong-answers-limit.js
-  assets/js/wrong-answers-retest.js
-  assets/js/student-account-patch.js
-  assets/js/notifications.js
-  assets/js/platform-header-fix.js
-  assets/js/admin-theme.js
-  assets/js/admin.js
-  assets/js/home.js
-  assets/js/platform-bootstrap.js
-  assets/js/user-dashboard.js
-  assets/js/theme.js
-  assets/js/procedures.js
-  assets/js/platform-sidebar.js
-  assets/js/mizan-pulpit-admin.js
-  assets/js/firebase-admin-panel.js
-  assets/js/laws.js
-  assets/js/mizan-pulpit.js
-  assets/js/lawyer-directory.js
-  assets/js/petitions.js
-  assets/js/firebase-auth.js
-  assets/js/app.js
-  assets/css/platform-sidebar.css
- assets/css/platform-header.css
-  assets/css/notifications.css
-  assets/css/student-sidebar.css
-  assets/css/student-ui-fixes.css
-  assets/css/admin.css
-  assets/css/lawyer-directory.css
-  assets/css/user-dashboard.css
-  assets/css/laws.css
-  assets/css/procedures.css
-  assets/css/mizan-pulpit.css
-  assets/css/home.css
-  assets/css/petitions.css
-  assets/css/lawyer-admin.css
-  assets/css/mizan-unified-theme.css \
-  assets/css/style.css \
-  assets/css/mizan-colors.css
-  assets/css/mizan-design-tokens.css
-  assets/css/theme.css
+  assets/shared/js/contact-info.js
+  assets/shared/js/book-icons.js
+  assets/features/exams/js/exam-drafts.js
+  assets/features/exams/js/question-sharing.js
+  assets/shared/js/global-search.js
+  assets/features/exams/js/wrong-answers-limit.js
+  assets/features/exams/js/wrong-answers-retest.js
+  assets/features/student-account/js/student-account-patch.js
+  assets/features/notifications/js/notifications.js
+  assets/shared/js/platform-header-fix.js
+  assets/features/admin/js/admin-theme.js
+  assets/features/admin/js/admin.js
+  assets/features/home/js/home.js
+  assets/shared/js/platform-bootstrap.js
+  assets/features/student-account/js/user-dashboard.js
+  assets/shared/js/theme.js
+  assets/features/procedures/js/procedures.js
+  assets/shared/js/platform-sidebar.js
+  assets/features/forum/js/mizan-pulpit-admin.js
+  assets/features/admin/js/firebase-admin-panel.js
+  assets/features/laws/js/laws.js
+  assets/features/forum/js/mizan-pulpit.js
+  assets/features/lawyers/js/lawyer-directory.js
+  assets/features/petitions/js/petitions.js
+  assets/shared/js/firebase-auth.js
+  assets/shared/js/app.js
+  assets/shared/css/platform-sidebar.css
+ assets/shared/css/platform-header.css
+  assets/features/notifications/css/notifications.css
+  assets/features/student-account/css/student-sidebar.css
+  assets/features/student-account/css/student-ui-fixes.css
+  assets/features/admin/css/admin.css
+  assets/features/lawyers/css/lawyer-directory.css
+  assets/features/student-account/css/user-dashboard.css
+  assets/features/laws/css/laws.css
+  assets/features/procedures/css/procedures.css
+  assets/features/forum/css/mizan-pulpit.css
+  assets/features/home/css/home.css
+  assets/features/petitions/css/petitions.css
+  assets/features/lawyers/css/lawyer-admin.css
+  assets/shared/css/mizan-unified-theme.css \
+  assets/shared/css/style.css \
+  assets/shared/css/mizan-colors.css
+  assets/shared/css/mizan-design-tokens.css
+  assets/shared/css/theme.css
   assets/branding/meezan-assemble.json
   engine/examEngine.js
   data/books.json

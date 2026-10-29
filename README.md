@@ -23,30 +23,37 @@ Data Layer (JSON Files)
 ```
 exam-platform-v2/
 ├── index.html, admin.html       # واجهة المنصة ولوحة إدارة الكتب
-├── app.js, home.js              # حالة التطبيق والتنقل والصفحة الرئيسية
 ├── engine/examEngine.js         # محرك الاختبارات وتحميل الفصول عند الحاجة
-├── firebase-auth.js             # المصادقة
-├── contact-info.js              # بطاقات التواصل
-├── exam-drafts.js                # حفظ مسودات الاختبارات واستعادتها
-├── question-sharing.js           # مشاركة الأسئلة
-├── global-search.js              # البحث العام
-├── platform-sidebar.js           # التنقل الجانبي
-├── user-dashboard.js             # حساب الطالب وسجل النتائج المحلي
-├── admin.js, admin-theme.js      # منطق لوحة الإدارة ومظهرها
-├── mizan-colors.css              # مصدر ألوان الهوية
-├── mizan-design-tokens.css       # رموز التصميم المشتركة
-├── style.css, home.css, *.css    # تنسيقات الواجهة والأقسام
+├── assets/
+│   ├── shared/                  # مشترك بين أكثر من قسم
+│   │   ├── js/                  # app, sidebar, theme, auth, search, bootstrap
+│   │   └── css/                 # colors, tokens, style, theme, header, sidebar
+│   ├── features/                # كل قسم بملفاته الخاصة
+│   │   ├── home/                # home.js, home.css
+│   │   ├── exams/               # exam-drafts, question-sharing, wrong-answers
+│   │   ├── laws/                # laws.js, laws.css
+│   │   ├── forum/               # منبر ميزان js + css
+│   │   ├── petitions/           # العرائض js + css
+│   │   ├── lawyers/             # دليل المحامين + لوحة إدارة المحامين
+│   │   ├── procedures/          # الإجراءات js + css
+│   │   ├── notifications/       # الإشعارات js + css
+│   │   ├── student-account/     # لوحة الطالب وتنسيقاتها
+│   │   └── admin/               # إدارة الكتب ولوحة Firebase
+│   ├── branding/                # أصول الشعار المتحرك
+│   └── images/                  # الصور
 ├── data/
 │   ├── books.json                # قائمة الكتب الرئيسية
 │   ├── search-index.json         # فهرس بحث مولّد
 │   └── <book-id>/chapter_N.json  # أسئلة كل فصل
-├── assets/branding/              # أصول الشعار المتحرك
+├── api/                         # دوال Vercel
 ├── icons/                        # أيقونات PWA
 ├── scripts/                      # أدوات الفحص والفهرسة
 ├── .github/workflows/            # الفحوصات والصيانة والنشر
 ├── docs/architecture/             # خريطة الاعتماديات وخطة التنظيم
 └── DEVELOPMENT.md                 # دليل التطوير المعتمد
 ```
+
+> قاعدة التنظيم المعتمدة: ملفات كل قسم داخل `assets/features/<section>/`, والملفات المشتركة في `assets/shared/`. لا تُجمع ملفات JavaScript في مجلد واحد ولا ملفات CSS في مجلد واحد.
 
 ## 📚 نظام البيانات
 

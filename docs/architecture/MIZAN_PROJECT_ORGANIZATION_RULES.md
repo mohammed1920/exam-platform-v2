@@ -31,50 +31,38 @@ exam-platform-v2/
 ├── robots.txt
 ├── firestore.rules
 ├── storage.rules
-├── src/
-│   ├── core/                  # تهيئة التطبيق والتنقل والمنطق العام
-│   ├── design-system/         # الألوان والرموز التصميمية والثيم
-│   ├── shared/                # المكونات المشتركة: الرأس، البحث، الإشعارات...
-│   ├── features/
-│   │   ├── books/
-│   │   ├── exams/
-│   │   ├── student-account/
-│   │   ├── laws/
-│   │   ├── procedures/
-│   │   ├── petitions/
-│   │   ├── lawyers-directory/
-│   │   └── mizan-forum/
-│   └── services/              # Firebase وخدمات البيانات والبحث
-├── data/
-│   ├── books/
-│   │   └── questions/
+├── engine/
+│   └── examEngine.js          # محرك الاختبارات
+├── assets/
+│   ├── shared/                # يُستخدم من أكثر من قسم واحد
+│   │   ├── js/                # app, platform-sidebar, theme, firebase-auth, global-search, contact-info, book-icons, platform-bootstrap, platform-header-fix
+│   │   └── css/               # mizan-colors, mizan-design-tokens, mizan-unified-theme, theme, style, platform-header, platform-sidebar
+│   ├── features/              # كل قسم وملفاته الخاصة
+│   │   ├── home/{js,css}/
+│   │   ├── exams/{js,css}/
+│   │   ├── laws/{js,css}/
+│   │   ├── forum/{js,css}/
+│   │   ├── petitions/{js,css}/
+│   │   ├── lawyers/{js,css}/
+│   │   ├── procedures/{js,css}/
+│   │   ├── notifications/{js,css}/
+│   │   ├── student-account/{js,css}/
+│   │   └── admin/{js,css}/
+│   ├── branding/
+│   └── images/
+├── data/                      # يبقى كما هو: كتب وفصول وقوانين وعرائض وفهارس
+│   ├── books.json
+│   ├── question-metadata.json
+│   ├── search-index.json
 │   ├── laws/
 │   ├── petitions/
-│   ├── notifications.json
-│   ├── contact.json
-│   ├── search-index.json
-│   └── question-metadata.json
-├── assets/
-│   ├── branding/
-│   ├── images/
-│   └── icons/
+│   └── <book-id>/chapter_N.json
 ├── api/                       # واجهات Vercel serverless
-├── admin/                     # ملفات لوحة الإدارة بعد تدقيق المراجع
-├── scripts/
-│   ├── build/
-│   ├── validation/
-│   ├── search-index/
-│   └── maintenance/
-├── tests/
-│   ├── architecture/
-│   ├── data/
-│   └── smoke/
+├── icons/                     # أيقونات PWA
+├── scripts/                   # البناء والتحقق والفهرسة
 ├── docs/
-│   ├── architecture/
-│   ├── guides/
-│   └── procedures/
+│   └── architecture/
 ├── reports/
-├── icons/                     # يبقى حتى تدقيق جميع المراجع
 ├── .github/workflows/
 ├── README.md
 ├── DEVELOPMENT.md
@@ -84,19 +72,23 @@ exam-platform-v2/
 
 ## 4. مسؤولية المجلدات
 
-- `src/core/`: التهيئة العامة وتدفق التطبيق والتنقل المشترك، وليس منطق قسم متخصص.
-- `src/design-system/`: المصدر المركزي للألوان والرموز والثيمات. لا تُضاف ألوان مستقلة متعارضة داخل الأقسام.
-- `src/shared/`: وظائف وواجهات مشتركة فعلًا بين أقسام متعددة.
-- `src/features/<feature>/`: منطق القسم وملفات CSS/JS الخاصة به. لا تُنقل ميزة إلى هنا قبل حصر جميع مراجعها.
-- `src/services/`: تكاملات وخدمات مشتركة مثل Firebase وتحميل البيانات والبحث.
-- `data/`: البيانات والمحتوى والفهارس. تُحفظ معرّفات السجلات وبنية البيانات المتوافقة مع التطبيق.
-- `assets/`: الصور والشعارات والخطوط والموارد الثابتة، مع الحفاظ على مساراتها أو تحديث جميع المراجع.
-- `api/`: نقاط النهاية التي يعتمد عليها نشر Vercel؛ يجب إبقاء المسارات المتوقعة متوافقة.
-- `admin/`: ملفات واجهات الإدارة بعد التأكد من مراجع HTML والتحميل.
-- `scripts/`: أدوات البناء والتحقق وتوليد الفهارس والصيانة.
-- `tests/`: اختبارات آلية قابلة للتكرار. لا يُدّعى تنفيذ اختبار لم يُشغّل فعليًا.
-- `docs/`: التوثيق وخريطة الاعتماديات وخطط التغيير.
-- `.github/workflows/`: سير عمل GitHub Actions، ولا يُنقل خارج المسار الذي يتعرف عليه GitHub.
+- `assets/shared/js/`: وحدات تُستخدم فعليًا من أكثر من قسم: التطبيق `app.js`، التنقل الجانبي، الثيم، المصادقة، البحث العام، بطاقات التواصل، أيقونات الكتب، التهيئة النهائية، شعار الرأس.
+- `assets/shared/css/`: نظام التصميم المركزي (`mizan-colors`, `mizan-design-tokens`, `mizan-unified-theme`, `theme`) والتنسيقات المشتركة (`style`, `platform-header`, `platform-sidebar`).
+- `assets/features/<section>/js|css/`: ملفات القسم نفسه فقط. لا تُنقل ميزة قبل حصر جميع مراجعها.
+- `engine/`: محرك الاختبارات؛ يبقى مساره لأن ترتيب التحميل جزء من العقد.
+- `data/`: البيانات والمحتوى والفهارس. تُحفظ معرّفات السجلات وبنية البيانات. لا تُنقل ملفات البيانات في هذه المرحلة.
+- `assets/branding/` و`assets/images/`: الصور والشعارات.
+- `api/`: نقاط نهاية Vercel؛ تبقى في مكانها.
+- `scripts/`: أدوات البناء والتحقق وتوليد الفهارس.
+- `docs/`: التوثيق وخريطة الاعتماديات.
+- `.github/workflows/`: سير عمل GitHub Actions؛ لا يُنقل.
+
+### 4.1 قاعدة التنظيم الملزمة
+
+- ملفات كل قسم داخل `assets/features/<section>/`، والملفات المشتركة في `assets/shared/`.
+- لا تُجمع جميع ملفات JavaScript في مجلد واحد ولا جميع ملفات CSS في مجلد واحد؛ هذا النمط مسحوب وممنوع.
+- ما يزال الوضع الحالي متوافقًا مع ما قبل الترحيل: صفحة HTML واحدة تحمّل السكربتات كلاسيكيًا بترتيب محدد. لذلك لم يُفرض مجلد `src/` ولا نظام بناء جديد.
+- عند إضافة قسم جديد: أنشئ `assets/features/<section>/js` و`css`، أضف موارده إلى `index.html` أو إلى محمّل القسم، ثم أضف مساراته إلى `scripts/build-pages-bundle.sh`.
 
 ## 5. ملفات ومسارات يجب إبقاؤها في أماكنها حاليًا
 
