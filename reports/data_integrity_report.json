@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-29T13:44:05+00:00",
+  "generated_at": "2026-10-29T14:21:55+00:00",
   "summary": {
     "books": 12,
     "questions": 15829,
-    "issues": 19
+    "issues": 18
   },
   "items": [
     {
@@ -14,11 +14,6 @@
     {
       "type": "orphan_book_folder",
       "book_id": "petitions",
-      "message": "مجلد بيانات غير موجود في books.json؛ لا يُحذف تلقائياً."
-    },
-    {
-      "type": "orphan_book_folder",
-      "book_id": "procedures",
       "message": "مجلد بيانات غير موجود في books.json؛ لا يُحذف تلقائياً."
     },
     {
