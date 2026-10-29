@@ -1,4 +1,5 @@
 const PROJECT_ID = process.env.FIREBASE_PROJECT_ID || 'iraq-law-test';
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY || 'AIzaSyDDZNWGjUfcuyXHyWtILZ06hnOWW-ZxGIM';
 const VALID_CATEGORIES = new Set(['civil', 'criminal', 'administrative', 'personal']);
 const MAX_BODY_BYTES = 30000;
 
@@ -14,8 +15,8 @@ module.exports = async function handler(req, res) {
   }
 
   const githubToken = process.env.GITHUB_TOKEN;
-  const firebaseApiKey = process.env.FIREBASE_API_KEY;
-  if (!githubToken || !firebaseApiKey) {
+  const firebaseApiKey = FIREBASE_API_KEY;
+  if (!githubToken) {
     return send(res, 503, { error: 'github_configuration_missing' });
   }
 
@@ -91,7 +92,7 @@ module.exports = async function handler(req, res) {
 
     const writeBody = {
       message: `Save legal procedure: ${title}`,
-      content: Buffer.from(JSON.stringify(procedure, null, 2) + '\\n', 'utf8').toString('base64'),
+      content: Buffer.from(JSON.stringify(procedure, null, 2) + '\n', 'utf8').toString('base64'),
       branch: 'main'
     };
     if (sha) writeBody.sha = sha;
