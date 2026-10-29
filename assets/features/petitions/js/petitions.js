@@ -435,5 +435,17 @@
     }
   }
   function getCurrentDocumentCategory(){return state.template&&state.categoryId?state.categoryId:null;}
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,getCurrentDocumentCategory});
+  function backToCategoryFromDocument(){
+    const categoryId=getCurrentDocumentCategory();
+    if(!categoryId)return false;
+    state.template=null;
+    state.mode='read';
+    const category=state.categories.find(c=>c.id===categoryId);
+    const items=state.categoryTemplates[categoryId];
+    renderHome();
+    if(category&&items)renderCards('',category,items);
+    else openCategory(categoryId,false);
+    return true;
+  }
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,getCurrentDocumentCategory,backToCategoryFromDocument});
 })();
