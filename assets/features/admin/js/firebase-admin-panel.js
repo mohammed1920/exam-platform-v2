@@ -252,7 +252,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
 
   async function saveLegalProcedure(event){
     event.preventDefault();
-    if(!isAdmin||!window.publicAuth?.firestore)return;
+    if(!isAdmin||!window.publicAuth?.firestore||!window.publicAuth?.user)return;
     const f=els.procedureForm,id=String(f.elements.id.value||'').trim();
     const category=String(f.elements.category.value||'').trim();
     const validCategories=['civil','criminal','administrative','personal'];
@@ -271,32 +271,48 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       legalBasis:String(f.elements.legalBasis.value||'').trim().slice(0,5000),
       fees:String(f.elements.fees.value||'').trim().slice(0,500),
       duration:String(f.elements.duration.value||'').trim().slice(0,500),
-      published:Boolean(f.elements.published.checked),
-      updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+      published:Boolean(f.elements.published.checked)
     };
     if(data.title.length<3){
       setStatus('عنوان الإجراء مطلوب ويجب ألا يقل عن 3 محارف.',true);
       return;
     }
+    setStatus('جارٍ حفظ الإجراء في قاعدة البيانات وملف التصنيف...',false);
     try{
       const db=window.publicAuth.firestore;
-      if(id)await db.collection('legalProcedures').doc(id).update(data);
-      else{
+      let procedureId=id;
+      if(id){
+        await db.collection('legalProcedures').doc(id).update({...data,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      }else{
         data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
         data.createdBy=window.publicAuth.user.uid;
-        await db.collection('legalProcedures').add(data);
+        data.updatedAt=firebase.firestore.FieldValue.serverTimestamp();
+        const saved=await db.collection('legalProcedures').add(data);
+        procedureId=saved.id;
       }
+      const token=await window.publicAuth.user.getIdToken();
+      const fileResponse=await fetch('/api/procedure-file',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body:JSON.stringify({id:procedureId,...data})
+      });
+      let fileResult={};
+      try{fileResult=await fileResponse.json();}catch(_){}
+      if(!fileResponse.ok)throw new Error(fileResult.error||'تعذر حفظ ملف JSON في المستودع');
+      f.elements.id.value=procedureId;
       resetLegalProcedure();
       const indexSynced=await loadLegalProcedures();
       setStatus(
         indexSynced
-          ? 'تم حفظ الإجراء وتحديث الفهرس العام في Firebase.'
-          : 'تم حفظ الإجراء، لكن تعذر تحديث الفهرس العام. تحقق من قواعد Firestore المنشورة.',
+          ? 'تم حفظ الإجراء في Firebase وملف JSON داخل تصنيفه في GitHub، وتم تحديث الفهرس.'
+          : 'تم حفظ الإجراء وملف JSON، لكن تعذر تحديث الفهرس العام في Firebase.',
         !indexSynced
       );
     }catch(e){
       console.error('Legal procedure save failed:',e);
-      setStatus('تعذر حفظ الإجراء. تحقق من قواعد Firestore المنشورة.',true);
+      setStatus(e.message==='github_configuration_missing'
+        ? 'تم حفظ الإجراء في Firebase، لكن يلزم ضبط GITHUB_TOKEN وFIREBASE_API_KEY في إعدادات Vercel لحفظ ملف JSON.'
+        : 'تم حفظ الإجراء في Firebase، لكن تعذر حفظ ملف التصنيف في GitHub. '+String(e.message||''),true);
     }
   }
 
