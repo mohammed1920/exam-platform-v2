@@ -896,7 +896,7 @@
             if (t !== null && t.trim()) {
                 config.token = t.trim();
                 config.user = '';
-                resolveGitHubIdentity().then(loadBooks).catch(e => showAlert(e.message, 'error'));
+                resolveGitHubIdentity().then(async () => { await loadBooks(); await loadPetitionTemplateCategories(); }).catch(e => showAlert(e.message, 'error'));
             }
         }
 
