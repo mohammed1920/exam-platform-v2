@@ -3,8 +3,6 @@
   'use strict';
 
   const collectionNames = { requests: 'procedureAccessRequests', access: 'procedureAccess' };
-  const proceduresScriptUrl = document.currentScript?.src || new URL('assets/features/procedures/js/procedures.js', location.href).href;
-  const demoProcedureUrl = category => new URL(`../../../../data/procedures/${category}/sample.json`, proceduresScriptUrl).href;
   let root = null;
   let currentUser = null;
   let currentRequest = null;
@@ -112,20 +110,7 @@
     const validCategories = new Set(['civil', 'criminal', 'administrative', 'personal']);
     const publishedItems = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim() && validCategories.has(item.category))
       .map(item => ({ id: item.id, title: item.title.trim(), category: item.category, categoryTitle: typeof item.categoryTitle === 'string' ? item.categoryTitle : '', summary: typeof item.summary === 'string' ? item.summary : '' }));
-    const demoItems = [];
-    for (const category of validCategories) {
-      try {
-        const response = await fetch(demoProcedureUrl(category), { cache: 'no-cache' });
-        if (!response.ok) continue;
-        const item = await response.json();
-        if (item?.isDemo === true && item.id && item.title && item.category === category) {
-          demoItems.push({ id: item.id, title: item.title, category, categoryTitle: item.categoryTitle || '', summary: item.summary || '', isDemo: true });
-        }
-      } catch (error) {
-        console.warn('تعذر تحميل نموذج إجراء تجريبي:', category, error);
-      }
-    }
-    titles = [...publishedItems, ...demoItems.filter(demo => !publishedItems.some(item => item.id === demo.id))];
+    titles = publishedItems;
   }
   const procedureCategories = [{id:'civil',title:'الدعاوى المدنية',description:'المطالبة بالحقوق المدنية والديون والعقود والتعويض.'},{id:'criminal',title:'الدعاوى الجزائية',description:'الشكوى والتحقيق والمحاكمة والطعن في الدعاوى الجزائية.'},{id:'administrative',title:'الدعاوى الإدارية',description:'الطعن بالقرارات الإدارية وطلبات الإلغاء بحسب الاختصاص.'},{id:'personal',title:'دعاوى الأحوال الشخصية',description:'الزواج والطلاق والنفقة والحضانة وما يتصل بها.'}];
   function normalizeProcedureSearch(value){return String(value||'').toLocaleLowerCase('ar').replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();}
@@ -180,18 +165,9 @@
     try {
       let data = detailCache.get(id);
       if (!data) {
-        if (id.startsWith('demo-')) {
-          const item = titles.find(entry => entry.id === id && entry.isDemo);
-          if (!item) throw new Error('النموذج التجريبي غير موجود في الفهرس');
-          const response = await fetch(demoProcedureUrl(item.category), { cache: 'no-cache' });
-          if (!response.ok) throw new Error('تعذر تحميل النموذج التجريبي');
-          data = await response.json();
-          if (data?.isDemo !== true || data.id !== id) throw new Error('بيانات النموذج التجريبي غير صحيحة');
-        } else {
-          const snap = await window.publicAuth.firestore.collection('legalProcedures').doc(id).get();
-          if (!snap.exists || snap.data()?.published !== true) throw new Error('الإجراء غير متاح أو لم يعد منشوراً');
-          data = { id: snap.id, ...snap.data() };
-        }
+        const snap = await window.publicAuth.firestore.collection('legalProcedures').doc(id).get();
+        if (!snap.exists || snap.data()?.published !== true) throw new Error('الإجراء غير متاح أو لم يعد منشوراً');
+        data = { id: snap.id, ...snap.data() };
         detailCache.set(id, data);
       }
       host.innerHTML = `<button type="button" class="procedures-detail-back" id="procedures-detail-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى الفهرس</button><article class="procedures-detail-card"><div class="procedures-detail-kicker">إجراءات الدعاوى · ميزان</div><h3>${esc(data.title || titles.find(item => item.id === id)?.title || 'إجراء قانوني')}</h3>${detailBlock('نبذة عن الإجراء', data.summary)}${detailBlock('الشروط والاختصاص', data.requirements)}${detailBlock('المستندات المطلوبة', data.documents)}${detailBlock('خطوات الإجراء', data.steps)}${detailBlock('السند القانوني', data.legalBasis)}${detailBlock('الرسوم', data.fees)}${detailBlock('المدد القانونية أو المتوقعة', data.duration)}<p class="procedures-detail-disclaimer">تحقّق من النصوص الرسمية النافذة قبل اتخاذ أي إجراء.</p></article>`;
