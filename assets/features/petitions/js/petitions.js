@@ -434,5 +434,6 @@
       renderLoadError('تعذر استعادة قسم العرائض. حاول مرة أخرى.');
     }
   }
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState});
+  function getCurrentDocumentCategory(){return state.template&&state.categoryId?state.categoryId:null;}
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,getCurrentDocumentCategory});
 })();
