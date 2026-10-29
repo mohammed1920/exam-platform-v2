@@ -896,7 +896,7 @@
             if (t !== null && t.trim()) {
                 config.token = t.trim();
                 config.user = '';
-                resolveGitHubIdentity().then(async () => { await loadBooks(); await loadPetitionTemplateCategories(); }).catch(e => showAlert(e.message, 'error'));
+                resolveGitHubIdentity().then(loadBooks).catch(e => showAlert(e.message, 'error'));
             }
         }
 
@@ -1536,76 +1536,8 @@
             } catch (e) { showAlert('تعذر حذف الإشعار: ' + e.message, 'error'); }
         }
 
-        let petitionTemplateCategories = [];
-
-        async function loadPetitionTemplateCategories() {
-            const select = document.getElementById('petition-template-category');
-            if (!select) return;
-            try {
-                const remote = await ghRequest('data/petitions/categories.json');
-                petitionTemplateCategories = JSON.parse(decode(remote.content));
-                if (!Array.isArray(petitionTemplateCategories) || !petitionTemplateCategories.length) throw new Error('ملف تصنيفات العرائض غير صالح.');
-                select.innerHTML = '<option value="">اختر التصنيف</option>' + petitionTemplateCategories.map(category =>
-                    '<option value="' + escapeAttr(category.id) + '">' + escapeHtml(category.name) + '</option>').join('');
-                select.addEventListener('change', updatePetitionTemplatePathPreview);
-                updatePetitionTemplatePathPreview();
-            } catch (error) {
-                select.innerHTML = '<option value="">تعذر تحميل التصنيفات</option>';
-                showAlert('تعذر تحميل تصنيفات العرائض: ' + error.message, 'error');
-            }
-        }
-
-        function updatePetitionTemplatePathPreview() {
-            const select = document.getElementById('petition-template-category');
-            const preview = document.getElementById('petition-template-path-preview');
-            if (select && preview) preview.textContent = select.value || '[التصنيف]';
-        }
-
-        function clearPetitionTemplateForm() {
-            document.getElementById('petition-template-name').value = '';
-            document.getElementById('petition-template-category').value = '';
-            document.getElementById('petition-template-description').value = '';
-            document.getElementById('petition-template-body').value = '';
-            document.getElementById('petition-template-icon').value = 'fas fa-file-signature';
-            updatePetitionTemplatePathPreview();
-        }
-
-        async function savePetitionTemplate() {
-            const name = document.getElementById('petition-template-name').value.trim();
-            const categoryId = document.getElementById('petition-template-category').value;
-            const description = document.getElementById('petition-template-description').value.trim();
-            const body = document.getElementById('petition-template-body').value.trim();
-            const icon = document.getElementById('petition-template-icon').value.trim() || 'fas fa-file-signature';
-            const category = petitionTemplateCategories.find(item => item.id === categoryId);
-            if (!name || !category || !body) {
-                showAlert('يرجى إدخال اسم النموذج وتصنيفه ونص العريضة.', 'error');
-                return;
-            }
-            if (!config.token) {
-                showAlert('أدخل رمز GitHub أولاً.', 'error');
-                return;
-            }
-            try {
-                const uid = 'petition-' + (window.crypto && typeof window.crypto.randomUUID === 'function'
-                    ? window.crypto.randomUUID()
-                    : Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12));
-                const path = 'data/petitions/documents/' + categoryId + '/' + uid + '.json';
-                const documentData = { uid, name, categoryId, description, icon, body };
-                await commitFiles([{ path, content: JSON.stringify(documentData, null, 2) }],
-                    'إضافة نموذج عريضة: ' + name + ' (' + categoryId + ')');
-                clearPetitionTemplateForm();
-                showAlert('تم حفظ النموذج داخل مجلد تصنيفه: ' + categoryId + '. سيظهر بعد اكتمال النشر.');
-            } catch (error) {
-                showAlert('تعذر حفظ نموذج العريضة: ' + error.message, 'error');
-            }
-        }
-
         window.onload = () => {
-            if (config.token) {
-                loadBooks();
-                loadPetitionTemplateCategories();
-            } else {
-                openSettings();
-            }
+            if (config.token) loadBooks();
+            else openSettings();
         };
     
