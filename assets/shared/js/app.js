@@ -1199,7 +1199,9 @@ class ExamApp {
         };
         history.replaceState(categoryState, '', window.location.href);
         this.navigateTo('petitions', {}, false);
-        await window.petitions.restoreHistoryState(categoryState);
+        window.petitions.restoreHistoryState(categoryState).catch(error => {
+          console.error('تعذر استعادة قائمة نماذج العرائض:', error);
+        });
         return;
       }
 
