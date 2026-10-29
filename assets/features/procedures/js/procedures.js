@@ -131,6 +131,17 @@
   function normalizeProcedureSearch(value){return String(value||'').toLocaleLowerCase('ar').replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();}
   function procedureCategory(item){return ['civil','criminal','administrative','personal'].includes(item?.category)?item.category:null;}
   let activeProcedureCategory = null;
+  let activeProcedureDetail = null;
+  let restoringProcedureHistory = false;
+  function pushProcedureState(level, extra = {}) {
+    if (restoringProcedureHistory) return;
+    history.pushState({ ...(history.state || {}), view: 'procedures', proceduresLevel: level, procedureCategoryId: activeProcedureCategory, procedureId: activeProcedureDetail, ...extra }, '', location.href);
+  }
+  function returnToProcedureParent() {
+    if (history.state?.view === 'procedures' && history.state?.proceduresLevel) history.back();
+    else if (activeProcedureCategory) { activeProcedureDetail = null; renderProcedureCategoryResults(activeProcedureCategory, false); }
+    else { activeProcedureDetail = null; renderCatalog(); }
+  }
   function renderCatalog(){
     const host=root.querySelector('#procedures-access-state');
     const counts=procedureCategories.reduce((result,category)=>{result[category.id]=titles.filter(item=>procedureCategory(item)===category.id).length;return result;},{});
@@ -139,13 +150,13 @@
       <div class="procedures-catalog-heading"><div><span>فهرس الإجراءات</span><h3>اختر نوع الدعوى</h3></div><span class="procedures-count">${titles.length} إجراء</span></div>
       <section class="procedures-search-panel" aria-label="البحث في إجراءات الدعاوى"><label for="procedures-search-input"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> ابحث عن الإجراء الذي تحتاجه</label><div class="procedures-search-field"><input id="procedures-search-input" type="search" autocomplete="off" placeholder="مثلاً: مطالبة بدين أو مدة الطعن"><button type="button" id="procedures-search-clear" hidden aria-label="مسح البحث"><i class="fas fa-xmark" aria-hidden="true"></i></button></div><div id="procedures-search-results" class="procedures-search-results" aria-live="polite"><p class="procedures-search-empty">اكتب اسم الإجراء أو جزءاً منه للعثور عليه بسرعة.</p></div></section>
       <section id="procedures-content-panel" class="procedures-content-panel"><div id="procedures-category-grid" class="procedures-category-grid">${procedureCategories.map(category=>`<button type="button" class="procedures-category-card procedures-category-card--${category.id}" data-procedure-category="${category.id}"><span class="procedures-category-title">${esc(category.title)}</span><span class="procedures-category-description">${esc(category.description)}</span><span class="procedures-category-count">${counts[category.id]} إجراء <i class="fas fa-angle-left" aria-hidden="true"></i></span></button>`).join('')}</div><section id="procedures-category-results" class="procedures-category-results" hidden></section><div id="procedures-detail" class="procedures-detail" hidden></div></section>`;
-    host.querySelectorAll('[data-procedure-category]').forEach(button=>button.addEventListener('click',()=>renderProcedureCategoryResults(button.dataset.procedureCategory)));
+    host.querySelectorAll('[data-procedure-category]').forEach(button=>button.addEventListener('click',()=>{ activeProcedureDetail=null; pushProcedureState('category',{procedureCategoryId:button.dataset.procedureCategory,procedureId:null}); renderProcedureCategoryResults(button.dataset.procedureCategory,false); }));
     const input=host.querySelector('#procedures-search-input'),clear=host.querySelector('#procedures-search-clear');
     input.addEventListener('input',()=>{clear.hidden=!input.value;renderProcedureSearchResults(input.value);});
     clear.addEventListener('click',()=>{input.value='';clear.hidden=true;renderProcedureSearchResults('');input.focus();});
   }
   function renderProcedureItems(items,heading,target){if(!target)return;target.hidden=false;target.innerHTML=`<div class="procedures-results-heading"><h4>${esc(heading)}</h4><span>${items.length} نتيجة</span></div>${items.length?`<div class="procedures-title-list">${items.map(item=>`<button type="button" class="procedures-title-item" data-procedure-id="${esc(item.id)}"><span>${esc(item.title)}</span><i class="fas fa-angle-left" aria-hidden="true"></i></button>`).join('')}</div>`:'<p class="procedures-empty">ما لقينا إجراءات مطابقة. جرّب كلمة ثانية.</p>'}`;target.querySelectorAll('[data-procedure-id]').forEach(button=>button.addEventListener('click',()=>openDetail(button.dataset.procedureId)));}
-  function renderProcedureCategoryResults(categoryId){const category=procedureCategories.find(item=>item.id===categoryId),grid=root.querySelector('#procedures-category-grid'),target=root.querySelector('#procedures-category-results'),detail=root.querySelector('#procedures-detail');if(!category||!target||!grid||!detail)return;activeProcedureCategory=categoryId;grid.hidden=true;detail.hidden=true;detail.innerHTML='';target.hidden=false;renderProcedureItems(titles.filter(item=>procedureCategory(item)===categoryId),category.title,target);target.insertAdjacentHTML('afterbegin','<button type="button" class="procedures-detail-back procedures-category-back" id="procedures-category-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى تصنيفات الدعاوى</button>');target.querySelector('#procedures-category-back')?.addEventListener('click',()=>{activeProcedureCategory=null;target.hidden=true;target.innerHTML='';grid.hidden=false;grid.scrollIntoView({behavior:'smooth',block:'start'});});target.scrollIntoView({behavior:'smooth',block:'start'});}
+  function renderProcedureCategoryResults(categoryId, updateHistory=true){const category=procedureCategories.find(item=>item.id===categoryId),grid=root.querySelector('#procedures-category-grid'),target=root.querySelector('#procedures-category-results'),detail=root.querySelector('#procedures-detail');if(!category||!target||!grid||!detail)return;if(updateHistory)pushProcedureState('category',{procedureCategoryId:categoryId,procedureId:null});activeProcedureCategory=categoryId;activeProcedureDetail=null;grid.hidden=true;detail.hidden=true;detail.innerHTML='';target.hidden=false;renderProcedureItems(titles.filter(item=>procedureCategory(item)===categoryId),category.title,target);target.insertAdjacentHTML('afterbegin','<button type="button" class="procedures-detail-back procedures-category-back" id="procedures-category-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى تصنيفات الدعاوى</button>');target.querySelector('#procedures-category-back')?.addEventListener('click',returnToProcedureParent);target.scrollIntoView({behavior:'smooth',block:'start'});}
   function renderProcedureSearchResults(query){const target=root.querySelector('#procedures-search-results');if(!target)return;const normalized=normalizeProcedureSearch(query);if(!normalized){target.innerHTML='<p class="procedures-search-empty">اكتب اسم الإجراء أو جزءاً منه للعثور عليه بسرعة.</p>';return;}const terms=normalized.split(' ').filter(Boolean);const matches=titles.filter(item=>{const text=normalizeProcedureSearch([item.title,item.categoryTitle,item.summary].filter(Boolean).join(' '));return terms.every(term=>text.includes(term));}).slice(0,30);renderProcedureItems(matches,'نتائج البحث في إجراءات الدعاوى',target);}
   function detailBlock(title, value) {
     const values = Array.isArray(value) ? value : String(value || '').split(/\\r?\\n/);
@@ -154,8 +165,10 @@
     return `<section class="procedures-detail-section"><h4>${esc(title)}</h4>${clean.length > 1 ? `<ol>${clean.map(v => `<li>${esc(v)}</li>`).join('')}</ol>` : `<p>${esc(clean[0])}</p>`}</section>`;
   }
 
-  async function openDetail(id) {
+  async function openDetail(id, restore = false) {
     if (!hasAccess || !currentUser) return;
+    if (!restore) { activeProcedureDetail = id; pushProcedureState('detail', { procedureCategoryId: activeProcedureCategory, procedureId: id }); }
+    else activeProcedureDetail = id;
     const host = root.querySelector('#procedures-detail');
     const grid = root.querySelector('#procedures-category-grid');
     const categoryResults = root.querySelector('#procedures-category-results');
@@ -182,7 +195,7 @@
         detailCache.set(id, data);
       }
       host.innerHTML = `<button type="button" class="procedures-detail-back" id="procedures-detail-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى الفهرس</button><article class="procedures-detail-card"><div class="procedures-detail-kicker">إجراءات الدعاوى · ميزان</div><h3>${esc(data.title || titles.find(item => item.id === id)?.title || 'إجراء قانوني')}</h3>${detailBlock('نبذة عن الإجراء', data.summary)}${detailBlock('الشروط والاختصاص', data.requirements)}${detailBlock('المستندات المطلوبة', data.documents)}${detailBlock('خطوات الإجراء', data.steps)}${detailBlock('السند القانوني', data.legalBasis)}${detailBlock('الرسوم', data.fees)}${detailBlock('المدد القانونية أو المتوقعة', data.duration)}<p class="procedures-detail-disclaimer">تحقّق من النصوص الرسمية النافذة قبل اتخاذ أي إجراء.</p></article>`;
-      host.querySelector('#procedures-detail-back')?.addEventListener('click', () => { host.hidden = true; host.innerHTML = ''; if (activeProcedureCategory) { renderProcedureCategoryResults(activeProcedureCategory); } else { grid.hidden = false; grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+      host.querySelector('#procedures-detail-back')?.addEventListener('click', returnToProcedureParent);
       host.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (error) {
       console.error('Mizan procedure detail load failed:', error);
@@ -284,6 +297,27 @@
     }
   }
 
+
+  async function restoreHistoryState(historyState) {
+    if (!root) ensureSection();
+    if (!hasAccess || !currentUser) { await refreshAccess(); return; }
+    const level = historyState?.proceduresLevel || 'catalog';
+    restoringProcedureHistory = true;
+    try {
+      if (!root.querySelector('#procedures-category-grid')) renderCatalog();
+      if (level === 'detail' && historyState.procedureId) {
+        const categoryId = historyState.procedureCategoryId || titles.find(item => item.id === historyState.procedureId)?.category || null;
+        if (categoryId) renderProcedureCategoryResults(categoryId, false);
+        activeProcedureDetail = historyState.procedureId;
+        await openDetail(historyState.procedureId, true);
+      } else if (level === 'category' && historyState.procedureCategoryId) {
+        renderProcedureCategoryResults(historyState.procedureCategoryId, false);
+      } else {
+        activeProcedureCategory = null; activeProcedureDetail = null; renderCatalog();
+      }
+    } finally { restoringProcedureHistory = false; }
+  }
+
   async function open(pushState = true) {
     ensureSection();
     if (!root.querySelector('.procedures-shell')) renderIntro();
@@ -301,7 +335,7 @@
     window.addEventListener('firebase-admin-state-changed', () => {
       if (root?.classList.contains('active')) refreshAccess();
     });
-    window.procedures = { open, refreshAccess };
+    window.procedures = { open, refreshAccess, restoreHistoryState };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
