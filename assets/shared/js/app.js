@@ -1254,6 +1254,22 @@ class ExamApp {
         else this.navigateTo('home', {}, false);
 
       } else if (view === 'petitions') {
+        // When leaving an open petition document, always restore its category list
+        // first, even if an older/duplicate browser entry points to the document or home.
+        const activeDocumentCategory = window.petitions?.getCurrentDocumentCategory?.();
+        if (activeDocumentCategory) {
+          const categoryState = {
+            view: 'petitions',
+            petitionLevel: 'category',
+            categoryId: activeDocumentCategory,
+            bookId: null,
+            chapter: null
+          };
+          history.replaceState(categoryState, '', window.location.href);
+          this.navigateTo('petitions', {}, false);
+          window.petitions.restoreHistoryState(categoryState);
+          return;
+        }
         this.navigateTo('petitions', {}, false);
         if (window.petitions && typeof window.petitions.restoreHistoryState === 'function') {
           window.petitions.restoreHistoryState(state);
