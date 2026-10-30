@@ -202,6 +202,9 @@
       let keyboardActive=false;
       let baselineHeight=window.innerHeight;
       let closeTimer=0;
+      let toolbarInteractionUntil=0;
+      const toolbarIsActive=()=>editorToolbar.contains(document.activeElement);
+      const markToolbarInteraction=()=>{toolbarInteractionUntil=Date.now()+2500;clearTimeout(closeTimer);};
       const setKeyboardToolbar=(active)=>{
         if(!mobileEditorQuery.matches)active=false;
         if(active===keyboardActive)return;
@@ -229,22 +232,25 @@
         const keyboardGap=Math.max(0,layoutHeight-visibleHeight-visibleTop);
         const keyboardReduced=baselineHeight-visibleHeight>100;
         const editorHasFocus=document.activeElement===editor;
+        const toolbarHasFocus=toolbarIsActive();
+        const toolbarInteractionPending=Date.now()<toolbarInteractionUntil;
         const keyboardOpen=(keyboardGap>100||keyboardReduced)&&
-          (editorHasFocus||keyboardActive);
+          (editorHasFocus||keyboardActive||toolbarHasFocus||toolbarInteractionPending);
         if(keyboardOpen){
           clearTimeout(closeTimer);
           setKeyboardToolbar(true);
           // Track the visual viewport's lower edge; do not add a second offset when the
           // browser has already resized the layout viewport to the keyboard.
           editorToolbar.style.bottom=Math.max(0,keyboardGap)+'px';
-        }else if(keyboardActive&&(!editorHasFocus||visibleHeight>=baselineHeight-80)){
+        }else if(keyboardActive&&!editorHasFocus&&!toolbarHasFocus&&!toolbarInteractionPending&&visibleHeight>=baselineHeight-80){
           clearTimeout(closeTimer);
           closeTimer=setTimeout(()=>{
             const nowHeight=viewport?viewport.height:window.innerHeight;
-            if(nowHeight>=baselineHeight-80||!document.activeElement||document.activeElement!==editor){
+            const focusStillInToolbar=toolbarIsActive();
+            if(nowHeight>=baselineHeight-80&&!focusStillInToolbar&&Date.now()>=toolbarInteractionUntil){
               setKeyboardToolbar(false);
             }
-          },180);
+          },350);
         }else if(!keyboardActive){
           editorToolbar.style.removeProperty('bottom');
         }
@@ -258,7 +264,11 @@
         clearTimeout(closeTimer);
         closeTimer=setTimeout(updateMobileEditorToolbar,250);
       });
-      editorToolbar.addEventListener('focusin',()=>clearTimeout(closeTimer));
+      editorToolbar.addEventListener('pointerdown',markToolbarInteraction,{passive:true});
+      editorToolbar.addEventListener('touchstart',markToolbarInteraction,{passive:true});
+      editorToolbar.addEventListener('mousedown',markToolbarInteraction);
+      editorToolbar.addEventListener('focusin',markToolbarInteraction);
+      editorToolbar.addEventListener('change',markToolbarInteraction,true);
       if(viewport){
         viewport.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
         viewport.addEventListener('scroll',updateMobileEditorToolbar,{passive:true});
@@ -430,11 +440,18 @@
     };
     const fontSizeSelect=document.getElementById('petition-font-size');
     if(fontSizeSelect){
+      fontSizeSelect.addEventListener('pointerdown',rememberEditorSelection);
       fontSizeSelect.addEventListener('mousedown',rememberEditorSelection);
+      fontSizeSelect.addEventListener('touchstart',rememberEditorSelection,{passive:true});
       fontSizeSelect.addEventListener('change',()=>{
         const size=Number(fontSizeSelect.value);
         if(size>=8&&size<=72)applyFontSize(size);
-        editor.focus();restoreEditorSelection();
+        // Restore the text selection without immediately stealing focus from the
+        // native mobile select popup; return focus to the editor after its UI closes.
+        setTimeout(()=>{
+          editor.focus({preventScroll:true});
+          restoreEditorSelection();
+        },120);
       });
     }
     const changeIndent=step=>{
