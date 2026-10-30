@@ -500,7 +500,7 @@ html[data-theme="light"] .petition-template-card p{
 }
 .petition-doc-body{
   font-size:20px;
-  line-height:1.65;
+  line-height:1;
   padding:0;
   margin-top:0;
 }
@@ -575,7 +575,7 @@ html[data-theme="light"] .petition-template-card p{
   }
   .petition-a4:not(.petition-rich-editor) .petition-doc-body{
     font-size:var(--mizan-petitions-document-font-size-mobile);
-    line-height:var(--mizan-petitions-document-line-height-mobile);
+    line-height:1;
     padding:var(--mizan-petitions-document-padding-mobile);
   }
   .petition-a4 footer{
@@ -878,7 +878,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   background:var(--mizan-surface);
   font-family:Arial,Tahoma,sans-serif;
   font-size:20px;
-  line-height:1.65;
+  line-height:1;
   text-align:justify;
   direction:rtl;
   overflow-wrap:break-word;
