@@ -193,6 +193,41 @@
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    const editorToolbar=root.querySelector('.petition-editor-toolbar');
+    if(editor&&editorToolbar){
+      const mobileEditorQuery=window.matchMedia('(max-width: 600px) and (pointer: coarse)');
+      const visualViewportRef=window.visualViewport;
+      let keyboardCloseTimer=null;
+      const updateMobileEditorToolbar=()=>{
+        if(!mobileEditorQuery.matches){
+          root.classList.remove('petition-keyboard-active');
+          root.style.removeProperty('--petition-keyboard-offset');
+          return;
+        }
+        const viewportHeight=visualViewportRef?visualViewportRef.height:window.innerHeight;
+        const keyboardHeight=Math.max(0,window.innerHeight-viewportHeight-(visualViewportRef?visualViewportRef.offsetTop:0));
+        if(document.activeElement===editor&&keyboardHeight>100){
+          root.classList.add('petition-keyboard-active');
+          root.style.setProperty('--petition-keyboard-offset',Math.max(0,keyboardHeight)+'px');
+          clearTimeout(keyboardCloseTimer);
+          const selection=window.getSelection();
+          if(selection&&selection.rangeCount){
+            const rect=selection.getRangeAt(0).getBoundingClientRect();
+            if(rect.height&&visualViewportRef&&rect.bottom>visualViewportRef.height-90){
+              editor.scrollIntoView({block:'nearest',behavior:'auto'});
+            }
+          }
+        }else if(keyboardHeight<80){
+          root.classList.remove('petition-keyboard-active');
+          root.style.removeProperty('--petition-keyboard-offset');
+        }
+      };
+      editor.addEventListener('focus',()=>{clearTimeout(keyboardCloseTimer);setTimeout(updateMobileEditorToolbar,80);});
+      editor.addEventListener('blur',()=>{keyboardCloseTimer=setTimeout(()=>{root.classList.remove('petition-keyboard-active');root.style.removeProperty('--petition-keyboard-offset');},180);});
+      if(visualViewportRef)visualViewportRef.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
+      window.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
+      mobileEditorQuery.addEventListener?.('change',updateMobileEditorToolbar);
+    }
     const editorPageWrap=document.getElementById('petition-editor-page-wrap');
     if(editor&&editorPageWrap){
       const fitEditorPage=()=>{
