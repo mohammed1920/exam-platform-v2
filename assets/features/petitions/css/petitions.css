@@ -863,7 +863,9 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
 }
 .petition-editor-page-wrap{
   position:relative;
+  direction:ltr;
   width:100%;
+  min-width:0;
   overflow:visible;
   margin:var(--mizan-space-3) auto var(--mizan-space-4);
   background:var(--mizan-surface);
