@@ -573,7 +573,7 @@ html[data-theme="light"] .petition-template-card p{
   .petition-a4.is-branded .petition-head-right em{
     font-size:5.5px;
   }
-  .petition-doc-body{
+  .petition-a4:not(.petition-rich-editor) .petition-doc-body{
     font-size:var(--mizan-petitions-document-font-size-mobile);
     line-height:var(--mizan-petitions-document-line-height-mobile);
     padding:var(--mizan-petitions-document-padding-mobile);
