@@ -370,7 +370,7 @@
       if(!editor.contains(range.startContainer))return;
       const indentText='\u00a0\u00a0\u00a0\u00a0';
       if(step>0){
-        const textNode=document.createTextNode(indentText);range.insertNode(textNode);range.setStartAfter(textNode);range.collapse(true);
+        const textNode=document.createTextNode(indentText);range.insertNode(textNode);range.setStart(textNode,indentText.length);range.collapse(true);
       }else{
         let node=range.startContainer,offset=range.startOffset;
         if(node.nodeType!==Node.TEXT_NODE)return;
