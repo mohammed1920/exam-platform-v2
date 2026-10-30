@@ -1000,3 +1000,26 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   background:var(--mizan-surface);
   font:inherit;
 }
+
+
+@media(max-width:600px) and (pointer:coarse){
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar{
+    position:fixed;
+    top:auto;
+    bottom:calc(var(--petition-keyboard-offset,0px) + env(safe-area-inset-bottom,0px) + 6px);
+    left:8px;
+    right:8px;
+    z-index:10050;
+    max-height:30vh;
+    overflow-y:auto;
+    margin:0;
+    border-radius:14px;
+    box-shadow:0 -4px 18px rgba(0,0,0,.22);
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-panel{
+    padding-bottom:calc(76px + var(--petition-keyboard-offset,0px));
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar .petition-brand-toggle{
+    flex-basis:auto;
+  }
+}
