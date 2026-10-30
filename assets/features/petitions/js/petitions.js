@@ -158,8 +158,11 @@
     const root=document.getElementById('petitions-section'),t=state.template;
     if(!root||!t)return;
     root.innerHTML='<div class="petitions-shell petition-document-shell"><button class="back-btn" id="petition-document-back"><i class="fas fa-arrow-right"></i> النماذج</button>'+documentHeader()+brandingToggleHtml()+
-      '<article class="petition-a4 '+(state.branded?'is-branded':'')+'" aria-label="نص العريضة">'+(state.branded?letterheadHtml():'')+'<div class="petition-doc-body" id="petition-document-body">'+documentBodyHtml()+'</div></article>'+
+      '<div class="petition-live-preview petition-document-preview" aria-label="معاينة العريضة بحجم A4"><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions"><button type="button" class="petition-primary" id="petition-edit"><i class="fas fa-pen-to-square"></i> تعديل العريضة</button></div></div>';
+    const documentPreview=root.querySelector('.petition-document-preview');
+    const documentFrame=documentPreview?.querySelector('.petition-a4-preview-frame');
+    if(documentFrame&&documentPreview)fitPetitionPreview(documentFrame,documentPreview,true);
     document.getElementById('petition-document-back').onclick=()=>navigateBack('category');
     document.getElementById('petition-brand-toggle').onclick=()=>{state.branded=!state.branded;renderDocument();};
     document.getElementById('petition-edit').onclick=()=>{state.mode='edit';renderEditor();};
