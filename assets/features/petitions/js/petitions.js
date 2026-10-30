@@ -366,19 +366,53 @@
     }
     const changeIndent=step=>{
       if(!restoreEditorSelection())return;
-      const selection=window.getSelection(),range=selection.getRangeAt(0);
+      const selection=window.getSelection();
+      if(!selection||!selection.rangeCount)return;
+      let range=selection.getRangeAt(0);
       if(!editor.contains(range.startContainer))return;
       const indentText='\u00a0\u00a0\u00a0\u00a0';
       if(step>0){
-        const textNode=document.createTextNode(indentText);range.insertNode(textNode);range.setStart(textNode,indentText.length);range.collapse(true);
+        const textNode=document.createTextNode(indentText);
+        range.insertNode(textNode);
+        range=document.createRange();
+        range.setStart(textNode,indentText.length);
+        range.collapse(true);
       }else{
         let node=range.startContainer,offset=range.startOffset;
-        if(node.nodeType!==Node.TEXT_NODE)return;
-        const before=(node.nodeValue||'').slice(0,offset),spaces=before.match(/[ \u00a0]{1,4}$/);
-        if(!spaces)return;
-        node.deleteData(offset-spaces[0].length,spaces[0].length);range.setStart(node,offset-spaces[0].length);range.collapse(true);
+        if(node.nodeType!==Node.TEXT_NODE){
+          const walker=document.createTreeWalker(editor,NodeFilter.SHOW_TEXT);
+          let current,last=null;
+          while((current=walker.nextNode())){
+            if(current===node.childNodes?.[offset-1])last=current;
+            if(current.compareDocumentPosition(node)&Node.DOCUMENT_POSITION_FOLLOWING)last=current;
+          }
+          if(last){node=last;offset=node.nodeValue.length;}
+          else return;
+        }
+        let remaining=4;
+        while(remaining>0&&node){
+          const value=node.nodeValue||'';
+          let i=offset-1;
+          while(i>=0&&remaining>0&&(value[i]==='\u00a0'||value[i]===' ')){i--;remaining--;}
+          const removeFrom=i+1,removeCount=offset-removeFrom;
+          if(removeCount>0){node.deleteData(removeFrom,removeCount);offset=removeFrom;}
+          if(remaining===0)break;
+          let previous=node.previousSibling;
+          while(previous&&previous.nodeType!==Node.TEXT_NODE){
+            if(previous.nodeType===Node.ELEMENT_NODE&&previous.lastChild){previous=previous.lastChild;while(previous&&previous.lastChild)previous=previous.lastChild;}
+            else previous=previous.previousSibling;
+          }
+          if(!previous||previous.nodeType!==Node.TEXT_NODE)break;
+          node=previous;offset=node.nodeValue.length;
+        }
+        range=document.createRange();
+        range.setStart(node,Math.min(offset,node.nodeValue.length));
+        range.collapse(true);
       }
-      selection.removeAllRanges();selection.addRange(range);savedEditorRange=range.cloneRange();editor.focus();syncEditorContent(editor);
+      editor.focus();
+      selection.removeAllRanges();selection.addRange(range);
+      savedEditorRange=range.cloneRange();
+      syncEditorContent(editor);
     };
     root.querySelectorAll('[data-indent-step]').forEach(btn=>{
       btn.addEventListener('mousedown',event=>{rememberEditorSelection();event.preventDefault();});
