@@ -184,10 +184,30 @@
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
       brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden>'+
-      '</div><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div>'+
+      '</div><div class="petition-editor-page-wrap" id="petition-editor-page-wrap"><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div></div>'+
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    const editorPageWrap=document.getElementById('petition-editor-page-wrap');
+    if(editor&&editorPageWrap){
+      const fitEditorPage=()=>{
+        const pageWidth=210*96/25.4;
+        const availableWidth=Math.max(1,editorPageWrap.clientWidth);
+        const scale=Math.min(1,availableWidth/pageWidth);
+        editor.style.width='210mm';
+        editor.style.minHeight='297mm';
+        editor.style.boxSizing='border-box';
+        editor.style.margin='0';
+        editor.style.transformOrigin='top left';
+        editor.style.transform='scale('+scale+')';
+        editorPageWrap.style.height=(Math.max(editor.scrollHeight,297*96/25.4)*scale)+'px';
+        editor.style.marginLeft=Math.max(0,(availableWidth-pageWidth*scale)/2)+'px';
+      };
+      fitEditorPage();
+      editor.addEventListener('input',fitEditorPage);
+      window.addEventListener('resize',fitEditorPage,{passive:true});
+      editorPageWrap.dataset.fitBound='true';
+    }
     const logoInput=document.getElementById('petition-logo-file');
     const logoImage=editor?.querySelector('.petition-bar-logo img');
     if(logoImage&&logoInput){
