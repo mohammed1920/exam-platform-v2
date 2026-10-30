@@ -172,6 +172,12 @@
     if(!root||!t)return;
     root.innerHTML='<div class="petitions-shell petition-editor-shell"><button class="back-btn" id="petition-editor-back"><i class="fas fa-arrow-right"></i> العودة للقراءة</button>'+documentHeader()+
       '<div class="petition-editor-panel"><div class="petition-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق العريضة">'+
+      '<button type="button" data-font-step="2" aria-label="تكبير الخط" title="تكبير الخط">A<sup>+</sup></button>'+
+      '<button type="button" data-font-step="-2" aria-label="تصغير الخط" title="تصغير الخط">A<sup>−</sup></button>'+
+      '<span class="petition-editor-separator"></span>'+
+      '<button type="button" data-command="indent" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent"></i></button>'+
+      '<button type="button" data-command="outdent" aria-label="إزاحة إلى اليسار" title="إزاحة إلى اليسار"><i class="fas fa-outdent"></i></button>'+
+      '<span class="petition-editor-separator"></span>'+
       '<button type="button" data-command="bold" aria-label="خط عريض" title="خط عريض"><strong>B</strong></button>'+
       '<button type="button" data-command="italic" aria-label="خط مائل" title="خط مائل"><em>I</em></button>'+
       '<button type="button" data-command="underline" aria-label="تسطير" title="تسطير"><u>U</u></button>'+
@@ -322,9 +328,43 @@
     };
     document.getElementById('petition-editor-print').onclick=()=>{syncEditorContent(editor);printPetition();};
     document.getElementById('petition-editor-word').onclick=()=>{syncEditorContent(editor);exportWord();};
-    root.querySelectorAll('[data-command]').forEach(btn=>btn.onclick=()=>{
-      editor.focus();
-      document.execCommand(btn.dataset.command,false,null);
+    const adjustEditorFontSize=delta=>{
+      const selection=window.getSelection();
+      if(!selection||!editor.contains(selection.anchorNode))return;
+      let range;
+      try{range=selection.getRangeAt(0);}catch(e){return;}
+      let target=range.commonAncestorContainer;
+      if(target.nodeType===Node.TEXT_NODE)target=target.parentElement;
+      if(!target||!editor.contains(target))return;
+      if(range.collapsed){
+        const block=target.closest('p,div,li,h1,h2,h3,h4,h5,h6')||target;
+        const current=parseFloat(getComputedStyle(block).fontSize)||20;
+        block.style.fontSize=Math.max(10,Math.min(48,current+delta))+'px';
+        return;
+      }
+      const startNode=range.startContainer.nodeType===Node.TEXT_NODE?range.startContainer.parentElement:range.startContainer;
+      const current=parseFloat(getComputedStyle(startNode).fontSize)||20;
+      const span=document.createElement('span');
+      span.style.fontSize=Math.max(10,Math.min(48,current+delta))+'px';
+      try{
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+        selection.removeAllRanges();
+        const next=document.createRange();next.selectNodeContents(span);selection.addRange(next);
+      }catch(e){
+        editor.focus();
+      }
+    };
+    root.querySelectorAll('[data-font-step]').forEach(btn=>{
+      btn.addEventListener('mousedown',event=>event.preventDefault());
+      btn.onclick=()=>{adjustEditorFontSize(Number(btn.dataset.fontStep));syncEditorContent(editor);};
+    });
+    root.querySelectorAll('[data-command]').forEach(btn=>{
+      btn.addEventListener('mousedown',event=>event.preventDefault());
+      btn.onclick=()=>{
+        editor.focus();
+        document.execCommand(btn.dataset.command,false,null);
+      };
     });
   }
   function plainTextToEditor(text){
