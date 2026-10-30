@@ -879,7 +879,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   font-family:Arial,Tahoma,sans-serif;
   font-size:20px;
   line-height:1.65;
-  text-align:right;
+  text-align:justify;
   direction:rtl;
   overflow-wrap:break-word;
 }
@@ -939,7 +939,8 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   #petition-editor-print,
   #petition-editor-word{grid-column:auto;}
   .petition-editor-actions button{min-height:48px;padding:var(--mizan-space-2);}
-  .petition-rich-editor{min-height:55vh;padding:var(--mizan-space-3);}
+  .petition-rich-editor{min-height:297mm;padding:var(--mizan-petitions-a4-padding);text-align:justify;}
+  .petition-rich-editor.is-branded{padding:var(--mizan-petitions-a4-padding-branded);}
   .petition-editor-toolbar{top:var(--mizan-space-1);padding:var(--mizan-space-2);}
 }
 
