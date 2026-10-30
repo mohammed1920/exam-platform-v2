@@ -237,11 +237,11 @@
           // Track the visual viewport's lower edge; do not add a second offset when the
           // browser has already resized the layout viewport to the keyboard.
           editorToolbar.style.bottom=Math.max(0,keyboardGap)+'px';
-        }else if(!editorHasFocus&&keyboardActive){
+        }else if(keyboardActive&&(!editorHasFocus||visibleHeight>=baselineHeight-80)){
           clearTimeout(closeTimer);
           closeTimer=setTimeout(()=>{
             const nowHeight=viewport?viewport.height:window.innerHeight;
-            if(nowHeight>=baselineHeight-80||!document.activeElement){
+            if(nowHeight>=baselineHeight-80||!document.activeElement||document.activeElement!==editor){
               setKeyboardToolbar(false);
             }
           },180);
