@@ -499,9 +499,9 @@ html[data-theme="light"] .petition-template-card p{
   cursor:pointer;
 }
 .petition-doc-body{
-  font-size:var(--mizan-petitions-document-font-size);
-  line-height:var(--mizan-petitions-document-line-height);
-  padding:var(--mizan-petitions-document-padding);
+  font-size:20px;
+  line-height:1.65;
+  padding:0;
   margin-top:0;
 }
 .petition-a4 footer{
@@ -871,17 +871,20 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   background:var(--mizan-surface);
 }
 .petition-rich-editor{
-  min-height:60vh;
-  padding:var(--mizan-space-4);
+  min-height:297mm;
+  padding:var(--mizan-petitions-a4-padding);
   outline:none;
   color:var(--mizan-text);
   background:var(--mizan-surface);
-  font-family:var(--mizan-font-family-arabic);
-  font-size:var(--mizan-font-size-md);
-  line-height:var(--mizan-line-height-relaxed);
+  font-family:Arial,Tahoma,sans-serif;
+  font-size:20px;
+  line-height:1.65;
   text-align:right;
   direction:rtl;
-  overflow-wrap:anywhere;
+  overflow-wrap:break-word;
+}
+.petition-rich-editor.is-branded{
+  padding:var(--mizan-petitions-a4-padding-branded);
 }
 .petition-rich-editor:focus{
   box-shadow:inset 0 0 0 2px var(--mizan-primary-500);
