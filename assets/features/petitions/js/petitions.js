@@ -171,7 +171,7 @@
     const root=document.getElementById('petitions-section'),t=state.template;
     if(!root||!t)return;
     root.innerHTML='<div class="petitions-shell petition-editor-shell"><button class="back-btn" id="petition-editor-back"><i class="fas fa-arrow-right"></i> العودة للقراءة</button>'+documentHeader()+
-      '<div class="petition-editor-panel"><div class="petition-editor-branding">'+brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden></div><div class="petition-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق العريضة">'+
+      '<div class="petition-editor-branding">'+brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden></div><div class="petition-editor-panel"><div class="petition-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق العريضة">'+
       '<label class="petition-font-size-control" title="حجم الخط">حجم الخط <select id="petition-font-size" aria-label="اختيار حجم الخط"><option value="">اختر</option><option value="12">12</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="20" selected>20</option><option value="22">22</option><option value="24">24</option><option value="28">28</option><option value="32">32</option><option value="36">36</option><option value="40">40</option><option value="48">48</option></select></label>'+
       '<span class="petition-editor-separator"></span>'+
       '<button type="button" data-indent-step="1" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent"></i></button>'+
@@ -197,33 +197,50 @@
       const mobileEditorQuery=window.matchMedia('(max-width: 600px) and (pointer: coarse)');
       const visualViewportRef=window.visualViewport;
       let keyboardCloseTimer=null;
+      let viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
       const updateMobileEditorToolbar=()=>{
         if(!mobileEditorQuery.matches){
           root.classList.remove('petition-keyboard-active');
           root.style.removeProperty('--petition-keyboard-offset');
           return;
         }
-        const viewportHeight=visualViewportRef?visualViewportRef.height:window.innerHeight;
-        const keyboardHeight=Math.max(0,window.innerHeight-viewportHeight-(visualViewportRef?visualViewportRef.offsetTop:0));
-        if(document.activeElement===editor&&keyboardHeight>100){
+        const visibleHeight=visualViewportRef?visualViewportRef.height:window.innerHeight;
+        const offsetTop=visualViewportRef?visualViewportRef.offsetTop:0;
+        const layoutGap=Math.max(0,window.innerHeight-visibleHeight-offsetTop);
+        const viewportReduction=Math.max(0,viewportHeightBeforeKeyboard-visibleHeight);
+        const keyboardOpen=document.activeElement===editor&&(layoutGap>100||viewportReduction>120);
+        if(keyboardOpen){
           root.classList.add('petition-keyboard-active');
-          root.style.setProperty('--petition-keyboard-offset',Math.max(0,keyboardHeight)+'px');
+          // Use the layout-viewport gap only; if the browser already resized the layout viewport,
+          // the fixed toolbar naturally sits above the keyboard and must not be shifted twice.
+          root.style.setProperty('--petition-keyboard-offset',layoutGap>80?layoutGap+'px':'0px');
           clearTimeout(keyboardCloseTimer);
-          const selection=window.getSelection();
-          if(selection&&selection.rangeCount){
-            const rect=selection.getRangeAt(0).getBoundingClientRect();
-            if(rect.height&&visualViewportRef&&rect.bottom>visualViewportRef.height-90){
-              editor.scrollIntoView({block:'nearest',behavior:'auto'});
-            }
-          }
-        }else if(keyboardHeight<80){
+        }else if(!document.activeElement||document.activeElement!==editor){
           root.classList.remove('petition-keyboard-active');
           root.style.removeProperty('--petition-keyboard-offset');
+          viewportHeightBeforeKeyboard=visibleHeight;
+        }else if(!keyboardOpen&&visibleHeight>=viewportHeightBeforeKeyboard-40){
+          root.classList.remove('petition-keyboard-active');
+          root.style.removeProperty('--petition-keyboard-offset');
+          viewportHeightBeforeKeyboard=visibleHeight;
         }
       };
-      editor.addEventListener('focus',()=>{clearTimeout(keyboardCloseTimer);setTimeout(updateMobileEditorToolbar,80);});
-      editor.addEventListener('blur',()=>{keyboardCloseTimer=setTimeout(()=>{root.classList.remove('petition-keyboard-active');root.style.removeProperty('--petition-keyboard-offset');},180);});
-      if(visualViewportRef)visualViewportRef.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
+      editor.addEventListener('focus',()=>{
+        clearTimeout(keyboardCloseTimer);
+        viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
+        requestAnimationFrame(()=>setTimeout(updateMobileEditorToolbar,120));
+      });
+      editor.addEventListener('blur',()=>{
+        keyboardCloseTimer=setTimeout(()=>{
+          root.classList.remove('petition-keyboard-active');
+          root.style.removeProperty('--petition-keyboard-offset');
+          viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
+        },220);
+      });
+      if(visualViewportRef){
+        visualViewportRef.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
+        visualViewportRef.addEventListener('scroll',updateMobileEditorToolbar,{passive:true});
+      }
       window.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
       mobileEditorQuery.addEventListener?.('change',updateMobileEditorToolbar);
     }
