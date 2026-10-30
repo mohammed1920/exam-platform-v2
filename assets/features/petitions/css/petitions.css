@@ -976,3 +976,27 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   flex-basis:100%;
   margin:0;
 }
+
+
+.petition-font-size-control{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:38px;
+  padding:4px 8px;
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-sm);
+  color:var(--mizan-text);
+  background:var(--mizan-card);
+  font-size:14px;
+  white-space:nowrap;
+}
+.petition-font-size-control select{
+  min-width:64px;
+  min-height:30px;
+  border:1px solid var(--mizan-border);
+  border-radius:6px;
+  color:var(--mizan-text);
+  background:var(--mizan-surface);
+  font:inherit;
+}
