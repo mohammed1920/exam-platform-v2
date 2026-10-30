@@ -1023,3 +1023,62 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
     flex-basis:auto;
   }
 }
+
+
+@media(max-width:600px) and (pointer:coarse){
+  #petitions-section .petition-editor-branding{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    margin:0 0 8px;
+    position:relative;
+    z-index:2;
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar{
+    position:fixed;
+    top:auto;
+    bottom:calc(var(--petition-keyboard-offset,0px) + env(safe-area-inset-bottom,0px) + 4px);
+    left:8px;
+    right:8px;
+    z-index:10050;
+    display:flex;
+    flex-wrap:nowrap;
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-start;
+    gap:8px;
+    width:auto;
+    max-width:none;
+    max-height:none;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scrollbar-width:thin;
+    padding:8px 10px;
+    margin:0;
+    border-radius:14px;
+    box-shadow:0 -4px 18px rgba(0,0,0,.22);
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar>*{
+    flex:0 0 auto;
+    white-space:nowrap;
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar .petition-editor-separator{
+    display:block;
+    width:1px;
+    height:30px;
+    min-width:1px;
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar .petition-font-size-control{
+    flex:0 0 auto;
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-toolbar button{
+    min-width:48px;
+    flex:0 0 auto;
+  }
+  #petitions-section.petition-keyboard-active .petition-editor-panel{
+    padding-bottom:calc(76px + var(--petition-keyboard-offset,0px));
+  }
+}
