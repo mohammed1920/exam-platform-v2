@@ -896,7 +896,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   box-shadow:inset 0 0 0 2px var(--mizan-primary-500);
 }
 .petition-rich-editor p{margin:0 0 var(--mizan-space-2);}
-.petition-rich-editor u,.petition-rich-editor [style*="text-decoration: underline"],.petition-rich-editor [style*="text-decoration-line: underline"],.petition-rich-editor [style*="underline"],.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.28em!important;text-decoration-thickness:1px;}
+.petition-rich-editor u,.petition-rich-editor [style*="text-decoration: underline"],.petition-rich-editor [style*="text-decoration-line: underline"],.petition-rich-editor [style*="underline"],.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px;}
 .petition-rich-editor ul,.petition-rich-editor ol{padding-inline-start:0;padding-inline-end:1.6em;}
 .petition-editor-actions{
   position:static;
