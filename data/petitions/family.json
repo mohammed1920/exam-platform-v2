@@ -30,5 +30,13 @@
     "description": "طلب تصديق الزواج الواقع خارج المحكمة مع بيانات وثيقة الزواج ورجل الدين والشهود والمهر.",
     "icon": "fas fa-heart",
     "document": "data/petitions/documents/family/petition-external-marriage-ratification.json"
+  },
+  {
+    "uid": "petition-ahwal-005",
+    "name": "زيادة نفقة أولاد",
+    "category": "عرائض أحوال شخصية",
+    "description": "نموذج دعوى زيادة نفقة أولاد.",
+    "icon": "fas fa-file-signature",
+    "document": "data/petitions/documents/family/05_زيادة_نفقة_أولاد.json"
   }
 ]
