@@ -174,8 +174,8 @@
       '<div class="petition-editor-branding">'+brandingToggleHtml()+'<input type="file" id="petition-logo-file" accept="image/*" hidden></div><div class="petition-editor-panel"><div class="petition-editor-toolbar" role="toolbar" aria-label="أدوات تنسيق العريضة">'+
       '<label class="petition-font-size-control" title="حجم الخط">حجم الخط <select id="petition-font-size" aria-label="اختيار حجم الخط"><option value="">اختر</option><option value="12">12</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="20" selected>20</option><option value="22">22</option><option value="24">24</option><option value="28">28</option><option value="32">32</option><option value="36">36</option><option value="40">40</option><option value="48">48</option></select></label>'+
       '<span class="petition-editor-separator"></span>'+
-      '<button type="button" data-indent-step="1" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent"></i></button>'+
-      '<button type="button" data-indent-step="-1" aria-label="إزاحة إلى اليسار" title="إزاحة إلى اليسار"><i class="fas fa-outdent"></i></button>'+
+      '<button type="button" data-indent-step="1" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent fa-flip-horizontal"></i></button>'+
+      '<button type="button" data-indent-step="-1" aria-label="إزاحة إلى اليسار" title="إزاحة إلى اليسار"><i class="fas fa-outdent fa-flip-horizontal"></i></button>'+
       '<span class="petition-editor-separator"></span>'+
       '<button type="button" data-command="bold" aria-label="خط عريض" title="خط عريض"><strong>B</strong></button>'+
       '<button type="button" data-command="italic" aria-label="خط مائل" title="خط مائل"><em>I</em></button>'+
