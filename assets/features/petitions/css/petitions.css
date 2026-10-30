@@ -861,6 +861,13 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   background:var(--mizan-border);
   margin-inline:var(--mizan-space-1);
 }
+.petition-editor-page-wrap{
+  position:relative;
+  width:100%;
+  overflow:visible;
+  margin:var(--mizan-space-3) auto var(--mizan-space-4);
+  background:var(--mizan-surface);
+}
 .petition-rich-editor{
   min-height:60vh;
   padding:var(--mizan-space-4);
