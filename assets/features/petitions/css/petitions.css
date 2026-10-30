@@ -913,8 +913,44 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   padding:0;
   background:var(--mizan-white);
 }
+/* A4 reader: preserve the physical page ratio on every viewport. */
+.petition-document-shell .petition-a4{
+  width:min(100%,var(--mizan-petitions-a4-width));
+  aspect-ratio:210 / 297;
+  min-height:var(--mizan-petitions-a4-min-height);
+  height:auto;
+  box-sizing:border-box;
+  padding:var(--mizan-petitions-a4-padding);
+  background:var(--mizan-white);
+  color:var(--mizan-paper-ink);
+  overflow:hidden;
+}
+.petition-document-shell .petition-a4.is-branded{
+  padding:var(--mizan-petitions-a4-padding-branded);
+}
+.petition-document-shell .petition-doc-body{
+  font-size:var(--mizan-petitions-document-font-size);
+  line-height:var(--mizan-petitions-document-line-height);
+}
+.petition-document-shell .petition-a4:not(.is-branded) .petition-doc-body{
+  margin-top:0;
+}
 @media(max-width:600px){
-  .petition-document-shell .petition-a4{padding:var(--mizan-petitions-a4-padding-mobile);}
+  .petition-document-shell .petition-a4{
+    width:100%;
+    min-height:0;
+    height:auto;
+    aspect-ratio:210 / 297;
+    padding:var(--mizan-petitions-a4-padding-mobile);
+    transform-origin:top center;
+  }
+  .petition-document-shell .petition-a4.is-branded{
+    padding:var(--mizan-petitions-a4-padding-branded-mobile);
+  }
+  .petition-document-shell .petition-doc-body{
+    font-size:var(--mizan-petitions-document-font-size-mobile);
+    line-height:var(--mizan-petitions-document-line-height-mobile);
+  }
   .petition-document-actions{display:grid;grid-template-columns:1fr;}
   .petition-live-preview{padding:0;}
   .petition-editor-shell{padding-bottom:calc(var(--mizan-mobile-nav-safe-space) + env(safe-area-inset-bottom,0px));}
