@@ -175,8 +175,8 @@
       '<button type="button" data-font-step="2" aria-label="تكبير الخط" title="تكبير الخط">A<sup>+</sup></button>'+
       '<button type="button" data-font-step="-2" aria-label="تصغير الخط" title="تصغير الخط">A<sup>−</sup></button>'+
       '<span class="petition-editor-separator"></span>'+
-      '<button type="button" data-command="indent" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent"></i></button>'+
-      '<button type="button" data-command="outdent" aria-label="إزاحة إلى اليسار" title="إزاحة إلى اليسار"><i class="fas fa-outdent"></i></button>'+
+      '<button type="button" data-indent-step="1" aria-label="إزاحة إلى اليمين" title="إزاحة إلى اليمين"><i class="fas fa-indent"></i></button>'+
+      '<button type="button" data-indent-step="-1" aria-label="إزاحة إلى اليسار" title="إزاحة إلى اليسار"><i class="fas fa-outdent"></i></button>'+
       '<span class="petition-editor-separator"></span>'+
       '<button type="button" data-command="bold" aria-label="خط عريض" title="خط عريض"><strong>B</strong></button>'+
       '<button type="button" data-command="italic" aria-label="خط مائل" title="خط مائل"><em>I</em></button>'+
@@ -359,11 +359,49 @@
       btn.addEventListener('mousedown',event=>event.preventDefault());
       btn.onclick=()=>{adjustEditorFontSize(Number(btn.dataset.fontStep));syncEditorContent(editor);};
     });
+    const changeIndent=step=>{
+      const selection=window.getSelection();
+      if(!selection||!selection.rangeCount||!editor.contains(selection.anchorNode))return;
+      const range=selection.getRangeAt(0);
+      const blocks=[];
+      const addBlock=node=>{
+        if(!node)return;
+        if(node.nodeType===Node.TEXT_NODE)node=node.parentElement;
+        if(!node||!editor.contains(node))return;
+        const block=node.closest('p,li,h1,h2,h3,h4,h5,h6,blockquote');
+        if(block&&editor.contains(block)&&!blocks.includes(block))blocks.push(block);
+      };
+      if(range.collapsed){
+        addBlock(range.startContainer);
+      }else{
+        const walker=document.createTreeWalker(editor,NodeFilter.SHOW_ELEMENT);
+        let node;
+        while((node=walker.nextNode())){
+          if(!node.matches('p,li,h1,h2,h3,h4,h5,h6,blockquote'))continue;
+          try{if(range.intersectsNode(node))addBlock(node);}catch(e){}
+        }
+        if(!blocks.length)addBlock(range.commonAncestorContainer);
+      }
+      if(!blocks.length)return;
+      blocks.forEach(block=>{
+        const current=parseFloat(block.style.marginRight)||0;
+        const next=Math.max(0,Math.min(160,current+(step*24)));
+        block.style.marginRight=next?next+'px':'';
+        block.style.marginLeft='';
+      });
+      editor.focus();
+      syncEditorContent(editor);
+    };
+    root.querySelectorAll('[data-indent-step]').forEach(btn=>{
+      btn.addEventListener('mousedown',event=>event.preventDefault());
+      btn.onclick=()=>changeIndent(Number(btn.dataset.indentStep));
+    });
     root.querySelectorAll('[data-command]').forEach(btn=>{
       btn.addEventListener('mousedown',event=>event.preventDefault());
       btn.onclick=()=>{
         editor.focus();
         document.execCommand(btn.dataset.command,false,null);
+        syncEditorContent(editor);
       };
     });
   }
