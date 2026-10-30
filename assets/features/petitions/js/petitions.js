@@ -195,51 +195,73 @@
     const editorToolbar=root.querySelector('.petition-editor-toolbar');
     if(editor&&editorToolbar){
       const mobileEditorQuery=window.matchMedia('(max-width: 600px) and (pointer: coarse)');
-      const visualViewportRef=window.visualViewport;
-      let keyboardCloseTimer=null;
-      let viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
+      const viewport=window.visualViewport;
+      const toolbarHome=editorToolbar.parentNode;
+      const toolbarMarker=document.createComment('petition-editor-toolbar-home');
+      toolbarHome.insertBefore(toolbarMarker,editorToolbar);
+      let keyboardActive=false;
+      let baselineHeight=window.innerHeight;
+      let closeTimer=0;
+      const setKeyboardToolbar=(active)=>{
+        if(!mobileEditorQuery.matches)active=false;
+        if(active===keyboardActive)return;
+        keyboardActive=active;
+        if(active){
+          // Portal to body so fixed positioning is independent of the scrolling/transformed app shell.
+          document.body.appendChild(editorToolbar);
+          editorToolbar.classList.add('petition-toolbar-docked');
+        }else{
+          editorToolbar.classList.remove('petition-toolbar-docked');
+          root.classList.remove('petition-keyboard-active');
+          root.style.removeProperty('--petition-keyboard-offset');
+          if(toolbarMarker.parentNode)toolbarMarker.parentNode.insertBefore(editorToolbar,toolbarMarker.nextSibling);
+          baselineHeight=window.innerHeight;
+        }
+      };
       const updateMobileEditorToolbar=()=>{
         if(!mobileEditorQuery.matches){
-          root.classList.remove('petition-keyboard-active');
-          root.style.removeProperty('--petition-keyboard-offset');
+          setKeyboardToolbar(false);
           return;
         }
-        const visibleHeight=visualViewportRef?visualViewportRef.height:window.innerHeight;
-        const offsetTop=visualViewportRef?visualViewportRef.offsetTop:0;
-        const layoutGap=Math.max(0,window.innerHeight-visibleHeight-offsetTop);
-        const viewportReduction=Math.max(0,viewportHeightBeforeKeyboard-visibleHeight);
-        const keyboardOpen=document.activeElement===editor&&(layoutGap>100||viewportReduction>120);
+        const visibleHeight=viewport?viewport.height:window.innerHeight;
+        const visibleTop=viewport?viewport.offsetTop:0;
+        const layoutHeight=window.innerHeight;
+        const keyboardGap=Math.max(0,layoutHeight-visibleHeight-visibleTop);
+        const keyboardReduced=baselineHeight-visibleHeight>100;
+        const editorHasFocus=document.activeElement===editor;
+        const keyboardOpen=(keyboardGap>100||keyboardReduced)&&
+          (editorHasFocus||keyboardActive);
         if(keyboardOpen){
-          root.classList.add('petition-keyboard-active');
-          // Use the layout-viewport gap only; if the browser already resized the layout viewport,
-          // the fixed toolbar naturally sits above the keyboard and must not be shifted twice.
-          root.style.setProperty('--petition-keyboard-offset',layoutGap>80?layoutGap+'px':'0px');
-          clearTimeout(keyboardCloseTimer);
-        }else if(!document.activeElement||document.activeElement!==editor){
-          root.classList.remove('petition-keyboard-active');
-          root.style.removeProperty('--petition-keyboard-offset');
-          viewportHeightBeforeKeyboard=visibleHeight;
-        }else if(!keyboardOpen&&visibleHeight>=viewportHeightBeforeKeyboard-40){
-          root.classList.remove('petition-keyboard-active');
-          root.style.removeProperty('--petition-keyboard-offset');
-          viewportHeightBeforeKeyboard=visibleHeight;
+          clearTimeout(closeTimer);
+          setKeyboardToolbar(true);
+          // Track the visual viewport's lower edge; do not add a second offset when the
+          // browser has already resized the layout viewport to the keyboard.
+          editorToolbar.style.bottom=Math.max(0,keyboardGap)+'px';
+        }else if(!editorHasFocus&&keyboardActive){
+          clearTimeout(closeTimer);
+          closeTimer=setTimeout(()=>{
+            const nowHeight=viewport?viewport.height:window.innerHeight;
+            if(nowHeight>=baselineHeight-80||!document.activeElement){
+              setKeyboardToolbar(false);
+            }
+          },180);
+        }else if(!keyboardActive){
+          editorToolbar.style.removeProperty('bottom');
         }
       };
       editor.addEventListener('focus',()=>{
-        clearTimeout(keyboardCloseTimer);
-        viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
-        requestAnimationFrame(()=>setTimeout(updateMobileEditorToolbar,120));
+        clearTimeout(closeTimer);
+        baselineHeight=Math.max(baselineHeight,window.innerHeight,viewport?viewport.height:0);
+        setTimeout(updateMobileEditorToolbar,80);
       });
       editor.addEventListener('blur',()=>{
-        keyboardCloseTimer=setTimeout(()=>{
-          root.classList.remove('petition-keyboard-active');
-          root.style.removeProperty('--petition-keyboard-offset');
-          viewportHeightBeforeKeyboard=visualViewportRef?visualViewportRef.height:window.innerHeight;
-        },220);
+        clearTimeout(closeTimer);
+        closeTimer=setTimeout(updateMobileEditorToolbar,250);
       });
-      if(visualViewportRef){
-        visualViewportRef.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
-        visualViewportRef.addEventListener('scroll',updateMobileEditorToolbar,{passive:true});
+      editorToolbar.addEventListener('focusin',()=>clearTimeout(closeTimer));
+      if(viewport){
+        viewport.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
+        viewport.addEventListener('scroll',updateMobileEditorToolbar,{passive:true});
       }
       window.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
       mobileEditorQuery.addEventListener?.('change',updateMobileEditorToolbar);
