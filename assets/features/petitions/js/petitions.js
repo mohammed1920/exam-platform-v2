@@ -549,11 +549,11 @@
         if(p.dataset.petitionIndent==='true'){
           const first=p.firstChild;
           if(first&&first.nodeType===Node.TEXT_NODE){
-            first.textContent=first.textContent.replace(/^ {16}/,'');
+            first.textContent=first.textContent.replace(/^[ \u00a0]+/,'');
             if(!first.textContent)p.removeChild(first);
           }
         }
-        p.insertBefore(doc.createTextNode('                        '),p.firstChild);
+        p.insertBefore(doc.createTextNode('                                                                                               '),p.firstChild);
         p.dataset.petitionIndent='true';
         found=true;
       }else if(found)break;
