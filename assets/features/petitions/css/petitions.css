@@ -515,8 +515,15 @@ html[data-theme="light"] .petition-template-card p{
   direction:ltr;
 }
 .petition-signature{
-  text-align:left;
-  padding-left:4mm;
+  text-align:right;
+  padding-right:4mm;
+  padding-left:0;
+}
+.petition-signature-block{
+  direction:rtl;
+  text-align:right;
+  margin-inline-start:auto;
+  margin-inline-end:0;
 }
 .petition-signature strong{
   font-size:var(--mizan-font-size-xs);
