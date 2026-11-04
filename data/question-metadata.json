@@ -912,7 +912,7 @@
       ]
     },
     "law_execution": {
-      "questionCount": 2355,
+      "questionCount": 2427,
       "chapters": [
         {
           "number": 1,
@@ -953,6 +953,11 @@
           "number": 8,
           "title": "معنى التنفيذ وأنواعه",
           "questionCount": 57
+        },
+        {
+          "number": 9,
+          "title": "المعاملة التنفيذية",
+          "questionCount": 72
         },
         {
           "number": 10,
