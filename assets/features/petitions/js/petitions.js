@@ -523,8 +523,34 @@
   }
   function plainTextToEditor(text){
     const value=String(text??'');
-    if(/<\/?(?:p|br|strong|b|em|i|u|ul|ol|li|div|h[1-6])\b/i.test(value))return value;
-    return esc(value).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
+    const html=/<\/?(?:p|br|strong|b|em|i|u|ul|ol|li|div|h[1-6])\b/i.test(value)
+      ?value
+      :esc(value).split('\n').map(line=>line?'<p>'+line+'</p>':'<p><br></p>').join('');
+    return alignPetitionSignatureRight(html);
+  }
+  function alignPetitionSignatureRight(html){
+    const doc=new DOMParser().parseFromString(String(html??''),'text/html');
+    const body=doc.body;
+    if(body.querySelector('.petition-signature-block'))return body.innerHTML;
+    const paragraphs=Array.from(body.querySelectorAll('p'));
+    const thanksIndex=paragraphs.findIndex(p=>/مع\s+الشكر\s+والتقدير/.test(p.textContent||''));
+    if(thanksIndex<0)return body.innerHTML;
+    const signature=[];
+    for(let i=thanksIndex+1;i<paragraphs.length;i++){
+      const p=paragraphs[i];
+      const text=(p.textContent||'').trim();
+      if(/^(المرفقات|المرفقـات)\s*[:：]?/.test(text))break;
+      if(!text)continue;
+      if(/^(المدعي|المدعية|وكيله\s+المحامي|وكيلها\s+المحامي|بموجب\s+الوكالة\s+المرفقة)/.test(text))signature.push(p);
+      else if(signature.length)break;
+    }
+    if(!signature.length)return body.innerHTML;
+    const block=doc.createElement('div');
+    block.className='petition-signature-block';
+    block.setAttribute('dir','rtl');
+    signature[0].parentNode.insertBefore(block,signature[0]);
+    signature.forEach(p=>block.appendChild(p));
+    return body.innerHTML;
   }
   function syncEditorContent(editor){
     if(!editor)return;
