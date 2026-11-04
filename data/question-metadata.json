@@ -912,8 +912,13 @@
       ]
     },
     "law_execution": {
-      "questionCount": 1643,
+      "questionCount": 1725,
       "chapters": [
+        {
+          "number": 1,
+          "title": "السلطة المختصة بالتنفيذ وفقاً لقانون التنفيذ",
+          "questionCount": 82
+        },
         {
           "number": 10,
           "title": "المعاملة التنفيذية",
