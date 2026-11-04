@@ -912,13 +912,8 @@
       ]
     },
     "law_execution": {
-      "questionCount": 1743,
+      "questionCount": 1643,
       "chapters": [
-        {
-          "number": 1,
-          "title": "أسئلة قانون التنفيذ",
-          "questionCount": 100
-        },
         {
           "number": 10,
           "title": "المعاملة التنفيذية",
