@@ -912,12 +912,107 @@
       ]
     },
     "law_execution": {
-      "questionCount": 100,
+      "questionCount": 1743,
       "chapters": [
         {
           "number": 1,
           "title": "أسئلة قانون التنفيذ",
           "questionCount": 100
+        },
+        {
+          "number": 10,
+          "title": "المعاملة التنفيذية",
+          "questionCount": 72
+        },
+        {
+          "number": 11,
+          "title": "الوسائل التنفيذية",
+          "questionCount": 97
+        },
+        {
+          "number": 12,
+          "title": "الوسائل التنفيذية",
+          "questionCount": 97
+        },
+        {
+          "number": 13,
+          "title": "كيفية استخدام الوسائل التنفيذية",
+          "questionCount": 69
+        },
+        {
+          "number": 14,
+          "title": "كيفية استخدام الوسائل التنفيذية",
+          "questionCount": 69
+        },
+        {
+          "number": 15,
+          "title": "الحالات التي تعرقل سير التنفيذ",
+          "questionCount": 65
+        },
+        {
+          "number": 16,
+          "title": "وقف التنفيذ وتأخيره",
+          "questionCount": 104
+        },
+        {
+          "number": 17,
+          "title": "وقف التنفيذ وتأخيره",
+          "questionCount": 103
+        },
+        {
+          "number": 18,
+          "title": "محل الحجز",
+          "questionCount": 90
+        },
+        {
+          "number": 19,
+          "title": "محل الحجز",
+          "questionCount": 90
+        },
+        {
+          "number": 20,
+          "title": "الحجز الاحتياطي",
+          "questionCount": 125
+        },
+        {
+          "number": 21,
+          "title": "حجز الأموال المنقولة وبيعها",
+          "questionCount": 128
+        },
+        {
+          "number": 22,
+          "title": "حجز ما للمدين لدى الغير",
+          "questionCount": 43
+        },
+        {
+          "number": 23,
+          "title": "حجز الرواتب والمخصصات",
+          "questionCount": 42
+        },
+        {
+          "number": 24,
+          "title": "حجز العقار وبيعه",
+          "questionCount": 122
+        },
+        {
+          "number": 25,
+          "title": "حجز العقار وبيعه",
+          "questionCount": 122
+        },
+        {
+          "number": 26,
+          "title": "حجز العقار وبيعه",
+          "questionCount": 122
+        },
+        {
+          "number": 27,
+          "title": "بيع الأموال المحجوزة",
+          "questionCount": 28
+        },
+        {
+          "number": 28,
+          "title": "توزيع حصيلة التنفيذ",
+          "questionCount": 55
         }
       ]
     }
