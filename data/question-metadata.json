@@ -912,7 +912,7 @@
       ]
     },
     "law_execution": {
-      "questionCount": 2225,
+      "questionCount": 2298,
       "chapters": [
         {
           "number": 1,
@@ -943,6 +943,11 @@
           "number": 6,
           "title": "المحررات التنفيذية",
           "questionCount": 74
+        },
+        {
+          "number": 7,
+          "title": "المحررات التنفيذية",
+          "questionCount": 73
         },
         {
           "number": 10,
