@@ -912,7 +912,7 @@
       ]
     },
     "law_execution": {
-      "questionCount": 1920,
+      "questionCount": 2036,
       "chapters": [
         {
           "number": 1,
@@ -928,6 +928,11 @@
           "number": 3,
           "title": "السلطة المختصة بالتنفيذ وفقاً لقانون تحصيل الديون الحكومية",
           "questionCount": 114
+        },
+        {
+          "number": 4,
+          "title": "الأحكام القضائية",
+          "questionCount": 116
         },
         {
           "number": 10,
