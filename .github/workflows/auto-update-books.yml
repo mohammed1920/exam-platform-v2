@@ -71,8 +71,29 @@ jobs:
             exit 0
           fi
           git commit -m "chore: maintain legal data indexes and integrity report"
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          # A direct commit to main can land while this job is generating indexes.
+          # Re-sync and retry a non-fast-forward push without ever force-pushing.
+          pushed=false
+          for attempt in 1 2 3 4 5; do
+            echo "Push attempt $attempt/5"
+            git fetch origin main
+            git rebase origin/main
+
+            if git push origin HEAD:main; then
+              pushed=true
+              break
+            fi
+
+            echo "Push was not accepted; waiting briefly before syncing again."
+            sleep $((attempt * 2))
+          done
+
+          if [ "$pushed" != "true" ]; then
+            echo "Unable to push maintenance commit after 5 synchronized attempts." >&2
+            exit 1
+          fi
+
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Deploy updated public data
