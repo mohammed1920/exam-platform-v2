@@ -87,6 +87,7 @@
         </form>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>عنوان الإجراء</th><th>الحالة</th><th>آخر تحديث</th><th>الإجراء</th></tr></thead><tbody id="fa-procedures-content-body"><tr><td colspan="4">اختر هذا القسم لتحميل الإجراءات.</td></tr></tbody></table></div>
       </div>
+    </section>
     <section id="fa-admin-view-petitions" class="firebase-admin-subview">
       <button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button>
       <div class="firebase-admin-card lawyer-admin-card">
