@@ -1,3 +1,4 @@
+@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
 /* Mizan — عرائض وطلبات */
 .petitions-shell{
   max-width:var(--mizan-petitions-shell-max-width);
@@ -471,11 +472,11 @@ html[data-theme="light"] .petition-template-card p{
 .petition-head-right strong{
   display:block;
   max-width:100%;
-  font-family:"Amiri","Noto Naskh Arabic",Tahoma,serif;
+  font-family:"AMoshref Thulth",Tahoma,serif;
   font-size:var(--mizan-petitions-lawyer-name-size);
   line-height:1.3;
   color:var(--mizan-primary-800);
-  font-weight:900;
+  font-weight:400;
   white-space:nowrap;
   overflow:visible;
 }
