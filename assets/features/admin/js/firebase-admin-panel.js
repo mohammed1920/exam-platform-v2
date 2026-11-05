@@ -25,7 +25,7 @@
       tab.hidden=true;tab.addEventListener('click',openPanel);header.appendChild(tab);
     }
     const main=document.querySelector('main.container');if(!main)return;const section=document.createElement('section');section.id='firebase-admin-section';section.className='view-section firebase-admin-view';section.hidden=true;
-    section.innerHTML=`<div class="firebase-admin-head"><div><div class="firebase-admin-kicker">⚖️ لوحة الإدارة</div><h2>لوحة إدارة المنصة</h2><p id="firebase-admin-welcome">تم التحقق من صلاحية الإدارة.</p></div><button id="firebase-admin-refresh" class="firebase-admin-action" type="button">↻ تحديث البيانات</button></div><div id="firebase-admin-status" class="firebase-admin-status" hidden></div><div id="fa-admin-home" class="firebase-admin-home"><div class="firebase-admin-menu"><button type="button" class="firebase-admin-menu-card" data-admin-view="students"><i class="fas fa-users"></i><strong>الطلاب المسجلون</strong><span>عرض حسابات الطلاب المسجلين</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="lawyers"><i class="fas fa-user-tie"></i><strong>إدارة دليل المحامين</strong><span>الطلبات والملفات المنشورة</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="procedures"><i class="fas fa-file-signature"></i><strong>طلبات إجراءات الدعاوى</strong><span>مراجعة طلبات الوصول ومنح الصلاحية أو سحبها</span></button></div></div><div class="firebase-admin-subviews"><section id="fa-admin-view-students" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-stats"><div class="firebase-admin-stat"><span>إجمالي الطلاب</span><strong id="fa-students-count">—</strong></div></div><div class="firebase-admin-card"><div class="firebase-admin-card-head"><h3>👥 الطلاب المسجلون</h3><span id="fa-students-updated"></span></div><div class="firebase-admin-table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>التسجيل</th></tr></thead><tbody id="fa-students-body"><tr><td colspan="3">جارٍ التحميل...</td></tr></tbody></table></div></div></section><section id="fa-admin-view-lawyers" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-card lawyer-admin-card">
+    section.innerHTML=`<div class="firebase-admin-head"><div><div class="firebase-admin-kicker">⚖️ لوحة الإدارة</div><h2>لوحة إدارة المنصة</h2><p id="firebase-admin-welcome">تم التحقق من صلاحية الإدارة.</p></div><button id="firebase-admin-refresh" class="firebase-admin-action" type="button">↻ تحديث البيانات</button></div><div id="firebase-admin-status" class="firebase-admin-status" hidden></div><div id="fa-admin-home" class="firebase-admin-home"><div class="firebase-admin-menu"><button type="button" class="firebase-admin-menu-card" data-admin-view="students"><i class="fas fa-users"></i><strong>الطلاب المسجلون</strong><span>عرض حسابات الطلاب المسجلين</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="lawyers"><i class="fas fa-user-tie"></i><strong>إدارة دليل المحامين</strong><span>الطلبات والملفات المنشورة</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="procedures"><i class="fas fa-file-signature"></i><strong>طلبات إجراءات الدعاوى</strong><span>مراجعة طلبات الوصول ومنح الصلاحية أو سحبها</span></button><button type="button" class="firebase-admin-menu-card" data-admin-view="petitions"><i class="fas fa-file-signature"></i><strong>إدارة العرائض والطلبات</strong><span>الموافقة على الوصول وإضافة النماذج وإدارتها</span></button></div></div><div class="firebase-admin-subviews"><section id="fa-admin-view-students" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-stats"><div class="firebase-admin-stat"><span>إجمالي الطلاب</span><strong id="fa-students-count">—</strong></div></div><div class="firebase-admin-card"><div class="firebase-admin-card-head"><h3>👥 الطلاب المسجلون</h3><span id="fa-students-updated"></span></div><div class="firebase-admin-table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>التسجيل</th></tr></thead><tbody id="fa-students-body"><tr><td colspan="3">جارٍ التحميل...</td></tr></tbody></table></div></div></section><section id="fa-admin-view-lawyers" class="firebase-admin-subview"><button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button><div class="firebase-admin-card lawyer-admin-card">
       <div class="firebase-admin-card-head"><h3>👨‍⚖️ إدارة دليل المحامين</h3><span>الطلبات والملفات المنشورة</span></div>
       <div class="lawyer-admin-tabs">
         <button type="button" class="lawyer-admin-tab active" data-lawyer-view="pending">الطلبات <span id="fa-lawyers-pending-count">0</span></button>
@@ -87,16 +87,38 @@
         </form>
         <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>عنوان الإجراء</th><th>الحالة</th><th>آخر تحديث</th><th>الإجراء</th></tr></thead><tbody id="fa-procedures-content-body"><tr><td colspan="4">اختر هذا القسم لتحميل الإجراءات.</td></tr></tbody></table></div>
       </div>
+    <section id="fa-admin-view-petitions" class="firebase-admin-subview">
+      <button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button>
+      <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>🔐 طلبات الوصول إلى العرائض</h3><span>موافقة دائمة قابلة للسحب</span></div>
+        <p class="lawyer-admin-note">لا يستطيع المستخدم قراءة النصوص إلا بعد موافقة الإدارة. تبقى الصلاحية سارية حتى سحبها.</p>
+        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المستخدم</th><th>سبب الطلب</th><th>التاريخ</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="fa-petitions-requests-body"><tr><td colspan="5">اختر هذا القسم لتحميل الطلبات.</td></tr></tbody></table></div>
+      </div>
+      <div class="firebase-admin-card lawyer-admin-card procedures-admin-management">
+        <div class="firebase-admin-card-head"><h3>إدارة نماذج العرائض</h3><span>تخزين النصوص في Firestore</span></div>
+        <form id="fa-petition-form" class="procedures-admin-form">
+          <input type="hidden" name="id">
+          <label>عنوان العريضة *<input name="title" required maxlength="180"></label>
+          <label>التصنيف *<select name="category" required><option value="">اختر التصنيف</option><option value="family">عرائض أحوال شخصية</option><option value="civil">عرائض البداءة (الدعاوى المدنية)</option><option value="criminal">عرائض جزائية وتحقيق</option><option value="administrative">عرائض إدارية</option></select></label>
+          <label>وصف مختصر<input name="description" maxlength="1000"></label>
+          <label>الأيقونة (اختياري)<input name="icon" maxlength="100" value="fas fa-file-signature"></label>
+          <label>نص العريضة *<textarea name="body" rows="12" required maxlength="50000"></textarea></label>
+          <label><input type="checkbox" name="published" checked> نشر العريضة وإظهار عنوانها للمصرّح لهم</label>
+          <div class="lawyer-admin-actions"><button class="approve" type="submit">حفظ العريضة</button><button type="button" id="fa-petition-reset">جديد / إلغاء التعديل</button></div>
+          <p class="lawyer-admin-note">النص الكامل في مجموعة محمية، والفهرس العام يعرض البيانات التعريفية فقط.</p>
+        </form>
+        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>العريضة</th><th>التصنيف</th><th>الحالة</th><th>التحديث</th><th>الإجراء</th></tr></thead><tbody id="fa-petitions-content-body"><tr><td colspan="5">اختر هذا القسم لتحميل النماذج.</td></tr></tbody></table></div>
+      </div>
     </section></div>
     <button id="firebase-admin-back" class="firebase-admin-back" type="button">← العودة للموقع</button>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),proceduresContentBody:section.querySelector('#fa-procedures-content-body'),procedureReset:section.querySelector('#fa-procedure-reset'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),proceduresContentBody:section.querySelector('#fa-procedures-content-body'),procedureReset:section.querySelector('#fa-procedure-reset'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionsContentBody:section.querySelector('#fa-petitions-content-body'),petitionReset:section.querySelector('#fa-petition-reset'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel')};
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
     els.section.querySelectorAll('[data-admin-home]').forEach(btn=>btn.addEventListener('click',showAdminHome));
 els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCancel?.addEventListener('click',closeLawyerEdit);els.lawyerEditForm?.addEventListener('submit',saveLawyerEdit);
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
-     els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);
+     els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.petitionForm?.addEventListener('submit',savePetition);els.petitionReset?.addEventListener('click',resetPetition);
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
@@ -119,7 +141,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(home)home.hidden=true;
     els.section.querySelectorAll('.firebase-admin-subview').forEach(panel=>panel.classList.toggle('active',panel.id==='fa-admin-view-'+view));
     if(view!=='lawyers'&&els.lawyerEdit)closeLawyerEdit();
-    if(view==='procedures'){loadProcedureAccessRequests();loadLegalProcedures();}
+    if(view==='procedures'){loadProcedureAccessRequests();loadLegalProcedures();}if(view==='petitions'){loadPetitionAccessRequests();loadPetitions();}
   }
   function showAdminHome(){
     const home=els.section.querySelector('#fa-admin-home');
@@ -249,6 +271,66 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(e){console.error('Legal procedures load failed:',e);body.innerHTML='<tr><td colspan="4">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</td></tr>';return false;}
   }
 
+
+  function resetPetition(){if(!els.petitionForm)return;els.petitionForm.reset();els.petitionForm.elements.id.value='';els.petitionForm.elements.icon.value='fas fa-file-signature';els.petitionForm.elements.published.checked=true;}
+  async function syncPublicPetitionIndex(items){
+    const db=window.publicAuth?.firestore;if(!isAdmin||!db)return false;
+    const names={family:'عرائض أحوال شخصية',civil:'عرائض البداءة (الدعاوى المدنية)',criminal:'عرائض جزائية وتحقيق',administrative:'عرائض إدارية'};
+    const published=items.filter(x=>x.published===true&&x.title&&names[x.categoryId]).map(x=>({uid:x.id,name:x.title.trim(),categoryId:x.categoryId,category:names[x.categoryId],description:x.description||'',icon:x.icon||'fas fa-file-signature'})).sort((a,b)=>a.name.localeCompare(b.name,'ar'));
+    const ref=db.collection('publicIndexes').doc('petitions'),snap=await ref.get(),current=snap.exists&&Array.isArray(snap.data()?.items)?snap.data().items:[];
+    if(JSON.stringify(current)!==JSON.stringify(published))await ref.set({items:published,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});return true;
+  }
+  async function loadPetitions(){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.petitionsContentBody)return false;
+    const body=els.petitionsContentBody;body.innerHTML='<tr><td colspan="5">جارٍ تحميل نماذج العرائض...</td></tr>';
+    try{
+      const snap=await window.publicAuth.firestore.collection('petitionDocuments').get(),items=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'ar'));
+      const synced=await syncPublicPetitionIndex(items),labels={family:'أحوال شخصية',civil:'مدنية',criminal:'جزائية',administrative:'إدارية'};
+      body.innerHTML=items.length?items.map(x=>'<tr><td><strong>'+esc(x.title||'بدون عنوان')+'</strong></td><td>'+esc(labels[x.categoryId]||x.categoryId||'—')+'</td><td><span class="lawyer-admin-status '+(x.published?'is-live':'is-off')+'">'+(x.published?'منشورة':'مسودة / مخفية')+'</span></td><td>'+esc(dateValue(x.updatedAt))+'</td><td><div class="lawyer-admin-actions"><button type="button" data-petition-edit="'+esc(x.id)+'">تعديل</button><button type="button" class="'+(x.published?'reject':'approve')+'" data-petition-toggle="'+esc(x.id)+'">'+(x.published?'إخفاء':'نشر')+'</button><button type="button" class="reject" data-petition-delete="'+esc(x.id)+'">حذف</button></div></td></tr>').join(''):'<tr><td colspan="5">لا توجد نماذج في Firestore بعد. أضف أول عريضة من النموذج أعلاه.</td></tr>';
+      body.querySelectorAll('[data-petition-edit]').forEach(b=>b.onclick=()=>{const x=items.find(v=>v.id===b.dataset.petitionEdit);if(!x)return;const f=els.petitionForm;f.elements.id.value=x.id;f.elements.title.value=x.title||'';f.elements.category.value=x.categoryId||'';f.elements.description.value=x.description||'';f.elements.icon.value=x.icon||'fas fa-file-signature';f.elements.body.value=x.body||'';f.elements.published.checked=x.published===true;f.scrollIntoView({behavior:'smooth',block:'start'});});
+      body.querySelectorAll('[data-petition-toggle]').forEach(b=>b.onclick=async()=>{const x=items.find(v=>v.id===b.dataset.petitionToggle);if(!x)return;try{await window.publicAuth.firestore.collection('petitionDocuments').doc(x.id).update({published:x.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadPetitions();setStatus('تم تحديث حالة العريضة والفهرس العام.',false);}catch(e){console.error(e);setStatus('تعذر تحديث حالة العريضة.',true);}});
+      body.querySelectorAll('[data-petition-delete]').forEach(b=>b.onclick=async()=>{const x=items.find(v=>v.id===b.dataset.petitionDelete);if(!x||!confirm('حذف هذه العريضة نهائياً؟'))return;try{await window.publicAuth.firestore.collection('petitionDocuments').doc(x.id).delete();resetPetition();await loadPetitions();setStatus('تم حذف العريضة وتحديث الفهرس.',false);}catch(e){console.error(e);setStatus('تعذر حذف العريضة.',true);}});
+      return synced;
+    }catch(e){console.error('Petitions load failed:',e);body.innerHTML='<tr><td colspan="5">تعذر تحميل نماذج العرائض. تحقق من قواعد Firestore المنشورة.</td></tr>';return false;}
+  }
+  async function savePetition(event){
+    event.preventDefault();if(!isAdmin||!window.publicAuth?.firestore||!window.publicAuth?.user)return;
+    const f=els.petitionForm,id=String(f.elements.id.value||'').trim(),categoryId=String(f.elements.category.value||'').trim();
+    if(!['family','civil','criminal','administrative'].includes(categoryId)){setStatus('اختر تصنيف العريضة الصحيح.',true);return;}
+    const data={title:String(f.elements.title.value||'').trim().slice(0,180),categoryId,description:String(f.elements.description.value||'').trim().slice(0,1000),icon:String(f.elements.icon.value||'fas fa-file-signature').trim().slice(0,100),body:String(f.elements.body.value||'').trim().slice(0,50000),published:Boolean(f.elements.published.checked)};
+    if(data.title.length<3||data.body.length<10){setStatus('عنوان العريضة والنص الكامل مطلوبان.',true);return;}
+    setStatus('جارٍ حفظ العريضة في Firestore...',false);
+    try{const db=window.publicAuth.firestore,stamp=firebase.firestore.FieldValue.serverTimestamp();if(id)await db.collection('petitionDocuments').doc(id).update({...data,updatedAt:stamp});else{const ref=db.collection('petitionDocuments').doc();await ref.set({...data,createdAt:stamp,createdBy:window.publicAuth.user.uid,updatedAt:stamp});}resetPetition();const synced=await loadPetitions();setStatus(synced?'تم حفظ العريضة وتحديث الفهرس العام.':'تم حفظ العريضة لكن تعذر تحديث الفهرس العام.',!synced);}
+    catch(e){console.error('Petition save failed:',e);setStatus('تعذر حفظ العريضة في Firestore. '+String(e.message||''),true);}
+  }
+  async function loadPetitionAccessRequests(){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.petitionsRequestsBody)return;
+    const body=els.petitionsRequestsBody;body.innerHTML='<tr><td colspan="5">جارٍ تحميل طلبات الوصول...</td></tr>';
+    try{
+      const db=window.publicAuth.firestore,[rs,gs]=await Promise.all([db.collection('petitionAccessRequests').get(),db.collection('petitionAccess').get()]);
+      const grants=new Map(gs.docs.map(d=>[d.id,{id:d.id,...d.data()}])),requests=rs.docs.map(d=>({id:d.id,...d.data()}));
+      requests.sort((a,b)=>{const x=a.createdAt&&typeof a.createdAt.toMillis==='function'?a.createdAt.toMillis():0,y=b.createdAt&&typeof b.createdAt.toMillis==='function'?b.createdAt.toMillis():0;return y-x;});
+      body.innerHTML=requests.length?requests.map(r=>{const uid=r.uid||r.id,g=grants.get(uid),enabled=g?.enabled===true,status=enabled?'الصلاحية مفعّلة':r.status==='pending'?'قيد المراجعة':r.status==='rejected'?'مرفوض':r.status==='revoked'?'تم سحب الصلاحية':esc(r.status||'غير محدد');const actions=enabled?'<button class="reject" data-petition-revoke="'+esc(uid)+'">سحب الصلاحية</button>':'<button class="approve" data-petition-approve="'+esc(uid)+'">'+(r.status==='pending'?'✓ موافقة':'إعادة منح الوصول')+'</button>'+(r.status==='pending'?'<button class="reject" data-petition-reject="'+esc(uid)+'">✕ رفض</button>':'');return '<tr><td><strong>'+esc(r.displayName||'مستخدم ميزان')+'</strong><div class="lawyer-admin-status">'+esc(r.email||'')+'</div></td><td>'+esc(r.reason||'—')+'</td><td>'+esc(dateValue(r.createdAt))+'</td><td><span class="lawyer-admin-status '+(enabled?'is-live':r.status==='pending'?'is-off':'')+'">'+status+'</span></td><td><div class="lawyer-admin-actions">'+actions+'</div></td></tr>';}).join(''):'<tr><td colspan="5">لا توجد طلبات وصول حتى الآن.</td></tr>';
+      body.querySelectorAll('[data-petition-approve]').forEach(b=>b.onclick=()=>approvePetitionAccess(requests.find(r=>(r.uid||r.id)===b.dataset.petitionApprove)));
+      body.querySelectorAll('[data-petition-reject]').forEach(b=>b.onclick=()=>rejectPetitionAccess(requests.find(r=>(r.uid||r.id)===b.dataset.petitionReject)));
+      body.querySelectorAll('[data-petition-revoke]').forEach(b=>b.onclick=()=>revokePetitionAccess(requests.find(r=>(r.uid||r.id)===b.dataset.petitionRevoke),grants.get(b.dataset.petitionRevoke)));
+    }catch(e){console.error('Petition access requests load failed:',e);body.innerHTML='<tr><td colspan="5">تعذر تحميل الطلبات. تحقق من قواعد Firestore المنشورة.</td></tr>';}
+  }
+  async function approvePetitionAccess(r){
+    if(!isAdmin||!r||!confirm('منح هذا المستخدم صلاحية دائمة للوصول إلى العرائض؟'))return;
+    try{const db=window.publicAuth.firestore,uid=r.uid||r.id,rr=db.collection('petitionAccessRequests').doc(uid),ar=db.collection('petitionAccess').doc(uid);await db.runTransaction(async tx=>{const s=await tx.get(rr);if(!s.exists)throw Error('طلب الوصول غير موجود.');const fresh=s.data()||{};if(fresh.uid!==uid||fresh.status!=='pending')throw Error('الطلب غير صالح أو تمت مراجعته.');tx.set(ar,{uid,enabled:true,grantedBy:window.publicAuth.user.uid,grantedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});tx.update(rr,{status:'approved',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});});await loadPetitionAccessRequests();setStatus('تمت الموافقة ومنح صلاحية دائمة للوصول إلى العرائض.',false);}
+    catch(e){console.error('Petition access approval failed:',e);setStatus('تعذرت الموافقة على طلب العرائض.',true);}
+  }
+  async function rejectPetitionAccess(r){
+    if(!isAdmin||!r||!confirm('رفض طلب الوصول إلى العرائض؟'))return;
+    try{await window.publicAuth.firestore.collection('petitionAccessRequests').doc(r.uid||r.id).update({status:'rejected',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadPetitionAccessRequests();setStatus('تم رفض طلب الوصول إلى العرائض.',false);}
+    catch(e){console.error(e);setStatus('تعذر رفض طلب الوصول.',true);}
+  }
+  async function revokePetitionAccess(r,g){
+    if(!isAdmin||!r||!g||!confirm('سحب صلاحية هذا المستخدم؟ لن يستطيع فتح نصوص العرائض بعد ذلك.'))return;
+    try{const db=window.publicAuth.firestore,uid=r.uid||r.id;await db.runTransaction(async tx=>{const rr=db.collection('petitionAccessRequests').doc(uid),ar=db.collection('petitionAccess').doc(uid),rs=await tx.get(rr),as=await tx.get(ar);if(!rs.exists||!as.exists)throw Error('تعذر العثور على الطلب أو الصلاحية.');tx.update(ar,{enabled:false,revokedBy:window.publicAuth.user.uid,revokedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});tx.update(rr,{status:'revoked',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});});await loadPetitionAccessRequests();setStatus('تم سحب صلاحية الوصول إلى العرائض.',false);}
+    catch(e){console.error(e);setStatus('تعذر سحب صلاحية الوصول.',true);}
+  }
 
   async function saveLegalProcedure(event){
     event.preventDefault();

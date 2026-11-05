@@ -8,8 +8,32 @@
   function dataUrl(path){const base=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'';return base+'/'+path;}
   async function fetchJson(path){if(dataCache.has(path))return dataCache.get(path);const pending=fetch(dataUrl(path),{cache:'default'}).then(r=>{if(!r.ok)throw new Error('تعذر تحميل '+path);return r.json();});dataCache.set(path,pending);try{return await pending;}catch(e){dataCache.delete(path);throw e;}}
   async function loadCategories(){if(state.categoriesLoaded)return state.categories;state.categories=await fetchJson('data/petitions/categories.json');state.categoriesLoaded=true;return state.categories;}
-  async function loadTemplates(categoryId){if(!categoryId){await loadCategories();state.templates=[];state.templatesLoaded=true;return state.templates;}if(state.categoryTemplates?.[categoryId])return state.categoryTemplates[categoryId];const category=state.categories?.find(c=>c.id===categoryId);if(!category)return [];const items=await fetchJson(category.manifest);state.categoryTemplates=state.categoryTemplates||{};state.categoryTemplates[categoryId]=items;state.templates=items;state.templatesLoaded=true;return items;}
-  async function loadDocument(uid){const cached=dataCache.get('document:'+uid);if(cached)return cached;const meta=(state.categoryTemplates&&Object.values(state.categoryTemplates).flat().find(t=>t.uid===uid))||state.templates.find(t=>t.uid===uid);if(!meta)throw new Error('لم يتم العثور على العريضة');const pending=fetchJson(meta.document);dataCache.set('document:'+uid,pending);try{return await pending;}catch(e){dataCache.delete('document:'+uid);throw e;}}
+  async function loadTemplates(categoryId){
+    if(!categoryId){state.templates=[];state.templatesLoaded=true;return state.templates;}
+    if(state.categoryTemplates?.[categoryId])return state.categoryTemplates[categoryId];
+    const db=window.publicAuth?.firestore;if(!db)throw Error('خدمة العرائض غير متاحة.');
+    const snap=await db.collection('publicIndexes').doc('petitions').get(),all=snap.exists&&Array.isArray(snap.data()?.items)?snap.data().items:[];
+    const items=all.filter(x=>x.categoryId===categoryId);state.categoryTemplates=state.categoryTemplates||{};state.categoryTemplates[categoryId]=items;state.templates=items;state.templatesLoaded=true;return items;
+  }
+  async function loadDocument(uid){
+    const cached=dataCache.get('document:'+uid);if(cached)return cached;
+    const db=window.publicAuth?.firestore;if(!db)throw Error('خدمة العرائض غير متاحة.');
+    const snap=await db.collection('petitionDocuments').doc(uid).get();if(!snap.exists)throw Error('العريضة غير موجودة في قاعدة البيانات.');
+    const doc={uid:snap.id,...snap.data()};if(doc.published!==true)throw Error('هذه العريضة غير منشورة.');dataCache.set('document:'+uid,doc);return doc;
+  }
+  async function loadPetitionAccess(){
+    const auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(!user||!db)return {status:'signed-out',enabled:false};
+    const [grant,request]=await Promise.all([db.collection('petitionAccess').doc(user.uid).get(),db.collection('petitionAccessRequests').doc(user.uid).get()]);
+    const enabled=grant.exists&&grant.data()?.enabled===true;return {status:enabled?'approved':(request.exists?String(request.data()?.status||'none'):'none'),enabled};
+  }
+  function renderAccessGate(access){
+    const root=document.getElementById('petition-browse');if(!root)return;
+    if(access.status==='pending'){root.innerHTML='<div class="petition-empty"><h3>طلبك قيد المراجعة</h3><p>سيظهر محتوى العرائض بعد موافقة الإدارة.</p></div>';return;}
+    const canRequest=['none','rejected','revoked'].includes(access.status);
+    root.innerHTML='<div class="petition-empty"><h3>الوصول إلى العرائض يتطلب موافقة الإدارة</h3><p>قدّم طلباً يوضح سبب حاجتك إلى النماذج القانونية. تبقى الموافقة سارية حتى تسحبها الإدارة.</p>'+(canRequest?'<form id="petition-access-request" class="petition-access-request"><label for="petition-access-reason">سبب طلب الوصول</label><textarea id="petition-access-reason" rows="4" minlength="10" maxlength="1000" required placeholder="اكتب سبب طلبك (10 محارف على الأقل)"></textarea><button type="submit" class="petition-primary">إرسال طلب الوصول</button></form>':'')+'</div>';
+    const form=document.getElementById('petition-access-request');
+    if(form)form.onsubmit=async event=>{event.preventDefault();const reason=String(form.querySelector('textarea').value||'').trim(),auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(reason.length<10||!user||!db)return;const button=form.querySelector('button');button.disabled=true;try{const ref=db.collection('petitionAccessRequests').doc(user.uid),existing=access.status!=='none',payload={uid:user.uid,displayName:auth.displayName(user),email:user.email||'',reason,status:'pending',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};if(existing)await ref.update(payload);else await ref.set({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});renderAccessGate({status:'pending',enabled:false});}catch(e){console.error('Petition access request failed:',e);button.disabled=false;alert('تعذر إرسال الطلب. حاول مرة أخرى بعد التحقق من اتصالك.');}};
+  }
   async function loadLawyerBranding(){
     state.lawyer={};
     const auth=window.publicAuth,user=auth&&auth.user,db=auth&&auth.firestore;
@@ -61,10 +85,10 @@
   }
   async function open(pushHistory=true){
     if(pushHistory)window.app.navigateTo('petitions',{parentView:'home'});
-    state.template=null;state.categoryId=null;
-    renderHome();
-    loadLawyerBranding().catch(()=>{});
-    try{await loadCategories();renderCategories();}catch(e){renderLoadError('تعذر تحميل أقسام العرائض. تحقق من الاتصال ثم أعد المحاولة.');}
+    state.template=null;state.categoryId=null;renderHome();
+    const auth=window.publicAuth;if(!auth?.user){auth?.requireAuth?.(()=>open(false));return;}
+    try{await auth.whenFirestoreReady?.();const access=await loadPetitionAccess();if(!access.enabled){renderAccessGate(access);return;}loadLawyerBranding().catch(()=>{});await loadCategories();renderCategories();}
+    catch(e){console.error('Petitions access check failed:',e);renderLoadError('تعذر التحقق من صلاحية الوصول أو تحميل الأقسام. حاول مرة أخرى.');}
   }
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;

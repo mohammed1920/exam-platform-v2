@@ -192,6 +192,40 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    match /petitionAccessRequests/{userId} {
+      allow create: if signedIn() && request.auth.uid == userId
+        && request.resource.data.uid == request.auth.uid && request.resource.data.status == 'pending'
+        && request.resource.data.reason is string && request.resource.data.reason.size() >= 10
+        && request.resource.data.reason.size() <= 1000 && request.resource.data.displayName is string
+        && request.resource.data.email is string
+        && request.resource.data.keys().hasOnly(['uid','displayName','email','reason','status','createdAt','updatedAt']);
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow update: if isAdmin() || (
+        signedIn() && request.auth.uid == userId && resource.data.uid == request.auth.uid
+        && resource.data.status in ['rejected','revoked'] && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending' && request.resource.data.reason is string
+        && request.resource.data.reason.size() >= 10 && request.resource.data.reason.size() <= 1000
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','email','reason','status','updatedAt'])
+      );
+      allow delete: if isAdmin();
+    }
+    match /petitionAccess/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create, update, delete: if isAdmin();
+    }
+    match /publicIndexes/petitions {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    match /petitionDocuments/{petitionId} {
+      allow read: if isAdmin() || (
+        signedIn() && resource.data.published == true
+        && exists(/databases/$(database)/documents/petitionAccess/$(request.auth.uid))
+        && get(/databases/$(database)/documents/petitionAccess/$(request.auth.uid)).data.enabled == true
+      );
+      allow create, update, delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
