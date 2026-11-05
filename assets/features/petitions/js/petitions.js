@@ -164,11 +164,39 @@
   function documentBodyHtml(){
     return plainTextToEditor(state.editedBody??'');
   }
-  function letterheadHtml(nameOverride,logoOverride){
+  function letterheadHtml(nameOverride,logoOverride,nameHtmlOverride){
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
     const name=nameOverride||(state.lawyer.name||(window.publicAuth?.user?.displayName||''));
-    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl"><strong dir="rtl">'+esc(name||'اسم المحامي')+'</strong></div></header>';
+    const lawyerName=nameHtmlOverride===undefined?esc(name||'اسم المحامي'):sanitizeLetterheadNameHtml(nameHtmlOverride);
+    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl"><strong dir="rtl">'+lawyerName+'</strong></div></header>';
+  }
+  function sanitizeLetterheadNameHtml(source){
+    const doc=new DOMParser().parseFromString(String(source??''),'text/html');
+    const allowed=new Set(['SPAN','B','STRONG','EM','I','U']);
+    Array.from(doc.body.querySelectorAll('*')).reverse().forEach(node=>{
+      if(!allowed.has(node.tagName)){
+        node.replaceWith(...Array.from(node.childNodes));
+        return;
+      }
+      const style=node.getAttribute('style')||'';
+      Array.from(node.attributes).forEach(attr=>node.removeAttribute(attr.name));
+      if(node.tagName==='SPAN'&&style){
+        const parsed=document.createElement('span');
+        parsed.setAttribute('style',style);
+        const safe=[];
+        const size=parsed.style.fontSize;
+        const weight=parsed.style.fontWeight;
+        const fontStyle=parsed.style.fontStyle;
+        const decoration=parsed.style.textDecoration;
+        if(/^(?:\\d+(?:\\.\\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
+        if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
+        if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
+        if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
+        if(safe.length)node.setAttribute('style',safe.join(';'));
+      }
+    });
+    return doc.body.innerHTML;
   }
   function normalizeLetterheadHtml(source){
     if(!source)return '';
@@ -176,9 +204,10 @@
       const doc=new DOMParser().parseFromString(String(source),'text/html');
       const header=doc.body.querySelector('.petition-letterhead');
       if(!header)return '';
-      const name=header.querySelector('.petition-head-right strong')?.textContent?.trim()||'';
+      const nameEl=header.querySelector('.petition-head-right strong');
+      const name=nameEl?.textContent?.trim()||'';
       const logo=header.querySelector('.petition-bar-logo img')?.getAttribute('src')||'';
-      return letterheadHtml(name,logo||undefined);
+      return letterheadHtml(name,logo||undefined,nameEl?.innerHTML??undefined);
     }catch(e){return '';}
   }
   function brandingToggleHtml(){
@@ -475,7 +504,7 @@
       if(target.nodeType===Node.TEXT_NODE)target=target.parentElement;
       if(!target||!editor.contains(target))return;
       if(range.collapsed){
-        const block=target.closest('p,li,h1,h2,h3,h4,h5,h6,div')||target;
+        const block=target.closest('.petition-head-right strong')||target.closest('p,li,h1,h2,h3,h4,h5,h6,div')||target;
         block.style.fontSize=size+'px';
       }else{
         const span=document.createElement('span');span.style.fontSize=size+'px';
