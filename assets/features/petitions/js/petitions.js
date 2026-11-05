@@ -189,7 +189,7 @@
         const weight=parsed.style.fontWeight;
         const fontStyle=parsed.style.fontStyle;
         const decoration=parsed.style.textDecoration;
-        if(/^(?:\\d+(?:\\.\\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
+        if(/^(?:\d+(?:\.\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
         if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
         if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
         if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
