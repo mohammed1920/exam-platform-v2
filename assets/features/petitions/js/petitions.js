@@ -403,7 +403,18 @@
       if(Math.abs(event.clientX-dotPressStart.x)>10||Math.abs(event.clientY-dotPressStart.y)>10)clearDotPress();
     });
     ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
-    document.getElementById('petition-editor-back').onclick=()=>{syncEditorContent(editor);renderDocument();};
+    document.getElementById('petition-editor-back').onclick=()=>{
+      syncEditorContent(editor);
+      const hasUnsavedChanges=state.editedBody!==(state.savedBody??'')||state.editedLetterhead!==(state.savedLetterhead||'');
+      if(hasUnsavedChanges){
+        const leave=window.confirm('تنبيه: الرجوع الآن سيؤدي إلى فقدان التعديلات التي لم تحفظها كنسخة عمل. هل تريد الرجوع إلى معاينة العريضة؟');
+        if(!leave)return;
+        state.editedBody=state.savedBody??t.body;
+        state.editedLetterhead=state.savedLetterhead||'';
+      }
+      state.mode='read';
+      renderDocument();
+    };
     document.getElementById('petition-brand-toggle').onclick=()=>{syncEditorContent(editor);state.branded=!state.branded;renderEditor();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;state.editedLetterhead=state.savedLetterhead||'';renderDocument();};
     document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
