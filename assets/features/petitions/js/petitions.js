@@ -251,6 +251,7 @@
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    let savedEditorHtml=editor?.innerHTML??'';
     const editorToolbar=root.querySelector('.petition-editor-toolbar');
     if(editor&&editorToolbar){
       const mobileEditorQuery=window.matchMedia('(max-width: 600px) and (pointer: coarse)');
@@ -433,8 +434,8 @@
     });
     ['pointerup','pointercancel','pointerleave'].forEach(type=>editor.addEventListener(type,()=>{clearDotPress();dotPressStart=null;}));
     document.getElementById('petition-editor-back').onclick=()=>{
+      const hasUnsavedChanges=editor.innerHTML!==savedEditorHtml;
       syncEditorContent(editor);
-      const hasUnsavedChanges=state.editedBody!==(state.savedBody??'')||state.editedLetterhead!==(state.savedLetterhead||'');
       if(hasUnsavedChanges){
         const leave=window.confirm('تنبيه: الرجوع الآن سيؤدي إلى فقدان التعديلات التي لم تحفظها كنسخة عمل. هل تريد الرجوع إلى معاينة العريضة؟');
         if(!leave)return;
@@ -446,7 +447,7 @@
     };
     document.getElementById('petition-brand-toggle').onclick=()=>{syncEditorContent(editor);state.branded=!state.branded;renderEditor();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;state.editedLetterhead=state.savedLetterhead||'';renderDocument();};
-    document.getElementById('petition-editor-save').onclick=()=>saveDraft(editor);
+    document.getElementById('petition-editor-save').onclick=()=>{if(saveDraft(editor))savedEditorHtml=editor.innerHTML;};
     document.getElementById('petition-editor-restore').onclick=()=>{
       if(!window.confirm('هل تريد استعادة النص الأصلي للعريضة؟ ستُحذف نسخة العمل المحفوظة لهذا النموذج.'))return;
       state.editedBody=plainTextToEditor(t.body);
@@ -644,15 +645,16 @@
   }
   function saveDraft(editor){
     syncEditorContent(editor);
-    state.savedBody=state.editedBody;
-    state.savedLetterhead=state.editedLetterhead;
     try{
       const drafts=readDrafts();
       drafts[state.template.uid]={name:state.template.name,body:state.editedBody,letterhead:state.editedLetterhead,updatedAt:new Date().toISOString()};
       localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
+      state.savedBody=state.editedBody;
+      state.savedLetterhead=state.editedLetterhead;
       const button=document.getElementById('petition-editor-save');
       if(button){button.innerHTML='<i class="fas fa-check"></i> تم حفظ نسخة العمل';setTimeout(()=>{if(button.isConnected)button.textContent='حفظ نسخة العمل';},1800);}
-    }catch(e){alert('تعذر حفظ نسخة العمل على هذا الجهاز. انسخ النص أو صدّره إلى Word.');}
+      return true;
+    }catch(e){alert('تعذر حفظ نسخة العمل على هذا الجهاز. انسخ النص أو صدّره إلى Word.');return false;}
   }
   function syncPreview(){
     const editor=document.getElementById('petition-rich-editor');
