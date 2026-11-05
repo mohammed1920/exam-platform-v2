@@ -444,6 +444,13 @@ html[data-theme="light"] .petition-template-card p{
   text-align:center;
   color:var(--mizan-primary-800);
   line-height:1.25;
+  direction:rtl;
+  unicode-bidi:plaintext;
+}
+.petition-head-side strong,
+.petition-head-side b{
+  direction:rtl;
+  unicode-bidi:plaintext;
 }
 .petition-head-left strong{
   font-family:Georgia,"Times New Roman",serif;
