@@ -686,6 +686,11 @@
   async function restoreHistoryState(historyState={}){
     const level=historyState.petitionLevel||'categories';
     try{
+      const auth=window.publicAuth;
+      if(!auth?.user){renderHome();auth?.requireAuth?.(()=>open(false));return;}
+      await auth.whenFirestoreReady?.();
+      const access=await loadPetitionAccess();
+      if(!access.enabled){renderHome();renderAccessGate(access);return;}
       await loadCategories();
       if(level==='document'&&historyState.categoryId&&historyState.templateUid){
         state.categoryId=historyState.categoryId;
