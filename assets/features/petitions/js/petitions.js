@@ -23,8 +23,10 @@
   }
   async function loadPetitionAccess(){
     const auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(!user||!db)return {status:'signed-out',enabled:false};
-    const [grant,request]=await Promise.all([db.collection('petitionAccess').doc(user.uid).get(),db.collection('petitionAccessRequests').doc(user.uid).get()]);
-    const enabled=grant.exists&&grant.data()?.enabled===true;return {status:enabled?'approved':(request.exists?String(request.data()?.status||'none'):'none'),enabled};
+    const grant=await db.collection('petitionAccess').doc(user.uid).get();
+    if(grant.exists&&grant.data()?.enabled===true)return {status:'approved',enabled:true};
+    const request=await db.collection('petitionAccessRequests').doc(user.uid).get();
+    return {status:request.exists?String(request.data()?.status||'none'):'none',enabled:false};
   }
   function renderAccessGate(access){
     const root=document.getElementById('petition-browse');if(!root)return;
