@@ -1,7 +1,7 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:''};
+  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:'',editorSavedHtml:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const dataCache=new Map();
@@ -252,6 +252,7 @@
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
     let savedEditorHtml=editor?.innerHTML??'';
+    state.editorSavedHtml=savedEditorHtml;
     const editorToolbar=root.querySelector('.petition-editor-toolbar');
     if(editor&&editorToolbar){
       const mobileEditorQuery=window.matchMedia('(max-width: 600px) and (pointer: coarse)');
@@ -447,7 +448,7 @@
     };
     document.getElementById('petition-brand-toggle').onclick=()=>{syncEditorContent(editor);state.branded=!state.branded;renderEditor();};
     document.getElementById('petition-editor-cancel').onclick=()=>{state.editedBody=state.savedBody??t.body;state.editedLetterhead=state.savedLetterhead||'';renderDocument();};
-    document.getElementById('petition-editor-save').onclick=()=>{if(saveDraft(editor))savedEditorHtml=editor.innerHTML;};
+    document.getElementById('petition-editor-save').onclick=()=>{if(saveDraft(editor)){savedEditorHtml=editor.innerHTML;state.editorSavedHtml=savedEditorHtml;}};
     document.getElementById('petition-editor-restore').onclick=()=>{
       if(!window.confirm('هل تريد استعادة النص الأصلي للعريضة؟ ستُحذف نسخة العمل المحفوظة لهذا النموذج.'))return;
       state.editedBody=plainTextToEditor(t.body);
@@ -762,6 +763,31 @@
       renderLoadError('تعذر استعادة قسم العرائض. حاول مرة أخرى.');
     }
   }
+  function handleEditorHistoryBack(){
+    if(state.mode!=='edit'||!state.template)return false;
+    const editor=document.getElementById('petition-rich-editor');
+    const hasUnsavedChanges=!!editor&&editor.innerHTML!==(state.editorSavedHtml??'');
+    if(hasUnsavedChanges){
+      const leave=window.confirm('تنبيه: الرجوع الآن سيؤدي إلى فقدان التعديلات التي لم تحفظها كنسخة عمل. هل تريد الخروج من محرر العريضة؟');
+      if(!leave){
+        // popstate has already moved one entry back; restore the editor entry so
+        // Android's physical Back button leaves the user in the same editor.
+        history.pushState({
+          view:'petitions',
+          petitionLevel:'document',
+          categoryId:state.categoryId,
+          templateUid:state.template.uid,
+          bookId:null,
+          chapter:null
+        },'',window.location.href);
+        return true;
+      }
+      state.editedBody=state.savedBody??state.template.body;
+      state.editedLetterhead=state.savedLetterhead||'';
+    }
+    state.mode='read';
+    return false;
+  }
   function getCurrentDocumentCategory(){return state.template&&state.categoryId?state.categoryId:null;}
   function backToCategoryFromDocument(){
     const categoryId=getCurrentDocumentCategory();
@@ -775,5 +801,5 @@
     else openCategory(categoryId,false);
     return true;
   }
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,getCurrentDocumentCategory,backToCategoryFromDocument});
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,handleEditorHistoryBack,getCurrentDocumentCategory,backToCategoryFromDocument});
 })();

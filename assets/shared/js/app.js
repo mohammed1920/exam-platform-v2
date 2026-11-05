@@ -1183,6 +1183,9 @@ class ExamApp {
   // مستمع أحداث زر الرجوع الفيزيائي للهاتف
   setupHistoryListener() {
     window.onpopstate = (event) => {
+      // Give the petition editor first refusal before the generic history handler
+      // restores the category list. This covers Android's physical Back action.
+      if (window.petitions?.handleEditorHistoryBack?.()) return;
       const state = event.state;
       const view = state && state.view;
 
