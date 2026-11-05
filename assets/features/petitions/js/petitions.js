@@ -23,6 +23,10 @@
   }
   async function loadPetitionAccess(){
     const auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(!user||!db)return {status:'signed-out',enabled:false};
+    // Administrators are trusted by the same admins/{uid} record used by the admin panel and Firestore rules.
+    const admin=await db.collection('admins').doc(user.uid).get();
+    const adminData=admin.exists?admin.data():null;
+    if(adminData?.role==='admin'&&adminData.enabled!==false)return {status:'approved',enabled:true,admin:true};
     const grant=await db.collection('petitionAccess').doc(user.uid).get();
     if(grant.exists&&grant.data()?.enabled===true)return {status:'approved',enabled:true};
     const request=await db.collection('petitionAccessRequests').doc(user.uid).get();
