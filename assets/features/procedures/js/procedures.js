@@ -359,7 +359,7 @@
       if (root?.classList.contains('active')) refreshAccess(true);
     });
     window.addEventListener('firebase-admin-state-changed', () => {
-      if (root?.classList.contains('active')) refreshAccess();
+      if (root?.classList.contains('active')) refreshAccess(true);
     });
     window.procedures = { open, refreshAccess, restoreHistoryState };
   }
