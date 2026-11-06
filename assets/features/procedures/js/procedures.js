@@ -9,6 +9,10 @@
   let hasAccess = false;
   let busy = false;
   let titles = [];
+  let titlesLoaded = false;
+  let titleIndexPromise = null;
+  let procedureAccessCache = { uid: null, expiresAt: 0, hasAccess: false, request: null };
+  const PROCEDURE_ACCESS_CACHE_MS = 15000;
   const detailCache = new Map();
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[ch]));
@@ -112,16 +116,24 @@
 
   function renderPending() { renderRequestState('pending'); }
 
-  async function loadTitleIndex() {
+  async function loadTitleIndex(force = false) {
+    if (titlesLoaded && !force) return titles;
+    if (titleIndexPromise && !force) return titleIndexPromise;
     const db = window.publicAuth?.firestore;
     if (!db) throw new Error('خدمة قاعدة البيانات غير متاحة');
-    const snapshot = await db.collection('publicIndexes').doc('procedures').get();
-    const data = snapshot.exists ? snapshot.data()?.items : [];
-    if (!Array.isArray(data)) throw new Error('صيغة فهرس الإجراءات غير صحيحة');
-    const validCategories = new Set(['civil', 'criminal', 'administrative', 'personal']);
-    const publishedItems = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim() && validCategories.has(item.category))
-      .map(item => ({ id: item.id, title: item.title.trim(), category: item.category, categoryTitle: typeof item.categoryTitle === 'string' ? item.categoryTitle : '', summary: typeof item.summary === 'string' ? item.summary : '' }));
-    titles = publishedItems;
+    titleIndexPromise = (async () => {
+      const snapshot = await db.collection('publicIndexes').doc('procedures').get();
+      const data = snapshot.exists ? snapshot.data()?.items : [];
+      if (!Array.isArray(data)) throw new Error('صيغة فهرس الإجراءات غير صحيحة');
+      const validCategories = new Set(['civil', 'criminal', 'administrative', 'personal']);
+      const publishedItems = data.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.title.trim() && validCategories.has(item.category))
+        .map(item => ({ id: item.id, title: item.title.trim(), category: item.category, categoryTitle: typeof item.categoryTitle === 'string' ? item.categoryTitle : '', summary: typeof item.summary === 'string' ? item.summary : '' }));
+      titles = publishedItems;
+      titlesLoaded = true;
+      return titles;
+    })();
+    try { return await titleIndexPromise; }
+    catch (error) { titlesLoaded = false; titleIndexPromise = null; throw error; }
   }
   const procedureCategories = [{id:'civil',title:'الدعاوى المدنية',description:'المطالبة بالحقوق المدنية والديون والعقود والتعويض.'},{id:'criminal',title:'الدعاوى الجزائية',description:'الشكوى والتحقيق والمحاكمة والطعن في الدعاوى الجزائية.'},{id:'administrative',title:'الدعاوى الإدارية',description:'الطعن بالقرارات الإدارية وطلبات الإلغاء بحسب الاختصاص.'},{id:'personal',title:'دعاوى الأحوال الشخصية',description:'الزواج والطلاق والنفقة والحضانة وما يتصل بها.'}];
   function normalizeProcedureSearch(value){return String(value||'').toLocaleLowerCase('ar').replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();}
@@ -190,40 +202,64 @@
       host.querySelector('#procedures-detail-retry')?.addEventListener('click', () => openDetail(id));
     }
   }
-  async function refreshAccess() {
+  async function refreshAccess(force = false) {
     ensureSection();
     if (!window.publicAuth?.user) {
       detailCache.clear();
       currentUser = null; currentRequest = null; hasAccess = false;
+      procedureAccessCache = { uid: null, expiresAt: 0, hasAccess: false, request: null };
       renderRequestState('login');
       return;
     }
-    if (currentUser?.uid && currentUser.uid !== window.publicAuth.user.uid) detailCache.clear();
+    if (currentUser?.uid && currentUser.uid !== window.publicAuth.user.uid) {
+      detailCache.clear();
+      procedureAccessCache = { uid: null, expiresAt: 0, hasAccess: false, request: null };
+    }
     currentUser = window.publicAuth.user;
     const db = window.publicAuth.firestore;
     if (!db) { renderRequestState('error'); return; }
     try {
       const isAdmin = window.firebaseAdminPanel?.isAdmin === true;
+      const cacheValid = !force && procedureAccessCache.uid === currentUser.uid && procedureAccessCache.expiresAt > Date.now();
       if (isAdmin) {
         hasAccess = true;
         currentRequest = null;
-        try { await loadTitleIndex(); renderCatalog(); }
-        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من قاعدة البيانات.', true); }
+        procedureAccessCache = { uid: currentUser.uid, expiresAt: Date.now() + PROCEDURE_ACCESS_CACHE_MS, hasAccess: true, request: null };
+        await loadTitleIndex();
+        renderCatalog();
+        return;
+      }
+      if (cacheValid) {
+        hasAccess = procedureAccessCache.hasAccess;
+        currentRequest = procedureAccessCache.request;
+        if (hasAccess) {
+          await loadTitleIndex();
+          renderCatalog();
+        } else if (!currentRequest) renderNewRequest();
+        else if (currentRequest.status === 'pending') renderPending();
+        else if (currentRequest.status === 'rejected') renderRequestState('rejected');
+        else if (currentRequest.status === 'revoked') renderRequestState('revoked');
+        else renderNewRequest();
         return;
       }
 
-      const accessSnap = await db.collection(collectionNames.access).doc(currentUser.uid).get();
+      // Fetch the permission document and public index together; the index is reused in memory.
+      const [accessSnap] = await Promise.all([
+        db.collection(collectionNames.access).doc(currentUser.uid).get(),
+        loadTitleIndex()
+      ]);
       hasAccess = Boolean(accessSnap.exists && accessSnap.data()?.enabled === true);
       if (hasAccess) {
         currentRequest = null;
-        try { await loadTitleIndex(); renderCatalog(); }
-        catch (error) { console.error('Procedure index load failed:', error); renderRequestState('error'); setMessage('تعذر تحميل فهرس الإجراءات من قاعدة البيانات.', true); }
+        procedureAccessCache = { uid: currentUser.uid, expiresAt: Date.now() + PROCEDURE_ACCESS_CACHE_MS, hasAccess: true, request: null };
+        renderCatalog();
         return;
       }
 
       detailCache.clear();
       const requestSnap = await db.collection(collectionNames.requests).doc(currentUser.uid).get();
       currentRequest = requestSnap.exists ? { id: requestSnap.id, ...requestSnap.data() } : null;
+      procedureAccessCache = { uid: currentUser.uid, expiresAt: Date.now() + PROCEDURE_ACCESS_CACHE_MS, hasAccess: false, request: currentRequest };
       if (!currentRequest) { renderNewRequest(); return; }
       if (currentRequest.status === 'pending') { renderPending(); return; }
       if (currentRequest.status === 'rejected') { renderRequestState('rejected'); return; }
@@ -233,6 +269,7 @@
       console.error('Mizan procedures access check failed:', error);
       hasAccess = false;
       detailCache.clear();
+      procedureAccessCache = { uid: currentUser.uid, expiresAt: 0, hasAccess: false, request: null };
       renderRequestState('error');
     }
   }
@@ -272,6 +309,7 @@
         await ref.set(payload);
       }
       currentRequest = { ...payload, status: 'pending' };
+      procedureAccessCache = { uid: user.uid, expiresAt: Date.now() + PROCEDURE_ACCESS_CACHE_MS, hasAccess: false, request: currentRequest };
       renderPending();
       setMessage('تم إرسال طلبك إلى الإدارة بنجاح.', false);
     } catch (error) {
@@ -317,7 +355,7 @@
     ensureSection();
     if (!root.querySelector('.procedures-shell')) renderIntro();
     window.addEventListener('public-auth-state-changed', () => {
-      if (root?.classList.contains('active')) refreshAccess();
+      if (root?.classList.contains('active')) refreshAccess(true);
     });
     window.addEventListener('firebase-admin-state-changed', () => {
       if (root?.classList.contains('active')) refreshAccess();
