@@ -127,3 +127,33 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-category-results .procedures-title-list{margin-top:var(--mizan-space-3)}
 .procedures-detail{margin-top:0}
 @media(max-width:600px){.procedures-search-panel{margin-bottom:var(--mizan-space-3)}}
+/* Procedures access contact notice — centralized semantic palette */
+.procedures-contact-note{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  width:100%;
+  box-sizing:border-box;
+  margin-top:14px;
+  padding:14px 15px;
+  border:1px solid var(--mizan-accent-tile-border);
+  border-radius:var(--mizan-radius-md);
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-muted);
+}
+.procedures-contact-note>i{flex:0 0 auto;margin-top:4px;color:var(--mizan-accent-text)}
+.procedures-contact-note p{margin:0;font-size:.88rem;line-height:1.9}
+.procedures-contact-link{
+  display:inline;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--mizan-accent-text);
+  font:inherit;
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  cursor:pointer;
+}
+.procedures-contact-link:focus-visible{outline:2px solid var(--mizan-focus-ring);outline-offset:3px;border-radius:3px}
+@media(max-width:600px){.procedures-contact-note{padding:12px;gap:8px}.procedures-contact-note p{font-size:.82rem}}
