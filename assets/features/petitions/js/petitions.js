@@ -21,16 +21,25 @@
     const snap=await db.collection('petitionDocuments').doc(uid).get();if(!snap.exists)throw Error('العريضة غير موجودة في قاعدة البيانات.');
     const doc={uid:snap.id,...snap.data()};if(doc.published!==true)throw Error('هذه العريضة غير منشورة.');dataCache.set('document:'+uid,doc);return doc;
   }
-  async function loadPetitionAccess(){
-    const auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(!user||!db)return {status:'signed-out',enabled:false};
-    // Administrators are trusted by the same admins/{uid} record used by the admin panel and Firestore rules.
-    const admin=await db.collection('admins').doc(user.uid).get();
+  let petitionAccessCache={uid:null,expiresAt:0,value:null};
+  const PETITION_ACCESS_CACHE_MS=15000;
+  async function loadPetitionAccess(force=false){
+    const auth=window.publicAuth,user=auth?.user,db=auth?.firestore;
+    if(!user||!db)return {status:'signed-out',enabled:false};
+    if(!force&&petitionAccessCache.uid===user.uid&&petitionAccessCache.expiresAt>Date.now()&&petitionAccessCache.value)return petitionAccessCache.value;
+    // These three independent documents are checked together to avoid serial network round trips.
+    const [admin,grant,request]=await Promise.all([
+      db.collection('admins').doc(user.uid).get(),
+      db.collection('petitionAccess').doc(user.uid).get(),
+      db.collection('petitionAccessRequests').doc(user.uid).get()
+    ]);
     const adminData=admin.exists?admin.data():null;
-    if(adminData?.role==='admin'&&adminData.enabled!==false)return {status:'approved',enabled:true,admin:true};
-    const grant=await db.collection('petitionAccess').doc(user.uid).get();
-    if(grant.exists&&grant.data()?.enabled===true)return {status:'approved',enabled:true};
-    const request=await db.collection('petitionAccessRequests').doc(user.uid).get();
-    return {status:request.exists?String(request.data()?.status||'none'):'none',enabled:false};
+    let value;
+    if(adminData?.role==='admin'&&adminData.enabled!==false)value={status:'approved',enabled:true,admin:true};
+    else if(grant.exists&&grant.data()?.enabled===true)value={status:'approved',enabled:true};
+    else value={status:request.exists?String(request.data()?.status||'none'):'none',enabled:false};
+    petitionAccessCache={uid:user.uid,expiresAt:Date.now()+PETITION_ACCESS_CACHE_MS,value};
+    return value;
   }
   function renderAccessGate(access){
     const root=document.getElementById('petition-browse');if(!root)return;
@@ -44,7 +53,7 @@
     root.innerHTML='<section class="petition-access-card"><div class="petition-access-icon"><i class="fas fa-lock" aria-hidden="true"></i></div><span class="petition-access-eyebrow">العرائض والطلبات</span><h3>الوصول إلى العرائض يتطلب موافقة الإدارة</h3><p class="petition-access-description">قدّم طلباً يوضح سبب حاجتك إلى النماذج القانونية. تبقى الموافقة سارية حتى تسحبها الإدارة.</p>'+(canRequest?'<form id="petition-access-request" class="petition-access-request"><label for="petition-access-reason">سبب طلب الوصول</label><textarea id="petition-access-reason" rows="4" minlength="10" maxlength="1000" required placeholder="اكتب سبب طلبك (10 محارف على الأقل)"></textarea><button type="submit" class="petition-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> إرسال طلب الوصول</button></form>':'')+contactNote+'</section>';
     root.querySelector('.petition-contact-link')?.addEventListener('click',()=>window.app?.navigateTo('contact'));
     const form=document.getElementById('petition-access-request');
-    if(form)form.onsubmit=async event=>{event.preventDefault();const reason=String(form.querySelector('textarea').value||'').trim(),auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(reason.length<10||!user||!db)return;const button=form.querySelector('button');button.disabled=true;try{const ref=db.collection('petitionAccessRequests').doc(user.uid),existing=access.status!=='none',payload={uid:user.uid,displayName:auth.displayName(user),email:user.email||'',reason,status:'pending',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};if(existing)await ref.update(payload);else await ref.set({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});renderAccessGate({status:'pending',enabled:false});}catch(e){console.error('Petition access request failed:',e);button.disabled=false;alert('تعذر إرسال الطلب. حاول مرة أخرى بعد التحقق من اتصالك.');}};
+    if(form)form.onsubmit=async event=>{event.preventDefault();const reason=String(form.querySelector('textarea').value||'').trim(),auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(reason.length<10||!user||!db)return;const button=form.querySelector('button');button.disabled=true;try{const ref=db.collection('petitionAccessRequests').doc(user.uid),existing=access.status!=='none',payload={uid:user.uid,displayName:auth.displayName(user),email:user.email||'',reason,status:'pending',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};if(existing)await ref.update(payload);else await ref.set({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});petitionAccessCache={uid:user.uid,expiresAt:Date.now()+PETITION_ACCESS_CACHE_MS,value:{status:'pending',enabled:false}};renderAccessGate({status:'pending',enabled:false});}catch(e){console.error('Petition access request failed:',e);button.disabled=false;alert('تعذر إرسال الطلب. حاول مرة أخرى بعد التحقق من اتصالك.');}};
   }
   async function loadLawyerBranding(){
     state.lawyer={};
@@ -99,8 +108,14 @@
     if(pushHistory)window.app.navigateTo('petitions',{parentView:'home'});
     state.template=null;state.categoryId=null;renderHome();
     const auth=window.publicAuth;if(!auth?.user){auth?.requireAuth?.(()=>open(false));return;}
-    try{await auth.whenFirestoreReady?.();const access=await loadPetitionAccess();if(!access.enabled){renderAccessGate(access);return;}loadLawyerBranding().catch(()=>{});await loadCategories();renderCategories();}
-    catch(e){console.error('Petitions access check failed:',e);renderLoadError('تعذر التحقق من صلاحية الوصول أو تحميل الأقسام. حاول مرة أخرى.');}
+    try{
+      await auth.whenFirestoreReady?.();
+      // Category metadata is a small static JSON file; load it while the access check runs.
+      const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
+      if(!access.enabled){renderAccessGate(access);return;}
+      loadLawyerBranding().catch(()=>{});
+      renderCategories();
+    }catch(e){console.error('Petitions access check failed:',e);renderLoadError('تعذر التحقق من صلاحية الوصول أو تحميل الأقسام. حاول مرة أخرى.');}
   }
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;
@@ -744,9 +759,8 @@
       const auth=window.publicAuth;
       if(!auth?.user){renderHome();auth?.requireAuth?.(()=>open(false));return;}
       await auth.whenFirestoreReady?.();
-      const access=await loadPetitionAccess();
+      const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
       if(!access.enabled){renderHome();renderAccessGate(access);return;}
-      await loadCategories();
       if(level==='document'&&historyState.categoryId&&historyState.templateUid){
         state.categoryId=historyState.categoryId;
         await loadTemplates(state.categoryId);
