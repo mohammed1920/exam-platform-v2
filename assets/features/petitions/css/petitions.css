@@ -1092,7 +1092,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   font-size:22px;
 }
 .petition-access-eyebrow{
-  color:var(--mizan-primary-600);
+  color:var(--mizan-accent-text);
   font-size:var(--mizan-font-size-2xs);
   font-weight:900;
 }
@@ -1164,15 +1164,15 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   gap:10px;
   margin-top:5px;
   padding:14px 15px;
-  border:1px solid var(--mizan-border);
+  border:1px solid var(--mizan-accent-tile-border);
   border-radius:var(--mizan-radius-md);
-  background:var(--mizan-surface-soft);
+  background:var(--mizan-accent-tile-bg);
   color:var(--mizan-muted);
 }
 .petition-access-note>i{
   flex:0 0 auto;
   margin-top:4px;
-  color:var(--mizan-primary-600);
+  color:var(--mizan-accent-text);
 }
 .petition-access-note p{
   margin:0;
@@ -1184,7 +1184,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   padding:0;
   border:0;
   background:transparent;
-  color:var(--mizan-primary-600);
+  color:var(--mizan-accent-text);
   font:inherit;
   font-weight:900;
   text-decoration:underline;
