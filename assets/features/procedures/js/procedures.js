@@ -10,6 +10,7 @@
   let busy = false;
   let titles = [];
   let titlesLoaded = false;
+  let titleIndexLoadedAt = 0;
   let titleIndexPromise = null;
   let procedureAccessCache = { uid: null, expiresAt: 0, hasAccess: false, request: null };
   const PROCEDURE_ACCESS_CACHE_MS = 15000;
@@ -117,7 +118,7 @@
   function renderPending() { renderRequestState('pending'); }
 
   async function loadTitleIndex(force = false) {
-    if (titlesLoaded && !force) return titles;
+    if (titlesLoaded && !force && Date.now() - titleIndexLoadedAt < 60000) return titles;
     if (titleIndexPromise && !force) return titleIndexPromise;
     const db = window.publicAuth?.firestore;
     if (!db) throw new Error('خدمة قاعدة البيانات غير متاحة');
@@ -130,6 +131,7 @@
         .map(item => ({ id: item.id, title: item.title.trim(), category: item.category, categoryTitle: typeof item.categoryTitle === 'string' ? item.categoryTitle : '', summary: typeof item.summary === 'string' ? item.summary : '' }));
       titles = publishedItems;
       titlesLoaded = true;
+      titleIndexLoadedAt = Date.now();
       return titles;
     })();
     try { return await titleIndexPromise; }
