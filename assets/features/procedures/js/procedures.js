@@ -244,12 +244,13 @@
       }
 
       // Fetch the permission document and public index together; the index is reused in memory.
-      const [accessSnap] = await Promise.all([
+      const [accessSnap, indexResult] = await Promise.all([
         db.collection(collectionNames.access).doc(currentUser.uid).get(),
-        loadTitleIndex()
+        loadTitleIndex().then(value => ({ value }), error => ({ error }))
       ]);
       hasAccess = Boolean(accessSnap.exists && accessSnap.data()?.enabled === true);
       if (hasAccess) {
+        if (indexResult.error) throw indexResult.error;
         currentRequest = null;
         procedureAccessCache = { uid: currentUser.uid, expiresAt: Date.now() + PROCEDURE_ACCESS_CACHE_MS, hasAccess: true, request: null };
         renderCatalog();
