@@ -54,6 +54,14 @@
       </div>`;
   }
 
+  function contactNotice() {
+    return `<div class="procedures-contact-note"><i class="fas fa-circle-info" aria-hidden="true"></i><p>عند تقديم طلبك، تواصل مع الإدارة من قسم <button type="button" class="procedures-contact-link">تواصل معنا</button> لتأكيد حسابك.</p></div>`;
+  }
+
+  function bindContactLink(host) {
+    host.querySelector('.procedures-contact-link')?.addEventListener('click', () => window.app?.navigateTo('contact'));
+  }
+
   function renderRequestState(kind, detail) {
     const host = root.querySelector('#procedures-access-state');
     if (!host) return;
@@ -72,7 +80,9 @@
         ${kind === 'login' ? '<button type="button" class="procedures-primary" id="procedures-login">تسجيل الدخول</button>' : ''}
         ${kind === 'rejected' || kind === 'revoked' ? requestForm() : ''}
         ${kind === 'error' ? '<button type="button" class="procedures-secondary" id="procedures-retry">إعادة المحاولة</button>' : ''}
+        ${kind === 'pending' ? contactNotice() : ''}
       </div>`;
+    bindContactLink(host);
     const login = host.querySelector('#procedures-login');
     if (login) login.addEventListener('click', () => window.publicAuth?.requireAuth(() => open()));
     const retry = host.querySelector('#procedures-retry');
@@ -85,7 +95,7 @@
       <label for="procedures-request-reason">سبب طلب الوصول <span>مطلوب</span></label>
       <textarea id="procedures-request-reason" name="reason" rows="3" maxlength="1000" required placeholder="اكتب باختصار كيف ستستفيد من دليل الإجراءات القانونية..."></textarea>
       <button type="submit" class="procedures-primary" id="procedures-submit-request"><i class="fas fa-paper-plane" aria-hidden="true"></i> إرسال طلب الوصول</button>
-    </form>`;
+    </form>${contactNotice()}`;
   }
 
   function renderNewRequest() {
@@ -96,6 +106,7 @@
         <div class="procedures-lock-copy"><span class="procedures-lock-label">قسم محمي</span><h3>اطلب الوصول إلى إجراءات الدعاوى</h3><p>قدّم طلبك مرة واحدة، وستراجعه الإدارة. لا تُفتح تفاصيل الإجراءات إلا بعد الموافقة.</p></div>
         ${requestForm()}
       </div>`;
+    bindContactLink(host);
     host.querySelector('#procedures-request-form')?.addEventListener('submit', submitRequest);
   }
 
