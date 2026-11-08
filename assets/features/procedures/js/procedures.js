@@ -171,29 +171,42 @@
   function detailBlock(title, value) {
     const values = Array.isArray(value)
       ? value
-      : String(value || '').replace(/\\r\\n?/g, '\\n').split('\\n');
+      : String(value || '').replace(/\r\n?/g, '\n').split('\n');
     const clean = values.map(v => String(v || '').trim()).filter(Boolean);
     if (!clean.length) return '';
     if (title === 'خطوات الإجراء') {
       const steps = [];
       clean.forEach(line => {
-        const markers = [...line.matchAll(/(?:^|\\s)([0-9٠-٩]{1,2})\\s*[-.)،ـ]\\s*/g)];
+        const markers = [...line.matchAll(/(?:^|\s)([0-9٠-٩]{1,2})\s*[-.)،ـ]\s*/g)];
         if (markers.length > 1 && markers[0].index === 0) {
           markers.forEach((marker, index) => {
-            const start = marker.index + marker[0].length;
-            const end = index + 1 < markers.length ? markers[index + 1].index : line.length;
-            const text = line.slice(start, end).trim();
+            const stepStart = marker.index + marker[0].length;
+            const stepEnd = index + 1 < markers.length ? markers[index + 1].index : line.length;
+            const text = line.slice(stepStart, stepEnd).trim();
             if (text) steps.push(text);
           });
         } else {
-          const text = line.replace(/^(?:[0-9٠-٩]{1,2})\\s*[-.)،ـ]\\s*/, '').trim();
+          const text = line.replace(/^(?:[0-9٠-٩]{1,2})\s*[-.)،ـ]\s*/, '').trim();
           if (text) steps.push(text);
         }
       });
       if (!steps.length) return '';
-      return `<section class="procedures-detail-section procedures-steps-section"><h4>${esc(title)}</h4><ol class="procedures-steps-list">${steps.map((step, index) => `<li class="procedures-step-card"><span class="procedures-step-number" aria-hidden="true">${index + 1}</span><div class="procedures-step-content"><span class="procedures-step-label">الخطوة ${index + 1}</span><p>${esc(step)}</p></div></li>`).join('')}</ol></section>`;
+      const items = steps.map((step, index) =>
+        '<li class="procedures-step-card"><span class="procedures-step-number" aria-hidden="true">' +
+        (index + 1) +
+        '</span><div class="procedures-step-content"><span class="procedures-step-label">الخطوة ' +
+        (index + 1) +
+        '</span><p>' + esc(step) + '</p></div></li>'
+      ).join('');
+      return '<section class="procedures-detail-section procedures-steps-section"><h4>' +
+        esc(title) + '</h4><ol class="procedures-steps-list">' + items +
+        '</ol></section>';
     }
-    return `<section class="procedures-detail-section"><h4>${esc(title)}</h4>${clean.length > 1 ? `<ol>${clean.map(v => `<li>${esc(v)}</li>`).join('')}</ol>` : `<p>${esc(clean[0])}</p>`}</section>`;
+    const body = clean.length > 1
+      ? '<ol>' + clean.map(v => '<li>' + esc(v) + '</li>').join('') + '</ol>'
+      : '<p>' + esc(clean[0]) + '</p>';
+    return '<section class="procedures-detail-section"><h4>' + esc(title) +
+      '</h4>' + body + '</section>';
   }
 
   async function openDetail(id, restore = false) {
