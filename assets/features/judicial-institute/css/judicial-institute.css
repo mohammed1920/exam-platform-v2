@@ -1,37 +1,35 @@
 /* المعهد القضائي — يستهلك نظام الألوان ورموز التصميم المركزية في ميزان. */
 .judicial-institute-section{box-sizing:border-box;width:100%;max-width:var(--mizan-content-width-wide,1440px);min-width:0;margin-inline:auto;padding:var(--mizan-space-5) var(--mizan-content-padding,16px) var(--mizan-space-8);color:var(--mizan-text);direction:rtl;text-align:right;overflow-x:clip}.judicial-institute-section *,.judicial-institute-section *::before,.judicial-institute-section *::after{box-sizing:border-box}
 .ji-shell{display:grid;gap:var(--mizan-space-5);width:100%;max-width:100%;min-width:0;color:var(--mizan-text);direction:rtl}
-.ji-header{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-card-rest)}
-.ji-header .ji-brand{grid-column:2;justify-self:center;min-width:0}
-.ji-header .ji-back{grid-column:1;justify-self:start;position:static;min-width:0}
+.ji-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;padding:clamp(20px,4vw,32px);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl);background:var(--mizan-gradient-intro-petitions);color:var(--mizan-intro-fg);box-shadow:var(--mizan-shadow-card-rest)}
+.ji-header .ji-brand{grid-column:1;justify-self:stretch;min-width:0}
+.ji-header .ji-back{grid-column:2;grid-row:1;justify-self:end;position:static;min-width:0;align-self:start}
 .ji-brand h1{white-space:normal;overflow-wrap:normal;word-break:normal}
 .ji-brand{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0}
-.ji-brand-icon{display:grid;place-items:center;width:48px;height:48px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:22px}
-.ji-brand h1{margin:2px 0 0;color:var(--mizan-heading);font-size:var(--mizan-font-size-xl);font-weight:900}
+.ji-brand>div{min-width:0}
+.ji-brand-icon{display:grid;place-items:center;width:clamp(52px,8vw,68px);height:clamp(52px,8vw,68px);flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:clamp(22px,4vw,28px)}
+.ji-brand h1{margin:var(--mizan-space-1) 0 0;color:var(--mizan-intro-fg);font-size:clamp(22px,3.2vw,30px);font-weight:900;line-height:1.4}
+.ji-brand .ji-eyebrow{color:var(--mizan-intro-kicker);font-size:var(--mizan-font-size-xs)}
+.ji-brand-description{max-width:680px;margin:var(--mizan-space-2) 0 0;color:var(--mizan-intro-muted);font-size:var(--mizan-font-size-sm);line-height:1.8}
 .ji-eyebrow,.ji-kicker{display:block;color:var(--mizan-primary-500);font-size:var(--mizan-font-size-xs);font-weight:800}
 .ji-back,.ji-saved-toggle{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:42px;padding:var(--mizan-space-2) var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-card);color:var(--mizan-text);font:inherit;font-size:var(--mizan-font-size-xs);font-weight:700;cursor:pointer}
 .ji-saved-toggle b{display:grid;place-items:center;min-width:22px;height:22px;padding-inline:4px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
 
-.ji-entry-list{display:grid;gap:var(--mizan-space-3);width:100%;min-width:0}
-.ji-entry-card{position:relative;display:flex;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;min-height:92px;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-card);color:var(--mizan-text);text-align:right;font:inherit;cursor:pointer;transition:var(--mizan-transition-standard)}
-.ji-entry-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
+.ji-entry-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:var(--mizan-space-3);width:100%;min-width:0}
+.ji-entry-card,.ji-bank-card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);width:100%;min-width:0;min-height:var(--mizan-petitions-category-card-min-height,190px);padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-card);color:var(--mizan-text);text-align:center;font:inherit;cursor:pointer;transition:transform var(--mizan-duration-ui),border-color var(--mizan-duration-ui),box-shadow var(--mizan-duration-ui),background-color var(--mizan-duration-ui)}
+.ji-bank-card{background:color-mix(in srgb,var(--mizan-primary-100) 48%,var(--mizan-card));border-color:color-mix(in srgb,var(--mizan-primary-700) 25%,var(--mizan-border))}
+.ji-saved-entry{background:color-mix(in srgb,var(--mizan-success-100) 12%,var(--mizan-card));border-color:color-mix(in srgb,var(--mizan-success-700) 18%,var(--mizan-border))}
+.ji-entry-card:hover,.ji-bank-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .ji-entry-icon{display:grid;place-items:center;width:48px;height:48px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:20px}
-.ji-entry-copy{display:grid;gap:5px;flex:1;min-width:0}
-.ji-entry-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900;line-height:1.5}
-.ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7}
-.ji-entry-arrow{flex:0 0 auto;color:var(--mizan-primary-500)}
+.ji-entry-copy{display:grid;gap:5px;width:100%;min-width:0;flex:1}
+.ji-entry-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-md);font-weight:900;line-height:1.45;text-wrap:balance}
+.ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.6}
+.ji-entry-arrow{position:absolute;inset-inline-start:var(--mizan-space-3);bottom:var(--mizan-space-3);color:var(--mizan-primary-500)}
 .ji-entry-count{display:grid;place-items:center;min-width:28px;height:28px;padding-inline:7px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-weight:800}
-.ji-bank-card{position:relative;display:grid;gap:var(--mizan-space-3);width:100%;min-width:0;padding:clamp(20px,4vw,36px);overflow:hidden;border:1px solid var(--mizan-primary-800);border-radius:var(--mizan-radius-2xl);background:linear-gradient(135deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);text-align:right;font:inherit;cursor:pointer;box-shadow:var(--mizan-shadow-card-raised);transition:var(--mizan-transition-standard)}
-.ji-bank-card::after{content:"";position:absolute;inset-inline-start:-75px;bottom:-120px;width:260px;height:260px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);border-radius:50%;pointer-events:none}
-.ji-bank-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
-.ji-bank-card>.ji-kicker{color:var(--mizan-warning-200)}
-.ji-bank-title{position:relative;color:var(--mizan-white);font-size:clamp(21px,3.2vw,30px);font-weight:900;line-height:1.45}
-.ji-bank-description{max-width:760px;color:var(--mizan-ice);font-size:var(--mizan-font-size-sm);line-height:1.9}
-.ji-bank-card .ji-stats{display:flex;flex-wrap:wrap;gap:var(--mizan-space-3);margin-top:var(--mizan-space-3)}
-.ji-bank-card .ji-stats>span{display:grid;gap:2px;min-width:110px;padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid color-mix(in srgb,var(--mizan-white) 20%,transparent);border-radius:var(--mizan-radius-lg);background:color-mix(in srgb,var(--mizan-white) 8%,transparent)}
-.ji-bank-card .ji-stats strong{color:var(--mizan-white);font-size:var(--mizan-font-size-xl);font-weight:900}
-.ji-bank-card .ji-stats small{color:var(--mizan-ice);font-size:var(--mizan-font-size-xs)}
-.ji-bank-action{display:flex;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);color:var(--mizan-warning-200);font-size:var(--mizan-font-size-sm);font-weight:900}
+.ji-entry-stats{display:flex;justify-content:center;gap:var(--mizan-space-2);width:100%;margin-top:auto}
+.ji-entry-stats>span{display:grid;gap:2px;flex:1;min-width:0;padding:7px 4px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface)}
+.ji-entry-stats strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-md);font-weight:900}
+.ji-entry-stats small{color:var(--mizan-muted);font-size:10px}
 
 .ji-intro{position:relative;overflow:hidden;padding:clamp(22px,4vw,38px);border:1px solid var(--mizan-primary-800);border-radius:var(--mizan-radius-2xl);background:linear-gradient(135deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);box-shadow:var(--mizan-shadow-card-raised)}
 .ji-intro:after{content:"";position:absolute;inset-inline-start:-75px;bottom:-120px;width:260px;height:260px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);border-radius:50%;pointer-events:none}
@@ -102,7 +100,18 @@
  .ji-shell{gap:var(--mizan-space-3)}
  .ji-header{gap:7px;padding:var(--mizan-space-2)}
  .ji-header .ji-brand{gap:6px}
- .ji-entry-card{min-height:82px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
+ .ji-header{padding:var(--mizan-space-4)}
+ .ji-brand-description{font-size:var(--mizan-font-size-xs)}
+ .ji-entry-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2)}
+ .ji-entry-card,.ji-bank-card{min-height:180px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
+ .ji-entry-icon{width:42px;height:42px;font-size:18px}
+ .ji-entry-copy strong{font-size:var(--mizan-font-size-sm)}
+ .ji-entry-copy small{font-size:10px}
+ .ji-entry-stats{gap:4px}
+ .ji-entry-stats>span{padding:6px 2px}
+ .ji-entry-stats strong{font-size:var(--mizan-font-size-sm)}
+ .ji-entry-stats small{font-size:9px}
+
  .ji-section-identity{padding:var(--mizan-space-3) var(--mizan-space-4)}
  .ji-bank-card{padding:var(--mizan-space-5);gap:var(--mizan-space-2)}
  .ji-bank-card .ji-stats{gap:7px;margin-top:var(--mizan-space-2)}
