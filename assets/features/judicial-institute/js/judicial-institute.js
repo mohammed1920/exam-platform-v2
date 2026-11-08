@@ -30,7 +30,7 @@
     const showBack=state.level!=='home';
     return '<div class="ji-shell" dir="rtl"><header class="ji-header '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
       (showBack?'<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>':'')+
-      '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">القسم التعليمي</span><h1>المعهد القضائي</h1></div></div>'+
+      '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">ميزان · القسم التعليمي</span><h1>المعهد القضائي</h1>'+(showBack?'':'<p class="ji-brand-description">مساحة منظمة للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p>')+'</div></div>'+
       '</header>'+content+
       '<footer class="ji-footer"><span>ميزان · حيث يُقاس الفهم القانوني بدقة</span><span>مصدر المحتوى: ملفات الأرشيف المعتمدة</span></footer></div>';
   }
@@ -40,19 +40,18 @@
     return shell(
       '<section class="ji-entry-list">'+
       '<button type="button" class="ji-bank-card" data-ji-action="archive">'+
-        '<span class="ji-kicker">أرشيف المعرفة القضائية</span>'+
-        '<strong class="ji-bank-title">بنك أسئلة الأعوام السابقة</strong>'+
-        '<span class="ji-bank-description">تدرّب على أسئلة امتحانات المعهد القضائي حسب السنة والمادة القانونية، وارجع إلى الأسئلة التي تحتاج إلى مراجعتها.</span>'+
-        '<span class="ji-stats">'+
-          '<span><strong>'+data.questions.length+'</strong><small>سؤال مؤرشف</small></span>'+
-          '<span><strong>'+data.subjects.length+'</strong><small>مواد قانونية</small></span>'+
-          '<span><strong>'+all.length+'</strong><small>سنوات الأرشيف</small></span>'+
+        '<span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span>'+
+        '<span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أسئلة الامتحانات حسب السنة والمادة القانونية.</small></span>'+
+        '<span class="ji-entry-stats">'+
+          '<span><strong>'+data.questions.length+'</strong><small>سؤال</small></span>'+
+          '<span><strong>'+data.subjects.length+'</strong><small>مواد</small></span>'+
+          '<span><strong>'+all.length+'</strong><small>سنوات</small></span>'+
         '</span>'+
-        '<span class="ji-bank-action">استعراض الأرشيف <i class="fas fa-arrow-left" aria-hidden="true"></i></span>'+
+        '<i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i>'+
       '</button>'+
       '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved">'+
         '<span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span>'+
-        '<span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً</small></span>'+
+        '<span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً.</small></span>'+
         '<b class="ji-entry-count">'+savedCount+'</b>'+
         '<i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i>'+
       '</button>'+
