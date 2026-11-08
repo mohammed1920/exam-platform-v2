@@ -145,7 +145,11 @@
   let restoringProcedureHistory = false;
   function pushProcedureState(level, extra = {}) {
     if (restoringProcedureHistory) return;
-    history.pushState({ ...(history.state || {}), view: 'procedures', proceduresLevel: level, procedureCategoryId: activeProcedureCategory, procedureId: activeProcedureDetail, ...extra }, '', location.href);
+    window.app?.navigateTo('procedures', {
+      proceduresLevel: level,
+      procedureCategoryId: extra.procedureCategoryId ?? activeProcedureCategory,
+      procedureId: extra.procedureId ?? activeProcedureDetail
+    });
   }
   function returnToProcedureParent() {
     if (history.state?.view === 'procedures' && history.state?.proceduresLevel) history.back();
@@ -160,7 +164,12 @@
       <div class="procedures-catalog-heading"><div><span>فهرس الإجراءات</span><h3>اختر نوع الدعوى</h3></div><span class="procedures-count">${titles.length} إجراء</span></div>
       <section class="procedures-search-panel" aria-label="البحث في إجراءات الدعاوى"><label for="procedures-search-input"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> ابحث عن الإجراء الذي تحتاجه</label><div class="procedures-search-field"><input id="procedures-search-input" type="search" autocomplete="off" placeholder="مثلاً: مطالبة بدين أو مدة الطعن"><button type="button" id="procedures-search-clear" hidden aria-label="مسح البحث"><i class="fas fa-xmark" aria-hidden="true"></i></button></div><div id="procedures-search-results" class="procedures-search-results" aria-live="polite"><p class="procedures-search-empty">اكتب اسم الإجراء أو جزءاً منه للعثور عليه بسرعة.</p></div></section>
       <section id="procedures-content-panel" class="procedures-content-panel"><div id="procedures-category-grid" class="procedures-category-grid">${procedureCategories.map(category=>`<button type="button" class="procedures-category-card procedures-category-card--${category.id}" data-procedure-category="${category.id}"><span class="procedures-category-title">${esc(category.title)}</span><span class="procedures-category-description">${esc(category.description)}</span><span class="procedures-category-count">${counts[category.id]} إجراء <i class="fas fa-angle-left" aria-hidden="true"></i></span></button>`).join('')}</div><section id="procedures-category-results" class="procedures-category-results" hidden></section><div id="procedures-detail" class="procedures-detail" hidden></div></section>`;
-    host.querySelectorAll('[data-procedure-category]').forEach(button=>button.addEventListener('click',()=>{ activeProcedureDetail=null; pushProcedureState('category',{procedureCategoryId:button.dataset.procedureCategory,procedureId:null}); renderProcedureCategoryResults(button.dataset.procedureCategory,false); }));
+    host.querySelectorAll('[data-procedure-category]').forEach(button=>button.addEventListener('click',()=>{
+      const categoryId = button.dataset.procedureCategory;
+      activeProcedureDetail = null;
+      window.app?.navigateTo('procedures', { proceduresLevel: 'category', procedureCategoryId: categoryId, procedureId: null });
+      renderProcedureCategoryResults(categoryId,false);
+    }));
     const input=host.querySelector('#procedures-search-input'),clear=host.querySelector('#procedures-search-clear');
     input.addEventListener('input',()=>{clear.hidden=!input.value;renderProcedureSearchResults(input.value);});
     clear.addEventListener('click',()=>{input.value='';clear.hidden=true;renderProcedureSearchResults('');input.focus();});
@@ -210,8 +219,14 @@
 
   async function openDetail(id, restore = false) {
     if (!hasAccess || !currentUser) return;
-    if (!restore) { activeProcedureDetail = id; pushProcedureState('detail', { procedureCategoryId: activeProcedureCategory, procedureId: id }); }
-    else activeProcedureDetail = id;
+    if (!restore) {
+      activeProcedureDetail = id;
+      window.app?.navigateTo('procedures', {
+        proceduresLevel: 'detail',
+        procedureCategoryId: activeProcedureCategory,
+        procedureId: id
+      });
+    } else activeProcedureDetail = id;
     const host = root.querySelector('#procedures-detail');
     const grid = root.querySelector('#procedures-category-grid');
     const categoryResults = root.querySelector('#procedures-category-results');
