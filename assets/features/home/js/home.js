@@ -72,6 +72,7 @@
     }
     if (action === 'mizan-pulpit') { loadMizanPulpit().then(api => api?.open?.()).catch(() => showNotice('منبر ميزان', 'تعذر تحميل المنبر. تحقق من الاتصال ثم أعد المحاولة.')); return; }
     if (action === 'laws') { loadLaws().then(api => api?.open?.()).catch(() => showNotice('القوانين العراقية', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.')); return; }
+    if (action === 'judicial') { window.judicialInstitute?.open?.(); return; }
     if (action === 'procedures') { window.procedures?.open?.(); return; }
     if (action === 'contact') {
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
@@ -80,6 +81,7 @@
     const names = {
       judicial: 'اختبارات المعهد القضائي',
       laws: 'القوانين العراقية',
+      judicial: 'اختبارات المعهد القضائي',
       procedures: 'إجراءات الدعاوى',
       petitions: 'العرائض والطلبات',
       lawyers: 'دليل المحامين'
