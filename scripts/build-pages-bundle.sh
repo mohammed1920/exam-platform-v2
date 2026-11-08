@@ -59,6 +59,9 @@ required_files=(
   assets/features/admin/js/admin-theme.js
   assets/features/admin/js/admin.js
   assets/features/home/js/home.js
+  assets/features/judicial-institute/js/judicial-institute.js
+  assets/features/judicial-institute/css/judicial-institute.css
+  data/judicial-institute/questions.json
   assets/shared/js/platform-bootstrap.js
   assets/features/student-account/js/user-dashboard.js
   assets/shared/js/theme.js
