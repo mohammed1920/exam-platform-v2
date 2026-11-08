@@ -207,3 +207,69 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
     box-sizing: border-box;
   }
 }
+
+
+/* Procedure steps: independent RTL cards with a stable numbered timeline. */
+.procedures-steps-section{margin-top:24px}
+.procedures-steps-section>h4{
+  display:flex;align-items:center;gap:10px;
+  color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));
+}
+.procedures-steps-section>h4::before{
+  content:"";width:4px;height:1.35em;border-radius:99px;
+  background:var(--mizan-warning-600,var(--mizan-accent-text,#D97706));
+}
+.procedures-steps-list{
+  display:grid;gap:14px;position:relative;
+  margin:16px 0 0;padding:4px 0 4px 0;
+  list-style:none;counter-reset:procedure-step;
+  direction:rtl;
+}
+.procedures-step-card{
+  position:relative;display:flex;align-items:flex-start;gap:14px;
+  min-width:0;margin:0;padding:16px;
+  border:1px solid var(--mizan-procedures-card-border,var(--mizan-border,var(--mizan-border-light)));
+  border-radius:18px;
+  background:var(--mizan-procedures-card-civil-bg,var(--mizan-surface,var(--card-bg,var(--mizan-surface-light))));
+  box-shadow:var(--mizan-procedures-shadow-card,none);
+  counter-increment:procedure-step;
+}
+.procedures-step-number{
+  position:relative;z-index:1;display:grid;place-items:center;
+  flex:0 0 40px;width:40px;height:40px;
+  border:1px solid var(--mizan-primary-600,var(--mizan-primary-500));
+  border-radius:50%;
+  background:var(--mizan-primary-600,var(--mizan-primary-500));
+  color:var(--mizan-white,#fff);
+  font-size:1.05rem;font-weight:900;line-height:1;
+  box-shadow:0 0 0 4px var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));
+}
+.procedures-step-content{flex:1;min-width:0}
+.procedures-step-label{
+  display:block;margin:0 0 5px;
+  color:var(--mizan-primary-600,var(--mizan-primary-500));
+  font-size:.82rem;font-weight:900;line-height:1.5;
+}
+.procedures-step-content p{
+  margin:0;color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));
+  font-size:1rem;line-height:1.95;
+  white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;
+}
+.procedures-step-card:not(:last-child)::after{
+  content:"";position:absolute;z-index:0;
+  right:35px;top:56px;bottom:-16px;width:2px;
+  border-right:2px dashed var(--mizan-primary-500,var(--mizan-primary-600,#2563EB));
+  opacity:.55;pointer-events:none;
+}
+.procedures-step-card{isolation:isolate}
+.procedures-step-card:not(:last-child)::after{height:calc(100% + 14px);bottom:auto}
+@media(max-width:600px){
+  .procedures-steps-list{gap:12px;margin-top:13px}
+  .procedures-step-card{gap:11px;padding:14px 12px;border-radius:15px}
+  .procedures-step-number{flex-basis:36px;width:36px;height:36px;font-size:.98rem}
+  .procedures-step-card:not(:last-child)::after{right:29px;top:51px;height:calc(100% + 12px)}
+  .procedures-step-content p{font-size:.94rem;line-height:1.9}
+}
+@media(prefers-reduced-motion:reduce){
+  .procedures-step-card{transition:none}
+}
