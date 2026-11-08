@@ -30,7 +30,7 @@
     const showBack=state.level!=='home';
     return '<div class="ji-shell" dir="rtl"><header class="ji-header '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
       (showBack?'<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>':'')+
-      '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">أرشيف المعرفة القضائية</span><h1>المعهد القضائي</h1></div></div>'+
+      '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">القسم التعليمي</span><h1>المعهد القضائي</h1></div></div>'+
       '</header>'+content+
       '<footer class="ji-footer"><span>ميزان · حيث يُقاس الفهم القانوني بدقة</span><span>مصدر المحتوى: ملفات الأرشيف المعتمدة</span></footer></div>';
   }
@@ -38,7 +38,6 @@
     const all=archiveYears();
     const savedCount=savedIds().length;
     return shell(
-      '<section class="ji-section-identity"><span class="ji-kicker">القسم التعليمي</span><h2>المعهد القضائي</h2><p>قسم مخصص للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p></section>'+
       '<section class="ji-entry-list">'+
       '<button type="button" class="ji-bank-card" data-ji-action="archive">'+
         '<span class="ji-kicker">أرشيف المعرفة القضائية</span>'+
