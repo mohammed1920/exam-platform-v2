@@ -3,6 +3,8 @@
 .ji-shell{display:grid;gap:var(--mizan-space-5);width:100%;max-width:100%;min-width:0;color:var(--mizan-text);direction:rtl}
 .ji-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;padding:clamp(20px,4vw,32px);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl);background:var(--mizan-gradient-intro-petitions);color:var(--mizan-intro-fg);box-shadow:var(--mizan-shadow-card-rest)}
 .ji-header .ji-brand{grid-column:1;justify-self:stretch;min-width:0}
+.ji-header-home{grid-template-columns:minmax(0,1fr)}
+.ji-header-home .ji-brand{grid-column:1}
 .ji-header .ji-back{grid-column:2;grid-row:1;justify-self:end;position:static;min-width:0;align-self:start}
 .ji-brand h1{white-space:normal;overflow-wrap:normal;word-break:normal}
 .ji-brand{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0}
@@ -98,9 +100,8 @@
 @media(max-width:620px){
  .judicial-institute-section{padding:var(--mizan-space-3) var(--mizan-content-padding-mobile,10px) var(--mizan-space-6)}
  .ji-shell{gap:var(--mizan-space-3)}
- .ji-header{gap:7px;padding:var(--mizan-space-2)}
- .ji-header .ji-brand{gap:6px}
- .ji-header{padding:var(--mizan-space-4)}
+ .ji-header{gap:var(--mizan-space-3);padding:var(--mizan-space-4)}
+ .ji-header .ji-brand{gap:var(--mizan-space-3)}
  .ji-brand-description{font-size:var(--mizan-font-size-xs)}
  .ji-entry-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2)}
  .ji-entry-card,.ji-bank-card{min-height:180px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
@@ -112,15 +113,9 @@
  .ji-entry-stats strong{font-size:var(--mizan-font-size-sm)}
  .ji-entry-stats small{font-size:9px}
 
- .ji-section-identity{padding:var(--mizan-space-3) var(--mizan-space-4)}
- .ji-bank-card{padding:var(--mizan-space-5);gap:var(--mizan-space-2)}
- .ji-bank-card .ji-stats{gap:7px;margin-top:var(--mizan-space-2)}
- .ji-bank-card .ji-stats>span{min-width:0;flex:1;padding:9px}
- .ji-bank-card .ji-stats strong{font-size:var(--mizan-font-size-lg)}
- .ji-bank-card .ji-stats small{font-size:10px}
- .ji-entry-icon{width:42px;height:42px;font-size:18px}
- .ji-entry-copy strong{font-size:var(--mizan-font-size-md)}
- .ji-brand{gap:8px}.ji-brand-icon{width:38px;height:38px;font-size:18px}.ji-brand h1{font-size:var(--mizan-font-size-md)}.ji-eyebrow{font-size:10px}
+ .ji-brand-icon{width:48px;height:48px;font-size:20px}
+ .ji-brand h1{font-size:var(--mizan-font-size-lg)}
+ .ji-brand .ji-eyebrow{font-size:var(--mizan-font-size-2xs)}
  .ji-back,.ji-saved-toggle{min-height:38px;padding:6px 8px;font-size:10px}.ji-saved-toggle{gap:5px}
  .ji-intro{padding:var(--mizan-space-5)}.ji-intro-compact{padding:var(--mizan-space-4)}.ji-intro h2{font-size:22px}
  .ji-stats{gap:7px}.ji-stats>div{min-width:0;flex:1;padding:9px}.ji-stats strong{font-size:var(--mizan-font-size-lg)}.ji-stats span{font-size:10px}
