@@ -5,7 +5,7 @@
   const SAVED_KEY='mizan-judicial-institute-saved-v1';
   const ROOT_ID='judicial-institute-section';
   let data=null, dataPromise=null;
-  let state={level:'years',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
+  let state={level:'home',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
   const root=()=>document.getElementById(ROOT_ID);
   const esc=value=>String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function savedIds(){try{const v=JSON.parse(localStorage.getItem(SAVED_KEY)||'[]');return Array.isArray(v)?v.map(String):[];}catch(_){return[];}}
@@ -27,11 +27,18 @@
   function subject(id){return data.subjects.find(s=>s.id===id);}
   function subjectQuestions(id,year){return data.questions.filter(q=>String(q.subjectId)===String(id)&&(year==null||Number(q.year)===Number(year)));}
   function shell(content){
-    return '<div class="ji-shell" dir="rtl"><header class="ji-header">'+
-      '<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>'+
+    const showBack=state.level!=='home';
+    return '<div class="ji-shell" dir="rtl"><header class="ji-header '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
+      (showBack?'<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>':'')+
       '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">أرشيف المعرفة القضائية</span><h1>المعهد القضائي</h1></div></div>'+
-      '<button class="ji-saved-toggle" type="button" data-ji-action="saved"><i class="fas fa-bookmark" aria-hidden="true"></i><span>المحفوظات</span><b>'+savedIds().length+'</b></button></header>'+content+
+      '</header>'+content+
       '<footer class="ji-footer"><span>ميزان · حيث يُقاس الفهم القانوني بدقة</span><span>مصدر المحتوى: ملفات الأرشيف المعتمدة</span></footer></div>';
+  }
+  function renderLanding(){
+    return shell('<section class="ji-entry-list">'+
+      '<button type="button" class="ji-entry-card ji-archive-entry" data-ji-action="archive"><span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أرشيف الامتحانات حسب السنة والمادة القانونية</small></span><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
+      '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved"><span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً</small></span><b class="ji-entry-count">'+savedIds().length+'</b><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
+      '</section>');
   }
   function renderYears(){
     const all=archiveYears(), low=Math.min(Number(state.fromYear)||2005,Number(state.toYear)||2026), high=Math.max(Number(state.fromYear)||2005,Number(state.toYear)||2026);
@@ -82,7 +89,7 @@
   function render(){
     const el=root();if(!el)return;
     if(!data){el.innerHTML=shell('<div class="ji-loading"><span class="ji-spinner"></span><p>جاري تحميل أرشيف المعهد القضائي...</p></div>');return;}
-    if(state.level==='subjects')el.innerHTML=renderSubjects();
+    if(state.level==='home')el.innerHTML=renderLanding();\n    else if(state.level==='subjects')el.innerHTML=renderSubjects();
     else if(state.level==='questions')el.innerHTML=renderQuestions();
     else if(state.level==='saved')el.innerHTML=renderSaved();
     else el.innerHTML=renderYears();
@@ -109,7 +116,7 @@
     el.querySelectorAll('[data-ji-action]').forEach(button=>button.addEventListener('click',()=>{
       const action=button.dataset.jiAction;
       if(action==='back')return back();
-      if(action==='years')return pushLevel('years',{year:null,subjectId:null});
+      if(action==='years')return pushLevel('years',{year:null,subjectId:null});\n      if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
       if(action==='saved')return pushLevel('saved',{year:null,subjectId:null});
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
@@ -130,7 +137,7 @@
   }
   async function open(){
     state={level:'years',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
-    if(window.app&&window.app.navigateTo)window.app.navigateTo('judicial-institute',{judicialLevel:'years'});
+    if(window.app&&window.app.navigateTo)window.app.navigateTo('judicial-institute',{judicialLevel:'home'});
     render();
     try{await loadData();render();}
     catch(error){
