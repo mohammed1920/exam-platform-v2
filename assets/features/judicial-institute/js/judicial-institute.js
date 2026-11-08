@@ -32,7 +32,7 @@
       (showBack?'<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>':'')+
       '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">ميزان · القسم التعليمي</span><h1>المعهد القضائي</h1>'+(showBack?'':'<p class="ji-brand-description">مساحة منظمة للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p>')+'</div></div>'+
       '</header>'+content+
-      '<footer class="ji-footer"><span>ميزان · حيث يُقاس الفهم القانوني بدقة</span><span>مصدر المحتوى: ملفات الأرشيف المعتمدة</span></footer></div>';
+      '</div>';
   }
   function renderLanding(){
     const all=archiveYears();
