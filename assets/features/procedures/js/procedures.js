@@ -152,9 +152,17 @@
     });
   }
   function returnToProcedureParent() {
-    if (history.state?.view === 'procedures' && history.state?.proceduresLevel) history.back();
-    else if (activeProcedureCategory) { activeProcedureDetail = null; renderProcedureCategoryResults(activeProcedureCategory, false); }
-    else { activeProcedureDetail = null; renderCatalog(); }
+    if (history.state?.view === 'procedures' && history.state?.proceduresLevel) {
+      history.back();
+      return;
+    }
+    if (activeProcedureCategory) {
+      activeProcedureDetail = null;
+      renderProcedureCategoryResults(activeProcedureCategory, false);
+      return;
+    }
+    activeProcedureDetail = null;
+    renderCatalog();
   }
   function renderCatalog(){
     const host=root.querySelector('#procedures-access-state');
