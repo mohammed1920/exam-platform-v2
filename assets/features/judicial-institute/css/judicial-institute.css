@@ -87,3 +87,55 @@
  .ji-footer{flex-direction:column}.ji-year-filters label{min-width:0;flex:1}
 }
 @media(prefers-reduced-motion:reduce){.ji-year-card,.ji-subject-card,.ji-back,.ji-saved-toggle{transition:none}.ji-spinner{animation:none}}
+
+/* ضبط هندسة الحاويات ومنع اختلاف المحاذاة أو تجاوز عرض الشاشة. */
+.judicial-institute-section,
+.judicial-institute-section *,
+.judicial-institute-section *::before,
+.judicial-institute-section *::after{box-sizing:border-box}
+.judicial-institute-section{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-inline:auto;
+  direction:rtl;
+  text-align:right;
+  overflow-x:clip;
+}
+.ji-shell{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  justify-items:stretch;
+  direction:rtl;
+}
+.ji-shell > *{min-width:0;max-width:100%}
+.ji-header,
+.ji-intro,
+.ji-panel,
+.ji-footer,
+.ji-breadcrumb{width:100%;min-width:0}
+.ji-year-filters{width:100%;min-width:0}
+.ji-year-filters label{min-width:0;flex:1}
+.ji-year-filters select,
+.ji-search input{min-width:0;max-width:100%}
+.ji-year-grid,
+.ji-subject-grid,
+.ji-question-list{width:100%;min-width:0}
+.ji-year-card,
+.ji-subject-card,
+.ji-question-card{min-width:0;max-width:100%}
+.ji-year-card{justify-items:stretch;text-align:right}
+.ji-year-card > *{min-width:0}
+.ji-year-card strong,
+.ji-year-card small{overflow-wrap:anywhere}
+.ji-intro p,
+.ji-note,
+.ji-footer span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:620px){
+  .judicial-institute-section{padding-inline:var(--mizan-content-padding-mobile,10px)}
+  .ji-year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ji-year-card{width:100%}
+  .ji-year-filters{display:flex;align-items:stretch}
+  .ji-year-filters label{width:50%;flex:1 1 0}
+}
