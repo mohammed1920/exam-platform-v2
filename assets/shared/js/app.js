@@ -1127,10 +1127,14 @@ class ExamApp {
           parentState.categoryId = params.categoryId;
         }
         if (viewId === 'procedures' && params.proceduresLevel === 'detail') {
+          // Keep the previous history entry inside Procedures at its direct category.
+          parentState.view = 'procedures';
           parentState.proceduresLevel = 'category';
           parentState.procedureCategoryId = params.procedureCategoryId || null;
           parentState.procedureId = null;
         } else if (viewId === 'procedures' && params.proceduresLevel === 'category') {
+          // The category's direct parent is the Procedures catalog, not Home.
+          parentState.view = 'procedures';
           parentState.proceduresLevel = 'catalog';
           parentState.procedureCategoryId = null;
           parentState.procedureId = null;
