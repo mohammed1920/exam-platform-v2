@@ -1059,6 +1059,7 @@ class ExamApp {
       privacy: 'home',
       disclaimer: 'home',
       faq: 'home',
+      'judicial-institute': 'home',
       'mizan-pulpit': 'home',
       'mizan-article': 'mizan-pulpit',
       'firebase-admin': 'home'
@@ -1075,6 +1076,7 @@ class ExamApp {
       'procedures',
       'petitions',
       'laws',
+      'judicial-institute',
       'contact',
       'about',
       'terms',
@@ -1337,6 +1339,7 @@ class ExamApp {
         view === 'procedures' ||
         view === 'petitions' ||
         view === 'laws' ||
+        view === 'judicial-institute' ||
         view === 'contact' ||
         view === 'about' ||
         view === 'terms' ||
@@ -1345,6 +1348,7 @@ class ExamApp {
         view === 'faq'
       ) {
         this.navigateTo(view, {}, false);
+        if (view === 'judicial-institute') window.judicialInstitute?.restoreHistoryState?.(state);
       } else {
         // أي حالة غير معروفة ترجع إلى الرئيسية.
         this.currentBook = null;
