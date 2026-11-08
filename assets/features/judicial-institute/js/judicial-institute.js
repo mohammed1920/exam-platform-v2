@@ -117,7 +117,8 @@
     el.querySelectorAll('[data-ji-action]').forEach(button=>button.addEventListener('click',()=>{
       const action=button.dataset.jiAction;
       if(action==='back')return back();
-      if(action==='years')return pushLevel('years',{year:null,subjectId:null});\n      if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
+      if(action==='years')return pushLevel('years',{year:null,subjectId:null});
+      if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
       if(action==='saved')return pushLevel('saved',{year:null,subjectId:null});
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
