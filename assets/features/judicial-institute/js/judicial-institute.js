@@ -89,7 +89,8 @@
   function render(){
     const el=root();if(!el)return;
     if(!data){el.innerHTML=shell('<div class="ji-loading"><span class="ji-spinner"></span><p>جاري تحميل أرشيف المعهد القضائي...</p></div>');return;}
-    if(state.level==='home')el.innerHTML=renderLanding();\n    else if(state.level==='subjects')el.innerHTML=renderSubjects();
+    if(state.level==='home')el.innerHTML=renderLanding();
+    else if(state.level==='subjects')el.innerHTML=renderSubjects();
     else if(state.level==='questions')el.innerHTML=renderQuestions();
     else if(state.level==='saved')el.innerHTML=renderSaved();
     else el.innerHTML=renderYears();
