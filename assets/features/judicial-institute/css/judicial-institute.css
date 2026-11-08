@@ -21,6 +21,21 @@
 .ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7}
 .ji-entry-arrow{flex:0 0 auto;color:var(--mizan-primary-500)}
 .ji-entry-count{display:grid;place-items:center;min-width:28px;height:28px;padding-inline:7px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-weight:800}
+.ji-section-identity{display:grid;gap:var(--mizan-space-2);width:100%;min-width:0;padding:var(--mizan-space-4) var(--mizan-space-5);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-card-rest)}
+.ji-section-identity h2{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-xl);font-weight:900;line-height:1.5}
+.ji-section-identity p{margin:0;color:var(--mizan-muted);font-size:var(--mizan-font-size-sm);line-height:1.8}
+.ji-bank-card{position:relative;display:grid;gap:var(--mizan-space-3);width:100%;min-width:0;padding:clamp(20px,4vw,36px);overflow:hidden;border:1px solid var(--mizan-primary-800);border-radius:var(--mizan-radius-2xl);background:linear-gradient(135deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);text-align:right;font:inherit;cursor:pointer;box-shadow:var(--mizan-shadow-card-raised);transition:var(--mizan-transition-standard)}
+.ji-bank-card::after{content:"";position:absolute;inset-inline-start:-75px;bottom:-120px;width:260px;height:260px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);border-radius:50%;pointer-events:none}
+.ji-bank-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
+.ji-bank-card>.ji-kicker{color:var(--mizan-warning-200)}
+.ji-bank-title{position:relative;color:var(--mizan-white);font-size:clamp(21px,3.2vw,30px);font-weight:900;line-height:1.45}
+.ji-bank-description{max-width:760px;color:var(--mizan-ice);font-size:var(--mizan-font-size-sm);line-height:1.9}
+.ji-bank-card .ji-stats{display:flex;flex-wrap:wrap;gap:var(--mizan-space-3);margin-top:var(--mizan-space-3)}
+.ji-bank-card .ji-stats>span{display:grid;gap:2px;min-width:110px;padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid color-mix(in srgb,var(--mizan-white) 20%,transparent);border-radius:var(--mizan-radius-lg);background:color-mix(in srgb,var(--mizan-white) 8%,transparent)}
+.ji-bank-card .ji-stats strong{color:var(--mizan-white);font-size:var(--mizan-font-size-xl);font-weight:900}
+.ji-bank-card .ji-stats small{color:var(--mizan-ice);font-size:var(--mizan-font-size-xs)}
+.ji-bank-action{display:flex;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);color:var(--mizan-warning-200);font-size:var(--mizan-font-size-sm);font-weight:900}
+
 .ji-intro{position:relative;overflow:hidden;padding:clamp(22px,4vw,38px);border:1px solid var(--mizan-primary-800);border-radius:var(--mizan-radius-2xl);background:linear-gradient(135deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);box-shadow:var(--mizan-shadow-card-raised)}
 .ji-intro:after{content:"";position:absolute;inset-inline-start:-75px;bottom:-120px;width:260px;height:260px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);border-radius:50%;pointer-events:none}
 .ji-intro .ji-kicker{color:var(--mizan-warning-200)}
@@ -91,6 +106,12 @@
  .ji-header{gap:7px;padding:var(--mizan-space-2)}
  .ji-header .ji-brand{gap:6px}
  .ji-entry-card{min-height:82px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
+ .ji-section-identity{padding:var(--mizan-space-3) var(--mizan-space-4)}
+ .ji-bank-card{padding:var(--mizan-space-5);gap:var(--mizan-space-2)}
+ .ji-bank-card .ji-stats{gap:7px;margin-top:var(--mizan-space-2)}
+ .ji-bank-card .ji-stats>span{min-width:0;flex:1;padding:9px}
+ .ji-bank-card .ji-stats strong{font-size:var(--mizan-font-size-lg)}
+ .ji-bank-card .ji-stats small{font-size:10px}
  .ji-entry-icon{width:42px;height:42px;font-size:18px}
  .ji-entry-copy strong{font-size:var(--mizan-font-size-md)}
  .ji-brand{gap:8px}.ji-brand-icon{width:38px;height:38px;font-size:18px}.ji-brand h1{font-size:var(--mizan-font-size-md)}.ji-eyebrow{font-size:10px}
