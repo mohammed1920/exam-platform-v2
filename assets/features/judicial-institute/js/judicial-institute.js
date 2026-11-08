@@ -36,10 +36,27 @@
   }
   function renderLanding(){
     const all=archiveYears();
-    return shell('<section class="ji-intro"><span class="ji-kicker">أرشيف المعرفة القضائية</span><h2>المعهد القضائي</h2><p>مساحة منظمة لمراجعة أسئلة امتحانات المعهد القضائي حسب السنة والمادة القانونية، مع حفظ الأسئلة للرجوع إليها لاحقاً.</p><div class="ji-stats"><div><strong>'+data.questions.length+'</strong><span>سؤال مؤرشف</span></div><div><strong>'+data.subjects.length+'</strong><span>مواد قانونية</span></div><div><strong>'+all.length+'</strong><span>سنوات الأرشيف</span></div></div></section>'+
+    const savedCount=savedIds().length;
+    return shell(
+      '<section class="ji-section-identity"><span class="ji-kicker">القسم التعليمي</span><h2>المعهد القضائي</h2><p>قسم مخصص للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p></section>'+
       '<section class="ji-entry-list">'+
-      '<button type="button" class="ji-entry-card ji-archive-entry" data-ji-action="archive"><span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أرشيف الامتحانات حسب السنة والمادة القانونية</small></span><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
-      '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved"><span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً</small></span><b class="ji-entry-count">'+savedIds().length+'</b><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
+      '<button type="button" class="ji-bank-card" data-ji-action="archive">'+
+        '<span class="ji-kicker">أرشيف المعرفة القضائية</span>'+
+        '<strong class="ji-bank-title">بنك أسئلة الأعوام السابقة</strong>'+
+        '<span class="ji-bank-description">تدرّب على أسئلة امتحانات المعهد القضائي حسب السنة والمادة القانونية، وارجع إلى الأسئلة التي تحتاج إلى مراجعتها.</span>'+
+        '<span class="ji-stats">'+
+          '<span><strong>'+data.questions.length+'</strong><small>سؤال مؤرشف</small></span>'+
+          '<span><strong>'+data.subjects.length+'</strong><small>مواد قانونية</small></span>'+
+          '<span><strong>'+all.length+'</strong><small>سنوات الأرشيف</small></span>'+
+        '</span>'+
+        '<span class="ji-bank-action">استعراض الأرشيف <i class="fas fa-arrow-left" aria-hidden="true"></i></span>'+
+      '</button>'+
+      '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved">'+
+        '<span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span>'+
+        '<span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً</small></span>'+
+        '<b class="ji-entry-count">'+savedCount+'</b>'+
+        '<i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i>'+
+      '</button>'+
       '</section>');
   }
   function renderYears(){
