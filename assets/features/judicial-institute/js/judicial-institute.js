@@ -35,7 +35,9 @@
       '<footer class="ji-footer"><span>ميزان · حيث يُقاس الفهم القانوني بدقة</span><span>مصدر المحتوى: ملفات الأرشيف المعتمدة</span></footer></div>';
   }
   function renderLanding(){
-    return shell('<section class="ji-entry-list">'+
+    const all=archiveYears();
+    return shell('<section class="ji-intro"><span class="ji-kicker">أرشيف المعرفة القضائية</span><h2>المعهد القضائي</h2><p>مساحة منظمة لمراجعة أسئلة امتحانات المعهد القضائي حسب السنة والمادة القانونية، مع حفظ الأسئلة للرجوع إليها لاحقاً.</p><div class="ji-stats"><div><strong>'+data.questions.length+'</strong><span>سؤال مؤرشف</span></div><div><strong>'+data.subjects.length+'</strong><span>مواد قانونية</span></div><div><strong>'+all.length+'</strong><span>سنوات الأرشيف</span></div></div></section>'+
+      '<section class="ji-entry-list">'+
       '<button type="button" class="ji-entry-card ji-archive-entry" data-ji-action="archive"><span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أرشيف الامتحانات حسب السنة والمادة القانونية</small></span><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
       '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved"><span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span><span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً</small></span><b class="ji-entry-count">'+savedIds().length+'</b><i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i></button>'+
       '</section>');
@@ -45,8 +47,7 @@
     const filtered=all.filter(y=>y>=low&&y<=high);
     const options=all.slice().sort((a,b)=>a-b).map(y=>'<option value="'+y+'" '+(y===Number(state.fromYear)?'selected':'')+'>'+y+'</option>').join('');
     const toOptions=all.slice().sort((a,b)=>a-b).map(y=>'<option value="'+y+'" '+(y===Number(state.toYear)?'selected':'')+'>'+y+'</option>').join('');
-    return shell('<section class="ji-intro"><span class="ji-kicker">بنك الأسئلة والأرشيف</span><h2>تدرّب على الأسئلة بحسب سنة الامتحان</h2><p>اختر السنة، ثم المادة القانونية للوصول إلى الأسئلة ومصادرها. تُعرض الإجابات عند ربطها ببيانات السؤال.</p><div class="ji-stats"><div><strong>'+data.questions.length+'</strong><span>سؤال مؤرشف</span></div><div><strong>'+data.subjects.length+'</strong><span>مواد قانونية</span></div><div><strong>'+all.length+'</strong><span>سنوات الأرشيف</span></div></div></section>'+
-      '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">تصفح الأرشيف</span><h2>سنوات الامتحانات</h2></div><span class="ji-count">'+filtered.length+' سنة</span></div>'+
+    return shell('<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">تصفح الأرشيف</span><h2>سنوات الامتحانات</h2></div><span class="ji-count">'+filtered.length+' سنة</span></div>'+
       '<div class="ji-year-filters"><label>من سنة<select data-ji-filter="from">'+options+'</select></label><label>إلى سنة<select data-ji-filter="to">'+toOptions+'</select></label></div>'+
       '<div class="ji-year-grid">'+filtered.map(y=>'<button class="ji-year-card" type="button" data-ji-action="year" data-year="'+y+'"><span class="ji-year-icon"><i class="fas fa-calendar-days" aria-hidden="true"></i></span><strong>'+y+'</strong><small>'+data.questions.filter(q=>Number(q.year)===y).length+' سؤال</small><i class="fas fa-arrow-left ji-card-arrow" aria-hidden="true"></i></button>').join('')+'</div>'+
       (filtered.length?'':'<p class="ji-empty">لا توجد سنوات ضمن النطاق المحدد.</p>')+
@@ -138,7 +139,7 @@
     });
   }
   async function open(){
-    state={level:'years',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
+    state={level:'home',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
     if(window.app&&window.app.navigateTo)window.app.navigateTo('judicial-institute',{judicialLevel:'home'});
     render();
     try{await loadData();render();}
