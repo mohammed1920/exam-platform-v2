@@ -217,7 +217,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 }
 .procedures-steps-section>h4::before{
   content:"";width:4px;height:1.35em;border-radius:99px;
-  background:var(--mizan-warning-600,var(--mizan-accent-text,#D97706));
+  background:var(--mizan-warning-700,var(--mizan-accent-text,#D97706));
 }
 .procedures-steps-list{
   display:grid;gap:14px;position:relative;
