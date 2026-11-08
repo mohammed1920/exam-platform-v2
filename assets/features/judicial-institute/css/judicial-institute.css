@@ -174,3 +174,48 @@
   .ji-header{grid-template-columns:auto minmax(0,1fr) auto}
   .ji-brand h1{font-size:12px}
 }
+
+/* واجهة دخول المعهد: الأرشيف أولاً ثم المحفوظات أسفله. */
+.ji-header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:82px;
+  padding:var(--mizan-space-4);
+}
+.ji-header .ji-brand{width:auto;max-width:100%;justify-content:center}
+.ji-header .ji-brand h1{white-space:normal;overflow-wrap:normal;word-break:normal}
+.ji-header .ji-back{position:absolute;inset-inline-start:var(--mizan-space-4)}
+.ji-entry-list{display:grid;gap:var(--mizan-space-3);width:100%;min-width:0}
+.ji-entry-card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:var(--mizan-space-3);
+  width:100%;
+  min-width:0;
+  min-height:96px;
+  padding:var(--mizan-space-4);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-xl);
+  background:var(--mizan-card);
+  color:var(--mizan-text);
+  text-align:right;
+  font:inherit;
+  cursor:pointer;
+  transition:var(--mizan-transition-standard);
+}
+.ji-entry-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
+.ji-entry-icon{display:grid;place-items:center;width:50px;height:50px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:21px}
+.ji-entry-copy{display:grid;gap:6px;flex:1;min-width:0}
+.ji-entry-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900;line-height:1.5}
+.ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7}
+.ji-entry-arrow{flex:0 0 auto;color:var(--mizan-primary-500)}
+.ji-entry-count{display:grid;place-items:center;min-width:26px;height:26px;padding-inline:6px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
+@media(max-width:620px){
+  .ji-header{min-height:72px;padding:var(--mizan-space-3)}
+  .ji-header .ji-back{inset-inline-start:var(--mizan-space-2)}
+  .ji-entry-card{min-height:86px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
+  .ji-entry-icon{width:42px;height:42px;font-size:18px}
+  .ji-entry-copy strong{font-size:var(--mizan-font-size-md)}
+}
