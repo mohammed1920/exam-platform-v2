@@ -7,8 +7,9 @@
 .ji-header-home .ji-brand{grid-column:1}
 .ji-header .ji-back{grid-column:2;grid-row:1;justify-self:end;position:static;min-width:0;align-self:start}
 .ji-brand h1{white-space:nowrap;overflow-wrap:normal;word-break:normal;line-height:1.35;font-size:clamp(24px,4.6vw,34px)}
-.ji-brand{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0}
-.ji-brand>div{min-width:0}
+.ji-brand{display:flex;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);min-width:0;text-align:right}
+.ji-brand>div{min-width:0;flex:0 1 auto;text-align:right}
+.ji-brand h1{text-align:right}
 .ji-brand-icon{display:grid;place-items:center;width:clamp(52px,8vw,68px);height:clamp(52px,8vw,68px);flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:clamp(22px,4vw,28px)}
 .ji-brand h1{margin:var(--mizan-space-1) 0 0;color:var(--mizan-intro-fg);font-size:clamp(22px,3.2vw,30px);font-weight:900;line-height:1.4}
 .ji-brand .ji-eyebrow{color:var(--mizan-intro-kicker);font-size:var(--mizan-font-size-xs)}
