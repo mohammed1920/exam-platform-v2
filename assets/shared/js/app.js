@@ -1113,7 +1113,7 @@ class ExamApp {
       if (viewId === 'home') {
         // الرئيسية هي جذر سجل التنقل.
         history.replaceState(state, '', window.location.href);
-      } else if (parentView && (!this.isTopLevelView(viewId) || (viewId === 'petitions' && params.petitionLevel))) {
+      } else if (parentView && (!this.isTopLevelView(viewId) || ['petitions', 'procedures'].includes(viewId) && (params.petitionLevel || params.proceduresLevel))) {
         // احفظ الأب المباشر قبل فتح القسم الحالي حتى يرجع زر الهاتف إليه.
         const parentState = {
           view: parentView,
@@ -1121,10 +1121,19 @@ class ExamApp {
           chapter: this.currentChapter == null ? null : this.currentChapter
         };
 
-        // A petition document's direct parent is its category, not the petition landing screen.
+        // Preserve the direct parent inside multi-level feature flows.
         if (viewId === 'petitions' && params.petitionLevel === 'document' && params.categoryId) {
           parentState.petitionLevel = 'category';
           parentState.categoryId = params.categoryId;
+        }
+        if (viewId === 'procedures' && params.proceduresLevel === 'detail') {
+          parentState.proceduresLevel = 'category';
+          parentState.procedureCategoryId = params.procedureCategoryId || null;
+          parentState.procedureId = null;
+        } else if (viewId === 'procedures' && params.proceduresLevel === 'category') {
+          parentState.proceduresLevel = 'catalog';
+          parentState.procedureCategoryId = null;
+          parentState.procedureId = null;
         }
 
         if (parentView === 'home' || parentView === 'books' || parentView === 'custom-exam-setup') {
