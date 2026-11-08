@@ -1,13 +1,26 @@
 /* المعهد القضائي — يستهلك نظام الألوان ورموز التصميم المركزية في ميزان. */
-.judicial-institute-section{width:100%;max-width:var(--mizan-content-width-wide,1440px);margin-inline:auto;padding:var(--mizan-space-5) var(--mizan-content-padding,16px) var(--mizan-space-8);color:var(--mizan-text)}
-.ji-shell{display:grid;gap:var(--mizan-space-5);width:100%;color:var(--mizan-text)}
-.ji-header{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-card-rest)}
+.judicial-institute-section{box-sizing:border-box;width:100%;max-width:var(--mizan-content-width-wide,1440px);min-width:0;margin-inline:auto;padding:var(--mizan-space-5) var(--mizan-content-padding,16px) var(--mizan-space-8);color:var(--mizan-text);direction:rtl;text-align:right;overflow-x:clip}.judicial-institute-section *,.judicial-institute-section *::before,.judicial-institute-section *::after{box-sizing:border-box}
+.ji-shell{display:grid;gap:var(--mizan-space-5);width:100%;max-width:100%;min-width:0;color:var(--mizan-text);direction:rtl}
+.ji-header{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);width:100%;min-width:0;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-card-rest)}
+.ji-header .ji-brand{flex:1;justify-content:center}
+.ji-header .ji-back{position:static;flex:0 0 auto;order:0}
+.ji-brand h1{white-space:normal;overflow-wrap:normal;word-break:normal}
 .ji-brand{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0}
 .ji-brand-icon{display:grid;place-items:center;width:48px;height:48px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:22px}
 .ji-brand h1{margin:2px 0 0;color:var(--mizan-heading);font-size:var(--mizan-font-size-xl);font-weight:900}
 .ji-eyebrow,.ji-kicker{display:block;color:var(--mizan-primary-500);font-size:var(--mizan-font-size-xs);font-weight:800}
 .ji-back,.ji-saved-toggle{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:42px;padding:var(--mizan-space-2) var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-card);color:var(--mizan-text);font:inherit;font-size:var(--mizan-font-size-xs);font-weight:700;cursor:pointer}
 .ji-saved-toggle b{display:grid;place-items:center;min-width:22px;height:22px;padding-inline:4px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
+
+.ji-entry-list{display:grid;gap:var(--mizan-space-3);width:100%;min-width:0}
+.ji-entry-card{position:relative;display:flex;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;min-height:92px;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-card);color:var(--mizan-text);text-align:right;font:inherit;cursor:pointer;transition:var(--mizan-transition-standard)}
+.ji-entry-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
+.ji-entry-icon{display:grid;place-items:center;width:48px;height:48px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:20px}
+.ji-entry-copy{display:grid;gap:5px;flex:1;min-width:0}
+.ji-entry-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900;line-height:1.5}
+.ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7}
+.ji-entry-arrow{flex:0 0 auto;color:var(--mizan-primary-500)}
+.ji-entry-count{display:grid;place-items:center;min-width:28px;height:28px;padding-inline:7px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-weight:800}
 .ji-intro{position:relative;overflow:hidden;padding:clamp(22px,4vw,38px);border:1px solid var(--mizan-primary-800);border-radius:var(--mizan-radius-2xl);background:linear-gradient(135deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);box-shadow:var(--mizan-shadow-card-raised)}
 .ji-intro:after{content:"";position:absolute;inset-inline-start:-75px;bottom:-120px;width:260px;height:260px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);border-radius:50%;pointer-events:none}
 .ji-intro .ji-kicker{color:var(--mizan-warning-200)}
@@ -25,8 +38,8 @@
 .ji-year-filters{display:flex;gap:var(--mizan-space-3);margin-bottom:var(--mizan-space-4)}
 .ji-year-filters label{display:grid;gap:6px;min-width:130px;color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);font-weight:700}
 .ji-year-filters select,.ji-search input{width:100%;min-height:42px;padding:var(--mizan-space-2) var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface);color:var(--mizan-text);font:inherit}
-.ji-year-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--mizan-space-3)}
-.ji-year-card{position:relative;display:grid;justify-items:start;gap:7px;min-height:132px;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);color:var(--mizan-text);text-align:right;cursor:pointer;transition:var(--mizan-transition-standard)}
+.ji-year-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--mizan-space-3);width:100%;min-width:0}
+.ji-year-card{position:relative;min-width:0;max-width:100%;display:grid;justify-items:start;gap:7px;min-height:132px;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);color:var(--mizan-text);text-align:right;cursor:pointer;transition:var(--mizan-transition-standard)}
 .ji-year-card:hover,.ji-subject-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .ji-year-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:var(--mizan-radius-md);background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
 .ji-year-card strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-xl);font-weight:900}
@@ -76,6 +89,10 @@
  .judicial-institute-section{padding:var(--mizan-space-3) var(--mizan-content-padding-mobile,10px) var(--mizan-space-6)}
  .ji-shell{gap:var(--mizan-space-3)}
  .ji-header{gap:7px;padding:var(--mizan-space-2)}
+ .ji-header .ji-brand{gap:6px}
+ .ji-entry-card{min-height:82px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
+ .ji-entry-icon{width:42px;height:42px;font-size:18px}
+ .ji-entry-copy strong{font-size:var(--mizan-font-size-md)}
  .ji-brand{gap:8px}.ji-brand-icon{width:38px;height:38px;font-size:18px}.ji-brand h1{font-size:var(--mizan-font-size-md)}.ji-eyebrow{font-size:10px}
  .ji-back,.ji-saved-toggle{min-height:38px;padding:6px 8px;font-size:10px}.ji-saved-toggle{gap:5px}
  .ji-intro{padding:var(--mizan-space-5)}.ji-intro-compact{padding:var(--mizan-space-4)}.ji-intro h2{font-size:22px}
@@ -88,134 +105,3 @@
 }
 @media(prefers-reduced-motion:reduce){.ji-year-card,.ji-subject-card,.ji-back,.ji-saved-toggle{transition:none}.ji-spinner{animation:none}}
 
-/* ضبط هندسة الحاويات ومنع اختلاف المحاذاة أو تجاوز عرض الشاشة. */
-.judicial-institute-section,
-.judicial-institute-section *,
-.judicial-institute-section *::before,
-.judicial-institute-section *::after{box-sizing:border-box}
-.judicial-institute-section{
-  width:100%;
-  max-width:100%;
-  min-width:0;
-  margin-inline:auto;
-  direction:rtl;
-  text-align:right;
-  overflow-x:clip;
-}
-.ji-shell{
-  width:100%;
-  max-width:100%;
-  min-width:0;
-  justify-items:stretch;
-  direction:rtl;
-}
-.ji-shell > *{min-width:0;max-width:100%}
-.ji-header,
-.ji-intro,
-.ji-panel,
-.ji-footer,
-.ji-breadcrumb{width:100%;min-width:0}
-.ji-year-filters{width:100%;min-width:0}
-.ji-year-filters label{min-width:0;flex:1}
-.ji-year-filters select,
-.ji-search input{min-width:0;max-width:100%}
-.ji-year-grid,
-.ji-subject-grid,
-.ji-question-list{width:100%;min-width:0}
-.ji-year-card,
-.ji-subject-card,
-.ji-question-card{min-width:0;max-width:100%}
-.ji-year-card{justify-items:stretch;text-align:right}
-.ji-year-card > *{min-width:0}
-.ji-year-card strong,
-.ji-year-card small{overflow-wrap:anywhere}
-.ji-intro p,
-.ji-note,
-.ji-footer span{min-width:0;overflow-wrap:anywhere}
-@media(max-width:620px){
-  .judicial-institute-section{padding-inline:var(--mizan-content-padding-mobile,10px)}
-  .ji-year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ji-year-card{width:100%}
-  .ji-year-filters{display:flex;align-items:stretch}
-  .ji-year-filters label{width:50%;flex:1 1 0}
-}
-
-/* منع تداخل أزرار رأس القسم مع عنوانه على الشاشات الضيقة. */
-.ji-header{
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:center;
-  column-gap:clamp(6px,2vw,14px);
-}
-.ji-header .ji-back{grid-column:1;grid-row:1;white-space:nowrap}
-.ji-header .ji-brand{
-  grid-column:2;grid-row:1;
-  justify-self:center;
-  width:max-content;
-  max-width:100%;
-  min-width:0;
-}
-.ji-header .ji-saved-toggle{
-  grid-column:3;grid-row:1;
-  justify-self:end;
-  white-space:nowrap;
-}
-.ji-brand h1{overflow-wrap:anywhere}
-@media(max-width:620px){
-  .ji-header{grid-template-columns:auto minmax(0,1fr) auto;column-gap:5px;padding:8px}
-  .ji-header .ji-brand{gap:6px}
-  .ji-brand-icon{width:34px;height:34px}
-  .ji-brand h1{font-size:clamp(12px,3.5vw,var(--mizan-font-size-md));line-height:1.3}
-  .ji-header .ji-back,.ji-header .ji-saved-toggle{min-height:36px;padding:5px 7px;font-size:10px}
-  .ji-saved-toggle b{min-width:18px;height:18px;padding-inline:2px}
-}
-@media(max-width:370px){
-  .ji-brand-icon{display:none}
-  .ji-header{grid-template-columns:auto minmax(0,1fr) auto}
-  .ji-brand h1{font-size:12px}
-}
-
-/* واجهة دخول المعهد: الأرشيف أولاً ثم المحفوظات أسفله. */
-.ji-header{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:82px;
-  padding:var(--mizan-space-4);
-}
-.ji-header .ji-brand{width:auto;max-width:100%;justify-content:center}
-.ji-header .ji-brand h1{white-space:normal;overflow-wrap:normal;word-break:normal}
-.ji-header .ji-back{position:absolute;inset-inline-start:var(--mizan-space-4)}
-.ji-entry-list{display:grid;gap:var(--mizan-space-3);width:100%;min-width:0}
-.ji-entry-card{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:var(--mizan-space-3);
-  width:100%;
-  min-width:0;
-  min-height:96px;
-  padding:var(--mizan-space-4);
-  border:1px solid var(--mizan-border);
-  border-radius:var(--mizan-radius-xl);
-  background:var(--mizan-card);
-  color:var(--mizan-text);
-  text-align:right;
-  font:inherit;
-  cursor:pointer;
-  transition:var(--mizan-transition-standard);
-}
-.ji-entry-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
-.ji-entry-icon{display:grid;place-items:center;width:50px;height:50px;flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:21px}
-.ji-entry-copy{display:grid;gap:6px;flex:1;min-width:0}
-.ji-entry-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900;line-height:1.5}
-.ji-entry-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7}
-.ji-entry-arrow{flex:0 0 auto;color:var(--mizan-primary-500)}
-.ji-entry-count{display:grid;place-items:center;min-width:26px;height:26px;padding-inline:6px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
-@media(max-width:620px){
-  .ji-header{min-height:72px;padding:var(--mizan-space-3)}
-  .ji-header .ji-back{inset-inline-start:var(--mizan-space-2)}
-  .ji-entry-card{min-height:86px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
-  .ji-entry-icon{width:42px;height:42px;font-size:18px}
-  .ji-entry-copy strong{font-size:var(--mizan-font-size-md)}
-}
