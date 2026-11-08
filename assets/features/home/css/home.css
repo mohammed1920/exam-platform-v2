@@ -1260,3 +1260,13 @@ button.home-coming-soon{
   border-color:var(--mizan-primary-500);
   box-shadow:var(--mizan-shadow-card-raised);
 }
+
+/* بطاقة المعهد القضائي: تفعيل ضمن نظام الألوان ورموز التصميم المركزية. */
+.judicial-institute-entry{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:var(--mizan-space-2);min-height:164px;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-2xl);background:var(--mizan-card);color:var(--mizan-text);text-align:right;cursor:pointer;box-shadow:var(--mizan-shadow-card-rest);transition:var(--mizan-transition-standard)}
+.judicial-institute-entry i{display:grid;place-items:center;width:42px;height:42px;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:var(--mizan-font-size-lg)}
+.judicial-institute-entry span{color:var(--mizan-heading);font-weight:800;font-size:var(--mizan-font-size-md)}
+.judicial-institute-entry small{color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.6}
+.judicial-institute-entry b{color:var(--mizan-primary-500);font-size:var(--mizan-font-size-xs)}
+.judicial-institute-entry:hover{transform:translateY(-3px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
+.judicial-institute-entry:focus-visible{outline:2px solid var(--mizan-focus-ring);outline-offset:3px}
+@media(max-width:600px){.judicial-institute-entry{min-height:150px;padding:var(--mizan-space-3)}}
