@@ -7,9 +7,10 @@
 .ji-header-home .ji-brand{grid-column:1}
 .ji-header .ji-back{grid-column:2;grid-row:1;justify-self:end;position:static;min-width:0;align-self:start}
 .ji-brand h1{white-space:nowrap;overflow-wrap:normal;word-break:normal;line-height:1.35;font-size:clamp(24px,4.6vw,34px)}
-.ji-brand{display:flex;align-items:center;justify-content:flex-start;gap:var(--mizan-space-2);min-width:0;text-align:right}
-.ji-brand>div{min-width:0;flex:0 1 auto;text-align:right}
-.ji-brand h1{text-align:right}
+.ji-brand{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;justify-content:start;column-gap:var(--mizan-space-3);width:100%;min-width:0;text-align:right}
+.ji-brand>div{grid-column:2;grid-row:1;min-width:0;width:100%;text-align:right}
+.ji-brand-icon{grid-column:1;grid-row:1;justify-self:start}
+.ji-brand h1{width:100%;margin-inline:0;text-align:right}
 .ji-brand-icon{display:grid;place-items:center;width:clamp(52px,8vw,68px);height:clamp(52px,8vw,68px);flex:0 0 auto;border-radius:var(--mizan-radius-lg);background:var(--mizan-primary-100);color:var(--mizan-primary-700);font-size:clamp(22px,4vw,28px)}
 .ji-brand h1{margin:var(--mizan-space-1) 0 0;color:var(--mizan-intro-fg);font-size:clamp(22px,3.2vw,30px);font-weight:900;line-height:1.4}
 .ji-brand .ji-eyebrow{color:var(--mizan-intro-kicker);font-size:var(--mizan-font-size-xs)}
@@ -94,7 +95,7 @@
 .ji-empty-state h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-lg)}
 .ji-empty-state p{max-width:540px;margin:0;line-height:1.8;font-size:var(--mizan-font-size-sm)}
 .ji-primary-button{padding:10px 18px;border:0;border-radius:var(--mizan-radius-control);background:var(--mizan-primary-500);color:var(--mizan-white);font:inherit;font-weight:800;cursor:pointer}
-.ji-footer{display:flex;justify-content:space-between;gap:var(--mizan-space-2);padding:var(--mizan-space-3) 2px;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
+
 .ji-spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--mizan-border);border-top-color:var(--mizan-primary-500);border-radius:50%;animation:ji-spin .8s linear infinite}
 @keyframes ji-spin{to{transform:rotate(360deg)}}
 @media(max-width:850px){.ji-year-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -103,7 +104,7 @@
  .ji-shell{gap:var(--mizan-space-3)}
  .ji-header{gap:var(--mizan-space-3);padding:var(--mizan-intro-card-padding-mobile)}
  .ji-brand h1{font-size:clamp(22px,6vw,28px);white-space:nowrap}
- .ji-header .ji-brand{gap:var(--mizan-space-3)}
+ .ji-header .ji-brand{column-gap:var(--mizan-space-2)}
  .ji-brand-description{font-size:var(--mizan-font-size-xs)}
  .ji-entry-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2)}
  .ji-entry-card,.ji-bank-card{min-height:180px;padding:var(--mizan-space-3);gap:var(--mizan-space-2)}
