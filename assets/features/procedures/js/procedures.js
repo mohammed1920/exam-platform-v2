@@ -169,9 +169,30 @@
   function renderProcedureCategoryResults(categoryId, updateHistory=true){const category=procedureCategories.find(item=>item.id===categoryId),grid=root.querySelector('#procedures-category-grid'),target=root.querySelector('#procedures-category-results'),detail=root.querySelector('#procedures-detail');if(!category||!target||!grid||!detail)return;if(updateHistory)pushProcedureState('category',{procedureCategoryId:categoryId,procedureId:null});activeProcedureCategory=categoryId;activeProcedureDetail=null;grid.hidden=true;detail.hidden=true;detail.innerHTML='';target.hidden=false;renderProcedureItems(titles.filter(item=>procedureCategory(item)===categoryId),category.title,target);target.insertAdjacentHTML('afterbegin','<button type="button" class="procedures-detail-back procedures-category-back" id="procedures-category-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى تصنيفات الدعاوى</button>');target.querySelector('#procedures-category-back')?.addEventListener('click',returnToProcedureParent);target.scrollIntoView({behavior:'smooth',block:'start'});}
   function renderProcedureSearchResults(query){const target=root.querySelector('#procedures-search-results');if(!target)return;const normalized=normalizeProcedureSearch(query);if(!normalized){target.innerHTML='<p class="procedures-search-empty">اكتب اسم الإجراء أو جزءاً منه للعثور عليه بسرعة.</p>';return;}const terms=normalized.split(' ').filter(Boolean);const matches=titles.filter(item=>{const text=normalizeProcedureSearch([item.title,item.categoryTitle,item.summary].filter(Boolean).join(' '));return terms.every(term=>text.includes(term));}).slice(0,30);renderProcedureItems(matches,'نتائج البحث في إجراءات الدعاوى',target);}
   function detailBlock(title, value) {
-    const values = Array.isArray(value) ? value : String(value || '').split(/\\r?\\n/);
+    const values = Array.isArray(value)
+      ? value
+      : String(value || '').replace(/\\r\\n?/g, '\\n').split('\\n');
     const clean = values.map(v => String(v || '').trim()).filter(Boolean);
     if (!clean.length) return '';
+    if (title === 'خطوات الإجراء') {
+      const steps = [];
+      clean.forEach(line => {
+        const markers = [...line.matchAll(/(?:^|\\s)([0-9٠-٩]{1,2})\\s*[-.)،ـ]\\s*/g)];
+        if (markers.length > 1 && markers[0].index === 0) {
+          markers.forEach((marker, index) => {
+            const start = marker.index + marker[0].length;
+            const end = index + 1 < markers.length ? markers[index + 1].index : line.length;
+            const text = line.slice(start, end).trim();
+            if (text) steps.push(text);
+          });
+        } else {
+          const text = line.replace(/^(?:[0-9٠-٩]{1,2})\\s*[-.)،ـ]\\s*/, '').trim();
+          if (text) steps.push(text);
+        }
+      });
+      if (!steps.length) return '';
+      return `<section class="procedures-detail-section procedures-steps-section"><h4>${esc(title)}</h4><ol class="procedures-steps-list">${steps.map((step, index) => `<li class="procedures-step-card"><span class="procedures-step-number" aria-hidden="true">${index + 1}</span><div class="procedures-step-content"><span class="procedures-step-label">الخطوة ${index + 1}</span><p>${esc(step)}</p></div></li>`).join('')}</ol></section>`;
+    }
     return `<section class="procedures-detail-section"><h4>${esc(title)}</h4>${clean.length > 1 ? `<ol>${clean.map(v => `<li>${esc(v)}</li>`).join('')}</ol>` : `<p>${esc(clean[0])}</p>`}</section>`;
   }
 
