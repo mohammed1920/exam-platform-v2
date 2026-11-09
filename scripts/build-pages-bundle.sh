@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the public GitHub Pages artifact from the same file list used in CI.
+# Build the public static artifact for GitHub Pages and Vercel.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -41,11 +41,17 @@ find "$ROOT" -maxdepth 1 -type f \( \
   -name 'manifest.json' \
 \) -exec cp {} "$OUTPUT_DIR/" \;
 
+# Keep crawler rules in the published bundle; sitemap.xml is served by the API rewrite.
+if [[ -f "$ROOT/robots.txt" ]]; then
+  cp "$ROOT/robots.txt" "$OUTPUT_DIR/robots.txt"
+fi
+
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 
 required_files=(
   index.html
   admin.html
+  robots.txt
   assets/shared/js/contact-info.js
   assets/shared/js/book-icons.js
   assets/features/exams/js/exam-drafts.js
@@ -76,7 +82,7 @@ required_files=(
   assets/shared/js/firebase-auth.js
   assets/shared/js/app.js
   assets/shared/css/platform-sidebar.css
- assets/shared/css/platform-header.css
+  assets/shared/css/platform-header.css
   assets/features/notifications/css/notifications.css
   assets/features/student-account/css/student-sidebar.css
   assets/features/student-account/css/student-ui-fixes.css
@@ -89,8 +95,8 @@ required_files=(
   assets/features/home/css/home.css
   assets/features/petitions/css/petitions.css
   assets/features/lawyers/css/lawyer-admin.css
-  assets/shared/css/mizan-unified-theme.css \
-  assets/shared/css/style.css \
+  assets/shared/css/mizan-unified-theme.css
+  assets/shared/css/style.css
   assets/shared/css/mizan-colors.css
   assets/shared/css/mizan-design-tokens.css
   assets/shared/css/theme.css
@@ -109,4 +115,4 @@ for relative_path in "${required_files[@]}"; do
 done
 
 touch "$OUTPUT_DIR/.nojekyll"
-echo "GitHub Pages bundle ready: $OUTPUT_DIR"
+echo "Static deployment bundle ready: $OUTPUT_DIR"
