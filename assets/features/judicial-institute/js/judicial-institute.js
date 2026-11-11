@@ -73,7 +73,7 @@
     const toOptions=all.slice().sort((a,b)=>a-b).map(y=>'<option value="'+y+'" '+(y===Number(state.toYear)?'selected':'')+'>'+y+'</option>').join('');
     return shell('<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">تصفح الأرشيف</span><h2>سنوات الامتحانات</h2></div><span class="ji-count">'+filtered.length+' سنة</span></div>'+
       '<div class="ji-year-filters"><label>من سنة<select data-ji-filter="from">'+options+'</select></label><label>إلى سنة<select data-ji-filter="to">'+toOptions+'</select></label></div>'+
-      '<div class="ji-year-grid">'+filtered.map(y=>'<button class="ji-year-card" type="button" data-ji-action="year" data-year="'+y+'"><span class="ji-year-icon"><i class="fas fa-calendar-days" aria-hidden="true"></i></span><strong>'+y+'</strong><small>'+data.questions.filter(q=>Number(q.year)===y).length+' سؤال</small><i class="fas fa-arrow-left ji-card-arrow" aria-hidden="true"></i></button>').join('')+'</div>'+
+      '<div class="ji-year-grid">'+filtered.map(y=>'<button class="ji-year-card" type="button" data-ji-action="year" data-year="'+y+'"><span class="ji-year-icon"><i class="fas fa-calendar-days" aria-hidden="true"></i></span><strong>'+y+'</strong><small>'+Number((yearEntry(y)||{}).questionCount||0)+' سؤال</small><i class="fas fa-arrow-left ji-card-arrow" aria-hidden="true"></i></button>').join('')+'</div>'+
       (filtered.length?'':'<p class="ji-empty">لا توجد سنوات ضمن النطاق المحدد.</p>')+
       '<p class="ji-note"><i class="fas fa-circle-info" aria-hidden="true"></i> السنوات المعروضة هي فهرس الأرشيف؛ ظهور السنة لا يعني أن أسئلتها أُضيفت بعد.</p></section>');
   }
