@@ -52,7 +52,7 @@
         '<span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span>'+
         '<span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أسئلة الامتحانات حسب السنة والمادة القانونية.</small></span>'+
         '<span class="ji-entry-stats">'+
-          '<span><strong>'+data.questions.length+'</strong><small>سؤال</small></span>'+
+          '<span><strong>'+data.years.reduce((n,y)=>n+Number(y.questionCount||0),0)+'</strong><small>سؤال</small></span>'+
           '<span><strong>'+data.subjects.length+'</strong><small>مواد</small></span>'+
           '<span><strong>'+all.length+'</strong><small>سنوات</small></span>'+
         '</span>'+
@@ -107,7 +107,7 @@
       (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState(state.query?'لا توجد نتائج مطابقة':'لا توجد أسئلة مضافة لهذه المادة في هذه السنة بعد',state.query?'جرّب كلمات بحث أخرى.':'ستظهر الأسئلة بعد إضافة بياناتها الأصلية إلى ملف الأرشيف، دون إنشاء أسئلة افتراضية.'))+'</section>');
   }
   function renderSaved(){
-    const ids=savedIds(), list=data.questions.filter(q=>ids.includes(String(q.uid||q.id||'')));
+    const ids=savedIds(), list=Array.from(questionCache.values()).flat().filter(q=>ids.includes(String(q.uid||q.id||'')));
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><span>الأسئلة المحفوظة</span></section><section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">مكتبتك الخاصة</span><h2>الأسئلة المحفوظة</h2></div><span class="ji-count">'+list.length+' سؤال</span></div>'+
       (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState('لا توجد أسئلة محفوظة','استخدم زر «حفظ السؤال» في بنك الأسئلة لإضافته إلى هذه القائمة.'))+'</section>');
   }
