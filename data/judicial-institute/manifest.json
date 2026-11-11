@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "title": "أرشيف أسئلة المعهد القضائي",
+  "description": "فهرس ملفات الأسئلة المستقلة حسب سنة الامتحان والمادة القانونية.",
+  "subjects": [
+    {
+      "id": "criminal-law",
+      "name": "قانون العقوبات",
+      "description": "الأحكام العامة والجرائم والعقوبات",
+      "order": 1
+    },
+    {
+      "id": "personal-status",
+      "name": "قانون الأحوال الشخصية",
+      "description": "الأحوال الشخصية والأسرة",
+      "order": 2
+    },
+    {
+      "id": "civil-law",
+      "name": "القانون المدني",
+      "description": "الالتزامات والحقوق والمعاملات المدنية",
+      "order": 3
+    },
+    {
+      "id": "juvenile-law",
+      "name": "قانون الأحداث",
+      "description": "القواعد والإجراءات الخاصة بالأحداث",
+      "order": 4
+    },
+    {
+      "id": "civil-procedure",
+      "name": "المرافعات المدنية",
+      "description": "الدعوى المدنية وإجراءات التقاضي",
+      "order": 5
+    },
+    {
+      "id": "criminal-procedure",
+      "name": "أصول المحاكمات الجزائية",
+      "description": "الدعوى الجزائية والتحقيق والمحاكمة",
+      "order": 6
+    },
+    {
+      "id": "public-prosecution",
+      "name": "الادعاء العام",
+      "description": "اختصاصات الادعاء العام ومهامه",
+      "order": 7
+    }
+  ],
+  "years": []
+}
