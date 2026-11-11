@@ -67,7 +67,8 @@ required_files=(
   assets/features/home/js/home.js
   assets/features/judicial-institute/js/judicial-institute.js
   assets/features/judicial-institute/css/judicial-institute.css
-  data/judicial-institute/questions.json
+  data/judicial-institute/manifest.json
+  data/judicial-institute/README.md
   assets/shared/js/platform-bootstrap.js
   assets/features/student-account/js/user-dashboard.js
   assets/shared/js/theme.js
