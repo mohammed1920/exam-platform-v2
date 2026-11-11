@@ -4,7 +4,8 @@
   const DATA_URL='data/judicial-institute/manifest.json';
   const SAVED_KEY='mizan-judicial-institute-saved-v1';
   const ROOT_ID='judicial-institute-section';
-  let data=null, dataPromise=null;\n  const questionCache=new Map();
+  let data=null, dataPromise=null;
+  const questionCache=new Map();
   let state={level:'home',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
   const root=()=>document.getElementById(ROOT_ID);
   const esc=value=>String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
