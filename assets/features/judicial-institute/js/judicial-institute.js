@@ -1,10 +1,10 @@
 /* قسم المعهد القضائي — أرشيف JSON مستقل دون اتصالات Firestore. */
 (function () {
   'use strict';
-  const DATA_URL='data/judicial-institute/questions.json';
+  const DATA_URL='data/judicial-institute/manifest.json';
   const SAVED_KEY='mizan-judicial-institute-saved-v1';
   const ROOT_ID='judicial-institute-section';
-  let data=null, dataPromise=null;
+  let data=null, dataPromise=null;\n  const questionCache=new Map();
   let state={level:'home',year:null,subjectId:null,query:'',fromYear:2005,toYear:2026};
   const root=()=>document.getElementById(ROOT_ID);
   const esc=value=>String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -14,18 +14,27 @@
   function loadData(){
     if(data)return Promise.resolve(data);
     if(!dataPromise)dataPromise=fetch(DATA_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(v=>{
-      if(!v||v.schemaVersion!==1||!Array.isArray(v.subjects)||!Array.isArray(v.questions))throw new Error('Invalid archive schema');
+      if(!v||v.schemaVersion!==1||!Array.isArray(v.subjects)||!Array.isArray(v.years))throw new Error('Invalid archive manifest');
       data=v;return data;
     }).catch(e=>{dataPromise=null;throw e;});
     return dataPromise;
   }
-  function archiveYears(){
-    const set=new Set((data.years||[]).map(Number).filter(Number.isInteger));
-    data.questions.forEach(q=>{const y=Number(q.year);if(Number.isInteger(y))set.add(y);});
-    return Array.from(set).sort((a,b)=>b-a);
-  }
+  function archiveYears(){return data.years.map(y=>Number(y.year)).filter(Number.isInteger).sort((a,b)=>b-a);}
+  function yearEntry(year){return data.years.find(y=>Number(y.year)===Number(year));}
   function subject(id){return data.subjects.find(s=>s.id===id);}
-  function subjectQuestions(id,year){return data.questions.filter(q=>String(q.subjectId)===String(id)&&(year==null||Number(q.year)===Number(year)));}
+  function subjectQuestions(id,year){return questionCache.get(String(year)+'/'+String(id))||[];}
+  async function loadYearSubject(year,id){
+    const key=String(year)+'/'+String(id);
+    if(questionCache.has(key))return questionCache.get(key);
+    const entry=yearEntry(year), item=entry&&entry.subjects.find(s=>s.subjectId===id);
+    if(!item)throw new Error('Subject archive is not listed in manifest');
+    const response=await fetch(item.file,{cache:'no-cache'});
+    if(!response.ok)throw new Error('Archive file HTTP '+response.status);
+    const file=await response.json();
+    if(file.schemaVersion!==1||file.year!==Number(year)||file.subjectId!==id||!Array.isArray(file.questions))throw new Error('Invalid subject archive file');
+    questionCache.set(key,file.questions);
+    return file.questions;
+  }
   function shell(content){
     const showBack=state.level!=='home';
     return '<div class="ji-shell" dir="rtl"><header class="ji-header '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
@@ -69,11 +78,11 @@
       '<p class="ji-note"><i class="fas fa-circle-info" aria-hidden="true"></i> السنوات المعروضة هي فهرس الأرشيف؛ ظهور السنة لا يعني أن أسئلتها أُضيفت بعد.</p></section>');
   }
   function renderSubjects(){
-    const count=data.questions.filter(q=>Number(q.year)===Number(state.year)).length;
+    const entry=yearEntry(state.year), available=entry?entry.subjects:[], count=Number((entry||{}).questionCount||0);
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><span>امتحانات '+esc(state.year)+'</span></section>'+
       '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أرشيف سنة '+esc(state.year)+'</span><h2>اختر المادة القانونية</h2><p>تصفح الأسئلة الأصلية حسب المادة، مع المحافظة على رقم السؤال ومصدره.</p><div class="ji-stats ji-stats-single"><div><strong>'+count+'</strong><span>سؤال متاح لهذه السنة</span></div><div><strong>7</strong><span>مواد في الأرشيف</span></div></div></section>'+
       '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">المواد الدراسية</span><h2>مواد المعهد القضائي</h2></div></div><div class="ji-subject-grid">'+data.subjects.map((s,i)=>{
-        const total=subjectQuestions(s.id,state.year).length;
+        const total=Number(item.questionCount||0);
         return '<button class="ji-subject-card" type="button" data-ji-action="subject" data-subject="'+esc(s.id)+'"><span class="ji-subject-number">'+String(i+1).padStart(2,'0')+'</span><span class="ji-subject-copy"><strong>'+esc(s.name)+'</strong><small>'+esc(s.description)+'</small></span><span class="ji-subject-count">'+total+' سؤال</span><i class="fas fa-arrow-left" aria-hidden="true"></i></button>';
       }).join('')+'</div></section>');
   }
@@ -138,7 +147,7 @@
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
       if(action==='saved')return pushLevel('saved',{year:null,subjectId:null});
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
-      if(action==='subject')return pushLevel('questions',{year:state.year,subjectId:button.dataset.subject});
+      if(action==='subject'){const id=button.dataset.subject,year=state.year;button.disabled=true;button.setAttribute('aria-busy','true');loadYearSubject(year,id).then(()=>pushLevel('questions',{year,subjectId:id})).catch(error=>{console.error('تعذر تحميل ملف أسئلة المادة:',error);notice('تعذر تحميل الأسئلة','تحقق من ملف المادة ثم أعد المحاولة.');button.disabled=false;button.removeAttribute('aria-busy');});return;}
       if(action==='save')return toggleSaved(button.dataset.uid);
     }));
     el.querySelectorAll('[data-ji-filter]').forEach(select=>select.addEventListener('change',()=>{
