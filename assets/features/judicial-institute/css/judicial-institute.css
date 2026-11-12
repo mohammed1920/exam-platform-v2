@@ -87,7 +87,7 @@
 .ji-question-part strong{color:var(--mizan-primary-600);font-size:var(--mizan-font-size-sm)}
 .ji-question-part p{margin:0;line-height:1.85;font-size:var(--mizan-font-size-sm);white-space:pre-wrap}
 .ji-question-source,.ji-question-note{margin:0 0 var(--mizan-space-2);color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.7}
-.ji-question-note{padding:var(--mizan-space-2) var(--mizan-space-3);border-radius:var(--mizan-radius-md);background:var(--mizan-warning-100);color:var(--mizan-warning-800)}
+.ji-question-note{padding:var(--mizan-space-2) var(--mizan-space-3);border-radius:var(--mizan-radius-md);background:var(--mizan-warning-100);color:var(--mizan-warning-700)}
 .ji-question-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--mizan-space-3);padding-top:var(--mizan-space-3);border-top:1px solid var(--mizan-border)}
 .ji-answer summary{color:var(--mizan-success-700);font-size:var(--mizan-font-size-xs);font-weight:800;cursor:pointer}
 .ji-answer>div{margin-top:8px;padding:var(--mizan-space-3);border-radius:var(--mizan-radius-md);background:var(--mizan-success-100);color:var(--mizan-success-700);font-size:var(--mizan-font-size-sm);line-height:1.8}
