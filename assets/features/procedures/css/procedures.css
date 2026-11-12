@@ -37,10 +37,8 @@
 .procedures-catalog-heading > div > span { color: var(--mizan-primary-600, var(--mizan-primary-500)); font-size: .8rem; font-weight: 800; }
 .procedures-catalog-heading h3 { margin: 4px 0 0; font-size: 1.45rem; }
 .procedures-count, .procedures-category-count { white-space: nowrap; color: var(--mizan-muted, var(--mizan-muted-light)); font-size: .8rem; }
-.procedures-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
-.procedures-category-card { min-width: 0; padding:var(--mizan-card-padding-comfortable); border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius:var(--mizan-radius-card); background: var(--mizan-surface, var(--card-bg, var(--mizan-surface-light))); box-shadow: var(--mizan-procedures-shadow-card); }
 .procedures-category-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.procedures-category-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--mizan-procedures-category-bg); color: var(--mizan-procedures-category-fg); font-size: 19px; }
+.procedures-category-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--mizan-accent-tile-bg); color: var(--mizan-accent-tile-fg); font-size: 19px; }
 .procedures-category-card h4 { margin: 15px 0 7px; font-size: 1.1rem; }
 .procedures-category-card p { margin: 0; min-height: 52px; color: var(--mizan-muted, var(--text-secondary, var(--mizan-muted-light))); font-size: .9rem; line-height: 1.8; }
 .procedures-category-card ul { display: grid; gap: 9px; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--mizan-border, var(--mizan-neutral-200)); list-style: none; }
@@ -65,7 +63,6 @@
 }
 html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-approved-banner { border-color: var(--mizan-procedures-success-border); background: var(--mizan-procedures-success-bg); color: var(--mizan-procedures-success-fg); }
 html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-approved-banner span { color: var(--mizan-procedures-success-muted); }
-html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-category-icon { background: var(--mizan-procedures-category-bg); color: var(--mizan-procedures-category-fg); }
 html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workflow-steps span { background: var(--mizan-procedures-workflow-bg); color: var(--mizan-procedures-workflow-fg); }
 
 
@@ -90,11 +87,11 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 /* Procedure category cards and section-only search; colors live in mizan-colors.css. */
 .procedures-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
 .procedures-category-card{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-component-gap);width:100%;min-width:0;min-height:140px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:transform var(--mizan-duration-medium) ease,border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-medium) ease}
-.procedures-category-card:hover{transform:translateY(-2px);border-color:var(--mizan-procedures-card-border-hover);box-shadow:var(--mizan-procedures-shadow-hover)}
+.procedures-category-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .procedures-category-card:focus-visible,.procedures-search-field input:focus-visible,.procedures-search-field button:focus-visible{outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);outline-offset:var(--mizan-focus-ring-offset)}
 .procedures-category-title{font-size:1.02rem;font-weight:800;line-height:1.6}
-.procedures-category-description{flex:1;color:var(--mizan-procedures-card-muted);font-size:.86rem;line-height:1.75}
-.procedures-category-count{display:flex;align-items:center;gap:8px;color:var(--mizan-procedures-card-action);font-weight:800}
+.procedures-category-description{flex:1;color:var(--mizan-muted);font-size:.86rem;line-height:1.75}
+.procedures-category-count{display:flex;align-items:center;gap:8px;color:var(--mizan-accent-text);font-weight:800}
 .procedures-search-panel{margin-top:var(--mizan-space-4);padding:var(--mizan-space-4);border:1px solid var(--mizan-procedures-search-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-procedures-search-bg)}
 .procedures-search-panel>label{display:flex;align-items:center;gap:10px;margin-bottom:var(--mizan-space-3);color:var(--mizan-procedures-search-fg);font-weight:800;line-height:1.6}
 .procedures-search-panel>label i{color:var(--mizan-procedures-search-action)}
