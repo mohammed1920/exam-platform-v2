@@ -325,7 +325,7 @@
 html[data-theme="light"] .petition-form-panel,
 html[data-theme="light"] .petition-preview-panel{
   background:var(--mizan-surface);
-  border-color:var(--mizan-border-light);
+  border-color:var(--mizan-border);
 }
 html[data-theme="light"] .petition-long-field textarea{
   background:var(--mizan-bg-light);
@@ -337,7 +337,7 @@ html[data-theme="light"] .petition-tools label{
   border-color:var(--mizan-border-light);
 }
 html[data-theme="light"] .petition-template-card{
-  background:var(--mizan-petition-light-surface-gradient);
+  background:var(--mizan-card);
   color:var(--mizan-text);
   border-color:var(--mizan-border-light);
 }
@@ -729,7 +729,7 @@ html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-m
 .petition-template-card h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-compact);font-weight:900;line-height:1.45;}
 .petition-template-card p{margin:2px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.45;}
 .petition-template-card:after{content:"›";color:var(--mizan-muted);font-size:25px;line-height:1;}
-html:not([data-theme="light"]) .petition-template-card{background:var(--mizan-surface);color:var(--mizan-text);}
+html:not([data-theme="light"]) .petition-template-card{background:var(--mizan-card);color:var(--mizan-text);border-color:var(--mizan-border);}
 html:not([data-theme="light"]) .petition-template-card h3{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted);}
 
