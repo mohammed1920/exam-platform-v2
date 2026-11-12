@@ -1575,7 +1575,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .petitions-hero>span{
 /* Shared card system: all non-book cards inherit the central Mizan palette.
    Dedicated 3D book cards and their cover artwork remain intentionally untouched. */
 html body :is(
-  .home-feature-strip>div,
+  .home-feature-strip>div,.home-category-card:not([data-home-action="books"]),
   .ji-entry-card,.ji-bank-card,.ji-saved-entry,.ji-panel,.ji-year-card,.ji-subject-card,.ji-question-card,
   .laws-card,.laws-choice-card,.law-preamble,.law-article,.law-contents-index,.law-closing,
   .procedures-lock-card,.procedures-category-card,.procedures-title-item,.procedures-detail-card,.procedures-step-card,.procedures-workflow,.procedures-search-panel,
@@ -1594,6 +1594,7 @@ html body :is(
   box-shadow:var(--mizan-shadow-card-rest);
 }
 html body :is(
+  .home-category-card:not([data-home-action="books"]) strong,
   .ji-entry-copy strong,.ji-year-card strong,.ji-subject-copy strong,.ji-question-card h3,
   .laws-card-copy strong,.laws-choice-card strong,.law-preamble h2,.law-article-heading>span,
   .procedures-category-title,.procedures-category-card h4,.procedures-detail-card>h3,
@@ -1601,12 +1602,14 @@ html body :is(
   .lawyer-card h3,.mizan-article-card h3,.mizan-profile-section h3
 ){color:var(--mizan-heading)}
 html body :is(
+  .home-category-card:not([data-home-action="books"]) small,
   .ji-entry-copy small,.ji-year-card small,.ji-subject-copy small,.ji-subject-count,
   .laws-card-copy small,.laws-choice-card small,.procedures-category-description,
   .petition-category-copy small,.petition-template-card p,.lawyer-card p,
   .mizan-article-card>p,.mizan-article-author small,.mizan-profile-section p
 ){color:var(--mizan-muted)}
 html body :is(
+  .home-category-card:not([data-home-action="books"]) i,
   .ji-entry-icon,.ji-year-icon,.ji-subject-number,.laws-card-icon,.laws-choice-card>span,
   .procedures-category-icon,.petition-category-icon,.lawyer-card-icon,
   .mizan-article-author>i
