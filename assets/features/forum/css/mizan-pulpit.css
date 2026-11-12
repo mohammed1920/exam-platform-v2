@@ -876,8 +876,8 @@ html[data-theme="light"] .mizan-form-grid textarea::placeholder{
 
 html[data-theme="light"] .mizan-my-articles-panel,
 html[data-theme="light"] .mizan-my-article-card{
-  background:var(--mizan-surface-light);
-  border-color:var(--mizan-border-light);
+  background:var(--mizan-card);
+  border-color:var(--mizan-border);
   color:var(--mizan-text);
 }
 html[data-theme="light"] .mizan-my-article-info h4{color:var(--mizan-text)}
