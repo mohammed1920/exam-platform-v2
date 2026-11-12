@@ -110,10 +110,10 @@
   }
   function renderQuestions(){
     const s=subject(state.subjectId);if(!s){state.level='years';return renderYears();}
-    const list=subjectQuestions(s.id,state.year).filter(q=>[q.question,q.text,...(Array.isArray(q.parts)?q.parts.map(p=>p.text):[])].filter(Boolean).join(' ').toLocaleLowerCase('ar').includes(state.query.toLocaleLowerCase('ar')));
+    const all=subjectQuestions(s.id,state.year);
+    const list=all.filter(q=>[q.question,q.text,...(Array.isArray(q.parts)?q.parts.map(p=>p.text):[])].filter(Boolean).join(' ').toLocaleLowerCase('ar').includes(state.query.toLocaleLowerCase('ar')));
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><button type="button" data-ji-action="subjects">'+esc(state.year)+'</button><i class="fas fa-chevron-left"></i><span>'+esc(s.name)+'</span></section>'+
-      '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أسئلة سنة '+esc(state.year)+'</span><h2>'+esc(s.name)+'</h2><p>النصوص المعروضة تحفظ صياغة السؤال وترقيمه كما وردا في المصدر.</p><div class="ji-stats ji-stats-single"><div><strong>'+subjectQuestions(s.id,state.year).length+'</strong><span>سؤال في المادة</span></div><div><strong>'+savedIds().length+'</strong><span>سؤال محفوظ</span></div></div></section>'+
-      '<section class="ji-panel"><div class="ji-question-toolbar"><div><span class="ji-kicker">بنك الأسئلة</span><h2>أسئلة المادة</h2></div><label class="ji-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" data-ji-search placeholder="ابحث في نصوص الأسئلة..." value="'+esc(state.query)+'"></label></div>'+
+      '<section class="ji-panel"><div class="ji-question-toolbar"><div><span class="ji-kicker">بنك الأسئلة</span><h2>أسئلة المادة</h2><span class="ji-count">'+list.length+' من '+all.length+' سؤال</span></div><label class="ji-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" data-ji-search placeholder="ابحث في نصوص الأسئلة..." value="'+esc(state.query)+'"></label></div>'+
       (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState(state.query?'لا توجد نتائج مطابقة':'لا توجد أسئلة مضافة لهذه المادة في هذه السنة بعد',state.query?'جرّب كلمات بحث أخرى.':'ستظهر الأسئلة بعد إضافة بياناتها الأصلية إلى ملف الأرشيف، دون إنشاء أسئلة افتراضية.'))+'</section>');
   }
   function renderSaved(){
