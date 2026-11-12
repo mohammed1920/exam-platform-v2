@@ -1571,3 +1571,55 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .lawyers-hero>span,
 html:is([data-theme="light"],[data-admin-theme="light"]) .petitions-hero>span{
   color:var(--mizan-intro-kicker);
 }
+
+/* Shared card system: all non-book cards inherit the central Mizan palette.
+   Dedicated 3D book cards and their cover artwork remain intentionally untouched. */
+html body :is(
+  .home-feature-strip>div,
+  .ji-entry-card,.ji-bank-card,.ji-panel,.ji-year-card,.ji-subject-card,.ji-question-card,
+  .laws-card,.laws-choice-card,.law-preamble,.law-article,.law-contents-index,.law-closing,
+  .procedures-lock-card,.procedures-category-card,.procedures-title-item,.procedures-detail-card,.procedures-step-card,.procedures-workflow,
+  .petition-category-card,.petition-template-card,.petition-form-panel,.petition-preview-panel,.petition-access-card,
+  .lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
+  .mizan-article-card,.mizan-my-articles-panel,.mizan-my-article-card,.mizan-profile-section,
+  .profile-panel,.profile-stat-card,.student-info-grid>div,.student-profile-card,
+  .firebase-admin-card,.firebase-admin-stat,.contact-card,.contact-box,
+  .exam-box,.results-box,.review-item,.resume-exam-panel,.custom-exam-count-row,
+  .question-search-results,.question-search-item
+){
+  background:var(--mizan-card);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body :is(
+  .ji-entry-copy strong,.ji-year-card strong,.ji-subject-copy strong,.ji-question-card h3,
+  .laws-card-copy strong,.laws-choice-card strong,.law-preamble h2,.law-article-heading>span,
+  .procedures-category-title,.procedures-category-card h4,.procedures-detail-card>h3,
+  .petition-category-copy strong,.petition-template-card h3,.petition-panel-title,
+  .lawyer-card h3,.mizan-article-card h3,.mizan-profile-section h3
+){color:var(--mizan-heading)}
+html body :is(
+  .ji-entry-copy small,.ji-year-card small,.ji-subject-copy small,.ji-subject-count,
+  .laws-card-copy small,.laws-choice-card small,.procedures-category-description,
+  .petition-category-copy small,.petition-template-card p,.lawyer-card p,
+  .mizan-article-card>p,.mizan-article-author small,.mizan-profile-section p
+){color:var(--mizan-muted)}
+html body :is(
+  .ji-entry-icon,.ji-year-icon,.ji-subject-number,.laws-card-icon,.laws-choice-card>span,
+  .procedures-category-icon,.petition-category-icon,.lawyer-card-icon,
+  .mizan-article-author>i
+){
+  background:var(--mizan-accent-tile-bg);
+  color:var(--mizan-accent-tile-fg);
+  border-color:var(--mizan-accent-tile-border);
+}
+html body .ji-question-card{border-inline-end-color:var(--mizan-primary-500)}
+html body :is(.ji-entry-card:hover,.ji-bank-card:hover,.ji-year-card:hover,.ji-subject-card:hover,
+  .laws-card:hover,.procedures-category-card:hover,.procedures-title-item:hover,
+  .petition-category-card:hover,.petition-template-card:hover,.lawyer-card:hover){
+  border-color:var(--mizan-primary-500);
+  box-shadow:var(--mizan-shadow-card-raised);
+}
+
