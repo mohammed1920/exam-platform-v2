@@ -32,7 +32,9 @@
     if(!item)throw new Error('Subject archive is not listed in manifest');
     const filePath=item.path||item.file;
     if(!filePath)throw new Error('Subject archive path is missing from manifest');
-    const response=await fetch(filePath,{cache:'no-cache'});
+    const manifestUrl=new URL(DATA_URL,window.location.href);
+    const archiveUrl=new URL(filePath,manifestUrl).toString();
+    const response=await fetch(archiveUrl,{cache:'no-cache'});
     if(!response.ok)throw new Error('Archive file HTTP '+response.status);
     const file=await response.json();
     if(file.schemaVersion!==1||file.year!==Number(year)||file.subjectId!==id||!Array.isArray(file.questions))throw new Error('Invalid subject archive file');
