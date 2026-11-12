@@ -373,7 +373,6 @@
   .home-category-card i,
   .home-feature-strip>div,
   .home-feature-strip button,
-  .home-coming-soon,
   .home-notice,
   .search-wrapper,
   .global-search-item,
@@ -383,7 +382,6 @@
   }
   .home-category-card:hover,
   .home-feature-strip>div:hover,
-  .home-coming-soon:hover,
   .contact-card:hover{
     transform:none;
   }
