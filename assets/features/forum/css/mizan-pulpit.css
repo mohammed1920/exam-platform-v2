@@ -129,10 +129,10 @@
 }
 .mizan-article-card{
   position:relative;
-  padding:19px;
-  border:1px solid var(--mizan-surface-soft);
-  border-radius:var(--mizan-radius-lg);
-  background:var(--mizan-gradient-pulpit-highlight);
+  padding:var(--mizan-card-padding-comfortable);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  background:var(--mizan-card);
   overflow:hidden;
 }
 .mizan-article-meta{
@@ -860,9 +860,9 @@ html[data-theme="light"] .mizan-form-grid textarea::placeholder{
 
 /* إدارة مقالات المساهم داخل منبر ميزان */
 .mizan-my-articles-toolbar{display:flex;justify-content:flex-start;margin:18px 0 10px}
-.mizan-my-articles-panel{margin:0 0 24px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-lg);background:var(--mizan-gradient-pulpit-highlight)}
+.mizan-my-articles-panel{margin:0 0 24px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card)}
 .mizan-my-articles-list{display:grid;gap:10px}
-.mizan-my-article-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--mizan-surface-soft);border-radius:var(--mizan-radius-sm);background:var(--mizan-gradient-pulpit-highlight)}
+.mizan-my-article-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card)}
 .mizan-my-article-info{min-width:0;display:grid;gap:5px}
 .mizan-my-article-info h4{margin:0;overflow-wrap:anywhere;font-size:var(--mizan-font-size-2xs)}
 .mizan-my-article-info small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
