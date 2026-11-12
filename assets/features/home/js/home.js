@@ -78,14 +78,6 @@
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('contact');
       return;
     }
-    const names = {
-      judicial: 'اختبارات المعهد القضائي',
-      laws: 'القوانين العراقية',
-      judicial: 'اختبارات المعهد القضائي',
-      procedures: 'إجراءات الدعاوى',
-      petitions: 'العرائض والطلبات',
-      lawyers: 'دليل المحامين'
-    };
     if (action === 'lawyers') {
       loadLawyerDirectory()
         .then(() => window.app?.navigateTo('lawyers'))
@@ -98,7 +90,6 @@
         .catch(() => showNotice('العرائض والطلبات', 'تعذر تحميل القسم. تحقق من الاتصال ثم أعد المحاولة.'));
       return;
     }
-    if (names[action]) showNotice(names[action], 'هذا القسم قيد الإعداد وسيتم ربط محتواه لاحقاً دون التأثير على نظام الاختبارات الحالي.');
   }
 
   let lawsLoadPromise = null;
