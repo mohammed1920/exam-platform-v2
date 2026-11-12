@@ -13,12 +13,12 @@
 .procedures-feedback { margin: 16px 0 0; padding: 12px 14px; border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius: 12px; background: var(--mizan-surface, var(--mizan-surface-light)); color: var(--mizan-text, var(--mizan-text-dark)); line-height: 1.7; }
 .procedures-feedback.is-error { border-color: var(--mizan-procedures-error-border); color: var(--mizan-procedures-error-fg); }
 .procedures-access-state { margin-top: 20px; }
-.procedures-lock-card { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 16px; align-items: start; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius: 20px; background: var(--mizan-surface, var(--card-bg, var(--mizan-surface-light))); box-shadow: var(--mizan-procedures-shadow-card); }
+.procedures-lock-card { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 16px; align-items: start; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius:var(--mizan-radius-card); background:var(--mizan-card); box-shadow: var(--mizan-procedures-shadow-card); }
 .procedures-lock-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: var(--mizan-procedures-lock-bg); color: var(--mizan-procedures-lock-fg); font-size: 21px; }
 .procedures-lock-copy { min-width: 0; }
 .procedures-lock-label { color: var(--mizan-primary-600, var(--mizan-primary-500)); font-size: .82rem; font-weight: 800; }
 .procedures-lock-copy h3 { margin: 5px 0 8px; font-size: 1.2rem; line-height: 1.5; }
-.procedures-lock-copy p { margin: 0; color: var(--mizan-muted, var(--text-secondary, var(--mizan-muted-light))); line-height: 1.9; }
+.procedures-lock-copy p { margin: 0; color:var(--mizan-muted); line-height: 1.9; }
 .procedures-request-form { grid-column: 1 / -1; display: grid; gap: 10px; margin-top: 4px; }
 .procedures-request-form label { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; }
 .procedures-request-form label span { color: var(--mizan-warning-700); font-size: .78rem; }
@@ -38,7 +38,7 @@
 .procedures-catalog-heading h3 { margin: 4px 0 0; font-size: 1.45rem; }
 .procedures-count, .procedures-category-count { white-space: nowrap; color: var(--mizan-muted, var(--mizan-muted-light)); font-size: .8rem; }
 .procedures-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
-.procedures-category-card { min-width: 0; padding: 20px; border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius: 18px; background: var(--mizan-surface, var(--card-bg, var(--mizan-surface-light))); box-shadow: var(--mizan-procedures-shadow-card); }
+.procedures-category-card { min-width: 0; padding:var(--mizan-card-padding-comfortable); border: 1px solid var(--mizan-border, var(--mizan-border-light)); border-radius:var(--mizan-radius-card); background: var(--mizan-surface, var(--card-bg, var(--mizan-surface-light))); box-shadow: var(--mizan-procedures-shadow-card); }
 .procedures-category-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .procedures-category-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--mizan-procedures-category-bg); color: var(--mizan-procedures-category-fg); font-size: 19px; }
 .procedures-category-card h4 { margin: 15px 0 7px; font-size: 1.1rem; }
@@ -70,13 +70,13 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 
 
 .procedures-title-list{display:grid;gap:10px;margin-top:16px}
-.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-component-gap);width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;background:var(--mizan-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
 .procedures-title-item:hover{border-color:var(--mizan-primary-600,var(--mizan-primary-500));transform:translateY(-1px);box-shadow:var(--mizan-shadow-card-raised)}
 .procedures-title-item i{color:var(--mizan-primary-600,var(--mizan-primary-500))}
 .procedures-empty{padding:22px;border:1px dashed var(--mizan-border,var(--mizan-border-light));border-radius:14px;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)));text-align:center;line-height:1.8}
 .procedures-detail{margin-top:20px;scroll-margin-top:20px}
 .procedures-detail-back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:10px 14px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:12px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:inherit;font:inherit;cursor:pointer}
-.procedures-detail-card{padding:clamp(18px,3vw,30px);border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:20px;background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));box-shadow:var(--mizan-procedures-shadow-card)}
+.procedures-detail-card{padding:clamp(18px,3vw,30px);border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:var(--mizan-radius-card);background:var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)));box-shadow:var(--mizan-procedures-shadow-card)}
 .procedures-detail-kicker{color:var(--mizan-primary-600,var(--mizan-primary-500));font-size:.85rem;font-weight:800}
 .procedures-detail-card>h3{margin:8px 0 22px;font-size:clamp(1.35rem,3vw,1.9rem);line-height:1.6}
 .procedures-detail-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--mizan-border,var(--mizan-border-light))}
@@ -84,15 +84,12 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-detail-section p,.procedures-detail-section li{line-height:1.95;color:var(--mizan-text,var(--text-primary,var(--mizan-text-dark)))}
 .procedures-detail-section ol{padding-inline-start:24px;margin:8px 0}
 .procedures-detail-disclaimer{margin-top:24px;padding-top:14px;border-top:1px dashed var(--mizan-border,var(--mizan-border-light));font-size:.88rem;line-height:1.8;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
-.procedures-loading{padding:20px;text-align:center;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
+.procedures-loading{padding:var(--mizan-card-padding-comfortable);text-align:center;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)))}
 @media(max-width:600px){.procedures-title-item{padding:14px}.procedures-detail-card{padding:18px}}
 
 /* Procedure category cards and section-only search; colors live in mizan-colors.css. */
 .procedures-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
-.procedures-category-card{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-space-2);width:100%;min-width:0;min-height:140px;padding:var(--mizan-space-4);border:1px solid var(--mizan-procedures-card-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-procedures-card-civil-bg);color:var(--mizan-procedures-card-fg);font:inherit;text-align:right;cursor:pointer;transition:transform var(--mizan-duration-medium) ease,border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-medium) ease}
-.procedures-category-card--criminal{background:var(--mizan-procedures-card-criminal-bg)}
-.procedures-category-card--administrative{background:var(--mizan-procedures-card-administrative-bg)}
-.procedures-category-card--personal{background:var(--mizan-procedures-card-personal-bg)}
+.procedures-category-card{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-component-gap);width:100%;min-width:0;min-height:140px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:transform var(--mizan-duration-medium) ease,border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-medium) ease}
 .procedures-category-card:hover{transform:translateY(-2px);border-color:var(--mizan-procedures-card-border-hover);box-shadow:var(--mizan-procedures-shadow-hover)}
 .procedures-category-card:focus-visible,.procedures-search-field input:focus-visible,.procedures-search-field button:focus-visible{outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);outline-offset:var(--mizan-focus-ring-offset)}
 .procedures-category-title{font-size:1.02rem;font-weight:800;line-height:1.6}
@@ -227,10 +224,10 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 }
 .procedures-step-card{
   position:relative;display:flex;align-items:flex-start;gap:14px;
-  min-width:0;margin:0;padding:16px;
-  border:1px solid var(--mizan-procedures-card-border,var(--mizan-border,var(--mizan-border-light)));
-  border-radius:18px;
-  background:var(--mizan-procedures-card-civil-bg,var(--mizan-surface,var(--card-bg,var(--mizan-surface-light))));
+  min-width:0;margin:0;padding:var(--mizan-card-padding);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  background:var(--mizan-card);
   box-shadow:var(--mizan-procedures-shadow-card,none);
   counter-increment:procedure-step;
 }
@@ -265,7 +262,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-step-card:not(:last-child)::after{height:calc(100% + 14px);bottom:auto}
 @media(max-width:600px){
   .procedures-steps-list{gap:12px;margin-top:13px}
-  .procedures-step-card{gap:11px;padding:14px 12px;border-radius:15px}
+  .procedures-step-card{gap:var(--mizan-component-gap);padding:var(--mizan-card-padding);border-radius:var(--mizan-radius-card)}
   .procedures-step-number{flex-basis:36px;width:36px;height:36px;font-size:.98rem}
   .procedures-step-card:not(:last-child)::after{right:29px;top:51px;height:calc(100% + 12px)}
   .procedures-step-content p{font-size:.94rem;line-height:1.9}
