@@ -92,6 +92,8 @@
     }
   }
 
+  window.MizanHomeActions = { run };
+
   let lawsLoadPromise = null;
   function loadLaws() {
     if (window.mizanLaws && typeof window.mizanLaws.open === 'function') return Promise.resolve(window.mizanLaws);
@@ -218,10 +220,6 @@
     syncVisibility();
     const observer = new MutationObserver(syncVisibility);
     document.querySelectorAll('.view-section').forEach(section => observer.observe(section, { attributes: true, attributeFilter: ['class'] }));
-    document.addEventListener('click', event => {
-      const trigger = event.target.closest('[data-home-action]');
-      if (trigger) run(trigger.dataset.homeAction);
-    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);

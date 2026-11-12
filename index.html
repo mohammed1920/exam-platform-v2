@@ -57,7 +57,7 @@
   <!-- Layer 4: visibility and light/dark behavior, followed by shared semantic theme colors. -->
   <link rel="stylesheet" href="assets/shared/css/theme.css?v=1.9">
   <link rel="stylesheet" href="assets/features/petitions/css/petitions.css?v=2.11">
-<link rel="stylesheet" href="assets/shared/css/mizan-unified-theme.css?v=6.48">
+  <link rel="stylesheet" href="assets/shared/css/mizan-unified-theme.css?v=7.0">
   
 
   <!-- Layer 5: final header-specific layout/identity overrides; no palette definitions belong here. -->
@@ -103,25 +103,25 @@
           <h2 id="home-hero-title"><span class="home-hero-title-line">الفهم القانوني</span><span class="home-hero-title-line">يستحق تجربة أفضل.</span></h2>
           <p>اختبر فهمك القانوني، راجع إجاباتك، وتابع تقدمك في تجربة واحدة منظمة.</p>
           <div class="home-hero-actions">
-            <button type="button" class="home-hero-primary" data-home-action="books">استكشف الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-            <button type="button" class="home-hero-secondary" data-home-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i> دليل المحامين</button>
+            <button type="button" class="home-hero-primary" data-home-action="books" data-mizan-card-action="books">استكشف الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+            <button type="button" class="home-hero-secondary" data-home-action="lawyers" data-mizan-card-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i> دليل المحامين</button>
           </div>
         </div>
       </section>
       <div class="home-section-heading"><h2>كل ما تحتاجه في مكان واحد</h2><span>الأقسام الرئيسية</span></div>
       <div class="home-category-grid" aria-label="الأقسام الرئيسية">
-        <button type="button" class="home-category-card" data-home-action="books"><i class="fas fa-book-open" aria-hidden="true"></i><strong>اختبارات كتب القانون</strong><small>الكتب والفصول والأسئلة التفاعلية</small></button>
-        <button type="button" class="home-category-card" data-home-action="petitions"><i class="fas fa-file-lines" aria-hidden="true"></i><strong>عرائض وطلبات</strong><small>نماذج قانونية قابلة للتطوير</small></button>
-        <button type="button" class="home-category-card" data-home-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i><strong>دليل المحامين</strong><small>بيانات المحامين وخدمات الدليل</small></button>
-        <button type="button" class="home-category-card" data-home-action="mizan-pulpit"><i class="fas fa-feather-pointed" aria-hidden="true"></i><strong>منبر ميزان</strong><small>مقالات وأبحاث وأفكار أهل الاختصاص</small></button>
-        <button type="button" class="home-category-card" data-home-action="random"><i class="fas fa-shuffle" aria-hidden="true"></i><strong>اختبار عشوائي</strong><small>اختر الكتب وعدد الأسئلة وابدأ اختباراً مخصصاً.</small></button>
-        <button type="button" class="home-category-card" data-home-action="laws" aria-label="فتح القوانين العراقية"><i class="fas fa-scale-balanced" aria-hidden="true"></i><strong>القوانين العراقية</strong><small>تصفح القوانين والمواد القانونية</small></button>
-        <button type="button" class="home-category-card" data-home-action="procedures" aria-label="فتح إجراءات الدعاوى"><i class="fas fa-file-signature" aria-hidden="true"></i><strong>إجراءات الدعاوى</strong><small>خطوات الدعوى وإجراءاتها القانونية</small></button>
-        <button type="button" class="home-category-card" data-home-action="judicial" aria-label="فتح قسم المعهد القضائي"><i class="fas fa-landmark" aria-hidden="true"></i><strong>اختبارات المعهد القضائي</strong><small>أرشيف السنوات وبنك الأسئلة حسب المواد</small></button>
+        <button type="button" class="home-category-card" data-home-action="books" data-mizan-card-action="books"><i class="fas fa-book-open" aria-hidden="true"></i><strong>اختبارات كتب القانون</strong><small>الكتب والفصول والأسئلة التفاعلية</small></button>
+        <button type="button" class="home-category-card" data-home-action="petitions" data-mizan-card-action="petitions"><i class="fas fa-file-lines" aria-hidden="true"></i><strong>عرائض وطلبات</strong><small>نماذج قانونية قابلة للتطوير</small></button>
+        <button type="button" class="home-category-card" data-home-action="lawyers" data-mizan-card-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i><strong>دليل المحامين</strong><small>بيانات المحامين وخدمات الدليل</small></button>
+        <button type="button" class="home-category-card" data-home-action="mizan-pulpit" data-mizan-card-action="mizan-pulpit"><i class="fas fa-feather-pointed" aria-hidden="true"></i><strong>منبر ميزان</strong><small>مقالات وأبحاث وأفكار أهل الاختصاص</small></button>
+        <button type="button" class="home-category-card" data-home-action="random" data-mizan-card-action="random"><i class="fas fa-shuffle" aria-hidden="true"></i><strong>اختبار عشوائي</strong><small>اختر الكتب وعدد الأسئلة وابدأ اختباراً مخصصاً.</small></button>
+        <button type="button" class="home-category-card" data-home-action="laws" data-mizan-card-action="laws" aria-label="فتح القوانين العراقية"><i class="fas fa-scale-balanced" aria-hidden="true"></i><strong>القوانين العراقية</strong><small>تصفح القوانين والمواد القانونية</small></button>
+        <button type="button" class="home-category-card" data-home-action="procedures" data-mizan-card-action="procedures" aria-label="فتح إجراءات الدعاوى"><i class="fas fa-file-signature" aria-hidden="true"></i><strong>إجراءات الدعاوى</strong><small>خطوات الدعوى وإجراءاتها القانونية</small></button>
+        <button type="button" class="home-category-card" data-home-action="judicial" data-mizan-card-action="judicial" aria-label="فتح قسم المعهد القضائي"><i class="fas fa-landmark" aria-hidden="true"></i><strong>اختبارات المعهد القضائي</strong><small>أرشيف السنوات وبنك الأسئلة حسب المواد</small></button>
       </div>
       <div class="home-feature-strip">
-        <div data-home-action="dashboard"><i class="fas fa-chart-line"></i><span><strong>لوحة الاختبارات</strong><small>نتائجك وسجلك وتقدمك في قسم واحد</small></span><button type="button">فتح اللوحة ←</button></div>
-        <div data-home-action="contact"><i class="fas fa-headset"></i><span><strong>تواصل معنا</strong></span><button type="button">معلومات التواصل ←</button></div>
+        <div data-home-action="dashboard" data-mizan-card-action="dashboard" role="button" tabindex="0"><i class="fas fa-chart-line"></i><span><strong>لوحة الاختبارات</strong><small>نتائجك وسجلك وتقدمك في قسم واحد</small></span><button type="button">فتح اللوحة ←</button></div>
+        <div data-home-action="contact" data-mizan-card-action="contact" role="button" tabindex="0"><i class="fas fa-headset"></i><span><strong>تواصل معنا</strong></span><button type="button">معلومات التواصل ←</button></div>
       </div>
 
     </section>
@@ -240,7 +240,8 @@
   <script src="assets/features/forum/js/mizan-pulpit.js?v=2.0" data-mizan-pulpit-loader="1"></script>
   <script src="assets/shared/js/app.js?v=3.9"></script>
   <script src="assets/shared/js/global-search.js?v=1.1"></script>
-  <script src="assets/features/home/js/home.js?v=3.9"></script>
+  <script src="assets/features/home/js/home.js?v=4.0"></script>
+  <script src="assets/shared/js/mizan-card-actions.js?v=1.0"></script>
   <script src="assets/features/judicial-institute/js/judicial-institute.js?v=2.3"></script>
   <script src="assets/shared/js/platform-sidebar.js?v=1.9"></script>
   <script src="assets/features/procedures/js/procedures.js?v=1.7"></script>

@@ -435,6 +435,26 @@ html body{
   color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
+.home-category-card[data-home-action="books"]{background:var(--mizan-home-card-books-bg)}
+.home-category-card[data-home-action="petitions"]{background:var(--mizan-home-card-petitions-bg)}
+.home-category-card[data-home-action="lawyers"]{background:var(--mizan-home-card-lawyers-bg)}
+.home-category-card[data-home-action="mizan-pulpit"]{background:var(--mizan-home-card-pulpit-bg)}
+.home-category-card[data-home-action="random"]{background:var(--mizan-home-card-random-bg)}
+.home-category-card[data-home-action="judicial"]{background:var(--mizan-home-card-judicial-bg)}
+.home-category-card[data-home-action="laws"]{background:var(--mizan-home-card-laws-bg)}
+.home-category-card[data-home-action="procedures"]{background:var(--mizan-home-card-procedures-bg)}
+.home-feature-strip>div{background:var(--mizan-gradient-home-featured)}
+.home-category-card[data-home-action],
+.home-feature-strip>div{
+  background-blend-mode:screen;
+  border-color:color-mix(in srgb,var(--mizan-accent-text) 34%,var(--mizan-border));
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+.home-category-card[data-home-action]:hover,
+.home-feature-strip>div:hover{
+  border-color:var(--mizan-accent-text);
+  box-shadow:var(--mizan-shadow-card-featured);
+}
 .home-category-card:before{
   background:var(--mizan-accent-tile-bg);
 }
@@ -1626,3 +1646,33 @@ html body :is(.ji-entry-card:hover,.ji-bank-card:hover,.ji-year-card:hover,.ji-s
   box-shadow:var(--mizan-shadow-card-raised);
 }
 
+/* Central section/card gradients. Book artwork remains intentionally excluded. */
+.laws-hero,.laws-card,.laws-choice-card{background:var(--mizan-gradient-intro-laws)}
+.procedures-hero,.procedures-category-card{background:var(--mizan-gradient-intro-procedures)}
+.lawyers-hero,.lawyer-card{background:var(--mizan-gradient-intro-lawyers)}
+.petitions-hero,.petition-category-card{background:var(--mizan-gradient-intro-petitions)}
+.mizan-pulpit-hero,.mizan-article-card{background:var(--mizan-gradient-intro-pulpit)}
+.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card{background:var(--mizan-gradient-intro-judicial)}
+.laws-card,.laws-choice-card,.procedures-category-card,.petition-category-card,
+.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card,.lawyer-card,.mizan-article-card{
+  border-color:color-mix(in srgb,var(--mizan-accent-text) 32%,var(--mizan-border));
+  box-shadow:var(--mizan-shadow-card-rest);
+  transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),box-shadow var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-medium) ease;
+}
+.laws-card:hover,.laws-choice-card:hover,.procedures-category-card:hover,.petition-category-card:hover,
+.ji-bank-card:hover,.ji-entry-card:hover,.ji-year-card:hover,.ji-subject-card:hover,.lawyer-card:hover,.mizan-article-card:hover{
+  border-color:var(--mizan-accent-text);
+  box-shadow:var(--mizan-shadow-card-featured);
+  transform:translateY(-3px);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) .home-feature-strip>div{background:var(--mizan-gradient-home-featured-light)}
+html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-intro){
+  color:var(--mizan-heading-light);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-intro) :is(h1,h2,h3,p,strong,small){
+  color:var(--mizan-heading-light);
+}
+@media(prefers-reduced-motion:reduce){
+  .laws-card,.laws-choice-card,.procedures-category-card,.petition-category-card,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card,.lawyer-card,.mizan-article-card{transition:none}
+  .laws-card:hover,.laws-choice-card:hover,.procedures-category-card:hover,.petition-category-card:hover,.ji-bank-card:hover,.ji-entry-card:hover,.ji-year-card:hover,.ji-subject-card:hover,.lawyer-card:hover,.mizan-article-card:hover{transform:none}
+}
