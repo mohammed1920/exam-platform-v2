@@ -84,9 +84,9 @@
 .ji-question-card h3{margin:0 0 var(--mizan-space-3);color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:700;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere}
 .ji-options{display:grid;gap:8px;margin:0 0 var(--mizan-space-3);padding-inline-start:24px;color:var(--mizan-text);line-height:1.8}
 .ji-question-parts{display:grid;gap:var(--mizan-space-2);margin:0 0 var(--mizan-space-3)}
-.ji-question-part{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:var(--mizan-space-2);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text)}
-.ji-question-part strong{color:var(--mizan-primary-600);font-size:var(--mizan-font-size-sm)}
-.ji-question-part p{margin:0;color:var(--mizan-text);line-height:1.9;font-size:var(--mizan-font-size-md);white-space:pre-wrap;overflow-wrap:anywhere}
+.ji-question-part{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:var(--mizan-space-2);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text)}
+.ji-question-part strong{display:block;width:100%;margin:0 0 var(--mizan-space-1);color:var(--mizan-primary-500);font-size:var(--mizan-font-size-md);font-weight:900;line-height:1.6;text-align:right}
+.ji-question-part p{margin:0;color:var(--mizan-text);line-height:1.9;font-size:var(--mizan-font-size-md);white-space:pre-wrap;overflow-wrap:anywhere;text-align:right}
 .ji-question-source,.ji-question-note{margin:0 0 var(--mizan-space-2);color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);line-height:1.7;overflow-wrap:anywhere}
 .ji-question-note{padding:var(--mizan-space-2) var(--mizan-space-3);border-radius:var(--mizan-radius-md);background:var(--mizan-warning-100);color:var(--mizan-warning-700)}
 .ji-question-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--mizan-space-3);margin-top:var(--mizan-space-3);padding-top:var(--mizan-space-3);border-top:1px solid var(--mizan-border)}
