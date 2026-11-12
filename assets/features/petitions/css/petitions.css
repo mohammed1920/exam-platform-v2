@@ -648,37 +648,18 @@ html[data-theme="light"] .petition-template-card b{
   box-shadow:var(--mizan-petition-template-shadow-hover);
 }
 .petition-category-card:focus-visible{outline:2px solid var(--mizan-primary-500);outline-offset:3px;}
-.petition-category-card[data-category="family"]{
-  background:color-mix(in srgb,var(--mizan-warning-100) 42%,var(--mizan-card));
-  border-color:color-mix(in srgb,var(--mizan-warning-700) 18%,var(--mizan-border));
-}
-.petition-category-card[data-category="civil"]{
-  background:color-mix(in srgb,var(--mizan-primary-100) 48%,var(--mizan-card));
-  border-color:color-mix(in srgb,var(--mizan-primary-700) 18%,var(--mizan-border));
-}
-.petition-category-card[data-category="criminal"]{
-  background:color-mix(in srgb,var(--mizan-danger-100) 42%,var(--mizan-card));
-  border-color:color-mix(in srgb,var(--mizan-danger-700) 17%,var(--mizan-border));
-}
-.petition-category-card[data-category="administrative"]{
-  background:color-mix(in srgb,var(--mizan-success-100) 42%,var(--mizan-card));
-  border-color:color-mix(in srgb,var(--mizan-success-700) 17%,var(--mizan-border));
-}
 .petition-category-icon{
   display:grid;
   place-items:center;
   flex:0 0 auto;
   width:var(--mizan-petitions-category-icon-size);
   height:var(--mizan-petitions-category-icon-size);
+  border:1px solid var(--mizan-accent-tile-border);
   border-radius:var(--mizan-radius-md);
-  color:var(--mizan-primary-700);
-  background:var(--mizan-primary-100);
+  color:var(--mizan-accent-tile-fg);
+  background:var(--mizan-accent-tile-bg);
   font-size:20px;
 }
-.petition-category-card[data-category="family"] .petition-category-icon{color:var(--mizan-warning-700);background:var(--mizan-warning-100);}
-.petition-category-card[data-category="civil"] .petition-category-icon{color:var(--mizan-primary-700);background:var(--mizan-primary-100);}
-.petition-category-card[data-category="criminal"] .petition-category-icon{color:var(--mizan-danger-700);background:var(--mizan-danger-100);}
-.petition-category-card[data-category="administrative"] .petition-category-icon{color:var(--mizan-success-700);background:var(--mizan-success-100);}
 .petition-category-copy{
   display:flex;
   flex-direction:column;
