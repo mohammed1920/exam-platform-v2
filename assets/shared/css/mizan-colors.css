@@ -857,6 +857,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-gradient-intro-lawyers:linear-gradient(135deg,#10233D 0%,#17434A 58%,#0F766E 100%);
   --mizan-gradient-intro-petitions:linear-gradient(135deg,#10233D 0%,#26334B 58%,#6B4226 100%);
   --mizan-gradient-intro-pulpit:linear-gradient(135deg,#10233D 0%,#1B2E4A 58%,#1E3A8A 100%);
+  --mizan-gradient-intro-judicial:linear-gradient(135deg,#16283F 0%,#20344C 58%,#3A4654 100%);
   --mizan-intro-fg:#FFFFFF;
   --mizan-intro-muted:#E2E8F0;
   --mizan-intro-kicker:#93C5FD;
@@ -868,6 +869,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-gradient-intro-lawyers:linear-gradient(135deg,#FFFFFF 0%,#ECFDF5 58%,#D1FAE5 100%);
   --mizan-gradient-intro-petitions:linear-gradient(135deg,#FFFFFF 0%,#F8FAFC 58%,#FEF3C7 100%);
   --mizan-gradient-intro-pulpit:linear-gradient(135deg,#FFFFFF 0%,#EFF6FF 58%,#DBEAFE 100%);
+  --mizan-gradient-intro-judicial:linear-gradient(135deg,#F8FAFC 0%,#E2E8F0 58%,#CBD5E1 100%);
   --mizan-intro-fg:#0F172A;
   --mizan-intro-muted:#475569;
   --mizan-intro-kicker:#1D4ED8;

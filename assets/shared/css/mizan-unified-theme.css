@@ -1652,7 +1652,7 @@ html body :is(.ji-entry-card:hover,.ji-bank-card:hover,.ji-year-card:hover,.ji-s
 .lawyers-hero,.lawyer-card{background:var(--mizan-gradient-intro-lawyers)}
 .petitions-hero,.petition-category-card,.petition-template-card,.petition-access-card{background:var(--mizan-gradient-intro-petitions)}
 .mizan-pulpit-hero,.mizan-article-card,.mizan-my-article-card{background:var(--mizan-gradient-intro-pulpit)}
-.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card{background:var(--mizan-gradient-intro-judicial)}
+.ji-header,.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card{background:var(--mizan-gradient-intro-judicial)}
 .laws-page-header,.laws-detail-header,.laws-card,.laws-choice-card,.procedures-category-card,.procedures-title-item,.procedures-step-card,.petition-category-card,.petition-template-card,.petition-access-card,
 .ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card,.lawyer-card,.mizan-article-card{
   border-color:color-mix(in srgb,var(--mizan-accent-text) 32%,var(--mizan-border));
@@ -1666,10 +1666,10 @@ html body :is(.ji-entry-card:hover,.ji-bank-card:hover,.ji-year-card:hover,.ji-s
   transform:translateY(-3px);
 }
 html:is([data-theme="light"],[data-admin-theme="light"]) .home-feature-strip>div{background:var(--mizan-gradient-home-featured-light)}
-html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.laws-page-header,.laws-detail-header,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-intro){
+html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.laws-page-header,.laws-detail-header,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-header,.ji-intro){
   color:var(--mizan-heading-light);
 }
-html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.laws-page-header,.laws-detail-header,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-intro) :is(h1,h2,h3,p,strong,small){
+html:is([data-theme="light"],[data-admin-theme="light"]) :is(.laws-hero,.laws-page-header,.laws-detail-header,.procedures-hero,.lawyers-hero,.petitions-hero,.mizan-pulpit-hero,.ji-header,.ji-intro) :is(h1,h2,h3,p,strong,small){
   color:var(--mizan-heading-light);
 }
 /* Keep these final, higher-specificity rules ahead of legacy light-theme surfaces. */
@@ -1678,7 +1678,7 @@ html body :is(.procedures-hero,.procedures-category-card,.procedures-title-item,
 html body :is(.lawyers-hero,.lawyer-card){background:var(--mizan-gradient-intro-lawyers)!important}
 html body :is(.petitions-hero,.petition-category-card,.petition-template-card,.petition-access-card){background:var(--mizan-gradient-intro-petitions)!important}
 html body :is(.mizan-pulpit-hero,.mizan-article-card,.mizan-my-article-card){background:var(--mizan-gradient-intro-pulpit)!important}
-html body :is(.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card){background:var(--mizan-gradient-intro-judicial)!important}
+html body :is(.ji-header,.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card){background:var(--mizan-gradient-intro-judicial)!important}
 @media(prefers-reduced-motion:reduce){
   .laws-card,.laws-choice-card,.procedures-category-card,.petition-category-card,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card,.lawyer-card,.mizan-article-card{transition:none}
   .laws-card:hover,.laws-choice-card:hover,.procedures-category-card:hover,.petition-category-card:hover,.ji-bank-card:hover,.ji-entry-card:hover,.ji-year-card:hover,.ji-subject-card:hover,.lawyer-card:hover,.mizan-article-card:hover{transform:none}
