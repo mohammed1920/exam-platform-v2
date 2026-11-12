@@ -1576,10 +1576,10 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .petitions-hero>span{
    Dedicated 3D book cards and their cover artwork remain intentionally untouched. */
 html body :is(
   .home-feature-strip>div,
-  .ji-entry-card,.ji-bank-card,.ji-panel,.ji-year-card,.ji-subject-card,.ji-question-card,
+  .ji-entry-card,.ji-bank-card,.ji-saved-entry,.ji-panel,.ji-year-card,.ji-subject-card,.ji-question-card,
   .laws-card,.laws-choice-card,.law-preamble,.law-article,.law-contents-index,.law-closing,
-  .procedures-lock-card,.procedures-category-card,.procedures-title-item,.procedures-detail-card,.procedures-step-card,.procedures-workflow,
-  .petition-category-card,.petition-template-card,.petition-form-panel,.petition-preview-panel,.petition-access-card,
+  .procedures-lock-card,.procedures-category-card,.procedures-title-item,.procedures-detail-card,.procedures-step-card,.procedures-workflow,.procedures-search-panel,
+  .petition-category-card,.petition-template-card,.petition-form-panel,.petition-preview-panel,.petition-access-card,.petition-editor-panel,.petition-live-preview,
   .lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
   .mizan-article-card,.mizan-my-articles-panel,.mizan-my-article-card,.mizan-profile-section,
   .profile-panel,.profile-stat-card,.student-info-grid>div,.student-profile-card,
