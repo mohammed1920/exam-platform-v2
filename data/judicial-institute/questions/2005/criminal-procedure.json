@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "year": 2005,
+  "subjectId": "criminal-procedure",
+  "subjectName": "أصول المحاكمات الجزائية",
+  "questions": [
+    {
+      "uid": "JI-2005-CRIMINAL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "س1: أجب عن الفقرتين الآتيتين.",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "ما هي القرارات التي يتخذها قاضي التحقيق بعد انتهاء التحقيق؟ عزز إجابتك بكتابة نماذج من تلك القرارات."
+        },
+        {
+          "label": "ب",
+          "text": "كيف يتم الصلح في الدعوى الجزائية؟ وهل يقبل الصلح إذا كان مقترناً بشرط أو معلقاً عليه؟ وما هي الآثار المترتبة على قبول الصلح؟"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "file": "1000436237.png",
+        "page": 1,
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

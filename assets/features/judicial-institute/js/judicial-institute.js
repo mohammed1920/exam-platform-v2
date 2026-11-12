@@ -22,6 +22,7 @@
   }
   function archiveYears(){return data.years.map(y=>Number(y.year)).filter(Number.isInteger).sort((a,b)=>b-a);}
   function yearEntry(year){return data.years.find(y=>Number(y.year)===Number(year));}
+  function yearQuestionCount(entry){return Number(entry&&entry.questionCount!=null?entry.questionCount:(entry&&Array.isArray(entry.subjects)?entry.subjects.reduce((n,item)=>n+Number(item.questionCount||0),0):0));}
   function subject(id){return data.subjects.find(s=>s.id===id);}
   function subjectQuestions(id,year){return questionCache.get(String(year)+'/'+String(id))||[];}
   async function loadYearSubject(year,id){
@@ -29,7 +30,9 @@
     if(questionCache.has(key))return questionCache.get(key);
     const entry=yearEntry(year), item=entry&&entry.subjects.find(s=>s.subjectId===id);
     if(!item)throw new Error('Subject archive is not listed in manifest');
-    const response=await fetch(item.file,{cache:'no-cache'});
+    const filePath=item.path||item.file;
+    if(!filePath)throw new Error('Subject archive path is missing from manifest');
+    const response=await fetch(filePath,{cache:'no-cache'});
     if(!response.ok)throw new Error('Archive file HTTP '+response.status);
     const file=await response.json();
     if(file.schemaVersion!==1||file.year!==Number(year)||file.subjectId!==id||!Array.isArray(file.questions))throw new Error('Invalid subject archive file');
@@ -53,7 +56,7 @@
         '<span class="ji-entry-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span>'+
         '<span class="ji-entry-copy"><strong>بنك أسئلة الأعوام السابقة</strong><small>تصفح أسئلة الامتحانات حسب السنة والمادة القانونية.</small></span>'+
         '<span class="ji-entry-stats">'+
-          '<span><strong>'+data.years.reduce((n,y)=>n+Number(y.questionCount||0),0)+'</strong><small>سؤال</small></span>'+
+          '<span><strong>'+data.years.reduce((n,y)=>n+yearQuestionCount(y),0)+'</strong><small>سؤال</small></span>'+
           '<span><strong>'+data.subjects.length+'</strong><small>مواد</small></span>'+
           '<span><strong>'+all.length+'</strong><small>سنوات</small></span>'+
         '</span>'+
@@ -74,25 +77,29 @@
     const toOptions=all.slice().sort((a,b)=>a-b).map(y=>'<option value="'+y+'" '+(y===Number(state.toYear)?'selected':'')+'>'+y+'</option>').join('');
     return shell('<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">تصفح الأرشيف</span><h2>سنوات الامتحانات</h2></div><span class="ji-count">'+filtered.length+' سنة</span></div>'+
       '<div class="ji-year-filters"><label>من سنة<select data-ji-filter="from">'+options+'</select></label><label>إلى سنة<select data-ji-filter="to">'+toOptions+'</select></label></div>'+
-      '<div class="ji-year-grid">'+filtered.map(y=>'<button class="ji-year-card" type="button" data-ji-action="year" data-year="'+y+'"><span class="ji-year-icon"><i class="fas fa-calendar-days" aria-hidden="true"></i></span><strong>'+y+'</strong><small>'+Number((yearEntry(y)||{}).questionCount||0)+' سؤال</small><i class="fas fa-arrow-left ji-card-arrow" aria-hidden="true"></i></button>').join('')+'</div>'+
+      '<div class="ji-year-grid">'+filtered.map(y=>'<button class="ji-year-card" type="button" data-ji-action="year" data-year="'+y+'"><span class="ji-year-icon"><i class="fas fa-calendar-days" aria-hidden="true"></i></span><strong>'+y+'</strong><small>'+yearQuestionCount(yearEntry(y))+' سؤال</small><i class="fas fa-arrow-left ji-card-arrow" aria-hidden="true"></i></button>').join('')+'</div>'+
       (filtered.length?'':'<p class="ji-empty">لا توجد سنوات ضمن النطاق المحدد.</p>')+
       '<p class="ji-note"><i class="fas fa-circle-info" aria-hidden="true"></i> السنوات المعروضة هي فهرس الأرشيف؛ ظهور السنة لا يعني أن أسئلتها أُضيفت بعد.</p></section>');
   }
   function renderSubjects(){
-    const entry=yearEntry(state.year), available=entry?entry.subjects:[], count=Number((entry||{}).questionCount||0);
+    const entry=yearEntry(state.year), available=entry&&Array.isArray(entry.subjects)?entry.subjects:[], count=yearQuestionCount(entry);
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><span>امتحانات '+esc(state.year)+'</span></section>'+
-      '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أرشيف سنة '+esc(state.year)+'</span><h2>اختر المادة القانونية</h2><p>تصفح الأسئلة الأصلية حسب المادة، مع المحافظة على رقم السؤال ومصدره.</p><div class="ji-stats ji-stats-single"><div><strong>'+count+'</strong><span>سؤال متاح لهذه السنة</span></div><div><strong>7</strong><span>مواد في الأرشيف</span></div></div></section>'+
-      '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">المواد الدراسية</span><h2>مواد المعهد القضائي</h2></div></div><div class="ji-subject-grid">'+data.subjects.map((s,i)=>{
+      '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أرشيف سنة '+esc(state.year)+'</span><h2>اختر المادة القانونية</h2><p>تصفح الأسئلة الأصلية حسب المادة، مع المحافظة على رقم السؤال ومصدره.</p><div class="ji-stats ji-stats-single"><div><strong>'+count+'</strong><span>سؤال متاح لهذه السنة</span></div><div><strong>'+available.length+'</strong><span>مواد متاحة لهذه السنة</span></div></div></section>'+
+      '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">المواد الدراسية</span><h2>مواد المعهد القضائي</h2></div></div><div class="ji-subject-grid">'+available.map((item,i)=>{
+        const s=subject(item.subjectId);if(!s)return '';
         const total=Number(item.questionCount||0);
         return '<button class="ji-subject-card" type="button" data-ji-action="subject" data-subject="'+esc(s.id)+'"><span class="ji-subject-number">'+String(i+1).padStart(2,'0')+'</span><span class="ji-subject-copy"><strong>'+esc(s.name)+'</strong><small>'+esc(s.description)+'</small></span><span class="ji-subject-count">'+total+' سؤال</span><i class="fas fa-arrow-left" aria-hidden="true"></i></button>';
       }).join('')+'</div></section>');
   }
   function questionCard(q,index){
-    const uid=String(q.uid||q.id||''), saved=uid&&savedIds().includes(uid), number=q.number==null?(q.questionNumber==null?index+1:q.questionNumber):q.number;
-    const text=q.question||q.text||'', answer=q.answer, hasAnswer=answer!==undefined&&answer!==null&&String(answer).trim()!=='';
-    const options=Array.isArray(q.options)&&q.options.length?'<ol class="ji-options">'+q.options.map(o=>'<li>'+esc(o)+'</li>').join('')+'</ol>':'';
-    const answerText=hasAnswer&&typeof answer==='number'&&Array.isArray(q.options)?(q.options[answer]===undefined?String(answer):q.options[answer]):answer;
-    return '<article class="ji-question-card"><div class="ji-question-meta"><span>السؤال '+esc(number)+'</span><span>'+esc(q.year||state.year)+'</span>'+(q.source?'<span>'+esc(q.source)+'</span>':'')+'</div><h3>'+esc(text)+'</h3>'+options+
+    const uid=String(q.uid||q.id||''), saved=uid&&savedIds().includes(uid), number=q.id==null?(q.questionNumber==null?index+1:q.questionNumber):q.id;
+    const text=q.text||q.question||'', answer=q.answer, hasAnswer=answer!==undefined&&answer!==null&&String(answer).trim()!=='';
+    const options=Array.isArray(q.options)&&q.options.length?'<ol class="ji-options">'+q.options.map(o=>'<li>'+esc(typeof o==='string'?o:o.text||'')+'</li>').join('')+'</ol>':'';
+    const parts=Array.isArray(q.parts)&&q.parts.length?'<div class="ji-question-parts">'+q.parts.map(p=>'<div class="ji-question-part"><strong>'+esc(p.label||'')+'</strong><p>'+esc(p.text||'')+'</p></div>').join('')+'</div>':'';
+    const source=q.source&&typeof q.source==='object'?'<div class="ji-question-source">المصدر: '+esc(q.source.file||'')+(q.source.page?' · الصفحة '+esc(q.source.page):'')+(q.source.questionNumber?' · رقم السؤال الأصلي '+esc(q.source.questionNumber):'')+'</div>':(q.source?'<div class="ji-question-source">'+esc(q.source)+'</div>':'');
+    const notes=q.verification&&q.verification.notes?'<p class="ji-question-note">ملاحظة التحقق: '+esc(q.verification.notes)+'</p>':'';
+    const answerText=hasAnswer&&typeof answer==='number'&&Array.isArray(q.options)?(q.options[answer]===undefined?String(answer):typeof q.options[answer]==='string'?q.options[answer]:q.options[answer].text):answer;
+    return '<article class="ji-question-card"><div class="ji-question-meta"><span>السؤال '+esc(number)+'</span><span>'+esc(q.year||state.year)+'</span><span>'+esc(q.type||'سؤال')+'</span></div><h3>'+esc(text)+'</h3>'+parts+options+source+notes+
       '<div class="ji-question-bottom">'+(hasAnswer?'<details class="ji-answer"><summary><i class="fas fa-lightbulb" aria-hidden="true"></i> عرض الإجابة</summary><div>'+esc(answerText)+'</div></details>':'<span class="ji-answer-pending"><i class="fas fa-hourglass-half" aria-hidden="true"></i> الإجابة غير مضافة بعد</span>')+
       '<button type="button" class="ji-save-question '+(saved?'is-saved':'')+'" data-ji-action="save" data-uid="'+esc(uid)+'" '+(uid?'':'disabled')+'><i class="fas fa-bookmark" aria-hidden="true"></i>'+(saved?'إزالة من المحفوظات':'حفظ السؤال')+'</button></div></article>';
   }
@@ -101,7 +108,7 @@
   }
   function renderQuestions(){
     const s=subject(state.subjectId);if(!s){state.level='years';return renderYears();}
-    const list=subjectQuestions(s.id,state.year).filter(q=>String(q.question||q.text||'').toLocaleLowerCase('ar').includes(state.query.toLocaleLowerCase('ar')));
+    const list=subjectQuestions(s.id,state.year).filter(q=>[q.question,q.text,...(Array.isArray(q.parts)?q.parts.map(p=>p.text):[])].filter(Boolean).join(' ').toLocaleLowerCase('ar').includes(state.query.toLocaleLowerCase('ar')));
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><button type="button" data-ji-action="subjects">'+esc(state.year)+'</button><i class="fas fa-chevron-left"></i><span>'+esc(s.name)+'</span></section>'+
       '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أسئلة سنة '+esc(state.year)+'</span><h2>'+esc(s.name)+'</h2><p>النصوص المعروضة تحفظ صياغة السؤال وترقيمه كما وردا في المصدر.</p><div class="ji-stats ji-stats-single"><div><strong>'+subjectQuestions(s.id,state.year).length+'</strong><span>سؤال في المادة</span></div><div><strong>'+savedIds().length+'</strong><span>سؤال محفوظ</span></div></div></section>'+
       '<section class="ji-panel"><div class="ji-question-toolbar"><div><span class="ji-kicker">بنك الأسئلة</span><h2>أسئلة المادة</h2></div><label class="ji-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" data-ji-search placeholder="ابحث في نصوص الأسئلة..." value="'+esc(state.query)+'"></label></div>'+

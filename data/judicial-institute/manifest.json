@@ -46,5 +46,37 @@
       "order": 7
     }
   ],
-  "years": []
+  "years": [
+    {
+      "year": 2005,
+      "questionCount": 5,
+      "subjects": [
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2005/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2005/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2005/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2005/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2005/personal-status.json",
+          "questionCount": 1
+        }
+      ]
+    }
+  ]
 }
