@@ -793,8 +793,8 @@ html[data-theme="light"] .lawyer-identity-notice span{
 }
 html[data-theme="light"] .lawyers-apply-panel,
 html[data-theme="light"] .lawyer-card{
-  background:var(--mizan-gradient-surface-light);
-  border-color:var(--mizan-border-light);
+  background:var(--mizan-card);
+  border-color:var(--mizan-border);
   color:var(--mizan-text);
   box-shadow:var(--mizan-shadow-card);
 }
