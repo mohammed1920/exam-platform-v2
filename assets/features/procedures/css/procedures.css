@@ -108,7 +108,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-search-panel{margin-top:0;margin-bottom:var(--mizan-space-4)}
 .procedures-search-panel>p{display:none}
 .procedures-content-panel{min-width:0;scroll-margin-top:16px}
-.procedures-category-grid[hidden],.procedures-category-results[hidden],.procedures-detail[hidden]{display:none!important}
+.procedures-category-grid[hidden],.procedures-category-results[hidden],.procedures-detail[hidden]{display:none}
 .procedures-category-results{margin-top:0}
 .procedures-category-back{margin-bottom:var(--mizan-space-3)}
 .procedures-category-results .procedures-results-heading{margin-top:0}
@@ -205,7 +205,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 }
 .procedures-steps-section>h4::before{
   content:"";width:4px;height:1.35em;border-radius:99px;
-  background:var(--mizan-warning-700,var(--mizan-accent-text,#D97706));
+  background:var(--mizan-warning-700,var(--mizan-accent-text));
 }
 .procedures-steps-list{
   display:grid;gap:14px;position:relative;
@@ -228,7 +228,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
   border:1px solid var(--mizan-primary-600,var(--mizan-primary-500));
   border-radius:50%;
   background:var(--mizan-primary-600,var(--mizan-primary-500));
-  color:var(--mizan-white,#fff);
+  color:var(--mizan-white);
   font-size:1.05rem;font-weight:900;line-height:1;
   box-shadow:0 0 0 4px var(--mizan-surface,var(--card-bg,var(--mizan-surface-light)));
 }
@@ -246,7 +246,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 .procedures-step-card:not(:last-child)::after{
   content:"";position:absolute;z-index:0;
   right:35px;top:56px;bottom:-16px;width:2px;
-  border-right:2px dashed var(--mizan-primary-500,var(--mizan-primary-600,#2563EB));
+  border-right:2px dashed var(--mizan-primary-500,var(--mizan-primary-600));
   opacity:.55;pointer-events:none;
 }
 .procedures-step-card{isolation:isolate}
