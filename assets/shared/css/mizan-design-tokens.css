@@ -364,6 +364,8 @@
   --mizan-font-size-48:48px;
   --mizan-home-hero-title-size:clamp(2rem,4.3vw,3rem);
   --mizan-pulpit-heading-size:clamp(var(--mizan-font-size-25),4vw,var(--mizan-font-size-38));
+  --mizan-procedures-detail-title-size:clamp(1.35rem,3vw,1.9rem);
+  --mizan-petitions-access-title-size:clamp(20px,3vw,27px);
 }
 
 /* Notifications component geometry and type scale. */
