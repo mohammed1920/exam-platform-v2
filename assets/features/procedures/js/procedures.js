@@ -47,9 +47,9 @@
   function renderIntro() {
     root.innerHTML = `
       <div class="procedures-shell">
-        <section class="procedures-hero">
-          <div class="procedures-hero-heading">
-            <span class="procedures-hero-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span>
+        <section class="procedures-hero mizan-section-hero">
+          <div class="mizan-section-hero-heading">
+            <span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span>
             <h2>إجراءات الدعاوى والمعاملات</h2>
           </div>
           <p>دليل عملي منظم للإجراءات القضائية في العراق</p>
