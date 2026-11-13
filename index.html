@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="ميزان">
   <meta name="twitter:description" content="ميزان.. حيث يُقاس الفهم القانوني بدقة. منصة تفاعلية للاختبارات والمراجعة في المواد القانونية العراقية.">
   <meta name="twitter:image" content="https://www.mizan-iraq.com/icons/icon-512.png">
-  <link rel="stylesheet" href="assets/features/forum/css/mizan-pulpit.css?v=3.12">
+  <link rel="stylesheet" href="assets/features/forum/css/mizan-pulpit.css?v=3.13">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="var(--mizan-primary-900)">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -37,11 +37,11 @@
   <link rel="stylesheet" href="assets/shared/css/style.css?v=5.0">
 
   <!-- Layer 3: page and component styles. Keep these before the late UI-fix layer. -->
-  <link rel="stylesheet" href="assets/features/home/css/home.css?v=5.15">
+  <link rel="stylesheet" href="assets/features/home/css/home.css?v=5.16">
   <link rel="stylesheet" href="assets/shared/css/platform-sidebar.css?v=3.6">
-  <link rel="stylesheet" href="assets/features/procedures/css/procedures.css?v=2.7">
-  <link rel="stylesheet" href="assets/features/laws/css/laws.css?v=1.16">
-  <link rel="stylesheet" href="assets/features/judicial-institute/css/judicial-institute.css?v=2.4">
+  <link rel="stylesheet" href="assets/features/procedures/css/procedures.css?v=2.8">
+  <link rel="stylesheet" href="assets/features/laws/css/laws.css?v=1.17">
+  <link rel="stylesheet" href="assets/features/judicial-institute/css/judicial-institute.css?v=2.5">
   <link rel="stylesheet" href="assets/features/student-account/css/user-dashboard.css?v=2.9">
   <link rel="stylesheet" href="assets/features/student-account/css/student-sidebar.css?v=3.0">
   <link rel="stylesheet" href="assets/features/student-account/css/student-ui-fixes.css?v=4.4">
@@ -56,8 +56,8 @@
 
   <!-- Layer 4: visibility and light/dark behavior, followed by shared semantic theme colors. -->
   <link rel="stylesheet" href="assets/shared/css/theme.css?v=1.9">
-  <link rel="stylesheet" href="assets/features/petitions/css/petitions.css?v=2.13">
-  <link rel="stylesheet" href="assets/shared/css/mizan-unified-theme.css?v=7.1">
+  <link rel="stylesheet" href="assets/features/petitions/css/petitions.css?v=2.14">
+  <link rel="stylesheet" href="assets/shared/css/mizan-unified-theme.css?v=7.2">
   
 
   <!-- Layer 5: final header-specific layout/identity overrides; no palette definitions belong here. -->
@@ -97,10 +97,9 @@
       <div class="install-slot"><button id="install-app-btn" type="button" aria-label="تثبيت ميزان على هاتفك">📲 ثبّت التطبيق على هاتفك</button><p id="ios-install-hint" hidden>📲 اضغط زر المشاركة <strong>⬆️</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></p></div>
       <div class="search-container home-search-container"><div class="search-wrapper"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="ابحث في الكتب والفصول والأسئلة والأقسام القانونية..." aria-label="البحث في منصة ميزان"></div></div>
       <div id="question-search-results" class="question-search-results home-question-search-results" hidden></div>
-      <section class="home-hero" aria-labelledby="home-hero-title">
+      <section class="home-hero mizan-section-hero" aria-labelledby="home-hero-title">
         <div class="home-hero-copy">
-          <span class="home-hero-eyebrow"><i class="fas fa-scale-balanced" aria-hidden="true"></i> منصة المعرفة القانونية العراقية</span>
-          <h2 id="home-hero-title"><span class="home-hero-title-line">الفهم القانوني</span><span class="home-hero-title-line">يستحق تجربة أفضل.</span></h2>
+          <div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></span><h2 id="home-hero-title">الفهم القانوني يستحق تجربة أفضل.</h2></div>
           <p>اختبر فهمك القانوني، راجع إجاباتك، وتابع تقدمك في تجربة واحدة منظمة.</p>
           <div class="home-hero-actions">
             <button type="button" class="home-hero-primary" data-home-action="books" data-mizan-card-action="books">استكشف الكتب <i class="fas fa-arrow-left" aria-hidden="true"></i></button>
@@ -128,10 +127,9 @@
     
     <section id="mizan-article-section" class="view-section mizan-article-section"></section>
     <section id="mizan-pulpit-section" class="view-section mizan-pulpit-section">
-      <div class="mizan-pulpit-hero">
-        <div class="mizan-pulpit-kicker">منبر ميزان</div>
-        <h2>المعرفة القانونية لا تتوقف عند الاختبار.</h2>
-        <p>مساحة خفيفة للمقالات والقراءات والتجارب التي يكتبها أهل الاختصاص.</p>
+      <div class="mizan-pulpit-hero mizan-section-hero">
+        <div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-feather-pointed"></i></span><h2>منبر ميزان</h2></div>
+        <p>مساحة للمقالات والقراءات والتجارب القانونية التي يكتبها أهل الاختصاص.</p>
         <div class="mizan-pulpit-hero-actions">
           <button type="button" class="mizan-pulpit-primary" data-mizan-submit><i class="fas fa-pen-nib"></i> النشر في منبر ميزان</button>
           <button type="button" class="mizan-pulpit-secondary" data-mizan-edit-contributor><i class="fas fa-user-pen"></i> تعديل بياناتي</button>
@@ -242,9 +240,9 @@
   <script src="assets/shared/js/global-search.js?v=1.1"></script>
   <script src="assets/features/home/js/home.js?v=4.0"></script>
   <script src="assets/shared/js/mizan-card-actions.js?v=1.0"></script>
-  <script src="assets/features/judicial-institute/js/judicial-institute.js?v=2.3"></script>
+  <script src="assets/features/judicial-institute/js/judicial-institute.js?v=2.4"></script>
   <script src="assets/shared/js/platform-sidebar.js?v=1.9"></script>
-  <script src="assets/features/procedures/js/procedures.js?v=1.10"></script>
+  <script src="assets/features/procedures/js/procedures.js?v=1.11"></script>
   <script src="assets/features/student-account/js/user-dashboard.js?v=1.3"></script>
   <script src="assets/features/student-account/js/student-account-patch.js?v=1.4"></script>
   <script src="assets/features/exams/js/wrong-answers-limit.js?v=1.1"></script>
