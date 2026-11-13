@@ -24,9 +24,8 @@
     section.id = 'lawyers-section';
     section.className = 'view-section lawyers-section';
     section.innerHTML = `
-      <div class="lawyers-hero">
-        <span>👨‍⚖️ دليل المحامين</span>
-        <h2>دليل المحامين العراقيين</h2>
+      <div class="lawyers-hero mizan-section-hero">
+        <div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-user-tie"></i></span><h2>دليل المحامين العراقيين</h2></div>
         <p>اعثر على المحامين الذين وافقوا على نشر بياناتهم في الدليل، أو قدّم طلبك لإضافة ملفك بعد التحقق من بياناتك.</p>
       </div>
 
