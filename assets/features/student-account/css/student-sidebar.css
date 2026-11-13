@@ -1,9 +1,9 @@
 .student-page-header{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:var(--mizan-space-3-75);
   margin:var(--mizan-space-2) 0 var(--mizan-space-5);
-  padding:18px 0;
+  padding:var(--mizan-space-4-5) 0;
   border-bottom:1px solid var(--mizan-surface-soft);
 }
 .student-page-icon{
@@ -23,7 +23,7 @@
   color:var(--primary,var(--mizan-primary-500));
   font-size:var(--mizan-font-size-xs);
   font-weight:800;
-  margin-bottom:3px;
+  margin-bottom:var(--mizan-space-0-75);
 }
 .student-page-header h2{
   margin:0 0 var(--mizan-space-1);
@@ -38,7 +38,7 @@
   display:flex;
   align-items:center;
   gap:var(--mizan-space-4);
-  padding:22px;
+  padding:var(--mizan-space-5-5);
   margin-bottom:var(--mizan-space-4);
   border:1px solid color-mix(in srgb,var(--mizan-primary-500) 20%,transparent);
   border-radius:var(--mizan-radius-2xl);
@@ -53,7 +53,7 @@
   place-items:center;
   border-radius:var(--mizan-radius-2xl);
   background:var(--mizan-gradient-student-sidebar-identity);
-  font-size:27px;
+  font-size:var(--mizan-font-size-27);
   font-weight:900;
 }
 .profile-identity{
@@ -64,7 +64,7 @@
   font-size:var(--mizan-font-size-heading-sm);
 }
 .profile-identity p{
-  margin:0 0 6px;
+  margin:0 0 var(--mizan-space-1-5);
   color:var(--text-secondary,var(--mizan-muted-dark));
   overflow-wrap:anywhere;
 }
@@ -88,7 +88,7 @@
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
   font-size:var(--mizan-font-size-2xs);
-  margin-bottom:6px;
+  margin-bottom:var(--mizan-space-1-5);
 }
 .student-info-grid strong{
   display:block;
@@ -100,7 +100,7 @@
   background:transparent;
   color:var(--primary,var(--mizan-primary-500));
   border-radius:var(--mizan-radius-sm);
-  padding:9px 13px;
+  padding:var(--mizan-space-2-25) var(--mizan-space-3-25);
   cursor:pointer;
   font-weight:700;
 }
@@ -108,7 +108,7 @@
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
   gap:var(--mizan-space-3);
-  margin-bottom:18px;
+  margin-bottom:var(--mizan-space-4-5);
 }
 .profile-stat-card{
   padding:var(--mizan-space-4) var(--mizan-space-inset-compact);
@@ -120,7 +120,7 @@
 .profile-stat-card span{
   display:block;
   font-size:var(--mizan-font-size-heading-sm);
-  margin-bottom:6px;
+  margin-bottom:var(--mizan-space-1-5);
 }
 .profile-stat-card strong{
   display:block;
@@ -133,7 +133,7 @@
 }
 .profile-panel{
   margin-bottom:var(--mizan-space-4);
-  padding:18px;
+  padding:var(--mizan-space-4-5);
   border:1px solid var(--mizan-surface-soft);
   border-radius:var(--mizan-radius-lg);
   background:var(--mizan-glass-white-025);
@@ -143,7 +143,7 @@
   align-items:center;
   justify-content:space-between;
   gap:var(--mizan-space-3);
-  margin-bottom:13px;
+  margin-bottom:var(--mizan-space-3-25);
 }
 .profile-panel-heading h3{
   margin:0 0 var(--mizan-space-1);
@@ -159,7 +159,7 @@
 .student-big-score{
   display:block;
   color:var(--primary,var(--mizan-primary-500));
-  font-size:48px;
+  font-size:var(--mizan-font-size-48);
   line-height:1;
   margin:var(--mizan-space-3) 0;
 }
@@ -174,7 +174,7 @@
   display:flex;
   align-items:center;
   gap:var(--mizan-space-3);
-  padding:13px;
+  padding:var(--mizan-space-3-25);
   border-radius:var(--mizan-radius-13);
   border:1px solid var(--mizan-glass-white-055);
   background:color-mix(in srgb,var(--mizan-primary-900) 28%,transparent);
@@ -194,7 +194,7 @@
   display:block;
 }
 .history-main strong{
-  margin-bottom:3px;
+  margin-bottom:var(--mizan-space-0-75);
 }
 .history-main span{
   color:var(--primary,var(--mizan-primary-500));
@@ -203,7 +203,7 @@
 .history-main small{
   color:var(--text-secondary,var(--mizan-muted-dark));
   font-size:var(--mizan-font-size-2xs);
-  margin-top:3px;
+  margin-top:var(--mizan-space-0-75);
 }
 .history-score{
   text-align:center;
@@ -212,7 +212,7 @@
 .history-score strong{
   display:block;
   color:var(--primary,var(--mizan-primary-500));
-  font-size:19px;
+  font-size:var(--mizan-font-size-19);
 }
 .history-score span{
   color:var(--text-secondary,var(--mizan-muted-dark));
@@ -251,20 +251,20 @@
   display:block;
   color:var(--text-secondary,var(--mizan-muted-dark));
   font-size:var(--mizan-font-size-xs);
-  margin-top:5px;
+  margin-top:var(--mizan-space-1-25);
 }
 .student-wrong-item small{
   color:var(--mizan-accent-tile-fg);
 }
 .student-progress-list{
   display:grid;
-  gap:17px;
+  gap:var(--mizan-space-4-25);
 }
 .student-progress-top{
   display:flex;
   justify-content:space-between;
   gap:var(--mizan-space-3);
-  margin-bottom:7px;
+  margin-bottom:var(--mizan-space-1-75);
 }
 .student-progress-top span{
   color:var(--primary,var(--mizan-primary-500));
@@ -293,7 +293,7 @@
   padding:45px var(--mizan-space-5);
 }
 .student-empty-feature .coming-icon{
-  font-size:38px;
+  font-size:var(--mizan-font-size-38);
 }
 .student-empty-feature h3{
   margin:var(--mizan-space-3) 0 6px;
@@ -319,7 +319,7 @@
 }
 @media(max-width:560px){
         .student-page-header{
-    gap:11px;
+    gap:var(--mizan-space-2-75);
     padding:var(--mizan-space-inset-medium) 0;
   }
   .student-page-icon{
@@ -343,7 +343,7 @@
     font-size:var(--mizan-font-size-lg);
   }
   .profile-panel{
-    padding:13px;
+    padding:var(--mizan-space-3-25);
   }
   .profile-panel-heading{
     align-items:flex-start;
@@ -358,7 +358,7 @@
     padding:var(--mizan-space-3);
   }
   .student-big-score{
-    font-size:40px;
+    font-size:var(--mizan-font-size-40);
   }
 }
 /* Login is shown beside the status message for signed-out visitors. */
@@ -379,7 +379,7 @@
   margin-bottom:5px;
 }
 .resume-exam-panel h3{
-  margin:0 0 5px;
+  margin:0 0 var(--mizan-space-1-25);
   overflow-wrap:anywhere;
 }
 .resume-exam-panel p{
