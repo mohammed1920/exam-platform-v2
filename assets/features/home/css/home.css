@@ -44,51 +44,6 @@ main.container{
   box-shadow:none;
   text-align:center;
 }
-.home-hero-copy::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset-inline-start:-170px;
-  bottom:-220px;
-  width:320px;
-  height:320px;
-  border:1px solid var(--mizan-glass-white-080);
-  border-radius:50%;
-  pointer-events:none;
-}
-.home-hero-eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:var(--mizan-space-2);
-  color:var(--mizan-warning-200);
-  font-size:var(--mizan-font-size-xs);
-  font-weight:800;
-}
-.home-hero-eyebrow i{color:var(--mizan-primary-200);font-size:var(--mizan-font-size-md)}
-.home-hero h2{
-  width:min(100%,900px);
-  max-width:900px;
-  margin:var(--mizan-space-3) auto;
-  color:var(--mizan-white);
-  font-family:"IBM Plex Sans Arabic",sans-serif;
-  font-size:clamp(2rem,4.3vw,3rem);
-  font-weight:700;
-  line-height:1.2;
-  letter-spacing:normal;
-  word-spacing:normal;
-}
-.home-hero-title-line{
-  display:block;
-  white-space:normal;
-}
-.home-hero p{
-  width:min(100%,760px);
-  max-width:760px;
-  margin:0 auto;
-  color:var(--mizan-ice);
-  font-size:var(--mizan-font-size-sm);
-  line-height:var(--mizan-line-height-relaxed);
-}
 .home-hero-actions{
   display:flex;
   flex-wrap:wrap;
@@ -129,7 +84,6 @@ main.container{
 @media(max-width:1000px){
   .home-hero{min-height:clamp(270px,34vw,330px)}
   .home-hero-copy{padding:var(--mizan-space-7) clamp(24px,6vw,64px)}
-  .home-hero h2{font-size:clamp(1.9rem,4.2vw,2.6rem)}
 }
 @media(max-width:700px){
   .home-hero{
@@ -138,7 +92,6 @@ main.container{
     margin:var(--mizan-space-4) 0 var(--mizan-space-5);
   }
   .home-hero-copy{padding:var(--mizan-space-6) var(--mizan-space-5) var(--mizan-space-4)}
-  .home-hero h2{font-size:clamp(1.55rem,5.8vw,2rem);line-height:1.25;max-width:100%;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:700;}
   .home-book-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
   .home-hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
   .home-hero-actions button{width:100%;min-width:0;padding-inline:var(--mizan-space-2);gap:var(--mizan-space-1);font-size:var(--mizan-font-size-compact);white-space:normal}
