@@ -751,7 +751,6 @@ body.lawyer-modal-open{
   background:var(--mizan-accent-tile-bg);
   border-color:var(--mizan-primary-500-border);
 }
-html[data-theme="light"] .lawyers-hero p,
 html[data-theme="light"] .lawyer-form-head p,
 html[data-theme="light"] .lawyers-search i,
 html[data-theme="light"] .lawyer-card p,
