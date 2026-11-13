@@ -1,6 +1,7 @@
 /* المعهد القضائي — يستهلك نظام الألوان ورموز التصميم المركزية في ميزان. */
 .judicial-institute-section{box-sizing:border-box;width:100%;max-width:var(--mizan-content-width-wide,1440px);min-width:0;margin-inline:auto;padding:var(--mizan-space-5) var(--mizan-content-padding,16px) var(--mizan-space-8);color:var(--mizan-text);direction:rtl;text-align:right;overflow-x:clip}.judicial-institute-section *,.judicial-institute-section *::before,.judicial-institute-section *::after{box-sizing:border-box}
 .ji-shell{display:grid;gap:var(--mizan-space-5);width:100%;max-width:100%;min-width:0;color:var(--mizan-text);direction:rtl}
+.ji-kicker{display:block;color:var(--mizan-primary-500);font-size:var(--mizan-font-size-xs);font-weight:800}
 .ji-back,.ji-saved-toggle{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:42px;padding:var(--mizan-space-2) var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-card);color:var(--mizan-text);font:inherit;font-size:var(--mizan-font-size-xs);font-weight:700;cursor:pointer}
 .ji-saved-toggle b{display:grid;place-items:center;min-width:22px;height:22px;padding-inline:4px;border-radius:99px;background:var(--mizan-primary-100);color:var(--mizan-primary-700)}
 
