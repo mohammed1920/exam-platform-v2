@@ -21,13 +21,7 @@
   function loadMizanPulpit() {
     if (window.mizanPulpit && typeof window.mizanPulpit.open === 'function') return Promise.resolve(window.mizanPulpit);
     if (mizanPulpitLoadPromise) return mizanPulpitLoadPromise;
-    if (!document.querySelector('link[data-mizan-pulpit-css]')) {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'assets/features/forum/css/mizan-pulpit.css?v=3.4';
-      css.dataset.mizanPulpitCss = '1';
-      document.head.appendChild(css);
-    }
+    // mizan-pulpit.css is loaded once by index.html; this loader owns JavaScript only.
     mizanPulpitLoadPromise = new Promise((resolve, reject) => {
       const existing = document.querySelector('script[data-mizan-pulpit-loader]');
       if (existing) {
@@ -98,13 +92,7 @@
   function loadLaws() {
     if (window.mizanLaws && typeof window.mizanLaws.open === 'function') return Promise.resolve(window.mizanLaws);
     if (lawsLoadPromise) return lawsLoadPromise;
-    const lawStylesheets = Array.from(document.querySelectorAll('link[href*="laws.css"]'));
-    const css = lawStylesheets.shift() || document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = 'assets/features/laws/css/laws.css?v=1.15';
-    css.dataset.mizanLawsCss = '1';
-    if (!css.isConnected) document.head.appendChild(css);
-    lawStylesheets.forEach(link => link.remove());
+    // laws.css is loaded once by index.html; do not replace its version or inject duplicates.
     lawsLoadPromise = new Promise((resolve, reject) => {
       const existing = document.querySelector('script[data-mizan-laws-loader]');
       if (existing) {
@@ -187,13 +175,7 @@
   function loadPetitions() {
     if (window.petitions && typeof window.petitions.open === 'function') return Promise.resolve(window.petitions);
     if (petitionsLoadPromise) return petitionsLoadPromise;
-    if (!document.querySelector('link[data-petitions-css]')) {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'assets/features/petitions/css/petitions.css?v=3.2';
-      css.dataset.petitionsCss = '1';
-      document.head.appendChild(css);
-    }
+    // petitions.css is loaded once by index.html; this loader owns JavaScript only.
     petitionsLoadPromise = new Promise((resolve, reject) => {
       const existing = document.querySelector('script[data-petitions-loader]');
       if (existing) {
