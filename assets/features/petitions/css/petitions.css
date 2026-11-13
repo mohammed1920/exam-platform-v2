@@ -14,12 +14,6 @@
   margin:var(--mizan-gap-micro) 0;
   font-size:var(--mizan-petitions-heading-size);
 }
-.petitions-hero p{
-  margin:0;
-  color:var(--mizan-intro-muted);
-  font-size:var(--mizan-font-size-xs);
-  line-height:var(--mizan-petitions-document-line-height-mobile);
-}
 .petition-builder-head p{
   margin:0;
   color:var(--mizan-muted);
@@ -581,11 +575,9 @@ html[data-theme="light"] .petition-builder-head{
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
 }
-html[data-theme="light"] .petitions-hero p,
 html[data-theme="light"] .petition-builder-head p{
   color:var(--mizan-muted);
 }
-html[data-theme="light"] .petitions-hero span,
 html[data-theme="light"] .petition-builder-head span{
   color:var(--mizan-primary-700);
 }
