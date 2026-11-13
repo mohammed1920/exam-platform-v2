@@ -44,6 +44,49 @@ main.container{
   box-shadow:none;
   text-align:center;
 }
+.home-hero-copy::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset-inline-start:-170px;
+  bottom:-220px;
+  width:320px;
+  height:320px;
+  border:1px solid var(--mizan-glass-white-080);
+  border-radius:50%;
+  pointer-events:none;
+}
+.home-hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--mizan-space-2);
+  color:var(--mizan-warning-200);
+  font-size:var(--mizan-font-size-xs);
+  font-weight:800;
+}
+.home-hero-eyebrow i{color:var(--mizan-primary-200);font-size:var(--mizan-font-size-md)}
+.home-hero h2{
+  max-width:760px;
+  margin:var(--mizan-space-3) 0;
+  color:var(--mizan-white);
+  font-family:"IBM Plex Sans Arabic",sans-serif;
+  font-size:clamp(2rem,4.3vw,3rem);
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:normal;
+  word-spacing:normal;
+}
+.home-hero-title-line{
+  display:block;
+  white-space:normal;
+}
+.home-hero p{
+  max-width:650px;
+  margin:0;
+  color:var(--mizan-ice);
+  font-size:var(--mizan-font-size-sm);
+  line-height:var(--mizan-line-height-relaxed);
+}
 .home-hero-actions{
   display:flex;
   flex-wrap:wrap;
