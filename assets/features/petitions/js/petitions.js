@@ -119,7 +119,7 @@
   }
   function renderHome(){
     const root=document.getElementById('petitions-section');if(!root)return;
-    root.innerHTML='<div class="petitions-shell"><div class="petitions-hero"><span>ميزان • العرائض والطلبات</span><h2>أنشئ عريضتك القانونية بطريقة منظمة</h2><p>اختر العريضة، اقرأها، ثم عدّل نصها بحرية واحفظها أو اطبعها.</p></div><div id="petition-browse"></div></div>';
+    root.innerHTML='<div class="petitions-shell"><div class="petitions-hero mizan-section-hero"><div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span><h2>العرائض والطلبات</h2></div><p>اختر العريضة، اقرأها، ثم عدّل نصها بحرية واحفظها أو اطبعها.</p></div><div id="petition-browse"></div></div>';
 
   }
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
