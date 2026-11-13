@@ -70,7 +70,7 @@ main.container{
   margin:var(--mizan-space-3) 0;
   color:var(--mizan-white);
   font-family:"IBM Plex Sans Arabic",sans-serif;
-  font-size:clamp(2rem,4.3vw,3rem);
+  font-size:var(--mizan-home-hero-title-size);
   font-weight:700;
   line-height:1.2;
   letter-spacing:normal;
