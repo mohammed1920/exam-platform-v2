@@ -287,7 +287,7 @@
   }
 
   function open(){ ensure(); updateAccountState(); const el=document.getElementById('platform-sidebar'); el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); document.body.classList.add('platform-sidebar-open'); }
-  function close(){ const el=document.getElementById('platform-sidebar'); if(!el)return; el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); document.body.classList.remove('platform-sidebar-open'); }
+  function close(){ const el=document.getElementById('platform-sidebar'); if(!el)return; el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); document.body.classList.remove('platform-sidebar-open'); const trigger=document.getElementById('platform-menu-trigger'); if(trigger)trigger.setAttribute('aria-expanded','false'); }
 
   function install(){
     ensure();
@@ -300,9 +300,10 @@
       b.className='platform-menu-trigger';
       b.type='button';
       b.title='قائمة المنصة';
-      b.setAttribute('aria-label','فتح قائمة المنصة');
-      b.innerHTML='<i class="fas fa-bars-staggered" aria-hidden="true"></i>';
-      b.addEventListener('click',open);
+      b.setAttribute('aria-label','فتح القائمة الجانبية');
+      b.setAttribute('aria-expanded','false');
+      b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+      b.addEventListener('click',()=>{open();b.setAttribute('aria-expanded','true');});
       header.appendChild(b);
     }
     const menu=document.getElementById('platform-menu-trigger');
