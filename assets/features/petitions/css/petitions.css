@@ -63,7 +63,7 @@
   padding:var(--mizan-petitions-card-padding);
   border:1px solid var(--mizan-petition-template-border);
   border-radius:var(--mizan-radius-19);
-  background:var(--mizan-petition-template-bg);
+  
   color:var(--mizan-paper-white);
   font-family:inherit;
   cursor:pointer;
@@ -613,7 +613,7 @@ html[data-theme="light"] .petition-template-card b{
   text-align:center;
   font:inherit;
   color:var(--mizan-text);
-  background:var(--mizan-petition-category-bg);
+  
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-xl);
   cursor:pointer;
@@ -1018,7 +1018,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   gap:14px;
   text-align:right;
   color:var(--mizan-text);
-  background:var(--mizan-card);
+  
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-2xl,24px);
   box-shadow:var(--mizan-shadow-card-rest);
