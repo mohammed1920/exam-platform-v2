@@ -636,7 +636,7 @@ html[data-theme="light"] .petition-template-card b{
   text-align:center;
   font:inherit;
   color:var(--mizan-text);
-  background:var(--mizan-card);
+  background:var(--mizan-petition-category-bg);
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-xl);
   cursor:pointer;
