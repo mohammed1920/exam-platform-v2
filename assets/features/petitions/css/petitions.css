@@ -705,7 +705,7 @@ html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-m
 .petition-template-card span,.petition-template-card b{display:none;}
 .petition-template-card h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-compact);font-weight:900;line-height:1.45;}
 .petition-template-card p{margin:2px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.45;}
-.petition-template-card:after{content:"›";color:var(--mizan-muted);font-size:25px;line-height:1;}
+.petition-template-card:after{content:"›";color:var(--mizan-muted);font-size:var(--mizan-font-size-25);line-height:1;}
 html:not([data-theme="light"]) .petition-template-card{background:var(--mizan-card);color:var(--mizan-text);border-color:var(--mizan-border);}
 html:not([data-theme="light"]) .petition-template-card h3{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted);}
@@ -717,7 +717,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   .petition-category-copy strong{font-size:var(--mizan-font-size-compact);line-height:1.35;}
   .petition-category-copy small{font-size:var(--mizan-font-size-2xs);line-height:1.4;}
   .petition-template-card{grid-template-columns:var(--mizan-petitions-template-icon-column-mobile) minmax(0,1fr) var(--mizan-petitions-template-arrow-column-mobile);gap:var(--mizan-space-2);min-height:var(--mizan-petitions-template-card-min-height-mobile);padding:var(--mizan-space-2) var(--mizan-space-3);}
-  .petition-template-icon{width:var(--mizan-petitions-template-icon-width-mobile);height:var(--mizan-petitions-template-icon-height-mobile);font-size:17px;}
+  .petition-template-icon{width:var(--mizan-petitions-template-icon-width-mobile);height:var(--mizan-petitions-template-icon-height-mobile);font-size:var(--mizan-font-size-17);}
   .petition-template-card h3{font-size:var(--mizan-font-size-xs);}
 }
 
@@ -1041,7 +1041,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
 .petition-access-card h3{
   margin:0;
   color:var(--mizan-text);
-  font-size:clamp(20px,3vw,27px);
+  font-size:var(--mizan-petitions-access-title-size);
   line-height:1.5;
 }
 .petition-access-description{
