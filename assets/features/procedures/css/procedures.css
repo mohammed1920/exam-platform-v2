@@ -61,7 +61,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 
 
 .procedures-title-list{display:grid;gap:10px;margin-top:16px}
-.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-component-gap);width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;background:var(--mizan-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.procedures-title-item{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-component-gap);width:100%;padding:16px 18px;border:1px solid var(--mizan-border,var(--mizan-border-light));border-radius:14px;color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
 .procedures-title-item:hover{border-color:var(--mizan-primary-600,var(--mizan-primary-500));transform:translateY(-1px);box-shadow:var(--mizan-shadow-card-raised)}
 .procedures-title-item i{color:var(--mizan-primary-600,var(--mizan-primary-500))}
 .procedures-empty{padding:22px;border:1px dashed var(--mizan-border,var(--mizan-border-light));border-radius:14px;color:var(--mizan-muted,var(--text-secondary,var(--mizan-muted-light)));text-align:center;line-height:1.8}
@@ -80,7 +80,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
 
 /* Procedure category cards and section-only search; colors live in mizan-colors.css. */
 .procedures-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
-.procedures-category-card{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-component-gap);width:100%;min-width:0;min-height:140px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:transform var(--mizan-duration-medium) ease,border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-medium) ease}
+.procedures-category-card{display:flex;flex-direction:column;align-items:flex-start;gap:var(--mizan-component-gap);width:100%;min-width:0;min-height:140px;padding:var(--mizan-card-padding);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);color:var(--mizan-text);font:inherit;text-align:right;cursor:pointer;transition:transform var(--mizan-duration-medium) ease,border-color var(--mizan-duration-medium) ease,box-shadow var(--mizan-duration-medium) ease}
 .procedures-category-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .procedures-category-card:focus-visible,.procedures-search-field input:focus-visible,.procedures-search-field button:focus-visible{outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);outline-offset:var(--mizan-focus-ring-offset)}
 .procedures-category-title{font-size:1.02rem;font-weight:800;line-height:1.6}
@@ -218,7 +218,7 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .procedures-workf
   min-width:0;margin:0;padding:var(--mizan-card-padding);
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-card);
-  background:var(--mizan-card);
+  
   box-shadow:var(--mizan-procedures-shadow-card,none);
   counter-increment:procedure-step;
 }
