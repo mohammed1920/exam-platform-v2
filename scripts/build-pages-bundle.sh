@@ -82,8 +82,6 @@ required_files=(
   assets/features/petitions/js/petitions.js
   assets/shared/js/firebase-auth.js
   assets/shared/js/app.js
-  assets/shared/css/platform-sidebar.css
-  assets/shared/css/platform-header.css
   assets/features/notifications/css/notifications.css
   assets/features/student-account/css/student-sidebar.css
   assets/features/student-account/css/student-ui-fixes.css
@@ -100,7 +98,6 @@ required_files=(
   assets/shared/css/style.css
   assets/shared/css/mizan-colors.css
   assets/shared/css/mizan-design-tokens.css
-  assets/shared/css/theme.css
   assets/branding/meezan-assemble.json
   engine/examEngine.js
   data/books.json
