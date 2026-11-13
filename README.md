@@ -49,7 +49,7 @@ exam-platform-v2/
 ├── icons/                        # أيقونات PWA
 ├── scripts/                      # أدوات الفحص والفهرسة
 ├── .github/workflows/            # الفحوصات والصيانة والنشر
-├── docs/architecture/             # خريطة الاعتماديات وخطة التنظيم
+├── docs/architecture/             # الدليل المعماري وخريطة الاعتماديات
 └── DEVELOPMENT.md                 # دليل التطوير المعتمد
 ```
 
@@ -204,8 +204,9 @@ npx http-server
 
 ### تغيير الألوان والتصميم
 
-- عدّل ألوان الهوية المركزية في `mizan-colors.css`.
-- عدّل رموز التصميم المشتركة مثل الحواف والحركة في `mizan-design-tokens.css`.
+- عدّل ألوان الهوية المركزية في `assets/shared/css/mizan-colors.css`.
+- عدّل رموز التصميم المشتركة مثل الحواف والحركة في `assets/shared/css/mizan-design-tokens.css`.
+- عدّل قواعد المظهر المشتركة في `assets/shared/css/mizan-unified-theme.css`، بما فيها الهيدر والقائمة الجانبية.
 - لا تستخدم `style.css` كمصدر للألوان العامة؛ فهو يحتوي تصميم بطاقات الكتب ثلاثية الأبعاد الذي يجب الحفاظ عليه دون تغيير.
 - افحص ترتيب التحميل والتباين في الوضعين الليلي والنهاري قبل اعتماد أي تغيير.
 
@@ -260,7 +261,6 @@ body {
 ## 🧰 التطوير والصيانة
 
 - ابدأ من [دليل التطوير](DEVELOPMENT.md) قبل تعديل الملفات.
-- راجع [خريطة اعتماديات JavaScript](docs/architecture/JS_DEPENDENCY_MAP.md) قبل نقل أو حذف أي وظيفة.
-- راجع [ضوابط تنظيم المشروع](docs/architecture/MIZAN_PROJECT_ORGANIZATION_RULES.md) و[سجل تقدم إعادة التنظيم](docs/architecture/PROJECT_REORGANIZATION_STATUS.md) لمعرفة القواعد والحالة الحالية.
+- راجع [الدليل المعماري وخريطة الاعتماديات](docs/architecture/ARCHITECTURE_GUIDE.md) قبل نقل أو حذف أي وظيفة.
 
 راجع `SECURITY.md` قبل استخدام لوحة إدارة المحتوى أو تفعيلها على الإنترنت.
