@@ -5,25 +5,11 @@
   margin:0 auto;
   padding:var(--mizan-petitions-shell-padding);
 }
-.petitions-hero{
-  margin:var(--mizan-petitions-hero-margin);
-  background:var(--mizan-gradient-intro-petitions);
-  color:var(--mizan-intro-fg);
-  border:1px solid var(--mizan-border);
-  border-radius:var(--mizan-radius-2xl,24px);
-  box-shadow:var(--mizan-shadow-card-rest);
-}
-.petitions-hero span{
-  color:var(--mizan-intro-kicker);
-  font-size:var(--mizan-font-size-2xs);
-  font-weight:900;
-}
 .petition-builder-head span{
   color:var(--mizan-primary-300);
   font-size:var(--mizan-font-size-2xs);
   font-weight:900;
 }
-.petitions-hero h2,
 .petition-builder-head h2{
   margin:var(--mizan-gap-micro) 0;
   font-size:var(--mizan-petitions-heading-size);
@@ -292,16 +278,6 @@
 @media(max-width:600px){
   .petitions-shell{
     padding:var(--mizan-petitions-shell-padding-mobile);
-  }
-  .petitions-hero h2{
-    font-size:clamp(12px,3.8vw,var(--mizan-petitions-heading-size-mobile));
-    white-space:nowrap;
-    letter-spacing:-.35px;
-  }
-  .petitions-hero p{
-    font-size:clamp(9px,2.5vw,13px);
-    white-space:nowrap;
-    letter-spacing:-.2px;
   }
   .petition-builder-head h2{
     font-size:var(--mizan-petitions-heading-size-mobile);
