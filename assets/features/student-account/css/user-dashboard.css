@@ -20,14 +20,6 @@
 .coming-icon{
   font-size:var(--mizan-font-size-27);
 }
-@media (max-width: 800px){
-  .profile-stats-grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-  }
-  .profile-stats-grid .profile-stat-card:last-child{
-    grid-column:1 / -1;
-  }
-}
 @media (max-width: 560px){
     .profile-logout-btn{
     margin-inline-start:auto;
@@ -40,18 +32,6 @@
   }
   .profile-identity h2{
     font-size:var(--mizan-font-size-lg);
-  }
-  .profile-panel{
-    padding:var(--mizan-space-3-25);
-  }
-  .profile-panel-heading{
-    align-items:flex-start;
-  }
-  .history-item{
-    align-items:flex-start;
-  }
-  .history-score{
-    margin-inline-start:auto;
   }
 }
 /* Student profile name editor */
