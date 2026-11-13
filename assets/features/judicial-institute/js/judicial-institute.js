@@ -87,7 +87,7 @@
   function renderSubjects(){
     const entry=yearEntry(state.year), available=entry&&Array.isArray(entry.subjects)?entry.subjects:[], count=yearQuestionCount(entry);
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><span>امتحانات '+esc(state.year)+'</span></section>'+
-      '<section class="ji-intro ji-intro-compact"><span class="ji-kicker">أرشيف سنة '+esc(state.year)+'</span><h2>اختر المادة القانونية</h2><p>تصفح الأسئلة الأصلية حسب المادة، مع المحافظة على رقم السؤال ومصدره.</p><div class="ji-stats ji-stats-single"><div><strong>'+count+'</strong><span>سؤال متاح لهذه السنة</span></div><div><strong>'+available.length+'</strong><span>مواد متاحة لهذه السنة</span></div></div></section>'+
+      '<section class="ji-intro ji-intro-compact mizan-section-hero"><span class="ji-kicker">أرشيف سنة '+esc(state.year)+'</span><div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-folder-open"></i></span><h2>اختر المادة القانونية</h2></div><p>تصفح الأسئلة الأصلية حسب المادة، مع المحافظة على رقم السؤال ومصدره.</p><div class="ji-stats ji-stats-single"><div><strong>'+count+'</strong><span>سؤال متاح لهذه السنة</span></div><div><strong>'+available.length+'</strong><span>مواد متاحة لهذه السنة</span></div></div></section>'+
       '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">المواد الدراسية</span><h2>مواد المعهد القضائي</h2></div></div><div class="ji-subject-grid">'+available.map((item,i)=>{
         const s=subject(item.subjectId);if(!s)return '';
         const total=Number(item.questionCount||0);
