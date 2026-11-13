@@ -10,7 +10,7 @@
 .laws-list-toolbar p{margin:4px 0 0;color:var(--mizan-muted);font-size:12px}
 .laws-count{padding:6px 10px;border-radius:999px;background:var(--mizan-primary-500-pale,var(--mizan-primary-100));color:var(--mizan-primary-700);font-size:var(--mizan-font-size-xs);font-weight:800;white-space:nowrap}
 .laws-list{display:grid;gap:10px}
-.laws-card{display:flex;align-items:center;gap:var(--mizan-component-gap);width:100%;min-width:0;padding:var(--mizan-card-padding-comfortable);text-align:right;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);background:var(--mizan-card);color:var(--mizan-text);cursor:pointer;box-shadow:var(--mizan-shadow-card-rest);transition:var(--mizan-transition-elevation)}
+.laws-card{display:flex;align-items:center;gap:var(--mizan-component-gap);width:100%;min-width:0;padding:var(--mizan-card-padding-comfortable);text-align:right;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-card);color:var(--mizan-text);cursor:pointer;box-shadow:var(--mizan-shadow-card-rest);transition:var(--mizan-transition-elevation)}
 .laws-card:hover{transform:translateY(-2px);border-color:var(--mizan-primary-500);box-shadow:var(--mizan-shadow-card-raised)}
 .laws-card-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:var(--mizan-radius-md);background:var(--mizan-accent-tile-bg,var(--mizan-primary-100));color:var(--mizan-accent-tile-fg,var(--mizan-primary-600));font-size:21px}
 .laws-card-copy{display:grid;gap:var(--mizan-gap-micro);flex:1 1 auto;min-width:0}
@@ -24,7 +24,7 @@
 .laws-empty-state>span{display:inline-block;color:var(--mizan-primary-700);font-size:var(--mizan-font-size-xs);font-weight:800}
 .laws-top-actions{margin-bottom:12px}
 .laws-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
-.laws-choice-card{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:16px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg,16px);background:var(--mizan-card);color:var(--mizan-text);text-align:right}
+.laws-choice-card{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:16px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg,16px);color:var(--mizan-text);text-align:right}
 button.laws-choice-card{cursor:pointer}
 .laws-choice-card>span,.laws-choice-card label>span{display:grid;place-items:center;width:42px;height:42px;border-radius:var(--mizan-radius-md);background:var(--mizan-accent-tile-bg,var(--mizan-primary-100));color:var(--mizan-accent-tile-fg,var(--mizan-primary-600));font-size:19px}
 .laws-choice-card strong{font-size:var(--mizan-font-size-sm)}
