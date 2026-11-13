@@ -15,10 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,11 +32,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
-            -not -path './.git/*' \
-            -not -path './node_modules/*' \
-            -not -path './dist/*' \
+          find . -type f \\( -name '*.js' -o -name '*.mjs' \\) \\
+            -not -path './.git/*' \\
+            -not -path './node_modules/*' \\
+            -not -path './dist/*' \\
             -print0 | xargs -0 -r -n1 node --check
+
       - name: Validate project before deployment
         run: |
           node scripts/validate-static-project.mjs
@@ -52,10 +50,17 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
-      # Keep exactly one Pages artifact upload per workflow run.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - uses: actions/deploy-pages@v4
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
