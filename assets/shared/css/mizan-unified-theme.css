@@ -1498,12 +1498,12 @@ html:is([data-theme="light"],[data-admin-theme="light"]) body .exam-dashboard-ta
    Dedicated 3D book cards and their cover artwork remain intentionally untouched. */
 html body :is(
   .home-feature-strip>div,
-  .ji-entry-card,.ji-bank-card,.ji-saved-entry,.ji-panel,.ji-year-card,.ji-subject-card,.ji-question-card,
-  .laws-card,.laws-choice-card,.law-preamble,.law-article,.law-contents-index,.law-closing,
-  .procedures-lock-card,.procedures-category-card,.procedures-title-item,.procedures-detail-card,.procedures-step-card,.procedures-workflow,.procedures-search-panel,
-  .petition-category-card,.petition-template-card,.petition-form-panel,.petition-preview-panel,.petition-access-card,.petition-editor-panel,.petition-live-preview,
-  .lawyer-card,.lawyer-details-dialog,.lawyer-my-application,
-  .mizan-article-card,.mizan-my-articles-panel,.mizan-my-article-card,.mizan-profile-section,
+  .ji-saved-entry,.ji-panel,.ji-question-card,
+  .law-preamble,.law-article,.law-contents-index,.law-closing,
+  .procedures-lock-card,.procedures-detail-card,.procedures-workflow,.procedures-search-panel,
+  .petition-form-panel,.petition-preview-panel,.petition-editor-panel,.petition-live-preview,
+  .lawyer-details-dialog,.lawyer-my-application,
+  .mizan-my-articles-panel,.mizan-profile-section,
   .profile-panel,.profile-stat-card,.student-info-grid>div,.student-profile-card,
   .firebase-admin-card,.firebase-admin-stat,.contact-card,.contact-box,
   .exam-box,.results-box,.review-item,.resume-exam-panel,.custom-exam-count-row,
@@ -1548,13 +1548,49 @@ html body :is(.ji-entry-card:hover,.ji-bank-card:hover,.ji-year-card:hover,.ji-s
   box-shadow:var(--mizan-shadow-card-raised);
 }
 
-/* Central card gradients. Hero surfaces are owned only by .mizan-section-hero. */
-.laws-card,.laws-choice-card{background:var(--mizan-gradient-intro-laws)}
-.procedures-category-card,.procedures-title-item,.procedures-step-card{background:var(--mizan-gradient-intro-procedures)}
-.lawyer-card{background:var(--mizan-gradient-intro-lawyers)}
-.petition-category-card,.petition-template-card,.petition-access-card{background:var(--mizan-gradient-intro-petitions)}
-.mizan-article-card,.mizan-my-article-card{background:var(--mizan-gradient-intro-pulpit)}
-.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card{background:var(--mizan-gradient-intro-judicial)}
+/* Central category surfaces. Each category card is styled here once; component files own layout only. */
+html body :is(.laws-card,.laws-choice-card){
+  background:var(--mizan-gradient-intro-laws);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body :is(.procedures-category-card,.procedures-title-item,.procedures-step-card){
+  background:var(--mizan-gradient-intro-procedures);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body .lawyer-card{
+  background:var(--mizan-gradient-intro-lawyers);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body :is(.petition-category-card,.petition-template-card,.petition-access-card){
+  background:var(--mizan-gradient-intro-petitions);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body :is(.mizan-article-card,.mizan-my-article-card){
+  background:var(--mizan-gradient-intro-pulpit);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
+html body :is(.ji-intro,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card){
+  background:var(--mizan-gradient-intro-judicial);
+  color:var(--mizan-text);
+  border-color:var(--mizan-border);
+  border-radius:var(--mizan-radius-card);
+  box-shadow:var(--mizan-shadow-card-rest);
+}
 .laws-card,.laws-choice-card,.procedures-category-card,.procedures-title-item,.procedures-step-card,.petition-category-card,.petition-template-card,.petition-access-card,.ji-bank-card,.ji-entry-card,.ji-year-card,.ji-subject-card,.lawyer-card,.mizan-article-card{border-color:color-mix(in srgb,var(--mizan-accent-text) 32%,var(--mizan-border));box-shadow:var(--mizan-shadow-card-rest);transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),box-shadow var(--mizan-duration-medium) var(--mizan-ease-out),border-color var(--mizan-duration-medium) ease}
 .laws-card:hover,.laws-choice-card:hover,.procedures-category-card:hover,.procedures-title-item:hover,.procedures-step-card:hover,.petition-category-card:hover,.petition-template-card:hover,.petition-access-card:hover,.ji-bank-card:hover,.ji-entry-card:hover,.ji-year-card:hover,.ji-subject-card:hover,.lawyer-card:hover,.mizan-article-card:hover{border-color:var(--mizan-accent-text);box-shadow:var(--mizan-shadow-card-featured);transform:translateY(-3px)}
 html:is([data-theme="light"],[data-admin-theme="light"]) .home-feature-strip>div{background:var(--mizan-gradient-home-featured-light)}
