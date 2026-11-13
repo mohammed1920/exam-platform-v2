@@ -13,7 +13,7 @@ header:not(.mizan-header) h1{
   right:72px;
   min-width:78px;
   height:var(--mizan-control-height-prominent);
-  padding:0 13px;
+  padding:0 var(--mizan-space-3-25);
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -58,7 +58,7 @@ header:not(.mizan-header) h1{
   margin-bottom:5px;
 }
 .firebase-admin-head h2{
-  margin:0 0 5px;
+  margin:0 0 var(--mizan-space-1-25);
   font-size:var(--mizan-font-size-heading-sm);
 }
 .firebase-admin-head p{
@@ -78,8 +78,8 @@ header:not(.mizan-header) h1{
   cursor:pointer;
 }
 .firebase-admin-status{
-  margin:0 0 15px;
-  padding:11px 13px;
+  margin:0 0 var(--mizan-space-3-75);
+  padding:var(--mizan-space-2-75) var(--mizan-space-3-25);
   border-radius:var(--mizan-radius-11);
   border:1px solid var(--mizan-primary-500-border);
   background:var(--mizan-accent-tile-bg);
