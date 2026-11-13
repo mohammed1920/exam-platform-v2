@@ -49,8 +49,7 @@
       <div class="procedures-shell">
         <section class="procedures-hero">
           <div class="procedures-hero-mark"><i class="fas fa-file-signature" aria-hidden="true"></i></div>
-          <div class="procedures-eyebrow">مكتبة ميزان القانونية</div>
-          <h2>إجراءات الدعاوى</h2>
+          <div class="procedures-eyebrow">ميزان · إجراءات الدعاوى والمعاملات</div>
           <p>دليل عملي منظم للإجراءات القضائية في العراق</p>
         </section>
         <div id="procedures-feedback" class="procedures-feedback" role="status" hidden></div>
