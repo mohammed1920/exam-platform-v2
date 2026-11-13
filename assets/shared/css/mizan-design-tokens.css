@@ -14,6 +14,7 @@
   --mizan-intro-card-gradient:var(--mizan-gradient-intro-light);
 
   --mizan-radius-xs:8px;
+  --mizan-radius-7:7px;
   --mizan-radius-9:9px;
   --mizan-radius-11:11px;
   --mizan-radius-13:13px;
@@ -342,10 +343,12 @@
   --mizan-space-2-5:10px;
   --mizan-space-2-75:11px;
   --mizan-space-3-25:13px;
+  --mizan-space-3-5:14px;
   --mizan-space-3-75:15px;
   --mizan-space-4-25:17px;
   --mizan-space-4-5:18px;
   --mizan-space-5-5:22px;
+  --mizan-font-size-17:17px;
   --mizan-font-size-19:19px;
   --mizan-font-size-21:21px;
   --mizan-font-size-27:27px;
