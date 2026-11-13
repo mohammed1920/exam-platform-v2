@@ -984,7 +984,7 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
     border:1px solid var(--mizan-border);
     border-radius:14px 14px 0 0;
     background:var(--mizan-surface);
-    box-shadow:0 -4px 18px rgba(0,0,0,.22);
+    box-shadow:var(--mizan-shadow-card-raised);
     transform:none;
   }
   body>.petition-editor-toolbar.petition-toolbar-docked::-webkit-scrollbar{
