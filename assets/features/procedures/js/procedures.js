@@ -49,7 +49,7 @@
       <div class="procedures-shell">
         <section class="procedures-hero">
           <div class="procedures-hero-heading">
-            <div class="procedures-hero-logo" aria-label="شعار ميزان"></div>
+            <span class="procedures-hero-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span>
             <h2>إجراءات الدعاوى والمعاملات</h2>
           </div>
           <p>دليل عملي منظم للإجراءات القضائية في العراق</p>
@@ -58,19 +58,6 @@
         <div id="procedures-access-state" class="procedures-access-state"></div>
         <p class="procedures-disclaimer">المحتوى للتثقيف والمعرفة القانونية، ويجب مراجعة النصوص الرسمية النافذة والتحقق من المدد والاختصاص قبل اتخاذ أي إجراء.</p>
       </div>`;
-    const heroLogo = root.querySelector('.procedures-hero-logo');
-    if (heroLogo && window.lottie) {
-      window.lottie.loadAnimation({
-        container: heroLogo,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: 'assets/branding/meezan-assemble.json'
-      });
-    } else if (heroLogo) {
-      const headerLogo = document.querySelector('#mizan-header-logo svg');
-      if (headerLogo) heroLogo.appendChild(headerLogo.cloneNode(true));
-    }
   }
 
   function contactNotice() {
