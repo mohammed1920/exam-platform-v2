@@ -43,9 +43,10 @@
   }
   function shell(content){
     const showBack=state.level!=='home';
-    return '<div class="ji-shell" dir="rtl"><header class="ji-header '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
+    return '<div class="ji-shell" dir="rtl"><header class="ji-header mizan-section-hero '+(showBack?'ji-header-inner':'ji-header-home')+'">'+
       (showBack?'<button class="ji-back" type="button" data-ji-action="back" aria-label="رجوع"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>رجوع</span></button>':'')+
-      '<div class="ji-brand"><span class="ji-brand-icon"><i class="fas fa-landmark" aria-hidden="true"></i></span><div><span class="ji-eyebrow">ميزان · القسم التعليمي</span><h1>المعهد القضائي</h1>'+(showBack?'':'<p class="ji-brand-description">مساحة منظمة للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p>')+'</div></div>'+
+      '<div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon ji-brand-icon" aria-hidden="true"><i class="fas fa-landmark"></i></span><h1>المعهد القضائي</h1></div>'+
+      (showBack?'':'<p class="ji-brand-description">مساحة منظمة للتحضير لامتحانات المعهد القضائي ومراجعة المواد القانونية.</p>')+
       '</header>'+content+
       '</div>';
   }
