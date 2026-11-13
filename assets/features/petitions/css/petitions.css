@@ -293,7 +293,16 @@
   .petitions-shell{
     padding:var(--mizan-petitions-shell-padding-mobile);
   }
-.petitions-hero h2,
+  .petitions-hero h2{
+    font-size:clamp(12px,3.8vw,var(--mizan-petitions-heading-size-mobile));
+    white-space:nowrap;
+    letter-spacing:-.35px;
+  }
+  .petitions-hero p{
+    font-size:clamp(9px,2.5vw,13px);
+    white-space:nowrap;
+    letter-spacing:-.2px;
+  }
   .petition-builder-head h2{
     font-size:var(--mizan-petitions-heading-size-mobile);
   }
