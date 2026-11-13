@@ -348,13 +348,22 @@
   --mizan-space-4-25:17px;
   --mizan-space-4-5:18px;
   --mizan-space-5-5:22px;
+  --mizan-font-size-9:9px;
   --mizan-font-size-17:17px;
+  --mizan-font-size-18:18px;
   --mizan-font-size-19:19px;
+  --mizan-font-size-22:22px;
+  --mizan-font-size-23:23px;
+  --mizan-font-size-25:25px;
+  --mizan-font-size-26:26px;
+  --mizan-font-size-28:28px;
   --mizan-font-size-21:21px;
   --mizan-font-size-27:27px;
   --mizan-font-size-38:38px;
   --mizan-font-size-40:40px;
   --mizan-font-size-48:48px;
+  --mizan-home-hero-title-size:clamp(2rem,4.3vw,3rem);
+  --mizan-pulpit-heading-size:clamp(var(--mizan-font-size-25),4vw,var(--mizan-font-size-38));
 }
 
 /* Notifications component geometry and type scale. */
