@@ -83,7 +83,6 @@ html body header .btn-primary{
 .petition-form-panel,
 .petition-preview-panel,
 .mizan-pulpit-section,
-.mizan-pulpit-hero,
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
@@ -113,7 +112,6 @@ html body header .btn-primary{
 .lawyer-card-main,
 .petition-builder-head h1,
 .petition-panel-title,
-.mizan-pulpit-hero h1,
 .mizan-article-card h3,
 .mizan-modal-head h2,
 .home-section-heading h2,
@@ -253,7 +251,6 @@ html:not([data-theme="light"]):not([data-admin-theme="light"]) .question-text{
   border-color:var(--mizan-accent-text);
 }
 /* Forum / pulpit */
-.mizan-pulpit-kicker,
 .mizan-article-meta{
   border-color:var(--mu-border);
 }
@@ -665,7 +662,6 @@ html body{
   color:var(--mizan-text);
   border-color:var(--mizan-border);
 }
-.lawyers-hero>span,
 .lawyer-form-head span{
   color:var(--mizan-accent-text);
 }
@@ -696,7 +692,6 @@ html body{
 }
 /* Petitions */
 .petitions-shell,
-.petitions-hero,
 .petition-builder-head,
 .petition-tools,
 .petition-template-card,
