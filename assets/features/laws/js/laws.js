@@ -52,8 +52,9 @@
     if (!target) return;
     target.innerHTML = `
       <div class="laws-page">
-        <header class="laws-page-header">
-          <h1>القوانين العراقية</h1>
+        <header class="laws-page-header mizan-section-hero">
+          <div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-book-open"></i></span><h1>القوانين العراقية</h1></div>
+          <p>تصفح التشريعات العراقية واطّلع على الديباجات والمواد القانونية بطريقة منظمة.</p>
         </header>
         <div class="laws-list-toolbar">
           <div><h2>التشريعات المتاحة</h2></div>
@@ -101,10 +102,8 @@
     target.innerHTML = `
       <div class="laws-page">
         <div class="laws-top-actions"><button type="button" class="laws-back-btn" data-laws-list-back><i class="fas fa-arrow-right"></i> قائمة القوانين</button></div>
-        <header class="laws-detail-header">
-          <div class="laws-detail-heading">
-            <h1>${escapeHtml(meta.name)}</h1>
-          </div>
+        <header class="laws-detail-header mizan-section-hero">
+          <div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></span><h1>${escapeHtml(meta.name)}</h1></div>
           <p class="laws-subtitle">${escapeHtml(meta.description || 'اختر طريقة الاطلاع على نص القانون')}</p>
         </header>
         <div class="laws-choice-grid">
