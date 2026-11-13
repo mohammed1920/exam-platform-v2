@@ -463,6 +463,18 @@ html body{
 .home-feature-strip small{
   color:var(--mizan-muted);
 }
+.home-category-card[data-home-action] strong{color:var(--mizan-home-card-fg)}
+.home-category-card[data-home-action] small{color:var(--mizan-home-card-muted)}
+.home-category-card[data-home-action] b{color:var(--mizan-home-card-action)}
+.home-category-card[data-home-action] i{
+  background:var(--mizan-home-card-icon-bg);
+  color:var(--mizan-gold-text);
+  border:1px solid var(--mizan-home-card-border);
+  box-shadow:var(--mizan-shadow-sm);
+}
+html:is([data-theme="light"],[data-admin-theme="light"]) .home-category-card[data-home-action] i{
+  color:var(--mizan-primary-700);
+}
 .home-category-card b,
 .home-section-heading span,
 .home-feature-strip i{
