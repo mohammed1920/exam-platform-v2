@@ -329,3 +329,24 @@
     --mizan-transition-elevation:box-shadow 0ms linear,transform 0ms linear;
   }
 }
+
+/* Shared precision spacing and component typography tokens.
+   Use these aliases instead of repeating one-off geometry in feature stylesheets. */
+:root{
+  --mizan-space-0-75:3px;
+  --mizan-space-1-25:5px;
+  --mizan-space-1-5:6px;
+  --mizan-space-1-75:7px;
+  --mizan-space-2-25:9px;
+  --mizan-space-2-5:10px;
+  --mizan-space-2-75:11px;
+  --mizan-space-3-25:13px;
+  --mizan-space-3-75:15px;
+  --mizan-space-4-25:17px;
+  --mizan-space-4-5:18px;
+  --mizan-space-5-5:22px;
+  --mizan-font-size-19:19px;
+  --mizan-font-size-21:21px;
+  --mizan-font-size-27:27px;
+  --mizan-font-size-48:48px;
+}
