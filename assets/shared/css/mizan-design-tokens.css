@@ -333,6 +333,7 @@
 /* Shared precision spacing and component typography tokens.
    Use these aliases instead of repeating one-off geometry in feature stylesheets. */
 :root{
+  --mizan-space-0-5:2px;
   --mizan-space-0-75:3px;
   --mizan-space-1-25:5px;
   --mizan-space-1-5:6px;
@@ -363,6 +364,18 @@
   --mizan-notifications-panel-mobile-top:120px;
   --mizan-notifications-toggle-font-size:var(--mizan-font-size-21);
   --mizan-notifications-focus-width:var(--mizan-focus-ring-width);
+  --mizan-notifications-focus-offset:3px;
+  --mizan-notifications-badge-offset:-5px;
+  --mizan-notifications-badge-border-width:2px;
+  --mizan-notifications-badge-padding:0 var(--mizan-space-1);
+  --mizan-notifications-badge-line-height:15px;
+  --mizan-notifications-unread-dot-size:7px;
+  --mizan-notifications-unread-dot-gap:var(--mizan-space-1-5);
+  --mizan-notifications-empty-padding:var(--mizan-space-5) var(--mizan-space-2);
+  --mizan-notifications-entry-padding:var(--mizan-space-2-5) 0;
+  --mizan-notifications-close-padding:var(--mizan-space-0-5) var(--mizan-space-1-5);
+  --mizan-notifications-title-line-height:1.6;
+  --mizan-notifications-message-line-height:1.8;
   --mizan-notifications-badge-size:19px;
   --mizan-notifications-badge-font-size:11px;
   --mizan-notifications-heading-size:15px;
