@@ -75,7 +75,7 @@
   padding:var(--mizan-card-padding-comfortable);
   border:1px solid var(--mizan-border);
   border-radius:var(--mizan-radius-card);
-  background:var(--mizan-card);
+  
   overflow:hidden;
 }
 .mizan-article-meta{
