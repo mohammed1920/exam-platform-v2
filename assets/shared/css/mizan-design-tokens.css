@@ -348,5 +348,27 @@
   --mizan-font-size-19:19px;
   --mizan-font-size-21:21px;
   --mizan-font-size-27:27px;
+  --mizan-font-size-38:38px;
+  --mizan-font-size-40:40px;
   --mizan-font-size-48:48px;
+}
+
+/* Notifications component geometry and type scale. */
+:root{
+  --mizan-notifications-panel-width:360px;
+  --mizan-notifications-panel-max-height:520px;
+  --mizan-notifications-panel-padding:var(--mizan-space-3);
+  --mizan-notifications-panel-radius:var(--mizan-radius-md);
+  --mizan-notifications-panel-offset:var(--mizan-space-2-5);
+  --mizan-notifications-panel-mobile-top:120px;
+  --mizan-notifications-toggle-font-size:var(--mizan-font-size-21);
+  --mizan-notifications-focus-width:var(--mizan-focus-ring-width);
+  --mizan-notifications-badge-size:19px;
+  --mizan-notifications-badge-font-size:11px;
+  --mizan-notifications-heading-size:15px;
+  --mizan-notifications-close-size:20px;
+  --mizan-notifications-body-size:13px;
+  --mizan-notifications-title-size:14px;
+  --mizan-notifications-date-size:11px;
+  --mizan-notifications-link-size:12px;
 }
