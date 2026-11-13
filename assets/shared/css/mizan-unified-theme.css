@@ -2093,3 +2093,64 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .home-feature-strip>div
       .mizan-header-copy h1{font-size:var(--mizan-header-wordmark-size)}
       .mizan-header-tagline{font-size:var(--mizan-header-tagline-size)}
     }
+
+
+/* Premium utility icon system — theme, menu and notifications.
+   Icons use one consistent Lucide-style outline and inherit central colors. */
+:where(#theme-toggle,#platform-menu-trigger,.mizan-notifications-toggle) svg{
+  display:block;
+  width:var(--mizan-header-icon-size,26px);
+  height:var(--mizan-header-icon-size,26px);
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  pointer-events:none;
+}
+#theme-toggle.theme-toggle,
+#platform-menu-trigger.platform-menu-trigger,
+.mizan-notifications-toggle{
+  display:grid;
+  place-items:center;
+  color:var(--mizan-menu-button-fg);
+  background:var(--mizan-menu-button-bg);
+  border:1px solid var(--mizan-menu-button-border);
+  box-shadow:var(--mizan-shadow-control-rest,none);
+  -webkit-tap-highlight-color:transparent;
+}
+#theme-toggle.theme-toggle:hover,
+#platform-menu-trigger.platform-menu-trigger:hover,
+.mizan-notifications-toggle:hover{
+  color:var(--mizan-menu-button-fg-hover);
+  background:var(--mizan-menu-button-bg-hover);
+  border-color:var(--mizan-menu-button-border-hover);
+  box-shadow:var(--mizan-shadow-control-hover,none);
+}
+#platform-menu-trigger.platform-menu-trigger svg{width:30px;height:30px;stroke-width:1.9}
+.mizan-notifications{z-index:9001}
+.mizan-notifications-toggle{
+  border-radius:50%;
+  font-size:0;
+  transition:transform var(--mizan-duration-medium) var(--mizan-ease-out),background var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,color var(--mizan-duration-fast) ease;
+}
+.mizan-notifications-toggle:active,
+#theme-toggle.theme-toggle:active,
+#platform-menu-trigger.platform-menu-trigger:active{transform:scale(.96)}
+.mizan-notifications-toggle .mizan-notifications-icon{width:27px;height:27px}
+#theme-toggle.theme-toggle:focus-visible,
+#platform-menu-trigger.platform-menu-trigger:focus-visible,
+.mizan-notifications-toggle:focus-visible{
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
+}
+html[data-theme="light"] :where(#theme-toggle,#platform-menu-trigger,.mizan-notifications-toggle){
+  color:var(--mizan-primary-800);
+  background:var(--mizan-surface-light);
+  border-color:var(--mizan-border-strong-light,var(--mizan-border-light));
+}
+html[data-theme="light"] :where(#theme-toggle,#platform-menu-trigger,.mizan-notifications-toggle):hover{
+  color:var(--mizan-primary-900);
+  background:var(--mizan-primary-100);
+  border-color:var(--mizan-primary-300);
+}
