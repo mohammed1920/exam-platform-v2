@@ -847,7 +847,7 @@ html[data-theme="light"] .mizan-my-article-actions .mizan-my-article-delete{
 .mizan-rich-editor p,.mizan-article-reading-content p{margin:.55em 0}
 .mizan-rich-editor ul,.mizan-rich-editor ol,.mizan-article-reading-content ul,.mizan-article-reading-content ol{padding-inline-start:1.7em;margin:.65em 0}
 .mizan-rich-editor blockquote,.mizan-article-reading-content blockquote{margin:1em 0;padding:.7em 1em;border-inline-start:3px solid var(--mizan-primary-500, var(--mizan-primary-500));background:var(--mizan-accent-tile-bg);border-radius:8px}
-.mizan-editor-source{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.mizan-editor-source{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .mizan-editor-help{margin:0;color:var(--mizan-muted);font-size:12px;line-height:1.7}
 html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-editor-toolbar{background:var(--mizan-surface-2);border-color:var(--mizan-field-border);color:var(--mizan-text)}
 html:is([data-theme="light"],[data-admin-theme="light"]) .mizan-editor-toolbar button{background:var(--mizan-surface-light);border-color:var(--mizan-field-border);color:var(--mizan-text)}
