@@ -134,7 +134,7 @@
     const pending=ids.filter(uid=>!known.has(String(uid)));
     const targets=new Map();
     pending.forEach(uid=>{
-      const match=String(uid).match(/^JI-(\\d{4})-(.+)-(\\d+)$/);
+      const match=String(uid).match(/^JI-(\d{4})-(.+)-(\d+)$/);
       if(!match)return;
       const year=Number(match[1]), subjectId=match[2].toLowerCase();
       const key=year+'/'+subjectId;
