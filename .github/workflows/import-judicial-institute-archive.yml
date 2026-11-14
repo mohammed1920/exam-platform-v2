@@ -1,0 +1,128 @@
+name: Import Judicial Institute Archive
+
+on:
+  push:
+    paths:
+      - "data/judicial-institute/mizan_judicial_institute_2005-2024.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Validate and replace the archive data
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+          import shutil
+          import zipfile
+
+          root = pathlib.Path("data/judicial-institute")
+          archive = root / "mizan_judicial_institute_2005-2024.zip"
+          extracted = pathlib.Path("/tmp/mizan-judicial-import")
+          if not archive.is_file():
+              raise SystemExit("Import archive is missing.")
+          if extracted.exists():
+              shutil.rmtree(extracted)
+          extracted.mkdir(parents=True)
+
+          with zipfile.ZipFile(archive) as zf:
+              for member in zf.infolist():
+                  target = (extracted / member.filename).resolve()
+                  if extracted.resolve() not in target.parents and target != extracted.resolve():
+                      raise SystemExit(f"Unsafe archive path: {member.filename}")
+              zf.extractall(extracted)
+
+          manifest_path = extracted / "manifest.json"
+          questions_root = extracted / "questions"
+          if not manifest_path.is_file() or not questions_root.is_dir():
+              raise SystemExit("Archive must contain manifest.json and questions/.")
+
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          if not isinstance(manifest.get("subjects"), list) or not isinstance(manifest.get("years"), list):
+              raise SystemExit("Manifest subjects/years structure is invalid.")
+
+          subject_ids = {s.get("id") for s in manifest["subjects"] if isinstance(s, dict)}
+          seen_uids = set()
+          total_questions = 0
+          expected_files = 0
+
+          for year_entry in manifest["years"]:
+              year = str(year_entry.get("year", ""))
+              for item in year_entry.get("subjects", []):
+                  subject_id = item.get("subjectId")
+                  rel = pathlib.PurePosixPath(item.get("path", ""))
+                  if not subject_id or subject_id not in subject_ids:
+                      raise SystemExit(f"Unknown subject id in year {year}: {subject_id}")
+                  if rel.is_absolute() or ".." in rel.parts:
+                      raise SystemExit(f"Unsafe manifest path: {rel}")
+                  file_path = extracted / pathlib.Path(*rel.parts)
+                  if not file_path.is_file():
+                      raise SystemExit(f"Missing question file: {rel}")
+                  payload = json.loads(file_path.read_text(encoding="utf-8"))
+                  questions = payload if isinstance(payload, list) else payload.get("questions")
+                  if not isinstance(questions, list):
+                      raise SystemExit(f"Invalid question array: {rel}")
+                  declared = item.get("questionCount")
+                  if declared != len(questions):
+                      raise SystemExit(f"questionCount mismatch in {rel}: {declared} != {len(questions)}")
+                  expected_files += 1
+                  total_questions += len(questions)
+                  for question in questions:
+                      uid = question.get("uid")
+                      if not uid or uid in seen_uids:
+                          raise SystemExit(f"Missing or duplicate uid in {rel}: {uid}")
+                      seen_uids.add(uid)
+
+          if expected_files == 0 or total_questions == 0:
+              raise SystemExit("Archive contains no question files or questions.")
+
+          # Replace the old data atomically after all validation has passed.
+          staged_questions = pathlib.Path("/tmp/mizan-judicial-questions")
+          if staged_questions.exists():
+              shutil.rmtree(staged_questions)
+          shutil.copytree(questions_root, staged_questions)
+
+          root.mkdir(parents=True, exist_ok=True)
+          shutil.copy2(manifest_path, root / "manifest.json")
+          old_questions = root / "questions"
+          if old_questions.exists():
+              shutil.rmtree(old_questions)
+          shutil.move(str(staged_questions), str(old_questions))
+
+          legacy = root / "questions.json"
+          if legacy.exists():
+              legacy.unlink()
+
+          report = extracted / "REPORT.md"
+          if report.is_file():
+              shutil.copy2(report, root / "REPORT.md")
+
+          # Keep the repository free of the temporary transfer archive.
+          archive.unlink()
+
+          print(f"Validated {expected_files} question files and {total_questions} questions; {len(seen_uids)} unique UIDs.")
+          PY
+
+      - name: Commit imported data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/judicial-institute
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git commit -m "Import judicial institute exams 2005-2024"
+          git push origin HEAD:main
