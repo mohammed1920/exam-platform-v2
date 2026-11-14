@@ -3,6 +3,7 @@
   'use strict';
   const DATA_URL='data/judicial-institute/manifest.json';
   const SAVED_KEY='mizan-judicial-institute-saved-v1';
+  const SAVED_DATA_KEY='mizan-judicial-institute-saved-data-v1';
   const ROOT_ID='judicial-institute-section';
   let data=null, dataPromise=null;
   const questionCache=new Map();
@@ -91,7 +92,8 @@
       '<section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">المواد الدراسية</span><h2>مواد المعهد القضائي</h2></div></div><div class="ji-subject-grid">'+available.map((item,i)=>{
         const s=subject(item.subjectId);if(!s)return '';
         const total=Number(item.questionCount||0);
-        return '<button class="ji-subject-card" type="button" data-ji-action="subject" data-subject="'+esc(s.id)+'"><span class="ji-subject-number">'+String(i+1).padStart(2,'0')+'</span><span class="ji-subject-copy"><strong>'+esc(s.name)+'</strong><small>'+esc(s.description)+'</small></span><span class="ji-subject-count">'+total+' سؤال</span><i class="fas fa-arrow-left" aria-hidden="true"></i></button>';
+        const description=String(s.description||'').trim();
+        return '<button class="ji-subject-card" type="button" data-ji-action="subject" data-subject="'+esc(s.id)+'"><span class="ji-subject-number">'+String(i+1).padStart(2,'0')+'</span><span class="ji-subject-copy"><strong>'+esc(s.name)+'</strong>'+(description?'<small>'+esc(description)+'</small>':'')+'</span><span class="ji-subject-count">'+total+' سؤال</span><i class="fas fa-arrow-left" aria-hidden="true"></i></button>';
       }).join('')+'</div></section>');
   }
   function questionCard(q,index){
@@ -99,10 +101,17 @@
     const text=q.text||q.question||'', answer=q.answer, hasAnswer=answer!==undefined&&answer!==null&&String(answer).trim()!=='';
     const options=Array.isArray(q.options)&&q.options.length?'<ol class="ji-options">'+q.options.map(o=>'<li>'+esc(typeof o==='string'?o:o.text||'')+'</li>').join('')+'</ol>':'';
     const parts=Array.isArray(q.parts)&&q.parts.length?'<div class="ji-question-parts">'+q.parts.map(p=>'<div class="ji-question-part"><strong>'+esc(p.label||'')+'</strong><p>'+esc(p.text||'')+'</p></div>').join('')+'</div>':'';
-    const source=q.source&&typeof q.source==='object'?'<div class="ji-question-source">المصدر: '+esc(q.source.file||'')+(q.source.page?' · الصفحة '+esc(q.source.page):'')+(q.source.questionNumber?' · رقم السؤال الأصلي '+esc(q.source.questionNumber):'')+'</div>':(q.source?'<div class="ji-question-source">'+esc(q.source)+'</div>':'');
+    let source='';
+    if(q.source&&typeof q.source==='object'){
+      const sourceParts=[];
+      if(q.source.file)sourceParts.push('الملف: '+esc(q.source.file));
+      if(q.source.page)sourceParts.push('الصفحة '+esc(q.source.page));
+      if(q.source.questionNumber)sourceParts.push('رقم السؤال الأصلي '+esc(q.source.questionNumber));
+      if(sourceParts.length)source='<div class="ji-question-source">'+sourceParts.join(' · ')+'</div>';
+    }else if(q.source)source='<div class="ji-question-source">'+esc(q.source)+'</div>';
     const notes=q.verification&&q.verification.notes?'<p class="ji-question-note">ملاحظة التحقق: '+esc(q.verification.notes)+'</p>':'';
     const answerText=hasAnswer&&typeof answer==='number'&&Array.isArray(q.options)?(q.options[answer]===undefined?String(answer):typeof q.options[answer]==='string'?q.options[answer]:q.options[answer].text):answer;
-    return '<article class="ji-question-card"><div class="ji-question-meta"><span>السؤال '+esc(number)+'</span><span>'+esc(q.year||state.year)+'</span><span>'+esc(q.type||'سؤال')+'</span></div><h3>'+esc(text)+'</h3>'+parts+options+source+notes+
+    return '<article class="ji-question-card"><div class="ji-question-meta"><span>السؤال '+esc(number)+'</span><span>'+esc(q.year||state.year||'')+'</span><span>'+esc(q.type||'سؤال')+'</span></div>'+(String(text).trim()?'<h3>'+esc(text)+'</h3>':'')+parts+options+source+notes+
       '<div class="ji-question-bottom">'+(hasAnswer?'<details class="ji-answer"><summary><i class="fas fa-lightbulb" aria-hidden="true"></i> عرض الإجابة</summary><div>'+esc(answerText)+'</div></details>':'<span class="ji-answer-pending"><i class="fas fa-hourglass-half" aria-hidden="true"></i> الإجابة غير مضافة بعد</span>')+
       '<button type="button" class="ji-save-question '+(saved?'is-saved':'')+'" data-ji-action="save" data-uid="'+esc(uid)+'" '+(uid?'':'disabled')+'><i class="fas fa-bookmark" aria-hidden="true"></i>'+(saved?'إزالة من المحفوظات':'حفظ السؤال')+'</button></div></article>';
   }
@@ -117,10 +126,42 @@
       '<section class="ji-panel"><div class="ji-question-toolbar"><div><span class="ji-kicker">بنك الأسئلة</span><h2>أسئلة المادة</h2><span class="ji-count">'+list.length+' من '+all.length+' سؤال</span></div><label class="ji-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" data-ji-search placeholder="ابحث في نصوص الأسئلة..." value="'+esc(state.query)+'"></label></div>'+
       (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState(state.query?'لا توجد نتائج مطابقة':'لا توجد أسئلة مضافة لهذه المادة في هذه السنة بعد',state.query?'جرّب كلمات بحث أخرى.':'ستظهر الأسئلة بعد إضافة بياناتها الأصلية إلى ملف الأرشيف، دون إنشاء أسئلة افتراضية.'))+'</section>');
   }
+  function readSavedRecords(){
+    try{const value=JSON.parse(localStorage.getItem(SAVED_DATA_KEY)||'[]');return Array.isArray(value)?value.filter(item=>item&&item.uid&&item.question):[];}catch(_){return[];}
+  }
+  async function loadSavedQuestions(){
+    const ids=savedIds(), records=readSavedRecords(), known=new Set(records.map(item=>String(item.uid)));
+    const pending=ids.filter(uid=>!known.has(String(uid)));
+    const targets=new Map();
+    pending.forEach(uid=>{
+      const match=String(uid).match(/^JI-(\\d{4})-(.+)-(\\d+)$/);
+      if(!match)return;
+      const year=Number(match[1]), subjectId=match[2].toLowerCase();
+      const key=year+'/'+subjectId;
+      if(subject(subjectId)&&yearEntry(year)&&!targets.has(key))targets.set(key,{year,subjectId,uids:[]});
+      const target=targets.get(key);if(target)target.uids.push(String(uid));
+    });
+    const results=await Promise.allSettled(Array.from(targets.values()).map(async target=>{
+      const questions=await loadYearSubject(target.year,target.subjectId);
+      target.uids.forEach(uid=>{
+        const question=questions.find(item=>String(item.uid||item.id||'')===uid);
+        if(question&&!known.has(uid)){records.push({uid,year:target.year,subjectId:target.subjectId,question});known.add(uid);}
+      });
+    }));
+    results.filter(result=>result.status==='rejected').forEach(result=>console.warn('تعذر تحميل ملف من المحفوظات القديمة:',result.reason));
+    try{localStorage.setItem(SAVED_DATA_KEY,JSON.stringify(records));}catch(_){notice('تعذر استرجاع المحفوظات','مساحة التخزين المحلي غير متاحة حالياً.');}
+  }
   function renderSaved(){
-    const ids=savedIds(), list=Array.from(questionCache.values()).flat().filter(q=>ids.includes(String(q.uid||q.id||'')));
+    const ids=savedIds(), records=readSavedRecords(), byId=new Map(records.map(item=>[String(item.uid),item]));
+    Array.from(questionCache.values()).flat().forEach(q=>{
+      const uid=String(q.uid||q.id||'');
+      if(ids.includes(uid)&&!byId.has(uid))byId.set(uid,{uid,year:q.year||null,subjectId:null,question:q});
+    });
+    const list=ids.map(uid=>byId.get(String(uid))).filter(Boolean).map(item=>({...item.question,year:item.year||item.question.year}));
+    const missing=ids.length-list.length;
     return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="years">الأرشيف</button><i class="fas fa-chevron-left"></i><span>الأسئلة المحفوظة</span></section><section class="ji-panel"><div class="ji-section-heading"><div><span class="ji-kicker">مكتبتك الخاصة</span><h2>الأسئلة المحفوظة</h2></div><span class="ji-count">'+list.length+' سؤال</span></div>'+
-      (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState('لا توجد أسئلة محفوظة','استخدم زر «حفظ السؤال» في بنك الأسئلة لإضافته إلى هذه القائمة.'))+'</section>');
+      (list.length?'<div class="ji-question-list">'+list.map(questionCard).join('')+'</div>':emptyState('لا توجد أسئلة محفوظة','استخدم زر «حفظ السؤال» في بنك الأسئلة لإضافته إلى هذه القائمة.'))+
+      (missing?'<p class="ji-note">تعذر العثور على بيانات '+missing+' من الأسئلة المحفوظة القديمة في الأرشيف الحالي.</p>':'')+'</section>');
   }
   function render(){
     const el=root();if(!el)return;
@@ -144,8 +185,14 @@
   }
   function toggleSaved(uid){
     if(!uid)return;
-    const ids=savedIds(),key=String(uid);
-    saveIds(ids.includes(key)?ids.filter(v=>v!==key):ids.concat(key));
+    const ids=savedIds(),key=String(uid),records=readSavedRecords(),alreadySaved=ids.includes(key);
+    saveIds(alreadySaved?ids.filter(v=>v!==key):ids.concat(key));
+    const nextRecords=alreadySaved?records.filter(item=>String(item.uid)!==key):records;
+    if(!alreadySaved){
+      const question=Array.from(questionCache.values()).flat().find(item=>String(item.uid||item.id||'')===key);
+      if(question)nextRecords.push({uid:key,year:Number(state.year)||question.year||null,subjectId:state.subjectId||null,question});
+    }
+    try{localStorage.setItem(SAVED_DATA_KEY,JSON.stringify(nextRecords));}catch(_){notice('تعذر حفظ السؤال','مساحة التخزين المحلي غير متاحة حالياً.');}
     render();
   }
   function bind(){
@@ -156,7 +203,7 @@
       if(action==='years')return pushLevel('years',{year:null,subjectId:null});
       if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
-      if(action==='saved')return pushLevel('saved',{year:null,subjectId:null});
+      if(action==='saved'){button.disabled=true;loadSavedQuestions().then(()=>pushLevel('saved',{year:null,subjectId:null})).catch(error=>{console.error('تعذر استرجاع الأسئلة المحفوظة:',error);notice('تعذر استرجاع المحفوظات','تعذر تحميل بعض ملفات الأرشيف.');pushLevel('saved',{year:null,subjectId:null});}).finally(()=>{button.disabled=false;});return;}
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
       if(action==='subject'){const id=button.dataset.subject,year=state.year;button.disabled=true;button.setAttribute('aria-busy','true');loadYearSubject(year,id).then(()=>pushLevel('questions',{year,subjectId:id})).catch(error=>{console.error('تعذر تحميل ملف أسئلة المادة:',error);notice('تعذر تحميل الأسئلة','تحقق من ملف المادة ثم أعد المحاولة.');button.disabled=false;button.removeAttribute('aria-busy');});return;}
       if(action==='save')return toggleSaved(button.dataset.uid);
