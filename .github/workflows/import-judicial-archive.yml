@@ -1,0 +1,111 @@
+name: Import Judicial Institute Archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/judicial-institute/import-trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  import-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Decode and validate archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat data/judicial-institute/.import/part-*.txt | tr -d '\n\r ' | base64 --decode > /tmp/judicial-archive.tar.gz
+          mkdir -p /tmp/judicial-archive
+          tar -xzf /tmp/judicial-archive.tar.gz -C /tmp/judicial-archive
+          python3 - <<'PY'
+          import json, pathlib, sys
+          root = pathlib.Path('/tmp/judicial-archive')
+          manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+          assert manifest.get('schemaVersion') == 1
+          subjects = {item['id'] for item in manifest.get('subjects', [])}
+          years = manifest.get('years', [])
+          assert len(years) == 20 and {int(item['year']) for item in years} == set(range(2005, 2025))
+          seen = set()
+          total = 0
+          expected = set()
+          for year in years:
+              y = int(year['year'])
+              for entry in year.get('subjects', []):
+                  sid = entry['subjectId']
+                  assert sid in subjects, f'Unknown subject: {sid}'
+                  rel = pathlib.PurePosixPath(entry['path'])
+                  assert not rel.is_absolute() and '..' not in rel.parts
+                  path = root / rel
+                  assert path.is_file(), f'Missing file: {rel}'
+                  data = json.loads(path.read_text(encoding='utf-8'))
+                  assert data.get('schemaVersion') == 1
+                  assert int(data.get('year', -1)) == y
+                  assert data.get('subjectId') == sid
+                  questions = data.get('questions')
+                  assert isinstance(questions, list) and questions
+                  assert int(entry.get('questionCount', -1)) == len(questions)
+                  for q in questions:
+                      uid = q.get('uid')
+                      assert uid and uid not in seen, f'Missing/duplicate UID: {uid}'
+                      seen.add(uid)
+                      assert q.get('text') or q.get('question') or q.get('parts'), f'Empty question: {uid}'
+                  total += len(questions)
+                  expected.add(rel.as_posix())
+          actual = {p.relative_to(root).as_posix() for p in (root / 'questions').rglob('*.json')}
+          assert actual == expected, f'Unexpected/missing question files: {actual ^ expected}'
+          assert total == 191 and len(seen) == 191, f'Unexpected total: {total}'
+          print(f'Validated {len(years)} years, {len(subjects)} subjects, {len(expected)} files, {total} questions.')
+          PY
+
+      - name: Replace old archive and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf data/judicial-institute/questions
+          cp /tmp/judicial-archive/manifest.json data/judicial-institute/manifest.json
+          cp /tmp/judicial-archive/REPORT.md data/judicial-institute/REPORT.md
+          cp -R /tmp/judicial-archive/questions data/judicial-institute/questions
+          rm -f data/judicial-institute/questions.json
+          cat > data/judicial-institute/README.md <<'EOF'
+          # أرشيف اختبارات المعهد القضائي (2005–2024)
+
+          تعتمد المنصة فهرساً مركزياً وملف JSON مستقلاً لكل مادة متاحة ضمن سنة الامتحان.
+
+          ## البنية
+          - `manifest.json`: قائمة السنوات والمواد ومسارات الملفات وأعداد الأسئلة.
+          - `questions/{YEAR}/{SUBJECT_ID}.json`: أسئلة سنة ومادة واحدة.
+          - `REPORT.md`: تقرير الاستخراج وملاحظات التحقق ومواطن عدم وضوح المصدر.
+
+          لا يُنشأ ملف لمادة لا توجد لها أسئلة فعلية في السنة. ولا تُحمّل المنصة جميع الأسئلة دفعة واحدة؛ يُحمّل ملف المادة عند اختيارها.
+
+          ## صيغة ملف المادة
+          يحتوي كل ملف على `schemaVersion` و`year` و`subjectId` و`subjectName` و`questions`. ويحافظ السؤال على `uid` و`id` و`type` و`text` و`parts` و`options` و`answer` و`explanation` و`legalReferences` و`source` و`verification` بحسب البيانات المتاحة في المصدر.
+
+          ## قواعد سلامة البيانات
+          - يجب أن يكون UID فريداً وثابتاً.
+          - يجب أن يطابق `year` و`subjectId` في الملف مسار الملف وسجل `manifest.json`.
+          - يجب أن يساوي `questionCount` عدد عناصر `questions` في الملف.
+          - لا تُضاف إجابات أو مراجع أو نصوص غير موجودة في المصدر.
+          - تُراجع الملاحظات في `REPORT.md` قبل اعتماد أي تصحيح نصي.
+
+          ## نطاق الأرشيف الحالي
+          20 سنة من 2005 إلى 2024، و11 مادة، و120 ملفاً مستقلاً، و191 سؤالاً.
+          EOF
+          rm -rf data/judicial-institute/.import
+          rm -f data/judicial-institute/import-trigger.txt
+          rm -f .github/workflows/import-judicial-archive.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/judicial-institute
+          git add -u .github/workflows
+          git commit -m "Replace judicial institute archive with 2005-2024 dataset"
+          git push origin main
