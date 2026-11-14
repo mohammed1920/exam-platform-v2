@@ -127,3 +127,5 @@ jobs:
           fi
           git commit -m "Import judicial institute exams 2005-2024"
           git push origin HEAD:main
+
+# Import workflow revision: trigger validation after archive upload.
