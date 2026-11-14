@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2014-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "تكلم عن مهام الادعاء العام المنصوص عليها في قانون الادعاء العام. (خمس درجات)"
+        },
+        {
+          "label": "ب",
+          "text": "تشكلت محكمة الجنح في ديالى بغياب الادعاء العام الذي تعرض لحالة مرضية مفاجئة، استمرت المحكمة بنظر القضية المعروضة لعدم وجود البديل، واصدرت حكما بذلك، مدى صحة اجراء محكمة الجنح في السير بالدعوى وما سند ذلك. (خمس درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "س5 (عشر درجات) تحت القسم الجزائي."
+      }
+    }
+  ]
+}

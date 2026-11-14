@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "year": 2010,
+  "subjectId": "civil-procedure",
+  "subjectName": "المرافعات المدنية",
+  "questions": [
+    {
+      "uid": "JI-2010-CIVIL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "بصفتك قاضي محكمة بداءة الفلوجة، تقدم (أ) بطلب وضع الحجز على اموال مدينه (ب) ورفق بالطلب ورقة كمبيال مسحوبة من المدين (ب) بمبلغ خمسة ملايين دينار، وخص طالب الحجز من اموال المدين، راتبه، واثاثة البيتية وسهامه في شركة الصناعات الالكترونية، ومصاغ زوجته الذهبي. حدد المطلوب تقديمه من طالب الحجز، وحرر القرار الذي تتخذه مناسباً هذا الطلب.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الأول - الفقرة 2 وفق ترقيم الورقة الأصلية."
+      }
+    },
+    {
+      "uid": "JI-2010-CIVIL-PROCEDURE-002",
+      "id": 2,
+      "type": "essay",
+      "text": "ماذا يراد بتعبير (القضاء المستعجل) وما هي شروطه، وما الفرق بينه وبين (القضاء الولائي) وما هي شروطه، وما هي المحكمة المختصة بإصدار كل منهما. اذكر صورتان للقضاء المستعجل وللقضاء الولائي.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الثاني - الفقرة 2 وفق ترقيم الورقة الأصلية."
+      }
+    }
+  ]
+}

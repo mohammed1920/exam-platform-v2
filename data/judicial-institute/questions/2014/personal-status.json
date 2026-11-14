@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "personal-status",
+  "subjectName": "قانون الأحوال الشخصية",
+  "questions": [
+    {
+      "uid": "JI-2014-PERSONAL-STATUS-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "ب-1",
+          "text": "ما ميراث – الاب، الاخت لاب؟"
+        },
+        {
+          "label": "ب-2",
+          "text": "توفي (س، ق، ك) بتاريخ 3/5/2013 عن زوجتين، وثلاثة ابناء، وست بنات، واولاد ابن متوفى عام 1975 – ولدين وبنت واحدة – ما حل المسألة الارثية، على كونك قاضٍ محكمة احوال شخصية، وعلى وفق احكام القانون. (خمس درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "(خامسا - القوانين الاخرى: عشر درجات) الفرع (ب) ضمن القسم المدني. تصنيفه ضمن الأحوال الشخصية بحسب مضمونه."
+      }
+    }
+  ]
+}

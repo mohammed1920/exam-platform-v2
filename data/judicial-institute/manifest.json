@@ -1,64 +1,63 @@
 {
   "schemaVersion": 1,
-  "title": "أرشيف أسئلة المعهد القضائي",
-  "description": "فهرس ملفات الأسئلة المستقلة حسب سنة الامتحان والمادة القانونية.",
   "subjects": [
     {
       "id": "criminal-law",
-      "name": "قانون العقوبات",
-      "description": "الأحكام العامة والجرائم والعقوبات",
-      "order": 1
+      "name": "قانون العقوبات"
     },
     {
       "id": "personal-status",
-      "name": "قانون الأحوال الشخصية",
-      "description": "الأحوال الشخصية والأسرة",
-      "order": 2
+      "name": "قانون الأحوال الشخصية"
     },
     {
       "id": "civil-law",
-      "name": "القانون المدني",
-      "description": "الالتزامات والحقوق والمعاملات المدنية",
-      "order": 3
+      "name": "القانون المدني"
     },
     {
       "id": "juvenile-law",
-      "name": "قانون الأحداث",
-      "description": "القواعد والإجراءات الخاصة بالأحداث",
-      "order": 4
+      "name": "قانون الأحداث"
     },
     {
       "id": "civil-procedure",
-      "name": "المرافعات المدنية",
-      "description": "الدعوى المدنية وإجراءات التقاضي",
-      "order": 5
+      "name": "المرافعات المدنية"
     },
     {
       "id": "criminal-procedure",
-      "name": "أصول المحاكمات الجزائية",
-      "description": "الدعوى الجزائية والتحقيق والمحاكمة",
-      "order": 6
+      "name": "أصول المحاكمات الجزائية"
     },
     {
       "id": "public-prosecution",
-      "name": "الادعاء العام",
-      "description": "اختصاصات الادعاء العام ومهامه",
-      "order": 7
+      "name": "الادعاء العام"
+    },
+    {
+      "id": "evidence-law",
+      "name": "قانون الإثبات"
+    },
+    {
+      "id": "commercial-law",
+      "name": "التشريعات التجارية"
+    },
+    {
+      "id": "administrative-law",
+      "name": "القضاء الإداري"
+    },
+    {
+      "id": "judicial-organization",
+      "name": "التنظيم القضائي"
     }
   ],
   "years": [
     {
       "year": 2005,
-      "questionCount": 5,
       "subjects": [
-        {
-          "subjectId": "criminal-procedure",
-          "path": "questions/2005/criminal-procedure.json",
-          "questionCount": 1
-        },
         {
           "subjectId": "criminal-law",
           "path": "questions/2005/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2005/personal-status.json",
           "questionCount": 1
         },
         {
@@ -72,9 +71,679 @@
           "questionCount": 1
         },
         {
-          "subjectId": "personal-status",
-          "path": "questions/2005/personal-status.json",
+          "subjectId": "criminal-procedure",
+          "path": "questions/2005/criminal-procedure.json",
           "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2006,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2006/criminal-law.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2006/personal-status.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2006/civil-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2006/civil-procedure.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2006/criminal-procedure.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2006/public-prosecution.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2007,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2007/criminal-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2007/personal-status.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2007/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2007/criminal-procedure.json",
+          "questionCount": 2
+        }
+      ]
+    },
+    {
+      "year": 2008,
+      "subjects": [
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2008/personal-status.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2008/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2008/civil-procedure.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2008/criminal-procedure.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2008/public-prosecution.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2009,
+      "subjects": [
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2009/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2009/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2009/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2009/criminal-procedure.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2010,
+      "subjects": [
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2010/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2010/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2010/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2010/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2010/public-prosecution.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "judicial-organization",
+          "path": "questions/2010/judicial-organization.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2011,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2011/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2011/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2011/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2011/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2011/evidence-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "judicial-organization",
+          "path": "questions/2011/judicial-organization.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2012,
+      "subjects": [
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2012/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2012/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2012/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2012/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2012/public-prosecution.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "judicial-organization",
+          "path": "questions/2012/judicial-organization.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2013,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2013/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2013/personal-status.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2013/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2013/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2013/criminal-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2013/evidence-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "judicial-organization",
+          "path": "questions/2013/judicial-organization.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2014,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2014/criminal-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2014/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2014/civil-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2014/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2014/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2014/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2014/public-prosecution.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2014/evidence-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "commercial-law",
+          "path": "questions/2014/commercial-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "administrative-law",
+          "path": "questions/2014/administrative-law.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2015/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2015/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2015/civil-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2015/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2015/evidence-law.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2016/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2016/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2016/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2016/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2016/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2016/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2016/evidence-law.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2017/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2017/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2017/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2017/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2017/criminal-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2017/public-prosecution.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "evidence-law",
+          "path": "questions/2017/evidence-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "commercial-law",
+          "path": "questions/2017/commercial-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "judicial-organization",
+          "path": "questions/2017/judicial-organization.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2018/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2018/personal-status.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2018/civil-law.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2018/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2018/civil-procedure.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2018/criminal-procedure.json",
+          "questionCount": 3
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2019/criminal-law.json",
+          "questionCount": 5
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2019/personal-status.json",
+          "questionCount": 4
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2019/civil-law.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2019/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2019/criminal-procedure.json",
+          "questionCount": 2
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2020/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2020/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2020/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2020/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2020/criminal-procedure.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2021/criminal-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2021/personal-status.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2021/civil-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2021/civil-procedure.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2021/criminal-procedure.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2022/criminal-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2022/personal-status.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2022/civil-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2022/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2022/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2022/criminal-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2022/public-prosecution.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2023/criminal-law.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2023/personal-status.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2023/civil-law.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "juvenile-law",
+          "path": "questions/2023/juvenile-law.json",
+          "questionCount": 1
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2023/civil-procedure.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2023/criminal-procedure.json",
+          "questionCount": 3
+        },
+        {
+          "subjectId": "public-prosecution",
+          "path": "questions/2023/public-prosecution.json",
+          "questionCount": 1
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "subjects": [
+        {
+          "subjectId": "criminal-law",
+          "path": "questions/2024/criminal-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "personal-status",
+          "path": "questions/2024/personal-status.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-law",
+          "path": "questions/2024/civil-law.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "civil-procedure",
+          "path": "questions/2024/civil-procedure.json",
+          "questionCount": 2
+        },
+        {
+          "subjectId": "criminal-procedure",
+          "path": "questions/2024/criminal-procedure.json",
+          "questionCount": 2
         }
       ]
     }

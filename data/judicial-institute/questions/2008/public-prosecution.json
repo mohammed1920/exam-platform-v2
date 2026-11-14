@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "year": 2008,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2008-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "حدد قانون الادعاء العام رقم (159) لسنة 1979 مهام الادعاء العام حدد اهم (5) في هذه المهام، وكيف يمارس مهمته بالنسبة للاحكام التي تصدرها محاكم الاحداث في الجنايات والاحكام التي تصدرها محاكم الجنايات بالاعدام او بالسجن المؤبد او مدى الحياة.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (القسم الثاني - الجزاء، الفرع الاول). موضوعه يتقاطع مع قانون الأحداث، وتصنيفه ضمن الادعاء العام اجتهاد في التصنيف."
+      }
+    }
+  ]
+}

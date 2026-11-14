@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "personal-status",
+  "subjectName": "قانون الأحوال الشخصية",
+  "questions": [
+    {
+      "uid": "JI-2006-PERSONAL-STATUS-001",
+      "id": 1,
+      "type": "essay",
+      "text": "ما هي السن التي حددها قانون الاحوال الشخصية رقم (188) لسنة 1959 للزواج، كقاعدة، وهل اورد استثناءات على هذه القاعدة. وفي اي الحالات.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-PERSONAL-STATUS-002",
+      "id": 2,
+      "type": "essay",
+      "text": "اورد قانون الاحوال الشخصية اسباباً تجيز للزوجة طلب التفريق عن زوجها، اذكر هذه الاسباب واذكر كيفية اثبات وجودها امام المحكمة التي تنظر دعوى التفريق.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

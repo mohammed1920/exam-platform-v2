@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2010,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2010-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "1",
+          "text": "ماهي الشروط المقتضاة لترقية القاضي وعضو الادعاء العام من صنف الى صنف آخر وما تأثير توجيه (انذار) لكل منهما على ترقيته."
+        },
+        {
+          "label": "2",
+          "text": "متى يستطيع رئيس الادعاء العام الطعن بالحكم لمصلحة القانون، وما هي الجهة التي تنظر هذا الطعن، وما هي آثار قبول الطعن."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الرابع وفق ترقيم الورقة الأصلية. الفقرة 1 تتقاطع مع التنظيم القضائي، وتصنيفها ضمن الادعاء العام اجتهاد في التصنيف."
+      }
+    }
+  ]
+}

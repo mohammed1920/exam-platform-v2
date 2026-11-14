@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "civil-procedure",
+  "subjectName": "المرافعات المدنية",
+  "questions": [
+    {
+      "uid": "JI-2006-CIVIL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "توفي (س) عن ام وزوجة وولد قاصر وكان بذمته للدائن (ص) مبلغ خمسة ملايين دينار، على من تقام الدعاوى لاستيفاء الدين وما هي الاجراءات التي تتخذها المحكمة للتحقيق في الدعوى وحسمها علماً بان بيد الدائن سند كمبيالة غير مصدق من جهة رسمية لاثبات دعواه.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CIVIL-PROCEDURE-002",
+      "id": 2,
+      "type": "essay",
+      "text": "اين تقام الدعوى في الحالات الاتية:",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "اذا كانت متعلقة بعقار واحد او بعدة عقارات."
+        },
+        {
+          "label": "ب",
+          "text": "اذا كانت متعلقة بدين."
+        },
+        {
+          "label": "ج",
+          "text": "اذا كانت متعلقة بشخص معنوي مركزه في بغداد وفرعيه في البصرة والموصل."
+        },
+        {
+          "label": "د",
+          "text": "اذا كان المدعى عليه لا يسكن في العراق وليس له موطن دائم فيه."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CIVIL-PROCEDURE-003",
+      "id": 3,
+      "type": "essay",
+      "text": "ماذا نقصد بـ (القضاء الولائي) الذي يعبر عنه بـ (الاوامر على العرائض) وما هي المحكمة التي تصدر مثل هذه الاوامر، اذكر صور من هذه الاوامر من الواقع العملي.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CIVIL-PROCEDURE-004",
+      "id": 4,
+      "type": "essay",
+      "text": "اورد قانون المرافعات المدنية (اعادة المحاكمة) كطريق من طرق الطعن في الاحكام تكلم عن ذلك، وما هي الحالات التي اجاز القانون طلب اعادة المحاكمة بموجبها وما هي المدة المحددة لتقديم هذا الطلب.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

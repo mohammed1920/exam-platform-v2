@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "year": 2019,
+  "subjectId": "personal-status",
+  "subjectName": "قانون الأحوال الشخصية",
+  "questions": [
+    {
+      "uid": "JI-2019-PERSONAL-STATUS-001",
+      "id": 1,
+      "type": "essay",
+      "text": "ما هو الحكم الذي تصدرهُ محكمة الأحوال الشخصية في الحالات الآتية مُعززاً إجابتك بمواد القانون:-",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "ثبوت عنة الزوج النفسية بتقرير لجنة طبية في دعوى تفريق أقامتها الزوجة"
+        },
+        {
+          "label": "ب",
+          "text": "وفاة أبو الصغير وتزوج أمهُ بأجنبي في دعوى إسقاط حضانة أقامها عم الصغير طالباً الحكم لهُ بحضانتهِ"
+        },
+        {
+          "label": "ت",
+          "text": "دعوى أقامتها البنت على أبويها الحقيقين تطلب منع معارضتهما لها في إختيار حاضنتها والإقامة معها وهي خالتها مُبيناً شروط صحة الدعوى وإجراءات المحكمة."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ثالثاً: قانون الأحوال الشخصية - س1 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-PERSONAL-STATUS-002",
+      "id": 2,
+      "type": "essay",
+      "text": "تكلم بإيجاز غير مخل عن أنواع العدة موضحاً المقصود بتحول العدة وما هي الحالات التي تستحق فيها الزوجة نفقة العدة مُعززاً إجابتك بمواد القانون.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ثالثاً: قانون الأحوال الشخصية - س2 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-PERSONAL-STATUS-003",
+      "id": 3,
+      "type": "essay",
+      "text": "من حقوق الزوج على زوجتهِ في تأديبها، تكلم عن هذا الحق، وماذا يقصد بهِ مُبيناً مصدرهُ وموقف المشرع والقضاء العراقي منهُ.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ثالثاً: قانون الأحوال الشخصية - س3 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-PERSONAL-STATUS-004",
+      "id": 4,
+      "type": "essay",
+      "text": "تكلم عن الحجر على المحكوم عليهِ بعقوبة جزائية، وإجراءاتهُ، مع كتابة نموذج حجة الحجر التي تُصدرها المحكمة بهذا الشأن.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ثالثاً: قانون الأحوال الشخصية - س4 (الدورة 42). موضوعه يتقاطع مع قانون العقوبات، وصُنّف ضمن الأحوال الشخصية بحسب عنوان الورقة."
+      }
+    }
+  ]
+}

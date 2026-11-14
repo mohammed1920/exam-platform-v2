@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "administrative-law",
+  "subjectName": "القضاء الإداري",
+  "questions": [
+    {
+      "uid": "JI-2014-ADMINISTRATIVE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "حدد اختصاص كل من محكمة القضاء الاداري، ومحكمة قضاء الموظفين، وما هي جهة الطعن في الاحكام الصادرة من المحكمتين، وممَ تتشكل محكمة الطعن. (خمس درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "(خامسا - القوانين الاخرى: عشر درجات) ضمن القسم المدني. مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}

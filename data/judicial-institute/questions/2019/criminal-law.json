@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "year": 2019,
+  "subjectId": "criminal-law",
+  "subjectName": "قانون العقوبات",
+  "questions": [
+    {
+      "uid": "JI-2019-CRIMINAL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "إذا إجتمعت في جريمة ظروف مشددة مع أعذار مُخففة أو ظروف تدعو الى إستعمال الرأفة ماذا تُطبق المحكمة في هذه الحالة عزز إجابتك بمثالين على الأقل من الواقع العملي.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "رابعاً: قانون العقوبات - س1 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-CRIMINAL-LAW-002",
+      "id": 2,
+      "type": "essay",
+      "text": "في حالة وقوع عدة جرائم ناتجة عن أفعال مُتعددة مرتبطة ببعضها إرتباط لا يقبل التجزئة ويجمع بينها وحدة الغرض، ما هو القرار الذي تصدرهُ محكمة الموضوع بشأن ذلك؟عزز إجابتك بمثالين على الأقل من الواقع العملي.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "رابعاً: قانون العقوبات - س2 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-CRIMINAL-LAW-003",
+      "id": 3,
+      "type": "essay",
+      "text": "أدى طلق ناري واحد أُطلق من بندقية صيدية الى قتل شخص وجرح آخرين، ما هي المادة العقابية التي يُحاكم عنها المتهم في هذه القضية وضح الأسباب القانونية التي تستند اليها المحكمة في ذلك.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "رابعاً: قانون العقوبات - س3 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-CRIMINAL-LAW-004",
+      "id": 4,
+      "type": "essay",
+      "text": "صباح يوم 8/9/2018 توجه صاحب مكتب صيرفة بدراجتهِ النارية الى مصرف الرافدين في الكرادة وسحب مبلغ من المال من حسابهِ في المصرف وأثناء عودتهُ تعقبهُ شخصان يستقلان دراجة نارية وتحت تهديد السلاح الناري تمكنا من سرقتهُ مما دفعهُ الى تعقبهما لغرض إستعادة المبلغ المسروق، فأطلق أحدهما النار عليهِ، ولم يصبهُ، بدورهِ صاحب المكتب أطلق النار بأتجاه السارقين من مسدس كان يحملهُ، وتمكن من قتل أحدهما، حدد مسؤولية صاحب مكتب الصيرفة عن حادث القتل في ضوء النصوص الواردة في قانون العقوبات، وما هو الحكم الذي تصدرهُ محكمة الموضوع في هذه الحالة.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "رابعاً: قانون العقوبات - س4 (الدورة 42)."
+      }
+    },
+    {
+      "uid": "JI-2019-CRIMINAL-LAW-005",
+      "id": 5,
+      "type": "essay",
+      "text": "تكلم عن كل مما يأتي مُعززاً إجابتك بمثالين على الأقل من الواقع العملي:-",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "العود في الجرائم."
+        },
+        {
+          "label": "ب",
+          "text": "القانون الأصلح للمتهم."
+        },
+        {
+          "label": "ت",
+          "text": "العلانية."
+        },
+        {
+          "label": "ث",
+          "text": "الجهل بالقانون."
+        },
+        {
+          "label": "ج",
+          "text": "المساهمة في الجريمة والاتفاق الجنائي والفرق بينهما."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "رابعاً: قانون العقوبات - س5 (الدورة 42)."
+      }
+    }
+  ]
+}

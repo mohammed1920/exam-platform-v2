@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "year": 2013,
+  "subjectId": "evidence-law",
+  "subjectName": "قانون الإثبات",
+  "questions": [
+    {
+      "uid": "JI-2013-EVIDENCE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "الفرع الثالث-4",
+          "text": "كيفية تأدية اليمين. وكيفية ادائها او النكول عنها من الاخرس والعاجز عن النطق. (درجة واحدة)"
+        },
+        {
+          "label": "الفرع الثالث-5",
+          "text": "بين انواع اليمين، وحالة رد اليمين. (درجة واحدة)"
+        },
+        {
+          "label": "الفرع الثالث-6",
+          "text": "بين حالات الاثبات بالكتابة، واستثناءات ذلك. (درجة واحدة)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الأول - الفرع الثالث (الفقرات 4 و5 و6) وفق ترقيم الورقة الأصلية. مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}

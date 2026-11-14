@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2013,
+  "subjectId": "judicial-organization",
+  "subjectName": "التنظيم القضائي",
+  "questions": [
+    {
+      "uid": "JI-2013-JUDICIAL-ORGANIZATION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "الفرع الرابع-1",
+          "text": "من هي الجهة التي تختص بنظر الدعاوى الانضباطية المقامة على القاضي، وما هي القرارات التي تتخذها عند انتهاء اجراءاتها والعقوبات الانضباطية التي تتخذها عند ثبوت الفعل المنسوب للقاضي، وما هي جهة الطعن بقرارات هذه الجهة. (اربع درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الثاني - الفرع الرابع وفق ترقيم الورقة الأصلية (القسم الجنائي). مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}

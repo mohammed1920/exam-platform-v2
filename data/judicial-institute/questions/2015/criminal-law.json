@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2015,
+  "subjectId": "criminal-law",
+  "subjectName": "قانون العقوبات",
+  "questions": [
+    {
+      "uid": "JI-2015-CRIMINAL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "ثانيا",
+          "text": "بين احكام (العفو) في قانون العقوبات رقم (111) لسنة 1969، وانواعه، والجهة المخولة بإصداره والاثار المترتبة عليه، وهل هناك جرائم استثناها دستور جمهورية العراق من احكام العفو. بين رأيك بصدور قوانين العفو بين فترة واخرى."
+        },
+        {
+          "label": "ثالثا",
+          "text": "بين خمس صور من الجرائم الماسة بأمن الدولة الداخلي"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الخامس - الفقرتان ثانيا وثالثا وفق ترقيم الورقة الأصلية."
+      }
+    }
+  ]
+}

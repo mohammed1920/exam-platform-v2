@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "year": 2008,
+  "subjectId": "criminal-procedure",
+  "subjectName": "أصول المحاكمات الجزائية",
+  "questions": [
+    {
+      "uid": "JI-2008-CRIMINAL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "في جريمة قتل مع سبق الاصرار ارتكبها (ص) عندما كان عمره (19) سنة . كيف تبدأ بمحاكمته تسلسل بذلك واذا ما توفرت ضده الادلة ما هو الحكم الذي تصدره حرر ذلك الحكم.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (القسم الثاني - الجزاء، الفرع الثاني). تصنيفه ضمن أصول المحاكمات الجزائية اجتهاد في التصنيف لأنه يتقاطع مع قانون العقوبات."
+      }
+    },
+    {
+      "uid": "JI-2008-CRIMINAL-PROCEDURE-002",
+      "id": 2,
+      "type": "essay",
+      "text": "بصفتك قاضي تحقيق المدائن ما هي القرارات التي خولك القانون اتخاذها عند اكتمال التحقيق في قضية ما. اكتب نموذج لكل من هذه القرارات وبين طرق الطعن فيه.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (القسم الثاني - الجزاء، الفرع الثالث)."
+      }
+    },
+    {
+      "uid": "JI-2008-CRIMINAL-PROCEDURE-003",
+      "id": 3,
+      "type": "essay",
+      "text": "بصفتك قاضي تحقيق البياع قدم المشتكي (ص) شكوى يتهم فيها (ك) بتزوير سند كمبيال ونسبه اليه بداعي انه عن قيمة سيارة اودعه في مديرية تنفيذ البياع ما هي اجراءات للتحقيق في هذه الشكوى والقرار الذي تصدره عند انتهاء التحقيق. اكتب ذلك.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (القسم الثاني - الجزاء، الفرع الخامس). تصنيفه ضمن أصول المحاكمات الجزائية اجتهاد في التصنيف لأنه يتقاطع مع قانون العقوبات."
+      }
+    }
+  ]
+}

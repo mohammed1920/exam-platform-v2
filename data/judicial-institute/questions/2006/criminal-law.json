@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "criminal-law",
+  "subjectName": "قانون العقوبات",
+  "questions": [
+    {
+      "uid": "JI-2006-CRIMINAL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "اورد قانون العقوبات رقم (111) لسنة 1969 اسباب الاباحة التي ان توافر احدها لا يعد الفعل جريمة يعاقب عليه القانون، اذكر هذه الاسباب.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CRIMINAL-LAW-002",
+      "id": 2,
+      "type": "essay",
+      "text": "عرف قانون العقوبات نوعين من العقوبات اهلية وتبعية تكلم عن هذه العقوبات.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CRIMINAL-LAW-003",
+      "id": 3,
+      "type": "essay",
+      "text": "ما هي اركان جريمة القتل العمد وما هي العقوبة المحددة لها قانوناً وما هي الحالات التي تشدد بها هذه العقوبة والحالات التي تخفف فيها العقوبة لهذه الجريمة.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CRIMINAL-LAW-004",
+      "id": 4,
+      "type": "essay",
+      "text": "تكلم عن جريمة الرشوة واركانها واطرافها وكيفية اثباتها وكيف يتم التصرف بالمبلغ الذي ضبط مع المتهم بعد تقديمه له كرشوة.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

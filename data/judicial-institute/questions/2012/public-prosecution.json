@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2012,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2012-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "الفرع الأول",
+          "text": "اورد قانون الادعاء العام رقم (159) لسنة 1979 احكام (الطعن لمصلحة القانون) بين باختصار هذه الاحكام من حيث اسباب هذا الطعن والجهة التي تتولى الطعن والمحكمة التي يقدم اليها، وقوع الاحكام التي يطعن بها، والمدة التي يقدم فيها والاثار المترتبة عليه."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": false,
+        "answerVerified": false,
+        "notes": "السؤال الخامس - الفرع الأول وفق ترقيم الورقة الأصلية. كلمة (وقوع) قد تكون (نوع)."
+      }
+    }
+  ]
+}

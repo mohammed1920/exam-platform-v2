@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2023,
+  "subjectId": "juvenile-law",
+  "subjectName": "قانون الأحداث",
+  "questions": [
+    {
+      "uid": "JI-2023-JUVENILE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "1 - ادعاء عام",
+          "text": "ممن يتألف مكتب دراسة الشخصية واختصاصه؟"
+        },
+        {
+          "label": "2 - ادعاء عام",
+          "text": "مدارس التأهيل؟"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "سابعاً: قانون رعاية الاحداث (الدورة 49 - دورة الادعاء العام)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "juvenile-law",
+  "subjectName": "قانون الأحداث",
+  "questions": [
+    {
+      "uid": "JI-2014-JUVENILE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "بين التدابير التي تفرضها المحكمة عند محاكمة الحدث وثبوت ارتكابه الفعل. (خمس درجات)."
+        },
+        {
+          "label": "ب",
+          "text": "احيل المتهم (س، غ، ب) تولد 5/11/2001 الى محكمة احداث الديوانية، عن سرقته طيور من دار جاره (م، ك، ت) بتاريخ 19/4/2013، اعترف المتهم بالفعل المنسوب اليه، بصفتك رئيس محكمة احداث الديوانية، ما هو الحكم الذي تصدره، وسند ذلك. (خمس درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "س4 (عشر درجات) تحت القسم الجزائي."
+      }
+    }
+  ]
+}

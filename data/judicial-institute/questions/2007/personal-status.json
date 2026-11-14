@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "year": 2007,
+  "subjectId": "personal-status",
+  "subjectName": "قانون الأحوال الشخصية",
+  "questions": [
+    {
+      "uid": "JI-2007-PERSONAL-STATUS-001",
+      "id": 1,
+      "type": "essay",
+      "text": "عرفت الشريعة الاسلامية وقانون الاحوال الشخصية العراقي نظام (الخلع) تكلم عن هذا النظام وهل يجبر الزوج في العراق على قبول طلب الزوجة بالخلع منه، وما هو مصير دعوى طلب المخالفة في هذه الحالة.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": false,
+        "answerVerified": false,
+        "notes": "كلمة (المخالفة) غير واضحة بسبب العلامة المائية وقد تكون (المخالعة)."
+      }
+    },
+    {
+      "uid": "JI-2007-PERSONAL-STATUS-002",
+      "id": 2,
+      "type": "essay",
+      "text": "ما هو سن الحضانة في احكام مواد قانون الاحوال الشخصية رقم 188 لسنة 1959 وما هو المعيار المعتمد في هذه الاحكام وما هي شروط الحاضنة، ولمن تكون الحاضنة عند وفاتها.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2007-PERSONAL-STATUS-003",
+      "id": 3,
+      "type": "essay",
+      "text": "نصت المادة الثانية من قانون الاحوال الشخصية على سريان احكامه على العراقيين الا من استثنى منهم لقانون خاص. اورد هذه الاستثناءات.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2007-PERSONAL-STATUS-004",
+      "id": 4,
+      "type": "essay",
+      "text": "توفي (ص) عن ام وزوجة وشقيقة وثلاثة اولاد قاصرين وبنت بالغة ما هو نصيب كل منهم من التركة وكيف تحتسب المسألة الارثية.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

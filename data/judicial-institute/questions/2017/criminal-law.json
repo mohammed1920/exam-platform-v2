@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2017,
+  "subjectId": "criminal-law",
+  "subjectName": "قانون العقوبات",
+  "questions": [
+    {
+      "uid": "JI-2017-CRIMINAL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "2",
+          "text": "وضح دور الخبرة الفنية في تحديد المسؤولية الجزائية، معززاً اجابتك بامثلة عملية."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الأول (20 درجة) - الفقرة 2 وفق ترقيم الورقة الأصلية. تصنيفها ضمن قانون العقوبات اجتهاد في التصنيف لأنها تتقاطع مع الإثبات."
+      }
+    }
+  ]
+}

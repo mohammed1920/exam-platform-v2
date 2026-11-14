@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2023,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2023-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "1 - ادعاء عام",
+          "text": "اهداف قانون الادعاء العام؟"
+        },
+        {
+          "label": "2 - ادعاء عام",
+          "text": "مهام الادعاء العام؟"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "سادساً: الادعاء العام (الدورة 49 - دورة الادعاء العام)."
+      }
+    }
+  ]
+}

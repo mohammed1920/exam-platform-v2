@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "criminal-procedure",
+  "subjectName": "أصول المحاكمات الجزائية",
+  "questions": [
+    {
+      "uid": "JI-2014-CRIMINAL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "ما هي الجرائم التي لا يجوز تحريك الدعوى الجزائية فيها الا بشكوى من المجنى عليه او من يقوم مقامه وسند ذلك. (خمس درجات)"
+        },
+        {
+          "label": "ب",
+          "text": "التفتيش اجراء تحقيقي خطير ان فيه المساس بالحرية الشخصية، مما دفع المشرع العراقي احاطة الموضوع بالعناية والتنظيم، تكلم عن الاحكام الواردة في التشريع العراقي عن التفتيش مشيرا الى السند القانوني. (خمس درجات)"
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "س3 تحت (القسم الجزائي: عشر درجات لكل سؤال)."
+      }
+    }
+  ]
+}

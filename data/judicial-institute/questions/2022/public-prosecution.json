@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "year": 2022,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2022-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "تكلم عن دور الادعاء العام في كل مما يأتي:",
+      "parts": [
+        {
+          "label": "1 - ادعاء عام",
+          "text": "محاكم الاحوال الشخصية ودعاوى القاصرين."
+        },
+        {
+          "label": "2 - ادعاء عام",
+          "text": "الدعاوى المدنية."
+        },
+        {
+          "label": "3 - ادعاء عام",
+          "text": "الطعن في الاحكام والقرارات."
+        },
+        {
+          "label": "4 - ادعاء عام",
+          "text": "تنفيذ الاحكام والقرارات والتدابير."
+        },
+        {
+          "label": "5 - ادعاء عام",
+          "text": "الاجراءات التي تكفل تلافي خرق او انتهاك القانون."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "سادسا: قانون الادعاء العام (الدورة 46 - دورة الادعاء العام)."
+      }
+    }
+  ]
+}

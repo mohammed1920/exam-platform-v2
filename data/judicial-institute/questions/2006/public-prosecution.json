@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2006-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "حدد قانون الادعاء العام رقم (159) لسنة 1979 مهام الادعاء العام وواجباته اذكر هذه المهام والواجبات.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

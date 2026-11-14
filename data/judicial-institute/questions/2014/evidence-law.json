@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "year": 2014,
+  "subjectId": "evidence-law",
+  "subjectName": "قانون الإثبات",
+  "questions": [
+    {
+      "uid": "JI-2014-EVIDENCE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "أ",
+          "text": "متى يمكن اثبات التصرف القانوني بالشهادة؟ بين الاستثناءات على ذلك."
+        },
+        {
+          "label": "ب",
+          "text": "عرف الاقرار، عدد انواع الاقرار، حجية الاقرار في الاثبات."
+        },
+        {
+          "label": "ت",
+          "text": "ما هي حالات رد الخبير؟"
+        },
+        {
+          "label": "ث",
+          "text": "كيف يتم اثبات عقد ايجار دار سكن؟"
+        },
+        {
+          "label": "ج",
+          "text": "عرف اليمين الحاسمة، وعدد اثنين من الفروق بين اليمين الحاسمة ويمين عدم الكذب بالإقرار."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "(رابعا - قانون الاثبات: عشر درجات) ضمن القسم المدني. مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}

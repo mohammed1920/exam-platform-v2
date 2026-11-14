@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "criminal-procedure",
+  "subjectName": "أصول المحاكمات الجزائية",
+  "questions": [
+    {
+      "uid": "JI-2006-CRIMINAL-PROCEDURE-001",
+      "id": 1,
+      "type": "essay",
+      "text": "كيف تحرك الدعاوى الجزائية، وما هي الجهة التي تحرك امامها وهل اشترط القانون ان تحرك من المجنى عليه او ممن يقوم مقامه وما هو الاجراء المطلوب لتحريك الدعاوى في الجرائم الواقعة خارج العراق.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CRIMINAL-PROCEDURE-002",
+      "id": 2,
+      "type": "essay",
+      "text": "التفتيش (التحري) من الاجراءات التي اجازها القانون، ما هي اهم احكامه ومن الذي يصدر امر التفتيش ولمن يوجد، ولمن تقدم الاعتراضات عن الاجراءات المخالفة للقانون في عملية التفتيش.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 2
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CRIMINAL-PROCEDURE-003",
+      "id": 3,
+      "type": "essay",
+      "text": "ما هي القواعد التي اوردها قانون اصول المحاكمات الجزائية والنصوص المكملة له في التوقيف وفي اخلاء السبيل وما هي الجرائم التي لم يجز اخلاء السبيل فيها وفي اي محكمة يطعن بقرار التوقيف وبقرار اخلاء السبيل.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

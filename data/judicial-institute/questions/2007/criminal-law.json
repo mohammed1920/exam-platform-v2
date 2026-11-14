@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "year": 2007,
+  "subjectId": "criminal-law",
+  "subjectName": "قانون العقوبات",
+  "questions": [
+    {
+      "uid": "JI-2007-CRIMINAL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "تكلم عن (الدفاع الشرعي) الذي عرفه قانون العقوبات العراق رقم (111) لسنة 1969 وهل يبيح القتل عمداً وفي اي الحالات.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (السؤال الثاني - قانون اصول المحاكمات الجزائية وقانون العقوبات) وفق ترقيم الورقة الأصلية."
+      }
+    },
+    {
+      "uid": "JI-2007-CRIMINAL-LAW-002",
+      "id": 2,
+      "type": "essay",
+      "text": "ماهي الاعذار القانونية وتطبيقاتها وما هو الفرق بينها وبين الظروف القضائية المخففة اضرب امثلة عملية على تطبيقات كل منهما.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (السؤال الثاني - قانون اصول المحاكمات الجزائية وقانون العقوبات) وفق ترقيم الورقة الأصلية."
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "year": 2006,
+  "subjectId": "civil-law",
+  "subjectName": "القانون المدني",
+  "questions": [
+    {
+      "uid": "JI-2006-CIVIL-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "استأجر (س) عقاراً من (ص) لاتخاذه محلاً تجارياً، وعند اخلائه طالب المستأجر المؤجر بقيمة التحسينات التي ادخلها على المأجور وقدرها بمبلغ عشرة ملايين دينار ما هو حكم القانون في هذه الدعوى؟ وكيف تسير فيها لو كنت القاضي الذي ينظرها؟",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    },
+    {
+      "uid": "JI-2006-CIVIL-LAW-002",
+      "id": 2,
+      "type": "essay",
+      "text": "اعتبر القانون المدني العراقي الاعمال غير المشروعة التي تقع على المال من مصادر الالتزام، اكتب عن ذلك واورد صوراً من تلك الاعمال التي يلزم مرتكبها بجبر الضرر.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": ""
+      }
+    }
+  ]
+}

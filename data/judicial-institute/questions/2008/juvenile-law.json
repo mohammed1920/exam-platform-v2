@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "year": 2008,
+  "subjectId": "juvenile-law",
+  "subjectName": "قانون الأحداث",
+  "questions": [
+    {
+      "uid": "JI-2008-JUVENILE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "حدد قانون الاحداث رقم (76) لسنة 1983 بعض الاجراءات الواجب اتخاذها بالنسبة للحدث الذي اتهم بارتكاب جناية وما هي اهم هذه الاجراءات ومن الذي يتولى القيام بها وهل هناك فرق بين الجزاءات التي توقع على الحدث وتلك التي توقع على البالغين وما هي.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 4
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "ضمن (القسم الثاني - الجزاء، الفرع الرابع)."
+      }
+    }
+  ]
+}

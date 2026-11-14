@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2016,
+  "subjectId": "juvenile-law",
+  "subjectName": "قانون الأحداث",
+  "questions": [
+    {
+      "uid": "JI-2016-JUVENILE-LAW-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "ثانيا",
+          "text": "تكلم عن المفهوم القانوني (للضم) في قانون رعاية الاحداث رقم 76 لسنة 1983 وما هي شروطه واجراءات المحكمة المختصة بشأنه والاثار التي تترتب عليه."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الخامس - الفقرة ثانيا وفق ترقيم الورقة الأصلية."
+      }
+    }
+  ]
+}

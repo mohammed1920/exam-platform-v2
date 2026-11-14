@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2017,
+  "subjectId": "judicial-organization",
+  "subjectName": "التنظيم القضائي",
+  "questions": [
+    {
+      "uid": "JI-2017-JUDICIAL-ORGANIZATION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "1",
+          "text": "تكلم عن اسباب واجراءات وآثار الشكوى من القضاة موضحا الفرق بينها وبين الدعوى الانضباطية التي تقام على القاضي."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 5
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الخامس (20 درجة) - الفقرة 1 وفق ترقيم الورقة الأصلية. مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}

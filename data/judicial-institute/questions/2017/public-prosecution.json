@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "year": 2017,
+  "subjectId": "public-prosecution",
+  "subjectName": "الادعاء العام",
+  "questions": [
+    {
+      "uid": "JI-2017-PUBLIC-PROSECUTION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "",
+      "parts": [
+        {
+          "label": "1",
+          "text": "تكلم عن دور عضو الادعاء العام المنسب امام دائرة اصلاح الكبار ودائرة اصلاح الاحداث في ضوء قانون الادعاء العام رقم 49 لسنة 2017."
+        }
+      ],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 1
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الأول (20 درجة) - الفقرة 1 وفق ترقيم الورقة الأصلية (الدورة 40)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "year": 2010,
+  "subjectId": "judicial-organization",
+  "subjectName": "التنظيم القضائي",
+  "questions": [
+    {
+      "uid": "JI-2010-JUDICIAL-ORGANIZATION-001",
+      "id": 1,
+      "type": "essay",
+      "text": "ماذا نعني بـ (استقلال القضاء) وماهي أهم مرتكزاته، وما دور السلطة القضائية ممثلة بـ (مجلس القضاء الاعلى) و(المحكمة الاتحادية العليا) والسلطتين التشريعية والتنفيذية في تأمين وحماية وترسيخ استقلال القضاء، وما هي العلاقة بن استقلال القضاء وسيادة القانون.",
+      "parts": [],
+      "options": [],
+      "answer": "",
+      "explanation": "",
+      "legalReferences": [],
+      "source": {
+        "questionNumber": 3
+      },
+      "verification": {
+        "textVerified": true,
+        "answerVerified": false,
+        "notes": "السؤال الثالث وفق ترقيم الورقة الأصلية. مادة خارج المواد السبع المعتمدة."
+      }
+    }
+  ]
+}
