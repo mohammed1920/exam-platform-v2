@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "data/judicial-institute/mizan_judicial_institute_2005-2024.zip"
+      - ".github/workflows/import-judicial-institute-archive.yml"
   workflow_dispatch:
 
 permissions:
