@@ -222,9 +222,9 @@
   align-items:start;
   gap:var(--mizan-space-3);
   padding:var(--mizan-space-5);
-  border:1px solid var(--mizan-border);
+  border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-card);
-  background:var(--mizan-card);
+  background:var(--mizan-gradient-lawyer-card);
   box-shadow:var(--mizan-shadow-card-rest);
   color:var(--mizan-text);
 }
@@ -235,10 +235,10 @@
   place-items:center;
   width:88px;
   height:88px;
-  border:1px solid var(--mizan-gold-tint-border);
+  border:1px solid var(--mizan-accent-tile-border);
   border-radius:var(--mizan-radius-xl);
   background:var(--mizan-accent-tile-bg);
-  color:var(--mizan-accent-tile-fg);
+  color:var(--mizan-gold-text);
   font-size:var(--mizan-font-size-3xl);
 }
  .lawyer-card-main{
@@ -250,7 +250,8 @@
   margin:0 0 var(--mizan-space-3);
   color:var(--mizan-heading);
   font-size:var(--mizan-font-size-heading-lg);
-  line-height:1.5;
+  line-height:1.35;
+  letter-spacing:0;
   overflow-wrap:anywhere;
 }
 .lawyer-verified{
@@ -318,9 +319,10 @@
   margin-top:var(--mizan-space-2);
 }
 .lawyer-card-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:var(--mizan-space-2);
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--mizan-space-3);
   margin-top:var(--mizan-space-4);
 }
 .lawyer-card-actions a,
@@ -329,8 +331,8 @@
   align-items:center;
   justify-content:center;
   gap:var(--mizan-space-2);
-  min-height:44px;
-  padding:var(--mizan-space-2) var(--mizan-space-4);
+  min-height:52px;
+  padding:var(--mizan-space-3) var(--mizan-space-4);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-accent-tile-bg);
@@ -444,6 +446,7 @@
   .lawyer-card-actions{
     grid-column:1/-1;
     grid-row:2;
+    margin-top:var(--mizan-space-3);
   }
   .lawyer-card h3{
     font-size:var(--mizan-font-size-md);
@@ -525,6 +528,10 @@
   box-shadow:var(--mizan-shadow-card-raised);
   outline:none;
 }
+.lawyer-card-icon i{color:var(--mizan-gold-text)}
+.lawyer-card-actions a,
+.lawyer-details-link{width:100%;min-width:0}
+.lawyer-card-actions .lawyer-card-contact{color:var(--mizan-success-700)}
 .lawyer-details-modal{
   position:fixed;
   inset:0;
@@ -851,7 +858,7 @@ html[data-theme="light"] .lawyer-identity-notice span{
   color:var(--mizan-muted);
 }
 html[data-theme="light"] .lawyer-card{
-  background:var(--mizan-gradient-surface-light);
+  background:var(--mizan-gradient-lawyer-card);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
   box-shadow:var(--mizan-shadow-card);
