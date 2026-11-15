@@ -393,7 +393,7 @@
     }
     list.innerHTML = rows.map(p => `
       <article class="lawyer-card" tabindex="0" role="button" data-lawyer-details="${esc(p.id)}" aria-label="عرض تفاصيل ${esc(p.name)}">
-        <div class="lawyer-card-icon"><i class="fas fa-user-tie"></i></div>
+        <div class="lawyer-card-icon" aria-hidden="true"><i class="fas fa-scale-balanced"></i></div>
         <div class="lawyer-card-main">
           <h3>${esc(p.name)}</h3>
           <div class="lawyer-card-meta">
@@ -401,7 +401,7 @@
             ${p.office ? '<p class="lawyer-card-office"><i class="fas fa-building"></i> '+esc(p.office)+'</p>' : ''}
             ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
           </div>
-          ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty"><span><i class="fas fa-scale-balanced"></i> '+esc(p.specializations[0])+'</span></div>' : ''}
+          ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty">'+p.specializations.map(s=>'<span><i class="fas fa-scale-balanced" aria-hidden="true"></i> '+esc(s)+'</span>').join('')+'</div>' : ''}
         </div>
         <span class="lawyer-verified"><i class="fas fa-circle-check"></i> معتمد</span>
         <div class="lawyer-card-actions">
