@@ -408,8 +408,8 @@
             ${p.office ? '<p class="lawyer-card-office"><i class="fas fa-building"></i> '+esc(p.office)+'</p>' : ''}
             ${p.address ? '<p class="lawyer-card-address"><i class="fas fa-map-pin"></i> '+esc(p.address)+'</p>' : ''}
           </div>
-          ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty">'+p.specializations.map(s=>'<span><i class="fas fa-scale-balanced" aria-hidden="true"></i> '+esc(s)+'</span>').join('')+'</div>' : ''}
         </div>
+        ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty" aria-label="الاختصاصات">'+p.specializations.map(s=>'<span>'+esc(s)+'</span>').join('')+'</div>' : ''}
         <div class="lawyer-card-actions${p.phone ? '' : ' has-no-phone'}">
           <a class="lawyer-details-link" href="#" data-lawyer-action="details" aria-label="عرض ملف ${esc(p.name)}"><i class="fas fa-folder-open" aria-hidden="true"></i><span>عرض الملف</span></a>
           ${p.phone ? '<a class="lawyer-card-call" href="tel:'+esc(p.phone)+'" data-lawyer-call aria-label="الاتصال بالمحامي" title="اتصال"><i class="fas fa-phone" aria-hidden="true"></i></a>' : ''}
