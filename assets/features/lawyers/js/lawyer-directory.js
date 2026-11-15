@@ -12,7 +12,7 @@
   }[m]));
 
   function toWhatsAppNumber(value) {
-    let number = String(value ?? '').replace(/\\D/g, '');
+    let number = String(value ?? '').replace(/\D/g, '');
     if (number.startsWith('00')) number = number.slice(2);
     if (number.startsWith('0')) return '964' + number.slice(1);
     if (number.startsWith('7')) return '964' + number;
@@ -410,7 +410,7 @@
           </div>
           ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty">'+p.specializations.map(s=>'<span><i class="fas fa-scale-balanced" aria-hidden="true"></i> '+esc(s)+'</span>').join('')+'</div>' : ''}
         </div>
-        <div class="lawyer-card-actions">
+        <div class="lawyer-card-actions${p.phone ? '' : ' has-no-phone'}">
           <a class="lawyer-details-link" href="#" data-lawyer-action="details" aria-label="عرض ملف ${esc(p.name)}"><i class="fas fa-folder-open" aria-hidden="true"></i><span>عرض الملف</span></a>
           ${p.phone ? '<a class="lawyer-card-contact lawyer-card-call" href="tel:'+esc(p.phone)+'" data-lawyer-call aria-label="الاتصال بالمحامي" title="اتصال"><i class="fas fa-phone" aria-hidden="true"></i></a>' : ''}
           ${p.phone && toWhatsAppNumber(p.phone) ? '<a class="lawyer-card-whatsapp" href="https://wa.me/'+esc(toWhatsAppNumber(p.phone))+'" target="_blank" rel="noopener noreferrer" data-lawyer-whatsapp aria-label="مراسلة المحامي عبر واتساب" title="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>' : ''}
