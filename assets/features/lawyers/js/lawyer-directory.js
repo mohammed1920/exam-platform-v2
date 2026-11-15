@@ -1,4 +1,4 @@
-/* دليل المحامين: طلبات الإضافة + عرض الملفات المعتمدة. */
+/* دليل المحامين: طلبات الإضافة وعرض ملفات المحامين. */
 (function () {
   'use strict';
 
@@ -412,7 +412,7 @@
         </div>
         <div class="lawyer-card-actions${p.phone ? '' : ' has-no-phone'}">
           <a class="lawyer-details-link" href="#" data-lawyer-action="details" aria-label="عرض ملف ${esc(p.name)}"><i class="fas fa-folder-open" aria-hidden="true"></i><span>عرض الملف</span></a>
-          ${p.phone ? '<a class="lawyer-card-contact lawyer-card-call" href="tel:'+esc(p.phone)+'" data-lawyer-call aria-label="الاتصال بالمحامي" title="اتصال"><i class="fas fa-phone" aria-hidden="true"></i></a>' : ''}
+          ${p.phone ? '<a class="lawyer-card-call" href="tel:'+esc(p.phone)+'" data-lawyer-call aria-label="الاتصال بالمحامي" title="اتصال"><i class="fas fa-phone" aria-hidden="true"></i></a>' : ''}
           ${p.phone && toWhatsAppNumber(p.phone) ? '<a class="lawyer-card-whatsapp" href="https://wa.me/'+esc(toWhatsAppNumber(p.phone))+'" target="_blank" rel="noopener noreferrer" data-lawyer-whatsapp aria-label="مراسلة المحامي عبر واتساب" title="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>' : ''}
         </div>
       </article>`).join('');
@@ -440,7 +440,7 @@
     content.innerHTML = `
       <div class="lawyer-details-head">
         <div class="lawyer-details-icon"><i class="fas fa-user-tie"></i></div>
-        <div><span>بيانات محامٍ معتمدة</span><h2 id="lawyer-details-title">${esc(profile.name || 'المحامي')}</h2></div>
+        <div><span>ملف المحامي</span><h2 id="lawyer-details-title">${esc(profile.name || 'المحامي')}</h2></div>
       </div>
       <div class="lawyer-details-grid">
         ${location ? '<div class="lawyer-detail-item"><span>الموقع</span><strong><i class="fas fa-location-dot"></i> '+esc(location)+'</strong></div>' : ''}
