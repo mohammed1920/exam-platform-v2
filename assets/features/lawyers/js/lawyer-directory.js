@@ -11,6 +11,14 @@
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
   }[m]));
 
+  function toWhatsAppNumber(value) {
+    let number = String(value ?? '').replace(/\\D/g, '');
+    if (number.startsWith('00')) number = number.slice(2);
+    if (number.startsWith('0')) return '964' + number.slice(1);
+    if (number.startsWith('7')) return '964' + number;
+    return number;
+  }
+
   function notify(title, message) {
     if (window.app?.showHomeNotice) window.app.showHomeNotice(title, message);
     else alert(title + '\n' + message);
@@ -309,7 +317,6 @@
           <span class="lawyer-skeleton-line medium"></span>
           <span class="lawyer-skeleton-line short"></span>
         </div>
-        <span class="lawyer-skeleton-badge"></span>
         <div class="lawyer-skeleton-actions">
           <span class="lawyer-skeleton-action"></span>
           <span class="lawyer-skeleton-action"></span>
@@ -403,15 +410,15 @@
           </div>
           ${(p.specializations||[]).length ? '<div class="lawyer-tags lawyer-card-specialty">'+p.specializations.map(s=>'<span><i class="fas fa-scale-balanced" aria-hidden="true"></i> '+esc(s)+'</span>').join('')+'</div>' : ''}
         </div>
-        <span class="lawyer-verified"><i class="fas fa-circle-check"></i> معتمد</span>
         <div class="lawyer-card-actions">
-          ${p.phone ? '<a class="lawyer-card-contact" href="tel:'+esc(p.phone)+'" data-lawyer-call><i class="fas fa-phone"></i> اتصال</a>' : ''}
-          <span class="lawyer-details-link"><i class="fas fa-circle-info"></i> عرض التفاصيل</span>
+          <a class="lawyer-details-link" href="#" data-lawyer-action="details" aria-label="عرض ملف ${esc(p.name)}"><i class="fas fa-folder-open" aria-hidden="true"></i><span>عرض الملف</span></a>
+          ${p.phone ? '<a class="lawyer-card-contact lawyer-card-call" href="tel:'+esc(p.phone)+'" data-lawyer-call aria-label="الاتصال بالمحامي" title="اتصال"><i class="fas fa-phone" aria-hidden="true"></i></a>' : ''}
+          ${p.phone && toWhatsAppNumber(p.phone) ? '<a class="lawyer-card-whatsapp" href="https://wa.me/'+esc(toWhatsAppNumber(p.phone))+'" target="_blank" rel="noopener noreferrer" data-lawyer-whatsapp aria-label="مراسلة المحامي عبر واتساب" title="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>' : ''}
         </div>
       </article>`).join('');
     list.querySelectorAll('[data-lawyer-details]').forEach(card => {
       card.addEventListener('click', event => {
-        if (event.target.closest('a[data-lawyer-call]')) return;
+        if (event.target.closest('a[data-lawyer-call], a[data-lawyer-whatsapp], a[data-lawyer-action="details"]')) { if (event.target.closest('a[data-lawyer-action="details"]')) event.preventDefault(); else return; }
         openLawyerDetails(profiles.find(p => p.id === card.dataset.lawyerDetails));
       });
       card.addEventListener('keydown', event => {
