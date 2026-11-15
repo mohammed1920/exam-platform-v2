@@ -123,10 +123,10 @@
   gap:13px;
 }
 
-/* Skeleton mirrors the real lawyer card grid, spacing, icon, verification badge and actions. */
+/* Skeleton mirrors the lawyer card grid, spacing, icon and actions. */
 .lawyer-skeleton-card{
   display:grid;
-  grid-template-columns:auto minmax(0,1fr) 88px;
+  grid-template-columns:88px minmax(0,1fr);
   direction:rtl;
   align-items:start;
   gap:var(--mizan-space-3);
@@ -178,9 +178,6 @@
   grid-row:1;
   width:72px;
   height:28px;
-  border:1px solid var(--mizan-gold-tint-border);
-  border-radius:var(--mizan-radius-pill);
-  background-color:var(--mizan-gold-tint);
 }
 .lawyer-skeleton-actions{
   grid-column:1 / -1;
@@ -254,23 +251,6 @@
   letter-spacing:0;
   overflow-wrap:anywhere;
 }
-.lawyer-verified{
-  grid-column:3;
-  grid-row:1;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  align-self:start;
-  gap:var(--mizan-space-1);
-  padding:var(--mizan-space-2) var(--mizan-space-3);
-  border:1px solid var(--mizan-gold-tint-border);
-  border-radius:var(--mizan-radius-pill);
-  background:var(--mizan-gold-tint);
-  color:var(--mizan-gold-text);
-  font-size:var(--mizan-font-size-2xs);
-  font-weight:800;
-  white-space:nowrap;
-}
 .lawyer-card-meta{
   display:grid;
   gap:var(--mizan-space-1);
@@ -321,9 +301,33 @@
 .lawyer-card-actions{
   grid-column:1/-1;
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--mizan-space-3);
+  grid-template-columns:minmax(0,1fr) 64px 64px;
+  align-items:stretch;
+  gap:var(--mizan-space-2);
   margin-top:var(--mizan-space-4);
+}
+.lawyer-card-actions.has-no-phone{grid-template-columns:minmax(0,1fr)}
+.lawyer-card-actions .lawyer-card-call,
+.lawyer-card-actions .lawyer-card-whatsapp{
+  width:64px;
+  min-width:64px;
+  min-height:56px;
+  padding:0;
+  font-size:var(--mizan-font-size-xl);
+}
+.lawyer-card-actions .lawyer-card-call{
+  background:var(--mizan-accent-tile-bg);
+  border-color:var(--mizan-accent-tile-border);
+  color:var(--mizan-heading);
+}
+.lawyer-card-actions .lawyer-card-whatsapp{
+  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 9%,var(--mizan-accent-tile-bg));
+  border-color:color-mix(in srgb,var(--mizan-brand-whatsapp) 28%,var(--mizan-border));
+  color:var(--mizan-brand-whatsapp);
+}
+.lawyer-card-actions .lawyer-card-whatsapp:hover{
+  background:color-mix(in srgb,var(--mizan-brand-whatsapp) 16%,var(--mizan-accent-tile-bg));
+  border-color:var(--mizan-brand-whatsapp);
 }
 .lawyer-card-actions a,
 .lawyer-details-link{
@@ -412,7 +416,7 @@
     padding:var(--mizan-space-2) var(--mizan-space-3) 25px;
   }
   .lawyer-card{
-    grid-template-columns:64px minmax(0,1fr) auto;
+    grid-template-columns:64px minmax(0,1fr);
     gap:var(--mizan-space-2);
     padding:var(--mizan-space-3);
   }
@@ -422,7 +426,6 @@
     padding:var(--mizan-space-3);
   }
   .lawyer-skeleton-icon{width:64px;height:64px}
-  .lawyer-skeleton-badge{width:48px;height:22px}
   .lawyer-skeleton-actions{gap:var(--mizan-space-1)}
   .lawyer-skeleton-action{width:76px;height:32px}
   .lawyer-card-icon{
@@ -436,13 +439,6 @@
     grid-column:2;
     grid-row:1;
   }
-  .lawyer-verified{
-    grid-column:3;
-    grid-row:1;
-    justify-self:start;
-    align-self:start;
-    padding:var(--mizan-space-1) var(--mizan-space-2);
-  }
   .lawyer-card-actions{
     grid-column:1/-1;
     grid-row:2;
@@ -453,7 +449,15 @@
   }
   .lawyer-card-actions{
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:minmax(0,1fr) 56px 56px;
+    gap:var(--mizan-space-2);
+  }
+  .lawyer-card-actions.has-no-phone{grid-template-columns:minmax(0,1fr)}
+  .lawyer-card-actions .lawyer-card-call,
+  .lawyer-card-actions .lawyer-card-whatsapp{
+    width:56px;
+    min-width:56px;
+    min-height:52px;
   }
   .lawyer-card-actions a,
   .lawyer-card-actions .lawyer-details-link{
