@@ -467,7 +467,7 @@
 
   function openLawyerDetails(profile) {
     if (!renderLawyerProfile(profile)) return;
-    window.app?.navigateTo('lawyer-profile', {lawyerId:profile.id});
+    window.app?.navigateTo('lawyer-profile', {lawyerId:profile.id, lawyerReturnScrollY:window.scrollY});
   }
 
   function restoreLawyerProfile(lawyerId) {
