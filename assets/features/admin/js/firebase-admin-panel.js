@@ -166,8 +166,8 @@
       if(cards.length<2)return;
       const accessCard=cards[0],managementCard=cards[1];
       const form=managementCard.querySelector('form');
-      const table=managementCard.querySelector('.firebase-admin-table-wrap');
-      if(!form||!table)return;
+      const records=managementCard.querySelector('.firebase-admin-record-list, .firebase-admin-table-wrap');
+      if(!form||!records)return;
       const heading=managementCard.querySelector('.firebase-admin-card-head');
       const tabs=document.createElement('div');
       tabs.className='firebase-admin-inner-tabs';
@@ -203,7 +203,7 @@
       if(libraryHeading.querySelector('h3'))libraryHeading.querySelector('h3').textContent=def.titles[2];
       const description=libraryHeading.querySelector('span');
       if(description)description.textContent='إدارة المحتوى المنشور والمسودات';
-      libraryCard.append(libraryHeading,table);
+      libraryCard.append(libraryHeading,records);
       libraryPanel.append(libraryCard);
       panels.append(accessPanel,createPanel,libraryPanel);
       def.labels.forEach(([key,label],index)=>{
