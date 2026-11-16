@@ -133,7 +133,7 @@
         if (!document.querySelector('link[data-lawyer-directory-css]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'assets/features/lawyers/css/lawyer-directory.css?v=3.8';
+          css.href = 'assets/features/lawyers/css/lawyer-directory.css?v=3.9';
           css.dataset.lawyerDirectoryCss = '1';
           document.head.appendChild(css);
         }
