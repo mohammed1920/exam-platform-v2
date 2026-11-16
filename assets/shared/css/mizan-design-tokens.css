@@ -438,3 +438,11 @@
   --mizan-admin-button-margin:var(--mizan-space-0-5);
   --mizan-admin-button-line-height:var(--mizan-line-height-heading);
 }
+
+/* Shared admin-button interaction states. */
+:root{
+  --mizan-admin-button-hover-transform:translateY(-1px);
+  --mizan-admin-button-active-transform:translateY(0) scale(.97);
+  --mizan-admin-button-focus-outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  --mizan-admin-button-focus-offset:var(--mizan-focus-ring-offset);
+}
