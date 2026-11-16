@@ -619,3 +619,96 @@ html[data-theme="light"] .firebase-admin-tab{
 @media(prefers-reduced-motion:reduce){
   .firebase-admin-inner-tab{transition:none}
 }
+
+
+/* Card-based records: keep every field and action visible without horizontal scrolling. */
+.firebase-admin-inner-panel .firebase-admin-table-wrap{
+  overflow:visible;
+  max-width:100%;
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap table{
+  display:block;
+  width:100%;
+  min-width:0;
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap thead{display:none}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--mizan-space-3);
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:var(--mizan-space-3);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-lg);
+  background:var(--mizan-surface);
+  box-shadow:var(--mizan-shadow-sm);
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record:hover{
+  background:var(--mizan-surface);
+  border-color:var(--mizan-accent-tile-border);
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record>td{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--mizan-space-1);
+  width:100%;
+  min-width:0;
+  padding:var(--mizan-space-2) var(--mizan-space-1);
+  border:0;
+  border-bottom:1px solid var(--mizan-border);
+  color:var(--mizan-text);
+  white-space:normal;
+  overflow-wrap:anywhere;
+  text-align:right;
+  line-height:1.7;
+}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record>td:last-child{border-bottom:0}
+.firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record>td::before{
+  content:attr(data-label);
+  color:var(--mizan-muted);
+  font-size:var(--mizan-font-size-micro);
+  font-weight:800;
+}
+.firebase-admin-record-sub{
+  display:block;
+  max-width:100%;
+  color:var(--mizan-muted);
+  font-size:var(--mizan-font-size-2xs);
+  overflow-wrap:anywhere;
+}
+.firebase-admin-record-content{
+  width:100%;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:var(--mizan-text);
+  line-height:1.9;
+}
+.firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--mizan-space-2);
+  width:100%;
+}
+.firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions button{
+  flex:1 1 110px;
+  min-width:0;
+  min-height:42px;
+  white-space:normal;
+}
+@media(max-width:760px){
+  .firebase-admin-inner-panel .firebase-admin-table-wrap tbody{
+    grid-template-columns:minmax(0,1fr);
+    gap:var(--mizan-space-2);
+  }
+  .firebase-admin-inner-panel .firebase-admin-table-wrap tbody tr.firebase-admin-record{
+    padding:var(--mizan-space-3);
+  }
+  .firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions button{
+    flex:1 1 100%;
+  }
+}
