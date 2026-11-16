@@ -751,3 +751,55 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-nav-count[hidden],.firebase-admin-shortcut-count[hidden],.firebase-admin-inline-count[hidden]{display:none!important}
 .firebase-admin-shortcut-count{display:inline-grid;place-items:center;min-width:19px;height:19px;margin-inline-start:5px;padding:0 5px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
 .firebase-admin-inline-count{display:inline-grid;place-items:center;min-width:21px;height:21px;margin-inline-start:6px;padding:0 6px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
+
+/* Petition template editor actions — clearer hierarchy and comfortable touch targets. */
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:var(--mizan-space-3);
+  width:100%;
+  margin-top:var(--mizan-space-2);
+}
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  min-height:54px;
+  padding:var(--mizan-space-3) var(--mizan-space-4);
+  border-radius:var(--mizan-radius-md);
+  font-size:var(--mizan-font-size-xs);
+  font-weight:800;
+  line-height:1.45;
+  text-align:center;
+  white-space:normal;
+  transition:transform var(--mizan-duration-fast),background-color var(--mizan-duration-fast),border-color var(--mizan-duration-fast);
+}
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions button:first-child{
+  border:1px solid var(--mizan-primary-600);
+  background:var(--mizan-primary-600);
+  color:var(--mizan-white);
+  box-shadow:var(--mizan-shadow-sm);
+}
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions button:last-child{
+  border:1px solid var(--mizan-border);
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+}
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions button:hover{
+  transform:translateY(-1px);
+}
+.procedures-admin-management #fa-petition-form .lawyer-admin-actions button:focus-visible{
+  outline:var(--mizan-focus-ring-width,3px) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset,2px);
+}
+@media(max-width:600px){
+  .procedures-admin-management #fa-petition-form .lawyer-admin-actions{
+    gap:var(--mizan-space-2);
+  }
+  .procedures-admin-management #fa-petition-form .lawyer-admin-actions button{
+    min-height:52px;
+    padding:var(--mizan-space-2) var(--mizan-space-3);
+    font-size:var(--mizan-font-size-2xs);
+  }
+}
