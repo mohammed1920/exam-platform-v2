@@ -1090,6 +1090,9 @@ class ExamApp {
   }
 
   navigateTo(viewId, params = {}, pushState = true) {
+    if(viewId!=='firebase-admin'){
+      window.dispatchEvent(new CustomEvent('mizan:before-navigate',{detail:{viewId}}));
+    }
     document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
     const home = document.querySelector('.platform-home');
     if (home) home.style.display = viewId === 'home' ? '' : 'none';
