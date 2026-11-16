@@ -1040,3 +1040,15 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-admin-button-tone-bg-mix:13%;
   --mizan-admin-button-tone-bg-hover-mix:24%;
 }
+
+/* Executive admin sidebar button roles, including navigation and exit states. */
+:root{
+  --mizan-admin-nav-item-fg:color-mix(in srgb,var(--mizan-white) 83%,transparent);
+  --mizan-admin-nav-item-hover-bg:color-mix(in srgb,var(--mizan-white) 8%,transparent);
+  --mizan-admin-nav-item-active-border:color-mix(in srgb,var(--mizan-gold-primary) 48%,transparent);
+  --mizan-admin-nav-item-active-bg:linear-gradient(105deg,color-mix(in srgb,var(--mizan-gold-primary) 19%,transparent),color-mix(in srgb,var(--mizan-primary-700) 42%,transparent));
+  --mizan-admin-nav-count-bg:color-mix(in srgb,var(--mizan-white) 12%,transparent);
+  --mizan-admin-exit-border:color-mix(in srgb,var(--mizan-gold-primary) 35%,transparent);
+  --mizan-admin-exit-bg:color-mix(in srgb,var(--mizan-white) 5%,transparent);
+  --mizan-admin-exit-hover-bg:color-mix(in srgb,var(--mizan-gold-primary) 14%,transparent);
+}
