@@ -345,7 +345,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
      }
      loadDashboard();
    }
-  function closePanel(){
+  function closePanel(fromNavigation=false){
      if(!panelOpen)return;
      const routed=history.state?.view==='firebase-admin';
      const footer=document.querySelector('footer');
@@ -354,7 +354,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
      els.navToggle?.setAttribute('aria-expanded','false');
      if(footer)footer.hidden=false;
      panelOpen=false;
-     if(routed&&window.app?.navigateTo){
+     if(routed&&!fromNavigation&&window.app?.navigateTo){
        window.app.navigateTo('home');
        restoreMainViews();
        return;
@@ -847,6 +847,6 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!allowed&&panelOpen)closePanel();
     if(allowed&&els.welcome)els.welcome.textContent=`مرحباً ${user.displayName||user.email||'المدير'} — تم التحقق من صلاحية الإدارة.`;
   }
-  function install(){buildUI();publishAdminState();if(!window.publicAuth)return;window.publicAuth.whenReady().then(syncAdminState).catch(syncAdminState);window.addEventListener('public-auth-state-changed',syncAdminState);}
+  function install(){buildUI();publishAdminState();window.addEventListener('mizan:before-navigate',event=>{if(event.detail?.viewId!=='firebase-admin'&&panelOpen)closePanel(true);});if(!window.publicAuth)return;window.publicAuth.whenReady().then(syncAdminState).catch(syncAdminState);window.addEventListener('public-auth-state-changed',syncAdminState);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
