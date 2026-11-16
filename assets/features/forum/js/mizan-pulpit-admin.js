@@ -24,77 +24,24 @@
   function build(){
     if(ready)return;
 
-    if(!document.getElementById('mizan-admin-management-style')){
-      const style=document.createElement('style');
-      style.id='mizan-admin-management-style';
-      style.textContent=`
-        html[data-theme="light"] .mizan-admin-tabs button{background:var(--mizan-neutral-50);color:var(--mizan-deco-blue-27);border-color:var(--mizan-deco-blue-88)}
-        html[data-theme="light"] .mizan-admin-tabs button.active{background:var(--mizan-deco-amber-96);border-color:var(--mizan-deco-amber-63)}
-        html[data-theme="light"] .mizan-admin-stat{background:var(--mizan-white);border-color:var(--mizan-deco-amber-80)}
-        html[data-theme="light"] .mizan-admin-modal{background:color-mix(in srgb,var(--mizan-primary-900) 42%,transparent)}
-        html[data-theme="light"] .mizan-admin-modal-box{background:var(--mizan-white);color:var(--mizan-deco-blue-17);border-color:var(--mizan-deco-blue-88);box-shadow:0 20px 60px color-mix(in srgb,var(--mizan-primary-900) 18%,transparent)}
-        html[data-theme="light"] .mizan-admin-grid input,html[data-theme="light"] .mizan-admin-grid select,html[data-theme="light"] .mizan-admin-grid textarea{background:var(--mizan-white);color:var(--mizan-deco-blue-17);border-color:var(--mizan-deco-blue-88)}
-        html[data-theme="light"] .mizan-admin-content,html[data-theme="light"] .mizan-admin-detail-item{background:var(--mizan-neutral-50)}
-        .mizan-admin-head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-        .mizan-admin-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mizan-space-2);margin:16px 0;padding:var(--mizan-space-2);border:1px solid var(--mizan-glass-white-060);border-radius:var(--mizan-radius-md);background:var(--mizan-glass-white-025)}
-        .mizan-admin-tabs button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;border:1px solid transparent;background:transparent;color:var(--mizan-muted);border-radius:var(--mizan-radius-sm);padding:var(--mizan-space-2) var(--mizan-space-3);cursor:pointer;font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:700;line-height:1.4;text-align:center;transition:var(--mizan-transition-standard)}
-        .mizan-admin-tabs button:hover{background:var(--mizan-glass-white-060);color:var(--mizan-text-dark)}
-        .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-primary-500-border);color:var(--mizan-accent-tile-fg);box-shadow:var(--mizan-shadow-lawyer-admin-card)}
-        .mizan-admin-tab-count{display:inline-grid;place-items:center;min-width:24px;min-height:24px;margin-inline-start:8px;padding:0 6px;border-radius:var(--mizan-radius-pill);background:var(--mizan-glass-white-060);color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-        .mizan-admin-tabs button.active .mizan-admin-tab-count{background:var(--mizan-primary-500-border);color:var(--mizan-text-dark)}
-        html[data-theme="light"] .mizan-admin-tab-count{background:var(--mizan-bg-light);color:var(--mizan-heading)}
-        html[data-theme="light"] .mizan-admin-tabs button.active .mizan-admin-tab-count{background:var(--mizan-primary-500);color:var(--mizan-white)}
-        html[data-theme="light"] .mizan-admin-tabs{background:var(--mizan-surface);border-color:var(--mizan-border-light)}
-        html[data-theme="light"] .mizan-admin-tabs button{background:transparent;color:var(--mizan-muted-light);border-color:transparent}
-        html[data-theme="light"] .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-accent-tile-fg);color:var(--mizan-primary-700)}
-        @media(max-width:650px){.mizan-admin-tabs{grid-template-columns:1fr;gap:var(--mizan-space-1)}.mizan-admin-tabs button{justify-content:space-between;text-align:right;padding:var(--mizan-space-2) var(--mizan-space-3)}}
-        .mizan-admin-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:14px 0}
-        .mizan-admin-stat{border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 18%,transparent);border-radius:14px;padding:14px;background:color-mix(in srgb,var(--mizan-white) 3.5%,transparent);text-align:center}
-        .mizan-admin-stat strong{display:block;font-size:25px;margin-bottom:4px}
-        .mizan-admin-stat span{font-size:12px;opacity:.78}
-        .mizan-admin-empty{text-align:center;padding:28px!important;opacity:.75}
-        .mizan-admin-meta{line-height:1.7}
-        .mizan-admin-meta small{opacity:.7}
-        .mizan-admin-reason{margin-top:5px;padding:6px 8px;border-radius:8px;background:color-mix(in srgb,var(--mizan-deco-rose-51) 8%,transparent);font-size:12px}
-        .mizan-admin-modal{position:fixed;inset:0;z-index:99999;background:color-mix(in srgb,var(--mizan-black) 72%,transparent);display:flex;align-items:center;justify-content:center;padding:16px}
-        .mizan-admin-modal[hidden]{display:none}
-        .mizan-admin-modal-box{width:min(850px,100%);max-height:94vh;overflow:auto;background:var(--card-bg,var(--mizan-deco-blue-11));border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 35%,transparent);border-radius:18px;padding:20px;box-shadow:0 20px 60px color-mix(in srgb,var(--mizan-black) 45%,transparent);direction:rtl}
-        .mizan-admin-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-        .mizan-admin-modal-head h3{margin:0}
-        .mizan-admin-modal-head button{border:0;background:transparent;color:inherit;font-size:28px;cursor:pointer}
-        .mizan-admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-        .mizan-admin-grid label{display:flex;flex-direction:column;gap:6px;font-weight:600}
-        .mizan-admin-grid .full{grid-column:1/-1}
-        .mizan-admin-grid input,.mizan-admin-grid select,.mizan-admin-grid textarea{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:10px;border:1px solid color-mix(in srgb,var(--mizan-white) 14%,transparent);background:color-mix(in srgb,var(--mizan-white) 5%,transparent);color:inherit;font:inherit}
-        .mizan-admin-grid textarea{resize:vertical;min-height:130px}
-        .mizan-admin-content{white-space:pre-wrap;line-height:2;background:color-mix(in srgb,var(--mizan-white) 3.5%,transparent);border-radius:12px;padding:15px;margin-top:10px;max-height:420px;overflow:auto}
-        .mizan-admin-detail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
-        .mizan-admin-detail-item{padding:10px;border-radius:10px;background:color-mix(in srgb,var(--mizan-white) 4%,transparent)}
-        .mizan-admin-detail-item b{display:block;font-size:12px;opacity:.7;margin-bottom:3px}
-        .mizan-admin-modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
-        .mizan-admin-modal-actions .btn{cursor:pointer}
-        .mizan-admin-direct-modal{}
-        @media(max-width:850px){.mizan-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-        @media(max-width:650px){.mizan-admin-grid,.mizan-admin-detail-list{grid-template-columns:1fr}.mizan-admin-grid .full{grid-column:auto}.mizan-admin-head-actions{align-items:flex-start;flex-direction:column}.mizan-admin-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}.mizan-admin-tabs button{white-space:nowrap}}
-      `;
-      document.head.appendChild(style);
-    }
-
     const section=document.getElementById('firebase-admin-section');
     const menu=document.getElementById('fa-admin-home');
-    if(!section||!menu)return;
+    const navigation=document.getElementById('fa-admin-navigation');
+    if(!section||!menu||!navigation)return;
 
     ready=true;
 
-    if(!document.querySelector('[data-mizan-admin-card]')){
-      const card=document.createElement('button');
-      card.type='button';
-      card.className='firebase-admin-menu-card mizan-admin-menu-card';
-      card.dataset.mizanAdminCard='1';
-      card.innerHTML='<i class="fas fa-feather-pointed"></i><strong>منبر ميزان</strong><span>إدارة المساهمين والمقالات والأبحاث والنشر</span>';
-      menu.querySelector('.firebase-admin-menu')?.appendChild(card);
-      card.onclick=()=>open();
+    if(!document.getElementById('mizan-admin-nav-item')){
+      const item=document.createElement('button');
+      item.type='button';
+      item.id='mizan-admin-nav-item';
+      item.className='firebase-admin-nav-item mizan-admin-nav-item';
+      item.dataset.mizanAdminCard='1';
+      item.innerHTML='<i class="fas fa-feather-pointed" aria-hidden="true"></i><span>منبر ميزان</span>';
+      item.addEventListener('click',open);
+      navigation.appendChild(item);
     }
+    section.querySelectorAll('[data-mizan-open]').forEach(button=>button.addEventListener('click',open));
 
     if(document.getElementById('mizan-admin-view'))return;
 
@@ -205,7 +152,7 @@
         <div class="mizan-admin-modal-box">
           <div class="mizan-admin-modal-head"><h3>رفض المشاركة</h3><button type="button" data-mizan-close="mizan-reject-modal">×</button></div>
           <p>أدخل سبب الرفض ليظهر محفوظاً في لوحة الإدارة ويمكن الرجوع إليه لاحقاً.</p>
-          <textarea id="mizan-reject-reason" rows="6" style="width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:inherit;font:inherit"></textarea>
+          <textarea id="mizan-reject-reason" class="mizan-admin-reject-reason" rows="6"></textarea>
           <div class="mizan-admin-modal-actions"><button type="button" class="btn" data-mizan-close="mizan-reject-modal">إلغاء</button><button type="button" class="btn btn-red" id="mizan-confirm-reject">تأكيد الرفض</button></div>
         </div>
       </div>
@@ -228,6 +175,8 @@
     if(!section)return;
     section.querySelectorAll('.firebase-admin-subview').forEach(v=>{v.hidden=true;v.classList.remove('active');});
     document.getElementById('fa-admin-home').hidden=true;
+    section.classList.remove('is-sidebar-open');
+    section.querySelectorAll('.firebase-admin-nav-item').forEach(item=>item.classList.toggle('is-active',item.id==='mizan-admin-nav-item'));
     const mizanView=document.getElementById('mizan-admin-view');
     mizanView.hidden=false;
     mizanView.classList.add('active');
@@ -244,6 +193,7 @@
     mizanView.classList.remove('active');
     document.querySelectorAll('.firebase-admin-subview').forEach(v=>{if(v.id!=='mizan-admin-view'){v.hidden=true;v.classList.remove('active');}});
     document.getElementById('fa-admin-home').hidden=false;
+    section.querySelectorAll('.firebase-admin-nav-item').forEach(item=>item.classList.toggle('is-active',item.hasAttribute('data-admin-home')));
   }
 
   function updateTabCounts(counts){
