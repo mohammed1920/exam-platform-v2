@@ -37,11 +37,12 @@
       item.id='mizan-admin-nav-item';
       item.className='firebase-admin-nav-item mizan-admin-nav-item';
       item.dataset.mizanAdminCard='1';
-      item.innerHTML='<i class="fas fa-feather-pointed" aria-hidden="true"></i><span>منبر ميزان</span>';
+      item.innerHTML='<i class="fas fa-feather-pointed" aria-hidden="true"></i><span>منبر ميزان</span><span class="firebase-admin-nav-count" id="mizan-admin-nav-count" hidden>0</span>';
       item.addEventListener('click',open);
       navigation.appendChild(item);
     }
     section.querySelectorAll('[data-mizan-open]').forEach(button=>button.addEventListener('click',open));
+    window.addEventListener('mizan:refresh-forum-pending-counts',refreshPendingCounts);
 
     if(document.getElementById('mizan-admin-view'))return;
 
@@ -210,6 +211,22 @@
     });
   }
 
+  function setForumPendingCount(articles,contributors){
+    const total=Math.max(0,Number(articles)||0)+Math.max(0,Number(contributors)||0);
+    const targets=[document.getElementById('mizan-admin-nav-count'),...document.querySelectorAll('[data-admin-count="forum"]')];
+    targets.forEach(node=>{if(!node)return;node.textContent=String(total);node.hidden=total===0;});
+  }
+  async function refreshPendingCounts(){
+    const firestore=db();if(!firestore)return;
+    try{
+      const [articles,contributors]=await Promise.all([
+        firestore.collection(COLLECTION).where('status','==','pending').get(),
+        firestore.collection(CONTRIBUTORS).where('status','==','pending').get()
+      ]);
+      setForumPendingCount(articles.size,contributors.size);
+    }catch(error){console.warn('تعذر تحديث مؤشرات منبر ميزان:',error);}
+  }
+
   function setTab(status){
     document.querySelectorAll('#mizan-admin-view [data-mizan-status]').forEach(x=>x.classList.toggle('active',x.dataset.mizanStatus===status));
   }
@@ -306,6 +323,7 @@
         rejected:counts.rejected,
         hidden:counts.hidden
       });
+      setForumPendingCount(counts.pending,contributorSnap.size);
       const stats=document.getElementById('mizan-admin-stats');
       if(stats)stats.innerHTML='<div class="mizan-admin-stat"><strong>'+Object.values(counts).reduce((a,b)=>a+b,0)+'</strong><span>إجمالي المشاركات</span></div><div class="mizan-admin-stat"><strong>'+counts.pending+'</strong><span>قيد المراجعة</span></div><div class="mizan-admin-stat"><strong>'+counts.published+'</strong><span>منشور</span></div><div class="mizan-admin-stat"><strong>'+counts.rejected+'</strong><span>مرفوض</span></div><div class="mizan-admin-stat"><strong>'+contributorSnap.size+'</strong><span>طلبات اعتماد</span></div>';
       body.innerHTML='<p class="firebase-admin-list-state">اختر من تبويبات منبر ميزان أعلاه لإدارة المشاركات وطلبات الاعتماد.</p>';
@@ -501,4 +519,5 @@
 
   window.addEventListener('firebase-admin-state-changed',e=>{if(e.detail?.isAdmin)setTimeout(build,0);});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(build,400));
+  window.addEventListener('public-auth-state-changed',()=>{if(ready)refreshPendingCounts();});
 })();
