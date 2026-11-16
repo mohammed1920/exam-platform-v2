@@ -452,3 +452,21 @@
   --mizan-admin-button-record-basis:110px;
   --mizan-admin-button-min-height-prominent-mobile:52px;
 }
+
+/* Crown-panel navigation and shortcut button geometry. */
+:root{
+  --mizan-admin-nav-item-min-height:46px;
+  --mizan-admin-nav-item-icon-width:20px;
+  --mizan-admin-nav-item-icon-font-size:var(--mizan-font-size-sm);
+  --mizan-admin-exit-min-height:var(--mizan-control-min-height);
+  --mizan-admin-nav-count-size:23px;
+  --mizan-admin-nav-count-padding:0 var(--mizan-space-2);
+  --mizan-admin-shortcut-icon-column:42px;
+  --mizan-admin-shortcut-row-gap:var(--mizan-space-0-75);
+  --mizan-admin-shortcut-min-height:82px;
+  --mizan-admin-shortcut-icon-size:42px;
+  --mizan-admin-shortcut-icon-font-size:var(--mizan-font-size-17);
+  --mizan-admin-shortcut-hover-transform:translateY(-2px);
+  --mizan-admin-nav-item-font-weight:var(--mizan-font-weight-bold);
+  --mizan-admin-exit-font-weight:var(--mizan-font-weight-extrabold);
+}
