@@ -1125,6 +1125,9 @@ class ExamApp {
         };
 
         // Preserve the direct parent inside multi-level feature flows.
+        if (viewId === 'lawyer-profile') {
+          parentState.lawyerReturnScrollY = Math.max(0, Number(params.lawyerReturnScrollY) || 0);
+        }
         if (viewId === 'petitions' && params.petitionLevel === 'document' && params.categoryId) {
           parentState.petitionLevel = 'category';
           parentState.categoryId = params.categoryId;
@@ -1352,6 +1355,9 @@ class ExamApp {
         view === 'faq'
       ) {
         this.navigateTo(view, {}, false);
+        if (view === 'lawyers' && Number.isFinite(Number(state?.lawyerReturnScrollY))) {
+          window.scrollTo(0, Math.max(0, Number(state.lawyerReturnScrollY)));
+        }
         if (view === 'judicial-institute') window.judicialInstitute?.restoreHistoryState?.(state);
       } else {
         // أي حالة غير معروفة ترجع إلى الرئيسية.
