@@ -673,7 +673,7 @@ html[data-theme="light"] .petition-template-card b{
   margin-top:var(--mizan-space-2);
   padding:var(--mizan-space-1) var(--mizan-space-3);
   border:1px solid var(--mizan-primary-500-border);
-  border-radius:var(--mizan-radius-pill);
+  border-radius:var(--mizan-radius-xl);
   background:var(--mizan-primary-100);
   color:var(--mizan-primary-800);
   font-size:var(--mizan-font-size-2xs);
