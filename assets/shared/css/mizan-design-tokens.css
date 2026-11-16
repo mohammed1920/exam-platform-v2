@@ -428,3 +428,13 @@
   --mizan-admin-button-table-padding:var(--mizan-space-1-5) var(--mizan-space-3);
   --mizan-admin-button-table-font-size:var(--mizan-font-size-compact);
 }
+
+/* Additional executive admin button dimensions and responsive action sizing. */
+:root{
+  --mizan-admin-button-min-height-record:42px;
+  --mizan-admin-button-min-height-icon:40px;
+  --mizan-admin-button-icon-font-size:16px;
+  --mizan-admin-tab-min-width:110px;
+  --mizan-admin-button-margin:var(--mizan-space-0-5);
+  --mizan-admin-button-line-height:var(--mizan-line-height-heading);
+}
