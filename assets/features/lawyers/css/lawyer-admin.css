@@ -746,3 +746,8 @@ html[data-theme="light"] .firebase-admin-tab{
   .firebase-admin-record-card{padding:var(--mizan-space-3)}
   .firebase-admin-record-list .lawyer-admin-actions button{flex:1 1 100%}
 }
+
+/* Pending-work indicators: shared executive admin notification badges. */
+.firebase-admin-nav-count[hidden],.firebase-admin-shortcut-count[hidden],.firebase-admin-inline-count[hidden]{display:none!important}
+.firebase-admin-shortcut-count{display:inline-grid;place-items:center;min-width:19px;height:19px;margin-inline-start:5px;padding:0 5px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
+.firebase-admin-inline-count{display:inline-grid;place-items:center;min-width:21px;height:21px;margin-inline-start:6px;padding:0 6px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
