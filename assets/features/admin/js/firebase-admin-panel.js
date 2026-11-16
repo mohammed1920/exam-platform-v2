@@ -3,7 +3,7 @@
   'use strict';
   let isAdmin=false,panelOpen=false,mainViewState=[],els={};
   let lawyerApplications=[],lawyerProfiles=[];
-  let petitionItems=[],activePetitionPanel='access',activePetitionCategory='',activePetitionStatus='published';
+  let petitionItems=[],activePetitionCategory='',activePetitionStatus='published';
   function publishAdminState(){ window.firebaseAdminPanel={open:openPanel,isAdmin}; window.dispatchEvent(new CustomEvent('firebase-admin-state-changed',{detail:{isAdmin}})); }
   const esc=v=>String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
@@ -164,7 +164,7 @@
             <form id="fa-petition-form" class="procedures-admin-form">
               <input type="hidden" name="id">
               <label>عنوان العريضة *<input name="title" required maxlength="180"></label>
-              <label>التصنيف *<select name="category"><option value="">اختر التصنيف</option><option value="family">عرائض أحوال شخصية</option><option value="civil">عرائض البداءة (الدعاوى المدنية)</option><option value="criminal">عرائض جزائية وتحقيق</option><option value="administrative">عرائض إدارية</option></select></label>
+              <label>التصنيف *<select name="category" required><option value="">اختر التصنيف</option><option value="family">عرائض أحوال شخصية</option><option value="civil">عرائض البداءة (الدعاوى المدنية)</option><option value="criminal">عرائض جزائية وتحقيق</option><option value="administrative">عرائض إدارية</option></select></label>
               <label>وصف مختصر<input name="description" maxlength="1000"></label>
               <label>الأيقونة (اختياري)<input name="icon" maxlength="100" value="fas fa-file-signature"></label>
               <label>نص العريضة *<textarea name="body" rows="12" required maxlength="50000"></textarea></label>
@@ -526,7 +526,6 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   };
   function setPetitionPanel(panel){
     if(!['access','add','library'].includes(panel))return;
-    activePetitionPanel=panel;
     els.petitionsHub?.querySelectorAll('[data-petitions-panel]').forEach(button=>{
       const active=button.dataset.petitionsPanel===panel;
       button.classList.toggle('is-active',active);
