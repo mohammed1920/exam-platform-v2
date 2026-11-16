@@ -775,10 +775,7 @@ html[data-theme="light"] .lawyer-card{
   color:var(--mizan-text);
   box-shadow:var(--mizan-shadow-card);
 }
-html[data-theme="light"] .lawyer-details-backdrop{
-  background:color-mix(in srgb,var(--mizan-primary-900) 42%,transparent);
-}
-html[data-theme="light"] .lawyer-details-dialog{
+html[data-theme="light"] .lawyer-profile-content{
   background:var(--mizan-gradient-surface-light);
   border-color:var(--mizan-border-light);
   color:var(--mizan-text);
@@ -883,11 +880,6 @@ html[data-theme="light"] .lawyer-detail-item{
 }
 html[data-theme="light"] .lawyer-detail-item strong{
   color:var(--mizan-heading);
-}
-html[data-theme="light"] .lawyer-details-close{
-  background:var(--mizan-bg-light);
-  border-color:var(--mizan-border-light);
-  color:var(--mizan-text);
 }
 html[data-theme="light"] .lawyers-empty{
   border-color:var(--mizan-border-light);
