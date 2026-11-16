@@ -8,7 +8,7 @@
 .lawyer-admin-table th,
 .lawyer-admin-table td{
   padding:var(--mizan-space-inset-compact) var(--mizan-space-2);
-  border-bottom:1px solid var(--mizan-glass-white-060);
+  border-bottom:var(--mizan-admin-border-width) solid var(--mizan-glass-white-060);
   text-align:right;
   font-size:var(--mizan-font-size-2xs);
   vertical-align:top;
@@ -22,7 +22,7 @@
   gap:var(--mizan-gap-micro);
 }
 .lawyer-admin-actions button{
-  border:1px solid var(--mizan-admin-button-neutral-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-neutral-border);
   background:var(--mizan-admin-button-neutral-bg);
   color:var(--mizan-admin-button-neutral-fg);
   border-radius:var(--mizan-admin-button-radius);
@@ -50,7 +50,7 @@
   gap:var(--mizan-space-2);
   margin:var(--mizan-space-inset-medium) 0;
   padding:var(--mizan-space-2);
-  border:1px solid var(--mizan-glass-white-060);
+  border:var(--mizan-admin-border-width) solid var(--mizan-glass-white-060);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-glass-white-025);
 }
@@ -61,7 +61,7 @@
   gap:var(--mizan-space-2);
   min-width:0;
   min-height:44px;
-  border:1px solid transparent;
+  border:var(--mizan-admin-border-width) solid transparent;
   background:transparent;
   color:var(--mizan-muted);
   border-radius:var(--mizan-radius-sm);
@@ -128,7 +128,7 @@ html[data-theme="light"] .lawyer-admin-tab span{
 .lawyer-admin-edit{
   margin-top:var(--mizan-space-inset-medium);
   padding:var(--mizan-space-4);
-  border:1px solid var(--mizan-primary-500-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-md);
   background:var(--mizan-glass-white-025);
 }
@@ -153,7 +153,7 @@ html[data-theme="light"] .lawyer-admin-tab span{
   align-items:flex-start;
   gap:var(--mizan-admin-menu-card-gap);
   text-align:right;
-  border:1px solid var(--mizan-admin-button-secondary-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-secondary-border);
   background:var(--mizan-admin-button-secondary-bg);
   color:var(--mizan-admin-button-secondary-fg);
   border-radius:var(--mizan-admin-menu-card-radius);
@@ -192,7 +192,7 @@ html[data-theme="light"] .lawyer-admin-tab span{
   display:block;
 }
 .firebase-admin-subview-back{
-  border:1px solid var(--mizan-admin-button-secondary-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-secondary-border);
   background:var(--mizan-admin-button-secondary-bg);
   color:var(--mizan-admin-button-secondary-fg);
   border-radius:var(--mizan-admin-button-radius);
@@ -264,7 +264,7 @@ html[data-theme="light"] .lawyer-admin-status{
   padding:0;
   display:grid;
   place-items:center;
-  border:1px solid var(--mizan-primary-500-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-compact);
   background:var(--mizan-accent-tile-bg);
   color:var(--mizan-accent-tile-fg);
@@ -307,7 +307,7 @@ html[data-theme="light"] .firebase-admin-tab{
   gap:var(--mizan-gap-micro);
   margin:var(--mizan-admin-button-margin);
   padding:var(--mizan-admin-button-table-padding);
-  border:1px solid color-mix(in srgb,var(--btn-tone) var(--mizan-admin-button-tone-border-mix),transparent);
+  border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--btn-tone) var(--mizan-admin-button-tone-border-mix),transparent);
   border-radius:var(--mizan-radius-pill);
   background:color-mix(in srgb,var(--btn-tone) var(--mizan-admin-button-tone-bg-mix),transparent);
   color:var(--btn-tone);
@@ -386,7 +386,7 @@ html[data-theme="light"] .firebase-admin-tab{
 .procedures-admin-form :is(input:not([type="checkbox"]),textarea){
   width:100%;
   min-width:0;
-  border:1px solid var(--mizan-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-border);
   border-radius:var(--mizan-radius-sm);
   padding:var(--mizan-space-2) var(--mizan-space-3);
   background:var(--mizan-surface);
@@ -413,58 +413,58 @@ html[data-theme="light"] .firebase-admin-tab{
 /* Mizan Executive admin workspace — shared central design tokens only. */
 .firebase-admin-view{width:100%;min-height:calc(100vh - 24px);margin:0;padding:0;background:var(--mizan-bg);color:var(--mizan-text);direction:rtl}
 .firebase-admin-shell{display:grid;grid-template-columns:276px minmax(0,1fr);min-height:calc(100vh - 24px);direction:rtl}
-.firebase-admin-sidebar{position:sticky;top:0;display:flex;flex-direction:column;gap:var(--mizan-space-4);height:100vh;max-height:100vh;padding:var(--mizan-space-4) var(--mizan-space-3);overflow-y:auto;background:var(--mizan-primary-900);color:var(--mizan-white);border-left:1px solid color-mix(in srgb,var(--mizan-gold-primary) 26%,transparent);box-shadow:var(--mizan-shadow-md)}
-.firebase-admin-sidebar-brand{display:flex;align-items:center;gap:var(--mizan-space-3);padding:var(--mizan-space-2) var(--mizan-space-2) var(--mizan-space-4);border-bottom:1px solid color-mix(in srgb,var(--mizan-white) 13%,transparent)}
-.firebase-admin-brand-mark{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 55%,transparent);border-radius:var(--mizan-radius-md);background:color-mix(in srgb,var(--mizan-gold-primary) 15%,transparent);color:var(--mizan-gold-light);font-size:19px}
+.firebase-admin-sidebar{position:sticky;top:0;display:flex;flex-direction:column;gap:var(--mizan-space-4);height:100vh;max-height:100vh;padding:var(--mizan-space-4) var(--mizan-space-3);overflow-y:auto;background:var(--mizan-primary-900);color:var(--mizan-white);border-left:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 26%,transparent);box-shadow:var(--mizan-shadow-md)}
+.firebase-admin-sidebar-brand{display:flex;align-items:center;gap:var(--mizan-space-3);padding:var(--mizan-space-2) var(--mizan-space-2) var(--mizan-space-4);border-bottom:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-white) 13%,transparent)}
+.firebase-admin-brand-mark{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 55%,transparent);border-radius:var(--mizan-radius-md);background:color-mix(in srgb,var(--mizan-gold-primary) 15%,transparent);color:var(--mizan-gold-light);font-size:19px}
 .firebase-admin-sidebar-brand strong,.firebase-admin-sidebar-brand small{display:block}
 .firebase-admin-sidebar-brand strong{color:var(--mizan-white);font-size:var(--mizan-font-size-lg);font-weight:900}
 .firebase-admin-sidebar-brand small{margin-top:3px;color:color-mix(in srgb,var(--mizan-white) 68%,transparent);font-size:var(--mizan-font-size-2xs)}
 .firebase-admin-navigation{display:grid;gap:var(--mizan-space-1);align-content:start}
 .firebase-admin-nav-heading{margin:var(--mizan-space-3) var(--mizan-space-2) var(--mizan-space-1);color:var(--mizan-gold-light);font-size:var(--mizan-font-size-micro);font-weight:900}
-.firebase-admin-nav-item{display:flex;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;min-height:var(--mizan-admin-nav-item-min-height);padding:var(--mizan-admin-button-padding);border:1px solid transparent;border-radius:var(--mizan-admin-button-radius);background:transparent;color:var(--mizan-admin-nav-item-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-nav-item-font-weight);text-align:right;cursor:pointer;transition:background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,color var(--mizan-duration-fast) ease,transform var(--mizan-duration-fast) ease}
+.firebase-admin-nav-item{display:flex;align-items:center;gap:var(--mizan-space-3);width:100%;min-width:0;min-height:var(--mizan-admin-nav-item-min-height);padding:var(--mizan-admin-button-padding);border:var(--mizan-admin-border-width) solid transparent;border-radius:var(--mizan-admin-button-radius);background:transparent;color:var(--mizan-admin-nav-item-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-nav-item-font-weight);text-align:right;cursor:pointer;transition:background-color var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,color var(--mizan-duration-fast) ease,transform var(--mizan-duration-fast) ease}
 .firebase-admin-nav-item>i{flex:0 0 var(--mizan-admin-nav-item-icon-width);width:var(--mizan-admin-nav-item-icon-width);color:var(--mizan-gold-light);font-size:var(--mizan-admin-nav-item-icon-font-size);text-align:center}
 .firebase-admin-nav-item>span:nth-of-type(1){flex:1;min-width:0}
 .firebase-admin-nav-item:hover{background:var(--mizan-admin-nav-item-hover-bg);color:var(--mizan-white)}
-.firebase-admin-nav-item.is-active{border-color:var(--mizan-admin-nav-item-active-border);background:var(--mizan-admin-nav-item-active-bg);color:var(--mizan-white);box-shadow:inset -3px 0 0 var(--mizan-gold-primary)}
+.firebase-admin-nav-item.is-active{border-color:var(--mizan-admin-nav-item-active-border);background:var(--mizan-admin-nav-item-active-bg);color:var(--mizan-white);box-shadow:inset calc(-1 * var(--mizan-admin-nav-active-indicator-width)) 0 0 var(--mizan-gold-primary)}
 .firebase-admin-nav-item.is-active>i{color:var(--mizan-gold-light)}
 .firebase-admin-nav-count{display:inline-grid;place-items:center;min-width:var(--mizan-admin-nav-count-size);height:var(--mizan-admin-nav-count-size);padding:var(--mizan-admin-nav-count-padding);border-radius:var(--mizan-radius-pill);background:var(--mizan-admin-nav-count-bg);color:var(--mizan-white);font-size:var(--mizan-font-size-micro);font-variant-numeric:tabular-nums}
-.firebase-admin-exit{display:flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);width:100%;min-height:var(--mizan-admin-exit-min-height);margin-top:auto;padding:var(--mizan-admin-button-padding);border:1px solid var(--mizan-admin-exit-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-exit-bg);color:var(--mizan-white);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-exit-font-weight);cursor:pointer}
+.firebase-admin-exit{display:flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);width:100%;min-height:var(--mizan-admin-exit-min-height);margin-top:auto;padding:var(--mizan-admin-button-padding);border:var(--mizan-admin-border-width) solid var(--mizan-admin-exit-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-exit-bg);color:var(--mizan-white);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-exit-font-weight);cursor:pointer}
 .firebase-admin-exit i{color:var(--mizan-gold-light)}
 .firebase-admin-exit:hover{background:var(--mizan-admin-exit-hover-bg);border-color:var(--mizan-gold-primary)}
 .firebase-admin-workspace{min-width:0;padding:var(--mizan-space-4) var(--mizan-space-5);background:var(--mizan-bg)}
-.firebase-admin-topbar{display:flex;align-items:center;gap:var(--mizan-space-3);min-height:82px;margin-bottom:var(--mizan-space-4);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-topbar{display:flex;align-items:center;gap:var(--mizan-space-3);min-height:82px;margin-bottom:var(--mizan-space-4);padding:var(--mizan-space-3) var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-sm)}
 .firebase-admin-head{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);width:100%;margin:0;padding:0;border:0;background:transparent}
 .firebase-admin-head h2{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900}
 .firebase-admin-head p{margin:4px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
 .firebase-admin-kicker{margin-bottom:3px;color:var(--mizan-gold-text);font-size:var(--mizan-font-size-micro);font-weight:900;letter-spacing:.08em}
-.firebase-admin-action{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:1px solid var(--mizan-admin-button-primary-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-primary-bg);color:var(--mizan-admin-button-primary-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer}
+.firebase-admin-action{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-primary-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-primary-bg);color:var(--mizan-admin-button-primary-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer}
 .firebase-admin-nav-toggle,.firebase-admin-sidebar-backdrop{display:none}
-.firebase-admin-status{margin-bottom:var(--mizan-space-3);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface);color:var(--mizan-text);font-size:var(--mizan-font-size-xs)}
+.firebase-admin-status{margin-bottom:var(--mizan-space-3);padding:var(--mizan-space-3) var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface);color:var(--mizan-text);font-size:var(--mizan-font-size-xs)}
 .firebase-admin-status.error{border-color:var(--mizan-danger-500);color:var(--mizan-danger-text)}
 .firebase-admin-home{display:grid;gap:var(--mizan-space-4)}
-.firebase-admin-overview-intro{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);padding:var(--mizan-space-5);border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 32%,var(--mizan-border));border-radius:var(--mizan-radius-lg);background:linear-gradient(120deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);box-shadow:var(--mizan-shadow-md)}
+.firebase-admin-overview-intro{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);padding:var(--mizan-space-5);border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 32%,var(--mizan-border));border-radius:var(--mizan-radius-lg);background:linear-gradient(120deg,var(--mizan-primary-900),var(--mizan-primary-800));color:var(--mizan-white);box-shadow:var(--mizan-shadow-md)}
 .firebase-admin-overview-intro h2{margin:4px 0;color:var(--mizan-white);font-size:clamp(1.15rem,2vw,1.55rem);font-weight:900}
 .firebase-admin-overview-intro p{margin:0;color:color-mix(in srgb,var(--mizan-white) 76%,transparent);font-size:var(--mizan-font-size-xs);line-height:1.8}
 .firebase-admin-overview-eyebrow{color:var(--mizan-gold-light);font-size:var(--mizan-font-size-2xs);font-weight:900}
-.firebase-admin-overview-emblem{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 55%,transparent);border-radius:var(--mizan-radius-lg);background:color-mix(in srgb,var(--mizan-gold-primary) 14%,transparent);color:var(--mizan-gold-light);font-size:27px}
+.firebase-admin-overview-emblem{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 55%,transparent);border-radius:var(--mizan-radius-lg);background:color-mix(in srgb,var(--mizan-gold-primary) 14%,transparent);color:var(--mizan-gold-light);font-size:27px}
 .firebase-admin-overview-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--mizan-space-3)}
-.firebase-admin-overview-stat{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-overview-stat{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0;padding:var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-sm)}
 .firebase-admin-stat-icon{display:grid;place-items:center;flex:0 0 42px;width:var(--mizan-admin-shortcut-icon-size);height:var(--mizan-admin-shortcut-icon-size);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font-size:var(--mizan-admin-shortcut-icon-font-size)}
 .firebase-admin-overview-stat strong,.firebase-admin-overview-stat span{display:block}
 .firebase-admin-overview-stat strong{color:var(--mizan-heading);font-size:clamp(1.2rem,2vw,1.65rem);font-weight:900;font-variant-numeric:tabular-nums}
 .firebase-admin-overview-stat div>span{margin-top:3px;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.5}
-.firebase-admin-overview-section{padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface)}
+.firebase-admin-overview-section{padding:var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface)}
 .firebase-admin-overview-section-head{margin-bottom:var(--mizan-space-3)}
 .firebase-admin-overview-section-head h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-md);font-weight:900}
 .firebase-admin-overview-section-head p{margin:4px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
 .firebase-admin-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mizan-space-3)}
-.firebase-admin-shortcut{position:relative;display:grid;grid-template-columns:var(--mizan-admin-shortcut-icon-column) minmax(0,1fr);align-items:center;column-gap:var(--mizan-space-3);row-gap:var(--mizan-admin-shortcut-row-gap);min-width:0;min-height:var(--mizan-admin-shortcut-min-height);padding:var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);text-align:right;cursor:pointer;transition:transform var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-fast) ease}
+.firebase-admin-shortcut{position:relative;display:grid;grid-template-columns:var(--mizan-admin-shortcut-icon-column) minmax(0,1fr);align-items:center;column-gap:var(--mizan-space-3);row-gap:var(--mizan-admin-shortcut-row-gap);min-width:0;min-height:var(--mizan-admin-shortcut-min-height);padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);text-align:right;cursor:pointer;transition:transform var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,box-shadow var(--mizan-duration-fast) ease}
 .firebase-admin-shortcut:hover{transform:var(--mizan-admin-shortcut-hover-transform);border-color:var(--mizan-gold-primary);box-shadow:var(--mizan-shadow-md)}
 .firebase-admin-shortcut>span{grid-row:1/3;display:grid;place-items:center;width:var(--mizan-admin-shortcut-icon-size);height:var(--mizan-admin-shortcut-icon-size);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);font-size:var(--mizan-admin-shortcut-icon-font-size)}
 .firebase-admin-shortcut strong{min-width:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-xs);font-weight:900}
 .firebase-admin-shortcut small{min-width:0;color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);line-height:1.5}
 .firebase-admin-shortcut-arrow{position:absolute;left:var(--mizan-space-3);top:50%;color:var(--mizan-gold-text);transform:translateY(-50%)}
-.firebase-admin-overview-footnote{display:flex;align-items:flex-start;gap:var(--mizan-space-2);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface);color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.7}
+.firebase-admin-overview-footnote{display:flex;align-items:flex-start;gap:var(--mizan-space-2);padding:var(--mizan-space-3) var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface);color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.7}
 .firebase-admin-overview-footnote i{margin-top:3px;color:var(--mizan-gold-text)}
 .firebase-admin-subviews{min-width:0;min-height:180px}
 .firebase-admin-subview{display:none;min-width:0}
@@ -474,11 +474,11 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-table-wrap table{width:100%;border-collapse:collapse}
 .firebase-admin-table-wrap th{white-space:nowrap}
 .firebase-admin-table-wrap td{overflow-wrap:anywhere}
-.firebase-admin-view .firebase-admin-card{min-width:0;margin-top:var(--mizan-space-3);padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-view .firebase-admin-card{min-width:0;margin-top:var(--mizan-space-3);padding:var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-sm)}
 .firebase-admin-view .firebase-admin-card-head{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);flex-wrap:wrap;margin-bottom:var(--mizan-space-3)}
 .firebase-admin-view .firebase-admin-card-head h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-md);font-weight:900}
 .firebase-admin-view .firebase-admin-card-head>span{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
-.firebase-admin-view .lawyer-admin-table th,.firebase-admin-view .lawyer-admin-table td{padding:var(--mizan-space-3);border-bottom:1px solid var(--mizan-border);color:var(--mizan-text);font-size:var(--mizan-font-size-2xs);text-align:right}
+.firebase-admin-view .lawyer-admin-table th,.firebase-admin-view .lawyer-admin-table td{padding:var(--mizan-space-3);border-bottom:var(--mizan-admin-border-width) solid var(--mizan-border);color:var(--mizan-text);font-size:var(--mizan-font-size-2xs);text-align:right}
 .firebase-admin-view .lawyer-admin-table th{color:var(--mizan-accent-text);font-weight:900}
 .firebase-admin-view .lawyer-admin-table tbody tr:hover{background:var(--mizan-accent-tile-bg)}
 .firebase-admin-view .lawyer-admin-actions button{min-height:var(--mizan-admin-button-min-height-compact);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-secondary-bg);color:var(--mizan-admin-button-secondary-fg);border-color:var(--mizan-admin-button-secondary-border)}
@@ -494,13 +494,13 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-view :is(button,input,select,textarea):focus-visible{outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);outline-offset:var(--mizan-focus-ring-offset)}
 .firebase-admin-view [hidden]{display:none!important}
 .mizan-admin-head-actions{display:flex;align-items:center;gap:var(--mizan-space-2);flex-wrap:wrap}
-.mizan-admin-tabs{display:flex;align-items:center;gap:var(--mizan-space-2);margin:var(--mizan-space-4) 0;padding:var(--mizan-space-2);overflow-x:auto;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);-webkit-overflow-scrolling:touch}
-.mizan-admin-tabs button{display:flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);flex:0 0 auto;min-width:var(--mizan-admin-tab-min-width);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:1px solid transparent;border-radius:var(--mizan-admin-button-radius);background:transparent;color:var(--mizan-admin-button-tab-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer;transition:var(--mizan-admin-button-transition)}
+.mizan-admin-tabs{display:flex;align-items:center;gap:var(--mizan-space-2);margin:var(--mizan-space-4) 0;padding:var(--mizan-space-2);overflow-x:auto;border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);-webkit-overflow-scrolling:touch}
+.mizan-admin-tabs button{display:flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);flex:0 0 auto;min-width:var(--mizan-admin-tab-min-width);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:var(--mizan-admin-border-width) solid transparent;border-radius:var(--mizan-admin-button-radius);background:transparent;color:var(--mizan-admin-button-tab-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer;transition:var(--mizan-admin-button-transition)}
 .mizan-admin-tabs button:hover{background:var(--mizan-accent-tile-bg);color:var(--mizan-heading)}
 .mizan-admin-tabs button.active{background:var(--mizan-accent-tile-bg);border-color:var(--mizan-accent-tile-border);color:var(--mizan-accent-tile-fg)}
 .mizan-admin-tab-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 6px;border-radius:var(--mizan-radius-pill);background:var(--mizan-surface-2);color:var(--mizan-text);font-size:var(--mizan-font-size-micro);font-weight:900;font-variant-numeric:tabular-nums}
 .mizan-admin-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--mizan-space-2);margin:var(--mizan-space-3) 0}
-.mizan-admin-stat{min-width:0;padding:var(--mizan-space-3);border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 24%,var(--mizan-border));border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);text-align:center}
+.mizan-admin-stat{min-width:0;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 24%,var(--mizan-border));border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);text-align:center}
 .mizan-admin-stat strong,.mizan-admin-stat span{display:block}
 .mizan-admin-stat strong{margin-bottom:4px;color:var(--mizan-heading);font-size:var(--mizan-font-size-xl);font-weight:900}
 .mizan-admin-stat span{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
@@ -510,19 +510,19 @@ html[data-theme="light"] .firebase-admin-tab{
 .mizan-admin-reason{margin-top:5px;padding:var(--mizan-space-2);border-radius:var(--mizan-radius-sm);background:color-mix(in srgb,var(--mizan-danger-500) 9%,transparent);color:var(--mizan-danger-text);font-size:var(--mizan-font-size-2xs)}
 .mizan-admin-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:var(--mizan-space-4);background:var(--mizan-sidebar-backdrop);backdrop-filter:blur(var(--mizan-blur-backdrop))}
 .mizan-admin-modal[hidden]{display:none!important}
-.mizan-admin-modal-box{width:min(850px,100%);max-height:92vh;overflow:auto;padding:var(--mizan-space-5);border:1px solid color-mix(in srgb,var(--mizan-gold-primary) 40%,var(--mizan-border));border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-md);direction:rtl}
+.mizan-admin-modal-box{width:min(850px,100%);max-height:92vh;overflow:auto;padding:var(--mizan-space-5);border:var(--mizan-admin-border-width) solid color-mix(in srgb,var(--mizan-gold-primary) 40%,var(--mizan-border));border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-md);direction:rtl}
 .mizan-admin-modal-head{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-3);margin-bottom:var(--mizan-space-3)}
 .mizan-admin-modal-head h3{margin:0;color:var(--mizan-heading)}
-.mizan-admin-modal-head button{width:var(--mizan-admin-modal-close-size);height:var(--mizan-admin-modal-close-size);border:1px solid var(--mizan-admin-button-neutral-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-neutral-bg);color:var(--mizan-admin-button-neutral-fg);font-size:var(--mizan-font-size-2xl);cursor:pointer}
+.mizan-admin-modal-head button{width:var(--mizan-admin-modal-close-size);height:var(--mizan-admin-modal-close-size);border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-neutral-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-neutral-bg);color:var(--mizan-admin-button-neutral-fg);font-size:var(--mizan-font-size-2xl);cursor:pointer}
 .mizan-admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3)}
 .mizan-admin-grid label{display:flex;flex-direction:column;gap:var(--mizan-space-1);min-width:0;color:var(--mizan-text);font-size:var(--mizan-font-size-2xs);font-weight:700}
 .mizan-admin-grid .full{grid-column:1/-1}
-.mizan-admin-grid :is(input,select,textarea),.mizan-admin-reject-reason{width:100%;min-width:0;box-sizing:border-box;padding:var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg);color:var(--mizan-text);font:inherit}
+.mizan-admin-grid :is(input,select,textarea),.mizan-admin-reject-reason{width:100%;min-width:0;box-sizing:border-box;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg);color:var(--mizan-text);font:inherit}
 .mizan-admin-grid textarea{min-height:130px;resize:vertical;line-height:1.8}
 .mizan-admin-reject-reason{min-height:120px;resize:vertical}
 .mizan-admin-content{max-height:420px;overflow:auto;margin-top:var(--mizan-space-3);padding:var(--mizan-space-4);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);white-space:pre-wrap;overflow-wrap:anywhere;line-height:2}
 .mizan-admin-detail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2);margin:var(--mizan-space-3) 0}
-.mizan-admin-detail-item{min-width:0;padding:var(--mizan-space-3);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg);color:var(--mizan-text);overflow-wrap:anywhere}
+.mizan-admin-detail-item{min-width:0;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg);color:var(--mizan-text);overflow-wrap:anywhere}
 .mizan-admin-detail-item b{display:block;margin-bottom:3px;color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
 .mizan-admin-modal-actions{display:flex;gap:var(--mizan-space-2);flex-wrap:wrap;margin-top:var(--mizan-space-4)}
 .mizan-admin-modal-actions .btn{cursor:pointer}
@@ -536,7 +536,7 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-view.is-sidebar-open .firebase-admin-sidebar-backdrop{visibility:visible;opacity:1}
 .firebase-admin-workspace{min-width:0;padding:var(--mizan-space-2);padding-bottom:calc(120px + env(safe-area-inset-bottom));overflow:visible}
 .firebase-admin-topbar{min-height:68px;padding:var(--mizan-space-2) var(--mizan-space-3)}
-.firebase-admin-nav-toggle{display:grid;place-items:center;flex:0 0 var(--mizan-admin-nav-button-size);width:var(--mizan-admin-nav-button-size);height:var(--mizan-admin-nav-button-size);border:1px solid var(--mizan-admin-button-neutral-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-neutral-bg);color:var(--mizan-heading);font-size:var(--mizan-admin-button-icon-size);cursor:pointer}
+.firebase-admin-nav-toggle{display:grid;place-items:center;flex:0 0 var(--mizan-admin-nav-button-size);width:var(--mizan-admin-nav-button-size);height:var(--mizan-admin-nav-button-size);border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-neutral-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-neutral-bg);color:var(--mizan-heading);font-size:var(--mizan-admin-button-icon-size);cursor:pointer}
 .firebase-admin-head h2{font-size:var(--mizan-font-size-md)}
 .firebase-admin-head p{max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .firebase-admin-action{min-height:var(--mizan-admin-button-min-height-icon);padding:var(--mizan-admin-button-padding-compact);font-size:0}
@@ -570,7 +570,7 @@ html[data-theme="light"] .firebase-admin-tab{
   padding:var(--mizan-space-2);
   overflow-x:auto;
   overscroll-behavior-inline:contain;
-  border:1px solid var(--mizan-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-border);
   border-radius:var(--mizan-radius-lg);
   background:var(--mizan-surface);
   -webkit-overflow-scrolling:touch;
@@ -584,7 +584,7 @@ html[data-theme="light"] .firebase-admin-tab{
   min-width:max-content;
   min-height:var(--mizan-control-min-height);
   padding:var(--mizan-space-2) var(--mizan-space-4);
-  border:1px solid transparent;
+  border:var(--mizan-admin-border-width) solid transparent;
   border-radius:var(--mizan-radius-md);
   background:transparent;
   color:var(--mizan-muted);
@@ -644,7 +644,7 @@ html[data-theme="light"] .firebase-admin-tab{
   flex-direction:column;
   min-width:0;
   padding:var(--mizan-space-3);
-  border:1px solid var(--mizan-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-border);
   border-radius:var(--mizan-radius-lg);
   background:var(--mizan-surface);
   box-shadow:var(--mizan-shadow-sm);
@@ -662,7 +662,7 @@ html[data-theme="light"] .firebase-admin-tab{
   min-width:0;
   padding:var(--mizan-space-2) var(--mizan-space-1);
   border:0;
-  border-bottom:1px solid var(--mizan-border);
+  border-bottom:var(--mizan-admin-border-width) solid var(--mizan-border);
   color:var(--mizan-text);
   white-space:normal;
   overflow-wrap:anywhere;
@@ -692,7 +692,7 @@ html[data-theme="light"] .firebase-admin-tab{
 }
 .firebase-admin-record-details{width:100%;margin-top:var(--mizan-space-2)}
 .firebase-admin-record-details summary{color:var(--mizan-accent-text);font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer}
-.firebase-admin-record-details[open] .firebase-admin-record-content{max-height:360px;margin-top:var(--mizan-space-2);padding:var(--mizan-space-2);overflow:auto;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg)}
+.firebase-admin-record-details[open] .firebase-admin-record-content{max-height:360px;margin-top:var(--mizan-space-2);padding:var(--mizan-space-2);overflow:auto;border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg)}
 .firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions{
   display:flex;
   flex-wrap:wrap;
@@ -732,14 +732,14 @@ html[data-theme="light"] .firebase-admin-tab{
 
 /* Native record cards: no table markup and no nested scroll containers. */
 .firebase-admin-record-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3);width:100%;min-width:0;margin-top:var(--mizan-space-3)}
-.firebase-admin-record-card{display:flex;flex-direction:column;gap:var(--mizan-space-3);min-width:0;padding:var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-sm)}
-.firebase-admin-record-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--mizan-space-2);padding-bottom:var(--mizan-space-3);border-bottom:1px solid var(--mizan-border)}
+.firebase-admin-record-card{display:flex;flex-direction:column;gap:var(--mizan-space-3);min-width:0;padding:var(--mizan-space-4);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-record-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--mizan-space-2);padding-bottom:var(--mizan-space-3);border-bottom:var(--mizan-admin-border-width) solid var(--mizan-border)}
 .firebase-admin-record-heading h4{margin:3px 0 0;color:var(--mizan-heading);font-size:var(--mizan-font-size-sm);font-weight:900;overflow-wrap:anywhere}
 .firebase-admin-record-eyebrow{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);font-weight:800}
 .firebase-admin-record-field{display:grid;gap:var(--mizan-space-1);min-width:0}
 .firebase-admin-record-field>span{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);font-weight:800}
 .firebase-admin-record-field>strong,.firebase-admin-record-field>p{margin:0;color:var(--mizan-text);font-size:var(--mizan-font-size-xs);line-height:1.8;overflow-wrap:anywhere}
-.firebase-admin-record-meta{padding-top:var(--mizan-space-2);border-top:1px solid var(--mizan-border);color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
+.firebase-admin-record-meta{padding-top:var(--mizan-space-2);border-top:var(--mizan-admin-border-width) solid var(--mizan-border);color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
 .firebase-admin-record-list .lawyer-admin-actions{display:flex;flex-wrap:wrap;gap:var(--mizan-space-2);width:100%;margin-top:auto}
 .firebase-admin-record-list .lawyer-admin-actions button{flex:1 1 var(--mizan-admin-button-record-basis);min-width:0;min-height:var(--mizan-admin-button-min-height-record);white-space:normal}
 .firebase-admin-list-state{grid-column:1/-1;margin:0;padding:var(--mizan-space-4);border:1px dashed var(--mizan-border);border-radius:var(--mizan-radius-md);color:var(--mizan-muted);font-size:var(--mizan-font-size-xs);text-align:center}
@@ -751,7 +751,7 @@ html[data-theme="light"] .firebase-admin-tab{
 
 /* Pending-work indicators: shared executive admin notification badges. */
 .firebase-admin-nav-count[hidden],.firebase-admin-shortcut-count[hidden],.firebase-admin-inline-count[hidden]{display:none!important}
-.firebase-admin-shortcut-count{display:inline-grid;place-items:center;min-width:19px;height:19px;margin-inline-start:5px;padding:0 5px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
+.firebase-admin-shortcut-count{display:inline-grid;place-items:center;min-width:var(--mizan-admin-shortcut-count-size);height:var(--mizan-admin-shortcut-count-size);margin-inline-start:var(--mizan-admin-shortcut-count-offset);padding:var(--mizan-admin-shortcut-count-padding);border-radius:var(--mizan-admin-shortcut-count-radius);background:var(--mizan-admin-shortcut-count-bg);color:var(--mizan-admin-shortcut-count-fg);font-size:var(--mizan-admin-shortcut-count-font-size);font-weight:var(--mizan-admin-shortcut-count-font-weight);vertical-align:middle}
 .firebase-admin-inline-count{display:inline-grid;place-items:center;min-width:21px;height:21px;margin-inline-start:6px;padding:0 6px;border-radius:999px;background:var(--mizan-danger-500);color:#fff;font-size:var(--mizan-font-size-micro);font-weight:900;vertical-align:middle}
 
 /* Petition template editor actions — clearer hierarchy and comfortable touch targets. */
@@ -778,13 +778,13 @@ html[data-theme="light"] .firebase-admin-tab{
   transition:transform var(--mizan-duration-fast),background-color var(--mizan-duration-fast),border-color var(--mizan-duration-fast);
 }
 .procedures-admin-management #fa-petition-form .lawyer-admin-actions button:first-child{
-  border:1px solid var(--mizan-admin-button-primary-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-primary-border);
   background:var(--mizan-admin-button-primary-bg);
   color:var(--mizan-admin-button-primary-fg);
   box-shadow:var(--mizan-shadow-sm);
 }
 .procedures-admin-management #fa-petition-form .lawyer-admin-actions button:last-child{
-  border:1px solid var(--mizan-admin-button-secondary-border);
+  border:var(--mizan-admin-border-width) solid var(--mizan-admin-button-secondary-border);
   background:var(--mizan-admin-button-secondary-bg);
   color:var(--mizan-admin-button-secondary-fg);
 }
