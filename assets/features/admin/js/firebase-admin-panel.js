@@ -15,7 +15,7 @@
       els.section=existingSection;
       return;
     }
-    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.24';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
+    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.25';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
     const tab=existingTab||document.createElement('button');
     if(!existingTab){
@@ -326,6 +326,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function openPanel(){
      if(!isAdmin||!els.section)return;
      const footer=document.querySelector('footer');
+     if(!panelOpen){
+       rememberMainView();
+       hideMainViews();
+     }
      panelOpen=true;
      els.section.hidden=false;
      toggleMobileSidebar(false);
@@ -352,6 +356,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
      panelOpen=false;
      if(routed&&window.app?.navigateTo){
        window.app.navigateTo('home');
+       restoreMainViews();
        return;
      }
      restoreMainViews();
