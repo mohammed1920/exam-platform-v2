@@ -446,3 +446,9 @@
   --mizan-admin-button-focus-outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
   --mizan-admin-button-focus-offset:var(--mizan-focus-ring-offset);
 }
+
+/* Record-action sizing shared by responsive crown admin views. */
+:root{
+  --mizan-admin-button-record-basis:110px;
+  --mizan-admin-button-min-height-prominent-mobile:52px;
+}
