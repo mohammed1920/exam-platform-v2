@@ -452,19 +452,16 @@ html body header .btn-primary{
 .home-feature-strip>div,
 .contact-box,
 .exam-dashboard-tabs,
-.lawyers-section,
 .lawyers-toolbar,
 .lawyers-apply-panel,
 .lawyer-card,
 .lawyer-details-dialog,
 .lawyer-my-application,
-.petitions-shell,
 .petition-builder-head,
 .petition-tools,
 .petition-template-card,
 .petition-form-panel,
 .petition-preview-panel,
-.mizan-pulpit-section,
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
@@ -1030,7 +1027,6 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .home-category-card[dat
   color:var(--mizan-info-700);
 }
 /* Lawyers */
-.lawyers-section,
 .lawyers-toolbar,
 .lawyers-apply-panel,
 .lawyer-card,
@@ -1069,7 +1065,6 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .home-category-card[dat
   background:var(--mizan-btn-primary-bg-hover);
 }
 /* Petitions */
-.petitions-shell,
 .petition-builder-head,
 .petition-tools,
 .petition-template-card,
@@ -1109,7 +1104,6 @@ html:is([data-theme="light"],[data-admin-theme="light"]) .home-category-card[dat
   background:var(--mizan-primary-600);
 }
 /* Pulpit */
-.mizan-pulpit-section,
 .mizan-pulpit-toolbar,
 .mizan-article-card,
 .mizan-modal-box,
