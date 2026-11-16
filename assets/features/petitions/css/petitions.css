@@ -644,6 +644,7 @@ html[data-theme="light"] .petition-template-card b{
   gap:var(--mizan-space-1);
   width:100%;
   min-width:0;
+  flex:1 0 auto;
 }
 .petition-category-copy strong{
   display:block;
@@ -669,18 +670,19 @@ html[data-theme="light"] .petition-template-card b{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  align-self:center;
   gap:var(--mizan-space-1);
-  margin-top:var(--mizan-space-2);
-  padding:var(--mizan-space-1) var(--mizan-space-3);
+  margin-top:auto;
+  padding:2px var(--mizan-space-2);
   border:1px solid var(--mizan-primary-500-border);
   border-radius:var(--mizan-radius-xl);
   background:var(--mizan-primary-100);
   color:var(--mizan-primary-800);
-  font-size:var(--mizan-font-size-2xs);
-  line-height:1.4;
+  font-size:11px;
+  line-height:1.35;
   white-space:nowrap;
 }
-.petition-category-count b{font-size:var(--mizan-font-size-compact);font-weight:900;font-variant-numeric:tabular-nums;}
+.petition-category-count b{font-size:13px;font-weight:900;font-variant-numeric:tabular-nums;}
 html:not([data-theme="light"]) .petition-category-count{background:var(--mizan-surface-dark);color:var(--mizan-primary-300);border-color:var(--mizan-primary-500-border);}
 html:not([data-theme="light"]) .petition-category-copy strong{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-muted);}
