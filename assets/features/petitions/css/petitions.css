@@ -665,6 +665,23 @@ html[data-theme="light"] .petition-template-card b{
   line-height:1.5;
   text-align:center;
 }
+.petition-category-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--mizan-space-1);
+  margin-top:var(--mizan-space-2);
+  padding:var(--mizan-space-1) var(--mizan-space-3);
+  border:1px solid var(--mizan-primary-500-border);
+  border-radius:var(--mizan-radius-pill);
+  background:var(--mizan-primary-100);
+  color:var(--mizan-primary-800);
+  font-size:var(--mizan-font-size-2xs);
+  line-height:1.4;
+  white-space:nowrap;
+}
+.petition-category-count b{font-size:var(--mizan-font-size-compact);font-weight:900;font-variant-numeric:tabular-nums;}
+html:not([data-theme="light"]) .petition-category-count{background:var(--mizan-surface-dark);color:var(--mizan-primary-300);border-color:var(--mizan-primary-500-border);}
 html:not([data-theme="light"]) .petition-category-copy strong{color:var(--mizan-heading);}
 html:not([data-theme="light"]) .petition-category-copy small{color:var(--mizan-muted);}
 
