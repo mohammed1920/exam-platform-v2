@@ -81,13 +81,11 @@
     profileSection.id = 'lawyer-profile-section';
     profileSection.className = 'view-section lawyer-profile-section';
     profileSection.innerHTML = `
-      <div class="lawyer-profile-page">
-        <button type="button" class="lawyer-profile-back" id="lawyer-profile-back">
-          <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          <span>العودة إلى دليل المحامين</span>
-        </button>
-        <div id="lawyer-details-content" class="lawyer-profile-content"></div>
-      </div>
+      <button type="button" class="lawyer-profile-back" id="lawyer-profile-back">
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        <span>العودة إلى دليل المحامين</span>
+      </button>
+      <div id="lawyer-details-content"></div>
     `;
     main.appendChild(profileSection);
     document.getElementById('lawyer-profile-back').addEventListener('click', () => {
