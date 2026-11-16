@@ -749,3 +749,58 @@ html[data-theme="light"] .firebase-admin-tab{
     font-size:var(--mizan-admin-button-font-size);
   }
 }
+
+
+/* Petition administration: three focused entry cards and a compact title-only library. */
+.firebase-admin-petitions-hub{display:grid;gap:var(--mizan-space-4);min-width:0}
+.firebase-admin-petitions-hub-head h3{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900}
+.firebase-admin-petitions-hub-head p{margin:var(--mizan-space-1) 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.8}
+.firebase-admin-petitions-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mizan-space-3)}
+.firebase-admin-petitions-action{position:relative;display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0;min-height:88px;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-lg);background:var(--mizan-surface);color:var(--mizan-text);text-align:right;font:inherit;cursor:pointer;transition:var(--mizan-transition-standard)}
+.firebase-admin-petitions-action:hover{border-color:var(--mizan-accent-tile-border);background:var(--mizan-accent-tile-bg)}
+.firebase-admin-petitions-action.is-active{border-color:var(--mizan-accent-tile-border);background:var(--mizan-accent-tile-bg);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-petitions-action-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-accent-text);font-size:var(--mizan-font-size-lg)}
+.firebase-admin-petitions-action-copy{display:grid;gap:var(--mizan-space-1);min-width:0}
+.firebase-admin-petitions-action-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-xs);font-weight:900}
+.firebase-admin-petitions-action-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);line-height:1.6}
+.firebase-admin-petitions-action-count{display:inline-grid;place-items:center;flex:0 0 auto;min-width:24px;height:24px;padding:0 var(--mizan-space-1);border-radius:var(--mizan-radius-pill);background:var(--mizan-danger-500);color:var(--mizan-white);font-size:var(--mizan-font-size-micro);font-weight:900}
+.firebase-admin-petitions-action-count[hidden]{display:none}
+.firebase-admin-petitions-panel{min-width:0}
+.firebase-admin-petitions-panel[hidden]{display:none!important}
+.firebase-admin-petitions-panel>.firebase-admin-card{margin-top:0}
+.firebase-admin-petition-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-3);margin-top:var(--mizan-space-3)}
+.firebase-admin-petition-category{display:flex;align-items:center;gap:var(--mizan-space-3);min-width:0;min-height:84px;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg);color:var(--mizan-text);text-align:right;font:inherit;cursor:pointer;transition:var(--mizan-transition-standard)}
+.firebase-admin-petition-category:hover{border-color:var(--mizan-accent-tile-border);background:var(--mizan-accent-tile-bg)}
+.firebase-admin-petition-category-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:var(--mizan-radius-sm);background:var(--mizan-surface);color:var(--mizan-accent-text);font-size:var(--mizan-font-size-md)}
+.firebase-admin-petition-category-copy{display:grid;gap:var(--mizan-space-1);flex:1;min-width:0}
+.firebase-admin-petition-category-copy strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-xs);font-weight:900}
+.firebase-admin-petition-category-copy small{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro);line-height:1.6}
+.firebase-admin-petition-category-arrow{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
+.firebase-admin-petition-category-view{display:grid;gap:var(--mizan-space-3);margin-top:var(--mizan-space-3)}
+.firebase-admin-petition-category-view[hidden]{display:none}
+.firebase-admin-petition-back{display:inline-flex;align-items:center;justify-self:start;gap:var(--mizan-space-2);min-height:var(--mizan-control-min-height);padding:var(--mizan-space-2) var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-surface);color:var(--mizan-text);font:inherit;font-size:var(--mizan-font-size-2xs);cursor:pointer}
+.firebase-admin-petition-category-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--mizan-space-2)}
+.firebase-admin-petition-category-heading h4{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-md);font-weight:900}
+.firebase-admin-petition-category-heading>span{color:var(--mizan-muted);font-size:var(--mizan-font-size-micro)}
+.firebase-admin-petition-status-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mizan-space-2);padding:var(--mizan-space-1);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-bg)}
+.firebase-admin-petition-status-tabs button{display:flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-width:0;min-height:var(--mizan-control-min-height);padding:var(--mizan-space-2);border:var(--mizan-admin-border-width) solid transparent;border-radius:var(--mizan-radius-sm);background:transparent;color:var(--mizan-muted);font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:700;cursor:pointer}
+.firebase-admin-petition-status-tabs button.is-active{border-color:var(--mizan-accent-tile-border);background:var(--mizan-surface);color:var(--mizan-accent-text);box-shadow:var(--mizan-shadow-sm)}
+.firebase-admin-petition-status-tabs button span{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 var(--mizan-space-1);border-radius:var(--mizan-radius-pill);background:var(--mizan-bg);color:var(--mizan-heading);font-size:var(--mizan-font-size-micro);font-variant-numeric:tabular-nums}
+.firebase-admin-petition-items{display:grid;gap:var(--mizan-space-2);min-width:0}
+.firebase-admin-petition-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:var(--mizan-space-3);min-width:0;padding:var(--mizan-space-3);border:var(--mizan-admin-border-width) solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface)}
+.firebase-admin-petition-item-title{display:grid;gap:var(--mizan-space-1);min-width:0}
+.firebase-admin-petition-item-title h5{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-xs);font-weight:800;line-height:1.7;overflow-wrap:anywhere}
+.firebase-admin-petition-item-title .lawyer-admin-status{font-size:var(--mizan-font-size-micro)}
+.firebase-admin-petition-item .lawyer-admin-actions{justify-content:flex-end;flex-wrap:nowrap;gap:var(--mizan-space-1);margin:0}
+.firebase-admin-petition-item .lawyer-admin-actions button{min-height:var(--mizan-admin-button-min-height-record);padding:var(--mizan-space-2);font-size:var(--mizan-font-size-micro)}
+@media(max-width:760px){
+  .firebase-admin-petitions-actions{grid-template-columns:1fr;gap:var(--mizan-space-2)}
+  .firebase-admin-petitions-action{min-height:72px}
+  .firebase-admin-petition-categories{grid-template-columns:1fr;gap:var(--mizan-space-2)}
+  .firebase-admin-petition-item{grid-template-columns:minmax(0,1fr);gap:var(--mizan-space-2)}
+  .firebase-admin-petition-item .lawyer-admin-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .firebase-admin-petition-item .lawyer-admin-actions button{min-width:0;white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+  .firebase-admin-petitions-action,.firebase-admin-petition-category{transition:none}
+}
