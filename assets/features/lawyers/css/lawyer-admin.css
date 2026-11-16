@@ -716,6 +716,8 @@ html[data-theme="light"] .firebase-admin-tab{
   }
 }
 
+#firebase-admin-section[hidden]{display:none!important;}
+
 @media(max-width:760px){
   html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
   #firebase-admin-section{display:block;min-height:0;height:auto;overflow:visible;padding-bottom:calc(124px + env(safe-area-inset-bottom))}
