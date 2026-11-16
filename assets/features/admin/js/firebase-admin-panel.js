@@ -15,7 +15,7 @@
       els.section=existingSection;
       return;
     }
-    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.20';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
+    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.21';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
     const tab=existingTab||document.createElement('button');
     if(!existingTab){
@@ -153,6 +153,109 @@
     </div></div>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
     els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),proceduresContentBody:section.querySelector('#fa-procedures-content-body'),procedureReset:section.querySelector('#fa-procedure-reset'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionsContentBody:section.querySelector('#fa-petitions-content-body'),petitionReset:section.querySelector('#fa-petition-reset'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
+
+  function setupAdminWorkspaceTabs(){
+    const definitions=[
+      {view:'petitions',labels:[['access','طلبات الوصول'],['create','إضافة عريضة'],['library','نماذج العرائض']],titles:['طلبات الوصول','إنشاء عريضة جديدة','مكتبة نماذج العرائض']},
+      {view:'procedures',labels:[['access','طلبات الوصول'],['create','إضافة إجراء'],['library','مكتبة الإجراءات']],titles:['طلبات الوصول','إضافة إجراء جديد','مكتبة الإجراءات']}
+    ];
+    definitions.forEach(def=>{
+      const view=els.section.querySelector('#fa-admin-view-'+def.view);
+      if(!view||view.querySelector('.firebase-admin-inner-tabs'))return;
+      const cards=[...view.querySelectorAll(':scope > .firebase-admin-card')];
+      if(cards.length<2)return;
+      const accessCard=cards[0],managementCard=cards[1];
+      const form=managementCard.querySelector('form');
+      const table=managementCard.querySelector('.firebase-admin-table-wrap');
+      if(!form||!table)return;
+      const heading=managementCard.querySelector('.firebase-admin-card-head');
+      const tabs=document.createElement('div');
+      tabs.className='firebase-admin-inner-tabs';
+      tabs.setAttribute('role','tablist');
+      tabs.setAttribute('aria-label',def.view==='petitions'?'إدارة العرائض':'إدارة إجراءات الدعاوى');
+      const panels=document.createElement('div');
+      panels.className='firebase-admin-inner-panels';
+      const accessPanel=document.createElement('section');
+      accessPanel.className='firebase-admin-inner-panel';
+      accessPanel.dataset.adminPanel='access';
+      accessPanel.id='fa-'+def.view+'-panel-access';
+      accessPanel.setAttribute('role','tabpanel');
+      accessPanel.append(accessCard);
+      const createPanel=document.createElement('section');
+      createPanel.className='firebase-admin-inner-panel';
+      createPanel.dataset.adminPanel='create';
+      createPanel.id='fa-'+def.view+'-panel-create';
+      createPanel.setAttribute('role','tabpanel');
+      const createCard=document.createElement('div');
+      createCard.className='firebase-admin-card lawyer-admin-card procedures-admin-management';
+      const createHeading=heading?heading.cloneNode(true):document.createElement('div');
+      if(createHeading.querySelector('h3'))createHeading.querySelector('h3').textContent=def.titles[1];
+      createCard.append(createHeading,form);
+      createPanel.append(createCard);
+      const libraryPanel=document.createElement('section');
+      libraryPanel.className='firebase-admin-inner-panel';
+      libraryPanel.dataset.adminPanel='library';
+      libraryPanel.id='fa-'+def.view+'-panel-library';
+      libraryPanel.setAttribute('role','tabpanel');
+      const libraryCard=document.createElement('div');
+      libraryCard.className='firebase-admin-card lawyer-admin-card';
+      const libraryHeading=heading?heading.cloneNode(true):document.createElement('div');
+      if(libraryHeading.querySelector('h3'))libraryHeading.querySelector('h3').textContent=def.titles[2];
+      const description=libraryHeading.querySelector('span');
+      if(description)description.textContent='إدارة المحتوى المنشور والمسودات';
+      libraryCard.append(libraryHeading,table);
+      libraryPanel.append(libraryCard);
+      panels.append(accessPanel,createPanel,libraryPanel);
+      def.labels.forEach(([key,label],index)=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.className='firebase-admin-inner-tab'+(index===0?' active':'');
+        button.dataset.adminTab=key;
+        button.id='fa-'+def.view+'-tab-'+key;
+        button.setAttribute('role','tab');
+        button.setAttribute('aria-controls','fa-'+def.view+'-panel-'+key);
+        button.setAttribute('aria-selected',index===0?'true':'false');
+        button.tabIndex=index===0?0:-1;
+        button.textContent=label;
+        tabs.append(button);
+      });
+      accessPanel.hidden=false;
+      createPanel.hidden=true;
+      libraryPanel.hidden=true;
+      managementCard.remove();
+      view.insertBefore(tabs,accessCard);
+      view.insertBefore(panels,accessCard);
+      tabs.addEventListener('click',event=>{
+        const button=event.target.closest('[data-admin-tab]');
+        if(!button||!tabs.contains(button))return;
+        const selected=button.dataset.adminTab;
+        tabs.querySelectorAll('[data-admin-tab]').forEach(tab=>{
+          const active=tab===button;
+          tab.classList.toggle('active',active);
+          tab.setAttribute('aria-selected',active?'true':'false');
+          tab.tabIndex=active?0:-1;
+        });
+        panels.querySelectorAll('[data-admin-panel]').forEach(panel=>{
+          panel.hidden=panel.dataset.adminPanel!==selected;
+        });
+        if(selected==='create'){
+          const firstField=form.querySelector('input:not([type="hidden"]),select,textarea');
+          if(firstField)firstField.focus({preventScroll:true});
+        }
+      });
+      tabs.addEventListener('keydown',event=>{
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+        const buttons=[...tabs.querySelectorAll('[data-admin-tab]')];
+        const current=buttons.indexOf(document.activeElement);
+        const next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(current+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;
+        event.preventDefault();
+        buttons[next].focus();
+        buttons[next].click();
+      });
+    });
+  }
+
+    setupAdminWorkspaceTabs();
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);els.navToggle?.addEventListener('click',()=>toggleMobileSidebar());els.sidebarBackdrop?.addEventListener('click',()=>toggleMobileSidebar(false));els.section.querySelector('#fa-admin-navigation')?.addEventListener('click',event=>{if(event.target.closest('.firebase-admin-nav-item'))toggleMobileSidebar(false);});document.addEventListener('keydown',event=>{if(event.key==='Escape')toggleMobileSidebar(false);});
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
     els.section.querySelectorAll('[data-admin-home]').forEach(btn=>btn.addEventListener('click',showAdminHome));
