@@ -792,8 +792,8 @@ html[data-theme="light"] .firebase-admin-tab{
   transform:var(--mizan-admin-button-hover-transform);
 }
 .procedures-admin-management #fa-petition-form .lawyer-admin-actions button:focus-visible{
-  outline:var(--mizan-focus-ring-width,3px) solid var(--mizan-focus-ring);
-  outline-offset:var(--mizan-focus-ring-offset,2px);
+  outline:var(--mizan-admin-button-focus-outline);
+  outline-offset:var(--mizan-admin-button-focus-offset);
 }
 @media(max-width:600px){
   .procedures-admin-management #fa-petition-form .lawyer-admin-actions{
