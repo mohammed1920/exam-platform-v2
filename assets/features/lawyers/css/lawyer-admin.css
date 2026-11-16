@@ -175,7 +175,7 @@ html[data-theme="light"] .lawyer-admin-tab span{
 }
 .firebase-admin-menu-card:hover{
   border-color:var(--mizan-primary-500-border);
-  transform:translateY(-1px);
+  transform:var(--mizan-admin-button-hover-transform);
 }
 .firebase-admin-menu-card.active{
   border-color:var(--mizan-primary-500-border);
@@ -281,7 +281,7 @@ html[data-theme="light"] .lawyer-admin-status{
 .firebase-admin-tab:hover{
   border-color:var(--mizan-primary-500-border);
   background:var(--mizan-accent-tile-bg);
-  transform:translateY(-1px);
+  transform:var(--mizan-admin-button-hover-transform);
 }
 html[data-theme="light"] .firebase-admin-tab{
   background:var(--mizan-surface);
@@ -324,13 +324,13 @@ html[data-theme="light"] .firebase-admin-tab{
 .mizan-admin-head-actions .btn:hover{
   background:color-mix(in srgb,var(--btn-tone) var(--mizan-admin-button-tone-bg-hover-mix),transparent);
   border-color:var(--btn-tone);
-  transform:translateY(-1px);
+  transform:var(--mizan-admin-button-hover-transform);
   box-shadow:var(--mizan-shadow-tone-button);
 }
 .firebase-admin-table-wrap .btn:active,
 .mizan-admin-modal-box .btn:active,
 .mizan-admin-head-actions .btn:active{
-  transform:translateY(0) scale(.97);
+  transform:var(--mizan-admin-button-active-transform);
   box-shadow:none;
 }
 .firebase-admin-table-wrap .btn:disabled,
@@ -437,7 +437,7 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-head h2{margin:0;color:var(--mizan-heading);font-size:var(--mizan-font-size-lg);font-weight:900}
 .firebase-admin-head p{margin:4px 0 0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs)}
 .firebase-admin-kicker{margin-bottom:3px;color:var(--mizan-gold-text);font-size:var(--mizan-font-size-micro);font-weight:900;letter-spacing:.08em}
-.firebase-admin-action{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:1px solid var(--mizan-admin-button-primary-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-btn-primary-bg);color:var(--mizan-btn-primary-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer}
+.firebase-admin-action{display:inline-flex;align-items:center;justify-content:center;gap:var(--mizan-space-2);min-height:var(--mizan-admin-button-min-height-compact);padding:var(--mizan-admin-button-padding);border:1px solid var(--mizan-admin-button-primary-border);border-radius:var(--mizan-admin-button-radius);background:var(--mizan-admin-button-primary-bg);color:var(--mizan-admin-button-primary-fg);font:inherit;font-size:var(--mizan-admin-button-font-size);font-weight:var(--mizan-admin-button-font-weight);cursor:pointer}
 .firebase-admin-nav-toggle,.firebase-admin-sidebar-backdrop{display:none}
 .firebase-admin-status{margin-bottom:var(--mizan-space-3);padding:var(--mizan-space-3) var(--mizan-space-4);border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-md);background:var(--mizan-surface);color:var(--mizan-text);font-size:var(--mizan-font-size-xs)}
 .firebase-admin-status.error{border-color:var(--mizan-danger-500);color:var(--mizan-danger-text)}
@@ -789,7 +789,7 @@ html[data-theme="light"] .firebase-admin-tab{
   color:var(--mizan-admin-button-secondary-fg);
 }
 .procedures-admin-management #fa-petition-form .lawyer-admin-actions button:hover{
-  transform:translateY(-1px);
+  transform:var(--mizan-admin-button-hover-transform);
 }
 .procedures-admin-management #fa-petition-form .lawyer-admin-actions button:focus-visible{
   outline:var(--mizan-focus-ring-width,3px) solid var(--mizan-focus-ring);
