@@ -1,18 +1,28 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:'',editorSavedHtml:''};
+  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},petitionIndex:[],petitionIndexLoaded:false,petitionIndexPromise:null,categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:'',editorSavedHtml:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const dataCache=new Map();
   function dataUrl(path){const base=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2':'';return base+'/'+path;}
   async function fetchJson(path){if(dataCache.has(path))return dataCache.get(path);const pending=fetch(dataUrl(path),{cache:'default'}).then(r=>{if(!r.ok)throw new Error('تعذر تحميل '+path);return r.json();});dataCache.set(path,pending);try{return await pending;}catch(e){dataCache.delete(path);throw e;}}
   async function loadCategories(){if(state.categoriesLoaded)return state.categories;state.categories=await fetchJson('data/petitions/categories.json');state.categoriesLoaded=true;return state.categories;}
+  async function loadPetitionIndex(){
+    if(state.petitionIndexLoaded)return state.petitionIndex;
+    if(state.petitionIndexPromise)return state.petitionIndexPromise;
+    const db=window.publicAuth?.firestore;if(!db)throw Error('خدمة العرائض غير متاحة.');
+    state.petitionIndexPromise=db.collection('publicIndexes').doc('petitions').get().then(snap=>{
+      state.petitionIndex=snap.exists&&Array.isArray(snap.data()?.items)?snap.data().items:[];
+      state.petitionIndexLoaded=true;
+      return state.petitionIndex;
+    }).catch(error=>{state.petitionIndexPromise=null;throw error;});
+    return state.petitionIndexPromise;
+  }
   async function loadTemplates(categoryId){
     if(!categoryId){state.templates=[];state.templatesLoaded=true;return state.templates;}
     if(state.categoryTemplates?.[categoryId])return state.categoryTemplates[categoryId];
-    const db=window.publicAuth?.firestore;if(!db)throw Error('خدمة العرائض غير متاحة.');
-    const snap=await db.collection('publicIndexes').doc('petitions').get(),all=snap.exists&&Array.isArray(snap.data()?.items)?snap.data().items:[];
+    const all=await loadPetitionIndex();
     const items=all.filter(x=>x.categoryId===categoryId);state.categoryTemplates=state.categoryTemplates||{};state.categoryTemplates[categoryId]=items;state.templates=items;state.templatesLoaded=true;return items;
   }
   async function loadDocument(uid){
@@ -113,6 +123,7 @@
       // Category metadata is a small static JSON file; load it while the access check runs.
       const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
       if(!access.enabled){renderAccessGate(access);return;}
+      await loadPetitionIndex();
       loadLawyerBranding().catch(()=>{});
       renderCategories();
     }catch(e){console.error('Petitions access check failed:',e);renderLoadError('تعذر التحقق من صلاحية الوصول أو تحميل الأقسام. حاول مرة أخرى.');}
@@ -125,7 +136,7 @@
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
   function renderCategories(){
     const root=document.getElementById('petition-browse');if(!root)return;
-    root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>'<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small></span></button>').join('')+'</div>';
+    root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>{const count=state.petitionIndex.filter(item=>item.categoryId===c.id).length;return '<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'، '+count+' نموذج"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small><span class="petition-category-count"><b>'+count.toLocaleString('ar-IQ')+'</b><span>نموذج</span></span></span></button>';}).join('')+'</div>';
     root.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>openCategory(b.dataset.category));
   }
   async function openCategory(categoryId,pushHistory=true){
