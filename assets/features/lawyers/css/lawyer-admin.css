@@ -532,7 +532,7 @@ html[data-theme="light"] .firebase-admin-tab{
 .firebase-admin-view.is-sidebar-open .firebase-admin-sidebar{transform:translateX(0)}
 .firebase-admin-sidebar-backdrop{position:fixed;inset:0;z-index:12001;display:block;visibility:hidden;opacity:0;border:0;background:var(--mizan-sidebar-backdrop);transition:opacity var(--mizan-duration-regular) ease,visibility var(--mizan-duration-regular) ease}
 .firebase-admin-view.is-sidebar-open .firebase-admin-sidebar-backdrop{visibility:visible;opacity:1}
-.firebase-admin-workspace{padding:var(--mizan-space-2)}
+.firebase-admin-workspace{padding:var(--mizan-space-2);padding-bottom:calc(112px + env(safe-area-inset-bottom));max-height:calc(100dvh - 76px);overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
 .firebase-admin-topbar{min-height:68px;padding:var(--mizan-space-2) var(--mizan-space-3)}
 .firebase-admin-nav-toggle{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg);color:var(--mizan-heading);font-size:17px;cursor:pointer}
 .firebase-admin-head h2{font-size:var(--mizan-font-size-md)}
@@ -688,6 +688,9 @@ html[data-theme="light"] .firebase-admin-tab{
   color:var(--mizan-text);
   line-height:1.9;
 }
+.firebase-admin-record-details{width:100%;margin-top:var(--mizan-space-2)}
+.firebase-admin-record-details summary{color:var(--mizan-accent-text);font-size:var(--mizan-font-size-2xs);font-weight:800;cursor:pointer}
+.firebase-admin-record-details[open] .firebase-admin-record-content{max-height:360px;margin-top:var(--mizan-space-2);padding:var(--mizan-space-2);overflow:auto;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg)}
 .firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions{
   display:flex;
   flex-wrap:wrap;
@@ -711,4 +714,9 @@ html[data-theme="light"] .firebase-admin-tab{
   .firebase-admin-inner-panel .firebase-admin-record .lawyer-admin-actions button{
     flex:1 1 100%;
   }
+}
+
+@media(max-width:760px){
+  #firebase-admin-section,#firebase-admin-section .firebase-admin-shell,#firebase-admin-section .firebase-admin-subviews,#firebase-admin-section .firebase-admin-subview{height:auto;min-height:0;max-height:none;overflow:visible}
+  #firebase-admin-section .firebase-admin-workspace{box-sizing:border-box;height:calc(100dvh - 76px);max-height:calc(100dvh - 76px);overflow-y:auto;overflow-x:hidden;padding-bottom:calc(120px + env(safe-area-inset-bottom));touch-action:pan-y}
 }
