@@ -74,23 +74,32 @@
 
       <div id="lawyer-my-application" class="lawyer-my-application" hidden></div>
       <div id="lawyers-list" class="lawyers-list" aria-live="polite" aria-busy="true"><div class="lawyers-empty">جاري تجهيز الدليل...</div></div>
-      <div id="lawyer-details-modal" class="lawyer-details-modal" hidden aria-hidden="true">
-        <div class="lawyer-details-backdrop" data-lawyer-close></div>
-        <div class="lawyer-details-dialog" role="dialog" aria-modal="true" aria-labelledby="lawyer-details-title">
-          <button class="lawyer-details-close" type="button" data-lawyer-close aria-label="إغلاق">×</button>
-          <div id="lawyer-details-content"></div>
-        </div>
-      </div>
     `;
     main.appendChild(section);
-    renderProfilesSkeleton();
 
+    const profileSection = document.createElement('section');
+    profileSection.id = 'lawyer-profile-section';
+    profileSection.className = 'view-section lawyer-profile-section';
+    profileSection.innerHTML = `
+      <div class="lawyer-profile-page">
+        <button type="button" class="lawyer-profile-back" id="lawyer-profile-back">
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>العودة إلى دليل المحامين</span>
+        </button>
+        <div id="lawyer-details-content" class="lawyer-profile-content"></div>
+      </div>
+    `;
+    main.appendChild(profileSection);
+    document.getElementById('lawyer-profile-back').addEventListener('click', () => {
+      if (history.state?.view === 'lawyer-profile') history.back();
+      else window.app?.navigateTo('lawyers');
+    });
+
+    renderProfilesSkeleton();
     document.getElementById('lawyer-apply-btn').onclick = () => openApplication();
     document.getElementById('lawyer-form-close').onclick = () => closeApplication();
     document.getElementById('lawyer-application-form').addEventListener('submit', submitApplication);
     document.getElementById('lawyers-search-input').addEventListener('input', renderProfiles);
-    document.querySelectorAll('[data-lawyer-close]').forEach(el => el.addEventListener('click', closeLawyerDetails));
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLawyerDetails(); });
   }
 
   function openApplication() {
@@ -430,11 +439,10 @@
     });
   }
 
-  function openLawyerDetails(profile) {
-    if (!profile) return;
-    const modal = document.getElementById('lawyer-details-modal');
+  function renderLawyerProfile(profile) {
+    if (!profile) return false;
     const content = document.getElementById('lawyer-details-content');
-    if (!modal || !content) return;
+    if (!content) return false;
     const location = [profile.governorate, profile.district].filter(Boolean).join(' — ');
     const specializations = Array.isArray(profile.specializations) ? profile.specializations : [];
     content.innerHTML = `
@@ -454,17 +462,25 @@
       <div class="lawyer-details-actions">
         ${profile.phone ? '<a href="tel:'+esc(profile.phone)+'"><i class="fas fa-phone"></i> الاتصال بالمحامي</a>' : ''}
       </div>`;
-    modal.hidden = false;
-    modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('lawyer-modal-open');
+    return true;
   }
 
-  function closeLawyerDetails() {
-    const modal = document.getElementById('lawyer-details-modal');
-    if (!modal) return;
-    modal.hidden = true;
-    modal.setAttribute('aria-hidden','true');
-    document.body.classList.remove('lawyer-modal-open');
+  function openLawyerDetails(profile) {
+    if (!renderLawyerProfile(profile)) return;
+    window.app?.navigateTo('lawyer-profile', {lawyerId:profile.id});
+  }
+
+  function restoreLawyerProfile(lawyerId) {
+    const profile = profiles.find(item => item.id === lawyerId);
+    if (profile) {
+      renderLawyerProfile(profile);
+      return;
+    }
+    loadProfiles().then(() => {
+      const restored = profiles.find(item => item.id === lawyerId);
+      if (restored) renderLawyerProfile(restored);
+      else window.app?.navigateTo('lawyers', {}, false);
+    }).catch(() => window.app?.navigateTo('lawyers', {}, false));
   }
 
   function install() {
@@ -474,7 +490,7 @@
     else loadProfiles();
   }
 
-  window.lawyerDirectory = { load: loadProfiles, openApplication };
+  window.lawyerDirectory = { load: loadProfiles, openApplication, restoreProfile: restoreLawyerProfile };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();
