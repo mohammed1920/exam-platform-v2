@@ -69,12 +69,7 @@
           <button data-mizan-status="rejected">المرفوضة</button>
           <button data-mizan-status="hidden">المخفية</button>
         </div>
-        <div class="firebase-admin-table-wrap">
-          <table class="lawyer-admin-table">
-            <thead id="mizan-admin-head"></thead>
-            <tbody id="mizan-admin-body"></tbody>
-          </table>
-        </div>
+        <div id="mizan-admin-body" class="firebase-admin-record-list mizan-admin-record-list"><p class="firebase-admin-list-state">اختر تبويباً لعرض المحتوى.</p></div>
       </div>
     `;
     section.querySelector('.firebase-admin-subviews')?.appendChild(view);
@@ -253,15 +248,15 @@
   }
 
   async function load(status){
-    const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
+    const body=document.getElementById('mizan-admin-body'),firestore=db();
     if(!body||!firestore)return;
-    body.innerHTML='<tr><td colspan="6">جارٍ التحميل...</td></tr>';
+    body.innerHTML='<p class="firebase-admin-list-state">جارٍ التحميل...</p>';
 
     if(status==='overview'){await loadOverview();return;}
     if(status==='contributors'){await loadContributors('pending');return;}
     if(status==='approved-contributors'){await loadContributors('approved');return;}
 
-    if(head)head.innerHTML='<tr><th>المشاركة</th><th>الكاتب</th><th>النوع</th><th>الحالة</th><th>التاريخ</th><th>الإجراء</th></tr>';
+    
     try{
       const snap=await firestore.collection(COLLECTION).where('status','==',status).limit(150).get();
       const docs=snap.docs.sort((a,b)=>{
@@ -269,7 +264,7 @@
         const bv=b.data()?.createdAt?.toDate?.()?.getTime?.()||0;
         return bv-av;
       });
-      if(!docs.length){body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">لا توجد مشاركات في هذه القائمة.</td></tr>';return;}
+      if(!docs.length){body.innerHTML='<p class="firebase-admin-list-state">لا توجد مشاركات في هذه القائمة.</p>';return;}
       body.innerHTML=docs.map(d=>{
         const a=d.data()||{};
         const actionButtons=
@@ -280,11 +275,11 @@
           : status==='rejected'
             ? '<button class="btn btn-sm" data-mizan-action="resubmit" data-id="'+d.id+'">إعادة للمراجعة</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>'
           : '<button class="btn btn-sm btn-green" data-mizan-action="republish" data-id="'+d.id+'">إعادة النشر</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>';
-        return '<tr><td><strong>'+esc(a.title)+'</strong><br><small>'+esc((a.excerpt||'').slice(0,100))+'</small></td><td>'+esc(a.authorName)+'</td><td>'+esc(a.type)+'</td><td>'+esc(statusLabel(status))+(a.rejectionReason?'<div class="mizan-admin-reason">سبب الرفض: '+esc(a.rejectionReason)+'</div>':'')+'</td><td>'+esc(dateValue(a.createdAt))+'</td><td><div class="btn-row"><button class="btn btn-sm" data-mizan-action="view" data-id="'+d.id+'">عرض</button>'+actionButtons+'</div></td></tr>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+esc(a.type||'مشاركة')+'</span><h4>'+esc(a.title||'بدون عنوان')+'</h4></div><span class="lawyer-admin-status '+(status==='published'?'is-live':'is-off')+'">'+statusLabel(status)+'</span></div><div class="firebase-admin-record-field"><span>الكاتب</span><strong>'+esc(a.authorName||'غير محدد')+'</strong></div><div class="firebase-admin-record-field"><span>المقتطف</span><p>'+esc((a.excerpt||'لا يوجد مقتطف').slice(0,180))+'</p></div>'+(a.rejectionReason?'<div class="mizan-admin-reason">سبب الرفض: '+esc(a.rejectionReason)+'</div>':'')+'<div class="firebase-admin-record-meta">تاريخ الإرسال: '+esc(dateValue(a.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view" data-id="'+d.id+'">عرض التفاصيل</button>'+actionButtons+'</div></article>';
       }).join('');
     }catch(e){
       console.error(e);
-      body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">تعذر تحميل المشاركات. تحقق من صلاحيات Firestore.</td></tr>';
+      body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المشاركات. تحقق من صلاحيات Firestore.</p>';
     }
   }
 
@@ -293,8 +288,7 @@
   async function loadOverview(){
     const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
     if(!body||!firestore)return;
-    if(head)head.innerHTML='';
-    body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">جارٍ تحديث الإحصائيات...</td></tr>';
+    body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحديث الإحصائيات...</p>';
     try{
       const statuses=['pending','published','rejected','hidden'];
       const snaps=await Promise.all(statuses.map(s=>firestore.collection(COLLECTION).where('status','==',s).get()));
@@ -314,21 +308,20 @@
       });
       const stats=document.getElementById('mizan-admin-stats');
       if(stats)stats.innerHTML='<div class="mizan-admin-stat"><strong>'+Object.values(counts).reduce((a,b)=>a+b,0)+'</strong><span>إجمالي المشاركات</span></div><div class="mizan-admin-stat"><strong>'+counts.pending+'</strong><span>قيد المراجعة</span></div><div class="mizan-admin-stat"><strong>'+counts.published+'</strong><span>منشور</span></div><div class="mizan-admin-stat"><strong>'+counts.rejected+'</strong><span>مرفوض</span></div><div class="mizan-admin-stat"><strong>'+contributorSnap.size+'</strong><span>طلبات اعتماد</span></div>';
-      body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">اختر من تبويبات منبر ميزان أعلاه لإدارة المشاركات وطلبات الاعتماد.<br><br>يمكنك مراجعة الطلبات، تعديل المحتوى، نشره، رفضه مع حفظ السبب، إخفاء المنشورات أو إعادة نشرها، وحذفها نهائياً.</td></tr>';
-    }catch(e){console.error(e);body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">تعذر تحميل إحصائيات المنبر.</td></tr>';}
+      body.innerHTML='<p class="firebase-admin-list-state">اختر من تبويبات منبر ميزان أعلاه لإدارة المشاركات وطلبات الاعتماد.</p>';
+    }catch(e){console.error(e);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل إحصائيات المنبر.</p>';}
   }
 
   async function loadContributors(filterStatus='pending'){
     const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
     if(!body||!firestore)return;
-    if(head)head.innerHTML='<tr><th>المساهم</th><th>الصفة</th><th>التخصص</th><th>جهة العمل</th><th>التاريخ</th><th>الإجراء</th></tr>';
-    body.innerHTML='<tr><td colspan="6">جارٍ التحميل...</td></tr>';
+    body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل المساهمين...</p>';
     try{
       const snap=filterStatus==='pending'
         ? await firestore.collection(CONTRIBUTORS).where('status','==','pending').limit(150).get()
         : await firestore.collection(CONTRIBUTORS).where('status','in',['approved','blocked']).limit(150).get();
       const docs=snap.docs.sort((a,b)=>(b.data()?.createdAt?.toDate?.()?.getTime?.()||0)-(a.data()?.createdAt?.toDate?.()?.getTime?.()||0));
-      if(!docs.length){body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">'+(filterStatus==='pending'?'لا توجد طلبات اعتماد معلقة.':'لا يوجد مساهمون معتمدون أو محظورون.')+'</td></tr>';return;}
+      if(!docs.length){body.innerHTML='<p class="firebase-admin-list-state">'+(filterStatus==='pending'?'لا توجد طلبات اعتماد معلقة.':'لا يوجد مساهمون معتمدون أو محظورون.')+'</p>';return;}
       body.innerHTML=docs.map(d=>{
         const a=d.data()||{};
         const statusLabel=a.status==='approved'?'معتمد':a.status==='blocked'?'محظور':'قيد المراجعة';
@@ -337,9 +330,9 @@
           : a.status==='approved'
             ? '<button class="btn btn-sm" data-mizan-action="block-contributor" data-id="'+d.id+'">حظر النشر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>'
             : '<button class="btn btn-sm btn-green" data-mizan-action="unblock-contributor" data-id="'+d.id+'">إلغاء الحظر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>';
-        return '<tr><td><strong>'+esc(a.fullName)+'</strong><br><small>'+esc(a.email||'')+'</small></td><td>'+esc(a.role)+'</td><td>'+esc(a.specialization)+'</td><td>'+esc(a.affiliation||'—')+'</td><td>'+esc(statusLabel)+'<br><small>'+esc(dateValue(a.createdAt))+'</small></td><td><div class="btn-row"><button class="btn btn-sm" data-mizan-action="view-contributor" data-id="'+d.id+'">عرض التفاصيل</button>'+buttons+'</div></td></tr>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مساهم في منبر ميزان</span><h4>'+esc(a.fullName||'بدون اسم')+'</h4><span class="firebase-admin-record-sub">'+esc(a.email||'')+'</span></div><span class="lawyer-admin-status '+(a.status==='approved'?'is-live':'is-off')+'">'+statusLabel+'</span></div><div class="firebase-admin-record-field"><span>الصفة والتخصص</span><p>'+esc(a.role||'—')+' · '+esc(a.specialization||'—')+'</p></div><div class="firebase-admin-record-field"><span>جهة العمل</span><p>'+esc(a.affiliation||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(a.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view-contributor" data-id="'+d.id+'">عرض التفاصيل</button>'+buttons+'</div></article>';
       }).join('');
-    }catch(e){console.error(e);body.innerHTML='<tr><td colspan="6" class="mizan-admin-empty">تعذر تحميل طلبات الاعتماد.</td></tr>';}
+    }catch(e){console.error(e);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات الاعتماد.</p>';}
   }
 
   async function fetchDoc(collection,id){const firestore=db();if(!firestore)return null;const snap=await firestore.collection(collection).doc(id).get();return snap.exists?{id:snap.id,data:snap.data()||{}}:null;}
