@@ -223,8 +223,14 @@
       createPanel.hidden=true;
       libraryPanel.hidden=true;
       managementCard.remove();
-      view.insertBefore(tabs,accessCard);
-      view.insertBefore(panels,accessCard);
+      const backButton=view.querySelector('.firebase-admin-subview-back');
+      if(backButton){
+        view.insertBefore(tabs,backButton.nextSibling);
+        view.insertBefore(panels,tabs.nextSibling);
+      }else{
+        view.prepend(panels);
+        view.prepend(tabs);
+      }
       tabs.addEventListener('click',event=>{
         const button=event.target.closest('[data-admin-tab]');
         if(!button||!tabs.contains(button))return;
