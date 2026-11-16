@@ -421,10 +421,6 @@
   --mizan-admin-crown-button-size:var(--mizan-header-control-size);
   --mizan-admin-nav-button-size:var(--mizan-header-control-size);
   --mizan-admin-modal-close-size:var(--mizan-header-control-size);
-  --mizan-admin-menu-card-padding:var(--mizan-space-4);
-  --mizan-admin-menu-card-padding-mobile:var(--mizan-space-inset-medium);
-  --mizan-admin-menu-card-radius:var(--mizan-radius-md);
-  --mizan-admin-menu-card-gap:var(--mizan-space-2);
   --mizan-admin-button-table-padding:var(--mizan-space-1-5) var(--mizan-space-3);
   --mizan-admin-button-table-font-size:var(--mizan-font-size-compact);
 }
