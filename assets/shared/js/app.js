@@ -1050,6 +1050,7 @@ class ExamApp {
       'custom-exam-setup': 'books',
       'student-dashboard': 'home',
       lawyers: 'home',
+      'lawyer-profile': 'lawyers',
       procedures: 'home',
       petitions: 'home',
       laws: 'home',
@@ -1332,6 +1333,9 @@ class ExamApp {
         } else {
           this.navigateTo('home', {}, false);
         }
+      } else if (view === 'lawyer-profile') {
+        this.navigateTo('lawyer-profile', {}, false);
+        window.lawyerDirectory?.restoreProfile?.(state.lawyerId);
       } else if (view === 'results' || view === 'review') {
         this.navigateTo(view, {}, false);
       } else if (
