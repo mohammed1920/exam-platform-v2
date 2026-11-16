@@ -1008,3 +1008,28 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-footer-visitor:var(--mizan-primary-700);
 }
 
+/* Executive admin action roles — shared semantic colors for every crown-panel button. */
+:root{
+  --mizan-admin-button-primary-bg:var(--mizan-btn-primary-bg);
+  --mizan-admin-button-primary-bg-hover:var(--mizan-btn-primary-bg-hover);
+  --mizan-admin-button-primary-fg:var(--mizan-btn-primary-fg);
+  --mizan-admin-button-primary-border:var(--mizan-btn-primary-border);
+  --mizan-admin-button-secondary-bg:var(--mizan-surface);
+  --mizan-admin-button-secondary-bg-hover:var(--mizan-accent-tile-bg);
+  --mizan-admin-button-secondary-fg:var(--mizan-text);
+  --mizan-admin-button-secondary-border:var(--mizan-border);
+  --mizan-admin-button-neutral-bg:var(--mizan-bg);
+  --mizan-admin-button-neutral-fg:var(--mizan-text);
+  --mizan-admin-button-neutral-border:var(--mizan-border);
+  --mizan-admin-button-success-fg:var(--mizan-success-text);
+  --mizan-admin-button-success-border:color-mix(in srgb,var(--mizan-success-text) 45%,transparent);
+  --mizan-admin-button-danger-fg:var(--mizan-danger-text);
+  --mizan-admin-button-danger-border:color-mix(in srgb,var(--mizan-danger-text) 45%,transparent);
+  --mizan-admin-button-warning-fg:var(--mizan-warning-text);
+  --mizan-admin-button-info-fg:var(--mizan-info-text);
+  --mizan-admin-button-gold-fg:var(--mizan-gold-text);
+  --mizan-admin-button-tab-fg:var(--mizan-muted);
+  --mizan-admin-button-tab-active-bg:var(--mizan-accent-tile-bg);
+  --mizan-admin-button-tab-active-fg:var(--mizan-accent-tile-fg);
+  --mizan-admin-button-tab-active-border:var(--mizan-accent-tile-border);
+}
