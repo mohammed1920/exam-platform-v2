@@ -470,3 +470,13 @@
   --mizan-admin-nav-item-font-weight:var(--mizan-font-weight-bold);
   --mizan-admin-exit-font-weight:var(--mizan-font-weight-extrabold);
 }
+
+/* Shared border and pending-count geometry for crown administration UI. */
+:root{
+  --mizan-admin-border-width:1px;
+  --mizan-admin-nav-active-indicator-width:3px;
+  --mizan-admin-shortcut-count-size:19px;
+  --mizan-admin-shortcut-count-offset:5px;
+  --mizan-admin-shortcut-count-padding:0 var(--mizan-space-1-25);
+  --mizan-admin-shortcut-count-radius:var(--mizan-radius-pill);
+}
