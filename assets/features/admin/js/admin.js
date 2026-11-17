@@ -667,6 +667,7 @@
                 listEl.innerHTML = pendingItems.map((item) => {
                     const idx = qaItems.indexOf(item);
                     const issueInfo = QA_ISSUE_LABELS[item.issue_type] || { label: item.issue_type, color: 'var(--mizan-muted-dark)' };
+                    const issueClass = issueInfo.color === 'var(--mizan-danger)' ? 'admin-qa-issue-danger' : 'admin-qa-issue-warning';
                     const opts = item.options || [];
 
                     const optionsHtml = opts.map((o, oi) => {
@@ -692,7 +693,7 @@
                         <div class="admin-report-meta">
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')}
                         </div>
-                        <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${escapeHtml(issueInfo.label)}</div>
+                        <div class="admin-qa-issue-label ${issueClass}">${escapeHtml(issueInfo.label)}</div>
                         <div class="question-text">${escapeHtml(item.question || '')}</div>
                         <div class="question-options">${optionsHtml}</div>
                         <div class="admin-qa-reason"><strong class="admin-qa-reason-label">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
