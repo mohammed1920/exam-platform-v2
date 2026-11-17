@@ -605,10 +605,16 @@
     });
     root.querySelectorAll('[data-command]').forEach(btn=>{
       btn.addEventListener('mousedown',event=>event.preventDefault());
+      btn.addEventListener('pointerdown',event=>{rememberEditorSelection();event.preventDefault();});
       btn.onclick=()=>{
-        editor.focus();
-        document.execCommand(btn.dataset.command,false,null);
-        syncEditorContent(editor);
+        if(!restoreEditorSelection())return;
+        editor.focus({preventScroll:true});
+        if(!restoreEditorSelection())return;
+        const applied=document.execCommand(btn.dataset.command,false,null);
+        if(applied){
+          rememberEditorSelection();
+          syncEditorContent(editor);
+        }
       };
     });
   }
