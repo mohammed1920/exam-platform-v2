@@ -239,7 +239,7 @@ self.addEventListener('fetch', event => {
   // the origin. A 304 can reuse the browser HTTP cache, but there is no
   // Service Worker CacheStorage fallback, so offline access remains blocked.
   if (relativePath.startsWith('data/')) {
-    const isQuestionChapter = /^data\\/[^/]+\\/chapter_\\d+\\.json$/i.test(relativePath);
+    const isQuestionChapter = /^data\/[^/]+\/chapter_\d+\.json$/i.test(relativePath);
     event.respondWith(fetch(request, { cache: isQuestionChapter ? 'no-cache' : 'no-store' }));
     return;
   }
