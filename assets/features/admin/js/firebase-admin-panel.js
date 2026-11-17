@@ -1366,6 +1366,9 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const targets=[document.getElementById('mizan-admin-nav-count'),...document.querySelectorAll('[data-admin-count="forum"]')];
     targets.forEach(node=>{if(!node)return;node.textContent=String(total);node.hidden=total===0;});
   }
+  function notifyForumPendingCounts(){
+    window.dispatchEvent(new CustomEvent('mizan:refresh-forum-pending-counts'));
+  }
   async function refreshPendingCounts(){
     const firestore=db();if(!firestore)return;
     try{
@@ -1596,12 +1599,12 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
           status:'approved',
           updatedAt:firebase.firestore.FieldValue.serverTimestamp()
         },{merge:true});
-        closeModal('mizan-contributor-view-modal');alert('تم اعتماد المساهم.');
+        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts();alert('تم اعتماد المساهم.');
         setTab('contributors');load('contributors');return;
       }
       if(action==='reject-contributor'){
         await firestore.collection(CONTRIBUTORS).doc(id).update({status:'rejected',rejectedAt:firebase.firestore.FieldValue.serverTimestamp()});
-        closeModal('mizan-contributor-view-modal');alert('تم رفض طلب الاعتماد.');
+        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts();alert('تم رفض طلب الاعتماد.');
         setTab('contributors');load('contributors');return;
       }
       if(action==='reject'){
@@ -1613,7 +1616,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
           if(!reason){alert('اكتب سبب الرفض أولاً.');return;}
           try{
             await ref.update({status:'rejected',rejectionReason:reason,rejectedAt:firebase.firestore.FieldValue.serverTimestamp()});
-            closeModal('mizan-reject-modal');closeModal('mizan-article-view-modal');
+            notifyForumPendingCounts();closeModal('mizan-reject-modal');closeModal('mizan-article-view-modal');
             alert('تم رفض المشاركة وحفظ السبب.');
             setTab('rejected');load('rejected');
           }catch(e){console.error(e);alert('تعذر رفض المشاركة.');}
@@ -1622,7 +1625,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       }
       if(action==='publish'){
         await ref.update({status:'published',publishedAt:firebase.firestore.FieldValue.serverTimestamp()});
-        closeModal('mizan-article-view-modal');alert('تم نشر المشاركة.');
+        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('تم نشر المشاركة.');
         setTab('published');load('published');return;
       }
       if(action==='hide'){
@@ -1637,7 +1640,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       }
       if(action==='resubmit'){
         await ref.update({status:'pending',resubmittedAt:firebase.firestore.FieldValue.serverTimestamp(),rejectionReason:firebase.firestore.FieldValue.delete()});
-        closeModal('mizan-article-view-modal');alert('أعيدت المشاركة إلى قائمة المراجعة.');
+        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('أعيدت المشاركة إلى قائمة المراجعة.');
         setTab('pending');load('pending');return;
       }
       if(action==='edit'){
@@ -1646,7 +1649,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       }
       if(action==='delete'&&confirm('حذف هذه المشاركة نهائياً؟ لا يمكن التراجع عن هذا الإجراء.')){
         await ref.delete();
-        closeModal('mizan-article-view-modal');alert('تم حذف المشاركة نهائياً.');
+        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('تم حذف المشاركة نهائياً.');
         const active=document.querySelector('#mizan-admin-view [data-mizan-status].active')?.dataset.mizanStatus||'overview';
         load(active);
       }
