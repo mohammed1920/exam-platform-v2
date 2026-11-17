@@ -42,9 +42,10 @@
 ## التحميل الديناميكي
 
 - `assets/features/admin/js/firebase-admin-panel.js`: يُحمّل بواسطة `admin-loader.js` بعد تحقق Firebase من صلاحية الحساب. لا تحمّله للزائر أو المستخدم غير المشرف.
-- `assets/features/laws/js/laws.js`: يُحمّل عند فتح قسم القوانين عبر `window.loadMizanLaws`.
-- `assets/features/lawyers/js/lawyer-directory.js`: يُحمّل عند فتح دليل المحامين عبر `window.loadLawyerDirectory`، وقد يحمّل Firebase Storage Compat كاعتماد منفصل.
-- `assets/features/petitions/js/petitions.js`: يُحمّل عند فتح قسم العرائض عبر `window.loadPetitions`.
+- `assets/shared/js/firestore-count.mjs`: يُحمّل ديناميكياً عبر `import()` من `firebase-admin-panel.js` عند الحاجة إلى عدّادات Firestore التجميعية؛ فشل العدّاد معزول عن تحميل قوائم الإدارة.
+- `assets/features/laws/js/laws.js`: يُحمّل عند فتح قسم القوانين عبر `window.loadMizanLaws`، أو عند أول بحث عام يحتاج سجل القوانين.
+- `assets/features/lawyers/js/lawyer-directory.js`: يُحمّل عند فتح دليل المحامين عبر `window.loadLawyerDirectory`، أو عند أول بحث عام يحتاج ملفات المحامين؛ وقد يحمّل Firebase Storage Compat كاعتماد منفصل.
+- `assets/features/petitions/js/petitions.js`: يُحمّل عند فتح قسم العرائض عبر `window.loadPetitions`، أو عند أول بحث عام يحتاج فهرس العرائض.
 - ملفات الإدارة الخاصة بالمنبر دُمجت في `firebase-admin-panel.js`؛ لا يوجد اعتماد على `mizan-pulpit-admin.js`.
 
 ## الثيم والإدارة
@@ -66,7 +67,9 @@
 - `scripts/build-pages-bundle.sh` يبني حزمة النشر الثابتة لـ GitHub Pages وVercel.
 - `scripts/build-precache-manifest.mjs` ينشئ قائمة التخزين المسبق من الأصول المشار إليها في `index.html` واعتماديات CSS المحلية فقط؛ لا يضم وحدات الأقسام المحمّلة كسولاً أو أصول الإدارة.
 - `service-worker.js` يستخدم `MIZAN_BUILD_ID` لتمييز كاش الأصول بين الإصدارات، ويحتفظ بكاش فهرس الكتب والمكتبة القانونية المستقلين.
+- `mizan-vendor-v1` يخزّن مكتبات CDN والخطوط عند أول طلب فعلي بعد سيطرة Service Worker؛ لا ينزّلها أثناء التثبيت المسبق.
 - ملفات الأسئلة والبيانات الشخصية وبيانات الإدارة لا تدخل في كاش التخزين المسبق.
+- `no-store` لبيانات العرائض والمعهد القضائي مقصود لضمان حداثة المحتوى، ولا يُعامل كخلل في التخزين المؤقت.
 
 ## التحقق وحدوده
 
