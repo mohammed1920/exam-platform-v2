@@ -181,24 +181,24 @@ try {
   } else {
     for (const entry of distManifest) {
       if (typeof entry !== "string" || /^(?:[a-z][a-z\d+.-]*:|\/\/|\/)/i.test(entry)) {
-        failures.push(\`Invalid precache manifest entry: \${String(entry)}\`);
+        failures.push('Invalid precache manifest entry: ' + String(entry));
         continue;
       }
       const clean = entry.split(/[?#]/, 1)[0];
       const resolved = path.resolve(distDir, clean);
       if (resolved !== distDir && !resolved.startsWith(distDir + path.sep)) {
-        failures.push(\`Unsafe dist precache entry: \${entry}\`);
+        failures.push('Unsafe dist precache entry: ' + entry);
         continue;
       }
       try {
         await access(resolved);
       } catch {
-        failures.push(\`Missing dist precache asset: \${entry}\`);
+        failures.push('Missing dist precache asset: ' + entry);
       }
     }
   }
 } catch (error) {
-  if (error.code !== "ENOENT") failures.push(\`Unable to validate dist precache manifest: \${error.message}\`);
+  if (error.code !== "ENOENT") failures.push('Unable to validate dist precache manifest: ' + error.message);
 }
 
 // Shared local JS/CSS resources must use the same explicit version on both pages.
@@ -226,7 +226,7 @@ const indexVersions = sharedAssetVersions(indexHtmlForVersions);
 const adminVersions = sharedAssetVersions(adminHtmlForVersions);
 for (const [asset, version] of indexVersions) {
   if (adminVersions.has(asset) && adminVersions.get(asset) !== version) {
-    failures.push(\`Shared asset version mismatch between index.html and admin.html: \${asset} (index \${version}, admin \${adminVersions.get(asset)})\`);
+    failures.push('Shared asset version mismatch between index.html and admin.html: ' + asset + ' (index ' + version + ', admin ' + adminVersions.get(asset) + ')');
   }
 }
 
