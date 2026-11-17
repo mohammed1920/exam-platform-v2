@@ -255,7 +255,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       'تسجيل الدخول: '+(auth?.user?'نشط':'غير نشط'),
       'التحقق الإداري: '+(isAdmin?'ناجح':'غير مؤكد'),
       'تهيئة Firestore: '+(auth?.firestore?'متاحة':'غير متاحة')
-    ].join('\\n');
+    ].join('\n');
     els.diagnostic.hidden=false;
   }
   function switchLawyerView(view){
