@@ -59,7 +59,7 @@
 
     state.datasetPromises[ds.key] = (async () => {
       try {
-        const res = await fetch(basePath() + '/' + ds.path + '?v=' + Date.now());
+        const res = await fetch(basePath() + '/' + ds.path, { cache: 'no-cache' });
         if (!res.ok) {
           state.cache[ds.key] = [];
           return state.cache[ds.key];
