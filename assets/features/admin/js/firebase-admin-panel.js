@@ -92,7 +92,7 @@
 <button id="firebase-admin-nav-toggle" class="firebase-admin-nav-toggle" type="button" aria-label="فتح قائمة الإدارة" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
 <div class="firebase-admin-head"><div><div class="firebase-admin-kicker">MIZAN EXECUTIVE</div><h2>مركز الإدارة التنفيذية</h2><p id="firebase-admin-welcome">تم التحقق من صلاحية الإدارة.</p></div><button id="firebase-admin-refresh" class="firebase-admin-action" type="button"><i class="fas fa-rotate" aria-hidden="true"></i><span>تحديث البيانات</span></button></div>
 </header>
-<div id="firebase-admin-status" class="firebase-admin-status" role="status" aria-live="polite" hidden></div><details id="firebase-admin-diagnostic" class="firebase-admin-diagnostic" hidden><summary>تفاصيل تشخيص الخطأ</summary><pre id="firebase-admin-diagnostic-text"></pre></details>
+<div id="firebase-admin-status" class="firebase-admin-status" role="status" aria-live="polite" hidden></div>
 <div id="fa-admin-home" class="firebase-admin-home">
 <div class="firebase-admin-overview-intro"><div><span class="firebase-admin-overview-eyebrow">نظرة عامة</span><h2>مرحباً بك في إدارة ميزان</h2><p>تابع المستخدمين والخدمات والطلبات من مكان واحد.</p></div><span class="firebase-admin-overview-emblem"><i class="fas fa-scale-balanced" aria-hidden="true"></i></span></div>
 <div class="firebase-admin-overview-stats">
@@ -225,7 +225,7 @@
     </section></div>
     </div></div>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),diagnostic:section.querySelector('#firebase-admin-diagnostic'),diagnosticText:section.querySelector('#firebase-admin-diagnostic-text'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
 
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);els.navToggle?.addEventListener('click',()=>toggleMobileSidebar());els.sidebarBackdrop?.addEventListener('click',()=>toggleMobileSidebar(false));els.section.querySelector('#fa-admin-navigation')?.addEventListener('click',event=>{if(event.target.closest('.firebase-admin-nav-item'))toggleMobileSidebar(false);});document.addEventListener('keydown',event=>{if(event.key==='Escape')toggleMobileSidebar(false);});
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
@@ -235,32 +235,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
      els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.petitionForm?.addEventListener('submit',savePetition);els.petitionReset?.addEventListener('click',()=>{resetPetition();setPetitionPanel('add');});
      els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);
   }
-  function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));if(!error&&els.diagnostic)els.diagnostic.hidden=true;}
-  function showAdminDiagnostic(error,stage){
-    if(!els.diagnostic||!els.diagnosticText)return;
-    const code=String(error?.code||'غير متاح').slice(0,80);
-    const safeMessages={
-      'permission-denied':'رفضت قواعد Firestore هذا الاستعلام.',
-      'unauthenticated':'لم تُرسل جلسة مصادقة صالحة مع الطلب.',
-      'failed-precondition':'الاستعلام يحتاج إلى فهرس أو شرط مسبق.',
-      'unavailable':'خدمة Firestore غير متاحة حالياً.',
-      'resource-exhausted':'تم تجاوز حد موارد الخدمة.'
-    };
-    const rawMessage=String(error?.message||'لا توجد رسالة إضافية من Firebase');
-    const safeMessage=safeMessages[code]||rawMessage
-      .replace(/[A-Za-z0-9_.+-]+@[A-Za-z0-9_.-]+[.][A-Za-z]{2,}/g,'[بيانات مخفية]')
-      .slice(0,180);
-    const auth=window.publicAuth;
-    els.diagnosticText.textContent=[
-      'المرحلة: '+stage,
-      'رمز الخطأ: '+code,
-      'تفاصيل الخطأ: '+safeMessage,
-      'تسجيل الدخول: '+(auth?.user?'نشط':'غير نشط'),
-      'التحقق الإداري: '+(isAdmin?'ناجح':'غير مؤكد'),
-      'تهيئة Firestore: '+(auth?.firestore?'متاحة':'غير متاحة')
-    ].join('\n');
-    els.diagnostic.hidden=false;
-  }
+  function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
     const panels={
       pending:els.section.querySelector('#fa-lawyers-pending-panel'),
@@ -315,16 +290,11 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
     try{
       const db=window.publicAuth.firestore;
-      const [procedureCount,petitionCount,forumCount]=await Promise.all([
-        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),
-        exactQueryCount('petitionAccessRequests',[['status','==','pending']]),
-        exactQueryCount('mizanArticles',[['status','==','pending']])
-      ]);
+      const [procedureCount,petitionCount]=await Promise.all([\n        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),\n        exactQueryCount('petitionAccessRequests',[['status','==','pending']])\n      ]);
       const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
       setPendingCount('procedures',procedureCount);
       setPendingCount('petitions',petitionCount);
-      setPendingCount('forum',forumCount);
     }catch(error){console.warn('تعذر تحديث مؤشرات الطلبات المعلقة:',error);}
   }
   function showAdminHome(){
@@ -395,26 +365,24 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   async function loadDashboard(){
     if(!isAdmin||!window.publicAuth?.firestore)return;
-    let failedStage='تهيئة لوحة الإدارة';
-    if(els.diagnostic)els.diagnostic.hidden=true;
-    setStatus('جارٍ تحميل بيانات الطلاب...');
+    setStatus('جارٍ تحميل بيانات الإدارة...');
     try{
-      failedStage='تحميل وحدة عدّ بيانات Firestore';
       const studentsTotal=await exactQueryCount('students');
       els.studentsCount.textContent=String(studentsTotal);
       if(els.dashboardStudentsCount)els.dashboardStudentsCount.textContent=String(studentsTotal);
-      failedStage='تحميل قائمة الطلاب';
       await loadStudentPage(true);
       els.studentsUpdated.textContent=timeValue(new Date());
-      failedStage='تحميل بيانات وإدارة المحامين';
       await loadLawyerManagement();
       if(els.dashboardLawyerPending)els.dashboardLawyerPending.textContent=els.lawyersPendingCount?.textContent||'0';
       if(els.dashboardLawyerPublished)els.dashboardLawyerPublished.textContent=els.lawyersPublishedCount?.textContent||'0';
       if(els.dashboardLawyerEdits)els.dashboardLawyerEdits.textContent=els.lawyerEditRequestsCount?.textContent||'0';
       if(els.navLawyersCount)els.navLawyersCount.textContent=String((Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0));
-      failedStage='تحديث مؤشرات الطلبات المعلقة';
-      await refreshPendingAdminCounts();setStatus('');
-    }catch(error){console.error('Admin dashboard load failed at '+failedStage+':',error);setStatus('تعذر تحميل بيانات الإدارة. افتح تفاصيل التشخيص لمعرفة رمز الخطأ والمرحلة.',true);showAdminDiagnostic(error,failedStage);}
+      await refreshPendingAdminCounts();
+      setStatus('');
+    }catch(error){
+      console.error('Admin dashboard load failed:',error);
+      setStatus('تعذر تحميل بيانات الإدارة. حاول تحديث الصفحة أو تحقق من صلاحيات الحساب.',true);
+    }
   }
   async function loadLawyerManagement(){
     await Promise.all([loadLawyerApplications(),loadLawyerProfiles()]);
