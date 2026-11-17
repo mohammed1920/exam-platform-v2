@@ -487,8 +487,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!window.publicAuth?.firestore||!activeProcedureAdminCategory)return;
     const db=window.publicAuth.firestore,category=activeProcedureAdminCategory,published=activeProcedureAdminStatus==='published',key='procedure-library:'+category+':'+activeProcedureAdminStatus;
     try{
-      const page=await fetchAdminPage(key,()=>db.collection('legalProcedures').where('category','==',category).where('published','==',published),reset);
-      procedureItems=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      const page=await fetchAdminPage(key,()=>db.collection('legalProcedures').where('category','==',category),reset);
+      procedureItems=page.items.map(doc=>({id:doc.id,...doc.data()})).filter(item=>published?item.published===true:item.published!==true);
       renderProcedureAdminCategoryItems();
       setAdminLoadMore(els.proceduresCategoryItems,key,loadProcedureCategoryItems);
     }catch(error){console.error('Procedure category page load failed:',error);els.proceduresCategoryItems.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الإجراءات في هذا التصنيف.</p>';}
@@ -551,11 +551,11 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const db=window.publicAuth.firestore;
       const categories=Object.keys(procedureAdminCategories);
       const entries=await Promise.all(categories.map(async category=>{
-        const [published,unpublished]=await Promise.all([
-          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',true)),
-          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',false))
+        const [total,published]=await Promise.all([
+          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category)),
+          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',true))
         ]);
-        return [category,{published,unpublished,total:published+unpublished}];
+        return [category,{published,unpublished:Math.max(0,total-published),total}];
       }));
       procedureCategoryCounts=Object.fromEntries(entries);
       procedureItems=[];
@@ -607,8 +607,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!window.publicAuth?.firestore||!activePetitionCategory)return;
     const db=window.publicAuth.firestore,categoryId=activePetitionCategory,published=activePetitionStatus==='published',key='petition-library:'+categoryId+':'+activePetitionStatus;
     try{
-      const page=await fetchAdminPage(key,()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',published),reset);
-      petitionItems=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      const page=await fetchAdminPage(key,()=>db.collection('petitionDocuments').where('categoryId','==',categoryId),reset);
+      petitionItems=page.items.map(doc=>({id:doc.id,...doc.data()})).filter(item=>published?item.published===true:item.published!==true);
       renderPetitionCategoryItems();
       setAdminLoadMore(els.petitionsCategoryItems,key,loadPetitionCategoryItems);
     }catch(error){console.error('Petition category page load failed:',error);els.petitionsCategoryItems.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل النماذج في هذا التصنيف.</p>';}
@@ -696,11 +696,11 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     try{
       const db=window.publicAuth.firestore,categories=Object.keys(petitionCategories);
       const entries=await Promise.all(categories.map(async categoryId=>{
-        const [published,unpublished]=await Promise.all([
-          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',true)),
-          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',false))
+        const [total,published]=await Promise.all([
+          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId)),
+          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',true))
         ]);
-        return [categoryId,{published,unpublished,total:published+unpublished}];
+        return [categoryId,{published,unpublished:Math.max(0,total-published),total}];
       }));
       petitionCategoryCounts=Object.fromEntries(entries);petitionItems=[];
       renderPetitionLibrary();
