@@ -1040,6 +1040,35 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   const COLLECTION='mizanArticles';
   const CONTRIBUTORS='mizanContributors';
   let ready=false;
+  const FORUM_PAGE_SIZE=50,forumPageStates=new Map();
+  function resetForumPage(key){forumPageStates.set(key,{cursor:null,hasMore:true,loading:false});}
+  async function fetchForumPage(key,queryFactory,reset=false){
+    if(reset||!forumPageStates.has(key))resetForumPage(key);
+    const state=forumPageStates.get(key);
+    if(state.loading||!state.hasMore)return {docs:[],hasMore:state.hasMore};
+    state.loading=true;
+    try{
+      let query=queryFactory();
+      if(state.cursor)query=query.startAfter(state.cursor);
+      const snapshot=await query.limit(FORUM_PAGE_SIZE).get();
+      const docs=snapshot.docs||[];
+      if(docs.length)state.cursor=docs[docs.length-1];
+      state.hasMore=docs.length===FORUM_PAGE_SIZE;
+      return {docs,hasMore:state.hasMore};
+    }finally{state.loading=false;}
+  }
+  async function exactCount(queryFactory){
+    const snapshot=await queryFactory().count().get();
+    return Number(snapshot.data()?.count)||0;
+  }
+  function addForumLoadMore(body,key,loader){
+    body.querySelector('[data-forum-load-more]')?.remove();
+    if(!forumPageStates.get(key)?.hasMore)return;
+    const button=document.createElement('button');
+    button.type='button';button.className='firebase-admin-action';button.dataset.forumLoadMore='1';button.textContent='تحميل المزيد';
+    button.onclick=async()=>{button.disabled=true;button.textContent='جارٍ التحميل...';await loader(false);};
+    body.appendChild(button);
+  }
 
   const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
   const dateValue=v=>{
@@ -1255,10 +1284,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const firestore=db();if(!firestore)return;
     try{
       const [articles,contributors]=await Promise.all([
-        firestore.collection(COLLECTION).where('status','==','pending').get(),
-        firestore.collection(CONTRIBUTORS).where('status','==','pending').get()
+        exactCount(()=>firestore.collection(COLLECTION).where('status','==','pending')),
+        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','pending'))
       ]);
-      setForumPendingCount(articles.size,contributors.size);
+      setForumPendingCount(articles,contributors);
     }catch(error){console.warn('تعذر تحديث مؤشرات منبر ميزان:',error);}
   }
 
@@ -1299,93 +1328,79 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     finally{if(submit){submit.disabled=false;submit.textContent='نشر الآن';}}
   }
 
-  async function load(status){
+  async function load(status,reset=true){
     const body=document.getElementById('mizan-admin-body'),firestore=db();
     if(!body||!firestore)return;
-    body.innerHTML='<p class="firebase-admin-list-state">جارٍ التحميل...</p>';
-
     if(status==='overview'){await loadOverview();return;}
-    if(status==='contributors'){await loadContributors('pending');return;}
-    if(status==='approved-contributors'){await loadContributors('approved');return;}
-
-    
+    if(status==='contributors'){await loadContributors('pending',reset);return;}
+    if(status==='approved-contributors'){await loadContributors('approved',reset);return;}
+    const key='articles:'+status;
     try{
-      const snap=await firestore.collection(COLLECTION).where('status','==',status).limit(150).get();
-      const docs=snap.docs.sort((a,b)=>{
-        const av=a.data()?.createdAt?.toDate?.()?.getTime?.()||0;
-        const bv=b.data()?.createdAt?.toDate?.()?.getTime?.()||0;
-        return bv-av;
-      });
-      if(!docs.length){body.innerHTML='<p class="firebase-admin-list-state">لا توجد مشاركات في هذه القائمة.</p>';return;}
-      body.innerHTML=docs.map(d=>{
-        const a=d.data()||{};
-        const actionButtons=
-          status==='pending'
-            ? '<button class="btn btn-sm btn-green" data-mizan-action="publish" data-id="'+d.id+'">نشر</button><button class="btn btn-sm btn-red" data-mizan-action="reject" data-id="'+d.id+'">رفض</button>'
+      const page=await fetchForumPage(key,()=>firestore.collection(COLLECTION).where('status','==',status),reset);
+      const html=page.docs.map(d=>{
+        const article=d.data()||{};
+        const actionButtons=status==='pending'
+          ? '<button class="btn btn-sm btn-green" data-mizan-action="publish" data-id="'+d.id+'">نشر</button><button class="btn btn-sm btn-red" data-mizan-action="reject" data-id="'+d.id+'">رفض</button>'
           : status==='published'
             ? '<button class="btn btn-sm" data-mizan-action="hide" data-id="'+d.id+'">إخفاء</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>'
           : status==='rejected'
             ? '<button class="btn btn-sm" data-mizan-action="resubmit" data-id="'+d.id+'">إعادة للمراجعة</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>'
-          : '<button class="btn btn-sm btn-green" data-mizan-action="republish" data-id="'+d.id+'">إعادة النشر</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>';
-        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+esc(a.type||'مشاركة')+'</span><h4>'+esc(a.title||'بدون عنوان')+'</h4></div><span class="lawyer-admin-status '+(status==='published'?'is-live':'is-off')+'">'+statusLabel(status)+'</span></div><div class="firebase-admin-record-field"><span>الكاتب</span><strong>'+esc(a.authorName||'غير محدد')+'</strong></div><div class="firebase-admin-record-field"><span>المقتطف</span><p>'+esc((a.excerpt||'لا يوجد مقتطف').slice(0,180))+'</p></div>'+(a.rejectionReason?'<div class="mizan-admin-reason">سبب الرفض: '+esc(a.rejectionReason)+'</div>':'')+'<div class="firebase-admin-record-meta">تاريخ الإرسال: '+esc(dateValue(a.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view" data-id="'+d.id+'">عرض التفاصيل</button>'+actionButtons+'</div></article>';
+            : '<button class="btn btn-sm btn-green" data-mizan-action="republish" data-id="'+d.id+'">إعادة النشر</button><button class="btn btn-sm" data-mizan-action="edit" data-id="'+d.id+'">تعديل</button><button class="btn btn-sm btn-red" data-mizan-action="delete" data-id="'+d.id+'">حذف</button>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+esc(article.type||'مشاركة')+'</span><h4>'+esc(article.title||'بدون عنوان')+'</h4></div><span class="lawyer-admin-status '+(status==='published'?'is-live':'is-off')+'">'+statusLabel(status)+'</span></div><div class="firebase-admin-record-field"><span>الكاتب</span><strong>'+esc(article.authorName||'غير محدد')+'</strong></div><div class="firebase-admin-record-field"><span>المقتطف</span><p>'+esc((article.excerpt||'لا يوجد مقتطف').slice(0,180))+'</p></div>'+(article.rejectionReason?'<div class="mizan-admin-reason">سبب الرفض: '+esc(article.rejectionReason)+'</div>':'')+'<div class="firebase-admin-record-meta">تاريخ الإرسال: '+esc(dateValue(article.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view" data-id="'+d.id+'">عرض التفاصيل</button>'+actionButtons+'</div></article>';
       }).join('');
-    }catch(e){
-      console.error(e);
-      body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المشاركات. تحقق من صلاحيات Firestore.</p>';
-    }
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد مشاركات في هذه القائمة.</p>';
+      addForumLoadMore(body,key,load.bind(null,status));
+    }catch(error){console.error(error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المشاركات. تحقق من صلاحيات Firestore.</p>';}
   }
 
   function statusLabel(s){return({pending:'قيد المراجعة',published:'منشور',rejected:'مرفوض',hidden:'مخفي'})[s]||s;}
 
   async function loadOverview(){
-    const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
+    const body=document.getElementById('mizan-admin-body'),firestore=db();
     if(!body||!firestore)return;
     body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحديث الإحصائيات...</p>';
     try{
       const statuses=['pending','published','rejected','hidden'];
-      const snaps=await Promise.all(statuses.map(s=>firestore.collection(COLLECTION).where('status','==',s).get()));
-      const [contributorSnap,approvedContributorSnap]=await Promise.all([
-        firestore.collection(CONTRIBUTORS).where('status','==','pending').get(),
-        firestore.collection(CONTRIBUTORS).where('status','==','approved').get()
+      const countsList=await Promise.all(statuses.map(status=>exactCount(()=>firestore.collection(COLLECTION).where('status','==',status))));
+      const [pendingContributors,approvedContributors]=await Promise.all([
+        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','pending')),
+        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','approved'))
       ]);
-      const counts={};
-      statuses.forEach((s,i)=>counts[s]=snaps[i].size);
-      updateTabCounts({
-        contributors:contributorSnap.size,
-        'approved-contributors':approvedContributorSnap.size,
-        pending:counts.pending,
-        published:counts.published,
-        rejected:counts.rejected,
-        hidden:counts.hidden
-      });
-      setForumPendingCount(counts.pending,contributorSnap.size);
+      const counts={};statuses.forEach((status,index)=>counts[status]=countsList[index]);
+      updateTabCounts({contributors:pendingContributors,'approved-contributors':approvedContributors,pending:counts.pending,published:counts.published,rejected:counts.rejected,hidden:counts.hidden});
+      setForumPendingCount(counts.pending,pendingContributors);
       const stats=document.getElementById('mizan-admin-stats');
-      if(stats)stats.innerHTML='<div class="mizan-admin-stat"><strong>'+Object.values(counts).reduce((a,b)=>a+b,0)+'</strong><span>إجمالي المشاركات</span></div><div class="mizan-admin-stat"><strong>'+counts.pending+'</strong><span>قيد المراجعة</span></div><div class="mizan-admin-stat"><strong>'+counts.published+'</strong><span>منشور</span></div><div class="mizan-admin-stat"><strong>'+counts.rejected+'</strong><span>مرفوض</span></div><div class="mizan-admin-stat"><strong>'+contributorSnap.size+'</strong><span>طلبات اعتماد</span></div>';
+      if(stats)stats.innerHTML='<div class="mizan-admin-stat"><strong>'+Object.values(counts).reduce((a,b)=>a+b,0)+'</strong><span>إجمالي المشاركات</span></div><div class="mizan-admin-stat"><strong>'+counts.pending+'</strong><span>قيد المراجعة</span></div><div class="mizan-admin-stat"><strong>'+counts.published+'</strong><span>منشور</span></div><div class="mizan-admin-stat"><strong>'+counts.rejected+'</strong><span>مرفوض</span></div><div class="mizan-admin-stat"><strong>'+pendingContributors+'</strong><span>طلبات اعتماد</span></div>';
       body.innerHTML='<p class="firebase-admin-list-state">اختر من تبويبات منبر ميزان أعلاه لإدارة المشاركات وطلبات الاعتماد.</p>';
-    }catch(e){console.error(e);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل إحصائيات المنبر.</p>';}
+    }catch(error){console.error(error);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل إحصائيات المنبر.</p>';}
   }
 
-  async function loadContributors(filterStatus='pending'){
-    const body=document.getElementById('mizan-admin-body'),head=document.getElementById('mizan-admin-head'),firestore=db();
+  async function loadContributors(filterStatus='pending',reset=true){
+    const body=document.getElementById('mizan-admin-body'),firestore=db();
     if(!body||!firestore)return;
-    body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل المساهمين...</p>';
+    const key='contributors:'+filterStatus;
     try{
-      const snap=filterStatus==='pending'
-        ? await firestore.collection(CONTRIBUTORS).where('status','==','pending').limit(150).get()
-        : await firestore.collection(CONTRIBUTORS).where('status','in',['approved','blocked']).limit(150).get();
-      const docs=snap.docs.sort((a,b)=>(b.data()?.createdAt?.toDate?.()?.getTime?.()||0)-(a.data()?.createdAt?.toDate?.()?.getTime?.()||0));
-      if(!docs.length){body.innerHTML='<p class="firebase-admin-list-state">'+(filterStatus==='pending'?'لا توجد طلبات اعتماد معلقة.':'لا يوجد مساهمون معتمدون أو محظورون.')+'</p>';return;}
-      body.innerHTML=docs.map(d=>{
-        const a=d.data()||{};
-        const statusLabel=a.status==='approved'?'معتمد':a.status==='blocked'?'محظور':'قيد المراجعة';
-        const buttons=a.status==='pending'
-          ? '<button class="btn btn-sm btn-green" data-mizan-action="approve-contributor" data-id="'+d.id+'">اعتماد</button><button class="btn btn-sm btn-red" data-mizan-action="reject-contributor" data-id="'+d.id+'">رفض</button>'
-          : a.status==='approved'
-            ? '<button class="btn btn-sm" data-mizan-action="block-contributor" data-id="'+d.id+'">حظر النشر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>'
-            : '<button class="btn btn-sm btn-green" data-mizan-action="unblock-contributor" data-id="'+d.id+'">إلغاء الحظر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+d.id+'">حذف</button>';
-        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مساهم في منبر ميزان</span><h4>'+esc(a.fullName||'بدون اسم')+'</h4><span class="firebase-admin-record-sub">'+esc(a.email||'')+'</span></div><span class="lawyer-admin-status '+(a.status==='approved'?'is-live':'is-off')+'">'+statusLabel+'</span></div><div class="firebase-admin-record-field"><span>الصفة والتخصص</span><p>'+esc(a.role||'—')+' · '+esc(a.specialization||'—')+'</p></div><div class="firebase-admin-record-field"><span>جهة العمل</span><p>'+esc(a.affiliation||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(a.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view-contributor" data-id="'+d.id+'">عرض التفاصيل</button>'+buttons+'</div></article>';
+      const query=()=>filterStatus==='pending'
+        ? firestore.collection(CONTRIBUTORS).where('status','==','pending')
+        : firestore.collection(CONTRIBUTORS).where('status','in',['approved','blocked']);
+      const page=await fetchForumPage(key,query,reset);
+      const html=page.docs.map(doc=>{
+        const contributor=doc.data()||{};
+        const label=contributor.status==='approved'?'معتمد':contributor.status==='blocked'?'محظور':'قيد المراجعة';
+        const buttons=contributor.status==='pending'
+          ? '<button class="btn btn-sm btn-green" data-mizan-action="approve-contributor" data-id="'+doc.id+'">اعتماد</button><button class="btn btn-sm btn-red" data-mizan-action="reject-contributor" data-id="'+doc.id+'">رفض</button>'
+          : contributor.status==='approved'
+            ? '<button class="btn btn-sm" data-mizan-action="block-contributor" data-id="'+doc.id+'">حظر النشر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+doc.id+'">حذف</button>'
+            : '<button class="btn btn-sm btn-green" data-mizan-action="unblock-contributor" data-id="'+doc.id+'">إلغاء الحظر</button><button class="btn btn-sm btn-red" data-mizan-action="delete-contributor" data-id="'+doc.id+'">حذف</button>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مساهم في منبر ميزان</span><h4>'+esc(contributor.fullName||'بدون اسم')+'</h4><span class="firebase-admin-record-sub">'+esc(contributor.email||'')+'</span></div><span class="lawyer-admin-status '+(contributor.status==='approved'?'is-live':'is-off')+'">'+label+'</span></div><div class="firebase-admin-record-field"><span>الصفة والتخصص</span><p>'+esc(contributor.role||'—')+' · '+esc(contributor.specialization||'—')+'</p></div><div class="firebase-admin-record-field"><span>جهة العمل</span><p>'+esc(contributor.affiliation||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(contributor.createdAt))+'</div><div class="lawyer-admin-actions"><button type="button" data-mizan-action="view-contributor" data-id="'+doc.id+'">عرض التفاصيل</button>'+buttons+'</div></article>';
       }).join('');
-    }catch(e){console.error(e);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات الاعتماد.</p>';}
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">'+(filterStatus==='pending'?'لا توجد طلبات اعتماد معلقة.':'لا يوجد مساهمون معتمدون أو محظورون.')+'</p>';
+      addForumLoadMore(body,key,loadContributors.bind(null,filterStatus));
+    }catch(error){console.error(error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات الاعتماد.</p>';}
   }
 
   async function fetchDoc(collection,id){const firestore=db();if(!firestore)return null;const snap=await firestore.collection(collection).doc(id).get();return snap.exists?{id:snap.id,data:snap.data()||{}}:null;}
