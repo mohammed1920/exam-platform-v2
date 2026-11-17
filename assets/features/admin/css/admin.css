@@ -345,3 +345,32 @@ body :is(input, textarea, select, option, [contenteditable="true"], [contentedit
   -webkit-user-select: text;
   user-select: text;
 }
+
+
+/* Semantic presentation for dynamic admin report and editor markup. */
+.admin-chapter-meta,.admin-law-meta{font-size:12px;color:var(--mizan-muted)}
+.admin-report-error{color:var(--mizan-danger)}
+.admin-report-muted{color:var(--mizan-muted)}
+.admin-spelling-original{color:var(--mizan-danger);text-decoration:line-through}
+.admin-spelling-corrected{color:var(--mizan-success);font-weight:700}
+.admin-report-meta{font-size:12px;color:var(--mizan-muted);margin-bottom:8px}
+.admin-report-highlight{margin-bottom:8px;color:var(--gold);font-size:14px}
+.admin-report-current{margin-bottom:6px;color:var(--mizan-danger);font-size:13px}
+.admin-report-suggested{margin-bottom:10px;color:var(--mizan-success);font-size:13px}
+.admin-qa-tag{font-weight:700}
+.admin-qa-tag--success{color:var(--mizan-success)}
+.admin-qa-tag--danger{color:var(--mizan-danger)}
+.admin-qa-tag--gold{color:var(--gold)}
+.admin-qa-option{padding:6px 8px;margin:3px 0;border-radius:6px;font-size:13px}
+.admin-qa-option.is-current-suggested{background:rgba(16,185,129,.15);border-left:3px solid var(--mizan-success)}
+.admin-qa-option.is-current{background:rgba(239,68,68,.12);border-left:3px solid var(--mizan-danger)}
+.admin-qa-option.is-suggested{background:rgba(245,158,11,.12);border-left:3px solid var(--gold)}
+.admin-qa-reason{margin-bottom:12px;color:var(--mizan-muted);font-size:13px}
+.admin-qa-reason-label{color:var(--gold)}
+.admin-contact-link-fields{flex:1}
+.admin-contact-link-label{margin-bottom:6px}
+.admin-modal-title{margin-bottom:15px;color:var(--gold)}
+.admin-field-hint{display:block;margin-top:6px;color:var(--mizan-muted)}
+.admin-form-group-spaced{margin-top:12px}
+.admin-modal-cancel{margin-top:10px}
+.admin-question-option-row{display:flex;gap:8px;align-items:center}
