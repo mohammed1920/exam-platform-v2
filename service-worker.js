@@ -84,11 +84,13 @@ async function networkFirstWithCache(request, cacheName, announceUpdates) {
   }
 }
 
-async function staleWhileRevalidate(request, event) {
-  const cache = await caches.open(MIZAN_STATIC_CACHE);
-  const cachedResponse = await cache.match(request);
+function staleWhileRevalidate(request, event) {
+  const cachePromise = caches.open(MIZAN_STATIC_CACHE);
+  const cachedPromise = cachePromise.then(cache => cache.match(request));
 
-  const refreshPromise = fetch(request, { cache: 'no-store' }).then(async networkResponse => {
+  const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
+    const networkResponse = await fetch(request, { cache: 'no-store' });
+
     if (networkResponse.ok) {
       const url = new URL(request.url);
       const isExecutableAsset = /\.(?:css|js|mjs)$/i.test(url.pathname);
@@ -103,17 +105,15 @@ async function staleWhileRevalidate(request, event) {
       if (changed) await notifyClientsAboutUpdate();
     } else if (networkResponse.status === 404 && cachedResponse) {
       await cache.delete(request);
+      await notifyClientsAboutUpdate();
     }
 
     return networkResponse;
   });
 
-  if (cachedResponse) {
-    event.waitUntil(refreshPromise.catch(() => {}));
-    return cachedResponse;
-  }
-
-  return refreshPromise;
+  // Extend the fetch event synchronously while the cached response is returned.
+  event.waitUntil(refreshPromise.then(() => undefined).catch(() => {}));
+  return cachedPromise.then(cachedResponse => cachedResponse || refreshPromise);
 }
 
 async function networkFirstNavigation(request) {
@@ -128,7 +128,7 @@ async function networkFirstNavigation(request) {
     if (exactMatch) return exactMatch;
 
     const indexUrl = new URL('index.html', self.registration.scope);
-    const indexFallback = await cache.match(indexUrl);
+    const indexFallback = await cache.match(indexUrl.href);
     if (indexFallback) return indexFallback;
 
     return new Response(
@@ -144,10 +144,10 @@ self.addEventListener('install', event => {
     const indexUrl = new URL('index.html', self.registration.scope);
 
     try {
-      const response = await fetch(indexUrl, { cache: 'no-store' });
+      const response = await fetch(indexUrl.href, { cache: 'no-store' });
       if (response.ok) {
-        await cache.put(indexUrl, response.clone());
-        await cache.put(new URL('./', self.registration.scope), response.clone());
+        await cache.put(indexUrl.href, response.clone());
+        await cache.put(new URL('./', self.registration.scope).href, response.clone());
       }
     } catch (_) {
       // First installation may occur while offline; installation can still complete.
