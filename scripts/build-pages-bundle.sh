@@ -54,6 +54,10 @@ BUILD_ID="${VERCEL_GIT_COMMIT_SHA:-${GITHUB_SHA:-local}}"
 if [[ ! "$BUILD_ID" =~ ^[A-Za-z0-9._-]+$ ]]; then
   BUILD_ID="local"
 fi
+if ! grep -qF '__MIZAN_BUILD_ID__' "$ROOT/service-worker.js"; then
+  echo "Service Worker build placeholder is missing: __MIZAN_BUILD_ID__" >&2
+  exit 1
+fi
 sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
 mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 
@@ -61,16 +65,9 @@ mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 # Only hashes are published; question JSON files remain online-only.
 node "$ROOT/scripts/build-question-content-manifest.mjs" "$OUTPUT_DIR/data"
 
-# Build an explicit offline shell manifest (CSS, JS, fonts and UI imagery only).
-# Question data, user data and legal-library content are intentionally excluded.
-{
-  printf '[\n'
-  find "$OUTPUT_DIR/assets" "$OUTPUT_DIR/engine" "$OUTPUT_DIR/icons" -type f \( -name '*.css' -o -name '*.js' -o -name '*.mjs' -o -name '*.woff' -o -name '*.woff2' -o -name '*.ttf' -o -name '*.otf' -o -name '*.svg' -o -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.gif' -o -name '*.ico' \) \
-    ! -path '*/features/admin/js/firebase-admin-panel.js' \
-    ! -path '*/features/admin/js/admin.js' \
-    -printf '"%P",\n' | sort | sed '$ s/,$//'
-  printf '\n]\n'
-} > "$OUTPUT_DIR/precache-manifest.json"
+# Pre-cache only the public entry page's direct assets and their CSS dependencies.
+# Feature modules loaded on demand and administration-only assets remain lazy.
+node "$ROOT/scripts/build-precache-manifest.mjs" "$OUTPUT_DIR"
 
 required_files=(
   index.html
