@@ -264,7 +264,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(els.lawyerEdit)closeLawyerEdit();
   }
   function showTab(show){if(!els.tab)return;els.tab.hidden=!show;els.tab.setAttribute('aria-hidden',show?'false':'true');}
-  async function checkAdmin(user){if(!user||!window.publicAuth?.firestore)return false;try{const snap=await window.publicAuth.firestore.collection('admins').doc(user.uid).get();const data=snap.exists?snap.data():null;return Boolean(data&&data.role==='admin'&&data.enabled!==false);}catch(e){console.warn('تعذر التحقق من صلاحية admin:',e);return false;}}
+  async function checkAdmin(user){if(!user)return false;const verified=window.mizanAdminAccess;if(verified?.verified===true&&verified.uid===user.uid)return true;if(!window.publicAuth?.firestore)return false;try{const snap=await window.publicAuth.firestore.collection('admins').doc(user.uid).get();const data=snap.exists?snap.data():null;return Boolean(data&&data.role==='admin'&&data.enabled!==false);}catch(e){console.warn('تعذر التحقق من صلاحية admin:',e);return false;}}
   function rememberMainView(){const main=document.querySelector('main.container');if(!main)return;mainViewState=[...main.children].filter(el=>el.id!=='firebase-admin-section').map(el=>({el,hidden:el.hidden,active:el.classList.contains('active')}));}
   function hideMainViews(){const main=document.querySelector('main.container');if(!main)return;[...main.children].forEach(el=>{if(el.id==='firebase-admin-section')return;el.hidden=true;el.classList.remove('active');});}
   function restoreMainViews(){mainViewState.forEach(({el,hidden,active})=>{if(!el)return;el.hidden=hidden;el.classList.toggle('active',active);});mainViewState=[];}
