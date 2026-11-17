@@ -38,15 +38,17 @@
     body.querySelector('[data-admin-load-more]')?.remove();
     const state=adminPageStates.get(key);
     if(!state?.hasMore)return;
+    const wrapper=document.createElement('div');
+    wrapper.className='firebase-admin-load-more lawyer-admin-actions';
+    wrapper.dataset.adminLoadMore='1';
     const button=document.createElement('button');
-    button.type='button';button.className='firebase-admin-action';button.dataset.adminLoadMore='1';
-    button.textContent='تحميل المزيد';
+    button.type='button';button.className='approve';button.textContent='تحميل المزيد';
     button.addEventListener('click',async()=>{
       if(button.disabled)return;
       button.disabled=true;button.textContent='جارٍ التحميل...';
       await loader(false);
     });
-    body.appendChild(button);
+    wrapper.appendChild(button);body.appendChild(wrapper);
   }
   function publishAdminState(){ window.firebaseAdminPanel={open:openPanel,isAdmin}; window.dispatchEvent(new CustomEvent('firebase-admin-state-changed',{detail:{isAdmin}})); }
   const esc=v=>String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -60,7 +62,7 @@
       els.section=existingSection;
       return;
     }
-    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.38';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
+    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.39';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
     const tab=existingTab||document.createElement('button');
     if(!existingTab){
@@ -1131,10 +1133,13 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function addForumLoadMore(body,key,loader){
     body.querySelector('[data-forum-load-more]')?.remove();
     if(!forumPageStates.get(key)?.hasMore)return;
+    const wrapper=document.createElement('div');
+    wrapper.className='firebase-admin-load-more lawyer-admin-actions';
+    wrapper.dataset.forumLoadMore='1';
     const button=document.createElement('button');
-    button.type='button';button.className='firebase-admin-action';button.dataset.forumLoadMore='1';button.textContent='تحميل المزيد';
+    button.type='button';button.className='approve';button.textContent='تحميل المزيد';
     button.onclick=async()=>{button.disabled=true;button.textContent='جارٍ التحميل...';await loader(false);};
-    body.appendChild(button);
+    wrapper.appendChild(button);body.appendChild(wrapper);
   }
 
   const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
