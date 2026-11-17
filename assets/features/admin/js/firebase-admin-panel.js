@@ -288,7 +288,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   async function refreshPendingAdminCounts(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
     try{
-      const [procedureCount,petitionCount]=await Promise.all([\n        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),\n        exactQueryCount('petitionAccessRequests',[['status','==','pending']])\n      ]);
+      const [procedureCount,petitionCount]=await Promise.all([
+        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),
+        exactQueryCount('petitionAccessRequests',[['status','==','pending']])
+      ]);
       const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
       setPendingCount('procedures',procedureCount);
