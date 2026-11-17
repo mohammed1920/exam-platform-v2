@@ -90,8 +90,22 @@ window.mizanFirestoreCount = async function mizanFirestoreCount(collectionName, 
     throw error;
   }
 
-  const result = Array.isArray(payload) ? payload.find(item => item?.aggregateFields?.count) : null;
-  const countValue = result?.aggregateFields?.count;
-  const count = countValue?.integerValue ?? countValue?.doubleValue ?? 0;
-  return Number(count) || 0;
+  // Firestore REST returns one RunAggregationQueryResponse object
+  // containing result.aggregateFields (not an array of AggregationResult).
+  // Accept the streaming-array shape too, without silently converting an
+  // unexpected response into a misleading zero.
+  const responseItem = Array.isArray(payload)
+    ? payload.find(item => item?.result?.aggregateFields?.count || item?.aggregateFields?.count)
+    : payload;
+  const aggregationResult = responseItem?.result || responseItem;
+  const countValue = aggregationResult?.aggregateFields?.count;
+  if (!countValue) {
+    throw new Error('Firestore aggregation response did not contain the count result.');
+  }
+  const count = countValue.integerValue ?? countValue.doubleValue;
+  const parsedCount = Number(count);
+  if (!Number.isFinite(parsedCount) || parsedCount < 0) {
+    throw new Error('Firestore returned an invalid aggregation count.');
+  }
+  return parsedCount;
 };
