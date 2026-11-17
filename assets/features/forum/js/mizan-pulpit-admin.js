@@ -518,6 +518,7 @@
   }
 
   window.addEventListener('firebase-admin-state-changed',e=>{if(e.detail?.isAdmin)setTimeout(build,0);});
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(build,400));
+  if(window.firebaseAdminPanel?.isAdmin===true)setTimeout(build,0);
+  document.addEventListener('DOMContentLoaded',()=>{if(window.firebaseAdminPanel?.isAdmin===true)setTimeout(build,0);});
   window.addEventListener('public-auth-state-changed',()=>{if(ready)refreshPendingCounts();});
 })();
