@@ -235,10 +235,12 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // All remaining data, including exam chapters, judicial-institute questions,
-  // petitions, procedures, search indexes and user-related JSON, is network-only.
+  // Question chapters and other online-only datasets are revalidated against
+  // the origin. A 304 can reuse the browser HTTP cache, but there is no
+  // Service Worker CacheStorage fallback, so offline access remains blocked.
   if (relativePath.startsWith('data/')) {
-    event.respondWith(fetch(request, { cache: 'no-store' }));
+    const isQuestionChapter = /^data\\/[^/]+\\/chapter_\\d+\\.json$/i.test(relativePath);
+    event.respondWith(fetch(request, { cache: isQuestionChapter ? 'no-cache' : 'no-store' }));
     return;
   }
 
