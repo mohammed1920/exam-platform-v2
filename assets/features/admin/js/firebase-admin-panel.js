@@ -248,7 +248,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     };
     const rawMessage=String(error?.message||'لا توجد رسالة إضافية من Firebase');
     const safeMessage=safeMessages[code]||rawMessage
-      .replace(/[\\w.+-]+@[\\w.-]+[.][A-Za-z]{2,}/g,'[بيانات مخفية]')
+      .replace(/[A-Za-z0-9_.+-]+@[A-Za-z0-9_.-]+[.][A-Za-z]{2,}/g,'[بيانات مخفية]')
       .slice(0,180);
     const auth=window.publicAuth;
     els.diagnosticText.textContent=[
