@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const ADMIN_PANEL_SCRIPT = 'assets/features/admin/js/firebase-admin-panel.js?v=1.29';
+  const ADMIN_PANEL_SCRIPT = 'assets/features/admin/js/firebase-admin-panel.js?v=1.30';
 
   let checkPromise = null;
   let modulesPromise = null;
