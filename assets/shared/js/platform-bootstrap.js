@@ -12,6 +12,7 @@
   let activeRegistration = null;
   let updateBanner = null;
   let isReloading = false;
+  let isApplyingUpdate = false;
 
   function wasDismissed() {
     try { return sessionStorage.getItem(dismissedKey) === '1'; }
@@ -68,17 +69,23 @@
 
       updateButton.disabled = true;
       updateButton.textContent = 'جارٍ التحديث…';
-      try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
 
       const waitingWorker = activeRegistration && activeRegistration.waiting;
-      if (waitingWorker) {
-        waitingWorker.postMessage({ type: 'MIZAN_SKIP_WAITING' });
-        window.setTimeout(() => {
-          if (!isReloading) window.location.reload();
-        }, 5000);
-      } else {
+      if (!waitingWorker) {
+        // The pending worker may have activated in another tab already.
+        isReloading = true;
         window.location.reload();
+        return;
       }
+
+      isApplyingUpdate = true;
+      waitingWorker.postMessage({ type: 'MIZAN_SKIP_WAITING' });
+      window.setTimeout(() => {
+        if (!isReloading) {
+          isReloading = true;
+          window.location.reload();
+        }
+      }, 8000);
     });
 
     window.addEventListener('online', () => {
@@ -101,18 +108,15 @@
     createUpdateBanner().hidden = false;
   }
 
-  navigator.serviceWorker.addEventListener('message', event => {
-    if (event.data && event.data.type === 'MIZAN_UPDATE_AVAILABLE') {
-      showUpdateAvailable(activeRegistration);
-    }
-  });
-
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     // The first controller acquisition also needs one reload: the original
     // document was loaded before the worker could intercept its CSS/JS files.
     // On later updates this reload happens only after the user accepts update.
     if (isReloading) return;
     isReloading = true;
+    if (isApplyingUpdate) {
+      try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
+    }
     window.location.reload();
   });
 
@@ -135,6 +139,9 @@
         updateViaCache: 'none'
       });
       activeRegistration = registration;
+      if (!registration.waiting) {
+        try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
+      }
 
       if (registration.waiting && navigator.serviceWorker.controller) {
         showUpdateAvailable(registration);
