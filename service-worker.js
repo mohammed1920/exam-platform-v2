@@ -39,7 +39,7 @@ function isCacheableVendorRequest(request) {
     return url.pathname === '/css2' && url.searchParams.has('family');
   }
   if (url.hostname === 'fonts.gstatic.com') {
-    return /\\.(?:woff2?|ttf)$/i.test(url.pathname);
+    return /\.(?:woff2?|ttf)$/i.test(url.pathname);
   }
   if (url.hostname === 'cdnjs.cloudflare.com') {
     return url.pathname === '/ajax/libs/font-awesome/6.5.2/css/all.min.css' ||
