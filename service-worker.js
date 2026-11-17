@@ -56,8 +56,8 @@ function vendorStaleWhileRevalidate(request, event) {
   const cachedPromise = cachePromise.then(cache => cache.match(request));
   const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
     const response = await fetch(request, { cache: 'no-cache' });
-    if (response.ok) {
-      const changed = Boolean(cachedResponse && await responseChanged(cachedResponse, response));
+    if (response.ok || response.type === 'opaque') {
+      const changed = Boolean(cachedResponse && response.type !== 'opaque' && await responseChanged(cachedResponse, response));
       await cache.put(request, response.clone());
       if (changed) await notifyClientsAboutUpdate();
     }
