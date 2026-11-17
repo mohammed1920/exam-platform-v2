@@ -27,7 +27,7 @@ class ExamEngine {
       const [booksRes, metadataRes, manifestRes] = await Promise.all([
         fetch(`${this.basePath}/data/books.json`),
         fetch(`${this.basePath}/data/question-metadata.json`),
-        fetch(`${this.basePath}/data/question-content-manifest.json`, { cache: 'no-cache' })
+        fetch(`${this.basePath}/data/question-content-manifest.json`, { cache: 'no-cache' }).catch(() => null)
       ]);
 
       if (!booksRes.ok) throw new Error('تعذر تحميل بيانات الكتب');
