@@ -746,7 +746,7 @@ html[data-theme="light"] .firebase-admin-tab{
   display:block;
   width:100%;
   min-width:0;
-  min-height:var(--mizan-control-height);
+  min-height:var(--mizan-control-min-height);
   margin:0;
   padding:var(--mizan-space-2) var(--mizan-space-3);
   border:var(--mizan-admin-border-width) solid var(--mizan-border);
@@ -761,7 +761,7 @@ html[data-theme="light"] .firebase-admin-tab{
   box-sizing:border-box;
 }
 #fa-lawyer-edit-form .lawyer-admin-field textarea{
-  min-height:calc(var(--mizan-control-height) * 2.5);
+  min-height:calc(var(--mizan-control-min-height) * 2.5);
   resize:vertical;
 }
 #fa-lawyer-edit-form .lawyer-admin-field :is(input,textarea)::placeholder{
