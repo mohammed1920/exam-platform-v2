@@ -19,9 +19,19 @@
     if (light) document.documentElement.setAttribute('data-theme','light');
     else document.documentElement.removeAttribute('data-theme');
 
-    const button = document.getElementById('theme-toggle');
+    const adminButton = document.getElementById('admin-theme-toggle');
+    const button = document.getElementById('theme-toggle') || adminButton;
+
+    if (adminButton) {
+      document.documentElement.setAttribute('data-admin-theme', light ? 'light' : 'dark');
+    }
+
     if (button) {
-      button.innerHTML = light ? icons.moon : icons.sun;
+      if (button === adminButton) {
+        button.textContent = light ? '🌙' : '☀️';
+      } else {
+        button.innerHTML = light ? icons.moon : icons.sun;
+      }
       button.setAttribute('aria-label', light ? 'تفعيل الوضع الليلي' : 'تفعيل الوضع النهاري');
       button.setAttribute('title', light ? 'الوضع الليلي' : 'الوضع النهاري');
       button.setAttribute('aria-pressed', String(light));
@@ -43,7 +53,7 @@
     try { saved = localStorage.getItem(STORAGE_KEY) === 'light' ? 'light' : 'dark'; } catch (_) {}
     applyTheme(saved);
 
-    const button = document.getElementById('theme-toggle');
+    const button = document.getElementById('theme-toggle') || document.getElementById('admin-theme-toggle');
     if (button) button.addEventListener('click', toggle);
   }
 
