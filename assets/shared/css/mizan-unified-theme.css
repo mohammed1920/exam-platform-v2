@@ -2130,3 +2130,93 @@ html[data-theme="light"] :where(#theme-toggle,#platform-menu-trigger,.mizan-noti
   background:var(--mizan-primary-100);
   border-color:var(--mizan-primary-300);
 }
+
+
+/* Mizan application update notice — uses the central design tokens. */
+.mizan-update-banner{
+  position:fixed;
+  inset-inline: max(12px,calc((100vw - 720px)/2));
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  z-index:10050;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--mizan-space-3);
+  padding:var(--mizan-space-3) var(--mizan-space-4);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-11);
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+  box-shadow:var(--mizan-shadow-md);
+  direction:rtl;
+}
+.mizan-update-banner[hidden]{display:none}
+.mizan-update-banner__copy{
+  display:flex;
+  flex:1 1 auto;
+  flex-direction:column;
+  gap:var(--mizan-space-1);
+  min-width:0;
+}
+.mizan-update-banner__copy strong{
+  color:var(--mizan-heading);
+  font-size:var(--mizan-font-size-sm);
+  font-weight:var(--mizan-font-weight-bold);
+}
+.mizan-update-banner__copy span{
+  color:var(--mizan-muted);
+  font-size:var(--mizan-font-size-xs);
+  line-height:1.6;
+}
+.mizan-update-banner__actions{
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  gap:var(--mizan-space-2);
+}
+.mizan-update-banner__action,
+.mizan-update-banner__dismiss{
+  min-height:var(--mizan-control-min-height);
+  padding:var(--mizan-space-2) var(--mizan-space-3);
+  border:1px solid transparent;
+  border-radius:var(--mizan-radius-compact);
+  font:inherit;
+  font-size:var(--mizan-font-size-xs);
+  font-weight:var(--mizan-font-weight-bold);
+  cursor:pointer;
+  transition:background var(--mizan-duration-fast) ease,border-color var(--mizan-duration-fast) ease,transform var(--mizan-duration-fast) ease;
+}
+.mizan-update-banner__action{
+  background:var(--mizan-primary-700);
+  border-color:var(--mizan-primary-700);
+  color:var(--mizan-white);
+}
+.mizan-update-banner__action:hover:not(:disabled){
+  background:var(--mizan-primary-800);
+  border-color:var(--mizan-primary-800);
+}
+.mizan-update-banner__action:disabled{opacity:.7;cursor:wait}
+.mizan-update-banner__dismiss{
+  background:transparent;
+  border-color:var(--mizan-border);
+  color:var(--mizan-text);
+}
+.mizan-update-banner__dismiss:hover{
+  background:var(--mizan-surface-2);
+}
+.mizan-update-banner__action:focus-visible,
+.mizan-update-banner__dismiss:focus-visible{
+  outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
+  outline-offset:var(--mizan-focus-ring-offset);
+}
+@media(max-width:520px){
+  .mizan-update-banner{
+    align-items:stretch;
+    flex-direction:column;
+    gap:var(--mizan-space-2);
+    padding:var(--mizan-space-3);
+  }
+  .mizan-update-banner__actions{width:100%}
+  .mizan-update-banner__action,
+  .mizan-update-banner__dismiss{flex:1 1 50%}
+}

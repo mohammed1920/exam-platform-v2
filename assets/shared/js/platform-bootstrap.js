@@ -1,12 +1,162 @@
-/* Platform bootstrap: legacy service-worker cleanup, install prompt, visitor counter.
+/* Platform bootstrap: service-worker updates, install prompt, visitor counter.
  * Keep this classic script at the end of index.html to preserve execution order.
  */
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations()
-    .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
-    .catch(() => {});
-}
+(function setupMizanServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+
+  const workerUrl = new URL('service-worker.js', document.baseURI);
+  const appScope = new URL('./', document.baseURI);
+  const dismissedKey = 'mizan-update-dismissed';
+  const hadControllerAtStart = Boolean(navigator.serviceWorker.controller);
+  let activeRegistration = null;
+  let updateBanner = null;
+  let isReloading = false;
+
+  function wasDismissed() {
+    try { return sessionStorage.getItem(dismissedKey) === '1'; }
+    catch (_) { return false; }
+  }
+
+  function dismissUpdate() {
+    try { sessionStorage.setItem(dismissedKey, '1'); } catch (_) {}
+    if (updateBanner) updateBanner.hidden = true;
+  }
+
+  function createUpdateBanner() {
+    if (updateBanner) return updateBanner;
+
+    const banner = document.createElement('section');
+    banner.id = 'mizan-update-banner';
+    banner.className = 'mizan-update-banner';
+    banner.setAttribute('role', 'status');
+    banner.setAttribute('aria-live', 'polite');
+
+    const copy = document.createElement('div');
+    copy.className = 'mizan-update-banner__copy';
+
+    const title = document.createElement('strong');
+    title.textContent = 'يتوفر تحديث جديد لمنصة ميزان';
+
+    const description = document.createElement('span');
+    description.textContent = 'حدّث الصفحة للحصول على أحدث الملفات والتحسينات.';
+
+    copy.append(title, description);
+
+    const actions = document.createElement('div');
+    actions.className = 'mizan-update-banner__actions';
+
+    const updateButton = document.createElement('button');
+    updateButton.type = 'button';
+    updateButton.className = 'mizan-update-banner__action';
+    updateButton.textContent = 'تحديث الآن';
+
+    const laterButton = document.createElement('button');
+    laterButton.type = 'button';
+    laterButton.className = 'mizan-update-banner__dismiss';
+    laterButton.textContent = 'لاحقاً';
+    laterButton.setAttribute('aria-label', 'تأجيل تحديث ميزان');
+
+    laterButton.addEventListener('click', dismissUpdate);
+
+    updateButton.addEventListener('click', () => {
+      updateButton.disabled = true;
+      updateButton.textContent = 'جارٍ التحديث…';
+      try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
+
+      const waitingWorker = activeRegistration && activeRegistration.waiting;
+      if (waitingWorker) {
+        waitingWorker.postMessage({ type: 'MIZAN_SKIP_WAITING' });
+        window.setTimeout(() => {
+          if (!isReloading) window.location.reload();
+        }, 5000);
+      } else {
+        window.location.reload();
+      }
+    });
+
+    actions.append(updateButton, laterButton);
+    banner.append(copy, actions);
+    document.body.appendChild(banner);
+    updateBanner = banner;
+    return banner;
+  }
+
+  function showUpdateAvailable(registration) {
+    if (registration) activeRegistration = registration;
+    if (wasDismissed()) return;
+    createUpdateBanner().hidden = false;
+  }
+
+  navigator.serviceWorker.addEventListener('message', event => {
+    if (event.data && event.data.type === 'MIZAN_UPDATE_AVAILABLE') {
+      showUpdateAvailable(activeRegistration);
+    }
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadControllerAtStart || isReloading) return;
+    isReloading = true;
+    window.location.reload();
+  });
+
+  async function registerWorker() {
+    try {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+
+      // Remove only an obsolete registration for this exact app scope.
+      // Never unregister unrelated workers on the same origin.
+      await Promise.all(registrations
+        .filter(registration => {
+          if (registration.scope !== appScope.href) return false;
+          const worker = registration.active || registration.waiting || registration.installing;
+          return worker && worker.scriptURL !== workerUrl.href;
+        })
+        .map(registration => registration.unregister()));
+
+      const registration = await navigator.serviceWorker.register(workerUrl.href, {
+        scope: appScope.pathname,
+        updateViaCache: 'none'
+      });
+      activeRegistration = registration;
+
+      if (registration.waiting && navigator.serviceWorker.controller) {
+        showUpdateAvailable(registration);
+      }
+
+      registration.addEventListener('updatefound', () => {
+        const installingWorker = registration.installing;
+        if (!installingWorker) return;
+
+        installingWorker.addEventListener('statechange', () => {
+          if (
+            installingWorker.state === 'installed' &&
+            navigator.serviceWorker.controller &&
+            registration.waiting
+          ) {
+            showUpdateAvailable(registration);
+          }
+        });
+      });
+
+      const checkForUpdates = () => {
+        if (navigator.onLine && document.visibilityState === 'visible') {
+          registration.update().catch(() => {});
+        }
+      };
+
+      window.addEventListener('focus', checkForUpdates);
+      window.addEventListener('online', checkForUpdates);
+      document.addEventListener('visibilitychange', checkForUpdates);
+      checkForUpdates();
+    } catch (error) {
+      console.warn('Mizan Service Worker registration failed:', error);
+    }
+  }
+
+  registerWorker();
+})();
 
 (function setupInstallButton() {
   const installButton = document.getElementById('install-app-btn');
@@ -41,8 +191,6 @@ if ('serviceWorker' in navigator) {
     return;
   }
 
-  // Recheck after launch because some Android launchers expose the installed
-  // app display mode only after the first rendering cycle.
   window.addEventListener('DOMContentLoaded', () => {
     if (isInstalledMode()) hideInstallPrompt();
   }, { once: true });
@@ -72,7 +220,7 @@ if ('serviceWorker' in navigator) {
           hideInstallPrompt();
         }
       } catch (_) {
-        // يبقى الزر متاحاً إذا لم تكتمل عملية التثبيت.
+        // Keep the install button available if installation does not complete.
       }
       return;
     }
@@ -111,6 +259,7 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('pageshow', syncInstallButton);
   window.addEventListener('focus', syncInstallButton);
 })();
+
 (function setupVisitorCounter() {
   const countElement = document.getElementById('visitor-count');
   if (!countElement) return;

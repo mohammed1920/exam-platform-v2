@@ -70,6 +70,7 @@ required_files=(
   data/judicial-institute/manifest.json
   data/judicial-institute/README.md
   assets/shared/js/platform-bootstrap.js
+  service-worker.js
   assets/features/student-account/js/user-dashboard.js
   assets/shared/js/theme.js
   assets/features/procedures/js/procedures.js
