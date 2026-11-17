@@ -1047,12 +1047,12 @@ html[data-theme="light"] #fa-lawyer-edit-form .lawyer-admin-field :is(input,text
 }
 .lawyer-directory-admin-actions button.approve{
   border-color:var(--mizan-admin-button-success-border);
-  background:var(--mizan-admin-button-success-bg);
+  background:var(--mizan-admin-button-neutral-bg);
   color:var(--mizan-admin-button-success-fg);
 }
 .lawyer-directory-admin-actions button.reject{
   border-color:var(--mizan-admin-button-danger-border);
-  background:var(--mizan-admin-button-danger-bg);
+  background:var(--mizan-admin-button-neutral-bg);
   color:var(--mizan-admin-button-danger-fg);
 }
 html[data-theme="light"] .lawyer-admin-list-page-head,
