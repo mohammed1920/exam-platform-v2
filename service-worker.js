@@ -5,8 +5,9 @@
  */
 'use strict';
 
-const MIZAN_STATIC_CACHE = 'mizan-static-v1';
-const MIZAN_SHELL_CACHE = 'mizan-shell-v1';
+const MIZAN_BUILD_ID = '__MIZAN_BUILD_ID__';
+const MIZAN_STATIC_CACHE = `mizan-static-${MIZAN_BUILD_ID}`;
+const MIZAN_SHELL_CACHE = `mizan-shell-${MIZAN_BUILD_ID}`;
 const MIZAN_BOOK_CATALOG_CACHE = 'mizan-book-catalog-v1';
 const MIZAN_LAW_LIBRARY_CACHE = 'mizan-law-library-v1';
 
@@ -157,8 +158,10 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const cacheNames = await caches.keys();
+    // Remove only obsolete application-shell/static caches. Never delete the
+    // dedicated legal-book or book-catalogue caches, including older versions.
     await Promise.all(cacheNames
-      .filter(name => name.startsWith('mizan-') && !MIZAN_KEEP_CACHES.has(name))
+      .filter(name => (name.startsWith('mizan-static-') || name.startsWith('mizan-shell-')) && !MIZAN_KEEP_CACHES.has(name))
       .map(name => caches.delete(name)));
 
     // Legal books and the book catalogue use dedicated caches and are retained

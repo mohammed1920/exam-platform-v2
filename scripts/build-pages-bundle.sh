@@ -48,6 +48,15 @@ fi
 
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 
+# Give every deployment a distinct Service Worker script/cache version.
+# Vercel and GitHub Actions provide their commit SHA; local builds use "local".
+BUILD_ID="${VERCEL_GIT_COMMIT_SHA:-${GITHUB_SHA:-local}}"
+if [[ ! "$BUILD_ID" =~ ^[A-Za-z0-9._-]+$ ]]; then
+  BUILD_ID="local"
+fi
+sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
+mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
+
 required_files=(
   index.html
   admin.html
