@@ -1432,7 +1432,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const statuses=['pending','published','rejected','hidden'];
       const countsList=await Promise.all(statuses.map(status=>exactCount(COLLECTION,[['status','==',status]])));
       const [pendingContributors,approvedContributors]=await Promise.all([
-        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','pending')),
+        exactCount(CONTRIBUTORS,[['status','==','pending']]),
         exactCount(CONTRIBUTORS,[['status','==','approved']])
       ]);
       const counts={};statuses.forEach((status,index)=>counts[status]=countsList[index]);
