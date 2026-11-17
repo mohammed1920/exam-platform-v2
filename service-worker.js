@@ -79,6 +79,25 @@ function vendorStaleWhileRevalidate(request, event) {
   return cachedPromise.then(cachedResponse => cachedResponse || refreshPromise);
 }
 
+async function precacheVendorAsset(assetUrl, cache) {
+  const request = new Request(assetUrl, { mode: 'cors' });
+  const response = await fetch(request, { cache: 'no-store' });
+  if (!response.ok) return;
+  await cache.put(request, response.clone());
+
+  if (assetUrl.startsWith('https://fonts.googleapis.com/')) {
+    const cssText = await response.clone().text();
+    const fontUrls = [...new Set(cssText.split('url(').slice(1)
+      .map(part => part.split(')')[0].trim().replace(/^["']|["']$/g, ''))
+      .filter(url => url.startsWith('https://fonts.gstatic.com/')))];
+    await Promise.allSettled(fontUrls.map(async fontUrl => {
+      const fontRequest = new Request(fontUrl, { mode: 'cors' });
+      const fontResponse = await fetch(fontRequest, { cache: 'no-store' });
+      if (fontResponse.ok) await cache.put(fontRequest, fontResponse.clone());
+    }));
+  }
+}
+
 function getAppRelativePath(requestUrl) {
   const url = new URL(requestUrl);
   if (url.origin !== self.location.origin || !url.pathname.startsWith(MIZAN_SCOPE_PATH)) {
@@ -219,8 +238,7 @@ self.addEventListener('install', event => {
       const request = new Request(assetUrl, { mode: 'cors' });
       const cached = await vendorCache.match(request);
       if (cached) return;
-      const response = await fetch(request, { cache: 'no-store' });
-      if (response.ok) await vendorCache.put(request, response.clone());
+      await precacheVendorAsset(assetUrl, vendorCache);
     }));
 
     // Pre-cache the complete same-origin visual/runtime shell at installation.
