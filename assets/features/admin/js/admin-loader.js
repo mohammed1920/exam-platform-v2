@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const ADMIN_PANEL_SCRIPT = 'assets/features/admin/js/firebase-admin-panel.js?v=1.24';
+  const ADMIN_PANEL_SCRIPT = 'assets/features/admin/js/firebase-admin-panel.js?v=1.25';
 
   let checkPromise = null;
   let modulesPromise = null;
@@ -50,7 +50,9 @@
     try {
       const snapshot = await window.publicAuth.firestore.collection('admins').doc(user.uid).get();
       const data = snapshot.exists ? snapshot.data() : null;
-      return Boolean(data && data.role === 'admin' && data.enabled !== false);
+      const allowed = Boolean(data && data.role === 'admin' && data.enabled !== false);
+      window.mizanAdminAccess = allowed ? { uid: user.uid, verified: true } : null;
+      return allowed;
     } catch (error) {
       console.warn('تعذر التحقق من صلاحية الإدارة:', error);
       return false;
@@ -70,11 +72,15 @@
       const user = auth.user;
       if (!user) {
         lastUserUid = null;
+        window.mizanAdminAccess = null;
         return false;
       }
 
       const allowed = await checkAdminAccess(user);
-      if (!allowed) return false;
+      if (!allowed) {
+        window.mizanAdminAccess = null;
+        return false;
+      }
 
       lastUserUid = user.uid;
       return loadAdminModules();
