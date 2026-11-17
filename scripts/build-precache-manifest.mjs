@@ -30,7 +30,7 @@ function localPath(raw) {
   return resolved;
 }
 
-async function addAsset(raw, baseDir = outputDir) {
+async function addAsset(raw, baseDir = outputDir, requestReference = raw) {
   const value = String(raw || "").trim();
   if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/|#|data:|blob:)/i.test(value)) return;
   const clean = value.split(/[?#]/, 1)[0];
@@ -48,7 +48,7 @@ async function addAsset(raw, baseDir = outputDir) {
     throw new Error(`Unsafe precache reference: ${value}`);
   }
   await access(resolved);
-  const relative = path.relative(outputDir, resolved).split(path.sep).join("/");
+  const relative = String(requestReference || value).replace(/^\.\//, "").replace(/^\/+/, "");
   assets.add(relative);
 
   if (/\.css$/i.test(resolved) && !visitedCss.has(resolved)) {
@@ -58,7 +58,9 @@ async function addAsset(raw, baseDir = outputDir) {
       ...Array.from(css.matchAll(/url\(\s*(?:(["'])(.*?)\1|([^)]*?))\s*\)/gi), match => match[2] ?? match[3] ?? ""),
       ...Array.from(css.matchAll(/@import\s+(?!url\s*\()(["'])(.*?)\1/gi), match => match[2])
     ];
-    for (const reference of references) await addAsset(reference, path.dirname(resolved));
+    for (const reference of references) {
+      await addAsset(reference, path.dirname(resolved), reference);
+    }
   }
 }
 
@@ -67,7 +69,7 @@ for (const match of html.matchAll(htmlAssetPattern)) {
   const reference = match[2];
   const resolved = localPath(reference);
   if (!resolved) continue;
-  await addAsset(reference);
+  await addAsset(reference, outputDir, reference);
 }
 
 const manifest = [...assets].sort();
