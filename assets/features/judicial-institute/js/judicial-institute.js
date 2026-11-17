@@ -15,7 +15,7 @@
   function notice(title,message){if(window.app&&window.app.showHomeNotice)window.app.showHomeNotice(title,message);else window.alert(title+'\n'+message);}
   function loadData(){
     if(data)return Promise.resolve(data);
-    if(!dataPromise)dataPromise=fetch(DATA_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(v=>{
+    if(!dataPromise)dataPromise=fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(v=>{
       if(!v||v.schemaVersion!==1||!Array.isArray(v.subjects)||!Array.isArray(v.years))throw new Error('Invalid archive manifest');
       data=v;return data;
     }).catch(e=>{dataPromise=null;throw e;});
@@ -35,7 +35,7 @@
     if(!filePath)throw new Error('Subject archive path is missing from manifest');
     const manifestUrl=new URL(DATA_URL,window.location.href);
     const archiveUrl=new URL(filePath,manifestUrl).toString();
-    const response=await fetch(archiveUrl,{cache:'no-cache'});
+    const response=await fetch(archiveUrl,{cache:'no-store'});
     if(!response.ok)throw new Error('Archive file HTTP '+response.status);
     const file=await response.json();
     if(file.schemaVersion!==1||file.year!==Number(year)||file.subjectId!==id||!Array.isArray(file.questions))throw new Error('Invalid subject archive file');

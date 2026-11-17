@@ -64,7 +64,7 @@ class ExamEngine {
     }
 
     try {
-      const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`);
+      const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`, { cache: 'no-store' });
       if (!res.ok) return null;
       const data = await res.json();
       this.chapterCache.set(key, data);
