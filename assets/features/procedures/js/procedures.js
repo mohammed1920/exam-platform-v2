@@ -420,7 +420,7 @@
     window.addEventListener('firebase-admin-state-changed', () => {
       if (root?.classList.contains('active')) refreshAccess(true);
     });
-    window.procedures = { open, refreshAccess, restoreHistoryState };
+    window.procedures = { open, refreshAccess, restoreHistoryState, loadSearchIndex: loadTitleIndex };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
