@@ -175,15 +175,8 @@ self.addEventListener('install', event => {
       // A previously installed application can still activate while offline.
     }
 
-    // Cache the version-pinned third-party visual runtime so it remains
-    // available offline after the first successful installation or online visit.
-    const vendorCache = await caches.open(MIZAN_VENDOR_CACHE);
-    await Promise.allSettled(MIZAN_VENDOR_PRECACHE.map(async assetUrl => {
-      const request = new Request(assetUrl, { mode: 'cors' });
-      const cached = await vendorCache.match(request);
-      if (cached) return;
-      await precacheVendorAsset(assetUrl, vendorCache);
-    }));
+    // Third-party assets are cached on first actual request by
+    // vendorStaleWhileRevalidate; installation must not wait on external CDNs.
 
     // Pre-cache the complete same-origin visual/runtime shell at installation.
     // The generated manifest contains only static assets, never questions,
