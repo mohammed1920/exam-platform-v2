@@ -126,6 +126,7 @@ required_files=(
   assets/branding/meezan-assemble.json
   engine/examEngine.js
   data/books.json
+  data/question-content-manifest.json
   data/search-index.json
   manifest.json
 )
