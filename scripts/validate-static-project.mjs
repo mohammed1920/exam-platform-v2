@@ -212,7 +212,7 @@ function sharedAssetVersions(html) {
     if (!/\.(?:js|mjs|css)$/i.test(clean)) continue;
     const query = raw.split("?")[1]?.split("#")[0] || "";
     const version = new URLSearchParams(query).get("v");
-    if (version !== null) versions.set(clean, version);
+    versions.set(clean, version ?? null);
   }
   return versions;
 }
