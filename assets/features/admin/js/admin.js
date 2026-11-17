@@ -667,7 +667,7 @@
                 listEl.innerHTML = pendingItems.map((item) => {
                     const idx = qaItems.indexOf(item);
                     const issueInfo = QA_ISSUE_LABELS[item.issue_type] || { label: item.issue_type, color: 'var(--mizan-muted-dark)' };
-                    const issueClass = issueInfo.color === 'var(--mizan-danger)' ? 'admin-qa-issue-danger' : 'admin-qa-issue-warning';
+                    const issueClass = issueInfo.color === 'var(--mizan-danger)' ? 'admin-qa-issue-danger' : issueInfo.color === 'var(--mizan-warning)' ? 'admin-qa-issue-warning' : 'admin-qa-issue-muted';
                     const opts = item.options || [];
 
                     const optionsHtml = opts.map((o, oi) => {
@@ -682,7 +682,6 @@
 
                             tag = ' <span class="admin-qa-tag admin-qa-tag--danger">(الحالية)</span>';
                         } else if (isSuggested) {
-                            style += 'background: color-mix(in srgb,var(--mizan-warning-500) 15%,transparent); border-left:3px solid var(--gold);';
                             tag = ' <span class="admin-qa-tag admin-qa-tag--gold">(مقترحة)</span>';
                         }
                         return `<div class="admin-qa-option ${optionClass}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
