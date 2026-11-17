@@ -239,13 +239,14 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function showAdminDiagnostic(error,stage){
     if(!els.diagnostic||!els.diagnosticText)return;
     const code=String(error?.code||'غير متاح').slice(0,80);
-    const rawMessage=String(error?.message||'لا توجد رسالة إضافية من Firebase');
-    const safeMessage=rawMessage
-      .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/gi,'[بيانات مخفية]')
-      .replace(/\\b[a-f0-9]{28}\\b/gi,'[معرّف مخفي]')
-      .replace(/AIza[0-9A-Za-z_-]{20,}/g,'[مفتاح مخفي]')
-      .replace(/https?:\\/\\/\\S+/g,'[رابط مخفي]')
-      .slice(0,220);
+    const safeMessages={
+      'permission-denied':'رفضت قواعد Firestore هذا الاستعلام.',
+      'unauthenticated':'لم تُرسل جلسة مصادقة صالحة مع الطلب.',
+      'failed-precondition':'الاستعلام يحتاج إلى فهرس أو شرط مسبق.',
+      'unavailable':'خدمة Firestore غير متاحة حالياً.',
+      'resource-exhausted':'تم تجاوز حد موارد الخدمة.'
+    };
+    const safeMessage=safeMessages[code]||'لا توجد رسالة آمنة إضافية؛ استخدم رمز الخطأ لتحديد السبب.';
     const auth=window.publicAuth;
     els.diagnosticText.textContent=[
       'المرحلة: '+stage,
