@@ -5,17 +5,9 @@
 (function () {
   'use strict';
 
-  const DATASETS = [
-    { key: 'laws', label: 'القوانين العراقية', icon: '📖', path: 'data/laws/laws.json', action: 'laws' },
-    { key: 'lawyers', label: 'دليل المحامين', icon: '👨‍⚖️', path: 'data/lawyers/lawyers.json', action: 'lawyers' },
-    { key: 'procedures', label: 'إجراءات الدعاوى', icon: '🏛️', path: 'data/procedures/procedures.json', action: 'procedures' },
-    { key: 'petitions', label: 'عرائض وطلبات', icon: '📝', path: 'data/petitions/petitions.json', action: 'petitions' }
-  ];
-
   const state = {
     timer: null,
     cache: {},
-    datasetPromises: {},
     lawyerProfiles: null,
     lawyerProfilesPromise: null,
     requestId: 0
@@ -51,41 +43,6 @@
     if (!obj || typeof obj !== 'object') return String(obj ?? '');
     return obj.title || obj.name || obj.label || obj.full_name || obj.fullName ||
       obj.subject || obj.topic || obj.question || obj.text || obj.description || '';
-  }
-
-  async function loadDataset(ds) {
-    if (Object.prototype.hasOwnProperty.call(state.cache, ds.key)) return state.cache[ds.key];
-    if (state.datasetPromises[ds.key]) return state.datasetPromises[ds.key];
-
-    state.datasetPromises[ds.key] = (async () => {
-      try {
-        const res = await fetch(basePath() + '/' + ds.path, { cache: 'no-cache' });
-        if (!res.ok) {
-          state.cache[ds.key] = [];
-          return state.cache[ds.key];
-        }
-        const data = await res.json();
-        const raw = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data).find(Array.isArray) || []);
-        state.cache[ds.key] = raw.map((item, i) => ({
-          ...item,
-          _searchTitle: titleOf(item),
-          _searchText: fieldText(item),
-          _index: i,
-          _dataset: ds.key,
-          _label: ds.label,
-          _icon: ds.icon,
-          _action: ds.action
-        }));
-        return state.cache[ds.key];
-      } catch (_) {
-        state.cache[ds.key] = [];
-        return state.cache[ds.key];
-      } finally {
-        delete state.datasetPromises[ds.key];
-      }
-    })();
-
-    return state.datasetPromises[ds.key];
   }
 
   async function loadLawyerProfiles() {
@@ -126,43 +83,60 @@
       });
     });
 
-    if (window.publicAuth?.user) {
+    if (window.publicAuth?.user && typeof window.app?.searchQuestions === 'function') {
       try {
-        // لا نحمل فهرس/ملفات الأسئلة كاملة. البحث عن الأسئلة يتم بطلب واحد
-        // إلى API يعيد فقط النتائج المطابقة.
         const questions = await window.app.searchQuestions(query, 25);
-        questions.forEach(q => {
-          results.push({
-            type: 'question',
-            title: q.question || 'سؤال',
-            subtitle: '📘 ' + (q.sourceBook || '') + (q.sourceChapter ? ' — الفصل ' + q.sourceChapter : ''),
-            icon: '⚖️', action: 'question', question: q,
-            text: normalize((q.question || '') + ' ' + (q.sourceBook || '') + ' ' + (q.sourceChapter || ''))
-          });
-        });
+        questions.forEach(q => results.push({
+          type: 'question',
+          title: q.question || 'سؤال',
+          subtitle: '📘 ' + (q.sourceBook || '') + (q.sourceChapter ? ' — الفصل ' + q.sourceChapter : ''),
+          icon: '⚖️', action: 'question', question: q,
+          text: normalize((q.question || '') + ' ' + (q.sourceBook || '') + ' ' + (q.sourceChapter || ''))
+        }));
       } catch (_) {}
     }
-    const lawyerProfiles = await loadLawyerProfiles();
-    lawyerProfiles.forEach(p => {
+
+    // Use each section's own in-memory data source. Never fetch detail documents here.
+    const [lawRegistry, lawyerProfiles, procedureIndex, petitionIndex] = await Promise.all([
+      window.mizanLaws?.loadRegistry?.().catch(() => null),
+      window.lawyerDirectory?.loadSearchProfiles?.().catch(() => []),
+      window.procedures?.loadSearchIndex?.().catch(() => []),
+      window.petitions?.loadSearchIndex?.().catch(() => [])
+    ]);
+
+    (Array.isArray(lawRegistry?.laws) ? lawRegistry.laws : []).forEach(law => {
       results.push({
-        type: 'lawyers',
-        title: p.name || 'محامٍ',
-        subtitle: [p.governorate,p.district,(p.specializations||[]).join('، ')].filter(Boolean).join(' — '),
-        icon: '👨‍⚖️',
-        action: 'lawyers',
-        item: p,
-        text: normalize([p.name,p.governorate,p.district,p.office,p.address,(p.specializations||[]).join(' ')].filter(Boolean).join(' '))
+        type: 'laws', title: law.name || 'قانون',
+        subtitle: law.category || 'تشريع عراقي',
+        icon: '📖', action: 'laws', item: law,
+        text: normalize([law.name, law.category, law.description].filter(Boolean).join(' '))
       });
     });
 
-    const datasets = await Promise.all(DATASETS.map(loadDataset));
-    datasets.flat().forEach(item => {
+    (Array.isArray(lawyerProfiles) ? lawyerProfiles : []).forEach(profile => {
       results.push({
-        type: item._dataset,
-        title: item._searchTitle || item._label,
-        subtitle: item.description || item.author || item.specialization || item.address || item.category || item._label,
-        icon: item._icon, action: item._action, item,
-        text: normalize(item._searchText)
+        type: 'lawyers', title: profile.name || 'محامٍ',
+        subtitle: [profile.governorate, profile.district, (profile.specializations || []).join('، ')].filter(Boolean).join(' — '),
+        icon: '👨‍⚖️', action: 'lawyer-profile', item: profile,
+        text: normalize([profile.name, profile.governorate, profile.district, profile.office, profile.address, (profile.specializations || []).join(' ')].filter(Boolean).join(' '))
+      });
+    });
+
+    (Array.isArray(procedureIndex) ? procedureIndex : []).forEach(item => {
+      results.push({
+        type: 'procedures', title: item.title || 'إجراء قانوني',
+        subtitle: item.summary || item.categoryTitle || 'إجراءات الدعاوى',
+        icon: '🏛️', action: 'procedures', item,
+        text: normalize([item.title, item.categoryTitle, item.summary].filter(Boolean).join(' '))
+      });
+    });
+
+    (Array.isArray(petitionIndex) ? petitionIndex : []).forEach(item => {
+      results.push({
+        type: 'petitions', title: item.name || 'نموذج عريضة',
+        subtitle: item.description || item.category || 'عرائض وطلبات',
+        icon: '📝', action: 'petitions', item,
+        text: normalize([item.name, item.category, item.description].filter(Boolean).join(' '))
       });
     });
 
@@ -298,6 +272,23 @@
       return;
     }
 
+    if (result.action === 'lawyer-profile' && result.item?.id && window.lawyerDirectory?.openProfile) {
+      window.lawyerDirectory.openProfile(result.item.id);
+      return;
+    }
+    if (result.action === 'procedures' && window.procedures?.open) {
+      await window.procedures.open();
+      return;
+    }
+    if (result.action === 'petitions' && window.petitions?.open) {
+      await window.petitions.open();
+      return;
+    }
+    if (result.action === 'laws' && window.mizanLaws?.open) {
+      window.mizanLaws.open();
+      return;
+    }
+
     if (window.app) {
       const section = document.getElementById(result.action + '-section');
       if (section) {
@@ -312,7 +303,6 @@
     clearTimeout(state.timer);
     state.requestId += 1;
     state.cache = {};
-    state.datasetPromises = {};
     state.lawyerProfiles = null;
     state.lawyerProfilesPromise = null;
   } };
