@@ -2,10 +2,7 @@
 (function () {
   'use strict';
 
-  const ADMIN_MODULES = [
-    'assets/features/admin/js/firebase-admin-panel.js?v=1.23',
-    'assets/features/forum/js/mizan-pulpit-admin.js?v=1.3'
-  ];
+  const ADMIN_PANEL_SCRIPT = 'assets/features/admin/js/firebase-admin-panel.js?v=1.24';
 
   let checkPromise = null;
   let modulesPromise = null;
@@ -35,37 +32,12 @@
     });
   }
 
-  function waitForAdminPanelAuthorization() {
-    if (window.firebaseAdminPanel?.isAdmin === true) return Promise.resolve(true);
-
-    return new Promise(resolve => {
-      let settled = false;
-      const finish = value => {
-        if (settled) return;
-        settled = true;
-        window.removeEventListener('firebase-admin-state-changed', onState);
-        window.clearTimeout(timeout);
-        resolve(value);
-      };
-      const onState = event => {
-        if (event.detail?.isAdmin === true) finish(true);
-      };
-      const timeout = window.setTimeout(() => finish(false), 15000);
-      window.addEventListener('firebase-admin-state-changed', onState);
-    });
-  }
-
   async function loadAdminModules() {
     if (modulesPromise) return modulesPromise;
 
-    modulesPromise = (async () => {
-      await loadScript(ADMIN_MODULES[0]);
-      const authorized = await waitForAdminPanelAuthorization();
-      if (!authorized) throw new Error('تعذر تأكيد صلاحية لوحة الإدارة.');
-      await loadScript(ADMIN_MODULES[1]);
-    })().catch(error => {
+    modulesPromise = loadScript(ADMIN_PANEL_SCRIPT).catch(error => {
       modulesPromise = null;
-      console.error('Mizan admin modules were not loaded:', error);
+      console.error('تعذر تحميل لوحة إدارة ميزان:', error);
       return false;
     });
 
