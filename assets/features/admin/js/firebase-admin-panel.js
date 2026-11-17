@@ -3,7 +3,7 @@
   'use strict';
   let isAdmin=false,panelOpen=false,mainViewState=[],els={};
   let lawyerApplications=[],lawyerProfiles=[];
-  let petitionItems=[],activePetitionCategory='',activePetitionStatus='published';
+  let petitionItems=[],activePetitionCategory='',activePetitionStatus='published',petitionCategoryCounts={};
   let procedureItems=[],activeProcedureAdminCategory='',activeProcedureAdminStatus='published',procedureCategoryCounts={};
   const procedureGrantCache=new Map(),petitionGrantCache=new Map();
   const ADMIN_PAGE_SIZE=50;
@@ -585,41 +585,40 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   function renderPetitionCategoryCards(){
     if(!els.petitionsCategories)return;
-    const counts=Object.fromEntries(Object.keys(petitionCategories).map(key=>[key,{total:0,published:0,unpublished:0}]));
-    petitionItems.forEach(item=>{
-      const group=counts[item.categoryId];
-      if(!group)return;
-      group.total++;
-      if(item.published===true)group.published++;else group.unpublished++;
-    });
+    const total=Object.values(petitionCategoryCounts).reduce((sum,item)=>sum+item.total,0);
     els.petitionsCategories.innerHTML=Object.entries(petitionCategories).map(([key,category])=>{
-      const count=counts[key];
+      const count=petitionCategoryCounts[key]||{total:0,published:0,unpublished:0};
       return '<button type="button" class="firebase-admin-content-category" data-petition-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'" aria-hidden="true"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+count.total+' نموذج · '+count.published+' منشور · '+count.unpublished+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow" aria-hidden="true"></i></button>';
     }).join('');
-    if(els.petitionsTotalCount)els.petitionsTotalCount.textContent=String(petitionItems.length);
-    if(els.petitionsLibrarySummary)els.petitionsLibrarySummary.textContent=petitionItems.length+' نموذج في '+Object.keys(petitionCategories).length+' تصنيفات';
+    if(els.petitionsTotalCount)els.petitionsTotalCount.textContent=String(total);
+    if(els.petitionsLibrarySummary)els.petitionsLibrarySummary.textContent=total+' نموذج في '+Object.keys(petitionCategories).length+' تصنيفات';
   }
   function renderPetitionCategoryItems(){
     if(!els.petitionsCategoryItems||!activePetitionCategory)return;
-    const selected=petitionItems.filter(item=>item.categoryId===activePetitionCategory&&((activePetitionStatus==='published')?item.published===true:item.published!==true));
-    const category=petitionCategories[activePetitionCategory];
-    const publishedCount=petitionItems.filter(item=>item.categoryId===activePetitionCategory&&item.published===true).length;
-    const unpublishedCount=petitionItems.filter(item=>item.categoryId===activePetitionCategory&&item.published!==true).length;
+    const selected=petitionItems,category=petitionCategories[activePetitionCategory],counts=petitionCategoryCounts[activePetitionCategory]||{total:0,published:0,unpublished:0};
     if(els.petitionsCategoryTitle)els.petitionsCategoryTitle.textContent=category?.title||'نماذج العرائض';
-    if(els.petitionsCategoryTotal)els.petitionsCategoryTotal.textContent=(publishedCount+unpublishedCount)+' نموذج';
-    const publishedTab=els.petitionsHub.querySelector('[data-petition-status="published"]');
-    const unpublishedTab=els.petitionsHub.querySelector('[data-petition-status="unpublished"]');
-    if(publishedTab){publishedTab.classList.toggle('is-active',activePetitionStatus==='published');publishedTab.setAttribute('aria-selected',String(activePetitionStatus==='published'));publishedTab.querySelector('span').textContent=String(publishedCount);}
-    if(unpublishedTab){unpublishedTab.classList.toggle('is-active',activePetitionStatus==='unpublished');unpublishedTab.setAttribute('aria-selected',String(activePetitionStatus==='unpublished'));unpublishedTab.querySelector('span').textContent=String(unpublishedCount);}
+    if(els.petitionsCategoryTotal)els.petitionsCategoryTotal.textContent=counts.total+' نموذج';
+    const publishedTab=els.petitionsHub.querySelector('[data-petition-status="published"]'),unpublishedTab=els.petitionsHub.querySelector('[data-petition-status="unpublished"]');
+    if(publishedTab){publishedTab.classList.toggle('is-active',activePetitionStatus==='published');publishedTab.setAttribute('aria-selected',String(activePetitionStatus==='published'));publishedTab.querySelector('span').textContent=String(counts.published);}
+    if(unpublishedTab){unpublishedTab.classList.toggle('is-active',activePetitionStatus==='unpublished');unpublishedTab.setAttribute('aria-selected',String(activePetitionStatus==='unpublished'));unpublishedTab.querySelector('span').textContent=String(counts.unpublished);}
     els.petitionsCategoryItems.innerHTML=selected.length?selected.map(item=>'<article class="firebase-admin-content-item"><div class="firebase-admin-content-item-title"><h5>'+esc(item.title||'بدون عنوان')+'</h5><span class="lawyer-admin-status '+(item.published?'is-live':'is-off')+'">'+(item.published?'منشورة':'غير منشورة')+'</span></div><div class="lawyer-admin-actions"><button type="button" data-petition-edit="'+esc(item.id)+'">تعديل</button><button type="button" class="'+(item.published?'reject':'approve')+'" data-petition-toggle="'+esc(item.id)+'">'+(item.published?'إلغاء النشر':'نشر')+'</button><button type="button" class="reject" data-petition-delete="'+esc(item.id)+'">حذف</button></div></article>').join(''):'<p class="firebase-admin-list-state">'+(activePetitionStatus==='published'?'لا توجد عرائض منشورة في هذا القسم.':'لا توجد عرائض غير منشورة في هذا القسم.')+'</p>';
+  }
+  async function loadPetitionCategoryItems(reset=true){
+    if(!isAdmin||!window.publicAuth?.firestore||!activePetitionCategory)return;
+    const db=window.publicAuth.firestore,categoryId=activePetitionCategory,published=activePetitionStatus==='published',key='petition-library:'+categoryId+':'+activePetitionStatus;
+    try{
+      const page=await fetchAdminPage(key,()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',published),reset);
+      petitionItems=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      renderPetitionCategoryItems();
+      setAdminLoadMore(els.petitionsCategoryItems,key,loadPetitionCategoryItems);
+    }catch(error){console.error('Petition category page load failed:',error);els.petitionsCategoryItems.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل النماذج في هذا التصنيف.</p>';}
   }
   function renderPetitionLibrary(){
     if(!els.petitionsCategories||!els.petitionsCategoryView)return;
     renderPetitionCategoryCards();
     const hasCategory=Boolean(activePetitionCategory&&petitionCategories[activePetitionCategory]);
-    els.petitionsCategories.hidden=hasCategory;
-    els.petitionsCategoryView.hidden=!hasCategory;
-    if(hasCategory)renderPetitionCategoryItems();
+    els.petitionsCategories.hidden=hasCategory;els.petitionsCategoryView.hidden=!hasCategory;
+    if(hasCategory)loadPetitionCategoryItems(true);
   }
   function openPetitionEditor(item){
     const form=els.petitionForm;if(!form||!item)return;
@@ -649,9 +648,9 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(categoryButton){activePetitionCategory=categoryButton.dataset.petitionCategory;activePetitionStatus='published';renderPetitionLibrary();return;}
     if(event.target.closest('[data-petitions-categories]')){activePetitionCategory='';renderPetitionLibrary();return;}
     const statusButton=event.target.closest('[data-petition-status]');
-    if(statusButton){activePetitionStatus=statusButton.dataset.petitionStatus;renderPetitionCategoryItems();return;}
+    if(statusButton){activePetitionStatus=statusButton.dataset.petitionStatus;loadPetitionCategoryItems(true);return;}
     const editButton=event.target.closest('[data-petition-edit]');
-    if(editButton){const item=petitionItems.find(entry=>entry.id===editButton.dataset.petitionEdit);openPetitionEditor(item);return;}
+    if(editButton){openPetitionEditor(petitionItems.find(item=>item.id===editButton.dataset.petitionEdit));return;}
     const toggleButton=event.target.closest('[data-petition-toggle]');
     if(toggleButton){togglePetition(toggleButton.dataset.petitionToggle);return;}
     const deleteButton=event.target.closest('[data-petition-delete]');
@@ -659,13 +658,13 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   async function togglePetition(id){
     const item=petitionItems.find(entry=>entry.id===id);if(!item)return;
+    const nextPublished=item.published!==true;
     try{
-      await window.publicAuth.firestore.collection('petitionDocuments').doc(item.id).update({published:item.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
-      await loadPetitions();
-      activePetitionCategory=item.categoryId;
-      activePetitionStatus=item.published===true?'unpublished':'published';
-      setPetitionPanel('library');
-      setStatus('تم تحديث حالة العريضة والفهرس العام.',false);
+      await window.publicAuth.firestore.collection('petitionDocuments').doc(id).update({published:nextPublished,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      const synced=await syncPublicPetitionIndexItem({...item,published:nextPublished});
+      activePetitionCategory=item.categoryId;activePetitionStatus=nextPublished?'published':'unpublished';
+      await loadPetitions();setPetitionPanel('library');
+      setStatus(synced?'تم تحديث حالة العريضة والفهرس العام.':'تم تحديث الحالة لكن تعذر تحديث الفهرس العام.',!synced);
     }catch(error){console.error(error);setStatus('تعذر تحديث حالة العريضة.',true);}
   }
   async function deletePetition(id){
@@ -673,32 +672,41 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!item||!confirm('حذف هذه العريضة نهائياً؟'))return;
     try{
       await window.publicAuth.firestore.collection('petitionDocuments').doc(item.id).delete();
-      resetPetition();
-      await loadPetitions();
-      activePetitionCategory=item.categoryId;
-      setPetitionPanel('library');
-      setStatus('تم حذف العريضة وتحديث الفهرس.',false);
+      const synced=await syncPublicPetitionIndexItem(item,true);
+      resetPetition();activePetitionCategory=item.categoryId;activePetitionStatus=item.published===true?'published':'unpublished';
+      await loadPetitions();setPetitionPanel('library');
+      setStatus(synced?'تم حذف العريضة وتحديث الفهرس.':'تم حذف العريضة لكن تعذر تحديث الفهرس.',!synced);
     }catch(error){console.error(error);setStatus('تعذر حذف العريضة.',true);}
   }
-  async function syncPublicPetitionIndex(items){
+  async function syncPublicPetitionIndexItem(item,remove=false){
     const db=window.publicAuth?.firestore;if(!isAdmin||!db)return false;
     const names={family:'عرائض أحوال شخصية',civil:'عرائض البداءة (الدعاوى المدنية)',criminal:'عرائض جزائية وتحقيق',administrative:'عرائض إدارية'};
-    const published=items.filter(x=>x.published===true&&x.title&&names[x.categoryId]).map(x=>({uid:x.id,name:x.title.trim(),categoryId:x.categoryId,category:names[x.categoryId],description:x.description||'',icon:x.icon||'fas fa-file-signature'})).sort((a,b)=>a.name.localeCompare(b.name,'ar'));
-    const ref=db.collection('publicIndexes').doc('petitions'),snap=await ref.get(),current=snap.exists&&Array.isArray(snap.data()?.items)?snap.data().items:[];
-    if(JSON.stringify(current)!==JSON.stringify(published))await ref.set({items:published,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    const ref=db.collection('publicIndexes').doc('petitions'),snapshot=await ref.get(),current=snapshot.exists&&Array.isArray(snapshot.data()?.items)?snapshot.data().items:[];
+    const next=current.filter(entry=>entry.uid!==item.id);
+    if(!remove&&item.published===true&&item.title&&names[item.categoryId]){
+      next.push({uid:item.id,name:item.title.trim(),categoryId:item.categoryId,category:names[item.categoryId],description:item.description||'',icon:item.icon||'fas fa-file-signature'});
+    }
+    next.sort((a,b)=>a.name.localeCompare(b.name,'ar'));
+    if(JSON.stringify(current)!==JSON.stringify(next))await ref.set({items:next,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     return true;
   }
   async function loadPetitions(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.petitionsCategories)return false;
     els.petitionsCategories.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل نماذج العرائض...</p>';
     try{
-      const snap=await window.publicAuth.firestore.collection('petitionDocuments').get();
-      petitionItems=snap.docs.map(doc=>({id:doc.id,...doc.data()})).sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'ar'));
-      const synced=await syncPublicPetitionIndex(petitionItems);
+      const db=window.publicAuth.firestore,categories=Object.keys(petitionCategories);
+      const entries=await Promise.all(categories.map(async categoryId=>{
+        const [published,unpublished]=await Promise.all([
+          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',true)),
+          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',false))
+        ]);
+        return [categoryId,{published,unpublished,total:published+unpublished}];
+      }));
+      petitionCategoryCounts=Object.fromEntries(entries);petitionItems=[];
       renderPetitionLibrary();
-      return synced;
+      return true;
     }catch(error){
-      console.error('Petitions load failed:',error);
+      console.error('Petitions counts load failed:',error);
       els.petitionsCategories.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل نماذج العرائض. تحقق من قواعد Firestore المنشورة.</p>';
       if(els.petitionsCategoryItems)els.petitionsCategoryItems.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل النماذج.</p>';
       return false;
@@ -712,17 +720,16 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(data.title.length<3||data.body.length<10){setStatus('عنوان العريضة والنص الكامل مطلوبان.',true);return;}
     setStatus('جارٍ حفظ العريضة في Firestore...',false);
     try{
-      const db=window.publicAuth.firestore,stamp=firebase.firestore.FieldValue.serverTimestamp();
+      const db=window.publicAuth.firestore,stamp=firebase.firestore.FieldValue.serverTimestamp();let savedId=id;
       if(id)await db.collection('petitionDocuments').doc(id).update({...data,updatedAt:stamp});
-      else{const ref=db.collection('petitionDocuments').doc();await ref.set({...data,createdAt:stamp,createdBy:window.publicAuth.user.uid,updatedAt:stamp});}
-      resetPetition();
-      const synced=await loadPetitions();
-      activePetitionCategory=categoryId;
-      activePetitionStatus=data.published?'published':'unpublished';
-      setPetitionPanel('library');
+      else{const ref=db.collection('petitionDocuments').doc();await ref.set({...data,createdAt:stamp,createdBy:window.publicAuth.user.uid,updatedAt:stamp});savedId=ref.id;}
+      const synced=await syncPublicPetitionIndexItem({...data,id:savedId});
+      resetPetition();activePetitionCategory=categoryId;activePetitionStatus=data.published?'published':'unpublished';
+      await loadPetitions();setPetitionPanel('library');
       setStatus(synced?'تم حفظ العريضة وتحديث الفهرس العام.':'تم حفظ العريضة لكن تعذر تحديث الفهرس العام.',!synced);
     }catch(error){console.error('Petition save failed:',error);setStatus('تعذر حفظ العريضة في Firestore. '+String(error.message||''),true);}
   }
+
   async function loadPetitionAccessRequests(reset=true){
     if(!isAdmin||!window.publicAuth?.firestore||!els.petitionsRequestsBody)return;
     const db=window.publicAuth.firestore,body=els.petitionsRequestsBody,key='petition-access-requests';
