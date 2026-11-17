@@ -10,16 +10,62 @@ const MIZAN_STATIC_CACHE = `mizan-static-${MIZAN_BUILD_ID}`;
 const MIZAN_SHELL_CACHE = `mizan-shell-${MIZAN_BUILD_ID}`;
 const MIZAN_BOOK_CATALOG_CACHE = 'mizan-book-catalog-v1';
 const MIZAN_LAW_LIBRARY_CACHE = 'mizan-law-library-v1';
+const MIZAN_VENDOR_CACHE = 'mizan-vendor-v1';
+const MIZAN_VENDOR_PRECACHE = [
+  'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800;900&display=swap',
+  'https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@700&family=Reem+Kufi:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js'
+];
 
 const MIZAN_KEEP_CACHES = new Set([
   MIZAN_STATIC_CACHE,
   MIZAN_SHELL_CACHE,
   MIZAN_BOOK_CATALOG_CACHE,
-  MIZAN_LAW_LIBRARY_CACHE
+  MIZAN_LAW_LIBRARY_CACHE,
+  MIZAN_VENDOR_CACHE
 ]);
 
 const MIZAN_SCOPE_URL = new URL(self.registration.scope);
 const MIZAN_SCOPE_PATH = MIZAN_SCOPE_URL.pathname;
+
+function isCacheableVendorRequest(request) {
+  if (request.method !== 'GET') return false;
+  const url = new URL(request.url);
+  if (url.origin === self.location.origin) return false;
+
+  if (url.hostname === 'fonts.googleapis.com') {
+    return url.pathname === '/css2' && url.searchParams.has('family');
+  }
+  if (url.hostname === 'fonts.gstatic.com') {
+    return /\\.(?:woff2?|ttf)$/i.test(url.pathname);
+  }
+  if (url.hostname === 'cdnjs.cloudflare.com') {
+    return url.pathname === '/ajax/libs/font-awesome/6.5.2/css/all.min.css' ||
+      url.pathname === '/ajax/libs/bodymovin/5.12.2/lottie.min.js';
+  }
+  if (url.hostname === 'cdn.jsdelivr.net') {
+    return url.pathname === '/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css';
+  }
+  return false;
+}
+
+function vendorStaleWhileRevalidate(request, event) {
+  const cachePromise = caches.open(MIZAN_VENDOR_CACHE);
+  const cachedPromise = cachePromise.then(cache => cache.match(request));
+  const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
+    const response = await fetch(request, { cache: 'no-cache' });
+    if (response.ok) {
+      const changed = Boolean(cachedResponse && await responseChanged(cachedResponse, response));
+      await cache.put(request, response.clone());
+      if (changed) await notifyClientsAboutUpdate();
+    }
+    return response;
+  });
+  event.waitUntil(refreshPromise.then(() => undefined).catch(() => {}));
+  return cachedPromise.then(cachedResponse => cachedResponse || refreshPromise);
+}
 
 function getAppRelativePath(requestUrl) {
   const url = new URL(requestUrl);
@@ -154,6 +200,17 @@ self.addEventListener('install', event => {
       // A previously installed application can still activate while offline.
     }
 
+    // Cache the version-pinned third-party visual runtime so it remains
+    // available offline after the first successful installation or online visit.
+    const vendorCache = await caches.open(MIZAN_VENDOR_CACHE);
+    await Promise.allSettled(MIZAN_VENDOR_PRECACHE.map(async assetUrl => {
+      const request = new Request(assetUrl, { mode: 'cors' });
+      const cached = await vendorCache.match(request);
+      if (cached) return;
+      const response = await fetch(request, { cache: 'no-store' });
+      if (response.ok) await vendorCache.put(request, response.clone());
+    }));
+
     // Pre-cache the complete same-origin visual/runtime shell at installation.
     // The generated manifest contains only static assets, never questions,
     // account data, petitions, procedure records or legal book content.
@@ -204,6 +261,11 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
+
+  if (isCacheableVendorRequest(request)) {
+    event.respondWith(vendorStaleWhileRevalidate(request, event));
+    return;
+  }
 
   const relativePath = getAppRelativePath(request.url);
   if (relativePath === null) return;
