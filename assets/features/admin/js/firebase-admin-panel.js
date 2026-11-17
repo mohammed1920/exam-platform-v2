@@ -1360,15 +1360,26 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     });
   }
 
+  let forumPendingArticles=null,forumPendingContributors=null;
   function setForumPendingCount(articles,contributors){
-    const total=Math.max(0,Number(articles)||0)+Math.max(0,Number(contributors)||0);
+    forumPendingArticles=Math.max(0,Number(articles)||0);
+    forumPendingContributors=Math.max(0,Number(contributors)||0);
+    const total=forumPendingArticles+forumPendingContributors;
     const targets=[document.getElementById('mizan-admin-nav-count'),...document.querySelectorAll('[data-admin-count="forum"]')];
     targets.forEach(node=>{if(!node)return;node.textContent=String(total);node.hidden=total===0;});
   }
-  function notifyForumPendingCounts(){
-    window.dispatchEvent(new CustomEvent('mizan:refresh-forum-pending-counts'));
+  function notifyForumPendingCounts(articleDelta=0,contributorDelta=0){
+    window.dispatchEvent(new CustomEvent('mizan:refresh-forum-pending-counts',{detail:{articleDelta,contributorDelta}}));
   }
-  async function refreshPendingCounts(){
+  async function refreshPendingCounts(event){
+    if(event?.detail){
+      if(forumPendingArticles===null||forumPendingContributors===null)return;
+      setForumPendingCount(
+        forumPendingArticles+(Number(event.detail.articleDelta)||0),
+        forumPendingContributors+(Number(event.detail.contributorDelta)||0)
+      );
+      return;
+    }
     const firestore=db();if(!firestore)return;
     try{
       const [articles,contributors]=await Promise.all([
@@ -1598,12 +1609,12 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
           status:'approved',
           updatedAt:firebase.firestore.FieldValue.serverTimestamp()
         },{merge:true});
-        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts();alert('تم اعتماد المساهم.');
+        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts(0,-1);alert('تم اعتماد المساهم.');
         setTab('contributors');load('contributors');return;
       }
       if(action==='reject-contributor'){
         await firestore.collection(CONTRIBUTORS).doc(id).update({status:'rejected',rejectedAt:firebase.firestore.FieldValue.serverTimestamp()});
-        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts();alert('تم رفض طلب الاعتماد.');
+        closeModal('mizan-contributor-view-modal');notifyForumPendingCounts(0,-1);alert('تم رفض طلب الاعتماد.');
         setTab('contributors');load('contributors');return;
       }
       if(action==='reject'){
@@ -1615,7 +1626,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
           if(!reason){alert('اكتب سبب الرفض أولاً.');return;}
           try{
             await ref.update({status:'rejected',rejectionReason:reason,rejectedAt:firebase.firestore.FieldValue.serverTimestamp()});
-            notifyForumPendingCounts();closeModal('mizan-reject-modal');closeModal('mizan-article-view-modal');
+            notifyForumPendingCounts(-1,0);closeModal('mizan-reject-modal');closeModal('mizan-article-view-modal');
             alert('تم رفض المشاركة وحفظ السبب.');
             setTab('rejected');load('rejected');
           }catch(e){console.error(e);alert('تعذر رفض المشاركة.');}
@@ -1624,7 +1635,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       }
       if(action==='publish'){
         await ref.update({status:'published',publishedAt:firebase.firestore.FieldValue.serverTimestamp()});
-        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('تم نشر المشاركة.');
+        notifyForumPendingCounts(-1,0);closeModal('mizan-article-view-modal');alert('تم نشر المشاركة.');
         setTab('published');load('published');return;
       }
       if(action==='hide'){
@@ -1639,7 +1650,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       }
       if(action==='resubmit'){
         await ref.update({status:'pending',resubmittedAt:firebase.firestore.FieldValue.serverTimestamp(),rejectionReason:firebase.firestore.FieldValue.delete()});
-        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('أعيدت المشاركة إلى قائمة المراجعة.');
+        notifyForumPendingCounts(1,0);closeModal('mizan-article-view-modal');alert('أعيدت المشاركة إلى قائمة المراجعة.');
         setTab('pending');load('pending');return;
       }
       if(action==='edit'){
@@ -1647,9 +1658,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
         return;
       }
       if(action==='delete'&&confirm('حذف هذه المشاركة نهائياً؟ لا يمكن التراجع عن هذا الإجراء.')){
-        await ref.delete();
-        notifyForumPendingCounts();closeModal('mizan-article-view-modal');alert('تم حذف المشاركة نهائياً.');
         const active=document.querySelector('#mizan-admin-view [data-mizan-status].active')?.dataset.mizanStatus||'overview';
+        await ref.delete();
+        if(active==='pending')notifyForumPendingCounts(-1,0);
+        closeModal('mizan-article-view-modal');alert('تم حذف المشاركة نهائياً.');
         load(active);
       }
     }catch(e){console.error(e);alert('تعذر تنفيذ الإجراء. تحقق من صلاحيات Firestore.');}
