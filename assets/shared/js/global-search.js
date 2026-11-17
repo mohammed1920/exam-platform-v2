@@ -58,12 +58,19 @@
       } catch (_) {}
     }
 
-    // Use each section's own in-memory data source. Never fetch detail documents here.
+    // Load only the lightweight section modules when the user actually searches.
+    // Their own search-index methods remain responsible for fetching public indexes,
+    // never full detail documents or protected content.
+    const [lawsApi, lawyersApi, petitionsApi] = await Promise.all([
+      window.mizanLaws ? Promise.resolve(window.mizanLaws) : window.loadMizanLaws?.().catch(() => null),
+      window.lawyerDirectory ? Promise.resolve(window.lawyerDirectory) : window.loadLawyerDirectory?.().catch(() => null),
+      window.petitions ? Promise.resolve(window.petitions) : window.loadPetitions?.().catch(() => null)
+    ]);
     const [lawRegistry, lawyerProfiles, procedureIndex, petitionIndex] = await Promise.all([
-      window.mizanLaws?.loadRegistry?.().catch(() => null),
-      window.lawyerDirectory?.loadSearchProfiles?.().catch(() => []),
+      lawsApi?.loadRegistry?.().catch(() => null),
+      lawyersApi?.loadSearchProfiles?.().catch(() => []),
       window.procedures?.loadSearchIndex?.().catch(() => []),
-      window.petitions?.loadSearchIndex?.().catch(() => [])
+      petitionsApi?.loadSearchIndex?.().catch(() => [])
     ]);
 
     (Array.isArray(lawRegistry?.laws) ? lawRegistry.laws : []).forEach(law => {
