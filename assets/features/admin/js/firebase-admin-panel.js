@@ -246,7 +246,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       'unavailable':'خدمة Firestore غير متاحة حالياً.',
       'resource-exhausted':'تم تجاوز حد موارد الخدمة.'
     };
-    const safeMessage=safeMessages[code]||'لا توجد رسالة آمنة إضافية؛ استخدم رمز الخطأ لتحديد السبب.';
+    const rawMessage=String(error?.message||'لا توجد رسالة إضافية من Firebase');
+    const safeMessage=safeMessages[code]||rawMessage
+      .replace(/[\\w.+-]+@[\\w.-]+[.][A-Za-z]{2,}/g,'[بيانات مخفية]')
+      .slice(0,180);
     const auth=window.publicAuth;
     els.diagnosticText.textContent=[
       'المرحلة: '+stage,
