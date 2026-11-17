@@ -510,6 +510,28 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const toggle=event.target.closest('[data-procedure-admin-toggle]');if(toggle){toggleLegalProcedure(toggle.dataset.procedureAdminToggle);return;}
     const remove=event.target.closest('[data-procedure-admin-delete]');if(remove)deleteLegalProcedure(remove.dataset.procedureAdminDelete);
   }
+  async function toggleLegalProcedure(id){
+    const item=procedureItems.find(value=>value.id===id);if(!item)return;
+    const nextPublished=item.published!==true;
+    try{
+      await window.publicAuth.firestore.collection('legalProcedures').doc(id).update({published:nextPublished,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+      const synced=await syncPublicProcedureIndexItem({...item,published:nextPublished});
+      activeProcedureAdminCategory=item.category;activeProcedureAdminStatus=nextPublished?'published':'unpublished';
+      await loadLegalProcedures();setProcedureAdminPanel('library');
+      setStatus(synced?'تم تحديث حالة الإجراء والفهرس العام.':'تم تحديث الحالة لكن تعذر تحديث الفهرس العام.',!synced);
+    }catch(error){console.error(error);setStatus('تعذر تحديث حالة الإجراء.',true);}
+  }
+  async function deleteLegalProcedure(id){
+    const item=procedureItems.find(value=>value.id===id);if(!item||!confirm('حذف هذا الإجراء نهائياً؟'))return;
+    try{
+      await window.publicAuth.firestore.collection('legalProcedures').doc(id).delete();
+      const synced=await syncPublicProcedureIndexItem(item,true);
+      resetLegalProcedure();activeProcedureAdminCategory=item.category;activeProcedureAdminStatus=item.published===true?'published':'unpublished';
+      await loadLegalProcedures();setProcedureAdminPanel('library');
+      setStatus(synced?'تم حذف الإجراء وتحديث الفهرس العام.':'تم حذف الإجراء لكن تعذر تحديث الفهرس العام.',!synced);
+    }catch(error){console.error(error);setStatus('تعذر حذف الإجراء.',true);}
+  }
+  function resetLegalProcedure(){if(!els.procedureForm)return;els.procedureForm.reset();els.procedureForm.elements.id.value='';els.procedureForm.elements.category.value='';els.procedureForm.elements.published.checked=true;if(els.procedureFormTitle)els.procedureFormTitle.textContent='إضافة إجراء جديد';}
   async function syncPublicProcedureIndexItem(item,remove=false){
     const db=window.publicAuth?.firestore;if(!isAdmin||!db)return false;
     const categoryTitles={civil:'الدعاوى المدنية',criminal:'الدعاوى الجزائية',administrative:'الدعاوى الإدارية',personal:'دعاوى الأحوال الشخصية'};
@@ -755,54 +777,34 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   async function saveLegalProcedure(event){
     event.preventDefault();
     if(!isAdmin||!window.publicAuth?.firestore||!window.publicAuth?.user)return;
-    const f=els.procedureForm,id=String(f.elements.id.value||'').trim();
-    const category=String(f.elements.category.value||'').trim();
-    const validCategories=['civil','criminal','administrative','personal'];
-    if(!validCategories.includes(category)){
-      setStatus('اختر تصنيف الدعوى الصحيح قبل حفظ الإجراء.',true);
-      f.elements.category.focus();
-      return;
-    }
+    const form=els.procedureForm,id=String(form.elements.id.value||'').trim(),category=String(form.elements.category.value||'').trim();
+    if(!['civil','criminal','administrative','personal'].includes(category)){setStatus('اختر تصنيف الدعوى الصحيح قبل حفظ الإجراء.',true);form.elements.category.focus();return;}
     const data={
-      title:String(f.elements.title.value||'').trim().slice(0,180),
-      category,
-      summary:String(f.elements.summary.value||'').trim().slice(0,2000),
-      requirements:String(f.elements.requirements.value||'').trim().slice(0,5000),
-      documents:String(f.elements.documents.value||'').trim().slice(0,5000),
-      steps:String(f.elements.steps.value||'').trim().slice(0,10000),
-      legalBasis:String(f.elements.legalBasis.value||'').trim().slice(0,5000),
-      fees:String(f.elements.fees.value||'').trim().slice(0,500),
-      duration:String(f.elements.duration.value||'').trim().slice(0,500),
-      published:Boolean(f.elements.published.checked)
+      title:String(form.elements.title.value||'').trim().slice(0,180),category,
+      summary:String(form.elements.summary.value||'').trim().slice(0,2000),
+      requirements:String(form.elements.requirements.value||'').trim().slice(0,5000),
+      documents:String(form.elements.documents.value||'').trim().slice(0,5000),
+      steps:String(form.elements.steps.value||'').trim().slice(0,10000),
+      legalBasis:String(form.elements.legalBasis.value||'').trim().slice(0,5000),
+      fees:String(form.elements.fees.value||'').trim().slice(0,500),
+      duration:String(form.elements.duration.value||'').trim().slice(0,500),
+      published:Boolean(form.elements.published.checked)
     };
-    if(data.title.length<3){
-      setStatus('عنوان الإجراء مطلوب ويجب ألا يقل عن 3 محارف.',true);
-      return;
-    }
+    if(data.title.length<3){setStatus('عنوان الإجراء مطلوب ويجب ألا يقل عن 3 محارف.',true);return;}
     setStatus('جارٍ حفظ الإجراء في Firebase...',false);
     try{
-      const db=window.publicAuth.firestore;
-      if(id){
-        await db.collection('legalProcedures').doc(id).update({...data,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
-      }else{
-        data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
-        data.createdBy=window.publicAuth.user.uid;
-        data.updatedAt=firebase.firestore.FieldValue.serverTimestamp();
-        await db.collection('legalProcedures').add(data);
+      const db=window.publicAuth.firestore,stamp=firebase.firestore.FieldValue.serverTimestamp();
+      let savedId=id;
+      if(id)await db.collection('legalProcedures').doc(id).update({...data,updatedAt:stamp});
+      else{
+        data.createdAt=stamp;data.createdBy=window.publicAuth.user.uid;data.updatedAt=stamp;
+        const ref=await db.collection('legalProcedures').add(data);savedId=ref.id;
       }
-      resetLegalProcedure();
-      const indexSynced=await loadLegalProcedures();
-      activeProcedureAdminCategory=category;activeProcedureAdminStatus=data.published?'published':'unpublished';setProcedureAdminPanel('library');
-      setStatus(
-        indexSynced
-          ? 'تم حفظ الإجراء في Firebase وتحديث الفهرس.'
-          : 'تم حفظ الإجراء في Firebase، لكن تعذر تحديث الفهرس العام.',
-        !indexSynced
-      );
-    }catch(e){
-      console.error('Legal procedure save failed:',e);
-      setStatus('تعذر حفظ الإجراء في Firebase. '+String(e.message||''),true);
-    }
+      const indexSynced=await syncPublicProcedureIndexItem({...data,id:savedId});
+      resetLegalProcedure();activeProcedureAdminCategory=category;activeProcedureAdminStatus=data.published?'published':'unpublished';
+      await loadLegalProcedures();setProcedureAdminPanel('library');
+      setStatus(indexSynced?'تم حفظ الإجراء في Firebase وتحديث الفهرس.':'تم حفظ الإجراء في Firebase، لكن تعذر تحديث الفهرس العام.',!indexSynced);
+    }catch(error){console.error('Legal procedure save failed:',error);setStatus('تعذر حفظ الإجراء في Firebase. '+String(error.message||''),true);}
   }
 
   async function loadProcedureAccessRequests(reset=true){
