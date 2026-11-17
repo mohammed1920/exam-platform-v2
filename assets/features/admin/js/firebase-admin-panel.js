@@ -17,7 +17,7 @@
       els.section=existingSection;
       return;
     }
-    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.37';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
+    if(!document.querySelector('link[data-lawyer-admin-css]')){const css=document.createElement('link');css.rel='stylesheet';css.href='assets/features/lawyers/css/lawyer-admin.css?v=1.38';css.dataset.lawyerAdminCss='1';document.head.appendChild(css);}
     const header=document.querySelector('header');if(!header)return;
     const tab=existingTab||document.createElement('button');
     if(!existingTab){
@@ -74,13 +74,13 @@
         <button type="button" class="lawyer-admin-tab" data-lawyer-view="edits">طلبات التعديل <span id="fa-lawyer-edit-requests-count">0</span></button>
       </div>
       <div id="fa-lawyers-pending-panel">
-        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>التقديم</th><th>الهوية</th><th>الإجراء</th></tr></thead><div id="fa-lawyers-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></table></div>
+        <div class="lawyer-admin-list-page"><div class="lawyer-admin-list-page-head"><div><span>مراجعة الطلبات</span><h3>طلبات الانضمام إلى الدليل</h3><p>راجع بيانات المتقدمين واتخذ إجراء الاعتماد أو الرفض من بطاقة كل طلب.</p></div></div><div id="fa-lawyers-body" class="firebase-admin-record-list lawyer-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></div>
       </div>
       <div id="fa-lawyers-edit-requests-panel" hidden>
-        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>التعديلات</th><th>التاريخ</th><th>الإجراء</th></tr></thead><div id="fa-lawyer-edit-requests-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></table></div>
+        <div class="lawyer-admin-list-page"><div class="lawyer-admin-list-page-head"><div><span>مراجعة التغييرات</span><h3>طلبات تعديل بيانات المحامين</h3><p>تظهر هنا التعديلات المعلقة للمراجعة قبل تحديث الملف المنشور.</p></div></div><div id="fa-lawyer-edit-requests-body" class="firebase-admin-record-list lawyer-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></div>
       </div>
       <div id="fa-lawyers-published-panel" hidden>
-        <div class="firebase-admin-table-wrap"><table class="lawyer-admin-table"><thead><tr><th>المحامي</th><th>الموقع</th><th>الاختصاص</th><th>الحالة</th><th>الإجراء</th></tr></thead><div id="fa-lawyers-published-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></table></div>
+        <div class="lawyer-admin-list-page"><div class="lawyer-admin-list-page-head"><div><span>دليل المحامين</span><h3>قائمة المحامين المنشورين</h3><p>إدارة ملفات المحامين المنشورة والتحكم في ظهورها وتحديث بياناتها.</p></div><span class="lawyer-admin-list-page-count"><i class="fas fa-users" aria-hidden="true"></i> <strong id="fa-lawyers-published-total">0</strong> ملف</span></div><div id="fa-lawyers-published-body" class="firebase-admin-record-list lawyer-admin-record-list"><p class="firebase-admin-list-state">جارٍ التحميل...</p></div></div>
       </div>
       <div id="fa-lawyer-edit" class="lawyer-admin-edit" hidden>
         <div class="firebase-admin-card-head"><h3 id="fa-lawyer-edit-title">تعديل بيانات المحامي</h3><button id="fa-lawyer-edit-close" type="button">×</button></div>
@@ -355,7 +355,17 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       lawyerProfiles=snap.docs.map(d=>({id:d.id,...d.data()}));
       lawyerProfiles.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ar'));
       if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=lawyerProfiles.length;
-      els.lawyersPublishedBody.innerHTML=lawyerProfiles.length?lawyerProfiles.map(p=>'<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">ملف في دليل المحامين</span><h4>'+esc(p.name||'محامٍ')+'</h4></div><span class="lawyer-admin-status '+(p.published?'is-live':'is-off')+'">'+(p.published?'ظاهر للطلاب':'معطّل عن الظهور')+'</span></div><div class="firebase-admin-record-field"><span>الموقع والهاتف</span><p>'+esc([p.governorate,p.district].filter(Boolean).join(' — ')||'غير محدد')+' · '+esc(p.phone||'غير متوفر')+'</p></div><div class="firebase-admin-record-field"><span>الاختصاصات</span><p>'+esc((p.specializations||[]).join('، ')||'غير محددة')+'</p></div><div class="lawyer-admin-actions"><button data-lawyer-edit-profile="'+esc(p.id)+'">تعديل</button><button class="'+(p.published?'reject':'approve')+'" data-lawyer-toggle="'+esc(p.id)+'">'+(p.published?'تعطيل الظهور':'إعادة التفعيل')+'</button><button class="reject" data-lawyer-delete-profile="'+esc(p.id)+'">حذف</button></div></article>').join(''):'<p class="firebase-admin-list-state">لا توجد ملفات محامين.</p>';
+      els.lawyersPublishedBody.innerHTML=lawyerProfiles.length?lawyerProfiles.map(p=>{
+         const specialties=(Array.isArray(p.specializations)?p.specializations:String(p.specializations||'').split(/[،,]/)).map(v=>String(v||'').trim()).filter(Boolean);
+         const location=[p.governorate,p.district].filter(Boolean).join(' — ')||'الموقع غير محدد';
+         const phone=String(p.phone||'').trim();
+         const office=String(p.office||'').trim();
+         const address=String(p.address||'').trim();
+         const hours=String(p.workingHours||'').trim();
+         return '<article class="firebase-admin-record-card lawyer-directory-admin-card"><div class="lawyer-directory-admin-head"><span class="lawyer-directory-admin-avatar" aria-hidden="true"><i class="fas fa-user-tie"></i></span><div class="lawyer-directory-admin-identity"><span class="firebase-admin-record-eyebrow">ملف في دليل المحامين</span><h4>'+esc(p.name||'محامٍ')+'</h4><span class="lawyer-directory-admin-location"><i class="fas fa-location-dot" aria-hidden="true"></i> '+esc(location)+'</span></div><span class="lawyer-admin-status '+(p.published?'is-live':'is-off')+'">'+(p.published?'ظاهر للطلاب':'معطّل عن الظهور')+'</span></div><div class="lawyer-directory-admin-details">'+(phone?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-phone" aria-hidden="true"></i> رقم الهاتف</span><strong dir="ltr">'+esc(phone)+'</strong></div>':'')+(office?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-briefcase" aria-hidden="true"></i> المكتب</span><strong>'+esc(office)+'</strong></div>':'')+(address?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-map-pin" aria-hidden="true"></i> العنوان</span><strong>'+esc(address)+'</strong></div>':'')+(hours?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-clock" aria-hidden="true"></i> ساعات العمل</span><strong>'+esc(hours)+'</strong></div>':'')+'</div><div class="lawyer-directory-admin-specialties"><span>الاختصاصات</span><div>'+(specialties.length?specialties.map(s=>'<span>'+esc(s)+'</span>').join(''):'<small>لم تُحدد الاختصاصات</small>')+'</div></div><div class="lawyer-admin-actions lawyer-directory-admin-actions"><button type="button" data-lawyer-edit-profile="'+esc(p.id)+'"><i class="fas fa-pen" aria-hidden="true"></i> تعديل</button><button type="button" class="'+(p.published?'reject':'approve')+'" data-lawyer-toggle="'+esc(p.id)+'"><i class="fas '+(p.published?'fa-eye-slash':'fa-eye')+'" aria-hidden="true"></i> '+(p.published?'تعطيل الظهور':'إعادة التفعيل')+'</button><button type="button" class="reject" data-lawyer-delete-profile="'+esc(p.id)+'"><i class="fas fa-trash" aria-hidden="true"></i> حذف</button></div></article>';
+       }).join(''):'<p class="firebase-admin-list-state">لا توجد ملفات محامين حتى الآن.</p>';
+       const publishedTotal=els.section.querySelector('#fa-lawyers-published-total');
+       if(publishedTotal)publishedTotal.textContent=String(lawyerProfiles.length);
       els.lawyersPublishedBody.querySelectorAll('[data-lawyer-edit-profile]').forEach(el=>el.onclick=()=>openLawyerEdit(lawyerProfiles.find(x=>x.id===el.dataset.lawyerEditProfile),'profile'));
       els.lawyersPublishedBody.querySelectorAll('[data-lawyer-toggle]').forEach(el=>el.onclick=()=>toggleLawyerVisibility(lawyerProfiles.find(x=>x.id===el.dataset.lawyerToggle)));
       els.lawyersPublishedBody.querySelectorAll('[data-lawyer-delete-profile]').forEach(el=>el.onclick=()=>deleteLawyerProfile(lawyerProfiles.find(x=>x.id===el.dataset.lawyerDeleteProfile)));
