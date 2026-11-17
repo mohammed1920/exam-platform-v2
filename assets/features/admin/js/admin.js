@@ -284,7 +284,7 @@
                             <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteChapter(${ch.num}))">حذف</button>
                         </div>
                     </div>
-                    <div style="font-size: 12px; color: var(--text-dim);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
+                    <div style="font-size: 12px; color: var(--mizan-muted);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
                 </div>
             `).join('');
         }
@@ -470,7 +470,7 @@
         function getDiffWord(original, corrected) {
             if (!original || !corrected) return '—';
             if (original.trim() === corrected.trim()) {
-                return '<span style="color: var(--text-dim);">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
+                return '<span style="color: var(--mizan-muted);">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
             }
             const origWords = original.trim().split(/\s+/);
             const corrWords = corrected.trim().split(/\s+/);
@@ -503,7 +503,7 @@
 
                     return `
                     <div class="item-card">
-                        <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
+                        <div style="font-size:12px; color:var(--mizan-muted); margin-bottom:8px;">
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')} — الحقل: ${escapeHtml(item.field)}
                         </div>
                         <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
@@ -689,13 +689,13 @@
 
                     return `
                     <div class="item-card">
-                        <div style="font-size:12px; color:var(--text-dim); margin-bottom:8px;">
+                        <div style="font-size:12px; color:var(--mizan-muted); margin-bottom:8px;">
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')}
                         </div>
                         <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${escapeHtml(issueInfo.label)}</div>
                         <div class="question-text">${escapeHtml(item.question || '')}</div>
                         <div class="question-options">${optionsHtml}</div>
-                        <div style="margin-bottom:12px; color:var(--text-dim); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
+                        <div style="margin-bottom:12px; color:var(--mizan-muted); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
                         <div class="btn-row">
                             <button class="btn btn-secondary btn-sm" onclick="openQuestionForReview(${idx})">✏️ تعديل السؤال</button>
                             <button class="btn btn-green btn-sm" onclick="setQaDecision(${idx}, 'accepted')">✅ تم التعديل / موافق عليها</button>
@@ -961,14 +961,14 @@
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
-                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيُستخدم اسم الفصل الموجود داخل الملف أو الاسم الافتراضي.</small></div>
-                    <div class="form-group"><label for="m-chapter-json">ملف الفصل (JSON — اختياري)</label><input id="m-chapter-json" type="file" accept=".json,application/json" onchange="previewChapterJson()"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا لم تختر ملفًا، سيُنشأ فصل فارغ كما في السابق.</small></div>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا تركته فارغًا سيُستخدم اسم الفصل الموجود داخل الملف أو الاسم الافتراضي.</small></div>
+                    <div class="form-group"><label for="m-chapter-json">ملف الفصل (JSON — اختياري)</label><input id="m-chapter-json" type="file" accept=".json,application/json" onchange="previewChapterJson()"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا لم تختر ملفًا، سيُنشأ فصل فارغ كما في السابق.</small></div>
                     <div id="m-chapter-preview" class="admin-summary" aria-live="polite">يمكنك إنشاء فصل فارغ أو اختيار ملف JSON جاهز.</div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
             } else if (type === 'editChapter') {
                 const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
-                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small style="display:block;margin-top:6px;color:var(--text-dim);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">حفظ التعديلات</button>`;
             } else if (type === 'addQuestion') {
                 html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
@@ -1380,7 +1380,7 @@
                 const registry = JSON.parse(decode(remote.content));
                 if (!Array.isArray(registry.laws)) throw new Error('تنسيق فهرس القوانين غير صحيح.');
                 list.innerHTML = registry.laws.length ? registry.laws.map(law =>
-                    '<div class="item-card"><div class="item-card-header"><div class="item-card-title">' + escapeHtml(law.name || law.id) + '</div><span>' + Number(law.articlesCount || 0) + ' مادة</span></div><div style="font-size:12px;color:var(--text-dim);">' + escapeHtml(law.id) + ' · ' + escapeHtml(law.file) + '</div></div>'
+                    '<div class="item-card"><div class="item-card-header"><div class="item-card-title">' + escapeHtml(law.name || law.id) + '</div><span>' + Number(law.articlesCount || 0) + ' مادة</span></div><div style="font-size:12px;color:var(--mizan-muted);">' + escapeHtml(law.id) + ' · ' + escapeHtml(law.file) + '</div></div>'
                 ).join('') : '<p class="empty-hint">لا توجد قوانين مسجلة.</p>';
             } catch (e) { list.textContent = 'تعذر تحميل القائمة: ' + e.message; }
         }
