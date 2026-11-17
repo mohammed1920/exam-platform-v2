@@ -141,20 +141,45 @@ async function networkFirstNavigation(request) {
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(MIZAN_SHELL_CACHE);
-    const indexUrl = new URL('index.html', self.registration.scope);
+    const indexUrl = new URL('index.html', self.registration.scope).href;
 
+    // Always preserve the latest application entry point for offline launch.
     try {
-      const response = await fetch(indexUrl.href, { cache: 'no-store' });
+      const response = await fetch(indexUrl, { cache: 'no-store' });
       if (response.ok) {
-        await cache.put(indexUrl.href, response.clone());
+        await cache.put(indexUrl, response.clone());
         await cache.put(new URL('./', self.registration.scope).href, response.clone());
       }
     } catch (_) {
-      // First installation may occur while offline; installation can still complete.
+      // A previously installed application can still activate while offline.
+    }
+
+    // Pre-cache the complete same-origin visual/runtime shell at installation.
+    // The generated manifest contains only static assets, never questions,
+    // account data, petitions, procedure records or legal book content.
+    try {
+      const manifestUrl = new URL('precache-manifest.json', self.registration.scope).href;
+      const manifestResponse = await fetch(manifestUrl, { cache: 'no-store' });
+      if (manifestResponse.ok) {
+        const paths = await manifestResponse.json();
+        if (Array.isArray(paths)) {
+          await Promise.allSettled(paths.filter(path =>
+            typeof path === 'string' &&
+            !path.startsWith('/') &&
+            !/^https?:/i.test(path) &&
+            !path.includes('..')
+          ).map(async path => {
+            const assetUrl = new URL(path, self.registration.scope).href;
+            const assetResponse = await fetch(assetUrl, { cache: 'no-store' });
+            if (assetResponse.ok) await cache.put(assetUrl, assetResponse);
+          }));
+        }
+      }
+    } catch (_) {
+      // Individual assets remain network-loadable; do not block SW installation.
     }
   })());
 });
-
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const cacheNames = await caches.keys();

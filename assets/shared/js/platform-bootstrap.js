@@ -9,7 +9,6 @@
   const workerUrl = new URL('service-worker.js', document.baseURI);
   const appScope = new URL('./', document.baseURI);
   const dismissedKey = 'mizan-update-dismissed';
-  const hadControllerAtStart = Boolean(navigator.serviceWorker.controller);
   let activeRegistration = null;
   let updateBanner = null;
   let isReloading = false;
@@ -109,7 +108,10 @@
   });
 
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!hadControllerAtStart || isReloading) return;
+    // The first controller acquisition also needs one reload: the original
+    // document was loaded before the worker could intercept its CSS/JS files.
+    // On later updates this reload happens only after the user accepts update.
+    if (isReloading) return;
     isReloading = true;
     window.location.reload();
   });

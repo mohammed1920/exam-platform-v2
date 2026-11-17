@@ -57,6 +57,15 @@ fi
 sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
 mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 
+# Build an explicit offline shell manifest (CSS, JS, fonts and UI imagery only).
+# Question data, user data and legal-library content are intentionally excluded.
+find "$OUTPUT_DIR/assets" "$OUTPUT_DIR/engine" "$OUTPUT_DIR/icons" -type f \\
+  \\( -name '*.css' -o -name '*.js' -o -name '*.mjs' -o -name '*.woff' -o -name '*.woff2' \\
+     -o -name '*.ttf' -o -name '*.otf' -o -name '*.svg' -o -name '*.png' \\
+     -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.gif' -o -name '*.ico' \\) \\
+  -printf '%P\\n' | sort | sed 's/.*/"&",/' | sed '$ s/,$//' \\
+  | { printf '[\\n'; cat; printf '\\n]\\n'; } > "$OUTPUT_DIR/precache-manifest.json"
+
 required_files=(
   index.html
   admin.html
@@ -80,6 +89,7 @@ required_files=(
   data/judicial-institute/README.md
   assets/shared/js/platform-bootstrap.js
   service-worker.js
+  precache-manifest.json
   assets/features/student-account/js/user-dashboard.js
   assets/shared/js/theme.js
   assets/features/procedures/js/procedures.js
