@@ -27,7 +27,7 @@
   }
   async function exactQueryCount(collectionName,filters=[]){
     if(typeof window.mizanFirestoreCount!=='function'){
-      window.mizanFirestoreCountReady ||= import(new URL('assets/shared/js/firestore-count.mjs?v=3',document.baseURI).href).then(()=>true);
+      window.mizanFirestoreCountReady ||= import(new URL('assets/shared/js/firestore-count.mjs?v=4',document.baseURI).href).then(()=>true);
       await window.mizanFirestoreCountReady;
     }
     if(typeof window.mizanFirestoreCount!=='function')throw new Error('Firestore count module failed to initialize.');
