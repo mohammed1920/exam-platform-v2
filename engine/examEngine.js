@@ -17,22 +17,24 @@ class ExamEngine {
     this.basePath = window.location.hostname.endsWith('github.io')
       ? (pathname.split('/').filter(Boolean)[0] ? `/${pathname.split('/').filter(Boolean)[0]}` : '')
       : (pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '');
-    this.sessionTimestamp = Date.now();
+    this.chapterVersions = {};
     // ذاكرة مؤقتة صغيرة داخل الجلسة فقط: تمنع إعادة طلب نفس الفصل دون الاحتفاظ بكل الفصول.
     this.chapterCache = new Map();
     this.chapterCacheLimit = 3;
   }
   async loadBooks() {
     try {
-      const [booksRes, metadataRes] = await Promise.all([
+      const [booksRes, metadataRes, manifestRes] = await Promise.all([
         fetch(`${this.basePath}/data/books.json`),
-        fetch(`${this.basePath}/data/question-metadata.json`)
+        fetch(`${this.basePath}/data/question-metadata.json`),
+        fetch(`${this.basePath}/data/question-content-manifest.json`, { cache: 'no-cache' })
       ]);
 
       if (!booksRes.ok) throw new Error('تعذر تحميل بيانات الكتب');
       const books = await booksRes.json();
 
       let metadata = {};
+      let contentManifest = {};
       if (metadataRes.ok) {
         try {
           metadata = await metadataRes.json();
@@ -41,6 +43,15 @@ class ExamEngine {
         }
       }
 
+      if (manifestRes && manifestRes.ok) {
+        try {
+          const manifest = await manifestRes.json();
+          contentManifest = manifest && manifest.chapters ? manifest.chapters : {};
+        } catch (_) {
+          contentManifest = {};
+        }
+      }
+      this.chapterVersions = contentManifest;
       return books.map(book => {
         const meta = metadata && metadata.books ? metadata.books[book.id] : null;
         if (meta) {
@@ -64,7 +75,12 @@ class ExamEngine {
     }
 
     try {
-      const res = await fetch(`${this.basePath}/data/${bookId}/chapter_${chapterNum}.json?v=${this.sessionTimestamp}`, { cache: 'no-store' });
+      const chapterPath = `${bookId}/chapter_${chapterNum}.json`;
+      const contentVersion = this.chapterVersions[chapterPath];
+      const versionQuery = contentVersion ? `?v=${encodeURIComponent(contentVersion)}` : '';
+      // Revalidate with the server: a 304 reuses the browser's HTTP cache,
+      // while a network failure never falls back to a saved offline question file.
+      const res = await fetch(`${this.basePath}/data/${chapterPath}${versionQuery}`, { cache: 'no-cache' });
       if (!res.ok) return null;
       const data = await res.json();
       this.chapterCache.set(key, data);
