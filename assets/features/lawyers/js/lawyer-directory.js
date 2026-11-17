@@ -488,7 +488,7 @@
     else loadProfiles();
   }
 
-  window.lawyerDirectory = { load: loadProfiles, openApplication, restoreProfile: restoreLawyerProfile };
+  window.lawyerDirectory = { load: loadProfiles, openApplication, restoreProfile: restoreLawyerProfile, loadSearchProfiles: async () => { await loadProfiles(); return profiles; }, openProfile: id => openLawyerDetails(profiles.find(profile => profile.id === id)) };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install);
   else install();
 })();
