@@ -13,10 +13,9 @@ class ExamEngine {
     this.currentBook = null;
     this.currentChapter = null;
     this.finishedResult = null;
-    const pathname = window.location.pathname;
-    this.basePath = window.location.hostname.endsWith('github.io')
-      ? (pathname.split('/').filter(Boolean)[0] ? `/${pathname.split('/').filter(Boolean)[0]}` : '')
-      : (pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '');
+    // Resolve the application root from the document base URL so GitHub Pages
+    // project sites and root-hosted deployments use the same path calculation.
+    this.basePath = new URL('./', document.baseURI).pathname.replace(/\/+$/, '');
     this.chapterVersions = {};
     // ذاكرة مؤقتة صغيرة داخل الجلسة فقط: تمنع إعادة طلب نفس الفصل دون الاحتفاظ بكل الفصول.
     this.chapterCache = new Map();
