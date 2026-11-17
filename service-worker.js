@@ -86,7 +86,7 @@ async function networkFirstWithCache(request, cacheName, announceUpdates) {
 
 function staleWhileRevalidate(request, event) {
   const cachePromise = caches.open(MIZAN_STATIC_CACHE);
-  const cachedPromise = cachePromise.then(cache => cache.match(request));
+  const cachedPromise = cachePromise.then(cache => cache.match(request, { ignoreSearch: true }));
 
   const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
     const networkResponse = await fetch(request, { cache: 'no-store' });

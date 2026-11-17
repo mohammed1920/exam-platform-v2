@@ -59,12 +59,11 @@ mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 
 # Build an explicit offline shell manifest (CSS, JS, fonts and UI imagery only).
 # Question data, user data and legal-library content are intentionally excluded.
-find "$OUTPUT_DIR/assets" "$OUTPUT_DIR/engine" "$OUTPUT_DIR/icons" -type f \\
-  \\( -name '*.css' -o -name '*.js' -o -name '*.mjs' -o -name '*.woff' -o -name '*.woff2' \\
-     -o -name '*.ttf' -o -name '*.otf' -o -name '*.svg' -o -name '*.png' \\
-     -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.gif' -o -name '*.ico' \\) \\
-  -printf '%P\\n' | sort | sed 's/.*/"&",/' | sed '$ s/,$//' \\
-  | { printf '[\\n'; cat; printf '\\n]\\n'; } > "$OUTPUT_DIR/precache-manifest.json"
+{
+  printf '[\n'
+  find "$OUTPUT_DIR/assets" "$OUTPUT_DIR/engine" "$OUTPUT_DIR/icons" -type f \( -name '*.css' -o -name '*.js' -o -name '*.mjs' -o -name '*.woff' -o -name '*.woff2' -o -name '*.ttf' -o -name '*.otf' -o -name '*.svg' -o -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.gif' -o -name '*.ico' \) -printf '"%P",\n' | sort | sed '$ s/,$//'
+  printf '\n]\n'
+} > "$OUTPUT_DIR/precache-manifest.json"
 
 required_files=(
   index.html
