@@ -23,14 +23,12 @@
     if (mizanPulpitLoadPromise) return mizanPulpitLoadPromise;
     // mizan-pulpit.css is loaded once by index.html; this loader owns JavaScript only.
     mizanPulpitLoadPromise = new Promise((resolve, reject) => {
-      const existing = document.querySelector('script[data-mizan-pulpit-loader]');
-      if (existing) {
-        existing.addEventListener('load', () => resolve(window.mizanPulpit), { once: true });
-        existing.addEventListener('error', () => reject(new Error('تعذر تحميل منبر ميزان')), { once: true });
-        return;
-      }
+      // index.html loads this module before home.js. If its API is still absent
+      // when the user requests the forum, the initial load did not initialize;
+      // retry once rather than waiting for an already-fired load/error event.
+      document.querySelector('script[data-mizan-pulpit-loader]')?.remove();
       const script = document.createElement('script');
-      script.src = 'assets/features/forum/js/mizan-pulpit.js?v=1.9';
+      script.src = 'assets/features/forum/js/mizan-pulpit.js?v=2.0';
       script.dataset.mizanPulpitLoader = '1';
       script.onload = () => resolve(window.mizanPulpit);
       script.onerror = () => reject(new Error('تعذر تحميل منبر ميزان'));
