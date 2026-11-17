@@ -1074,3 +1074,8 @@ html[data-theme="light"] .lawyer-directory-admin-detail{background:var(--mizan-b
 @media(prefers-reduced-motion:reduce){
   .lawyer-directory-admin-card,.lawyer-directory-admin-actions button{transition:none}
 }
+
+
+/* Cursor pagination controls shared by the admin lists and Mizan Forum. */
+.firebase-admin-load-more{grid-column:1/-1;justify-content:center;margin-top:var(--mizan-space-2)}
+.firebase-admin-load-more button{min-width:min(100%,15rem)}
