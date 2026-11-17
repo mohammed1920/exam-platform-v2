@@ -41,13 +41,16 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 - `home.js`: إجراءات الصفحة الرئيسية والتحميل الكسول للأقسام.
 - `platform-bootstrap.js`: سلوك زر تثبيت التطبيق وعدّاد الزيارات وتنظيف تسجيلات Service Worker القديمة كما هو قائم حاليًا؛ لا تغيّر هذا السلوك دون اختبار تحديثات PWA والتخزين المؤقت.
 - `platform-header-fix.js`: تركيب شعار Lottie في الهيدر.
+- `theme.js`: محرك الثيم المركزي للوضعين العام والإداري؛ يحافظ على `data-admin-theme`.
+- `service-worker.js`: التخزين المؤقت للأصول العامة وإدارة تحديث نسخة التطبيق.
 
 ### الإدارة والمصادقة
 - `admin.html`: هيكل لوحة إدارة الكتب والفصول والأسئلة؛ تُستخدم محليًا مع GitHub Token محدود الصلاحيات عند عمليات الكتابة.
 - `firebase-admin-panel.js` (الموجود في `assets/features/admin/js/`): لوحة التاج داخل المنصة لإدارة الطلاب والنتائج والمحامين والمساهمين عبر Firebase/Firestore. هذه لوحة منفصلة تمامًا عن `admin.html`؛ لا تدمج النظامين ولا تستبدل أحدهما بالآخر.
 - `admin.js`: منطق لوحة الإدارة.
 - `admin.css`: تنسيقات لوحة الإدارة.
-- `admin-theme.js`: تبديل مظهر لوحة الإدارة.
+- `admin-loader.js`: التحقق من صلاحية المشرف ثم تحميل لوحة Firebase التنفيذية عند الحاجة.
+- `theme.js`: محرك الثيم المشترك؛ لا يوجد ملف `admin-theme.js` منفصل.
 - `firebase-auth.js` و`firebase-admin-panel.js`: المصادقة وتكامل لوحة Firebase.
 
 ### التصميم
@@ -55,7 +58,7 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 - `mizan-design-tokens.css`: رموز الحواف والمسافات والعرض والحركة.
 - `style.css`: التنسيقات الأساسية، بما فيها التصميم الخاص ببطاقات الكتب ثلاثية الأبعاد.
 - `home.css`: تنسيقات الصفحة الرئيسية.
-- `mizan-unified-theme.css` و`theme.css`: قواعد الثيم الحالي؛ افحص ترتيب التحميل والتداخل قبل تغييرهما.
+- `mizan-unified-theme.css`: طبقة الثيم الدلالي المشتركة، بعد ملفات الألوان ورموز التصميم.
 - ملفات CSS الخاصة بالأقسام مثل `lawyer-directory.css` و`petitions.css` و`mizan-pulpit.css`: تنسيقات القسم المقابل.
 
 ## وثائق المشروع المعتمدة
