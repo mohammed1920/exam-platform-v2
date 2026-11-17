@@ -164,6 +164,72 @@ for (const cssFile of cssFiles) {
     await checkLocalReference(cssFile, match[2], "CSS import");
   }
 }
+
+const serviceWorkerSource = await readFile(path.join(root, "service-worker.js"), "utf8");
+if (!serviceWorkerSource.includes("__MIZAN_BUILD_ID__")) {
+  failures.push("Missing __MIZAN_BUILD_ID__ placeholder in service-worker.js");
+}
+
+// Verify generated precache entries after a deployment bundle has been built.
+const distDir = path.join(root, "dist");
+try {
+  await access(distDir);
+  const distManifestPath = path.join(distDir, "precache-manifest.json");
+  const distManifest = JSON.parse(await readFile(distManifestPath, "utf8"));
+  if (!Array.isArray(distManifest)) {
+    failures.push("dist/precache-manifest.json must contain an array");
+  } else {
+    for (const entry of distManifest) {
+      if (typeof entry !== "string" || /^(?:[a-z][a-z\\d+.-]*:|\\/\\/|\\/)/i.test(entry)) {
+        failures.push(`Invalid precache manifest entry: ${String(entry)}`);
+        continue;
+      }
+      const clean = entry.split(/[?#]/, 1)[0];
+      const resolved = path.resolve(distDir, clean);
+      if (resolved !== distDir && !resolved.startsWith(distDir + path.sep)) {
+        failures.push(`Unsafe dist precache entry: ${entry}`);
+        continue;
+      }
+      try {
+        await access(resolved);
+      } catch {
+        failures.push(`Missing dist precache asset: ${entry}`);
+      }
+    }
+  }
+} catch (error) {
+  if (error.code !== "ENOENT") failures.push(`Unable to validate dist precache manifest: ${error.message}`);
+}
+
+// Shared local JS/CSS resources must use the same explicit version on both pages.
+function sharedAssetVersions(html) {
+  const versions = new Map();
+  const pattern = /<(?:script|link)\\b[^>]*?\\b(?:src|href)\\s*=\\s*(["'])(.*?)\\1/gi;
+  for (const match of html.matchAll(pattern)) {
+    const raw = match[2].trim();
+    if (!raw || /^(?:[a-z][a-z\\d+.-]*:|\\/\\/|#)/i.test(raw)) continue;
+    const clean = raw.split(/[?#]/, 1)[0].replace(/^\\.\\//, "").replace(/^\\/+/, "");
+    if (!/\\.(?:js|mjs|css)$/i.test(clean)) continue;
+    const query = raw.split("?")[1]?.split("#")[0] || "";
+    const version = new URLSearchParams(query).get("v");
+    if (version !== null) versions.set(clean, version);
+  }
+  return versions;
+}
+const indexHtmlPath = path.join(root, "index.html");
+const adminHtmlPath = path.join(root, "admin.html");
+const [indexHtmlForVersions, adminHtmlForVersions] = await Promise.all([
+  readFile(indexHtmlPath, "utf8"),
+  readFile(adminHtmlPath, "utf8")
+]);
+const indexVersions = sharedAssetVersions(indexHtmlForVersions);
+const adminVersions = sharedAssetVersions(adminHtmlForVersions);
+for (const [asset, version] of indexVersions) {
+  if (adminVersions.has(asset) && adminVersions.get(asset) !== version) {
+    failures.push(`Shared asset version mismatch between index.html and admin.html: ${asset} (index ${version}, admin ${adminVersions.get(asset)})`);
+  }
+}
+
 if (failures.length) {
   console.error(`Static integrity checks failed (${failures.length} issue(s)):`);
   for (const failure of failures) console.error(`- ${failure}`);
