@@ -34,21 +34,23 @@ function isCacheableVendorRequest(request) {
   if (request.method !== 'GET') return false;
   const url = new URL(request.url);
   if (url.origin === self.location.origin) return false;
+  const isFontFile = ['.woff2', '.woff', '.ttf', '.eot']
+    .some(extension => url.pathname.toLowerCase().endsWith(extension));
 
   if (url.hostname === 'fonts.googleapis.com') {
     return url.pathname === '/css2' && url.searchParams.has('family');
   }
   if (url.hostname === 'fonts.gstatic.com') {
-    return /\.(?:woff2?|ttf)$/i.test(url.pathname);
+    return isFontFile;
   }
   if (url.hostname === 'cdnjs.cloudflare.com') {
     return url.pathname === '/ajax/libs/font-awesome/6.5.2/css/all.min.css' ||
       url.pathname === '/ajax/libs/bodymovin/5.12.2/lottie.min.js' ||
-      (/^\\/ajax\\/libs\\/font-awesome\\/6\\.5\\.2\\/webfonts\\//.test(url.pathname) && /\\.(?:woff2?|ttf|eot)$/i.test(url.pathname));
+      (url.pathname.startsWith('/ajax/libs/font-awesome/6.5.2/webfonts/') && isFontFile);
   }
   if (url.hostname === 'cdn.jsdelivr.net') {
     return url.pathname === '/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css' ||
-      (/^\\/npm\\/@fortawesome\\/fontawesome-free@6\\.5\\.2\\/webfonts\\//.test(url.pathname) && /\\.(?:woff2?|ttf|eot)$/i.test(url.pathname));
+      (url.pathname.startsWith('/npm/@fortawesome/fontawesome-free@6.5.2/webfonts/') && isFontFile);
   }
   return false;
 }
