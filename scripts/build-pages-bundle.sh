@@ -135,4 +135,5 @@ for relative_path in "${required_files[@]}"; do
 done
 
 touch "$OUTPUT_DIR/.nojekyll"
+node "$ROOT/scripts/validate-static-project.mjs"
 echo "Static deployment bundle ready: $OUTPUT_DIR"
