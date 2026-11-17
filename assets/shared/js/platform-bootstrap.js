@@ -104,6 +104,9 @@
 
   function showUpdateAvailable(registration) {
     if (registration) activeRegistration = registration;
+    // An update prompt is valid only while a new worker is actually waiting
+    // to take control; refreshed CSS/JS files alone are not an app release.
+    if (!activeRegistration?.waiting || !navigator.serviceWorker.controller) return;
     if (wasDismissed()) return;
     createUpdateBanner().hidden = false;
   }
