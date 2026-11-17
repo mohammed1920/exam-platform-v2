@@ -374,3 +374,7 @@ body :is(input, textarea, select, option, [contenteditable="true"], [contentedit
 .admin-form-group-spaced{margin-top:12px}
 .admin-modal-cancel{margin-top:10px}
 .admin-question-option-row{display:flex;gap:8px;align-items:center}
+
+.admin-qa-issue-label{margin-bottom:8px;font-weight:700}
+.admin-qa-issue-danger{color:var(--mizan-danger)}
+.admin-qa-issue-warning{color:var(--mizan-warning)}
