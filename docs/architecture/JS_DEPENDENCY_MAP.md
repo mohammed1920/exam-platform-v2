@@ -1,76 +1,76 @@
 # خريطة اعتماديات JavaScript — منصة ميزان
 
-> هذه الخريطة توثّق ترتيب التحميل الفعلي في `index.html` بعد مطابقة القائمة مع مراجع `script src` الحالية بتاريخ 2026-10-29. هي أداة مراجعة ساكنة وليست بديلًا عن اختبار السلوك داخل المتصفح.
+> هذه الخريطة تطابق ملفات `main` بعد توحيد محرك الثيم واعتماد `admin-loader.js` والتحميل الكسول للأقسام. هي مرجع ساكن، وليست بديلاً عن اختبار المتصفح.
 
-## قواعد لا يجوز كسرها أثناء التنظيم
+## قواعد لا يجوز كسرها
 
-- لا تغيّر ترتيب السكربتات دون تتبّع الاعتماديات المباشرة وغير المباشرة.
-- لا تحذف ملفًا لمجرد صغر حجمه أو غموض اسمه؛ افحص مستمعي الأحداث والتحميل الديناميكي والمراجع عبر `window.*`.
-- عند نقل دالة، حافظ على الواجهة العامة أو حدّث جميع المستهلكين في التغيير نفسه.
-- ملفات الأسئلة `data/**/chapter_N.json` تُحمّل عند الحاجة؛ لا تحوّلها إلى تحميل شامل.
-- حافظ على معرّفات الأسئلة `uid` و`id` وتوافق النتائج والمسودات القديمة.
-- لا تعدّل تصميم الكتب ثلاثي الأبعاد ضمن أعمال تنظيم الواجهة.
-- لا تعتبر تكرار المحددات في CSS كودًا ميتًا قبل مقارنة ترتيب التحميل، ونطاقات `@media`، ونتيجة الـ cascade.
+- لا تغيّر ترتيب السكربتات دون تتبّع الاعتماديات المباشرة وغير المباشرة وواجهات `window.*`.
+- لا تحذف ملفاً قبل فحص مراجع HTML والتحميل الديناميكي والواجهات العامة.
+- ملفات الأسئلة `data/**/chapter_N.json` تُحمّل عند الحاجة فقط؛ يحافظ محرك الاختبار على ذاكرة LRU محدودة.
+- حافظ على معرّفات الأسئلة `uid` و`id` وتوافق النتائج والمسودات.
+- لا تعدّل تصميم الكتب ثلاثي الأبعاد في `book-icons.js` وقواعدها في `style.css`.
+- لا تنشئ نظام ألوان موازياً؛ مصادر التصميم المعتمدة هي `mizan-colors.css` و`mizan-design-tokens.css` و`mizan-unified-theme.css`.
 
-## ترتيب تحميل JavaScript في `index.html`
+## ترتيب JavaScript الثابت في `index.html`
 
-1. مكتبات Firebase App Compat وFirebase Auth Compat الخارجية.
-2. `assets/shared/js/firebase-auth.js` — يهيّئ المصادقة العامة `window.publicAuth`.
-3. `engine/examEngine.js` — يوفّر محرك الاختبارات `window.examEngine`.
-4. `assets/shared/js/book-icons.js` — أيقونات الكتب.
-5. `assets/shared/js/contact-info.js` — تحميل بيانات الاتصال ورسم البطاقات عبر `window.MizanContactInfo`.
-6. `assets/features/exams/js/exam-drafts.js` — قراءة/كتابة/ترحيل مسودات الاختبارات عبر `window.MizanExamDrafts`.
-7. `assets/features/exams/js/question-sharing.js` — الروابط المباشرة وبطاقات المشاركة عبر `window.MizanQuestionSharing`.
-8. `assets/features/forum/js/mizan-pulpit.js` — واجهة منبر ميزان العامة؛ يسبق التطبيق الرئيسي في ترتيب التحميل.
-9. `assets/shared/js/app.js` — التطبيق الرئيسي `window.app` وواجهات التفويض للوحدات المفصولة.
-10. `assets/shared/js/global-search.js` — البحث العام، يعتمد على المصادقة والتطبيق.
-11. `assets/features/home/js/home.js` — تحميل الأقسام وإضافات الصفحة الرئيسية.
-12. `assets/shared/js/platform-sidebar.js` — التنقل وفتح الأقسام.
-13. `assets/features/procedures/js/procedures.js` — واجهة إجراءات الدعاوى.
-14. `assets/features/student-account/js/user-dashboard.js` — لوحة الطالب `window.studentDashboard`.
-15. `assets/features/student-account/js/student-account-patch.js` — تكييف واجهة الحساب مع أحداث المصادقة.
-16. `assets/features/exams/js/wrong-answers-limit.js` ثم `assets/features/exams/js/wrong-answers-retest.js` — سلوك مراجعة الإجابات الخاطئة وإعادة الاختبار.
-17. `assets/shared/js/platform-header-fix.js` — تركيب شعار Lottie؛ قواعد CSS موجودة في `platform-header.css`.
-18. `assets/shared/js/theme.js` — `window.platformTheme`.
-19. `assets/features/admin/js/firebase-admin-panel.js` — واجهات الإدارة المعتمدة على Firebase.
-20. `assets/features/forum/js/mizan-pulpit-admin.js` — إدارة منبر ميزان.
-21. `assets/shared/js/platform-bootstrap.js` — سلوك التهيئة النهائي.
-22. `assets/features/notifications/js/notifications.js` — تهيئة/عرض الإشعارات، محمّل بعد بقية وحدات الصفحة.
+1. Firebase App Compat v10.12.5.
+2. Firebase Auth Compat v10.12.5.
+3. `assets/shared/js/firebase-auth.js` — المصادقة العامة `window.publicAuth`.
+4. `engine/examEngine.js` — محرك الاختبارات.
+5. `assets/shared/js/book-icons.js` — أيقونات الكتب ثلاثية الأبعاد.
+6. `assets/shared/js/contact-info.js` — معلومات التواصل.
+7. `assets/features/exams/js/exam-drafts.js` — مسودات الاختبارات.
+8. `assets/features/exams/js/question-sharing.js` — مشاركة الأسئلة.
+9. `assets/features/forum/js/mizan-pulpit.js` — واجهة منبر ميزان العامة.
+10. `assets/shared/js/app.js` — التطبيق والتنقل.
+11. `assets/shared/js/global-search.js` — البحث العام.
+12. `assets/features/home/js/home.js` — إجراءات الصفحة وتحميل الأقسام عند الحاجة.
+13. `assets/shared/js/mizan-card-actions.js` — إجراءات بطاقات الصفحة.
+14. `assets/features/judicial-institute/js/judicial-institute.js` — قسم المعهد القضائي.
+15. `assets/shared/js/platform-sidebar.js` — التنقل الجانبي.
+16. `assets/features/procedures/js/procedures.js` — إجراءات الدعاوى.
+17. `assets/features/student-account/js/user-dashboard.js` — لوحة الطالب.
+18. `assets/features/student-account/js/student-account-patch.js` — تكييف واجهة الحساب.
+19. `assets/features/exams/js/wrong-answers-limit.js` — حدود مراجعة الإجابات الخاطئة.
+20. `assets/features/exams/js/wrong-answers-retest.js` — إعادة اختبار الإجابات الخاطئة.
+21. `assets/shared/js/platform-header-fix.js` — تركيب شعار الهيدر باستخدام Lottie.
+22. `assets/shared/js/theme.js` — محرك الثيم المركزي للوضعين العام والإداري.
+23. `assets/features/admin/js/admin-loader.js` — يتحقق من صلاحية المشرف قبل تحميل لوحة الإدارة.
+24. `assets/shared/js/platform-bootstrap.js` — تهيئة PWA وسلوك التحديث والتثبيت.
+25. `assets/features/notifications/js/notifications.js` — الإشعارات.
 
-## وحدات تم فصلها مع إبقاء واجهات التوافق
+## التحميل الديناميكي
 
-| الوحدة | المسؤولية | عقد التوافق |
-|---|---|---|
-| `assets/shared/js/contact-info.js` | جلب بيانات الاتصال وعرض البطاقات داخليًا | `window.MizanContactInfo.load()`؛ لا تُصدَّر دالة الرسم كواجهة عامة |
-| `assets/features/exams/js/exam-drafts.js` | قراءة/كتابة/حفظ/مسح/تلخيص/حذف المسودات وترحيل المفتاح القديم داخليًا | `window.MizanExamDrafts` يصدّر عمليات المسودات المستخدمة فقط؛ دوال المفاتيح داخلية |
-| `assets/features/exams/js/question-sharing.js` | إنشاء رابط السؤال وبطاقة المشاركة | `window.MizanQuestionSharing.shareQuestion()`؛ أدوات الرسم والرابط المساعدة داخلية |
-| `assets/features/admin/js/admin.js` | منطق لوحة الإدارة المنفصل عن HTML | يُحمّل من `admin.html` |
-| `assets/features/admin/js/admin-theme.js` | سلوك ثيم لوحة الإدارة | منفصل عن منطق الإدارة |
-| `admin.css` | تنسيقات لوحة الإدارة | يُحمّل من `admin.html` |
-| `platform-header.css` | تنسيقات الهيدر | لا تُعاد إلى ملف JavaScript |
-| `assets/shared/js/platform-bootstrap.js` | تهيئة الصفحة في نهاية التحميل | يُحمّل أخيرًا في `index.html` |
+- `assets/features/admin/js/firebase-admin-panel.js`: يُحمّل بواسطة `admin-loader.js` بعد تحقق Firebase من صلاحية الحساب. لا تحمّله للزائر أو المستخدم غير المشرف.
+- `assets/features/laws/js/laws.js`: يُحمّل عند فتح قسم القوانين عبر `window.loadMizanLaws`.
+- `assets/features/lawyers/js/lawyer-directory.js`: يُحمّل عند فتح دليل المحامين عبر `window.loadLawyerDirectory`، وقد يحمّل Firebase Storage Compat كاعتماد منفصل.
+- `assets/features/petitions/js/petitions.js`: يُحمّل عند فتح قسم العرائض عبر `window.loadPetitions`.
+- ملفات الإدارة الخاصة بالمنبر دُمجت في `firebase-admin-panel.js`؛ لا يوجد اعتماد على `mizan-pulpit-admin.js`.
+
+## الثيم والإدارة
+
+- `assets/shared/js/theme.js` هو محرك تبديل الوضع الليلي/النهاري، ويخدم `#theme-toggle` و`#admin-theme-toggle`.
+- يبقى `data-admin-theme` متاحاً لتوافق تنسيقات لوحة الإدارة.
+- `assets/features/admin/js/admin.js` و`admin.css` يخصان لوحة إدارة الكتب والفصول والأسئلة في `admin.html)، وهي منفصلة عن لوحة Firebase التنفيذية.
+- لا يوجد `assets/features/admin/js/admin-theme.js`؛ لا تعِد إنشاءه أو الإشارة إليه.
 
 ## CSS: ترتيب التحميل ونقاط الحذر
 
-- `mizan-colors.css`: مصدر ألوان الهوية.
-- `mizan-design-tokens.css`: رموز التصميم المشتركة، ومنها الحواف والحركة.
-- `style.css`: ملف الواجهة الأساسي ويحتوي أيضًا على تصميم الكتب ثلاثية الأبعاد؛ لا تنظّف قواعد الكتب ضمن توحيد الألوان.
-- `student-ui-fixes.css` و`home.css` و`platform-sidebar.css` و`user-dashboard.css` و`student-sidebar.css`: قواعد متخصصة قد تتراكب عمدًا.
-- `theme.css` و`mizan-unified-theme.css`: يحمّلان بعد القواعد الأساسية، ولذلك قد تكون بعض المحددات المتكررة overrides مقصودة.
-- `platform-header.css`: قواعد الهيدر المنفصلة.
-- داخل `index.html` توجد قواعد داخلية خاصة بمكوّنات الاختبار والبحث؛ لا تنقلها أو تحذفها إلا بعد فحص ترتيبها وتأثيرها.
-- لا تحذف محددًا مكررًا لمجرد تطابق النص؛ قارن السياق ونطاقات الشاشات وترتيب التحميل أولًا.
+- `index.html` يبدأ بملف تنسيقات المنبر، ثم ملفات الألوان ورموز التصميم، ثم `style.css`، ثم تنسيقات الصفحة والأقسام، ثم `mizan-unified-theme.css`، ثم تنسيقات الإشعارات.
+- `admin.html` يستخدم ملفات الألوان ورموز التصميم والثيم الموحد المشتركة، ثم `admin.css`.
+- `style.css` يحتوي تصميم الكتب ثلاثية الأبعاد؛ لا تنقل أو تحذف قواعد الكتب أثناء توحيد الثيم.
+- لا تغيّر ترتيب CSS أو تحذف محددات متداخلة دون مقارنة العرض في الوضعين وعلى أحجام الشاشات.
 
-## التحقق الحالي وحدوده
+## البناء والتخزين المؤقت
 
-- `scripts/validate-static-project.mjs` يفحص سلامة JSON، ومراجع الملفات المحلية في HTML وCSS، وروابط `src`/`href` الثابتة في JavaScript، وتعريفات ومراجع رموز التصميم `--mizan-*`.
-- `.github/workflows/validate-project.yml` يشغّل الفحص الساكن و`node --check` لملفات `.js` و`.mjs`.
-- نجاح الفحص الساكن لا يثبت صحة Firebase أو تسجيل الدخول أو الاختبارات أو البحث أو الصلاحيات أو التصميم في كل أحجام الشاشات؛ يجب اختبار هذه المسارات فعليًا قبل الدمج والنشر.
+- `scripts/build-pages-bundle.sh` يبني حزمة النشر الثابتة لـ GitHub Pages وVercel.
+- `scripts/build-precache-manifest.mjs` ينشئ قائمة التخزين المسبق من الأصول المشار إليها في `index.html` واعتماديات CSS المحلية فقط؛ لا يضم وحدات الأقسام المحمّلة كسولاً أو أصول الإدارة.
+- `service-worker.js` يستخدم `MIZAN_BUILD_ID` لتمييز كاش الأصول بين الإصدارات، ويحتفظ بكاش فهرس الكتب والمكتبة القانونية المستقلين.
+- ملفات الأسئلة والبيانات الشخصية وبيانات الإدارة لا تدخل في كاش التخزين المسبق.
 
-## خطة الإكمال
+## التحقق وحدوده
 
-1. تدقيق الاستدعاءات العامة والأحداث قبل نقل أي وحدة أخرى.
-2. مقارنة تداخل CSS حسب ترتيب التحميل ونقاط التوقف، مع إبقاء الشكل الحالي.
-3. تشغيل الفحوصات على آخر commit، ثم فحص وظائف الموقع على المعاينة.
-4. توثيق أي اختبار لم يتسنّ تنفيذه بدل الادعاء باكتماله.
-5. جميع التعديلات الجديدة تُنفّذ مباشرة على `main` فقط؛ لا تنشئ فروعًا جديدة ولا تستخدم Pull Requests كمسار بديل. لا تدّعِ نجاح فحص لم يُنفذ.
+- `scripts/validate-static-project.mjs` يفحص JSON والمراجع المحلية وملفات HTML/CSS/JavaScript ورموز التصميم.
+- `node --check` يفحص صياغة ملفات JavaScript وMJS، لكنه لا يثبت صحة تشغيل المتصفح أو Firebase أو قواعد الصلاحيات.
+- يجب توثيق اختبارات المتصفح التي لم تُنفّذ، وعدم الادعاء بنجاحها.
+- جميع التعديلات الجديدة تُنفّذ مباشرة على `main` فقط، دون فروع أو Pull Requests.
