@@ -35,7 +35,15 @@ async function addAsset(raw, baseDir = outputDir) {
   if (!value || /^(?:[a-z][a-z\d+.-]*:|\/\/|#|data:|blob:)/i.test(value)) return;
   const clean = value.split(/[?#]/, 1)[0];
   if (!clean) return;
-  const resolved = path.resolve(baseDir, clean.replace(/^\.\//, "").replace(/^\/+/, ""));
+  // Artwork URLs stored as shared palette tokens are consumed by home.css.
+  // Match the established resolution rule in validate-static-project.mjs.
+  const relativeBase = path.relative(outputDir, baseDir).split(path.sep).join("/");
+  const isHomeCardArtworkToken = relativeBase === "assets/shared/css"
+    && clean.includes("images/home-cards/");
+  const assetBaseDir = isHomeCardArtworkToken
+    ? path.join(outputDir, "assets/features/home/css")
+    : baseDir;
+  const resolved = path.resolve(assetBaseDir, clean.replace(/^\.\//, "").replace(/^\/+/, ""));
   if (resolved !== outputDir && !resolved.startsWith(outputDir + path.sep)) {
     throw new Error(`Unsafe precache reference: ${value}`);
   }
