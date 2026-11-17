@@ -149,18 +149,30 @@
 
   async function saveStudentProfile(user) {
     await firestoreReady;
-    if (!db || !user) return false;
+    if (!db || !user || !user.uid) return false;
+
     const ref = db.collection('students').doc(user.uid);
     const data = {
       uid: user.uid,
-      email: user.email || null,
+      email: user.email || '',
       displayName: user.displayName || user.email || 'طالب المنصة',
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     };
+
     try {
       const snapshot = await ref.get();
-      if (!snapshot.exists) data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
-      await ref.set(data, { merge: true });
+      if (!snapshot.exists) {
+        data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+        await ref.set(data);
+      } else {
+        // Only mutable profile fields are written after creation.
+        // uid and createdAt remain untouched by subsequent sign-ins.
+        await ref.update({
+          email: data.email,
+          displayName: data.displayName,
+          updatedAt: data.updatedAt
+        });
+      }
       return true;
     } catch (error) {
       console.error('تعذر حفظ ملف الطالب في Firestore:', error);
