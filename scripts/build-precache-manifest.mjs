@@ -78,7 +78,8 @@ for (const match of html.matchAll(htmlAssetPattern)) {
 
 const manifest = [...assets].sort();
 for (const relative of manifest) {
-  const resolved = path.resolve(outputDir, relative);
+  const clean = relative.split(/[?#]/, 1)[0];
+  const resolved = path.resolve(outputDir, clean);
   await access(resolved);
 }
 await writeFile(path.join(outputDir, "precache-manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
