@@ -832,5 +832,5 @@
     else openCategory(categoryId,false);
     return true;
   }
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,handleEditorHistoryBack,getCurrentDocumentCategory,backToCategoryFromDocument});
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,handleEditorHistoryBack,getCurrentDocumentCategory,backToCategoryFromDocument,loadSearchIndex:loadPetitionIndex});
 })();
