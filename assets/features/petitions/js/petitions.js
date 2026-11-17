@@ -1,7 +1,7 @@
 /* Mizan — Smart Legal Petitions */
 (function(){
   'use strict';
-  const state={templates:[],template:null,branded:false,lawyer:{},templatesLoaded:false,brandingLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},petitionIndex:[],petitionIndexLoaded:false,petitionIndexPromise:null,categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:'',editorSavedHtml:''};
+  const state={templates:[],template:null,branded:false,templatesLoaded:false,categories:[],categoriesLoaded:false,categoryTemplates:{},petitionIndex:[],petitionIndexLoaded:false,petitionIndexPromise:null,categoryId:null,mode:'read',editedBody:'',savedBody:'',editedLetterhead:'',savedLetterhead:'',editorSavedHtml:''};
   window.petitions = window.petitions || {};
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const dataCache=new Map();
@@ -819,5 +819,5 @@
     else openCategory(categoryId,false);
     return true;
   }
-  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,loadLawyerBranding,restoreHistoryState,handleEditorHistoryBack,getCurrentDocumentCategory,backToCategoryFromDocument,loadSearchIndex:loadPetitionIndex});
+  Object.assign(window.petitions,{open,renderHome,loadTemplates,loadCategories,restoreHistoryState,handleEditorHistoryBack,getCurrentDocumentCategory,backToCategoryFromDocument,loadSearchIndex:loadPetitionIndex});
 })();
