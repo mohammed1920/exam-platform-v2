@@ -57,6 +57,10 @@ fi
 sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
 mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 
+# Generate deterministic SHA-256 versions for question chapters on every build.
+# Only hashes are published; question JSON files remain online-only.
+node "$ROOT/scripts/build-question-content-manifest.mjs" "$OUTPUT_DIR/data"
+
 # Build an explicit offline shell manifest (CSS, JS, fonts and UI imagery only).
 # Question data, user data and legal-library content are intentionally excluded.
 {
