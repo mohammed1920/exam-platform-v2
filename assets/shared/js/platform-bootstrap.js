@@ -61,6 +61,12 @@
     laterButton.addEventListener('click', dismissUpdate);
 
     updateButton.addEventListener('click', () => {
+      if (!navigator.onLine) {
+        updateButton.disabled = false;
+        updateButton.textContent = 'اتصل بالإنترنت ثم حدّث';
+        return;
+      }
+
       updateButton.disabled = true;
       updateButton.textContent = 'جارٍ التحديث…';
       try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
@@ -73,6 +79,13 @@
         }, 5000);
       } else {
         window.location.reload();
+      }
+    });
+
+    window.addEventListener('online', () => {
+      if (updateBanner && !updateBanner.hidden) {
+        const button = updateBanner.querySelector('.mizan-update-banner__action');
+        if (button && !button.disabled) button.textContent = 'تحديث الآن';
       }
     });
 
