@@ -284,7 +284,7 @@
                             <button class="btn btn-red btn-sm" onclick="guardedOp(() => deleteChapter(${ch.num}))">حذف</button>
                         </div>
                     </div>
-                    <div style="font-size: 12px; color: var(--mizan-muted);">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
+                    <div class="admin-chapter-meta">${ch.questionCount || 0} أسئلة | chapter_${ch.num}.json</div>
                 </div>
             `).join('');
         }
@@ -461,7 +461,7 @@
                 summaryEl.textContent = `آخر فحص: ${report.generated_at || '—'} | عدد الملاحظات: ${spellingItems.length}`;
                 renderSpellingReport();
             } catch (e) {
-                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
+                listEl.innerHTML = `<p class="admin-report-error">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/spelling_report.json.</p>`;
                 summaryEl.textContent = '';
             }
         }
@@ -470,7 +470,7 @@
         function getDiffWord(original, corrected) {
             if (!original || !corrected) return '—';
             if (original.trim() === corrected.trim()) {
-                return '<span style="color: var(--mizan-muted);">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
+                return '<span class="admin-report-muted">لا يوجد اختلاف حقيقي (نص سليم) — يفضل الرفض ❌</span>';
             }
             const origWords = original.trim().split(/\s+/);
             const corrWords = corrected.trim().split(/\s+/);
@@ -479,7 +479,7 @@
                 if (origWords[i] !== corrWords[i]) {
                     const wordOriginal = escapeHtml(origWords[i] || '');
                     const wordCorrected = escapeHtml(corrWords[i] || '');
-                    return `<span style="color:var(--mizan-danger); text-decoration:line-through;">${wordOriginal}</span> 👈 <span style="color:var(--mizan-success); font-weight:700;">(الصواب: ${wordCorrected})</span>`;
+                    return `<span class="admin-spelling-original">${wordOriginal}</span> 👈 <span class="admin-spelling-corrected">(الصواب: ${wordCorrected})</span>`;
                 }
             }
             return '—';
@@ -503,12 +503,12 @@
 
                     return `
                     <div class="item-card">
-                        <div style="font-size:12px; color:var(--mizan-muted); margin-bottom:8px;">
+                        <div class="admin-report-meta">
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')} — الحقل: ${escapeHtml(item.field)}
                         </div>
-                        <div style="margin-bottom:8px; color:var(--gold); font-size:14px;"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
-                        <div style="margin-bottom:6px; color:var(--mizan-danger); font-size:13px;"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
-                        <div style="margin-bottom:10px; color:var(--mizan-success); font-size:13px;"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
+                        <div class="admin-report-highlight"><strong>الكلمة المشبوهة والتصحيح:</strong> ${realDiff}</div>
+                        <div class="admin-report-current"><strong>الحالي:</strong> ${escapeHtml(item.original)}</div>
+                        <div class="admin-report-suggested"><strong>المقترح:</strong> ${escapeHtml(item.corrected)}</div>
                         <div class="btn-row">
                             <button class="btn btn-green btn-sm" onclick="setDecision(${idx}, 'accepted')">✅ قبول</button>
                             <button class="btn btn-red btn-sm" onclick="setDecision(${idx}, 'rejected')">❌ رفض</button>
@@ -647,7 +647,7 @@
                 }
                 renderQaReport();
             } catch (e) {
-                listEl.innerHTML = `<p style="color:var(--mizan-danger);">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/qa_report.json.</p>`;
+                listEl.innerHTML = `<p class="admin-report-error">تعذّر تحميل التقرير: ${e.message}<br>تأكد من وجود ملف reports/qa_report.json.</p>`;
                 summaryEl.textContent = '';
             }
         }
@@ -672,30 +672,30 @@
                     const optionsHtml = opts.map((o, oi) => {
                         const isCurrent = oi === item.current_answer_index;
                         const isSuggested = item.suggested_answer_index !== null && item.suggested_answer_index !== undefined && oi === item.suggested_answer_index;
-                        let style = 'padding:6px 8px; margin:3px 0; border-radius:6px; font-size:13px;';
+                        const optionClass = isCurrent && isSuggested ? 'is-current-suggested' : isCurrent ? 'is-current' : isSuggested ? 'is-suggested' : '';
                         let tag = '';
                         if (isCurrent && isSuggested) {
-                            style += 'background: rgba(16,185,129,0.15); border-left:3px solid var(--green);';
-                            tag = ' <span style="color:var(--green); font-weight:700;">(الحالية)</span>';
+
+                            tag = ' <span class="admin-qa-tag admin-qa-tag--success">(الحالية)</span>';
                         } else if (isCurrent) {
-                            style += 'background: rgba(239,68,68,0.12); border-left:3px solid var(--red);';
-                            tag = ' <span style="color:var(--red); font-weight:700;">(الحالية)</span>';
+
+                            tag = ' <span class="admin-qa-tag admin-qa-tag--danger">(الحالية)</span>';
                         } else if (isSuggested) {
                             style += 'background: color-mix(in srgb,var(--mizan-warning-500) 15%,transparent); border-left:3px solid var(--gold);';
-                            tag = ' <span style="color:var(--gold); font-weight:700;">(مقترحة)</span>';
+                            tag = ' <span class="admin-qa-tag admin-qa-tag--gold">(مقترحة)</span>';
                         }
-                        return `<div style="${style}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
+                        return `<div class="admin-qa-option ${optionClass}">${oi + 1}) ${escapeHtml(o)}${tag}</div>`;
                     }).join('');
 
                     return `
                     <div class="item-card">
-                        <div style="font-size:12px; color:var(--mizan-muted); margin-bottom:8px;">
+                        <div class="admin-report-meta">
                             📘 ${escapeHtml(item.book_id)} — الفصل ${item.chapter} — سؤال #${escapeHtml(item.question_id ?? '?')}
                         </div>
                         <div style="margin-bottom:8px; font-weight:700; color:${issueInfo.color};">${escapeHtml(issueInfo.label)}</div>
                         <div class="question-text">${escapeHtml(item.question || '')}</div>
                         <div class="question-options">${optionsHtml}</div>
-                        <div style="margin-bottom:12px; color:var(--mizan-muted); font-size:13px;"><strong style="color:var(--gold);">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
+                        <div class="admin-qa-reason"><strong class="admin-qa-reason-label">السبب:</strong> ${escapeHtml(item.reason || '—')}</div>
                         <div class="btn-row">
                             <button class="btn btn-secondary btn-sm" onclick="openQuestionForReview(${idx})">✏️ تعديل السؤال</button>
                             <button class="btn btn-green btn-sm" onclick="setQaDecision(${idx}, 'accepted')">✅ تم التعديل / موافق عليها</button>
@@ -830,8 +830,8 @@
                     linkDiv.className = 'item-card';
                     linkDiv.innerHTML = `
                         <div class="item-card-header">
-                            <div style="flex:1;">
-                                <input type="text" placeholder="اسم الرابط" value="${escapeAttr(link.label)}" class="link-label-${idx}" style="margin-bottom: 6px;">
+                            <div class="admin-contact-link-fields">
+                                <input type="text" placeholder="اسم الرابط" value="${escapeAttr(link.label)}" class="link-label-${idx}" class="admin-contact-link-label">
                                 <input type="text" placeholder="رابط URL" value="${escapeAttr(link.url)}" class="link-url-${idx}">
                             </div>
                             <button class="btn btn-red btn-sm" onclick="deleteContactLink(${idx})">❌ حذف</button>
@@ -952,7 +952,7 @@
             let html = '';
 
             if (type === 'addBook') {
-                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة كتاب جديد</h3>
+                html = `<h3 class="admin-modal-title">إضافة كتاب جديد</h3>
                     <div class="form-group"><label>اسم الكتاب (عربي)</label><input id="m-title" placeholder="مثال: القانون المدني"></div>
                     <div class="form-group"><label>المعرف (بالإنجليزية - بدون مسافات)</label><input id="m-id" placeholder="مثال: law_civil" pattern="[a-z0-9_-]+" autocomplete="off"></div>
                     <div class="form-group"><label>المؤلف</label><input id="m-author" placeholder="مثال: د. أحمد محمد"></div>
@@ -960,22 +960,22 @@
                     <div class="form-group"><label>أيقونة الكتاب</label><select id="m-icon">${buildIconOptionsHtml()}</select></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveBook)">إضافة الكتاب</button>`;
             } else if (type === 'addChapter') {
-                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة فصل جديد</h3>
-                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا تركته فارغًا سيُستخدم اسم الفصل الموجود داخل الملف أو الاسم الافتراضي.</small></div>
-                    <div class="form-group"><label for="m-chapter-json">ملف الفصل (JSON — اختياري)</label><input id="m-chapter-json" type="file" accept=".json,application/json" onchange="previewChapterJson()"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا لم تختر ملفًا، سيُنشأ فصل فارغ كما في السابق.</small></div>
+                html = `<h3 class="admin-modal-title">إضافة فصل جديد</h3>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" placeholder="مثال: أحكام عقد البيع وآثاره"><small class="admin-field-hint">إذا تركته فارغًا سيُستخدم اسم الفصل الموجود داخل الملف أو الاسم الافتراضي.</small></div>
+                    <div class="form-group"><label for="m-chapter-json">ملف الفصل (JSON — اختياري)</label><input id="m-chapter-json" type="file" accept=".json,application/json" onchange="previewChapterJson()"><small class="admin-field-hint">إذا لم تختر ملفًا، سيُنشأ فصل فارغ كما في السابق.</small></div>
                     <div id="m-chapter-preview" class="admin-summary" aria-live="polite">يمكنك إنشاء فصل فارغ أو اختيار ملف JSON جاهز.</div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">إضافة الفصل</button>`;
             } else if (type === 'editChapter') {
                 const ch = bookChapterFiles.find(c => c.num === editingChapterNum);
-                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل الفصل</h3>
-                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small style="display:block;margin-top:6px;color:var(--mizan-muted);">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
+                html = `<h3 class="admin-modal-title">تعديل الفصل</h3>
+                    <div class="form-group"><label>اسم الموضوع (اختياري)</label><input id="m-title" value="${escapeAttr(ch && ch.title && ch.title !== `الفصل ${ch.num}` ? ch.title : '')}"><small class="admin-field-hint">إذا تركته فارغًا سيظهر تلقائيًا: أسئلة مخصصة لـ الفصل</small></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveChapter)">حفظ التعديلات</button>`;
             } else if (type === 'addQuestion') {
-                html = `<h3 style="margin-bottom:15px;color:var(--gold)">إضافة سؤال جديد</h3>
+                html = `<h3 class="admin-modal-title">إضافة سؤال جديد</h3>
                     <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3"></textarea></div>
                     <div id="question-options-editor"></div>
                     <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
-                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="4" value="1"></div>
+                    <div class="form-group admin-form-group-spaced"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="4" value="1"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">إضافة السؤال</button>`;
             } else if (type === 'editQuestion') {
                 const q = currentChapterData.questions[editingQuestionIdx];
@@ -983,14 +983,14 @@
                 const opts = Array.isArray(q.opts || q.options) ? (q.opts || q.options) : [];
                 const answer = q.ans !== undefined ? q.ans : (q.correct !== undefined ? q.correct : q.answer);
                 const ans = Number.isInteger(answer) ? answer + 1 : 1;
-                html = `<h3 style="margin-bottom:15px;color:var(--gold)">تعديل السؤال</h3>
+                html = `<h3 class="admin-modal-title">تعديل السؤال</h3>
                     <div class="form-group"><label>نص السؤال</label><textarea id="m-q" rows="3">${escapeHtml(qText)}</textarea></div>
                     <div id="question-options-editor"></div>
                     <button type="button" class="btn btn-secondary btn-block" onclick="addQuestionOptionField()">+ إضافة خيار</button>
-                    <div class="form-group" style="margin-top:12px;"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="${Math.max(2, opts.length)}" value="${ans}"></div>
+                    <div class="form-group admin-form-group-spaced"><label>رقم الإجابة الصحيحة</label><input type="number" id="m-ans" min="1" max="${Math.max(2, opts.length)}" value="${ans}"></div>
                     <button class="btn btn-primary" onclick="guardedOp(saveQuestion)">حفظ التعديلات</button>`;
             }
-            body.innerHTML = html + `<button class="btn btn-secondary btn-block" style="margin-top:10px;" onclick="closeModal()">إلغاء</button>`;
+            body.innerHTML = html + `<button class="btn btn-secondary btn-block admin-modal-cancel" onclick="closeModal()">إلغاء</button>`;
             document.getElementById('modal').classList.add('active');
             if (type === 'addQuestion') setTimeout(() => renderQuestionOptionFields(['', '', '', ''], 0), 0);
             if (type === 'editQuestion') setTimeout(() => renderQuestionOptionFields(opts, Math.max(0, ans - 1)), 0);
@@ -1003,7 +1003,7 @@
             container.innerHTML = values.map((value, i) => `
                 <div class="form-group question-option-editor">
                     <label>خيار ${i + 1}</label>
-                    <div style="display:flex;gap:8px;align-items:center;">
+                    <div class="admin-question-option-row">
                         <input class="question-option-input" data-option-index="${i}" value="${escapeAttr(value)}">
                         ${values.length > 2 ? `<button type="button" class="btn btn-red btn-sm" onclick="removeQuestionOptionField(${i})">حذف</button>` : ''}
                     </div>
@@ -1380,7 +1380,7 @@
                 const registry = JSON.parse(decode(remote.content));
                 if (!Array.isArray(registry.laws)) throw new Error('تنسيق فهرس القوانين غير صحيح.');
                 list.innerHTML = registry.laws.length ? registry.laws.map(law =>
-                    '<div class="item-card"><div class="item-card-header"><div class="item-card-title">' + escapeHtml(law.name || law.id) + '</div><span>' + Number(law.articlesCount || 0) + ' مادة</span></div><div style="font-size:12px;color:var(--mizan-muted);">' + escapeHtml(law.id) + ' · ' + escapeHtml(law.file) + '</div></div>'
+                    '<div class="item-card"><div class="item-card-header"><div class="item-card-title">' + escapeHtml(law.name || law.id) + '</div><span>' + Number(law.articlesCount || 0) + ' مادة</span></div><div class="admin-law-meta">' + escapeHtml(law.id) + ' · ' + escapeHtml(law.file) + '</div></div>'
                 ).join('') : '<p class="empty-hint">لا توجد قوانين مسجلة.</p>';
             } catch (e) { list.textContent = 'تعذر تحميل القائمة: ' + e.message; }
         }
