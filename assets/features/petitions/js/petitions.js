@@ -65,19 +65,6 @@
     const form=document.getElementById('petition-access-request');
     if(form)form.onsubmit=async event=>{event.preventDefault();const reason=String(form.querySelector('textarea').value||'').trim(),auth=window.publicAuth,user=auth?.user,db=auth?.firestore;if(reason.length<10||!user||!db)return;const button=form.querySelector('button');button.disabled=true;try{const ref=db.collection('petitionAccessRequests').doc(user.uid),existing=access.status!=='none',payload={uid:user.uid,displayName:auth.displayName(user),email:user.email||'',reason,status:'pending',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};if(existing)await ref.update(payload);else await ref.set({...payload,createdAt:firebase.firestore.FieldValue.serverTimestamp()});petitionAccessCache={uid:user.uid,expiresAt:Date.now()+PETITION_ACCESS_CACHE_MS,value:{status:'pending',enabled:false}};petitionAccessCache={uid:user.uid,expiresAt:Date.now()+PETITION_ACCESS_CACHE_MS,value:{status:'pending',enabled:false}};renderAccessGate({status:'pending',enabled:false});}catch(e){console.error('Petition access request failed:',e);button.disabled=false;alert('تعذر إرسال الطلب. حاول مرة أخرى بعد التحقق من اتصالك.');}};
   }
-  async function loadLawyerBranding(){
-    state.lawyer={};
-    const auth=window.publicAuth,user=auth&&auth.user,db=auth&&auth.firestore;
-    if(!user||!db)return;
-    try{
-      const snap=await db.collection('lawyerApplications').where('applicantUid','==',user.uid).get();
-      const approved=snap.docs.map(d=>({id:d.id,...d.data()})).find(x=>String(x.status||'').toLowerCase()==='approved');
-      if(!approved)return;
-      const profile=await db.collection('lawyerProfiles').doc(approved.id).get();
-      if(profile.exists)state.lawyer=profile.data()||{};
-      else state.lawyer=approved;
-    }catch(e){console.warn('تعذر تحميل بيانات المحامي للعريضة',e);}
-  }
   function navigateBack(target){
     // All petition screens share one app view, so browser history alone cannot
     // distinguish their visible sub-screens. Restore the requested parent UI directly.
@@ -124,7 +111,6 @@
       const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
       if(!access.enabled){renderAccessGate(access);return;}
       await loadPetitionIndex();
-      loadLawyerBranding().catch(()=>{});
       renderCategories();
     }catch(e){console.error('Petitions access check failed:',e);renderLoadError('تعذر التحقق من صلاحية الوصول أو تحميل الأقسام. حاول مرة أخرى.');}
   }
@@ -199,13 +185,13 @@
   function letterheadHtml(nameOverride,logoOverride,nameHtmlOverride){
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
-    const name=nameOverride||(state.lawyer.name||(window.publicAuth?.user?.displayName||''));
-    const lawyerName=nameHtmlOverride===undefined?esc(name||'اسم المحامي'):sanitizeLetterheadNameHtml(nameHtmlOverride);
-    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl"><strong dir="rtl">'+lawyerName+'</strong></div></header>';
+    const name=nameOverride??'اسم المحامي';
+    const lawyerName=nameHtmlOverride===undefined?esc(name):sanitizeLetterheadNameHtml(nameHtmlOverride);
+    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl">'+lawyerName+'</div></header>';
   }
   function sanitizeLetterheadNameHtml(source){
     const doc=new DOMParser().parseFromString(String(source??''),'text/html');
-    const allowed=new Set(['SPAN','B','STRONG','EM','I','U']);
+    const allowed=new Set(['SPAN','B','STRONG','EM','I','U','BR']);
     Array.from(doc.body.querySelectorAll('*')).reverse().forEach(node=>{
       if(!allowed.has(node.tagName)){
         node.replaceWith(...Array.from(node.childNodes));
@@ -236,10 +222,11 @@
       const doc=new DOMParser().parseFromString(String(source),'text/html');
       const header=doc.body.querySelector('.petition-letterhead');
       if(!header)return '';
-      const nameEl=header.querySelector('.petition-head-right strong');
-      const name=nameEl?.textContent?.trim()||'';
+      const nameContainer=header.querySelector('.petition-head-right');
+      const nameHtml=nameContainer?.innerHTML??'';
+      const name=nameContainer?.textContent??'';
       const logo=header.querySelector('.petition-bar-logo img')?.getAttribute('src')||'';
-      return letterheadHtml(name,logo||undefined,nameEl?.innerHTML??undefined);
+      return letterheadHtml(name,logo||undefined,nameHtml);
     }catch(e){return '';}
   }
   function brandingToggleHtml(){
@@ -538,7 +525,7 @@
       if(target.nodeType===Node.TEXT_NODE)target=target.parentElement;
       if(!target||!editor.contains(target))return;
       if(range.collapsed){
-        const block=target.closest('.petition-head-right strong')||target.closest('p,li,h1,h2,h3,h4,h5,h6,div')||target;
+        const block=target.closest('.petition-head-right')||target.closest('p,li,h1,h2,h3,h4,h5,h6,div')||target;
         block.style.fontSize=size+'px';
       }else{
         const span=document.createElement('span');span.style.fontSize=size+'px';
@@ -698,7 +685,7 @@
     const body=plainTextToEditor(state.editedBody??t.body);
     const branded=state.branded;
     const header=branded?(state.editedLetterhead||letterheadHtml()):'';
-    const css='@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts@415c96ea2ee5bd29f46691460f944c0cc9676e1b/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;height:297mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:hidden;break-after:auto;page-break-after:auto}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0;direction:rtl;unicode-bidi:plaintext}.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right strong,.petition-head-right strong *{font-family:"AMoshref Thulth",Tahoma,serif}.petition-head-right strong{font-size:17px;font-weight:400;white-space:nowrap;overflow:visible}.petition-bar-logo{width:17mm;height:22mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:20px;line-height:1.5;text-align:justify;overflow-wrap:break-word;word-spacing:0}.petition-doc-body p{margin:0;line-height:1.5;orphans:2;widows:2;white-space:pre-wrap}.petition-doc-body li{line-height:1.5}.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:21px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
+    const css='@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts@415c96ea2ee5bd29f46691460f944c0cc9676e1b/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;height:297mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:hidden;break-after:auto;page-break-after:auto}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0;direction:rtl;unicode-bidi:plaintext}.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right,.petition-head-right *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight}.petition-head-right{font-size:17px;font-weight:400;white-space:nowrap;overflow:visible}.petition-bar-logo{width:17mm;height:22mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:20px;line-height:1.5;text-align:justify;overflow-wrap:break-word;word-spacing:0}.petition-doc-body p{margin:0;line-height:1.5;orphans:2;widows:2;white-space:pre-wrap}.petition-doc-body li{line-height:1.5}.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:21px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
   }
   function fitPetitionPreview(frame,container,refresh=false){
