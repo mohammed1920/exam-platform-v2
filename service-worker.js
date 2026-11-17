@@ -161,15 +161,16 @@ async function networkFirstNavigation(request) {
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
-    const cache = await caches.open(MIZAN_SHELL_CACHE);
+    const shellCache = await caches.open(MIZAN_SHELL_CACHE);
+    const staticCache = await caches.open(MIZAN_STATIC_CACHE);
     const indexUrl = new URL('index.html', self.registration.scope).href;
 
     // Always preserve the latest application entry point for offline launch.
     try {
       const response = await fetch(indexUrl, { cache: 'no-store' });
       if (response.ok) {
-        await cache.put(indexUrl, response.clone());
-        await cache.put(new URL('./', self.registration.scope).href, response.clone());
+        await shellCache.put(indexUrl, response.clone());
+        await shellCache.put(new URL('./', self.registration.scope).href, response.clone());
       }
     } catch (_) {
       // A previously installed application can still activate while offline.
@@ -195,7 +196,7 @@ self.addEventListener('install', event => {
           ).map(async path => {
             const assetUrl = new URL(path, self.registration.scope).href;
             const assetResponse = await fetch(assetUrl, { cache: 'no-store' });
-            if (assetResponse.ok) await cache.put(assetUrl, assetResponse);
+            if (assetResponse.ok) await staticCache.put(assetUrl, assetResponse);
           }));
         }
       }
