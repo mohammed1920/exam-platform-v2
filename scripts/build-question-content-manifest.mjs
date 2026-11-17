@@ -13,7 +13,7 @@ for (const entry of entries) {
   const bookDir = join(dataDir, entry.name);
   const files = await readdir(bookDir, { withFileTypes: true });
   for (const file of files) {
-    if (!file.isFile() || !/^chapter_\\d+\\.json$/i.test(file.name)) continue;
+    if (!file.isFile() || !/^chapter_\d+\.json$/i.test(file.name)) continue;
     const filePath = join(bookDir, file.name);
     const content = await readFile(filePath);
     const key = relative(dataDir, filePath).split(sep).join('/');
@@ -22,5 +22,5 @@ for (const entry of entries) {
 }
 
 const manifest = { version: 1, algorithm: 'sha256-64', chapters };
-await writeFile(join(dataDir, 'question-content-manifest.json'), JSON.stringify(manifest, null, 2) + '\\n');
-console.log(`Generated question content manifest for ${Object.keys(chapters).length} chapter file(s).`);
+await writeFile(join(dataDir, 'question-content-manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+console.log('Generated question content manifest for ' + Object.keys(chapters).length + ' chapter file(s).');
