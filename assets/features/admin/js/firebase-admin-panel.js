@@ -25,10 +25,15 @@
       return {docs,items:state.items,hasMore:state.hasMore};
     }finally{state.loading=false;}
   }
-  async function exactQueryCount(queryFactory){
-    const snapshot=await queryFactory().count().get();
-    return Number(snapshot.data()?.count)||0;
+  async function exactQueryCount(collectionName,filters=[]){
+    if(typeof window.mizanFirestoreCount!=='function'){
+      window.mizanFirestoreCountReady ||= import(new URL('assets/shared/js/firestore-count.js',document.baseURI).href).then(()=>true);
+      await window.mizanFirestoreCountReady;
+    }
+    if(typeof window.mizanFirestoreCount!=='function')throw new Error('Firestore count module failed to initialize.');
+    return window.mizanFirestoreCount(collectionName,filters);
   }
+  window.mizanExactFirestoreCount=exactQueryCount;
   function setAdminLoadMore(body,key,loader){
     body.querySelector('[data-admin-load-more]')?.remove();
     const state=adminPageStates.get(key);
@@ -284,8 +289,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     try{
       const db=window.publicAuth.firestore;
       const [procedureCount,petitionCount]=await Promise.all([
-        exactQueryCount(()=>db.collection('procedureAccessRequests').where('status','==','pending')),
-        exactQueryCount(()=>db.collection('petitionAccessRequests').where('status','==','pending'))
+        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),
+        exactQueryCount('petitionAccessRequests',[['status','==','pending']])
       ]);
       const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
@@ -365,7 +370,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     setStatus('جارٍ تحميل بيانات الطلاب...');
     try{
       const db=window.publicAuth.firestore;
-      const studentsTotal=await exactQueryCount(()=>db.collection('students'));
+      const studentsTotal=await exactQueryCount('students');
       els.studentsCount.textContent=String(studentsTotal);
       if(els.dashboardStudentsCount)els.dashboardStudentsCount.textContent=String(studentsTotal);
       await loadStudentPage(true);
@@ -388,7 +393,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const db=window.publicAuth.firestore,body=els.lawyerEditRequestsBody,key='lawyer-edit-requests';
     try{
       const query=()=>db.collection('lawyerEditRequests').where('status','==','pending');
-      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount('lawyerEditRequests',[['status','==','pending']]):Promise.resolve(null)]);
       if(reset&&total!==null&&els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=String(total);
       const profilesById=new Map(lawyerProfiles.map(profile=>[profile.id,profile]));
       const html=page.docs.map(doc=>{
@@ -413,7 +418,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const db=window.publicAuth.firestore,body=els.lawyersBody,key='lawyer-applications';
     try{
       const query=()=>db.collection('lawyerApplications').where('status','==','pending');
-      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount('lawyerApplications',[['status','==','pending']]):Promise.resolve(null)]);
       lawyerApplications=page.items.map(doc=>({id:doc.id,...doc.data()}));
       if(reset&&total!==null&&els.lawyersPendingCount)els.lawyersPendingCount.textContent=String(total);
       const html=page.docs.map(doc=>{
@@ -437,7 +442,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const db=window.publicAuth.firestore,body=els.lawyersPublishedBody,key='lawyer-profiles';
     try{
       const query=()=>db.collection('lawyerProfiles');
-      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount('lawyerProfiles'):Promise.resolve(null)]);
       lawyerProfiles=page.items.map(doc=>({id:doc.id,...doc.data()}));
       if(reset&&total!==null){
         if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=String(total);
@@ -552,8 +557,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const categories=Object.keys(procedureAdminCategories);
       const entries=await Promise.all(categories.map(async category=>{
         const [total,published]=await Promise.all([
-          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category)),
-          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',true))
+          exactQueryCount('legalProcedures',[['category','==',category]]),
+          exactQueryCount('legalProcedures',[['category','==',category],['published','==',true]])
         ]);
         return [category,{published,unpublished:Math.max(0,total-published),total}];
       }));
@@ -697,8 +702,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const db=window.publicAuth.firestore,categories=Object.keys(petitionCategories);
       const entries=await Promise.all(categories.map(async categoryId=>{
         const [total,published]=await Promise.all([
-          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId)),
-          exactQueryCount(()=>db.collection('petitionDocuments').where('categoryId','==',categoryId).where('published','==',true))
+          exactQueryCount('petitionDocuments',[['categoryId','==',categoryId]]),
+          exactQueryCount('petitionDocuments',[['categoryId','==',categoryId],['published','==',true]])
         ]);
         return [categoryId,{published,unpublished:Math.max(0,total-published),total}];
       }));
@@ -737,7 +742,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const query=()=>db.collection('petitionAccessRequests');
       const [page,pendingCount]=await Promise.all([
         fetchAdminPage(key,query,reset),
-        reset?exactQueryCount(()=>db.collection('petitionAccessRequests').where('status','==','pending')):Promise.resolve(null)
+        reset?exactQueryCount('petitionAccessRequests',[['status','==','pending']]):Promise.resolve(null)
       ]);
       if(reset)petitionGrantCache.clear();
       const grants=await Promise.all(page.docs.map(async doc=>{
@@ -821,7 +826,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const query=()=>db.collection('procedureAccessRequests');
       const [page,pendingCount]=await Promise.all([
         fetchAdminPage(key,query,reset),
-        reset?exactQueryCount(()=>db.collection('procedureAccessRequests').where('status','==','pending')):Promise.resolve(null)
+        reset?exactQueryCount('procedureAccessRequests',[['status','==','pending']]):Promise.resolve(null)
       ]);
       if(reset)procedureGrantCache.clear();
       const grants=await Promise.all(page.docs.map(async doc=>{
@@ -1119,9 +1124,9 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       return {docs,hasMore:state.hasMore};
     }finally{state.loading=false;}
   }
-  async function exactCount(queryFactory){
-    const snapshot=await queryFactory().count().get();
-    return Number(snapshot.data()?.count)||0;
+  async function exactCount(collectionName,filters=[]){
+    if(typeof window.mizanExactFirestoreCount!=='function')throw new Error('Firestore count bridge is unavailable.');
+    return window.mizanExactFirestoreCount(collectionName,filters);
   }
   function addForumLoadMore(body,key,loader){
     body.querySelector('[data-forum-load-more]')?.remove();
@@ -1346,8 +1351,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const firestore=db();if(!firestore)return;
     try{
       const [articles,contributors]=await Promise.all([
-        exactCount(()=>firestore.collection(COLLECTION).where('status','==','pending')),
-        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','pending'))
+        exactCount(COLLECTION,[['status','==','pending']]),
+        exactCount(CONTRIBUTORS,[['status','==','pending']])
       ]);
       setForumPendingCount(articles,contributors);
     }catch(error){console.warn('تعذر تحديث مؤشرات منبر ميزان:',error);}
@@ -1425,10 +1430,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحديث الإحصائيات...</p>';
     try{
       const statuses=['pending','published','rejected','hidden'];
-      const countsList=await Promise.all(statuses.map(status=>exactCount(()=>firestore.collection(COLLECTION).where('status','==',status))));
+      const countsList=await Promise.all(statuses.map(status=>exactCount(COLLECTION,[['status','==',status]])));
       const [pendingContributors,approvedContributors]=await Promise.all([
         exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','pending')),
-        exactCount(()=>firestore.collection(CONTRIBUTORS).where('status','==','approved'))
+        exactCount(CONTRIBUTORS,[['status','==','approved']])
       ]);
       const counts={};statuses.forEach((status,index)=>counts[status]=countsList[index]);
       updateTabCounts({contributors:pendingContributors,'approved-contributors':approvedContributors,pending:counts.pending,published:counts.published,rejected:counts.rejected,hidden:counts.hidden});
