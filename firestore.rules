@@ -16,12 +16,33 @@ service cloud.firestore {
 
     match /students/{userId} {
       allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+
+      // Student identity and creation time are immutable after account creation.
       allow create: if signedIn()
                     && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid;
+                    && request.resource.data.keys().hasAll([
+                      'uid', 'email', 'displayName', 'createdAt', 'updatedAt'
+                    ])
+                    && request.resource.data.keys().hasOnly([
+                      'uid', 'email', 'displayName', 'createdAt', 'updatedAt'
+                    ])
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.email is string
+                    && request.resource.data.displayName is string
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.updatedAt == request.time;
+
       allow update: if signedIn()
                     && request.auth.uid == userId
-                    && request.resource.data.uid == request.auth.uid;
+                    && request.resource.data.uid == resource.data.uid
+                    && resource.data.uid == request.auth.uid
+                    && request.resource.data.createdAt == resource.data.createdAt
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['email', 'displayName', 'updatedAt'])
+                    && request.resource.data.email is string
+                    && request.resource.data.displayName is string
+                    && request.resource.data.updatedAt == request.time;
+
       allow delete: if isAdmin();
     }
 
