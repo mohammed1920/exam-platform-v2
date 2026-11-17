@@ -175,8 +175,8 @@
     try{
       state.template=await loadDocument(uid);
       if(state.categoryId!==categoryId||!document.getElementById('petitions-section')?.isConnected)return;
-      state.branded=false;
       const drafts=readDrafts();
+      state.branded=drafts[uid]?.branded===true;
       state.editedBody=plainTextToEditor(drafts[uid]?.body??state.template.body);
       state.savedBody=state.editedBody;
       state.editedLetterhead=normalizeLetterheadHtml(drafts[uid]?.letterhead||'');
@@ -680,7 +680,7 @@
     syncEditorContent(editor);
     try{
       const drafts=readDrafts();
-      drafts[state.template.uid]={name:state.template.name,body:state.editedBody,letterhead:state.editedLetterhead,updatedAt:new Date().toISOString()};
+      drafts[state.template.uid]={name:state.template.name,body:state.editedBody,letterhead:state.editedLetterhead,branded:state.branded===true,updatedAt:new Date().toISOString()};
       localStorage.setItem('mizan-petition-drafts',JSON.stringify(drafts));
       state.savedBody=state.editedBody;
       state.savedLetterhead=state.editedLetterhead;
