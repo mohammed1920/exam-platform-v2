@@ -43,10 +43,12 @@ function isCacheableVendorRequest(request) {
   }
   if (url.hostname === 'cdnjs.cloudflare.com') {
     return url.pathname === '/ajax/libs/font-awesome/6.5.2/css/all.min.css' ||
-      url.pathname === '/ajax/libs/bodymovin/5.12.2/lottie.min.js';
+      url.pathname === '/ajax/libs/bodymovin/5.12.2/lottie.min.js' ||
+      (/^\\/ajax\\/libs\\/font-awesome\\/6\\.5\\.2\\/webfonts\\//.test(url.pathname) && /\\.(?:woff2?|ttf|eot)$/i.test(url.pathname));
   }
   if (url.hostname === 'cdn.jsdelivr.net') {
-    return url.pathname === '/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css';
+    return url.pathname === '/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css' ||
+      (/^\\/npm\\/@fortawesome\\/fontawesome-free@6\\.5\\.2\\/webfonts\\//.test(url.pathname) && /\\.(?:woff2?|ttf|eot)$/i.test(url.pathname));
   }
   return false;
 }
