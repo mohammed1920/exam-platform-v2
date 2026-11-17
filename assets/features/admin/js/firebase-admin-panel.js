@@ -315,15 +315,16 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
     try{
       const db=window.publicAuth.firestore;
-      const [procedureCount,petitionCount]=await Promise.all([
+      const [procedureCount,petitionCount,forumCount]=await Promise.all([
         exactQueryCount('procedureAccessRequests',[['status','==','pending']]),
-        exactQueryCount('petitionAccessRequests',[['status','==','pending']])
+        exactQueryCount('petitionAccessRequests',[['status','==','pending']]),
+        exactQueryCount('mizanArticles',[['status','==','pending']])
       ]);
       const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
       setPendingCount('procedures',procedureCount);
       setPendingCount('petitions',petitionCount);
-      window.dispatchEvent(new CustomEvent('mizan:refresh-forum-pending-counts'));
+      setPendingCount('forum',forumCount);
     }catch(error){console.warn('تعذر تحديث مؤشرات الطلبات المعلقة:',error);}
   }
   function showAdminHome(){
