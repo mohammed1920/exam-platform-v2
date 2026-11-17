@@ -4,7 +4,7 @@
   let isAdmin=false,panelOpen=false,mainViewState=[],els={};
   let lawyerApplications=[],lawyerProfiles=[];
   let petitionItems=[],activePetitionCategory='',activePetitionStatus='published';
-  let procedureItems=[],activeProcedureAdminCategory='',activeProcedureAdminStatus='published';
+  let procedureItems=[],activeProcedureAdminCategory='',activeProcedureAdminStatus='published',procedureCategoryCounts={};
   const procedureGrantCache=new Map(),petitionGrantCache=new Map();
   const ADMIN_PAGE_SIZE=50;
   const adminPageStates=new Map();
@@ -462,32 +462,85 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
 
   const procedureAdminCategories={civil:{title:'الدعاوى المدنية',icon:'fa-landmark'},criminal:{title:'الدعاوى الجزائية',icon:'fa-scale-balanced'},administrative:{title:'الدعاوى الإدارية',icon:'fa-building-columns'},personal:{title:'دعاوى الأحوال الشخصية',icon:'fa-people-roof'}};
-  function setProcedureAdminPanel(panel){if(!['access','add','library'].includes(panel))return;els.proceduresHub?.querySelectorAll('[data-procedures-panel]').forEach(b=>{const active=b.dataset.proceduresPanel===panel;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});['access','add','library'].forEach(k=>{const el=els.section.querySelector('#fa-procedures-panel-'+k);if(el)el.hidden=k!==panel;});if(panel==='library')renderProcedureAdminLibrary();}
-  function renderProcedureAdminCategoryCards(){if(!els.proceduresCategories)return;const counts=Object.fromEntries(Object.keys(procedureAdminCategories).map(k=>[k,{total:0,published:0,unpublished:0}]));procedureItems.forEach(x=>{const g=counts[x.category];if(g){g.total++;if(x.published===true)g.published++;else g.unpublished++;}});els.proceduresCategories.innerHTML=Object.entries(procedureAdminCategories).map(([k,v])=>{const n=counts[k];return '<button type="button" class="firebase-admin-content-category" data-procedure-admin-category="'+k+'"><span class="firebase-admin-content-category-icon"><i class="fas '+v.icon+'"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(v.title)+'</strong><small>'+n.total+' إجراء · '+n.published+' منشور · '+n.unpublished+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow"></i></button>';}).join('');if(els.proceduresTotalCount)els.proceduresTotalCount.textContent=String(procedureItems.length);if(els.proceduresLibrarySummary)els.proceduresLibrarySummary.textContent=procedureItems.length+' إجراء في 4 تصنيفات';}
-  function renderProcedureAdminCategoryItems(){if(!els.proceduresCategoryItems||!activeProcedureAdminCategory)return;const rows=procedureItems.filter(x=>x.category===activeProcedureAdminCategory&&(activeProcedureAdminStatus==='published'?x.published===true:x.published!==true)),pub=procedureItems.filter(x=>x.category===activeProcedureAdminCategory&&x.published===true).length,unpub=procedureItems.filter(x=>x.category===activeProcedureAdminCategory&&x.published!==true).length;els.proceduresCategoryTitle.textContent=procedureAdminCategories[activeProcedureAdminCategory].title;els.proceduresCategoryTotal.textContent=(pub+unpub)+' إجراء';const p=els.proceduresHub.querySelector('[data-procedure-admin-status="published"]'),u=els.proceduresHub.querySelector('[data-procedure-admin-status="unpublished"]');if(p){p.classList.toggle('is-active',activeProcedureAdminStatus==='published');p.setAttribute('aria-selected',String(activeProcedureAdminStatus==='published'));p.querySelector('span').textContent=pub;}if(u){u.classList.toggle('is-active',activeProcedureAdminStatus==='unpublished');u.setAttribute('aria-selected',String(activeProcedureAdminStatus==='unpublished'));u.querySelector('span').textContent=unpub;}els.proceduresCategoryItems.innerHTML=rows.length?rows.map(x=>'<article class="firebase-admin-content-item"><div class="firebase-admin-content-item-title"><h5>'+esc(x.title||'بدون عنوان')+'</h5><span class="lawyer-admin-status '+(x.published?'is-live':'is-off')+'">'+(x.published?'منشور':'غير منشور')+'</span></div><div class="lawyer-admin-actions"><button type="button" data-procedure-admin-edit="'+esc(x.id)+'">تعديل</button><button type="button" class="'+(x.published?'reject':'approve')+'" data-procedure-admin-toggle="'+esc(x.id)+'">'+(x.published?'إخفاء':'نشر')+'</button><button type="button" class="reject" data-procedure-admin-delete="'+esc(x.id)+'">حذف</button></div></article>').join(''):'<p class="firebase-admin-list-state">لا توجد إجراءات '+(activeProcedureAdminStatus==='published'?'منشورة':'غير منشورة')+' في هذا القسم.</p>';}
-  function renderProcedureAdminLibrary(){if(!els.proceduresCategories||!els.proceduresCategoryView)return;renderProcedureAdminCategoryCards();const has=Boolean(activeProcedureAdminCategory&&procedureAdminCategories[activeProcedureAdminCategory]);els.proceduresCategories.hidden=has;els.proceduresCategoryView.hidden=!has;if(has)renderProcedureAdminCategoryItems();}
-  function openProcedureEditor(x){if(!x||!els.procedureForm)return;const f=els.procedureForm;['id','title','category','summary','requirements','documents','steps','legalBasis','fees','duration'].forEach(k=>f.elements[k].value=x[k]||'');f.elements.published.checked=x.published===true;els.procedureFormTitle.textContent='تعديل الإجراء';setProcedureAdminPanel('add');f.scrollIntoView({behavior:'smooth',block:'start'});}
-  function handleProcedureHubClick(e){const p=e.target.closest('[data-procedures-panel]');if(p){setProcedureAdminPanel(p.dataset.proceduresPanel);return;}const c=e.target.closest('[data-procedure-admin-category]');if(c){activeProcedureAdminCategory=c.dataset.procedureAdminCategory;activeProcedureAdminStatus='published';renderProcedureAdminLibrary();return;}if(e.target.closest('[data-procedures-categories]')){activeProcedureAdminCategory='';renderProcedureAdminLibrary();return;}const s=e.target.closest('[data-procedure-admin-status]');if(s){activeProcedureAdminStatus=s.dataset.procedureAdminStatus;renderProcedureAdminCategoryItems();return;}const edit=e.target.closest('[data-procedure-admin-edit]');if(edit){openProcedureEditor(procedureItems.find(x=>x.id===edit.dataset.procedureAdminEdit));return;}const toggle=e.target.closest('[data-procedure-admin-toggle]');if(toggle){toggleLegalProcedure(toggle.dataset.procedureAdminToggle);return;}const del=e.target.closest('[data-procedure-admin-delete]');if(del)deleteLegalProcedure(del.dataset.procedureAdminDelete);}
-  async function toggleLegalProcedure(id){const x=procedureItems.find(v=>v.id===id);if(!x)return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(id).update({published:x.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});const ok=await loadLegalProcedures();activeProcedureAdminCategory=x.category;activeProcedureAdminStatus=x.published?'unpublished':'published';setProcedureAdminPanel('library');setStatus(ok?'تم تحديث حالة الإجراء والفهرس العام.':'تم تحديث الحالة لكن تعذر تحديث الفهرس العام.',!ok);}catch(e){console.error(e);setStatus('تعذر تحديث حالة الإجراء.',true);}}
-  async function deleteLegalProcedure(id){const x=procedureItems.find(v=>v.id===id);if(!x||!confirm('حذف هذا الإجراء نهائياً؟'))return;try{await window.publicAuth.firestore.collection('legalProcedures').doc(id).delete();resetLegalProcedure();const ok=await loadLegalProcedures();activeProcedureAdminCategory=x.category;setProcedureAdminPanel('library');setStatus(ok?'تم حذف الإجراء وتحديث الفهرس العام.':'تم حذف الإجراء لكن تعذر تحديث الفهرس العام.',!ok);}catch(e){console.error(e);setStatus('تعذر حذف الإجراء.',true);}}
-  function resetLegalProcedure(){if(!els.procedureForm)return;els.procedureForm.reset();els.procedureForm.elements.id.value='';els.procedureForm.elements.category.value='';els.procedureForm.elements.published.checked=true;if(els.procedureFormTitle)els.procedureFormTitle.textContent='إضافة إجراء جديد';}
-  async function syncPublicProcedureIndex(items){
-    const db=window.publicAuth?.firestore;
-    if(!isAdmin||!db)return false;
+  function setProcedureAdminPanel(panel){if(!['access','add','library'].includes(panel))return;els.proceduresHub?.querySelectorAll('[data-procedures-panel]').forEach(button=>{const active=button.dataset.proceduresPanel===panel;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});['access','add','library'].forEach(key=>{const node=els.section.querySelector('#fa-procedures-panel-'+key);if(node)node.hidden=key!==panel;});if(panel==='library')renderProcedureAdminLibrary();}
+  function renderProcedureAdminCategoryCards(){
+    if(!els.proceduresCategories)return;
+    const total=Object.values(procedureCategoryCounts).reduce((sum,item)=>sum+item.total,0);
+    els.proceduresCategories.innerHTML=Object.entries(procedureAdminCategories).map(([key,category])=>{
+      const count=procedureCategoryCounts[key]||{total:0,published:0,unpublished:0};
+      return '<button type="button" class="firebase-admin-content-category" data-procedure-admin-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+count.total+' إجراء · '+count.published+' منشور · '+count.unpublished+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow"></i></button>';
+    }).join('');
+    if(els.proceduresTotalCount)els.proceduresTotalCount.textContent=String(total);
+    if(els.proceduresLibrarySummary)els.proceduresLibrarySummary.textContent=total+' إجراء في 4 تصنيفات';
+  }
+  function renderProcedureAdminCategoryItems(){
+    if(!els.proceduresCategoryItems||!activeProcedureAdminCategory)return;
+    const rows=procedureItems,counts=procedureCategoryCounts[activeProcedureAdminCategory]||{total:0,published:0,unpublished:0};
+    els.proceduresCategoryTitle.textContent=procedureAdminCategories[activeProcedureAdminCategory].title;
+    els.proceduresCategoryTotal.textContent=counts.total+' إجراء';
+    const publishedTab=els.proceduresHub.querySelector('[data-procedure-admin-status="published"]'),unpublishedTab=els.proceduresHub.querySelector('[data-procedure-admin-status="unpublished"]');
+    if(publishedTab){publishedTab.classList.toggle('is-active',activeProcedureAdminStatus==='published');publishedTab.setAttribute('aria-selected',String(activeProcedureAdminStatus==='published'));publishedTab.querySelector('span').textContent=String(counts.published);}
+    if(unpublishedTab){unpublishedTab.classList.toggle('is-active',activeProcedureAdminStatus==='unpublished');unpublishedTab.setAttribute('aria-selected',String(activeProcedureAdminStatus==='unpublished'));unpublishedTab.querySelector('span').textContent=String(counts.unpublished);}
+    els.proceduresCategoryItems.innerHTML=rows.length?rows.map(item=>'<article class="firebase-admin-content-item"><div class="firebase-admin-content-item-title"><h5>'+esc(item.title||'بدون عنوان')+'</h5><span class="lawyer-admin-status '+(item.published?'is-live':'is-off')+'">'+(item.published?'منشور':'غير منشور')+'</span></div><div class="lawyer-admin-actions"><button type="button" data-procedure-admin-edit="'+esc(item.id)+'">تعديل</button><button type="button" class="'+(item.published?'reject':'approve')+'" data-procedure-admin-toggle="'+esc(item.id)+'">'+(item.published?'إخفاء':'نشر')+'</button><button type="button" class="reject" data-procedure-admin-delete="'+esc(item.id)+'">حذف</button></div></article>').join(''):'<p class="firebase-admin-list-state">لا توجد إجراءات '+(activeProcedureAdminStatus==='published'?'منشورة':'غير منشورة')+' في هذا القسم.</p>';
+  }
+  async function loadProcedureCategoryItems(reset=true){
+    if(!isAdmin||!window.publicAuth?.firestore||!activeProcedureAdminCategory)return;
+    const db=window.publicAuth.firestore,category=activeProcedureAdminCategory,published=activeProcedureAdminStatus==='published',key='procedure-library:'+category+':'+activeProcedureAdminStatus;
+    try{
+      const page=await fetchAdminPage(key,()=>db.collection('legalProcedures').where('category','==',category).where('published','==',published),reset);
+      procedureItems=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      renderProcedureAdminCategoryItems();
+      setAdminLoadMore(els.proceduresCategoryItems,key,loadProcedureCategoryItems);
+    }catch(error){console.error('Procedure category page load failed:',error);els.proceduresCategoryItems.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الإجراءات في هذا التصنيف.</p>';}
+  }
+  function renderProcedureAdminLibrary(){
+    if(!els.proceduresCategories||!els.proceduresCategoryView)return;
+    renderProcedureAdminCategoryCards();
+    const has=Boolean(activeProcedureAdminCategory&&procedureAdminCategories[activeProcedureAdminCategory]);
+    els.proceduresCategories.hidden=has;els.proceduresCategoryView.hidden=!has;
+    if(has)loadProcedureCategoryItems(true);
+  }
+  function openProcedureEditor(item){if(!item||!els.procedureForm)return;const form=els.procedureForm;['id','title','category','summary','requirements','documents','steps','legalBasis','fees','duration'].forEach(key=>form.elements[key].value=item[key]||'');form.elements.published.checked=item.published===true;els.procedureFormTitle.textContent='تعديل الإجراء';setProcedureAdminPanel('add');form.scrollIntoView({behavior:'smooth',block:'start'});}
+  function handleProcedureHubClick(event){
+    const panel=event.target.closest('[data-procedures-panel]');if(panel){setProcedureAdminPanel(panel.dataset.proceduresPanel);return;}
+    const category=event.target.closest('[data-procedure-admin-category]');if(category){activeProcedureAdminCategory=category.dataset.procedureAdminCategory;activeProcedureAdminStatus='published';renderProcedureAdminLibrary();return;}
+    if(event.target.closest('[data-procedures-categories]')){activeProcedureAdminCategory='';renderProcedureAdminLibrary();return;}
+    const status=event.target.closest('[data-procedure-admin-status]');if(status){activeProcedureAdminStatus=status.dataset.procedureAdminStatus;loadProcedureCategoryItems(true);return;}
+    const edit=event.target.closest('[data-procedure-admin-edit]');if(edit){openProcedureEditor(procedureItems.find(item=>item.id===edit.dataset.procedureAdminEdit));return;}
+    const toggle=event.target.closest('[data-procedure-admin-toggle]');if(toggle){toggleLegalProcedure(toggle.dataset.procedureAdminToggle);return;}
+    const remove=event.target.closest('[data-procedure-admin-delete]');if(remove)deleteLegalProcedure(remove.dataset.procedureAdminDelete);
+  }
+  async function syncPublicProcedureIndexItem(item,remove=false){
+    const db=window.publicAuth?.firestore;if(!isAdmin||!db)return false;
     const categoryTitles={civil:'الدعاوى المدنية',criminal:'الدعاوى الجزائية',administrative:'الدعاوى الإدارية',personal:'دعاوى الأحوال الشخصية'};
-    const published=items.filter(item=>item.published===true&&typeof item.title==='string'&&item.title.trim()&&Object.prototype.hasOwnProperty.call(categoryTitles,item.category))
-      .map(item=>({id:item.id,title:item.title.trim(),category:item.category,categoryTitle:categoryTitles[item.category]}))
-      .sort((a,b)=>a.title.localeCompare(b.title,'ar'));
-    const indexRef=db.collection('publicIndexes').doc('procedures');
-    const indexSnap=await indexRef.get();
-    const current=indexSnap.exists&&Array.isArray(indexSnap.data()?.items)?indexSnap.data().items:[];
-    if(JSON.stringify(current)!==JSON.stringify(published)){
-      await indexRef.set({items:published,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    const ref=db.collection('publicIndexes').doc('procedures'),snapshot=await ref.get(),current=snapshot.exists&&Array.isArray(snapshot.data()?.items)?snapshot.data().items:[];
+    const next=current.filter(entry=>entry.id!==item.id);
+    if(!remove&&item.published===true&&typeof item.title==='string'&&item.title.trim()&&categoryTitles[item.category]){
+      next.push({id:item.id,title:item.title.trim(),category:item.category,categoryTitle:categoryTitles[item.category]});
     }
+    next.sort((a,b)=>a.title.localeCompare(b.title,'ar'));
+    if(JSON.stringify(current)!==JSON.stringify(next))await ref.set({items:next,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
     return true;
   }
-
-  async function loadLegalProcedures(){if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresCategories)return false;els.proceduresCategories.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل الإجراءات...</p>';try{const snap=await window.publicAuth.firestore.collection('legalProcedures').get();procedureItems=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'ar'));let ok=false;try{ok=await syncPublicProcedureIndex(procedureItems);}catch(e){console.error('Public procedure index sync failed:',e);}renderProcedureAdminLibrary();return ok;}catch(e){console.error('Legal procedures load failed:',e);els.proceduresCategories.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</p>';return false;}}
+  async function loadLegalProcedures(){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresCategories)return false;
+    els.proceduresCategories.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل الإجراءات...</p>';
+    try{
+      const db=window.publicAuth.firestore;
+      const categories=Object.keys(procedureAdminCategories);
+      const entries=await Promise.all(categories.map(async category=>{
+        const [published,unpublished]=await Promise.all([
+          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',true)),
+          exactQueryCount(()=>db.collection('legalProcedures').where('category','==',category).where('published','==',false))
+        ]);
+        return [category,{published,unpublished,total:published+unpublished}];
+      }));
+      procedureCategoryCounts=Object.fromEntries(entries);
+      procedureItems=[];
+      renderProcedureAdminLibrary();
+      return true;
+    }catch(error){console.error('Legal procedures counts load failed:',error);els.proceduresCategories.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الإجراءات. تحقق من قواعد Firestore المنشورة.</p>';return false;}
+  }
 
   const petitionCategories={
     family:{title:'أحوال شخصية',icon:'fa-users'},
