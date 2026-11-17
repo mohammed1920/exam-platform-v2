@@ -5,6 +5,43 @@
   let lawyerApplications=[],lawyerProfiles=[];
   let petitionItems=[],activePetitionCategory='',activePetitionStatus='published';
   let procedureItems=[],activeProcedureAdminCategory='',activeProcedureAdminStatus='published';
+  const ADMIN_PAGE_SIZE=50;
+  const adminPageStates=new Map();
+  function resetAdminPage(key){adminPageStates.set(key,{cursor:null,hasMore:true,loading:false,items:[]});}
+  async function fetchAdminPage(key,queryFactory,reset=false){
+    if(reset||!adminPageStates.has(key))resetAdminPage(key);
+    const state=adminPageStates.get(key);
+    if(state.loading||!state.hasMore)return {docs:[],items:state.items,hasMore:state.hasMore};
+    state.loading=true;
+    try{
+      let query=queryFactory();
+      if(state.cursor)query=query.startAfter(state.cursor);
+      const snapshot=await query.limit(ADMIN_PAGE_SIZE).get();
+      const docs=snapshot.docs||[];
+      state.cursor=docs.length?docs[docs.length-1]:state.cursor;
+      state.hasMore=docs.length===ADMIN_PAGE_SIZE;
+      state.items.push(...docs);
+      return {docs,items:state.items,hasMore:state.hasMore};
+    }finally{state.loading=false;}
+  }
+  async function exactQueryCount(queryFactory){
+    const snapshot=await queryFactory().count().get();
+    return Number(snapshot.data()?.count)||0;
+  }
+  function setAdminLoadMore(body,key,loader){
+    body.querySelector('[data-admin-load-more]')?.remove();
+    const state=adminPageStates.get(key);
+    if(!state?.hasMore)return;
+    const button=document.createElement('button');
+    button.type='button';button.className='firebase-admin-action';button.dataset.adminLoadMore='1';
+    button.textContent='تحميل المزيد';
+    button.addEventListener('click',async()=>{
+      if(button.disabled)return;
+      button.disabled=true;button.textContent='جارٍ التحميل...';
+      await loader(false);
+    });
+    body.appendChild(button);
+  }
   function publishAdminState(){ window.firebaseAdminPanel={open:openPanel,isAdmin}; window.dispatchEvent(new CustomEvent('firebase-admin-state-changed',{detail:{isAdmin}})); }
   const esc=v=>String(v??'—').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   function dateValue(v){if(!v)return'—';const d=v&&typeof v.toDate==='function'?v.toDate():new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('ar-IQ',{year:'numeric',month:'short',day:'numeric'});}
@@ -306,70 +343,121 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
      }
      restoreMainViews();
    }
-  async function loadDashboard(){if(!isAdmin||!window.publicAuth?.firestore)return;setStatus('جارٍ تحميل بيانات الطلاب...');try{const db=window.publicAuth.firestore;const studentsSnap=await db.collection('students').get();const students=studentsSnap.docs.map(d=>d.data());els.studentsCount.textContent=students.length;students.sort((a,b)=>String(a.email||'').localeCompare(String(b.email||'')));els.studentsBody.innerHTML=students.length?students.map(s=>'<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طالب مسجل</span><h4>'+esc(s.displayName||'بدون اسم')+'</h4></div></div><div class="firebase-admin-record-field"><span>البريد الإلكتروني</span><strong>'+esc(s.email||'غير متوفر')+'</strong></div><div class="firebase-admin-record-meta">تاريخ التسجيل: '+esc(dateValue(s.createdAt))+'</div></article>').join(''):'<p class="firebase-admin-list-state">لا يوجد طلاب مسجلون.</p>';els.studentsUpdated.textContent=timeValue(new Date());await loadLawyerManagement();if(els.dashboardStudentsCount)els.dashboardStudentsCount.textContent=String(students.length);if(els.dashboardLawyerPending)els.dashboardLawyerPending.textContent=String(lawyerApplications.length);if(els.dashboardLawyerPublished)els.dashboardLawyerPublished.textContent=String(lawyerProfiles.filter(profile=>profile.published===true).length);if(els.dashboardLawyerEdits)els.dashboardLawyerEdits.textContent=els.lawyerEditRequestsCount?.textContent||'0';if(els.navLawyersCount)els.navLawyersCount.textContent=String(lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));await refreshPendingAdminCounts();setStatus('');}catch(e){console.error(e);setStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.',true);}}  async function loadLawyerManagement(){
+  async function loadStudentPage(reset=true){
+    const db=window.publicAuth?.firestore,body=els.studentsBody;
+    if(!isAdmin||!db||!body)return;
+    const key='students';
+    try{
+      const page=await fetchAdminPage(key,()=>db.collection('students'),reset);
+      const html=page.docs.map(doc=>{
+        const student=doc.data()||{};
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طالب مسجل</span><h4>'+esc(student.displayName||'بدون اسم')+'</h4></div></div><div class="firebase-admin-record-field"><span>البريد الإلكتروني</span><strong>'+esc(student.email||'غير متوفر')+'</strong></div><div class="firebase-admin-record-meta">تاريخ التسجيل: '+esc(dateValue(student.createdAt))+'</div></article>';
+      }).join('');
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا يوجد طلاب مسجلون.</p>';
+      setAdminLoadMore(body,key,loadStudentPage);
+    }catch(error){console.error('Students page load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل بيانات الطلاب.</p>';}
+  }
+  async function loadDashboard(){
+    if(!isAdmin||!window.publicAuth?.firestore)return;
+    setStatus('جارٍ تحميل بيانات الطلاب...');
+    try{
+      const db=window.publicAuth.firestore;
+      const studentsTotal=await exactQueryCount(()=>db.collection('students'));
+      els.studentsCount.textContent=String(studentsTotal);
+      if(els.dashboardStudentsCount)els.dashboardStudentsCount.textContent=String(studentsTotal);
+      await loadStudentPage(true);
+      els.studentsUpdated.textContent=timeValue(new Date());
+      await loadLawyerManagement();
+      if(els.dashboardLawyerPending)els.dashboardLawyerPending.textContent=String(lawyerApplications.length);
+      if(els.dashboardLawyerPublished)els.dashboardLawyerPublished.textContent=els.lawyersPublishedCount?.textContent||'0';
+      if(els.dashboardLawyerEdits)els.dashboardLawyerEdits.textContent=els.lawyerEditRequestsCount?.textContent||'0';
+      if(els.navLawyersCount)els.navLawyersCount.textContent=String(lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));
+      await refreshPendingAdminCounts();setStatus('');
+    }catch(error){console.error(error);setStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.',true);}
+  }
+  async function loadLawyerManagement(){
     await Promise.all([loadLawyerApplications(),loadLawyerProfiles()]);
     await loadLawyerEditRequests();
   }
 
-  async function loadLawyerEditRequests(){
+  async function loadLawyerEditRequests(reset=true){
     if(!isAdmin||!window.publicAuth?.firestore||!els.lawyerEditRequestsBody)return;
+    const db=window.publicAuth.firestore,body=els.lawyerEditRequestsBody,key='lawyer-edit-requests';
     try{
-      const snap=await window.publicAuth.firestore.collection('lawyerEditRequests').get();
-      const requests=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.status||'').toLowerCase()==='pending');
-      requests.sort((a,b)=>{const av=a.createdAt&&typeof a.createdAt.toMillis==='function'?a.createdAt.toMillis():0,bv=b.createdAt&&typeof b.createdAt.toMillis==='function'?b.createdAt.toMillis():0;return bv-av;});
-      if(els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=requests.length;
-      setPendingCount('lawyers',lawyerApplications.length+requests.length);
-      const profilesById=new Map(lawyerProfiles.map(p=>[p.id,p]));
-      els.lawyerEditRequestsBody.innerHTML=requests.length?requests.map(r=>{
-        const p=profilesById.get(r.profileId)||{};
-        const d=r.data||{};
-        const changes=['phone','address','office','workingHours','specializations','governorate','district','name'].filter(k=>String(d[k]??'')!==String(p[k]??''));
+      const query=()=>db.collection('lawyerEditRequests').where('status','==','pending');
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      if(reset&&total!==null&&els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=String(total);
+      const profilesById=new Map(lawyerProfiles.map(profile=>[profile.id,profile]));
+      const html=page.docs.map(doc=>{
+        const request={id:doc.id,...doc.data()},profile=profilesById.get(request.profileId)||{},data=request.data||{};
+        const changes=['phone','address','office','workingHours','specializations','governorate','district','name'].filter(field=>String(data[field]??'')!==String(profile[field]??''));
         const labels={phone:'الهاتف',address:'العنوان',office:'المكتب',workingHours:'الدوام',specializations:'الاختصاصات',governorate:'المحافظة',district:'القضاء/المنطقة',name:'الاسم'};
-        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طلب تعديل بيانات</span><h4>'+esc(p.name||d.name||'المحامي')+'</h4><span class="firebase-admin-record-sub">'+esc(r.applicantEmail||'')+'</span></div><span class="lawyer-admin-status is-off">قيد المراجعة</span></div><div class="firebase-admin-record-field"><span>الحقول المطلوب تعديلها</span><p>'+esc(changes.map(k=>labels[k]).join('، ')||'تحديث بيانات')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(r.createdAt))+'</div><div class="lawyer-admin-actions"><button class="approve" data-lawyer-edit-approve="'+esc(r.id)+'">اعتماد التعديل</button><button class="reject" data-lawyer-edit-reject="'+esc(r.id)+'">رفض</button></div></article>';
-      }).join(''):'<p class="firebase-admin-list-state">لا توجد طلبات تعديل قيد المراجعة.</p>';
-      els.lawyerEditRequestsBody.querySelectorAll('[data-lawyer-edit-approve]').forEach(el=>el.onclick=()=>approveLawyerEditRequest(requests.find(x=>x.id===el.dataset.lawyerEditApprove)));
-      els.lawyerEditRequestsBody.querySelectorAll('[data-lawyer-edit-reject]').forEach(el=>el.onclick=()=>rejectLawyerEditRequest(requests.find(x=>x.id===el.dataset.lawyerEditReject)));
-    }catch(e){console.error('Lawyer edit requests load failed:',e);els.lawyerEditRequestsBody.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات التعديل.</p>';}
-  }
-
-  async function loadLawyerApplications(){
-    if(!isAdmin||!window.publicAuth?.firestore||!els.lawyersBody)return;
-    try{
-      const snap=await window.publicAuth.firestore.collection('lawyerApplications').where('status','==','pending').get();
-      lawyerApplications=snap.docs.map(d=>({id:d.id,...d.data()}));
-      lawyerApplications.sort((a,b)=>{const av=a.createdAt&&typeof a.createdAt.toMillis==='function'?a.createdAt.toMillis():0,bv=b.createdAt&&typeof b.createdAt.toMillis==='function'?b.createdAt.toMillis():0;return bv-av;});
-      if(els.lawyersPendingCount)els.lawyersPendingCount.textContent=lawyerApplications.length;
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طلب تعديل بيانات</span><h4>'+esc(profile.name||data.name||'المحامي')+'</h4><span class="firebase-admin-record-sub">'+esc(request.applicantEmail||'')+'</span></div><span class="lawyer-admin-status is-off">قيد المراجعة</span></div><div class="firebase-admin-record-field"><span>الحقول المطلوب تعديلها</span><p>'+esc(changes.map(field=>labels[field]).join('، ')||'تحديث بيانات')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(request.createdAt))+'</div><div class="lawyer-admin-actions"><button class="approve" data-lawyer-edit-approve="'+esc(request.id)+'">اعتماد التعديل</button><button class="reject" data-lawyer-edit-reject="'+esc(request.id)+'">رفض</button></div></article>';
+      }).join('');
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد طلبات تعديل قيد المراجعة.</p>';
+      const requests=page.items.map(doc=>({id:doc.id,...doc.data()}));
       setPendingCount('lawyers',lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));
-      els.lawyersBody.innerHTML=lawyerApplications.length?lawyerApplications.map(a=>'<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طلب انضمام إلى الدليل</span><h4>'+esc(a.name||'محامٍ')+'</h4><span class="firebase-admin-record-sub">'+esc(a.applicantEmail||'')+'</span></div><span class="lawyer-admin-status is-off">قيد المراجعة</span></div><div class="firebase-admin-record-field"><span>الموقع والهاتف</span><p>'+esc([a.governorate,a.district].filter(Boolean).join(' — ')||'غير محدد')+' · '+esc(a.phone||'غير متوفر')+'</p></div><div class="firebase-admin-record-field"><span>الاختصاصات</span><p>'+esc((a.specializations||[]).join('، ')||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ التقديم: '+esc(dateValue(a.createdAt))+' · الهوية تُرسل خارج المنصة</div><div class="lawyer-admin-actions"><button class="approve" data-lawyer-approve="'+esc(a.id)+'">موافقة ونشر</button><button class="reject" data-lawyer-reject="'+esc(a.id)+'">رفض</button><button data-lawyer-edit-app="'+esc(a.id)+'">تعديل</button><button class="reject" data-lawyer-delete-app="'+esc(a.id)+'">حذف</button></div></article>').join(''):'<p class="firebase-admin-list-state">لا توجد طلبات قيد المراجعة.</p>';
-      els.lawyersBody.querySelectorAll('[data-lawyer-approve]').forEach(el=>el.onclick=()=>approveLawyer(lawyerApplications.find(x=>x.id===el.dataset.lawyerApprove)));
-      els.lawyersBody.querySelectorAll('[data-lawyer-reject]').forEach(el=>el.onclick=()=>rejectLawyer(lawyerApplications.find(x=>x.id===el.dataset.lawyerReject)));
-      els.lawyersBody.querySelectorAll('[data-lawyer-edit-app]').forEach(el=>el.onclick=()=>openLawyerEdit(lawyerApplications.find(x=>x.id===el.dataset.lawyerEditApp),'application'));
-      els.lawyersBody.querySelectorAll('[data-lawyer-delete-app]').forEach(el=>el.onclick=()=>deleteLawyerApplication(lawyerApplications.find(x=>x.id===el.dataset.lawyerDeleteApp)));
-    }catch(e){console.error('Lawyer applications load failed:',e);els.lawyersBody.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات المحامين. تحقق من القواعد.</p>';}
+      body.querySelectorAll('[data-lawyer-edit-approve]').forEach(button=>button.onclick=()=>approveLawyerEditRequest(requests.find(item=>item.id===button.dataset.lawyerEditApprove)));
+      body.querySelectorAll('[data-lawyer-edit-reject]').forEach(button=>button.onclick=()=>rejectLawyerEditRequest(requests.find(item=>item.id===button.dataset.lawyerEditReject)));
+      setAdminLoadMore(body,key,loadLawyerEditRequests);
+    }catch(error){console.error('Lawyer edit requests load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات التعديل.</p>';}
   }
 
-  async function loadLawyerProfiles(){
-    if(!isAdmin||!window.publicAuth?.firestore||!els.lawyersPublishedBody)return;
+  async function loadLawyerApplications(reset=true){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.lawyersBody)return;
+    const db=window.publicAuth.firestore,body=els.lawyersBody,key='lawyer-applications';
     try{
-      const snap=await window.publicAuth.firestore.collection('lawyerProfiles').get();
-      lawyerProfiles=snap.docs.map(d=>({id:d.id,...d.data()}));
-      lawyerProfiles.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ar'));
-      if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=lawyerProfiles.length;
-      els.lawyersPublishedBody.innerHTML=lawyerProfiles.length?lawyerProfiles.map(p=>{
-         const specialties=(Array.isArray(p.specializations)?p.specializations:String(p.specializations||'').split(/[،,]/)).map(v=>String(v||'').trim()).filter(Boolean);
-         const location=[p.governorate,p.district].filter(Boolean).join(' — ')||'الموقع غير محدد';
-         const phone=String(p.phone||'').trim();
-         const office=String(p.office||'').trim();
-         const address=String(p.address||'').trim();
-         const hours=String(p.workingHours||'').trim();
-         return '<article class="firebase-admin-record-card lawyer-directory-admin-card"><div class="lawyer-directory-admin-head"><span class="lawyer-directory-admin-avatar" aria-hidden="true"><i class="fas fa-user-tie"></i></span><div class="lawyer-directory-admin-identity"><span class="firebase-admin-record-eyebrow">ملف في دليل المحامين</span><h4>'+esc(p.name||'محامٍ')+'</h4><span class="lawyer-directory-admin-location"><i class="fas fa-location-dot" aria-hidden="true"></i> '+esc(location)+'</span></div><span class="lawyer-admin-status '+(p.published?'is-live':'is-off')+'">'+(p.published?'ظاهر للطلاب':'معطّل عن الظهور')+'</span></div><div class="lawyer-directory-admin-details">'+(phone?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-phone" aria-hidden="true"></i> رقم الهاتف</span><strong dir="ltr">'+esc(phone)+'</strong></div>':'')+(office?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-briefcase" aria-hidden="true"></i> المكتب</span><strong>'+esc(office)+'</strong></div>':'')+(address?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-map-pin" aria-hidden="true"></i> العنوان</span><strong>'+esc(address)+'</strong></div>':'')+(hours?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-clock" aria-hidden="true"></i> ساعات العمل</span><strong>'+esc(hours)+'</strong></div>':'')+'</div><div class="lawyer-directory-admin-specialties"><span>الاختصاصات</span><div>'+(specialties.length?specialties.map(s=>'<span>'+esc(s)+'</span>').join(''):'<small>لم تُحدد الاختصاصات</small>')+'</div></div><div class="lawyer-admin-actions lawyer-directory-admin-actions"><button type="button" data-lawyer-edit-profile="'+esc(p.id)+'"><i class="fas fa-pen" aria-hidden="true"></i> تعديل</button><button type="button" class="'+(p.published?'reject':'approve')+'" data-lawyer-toggle="'+esc(p.id)+'"><i class="fas '+(p.published?'fa-eye-slash':'fa-eye')+'" aria-hidden="true"></i> '+(p.published?'تعطيل الظهور':'إعادة التفعيل')+'</button><button type="button" class="reject" data-lawyer-delete-profile="'+esc(p.id)+'"><i class="fas fa-trash" aria-hidden="true"></i> حذف</button></div></article>';
-       }).join(''):'<p class="firebase-admin-list-state">لا توجد ملفات محامين حتى الآن.</p>';
-       const publishedTotal=els.section.querySelector('#fa-lawyers-published-total');
-       if(publishedTotal)publishedTotal.textContent=String(lawyerProfiles.length);
-      els.lawyersPublishedBody.querySelectorAll('[data-lawyer-edit-profile]').forEach(el=>el.onclick=()=>openLawyerEdit(lawyerProfiles.find(x=>x.id===el.dataset.lawyerEditProfile),'profile'));
-      els.lawyersPublishedBody.querySelectorAll('[data-lawyer-toggle]').forEach(el=>el.onclick=()=>toggleLawyerVisibility(lawyerProfiles.find(x=>x.id===el.dataset.lawyerToggle)));
-      els.lawyersPublishedBody.querySelectorAll('[data-lawyer-delete-profile]').forEach(el=>el.onclick=()=>deleteLawyerProfile(lawyerProfiles.find(x=>x.id===el.dataset.lawyerDeleteProfile)));
-    }catch(e){console.error('Lawyer profiles load failed:',e);els.lawyersPublishedBody.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل ملفات المحامين. تحقق من قواعد Firestore.</p>';}
+      const query=()=>db.collection('lawyerApplications').where('status','==','pending');
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      lawyerApplications=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      if(reset&&total!==null&&els.lawyersPendingCount)els.lawyersPendingCount.textContent=String(total);
+      const html=page.docs.map(doc=>{
+        const application={id:doc.id,...doc.data()};
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طلب انضمام إلى الدليل</span><h4>'+esc(application.name||'محامٍ')+'</h4><span class="firebase-admin-record-sub">'+esc(application.applicantEmail||'')+'</span></div><span class="lawyer-admin-status is-off">قيد المراجعة</span></div><div class="firebase-admin-record-field"><span>الموقع والهاتف</span><p>'+esc([application.governorate,application.district].filter(Boolean).join(' — ')||'غير محدد')+' · '+esc(application.phone||'غير متوفر')+'</p></div><div class="firebase-admin-record-field"><span>الاختصاصات</span><p>'+esc((application.specializations||[]).join('، ')||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ التقديم: '+esc(dateValue(application.createdAt))+' · الهوية تُرسل خارج المنصة</div><div class="lawyer-admin-actions"><button class="approve" data-lawyer-approve="'+esc(application.id)+'">موافقة ونشر</button><button class="reject" data-lawyer-reject="'+esc(application.id)+'">رفض</button><button data-lawyer-edit-app="'+esc(application.id)+'">تعديل</button><button class="reject" data-lawyer-delete-app="'+esc(application.id)+'">حذف</button></div></article>';
+      }).join('');
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد طلبات قيد المراجعة.</p>';
+      body.querySelectorAll('[data-lawyer-approve]').forEach(button=>button.onclick=()=>approveLawyer(lawyerApplications.find(item=>item.id===button.dataset.lawyerApprove)));
+      body.querySelectorAll('[data-lawyer-reject]').forEach(button=>button.onclick=()=>rejectLawyer(lawyerApplications.find(item=>item.id===button.dataset.lawyerReject)));
+      body.querySelectorAll('[data-lawyer-edit-app]').forEach(button=>button.onclick=()=>openLawyerEdit(lawyerApplications.find(item=>item.id===button.dataset.lawyerEditApp),'application'));
+      body.querySelectorAll('[data-lawyer-delete-app]').forEach(button=>button.onclick=()=>deleteLawyerApplication(lawyerApplications.find(item=>item.id===button.dataset.lawyerDeleteApp)));
+      setPendingCount('lawyers',lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));
+      setAdminLoadMore(body,key,loadLawyerApplications);
+    }catch(error){console.error('Lawyer applications load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات المحامين. تحقق من القواعد.</p>';}
+  }
+
+  async function loadLawyerProfiles(reset=true){
+    if(!isAdmin||!window.publicAuth?.firestore||!els.lawyersPublishedBody)return;
+    const db=window.publicAuth.firestore,body=els.lawyersPublishedBody,key='lawyer-profiles';
+    try{
+      const query=()=>db.collection('lawyerProfiles');
+      const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?exactQueryCount(query):Promise.resolve(null)]);
+      lawyerProfiles=page.items.map(doc=>({id:doc.id,...doc.data()}));
+      if(reset&&total!==null){
+        if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=String(total);
+        const totalNode=els.section.querySelector('#fa-lawyers-published-total');
+        if(totalNode)totalNode.textContent=String(total);
+      }
+      const html=page.docs.map(doc=>{
+        const profile={id:doc.id,...doc.data()};
+        const specialties=(Array.isArray(profile.specializations)?profile.specializations:String(profile.specializations||'').split(/[،,]/)).map(value=>String(value||'').trim()).filter(Boolean);
+        const location=[profile.governorate,profile.district].filter(Boolean).join(' — ')||'الموقع غير محدد';
+        const phone=String(profile.phone||'').trim(),office=String(profile.office||'').trim(),address=String(profile.address||'').trim(),hours=String(profile.workingHours||'').trim();
+        return '<article class="firebase-admin-record-card lawyer-directory-admin-card"><div class="lawyer-directory-admin-head"><span class="lawyer-directory-admin-avatar" aria-hidden="true"><i class="fas fa-user-tie"></i></span><div class="lawyer-directory-admin-identity"><span class="firebase-admin-record-eyebrow">ملف في دليل المحامين</span><h4>'+esc(profile.name||'محامٍ')+'</h4><span class="lawyer-directory-admin-location"><i class="fas fa-location-dot" aria-hidden="true"></i> '+esc(location)+'</span></div><span class="lawyer-admin-status '+(profile.published?'is-live':'is-off')+'">'+(profile.published?'ظاهر للطلاب':'معطّل عن الظهور')+'</span></div><div class="lawyer-directory-admin-details">'+(phone?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-phone" aria-hidden="true"></i> رقم الهاتف</span><strong dir="ltr">'+esc(phone)+'</strong></div>':'')+(office?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-briefcase" aria-hidden="true"></i> المكتب</span><strong>'+esc(office)+'</strong></div>':'')+(address?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-map-pin" aria-hidden="true"></i> العنوان</span><strong>'+esc(address)+'</strong></div>':'')+(hours?'<div class="lawyer-directory-admin-detail"><span><i class="fas fa-clock" aria-hidden="true"></i> ساعات العمل</span><strong>'+esc(hours)+'</strong></div>':'')+'</div><div class="lawyer-directory-admin-specialties"><span>الاختصاصات</span><div>'+(specialties.length?specialties.map(value=>'<span>'+esc(value)+'</span>').join(''):'<small>لم تُحدد الاختصاصات</small>')+'</div></div><div class="lawyer-admin-actions lawyer-directory-admin-actions"><button type="button" data-lawyer-edit-profile="'+esc(profile.id)+'"><i class="fas fa-pen" aria-hidden="true"></i> تعديل</button><button type="button" class="'+(profile.published?'reject':'approve')+'" data-lawyer-toggle="'+esc(profile.id)+'"><i class="fas '+(profile.published?'fa-eye-slash':'fa-eye')+'" aria-hidden="true"></i> '+(profile.published?'تعطيل الظهور':'إعادة التفعيل')+'</button><button type="button" class="reject" data-lawyer-delete-profile="'+esc(profile.id)+'"><i class="fas fa-trash" aria-hidden="true"></i> حذف</button></div></article>';
+      }).join('');
+      if(reset)body.innerHTML='';
+      if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد ملفات محامين حتى الآن.</p>';
+      body.querySelectorAll('[data-lawyer-edit-profile]').forEach(button=>button.onclick=()=>openLawyerEdit(lawyerProfiles.find(item=>item.id===button.dataset.lawyerEditProfile),'profile'));
+      body.querySelectorAll('[data-lawyer-toggle]').forEach(button=>button.onclick=()=>toggleLawyerVisibility(lawyerProfiles.find(item=>item.id===button.dataset.lawyerToggle)));
+      body.querySelectorAll('[data-lawyer-delete-profile]').forEach(button=>button.onclick=()=>deleteLawyerProfile(lawyerProfiles.find(item=>item.id===button.dataset.lawyerDeleteProfile)));
+      setAdminLoadMore(body,key,loadLawyerProfiles);
+    }catch(error){console.error('Lawyer profiles load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل ملفات المحامين. تحقق من قواعد Firestore.</p>';}
   }
 
   const procedureAdminCategories={civil:{title:'الدعاوى المدنية',icon:'fa-landmark'},criminal:{title:'الدعاوى الجزائية',icon:'fa-scale-balanced'},administrative:{title:'الدعاوى الإدارية',icon:'fa-building-columns'},personal:{title:'دعاوى الأحوال الشخصية',icon:'fa-people-roof'}};
