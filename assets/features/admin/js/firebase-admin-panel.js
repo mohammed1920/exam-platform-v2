@@ -1192,9 +1192,8 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       navigation.appendChild(item);
     }
     section.querySelectorAll('[data-mizan-open]').forEach(button=>button.addEventListener('click',open));
-    window.addEventListener('mizan:refresh-forum-pending-counts',refreshPendingCounts);
-
     if(document.getElementById('mizan-admin-view'))return;
+    window.addEventListener('mizan:refresh-forum-pending-counts',refreshPendingCounts);
 
     const view=document.createElement('section');
     view.id='mizan-admin-view';
