@@ -98,6 +98,7 @@
       const user = event.detail?.user || null;
       if (!user) {
         lastUserUid = null;
+        window.mizanAdminAccess = null;
         return;
       }
       if (user.uid !== lastUserUid) syncAdminAccess();
