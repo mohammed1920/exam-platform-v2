@@ -283,14 +283,14 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
     try{
       const db=window.publicAuth.firestore;
-      const [procedureSnap,petitionSnap]=await Promise.all([
-        db.collection('procedureAccessRequests').where('status','==','pending').get(),
-        db.collection('petitionAccessRequests').where('status','==','pending').get()
+      const [procedureCount,petitionCount]=await Promise.all([
+        exactQueryCount(()=>db.collection('procedureAccessRequests').where('status','==','pending')),
+        exactQueryCount(()=>db.collection('petitionAccessRequests').where('status','==','pending'))
       ]);
-      const lawyerCount=lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0);
+      const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
-      setPendingCount('procedures',procedureSnap.size);
-      setPendingCount('petitions',petitionSnap.size);
+      setPendingCount('procedures',procedureCount);
+      setPendingCount('petitions',petitionCount);
       window.dispatchEvent(new CustomEvent('mizan:refresh-forum-pending-counts'));
     }catch(error){console.warn('تعذر تحديث مؤشرات الطلبات المعلقة:',error);}
   }
@@ -371,10 +371,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       await loadStudentPage(true);
       els.studentsUpdated.textContent=timeValue(new Date());
       await loadLawyerManagement();
-      if(els.dashboardLawyerPending)els.dashboardLawyerPending.textContent=String(lawyerApplications.length);
+      if(els.dashboardLawyerPending)els.dashboardLawyerPending.textContent=els.lawyersPendingCount?.textContent||'0';
       if(els.dashboardLawyerPublished)els.dashboardLawyerPublished.textContent=els.lawyersPublishedCount?.textContent||'0';
       if(els.dashboardLawyerEdits)els.dashboardLawyerEdits.textContent=els.lawyerEditRequestsCount?.textContent||'0';
-      if(els.navLawyersCount)els.navLawyersCount.textContent=String(lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));
+      if(els.navLawyersCount)els.navLawyersCount.textContent=String((Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0));
       await refreshPendingAdminCounts();setStatus('');
     }catch(error){console.error(error);setStatus('تعذر تحميل بيانات الإدارة. تحقق من قواعد Firestore وصلاحية الحساب.',true);}
   }
@@ -401,7 +401,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       if(html)body.insertAdjacentHTML('beforeend',html);
       if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد طلبات تعديل قيد المراجعة.</p>';
       const requests=page.items.map(doc=>({id:doc.id,...doc.data()}));
-      setPendingCount('lawyers',lawyerApplications.length+(Number(els.lawyerEditRequestsCount?.textContent)||0));
+      setPendingCount('lawyers',(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0));
       body.querySelectorAll('[data-lawyer-edit-approve]').forEach(button=>button.onclick=()=>approveLawyerEditRequest(requests.find(item=>item.id===button.dataset.lawyerEditApprove)));
       body.querySelectorAll('[data-lawyer-edit-reject]').forEach(button=>button.onclick=()=>rejectLawyerEditRequest(requests.find(item=>item.id===button.dataset.lawyerEditReject)));
       setAdminLoadMore(body,key,loadLawyerEditRequests);
