@@ -285,13 +285,13 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(view==='procedures'){loadProcedureAccessRequests();loadLegalProcedures();}if(view==='petitions'){loadPetitionAccessRequests();loadPetitions();}
   }
   function setPendingCount(key,count){
-    const value=Math.max(0,Number(count)||0);
+    const value=count===null?'—':String(Math.max(0,Number(count)||0));
     const targets={
       lawyers:[els.navLawyersCount,...els.section.querySelectorAll('[data-admin-count="lawyers"]')],
       procedures:[els.navProceduresCount,els.proceduresAccessCount,els.proceduresAccessCardCount,...els.section.querySelectorAll('[data-admin-count="procedures"]')],
       petitions:[els.navPetitionsCount,els.petitionsAccessCount,els.petitionsAccessCardCount,...els.section.querySelectorAll('[data-admin-count="petitions"]')]
     }[key]||[];
-    targets.forEach(node=>{if(!node)return;node.textContent=String(value);node.hidden=value===0;});
+    targets.forEach(node=>{if(!node)return;node.textContent=value;node.hidden=value==='0';});
   }
   async function refreshPendingAdminCounts(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
@@ -300,7 +300,9 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
         safeQueryCount('procedureAccessRequests',[['status','==','pending']]),
         safeQueryCount('petitionAccessRequests',[['status','==','pending']])
       ]);
-      const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
+      const lawyerPending=els.lawyersPendingCount?.textContent||'—';
+      const lawyerEdits=els.lawyerEditRequestsCount?.textContent||'—';
+      const lawyerCount=lawyerPending==='—'||lawyerEdits==='—'?null:(Number(lawyerPending)||0)+(Number(lawyerEdits)||0);
       setPendingCount('lawyers',lawyerCount);
       setPendingCount('procedures',procedureCount);
       setPendingCount('petitions',petitionCount);
@@ -404,7 +406,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     try{
       const query=()=>db.collection('lawyerEditRequests').where('status','==','pending');
       const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?safeQueryCount('lawyerEditRequests',[['status','==','pending']]):Promise.resolve(null)]);
-      if(reset&&total!==null&&els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=String(total);
+      if(reset&&els.lawyerEditRequestsCount)els.lawyerEditRequestsCount.textContent=total===null?'—':String(total);
       const profilesById=new Map(lawyerProfiles.map(profile=>[profile.id,profile]));
       const html=page.docs.map(doc=>{
         const request={id:doc.id,...doc.data()},profile=profilesById.get(request.profileId)||{},data=request.data||{};
@@ -430,7 +432,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const query=()=>db.collection('lawyerApplications').where('status','==','pending');
       const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?safeQueryCount('lawyerApplications',[['status','==','pending']]):Promise.resolve(null)]);
       lawyerApplications=page.items.map(doc=>({id:doc.id,...doc.data()}));
-      if(reset&&total!==null&&els.lawyersPendingCount)els.lawyersPendingCount.textContent=String(total);
+      if(reset&&els.lawyersPendingCount)els.lawyersPendingCount.textContent=total===null?'—':String(total);
       const html=page.docs.map(doc=>{
         const application={id:doc.id,...doc.data()};
         return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طلب انضمام إلى الدليل</span><h4>'+esc(application.name||'محامٍ')+'</h4><span class="firebase-admin-record-sub">'+esc(application.applicantEmail||'')+'</span></div><span class="lawyer-admin-status is-off">قيد المراجعة</span></div><div class="firebase-admin-record-field"><span>الموقع والهاتف</span><p>'+esc([application.governorate,application.district].filter(Boolean).join(' — ')||'غير محدد')+' · '+esc(application.phone||'غير متوفر')+'</p></div><div class="firebase-admin-record-field"><span>الاختصاصات</span><p>'+esc((application.specializations||[]).join('، ')||'غير محددة')+'</p></div><div class="firebase-admin-record-meta">تاريخ التقديم: '+esc(dateValue(application.createdAt))+' · الهوية تُرسل خارج المنصة</div><div class="lawyer-admin-actions"><button class="approve" data-lawyer-approve="'+esc(application.id)+'">موافقة ونشر</button><button class="reject" data-lawyer-reject="'+esc(application.id)+'">رفض</button><button data-lawyer-edit-app="'+esc(application.id)+'">تعديل</button><button class="reject" data-lawyer-delete-app="'+esc(application.id)+'">حذف</button></div></article>';
@@ -454,10 +456,10 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       const query=()=>db.collection('lawyerProfiles');
       const [page,total]=await Promise.all([fetchAdminPage(key,query,reset),reset?safeQueryCount('lawyerProfiles'):Promise.resolve(null)]);
       lawyerProfiles=page.items.map(doc=>({id:doc.id,...doc.data()}));
-      if(reset&&total!==null){
-        if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=String(total);
+      if(reset){
+        if(els.lawyersPublishedCount)els.lawyersPublishedCount.textContent=total===null?'—':String(total);
         const totalNode=els.section.querySelector('#fa-lawyers-published-total');
-        if(totalNode)totalNode.textContent=String(total);
+        if(totalNode)totalNode.textContent=total===null?'—':String(total);
       }
       const html=page.docs.map(doc=>{
         const profile={id:doc.id,...doc.data()};
@@ -480,13 +482,15 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function setProcedureAdminPanel(panel){if(!['access','add','library'].includes(panel))return;els.proceduresHub?.querySelectorAll('[data-procedures-panel]').forEach(button=>{const active=button.dataset.proceduresPanel===panel;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});['access','add','library'].forEach(key=>{const node=els.section.querySelector('#fa-procedures-panel-'+key);if(node)node.hidden=key!==panel;});if(panel==='library')renderProcedureAdminLibrary();}
   function renderProcedureAdminCategoryCards(){
     if(!els.proceduresCategories)return;
-    const total=Object.values(procedureCategoryCounts).reduce((sum,item)=>sum+item.total,0);
+    const counts=Object.values(procedureCategoryCounts);
+    const total=counts.some(item=>item.total===null)?null:counts.reduce((sum,item)=>sum+item.total,0);
     els.proceduresCategories.innerHTML=Object.entries(procedureAdminCategories).map(([key,category])=>{
-      const count=procedureCategoryCounts[key]||{total:0,published:0,unpublished:0};
-      return '<button type="button" class="firebase-admin-content-category" data-procedure-admin-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+count.total+' إجراء · '+count.published+' منشور · '+count.unpublished+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow"></i></button>';
+      const count=procedureCategoryCounts[key]||{total:null,published:null,unpublished:null};
+      const display=value=>value===null?'—':String(value);
+      return '<button type="button" class="firebase-admin-content-category" data-procedure-admin-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+display(count.total)+' إجراء · '+display(count.published)+' منشور · '+display(count.unpublished)+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow"></i></button>';
     }).join('');
-    if(els.proceduresTotalCount)els.proceduresTotalCount.textContent=String(total);
-    if(els.proceduresLibrarySummary)els.proceduresLibrarySummary.textContent=total+' إجراء في 4 تصنيفات';
+    if(els.proceduresTotalCount)els.proceduresTotalCount.textContent=total===null?'—':String(total);
+    if(els.proceduresLibrarySummary)els.proceduresLibrarySummary.textContent=(total===null?'—':String(total))+' إجراء في 4 تصنيفات';
   }
   function renderProcedureAdminCategoryItems(){
     if(!els.proceduresCategoryItems||!activeProcedureAdminCategory)return;
@@ -600,13 +604,15 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   function renderPetitionCategoryCards(){
     if(!els.petitionsCategories)return;
-    const total=Object.values(petitionCategoryCounts).reduce((sum,item)=>sum+item.total,0);
+    const counts=Object.values(petitionCategoryCounts);
+    const total=counts.some(item=>item.total===null)?null:counts.reduce((sum,item)=>sum+item.total,0);
     els.petitionsCategories.innerHTML=Object.entries(petitionCategories).map(([key,category])=>{
-      const count=petitionCategoryCounts[key]||{total:0,published:0,unpublished:0};
-      return '<button type="button" class="firebase-admin-content-category" data-petition-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'" aria-hidden="true"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+count.total+' نموذج · '+count.published+' منشور · '+count.unpublished+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow" aria-hidden="true"></i></button>';
+      const count=petitionCategoryCounts[key]||{total:null,published:null,unpublished:null};
+      const display=value=>value===null?'—':String(value);
+      return '<button type="button" class="firebase-admin-content-category" data-petition-category="'+key+'"><span class="firebase-admin-content-category-icon"><i class="fas '+category.icon+'" aria-hidden="true"></i></span><span class="firebase-admin-content-category-copy"><strong>'+esc(category.title)+'</strong><small>'+display(count.total)+' نموذج · '+display(count.published)+' منشور · '+display(count.unpublished)+' غير منشور</small></span><i class="fas fa-chevron-left firebase-admin-content-category-arrow" aria-hidden="true"></i></button>';
     }).join('');
-    if(els.petitionsTotalCount)els.petitionsTotalCount.textContent=String(total);
-    if(els.petitionsLibrarySummary)els.petitionsLibrarySummary.textContent=total+' نموذج في '+Object.keys(petitionCategories).length+' تصنيفات';
+    if(els.petitionsTotalCount)els.petitionsTotalCount.textContent=total===null?'—':String(total);
+    if(els.petitionsLibrarySummary)els.petitionsLibrarySummary.textContent=(total===null?'—':String(total))+' نموذج في '+Object.keys(petitionCategories).length+' تصنيفات';
   }
   function renderPetitionCategoryItems(){
     if(!els.petitionsCategoryItems||!activePetitionCategory)return;
