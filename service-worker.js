@@ -89,7 +89,7 @@ function staleWhileRevalidate(request, event) {
   const cachedPromise = cachePromise.then(cache => cache.match(request, { ignoreSearch: true }));
 
   const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
-    const networkResponse = await fetch(request, { cache: 'no-store' });
+    const networkResponse = await fetch(request, { cache: 'no-cache' });
 
     if (networkResponse.ok) {
       const url = new URL(request.url);
