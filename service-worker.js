@@ -69,9 +69,7 @@ function vendorStaleWhileRevalidate(request, event) {
   const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
     const response = await fetch(request, { cache: 'no-cache' });
     if (response.ok || response.type === 'opaque') {
-      const changed = Boolean(cachedResponse && response.type !== 'opaque' && await responseChanged(cachedResponse, response));
       await cache.put(request, response.clone());
-      if (changed) await notifyClientsAboutUpdate();
     }
     return response;
   });
@@ -106,54 +104,16 @@ function getAppRelativePath(requestUrl) {
   return url.pathname.slice(MIZAN_SCOPE_PATH.length).replace(/^\/+/, '');
 }
 
-async function notifyClientsAboutUpdate() {
-  const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-  for (const client of clients) {
-    client.postMessage({ type: 'MIZAN_UPDATE_AVAILABLE' });
-  }
-}
 
-async function responseChanged(previousResponse, nextResponse) {
-  const oldTag = previousResponse.headers.get('etag');
-  const newTag = nextResponse.headers.get('etag');
-  if (oldTag && newTag) return oldTag !== newTag;
 
-  const oldModified = previousResponse.headers.get('last-modified');
-  const newModified = nextResponse.headers.get('last-modified');
-  if (oldModified && newModified && oldModified !== newModified) return true;
-
-  try {
-    const [oldBody, newBody] = await Promise.all([
-      previousResponse.clone().text(),
-      nextResponse.clone().text()
-    ]);
-    return oldBody !== newBody;
-  } catch (_) {
-    return false;
-  }
-}
-
-async function networkFirstWithCache(request, cacheName, announceUpdates) {
+async function networkFirstWithCache(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cachedResponse = await cache.match(request);
 
   try {
     const networkResponse = await fetch(request, { cache: 'no-store' });
-
-    if (networkResponse.ok) {
-      const changed = Boolean(
-        cachedResponse &&
-        announceUpdates &&
-        await responseChanged(cachedResponse, networkResponse)
-      );
-
-      await cache.put(request, networkResponse.clone());
-
-      if (changed) await notifyClientsAboutUpdate();
-    } else if (networkResponse.status === 404 && cachedResponse) {
-      await cache.delete(request);
-    }
-
+    if (networkResponse.ok) await cache.put(request, networkResponse.clone());
+    else if (networkResponse.status === 404 && cachedResponse) await cache.delete(request);
     return networkResponse;
   } catch (error) {
     if (cachedResponse) return cachedResponse;
@@ -163,32 +123,16 @@ async function networkFirstWithCache(request, cacheName, announceUpdates) {
 
 function staleWhileRevalidate(request, event) {
   const cachePromise = caches.open(MIZAN_STATIC_CACHE);
-  const cachedPromise = cachePromise.then(cache => cache.match(request, { ignoreSearch: true }));
+  // Keep versioned assets isolated: v1.2 and v1.3 are different resources.
+  const cachedPromise = cachePromise.then(cache => cache.match(request));
 
-  const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache, cachedResponse]) => {
+  const refreshPromise = Promise.all([cachePromise, cachedPromise]).then(async ([cache]) => {
     const networkResponse = await fetch(request, { cache: 'no-cache' });
-
-    if (networkResponse.ok) {
-      const url = new URL(request.url);
-      const isExecutableAsset = /\.(?:css|js|mjs)$/i.test(url.pathname);
-      const changed = Boolean(
-        cachedResponse &&
-        isExecutableAsset &&
-        await responseChanged(cachedResponse, networkResponse)
-      );
-
-      await cache.put(request, networkResponse.clone());
-
-      if (changed) await notifyClientsAboutUpdate();
-    } else if (networkResponse.status === 404 && cachedResponse) {
-      await cache.delete(request);
-      await notifyClientsAboutUpdate();
-    }
-
+    if (networkResponse.ok) await cache.put(request, networkResponse.clone());
+    else if (networkResponse.status === 404) await cache.delete(request);
     return networkResponse;
   });
 
-  // Extend the fetch event synchronously while the cached response is returned.
   event.waitUntil(refreshPromise.then(() => undefined).catch(() => {}));
   return cachedPromise.then(cachedResponse => cachedResponse || refreshPromise);
 }
@@ -316,14 +260,14 @@ self.addEventListener('fetch', event => {
     relativePath === 'data/books.json' ||
     relativePath === 'data/question-metadata.json'
   ) {
-    event.respondWith(networkFirstWithCache(request, MIZAN_BOOK_CATALOG_CACHE, true));
+    event.respondWith(networkFirstWithCache(request, MIZAN_BOOK_CATALOG_CACHE));
     return;
   }
 
   // Legal texts are cached only after they are requested successfully.
   // Online requests always revalidate; offline use falls back to the saved copy.
   if (relativePath.startsWith('data/laws/') && /\.json$/i.test(relativePath)) {
-    event.respondWith(networkFirstWithCache(request, MIZAN_LAW_LIBRARY_CACHE, true));
+    event.respondWith(networkFirstWithCache(request, MIZAN_LAW_LIBRARY_CACHE));
     return;
   }
 
