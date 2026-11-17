@@ -281,15 +281,13 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     const targets={
       lawyers:[els.navLawyersCount,...els.section.querySelectorAll('[data-admin-count="lawyers"]')],
       procedures:[els.navProceduresCount,els.proceduresAccessCount,els.proceduresAccessCardCount,...els.section.querySelectorAll('[data-admin-count="procedures"]')],
-      petitions:[els.navPetitionsCount,els.petitionsAccessCount,els.petitionsAccessCardCount,...els.section.querySelectorAll('[data-admin-count="petitions"]')],
-      forum:[...els.section.querySelectorAll('[data-admin-count="forum"]')]
+      petitions:[els.navPetitionsCount,els.petitionsAccessCount,els.petitionsAccessCardCount,...els.section.querySelectorAll('[data-admin-count="petitions"]')]
     }[key]||[];
     targets.forEach(node=>{if(!node)return;node.textContent=String(value);node.hidden=value===0;});
   }
   async function refreshPendingAdminCounts(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.section)return;
     try{
-      const db=window.publicAuth.firestore;
       const [procedureCount,petitionCount]=await Promise.all([\n        exactQueryCount('procedureAccessRequests',[['status','==','pending']]),\n        exactQueryCount('petitionAccessRequests',[['status','==','pending']])\n      ]);
       const lawyerCount=(Number(els.lawyersPendingCount?.textContent)||0)+(Number(els.lawyerEditRequestsCount?.textContent)||0);
       setPendingCount('lawyers',lawyerCount);
