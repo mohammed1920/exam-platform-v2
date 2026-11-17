@@ -86,7 +86,6 @@ required_files=(
   assets/features/student-account/js/student-account-patch.js
   assets/features/notifications/js/notifications.js
   assets/shared/js/platform-header-fix.js
-  assets/features/admin/js/admin-theme.js
   assets/features/admin/js/admin.js
   assets/features/home/js/home.js
   assets/features/judicial-institute/js/judicial-institute.js
