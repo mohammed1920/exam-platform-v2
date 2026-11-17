@@ -7,9 +7,6 @@
 
   const state = {
     timer: null,
-    cache: {},
-    lawyerProfiles: null,
-    lawyerProfilesPromise: null,
     requestId: 0
   };
 
@@ -24,10 +21,6 @@
       .trim();
   }
 
-  function basePath() {
-    return window.location.pathname.includes('/exam-platform-v2') ? '/exam-platform-v2' : '';
-  }
-
   function fieldText(obj) {
     if (obj == null) return '';
     if (typeof obj === 'string' || typeof obj === 'number') return String(obj);
@@ -37,37 +30,6 @@
       return fieldText(v);
     }).join(' ');
     return '';
-  }
-
-  function titleOf(obj) {
-    if (!obj || typeof obj !== 'object') return String(obj ?? '');
-    return obj.title || obj.name || obj.label || obj.full_name || obj.fullName ||
-      obj.subject || obj.topic || obj.question || obj.text || obj.description || '';
-  }
-
-  async function loadLawyerProfiles() {
-    if (!window.publicAuth?.firestore) return [];
-    if (state.lawyerProfiles !== null) return state.lawyerProfiles;
-    if (state.lawyerProfilesPromise) return state.lawyerProfilesPromise;
-
-    state.lawyerProfilesPromise = (async () => {
-      try {
-        const snap = await window.publicAuth.firestore
-          .collection('lawyerProfiles')
-          .where('published', '==', true)
-          .get();
-        state.lawyerProfiles = snap.docs.map(d => d.data());
-      } catch (_) {
-        // Cache a failed attempt for this page session to avoid repeated reads
-        // on every keystroke. A page reload retries the request.
-        state.lawyerProfiles = [];
-      } finally {
-        state.lawyerProfilesPromise = null;
-      }
-      return state.lawyerProfiles;
-    })();
-
-    return state.lawyerProfilesPromise;
   }
 
   async function buildIndex(query) {
@@ -302,8 +264,5 @@
   window.globalSearch = { search, buildIndex, clear: () => {
     clearTimeout(state.timer);
     state.requestId += 1;
-    state.cache = {};
-    state.lawyerProfiles = null;
-    state.lawyerProfilesPromise = null;
   } };
 })();
