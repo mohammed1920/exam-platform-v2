@@ -11,21 +11,7 @@ const MIZAN_SHELL_CACHE = `mizan-shell-${MIZAN_BUILD_ID}`;
 const MIZAN_BOOK_CATALOG_CACHE = 'mizan-book-catalog-v1';
 const MIZAN_LAW_LIBRARY_CACHE = 'mizan-law-library-v1';
 const MIZAN_VENDOR_CACHE = 'mizan-vendor-v1';
-const MIZAN_VENDOR_PRECACHE = [
-  'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800;900&display=swap',
-  'https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@700&family=Reem+Kufi:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-regular-400.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-brands-400.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-v4compatibility.woff2',
-  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css',
-  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/webfonts/fa-solid-900.woff2',
-  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/webfonts/fa-regular-400.woff2',
-  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/webfonts/fa-brands-400.woff2',
-  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/webfonts/fa-v4compatibility.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js'
-];
+
 
 const MIZAN_KEEP_CACHES = new Set([
   MIZAN_STATIC_CACHE,
@@ -77,24 +63,6 @@ function vendorStaleWhileRevalidate(request, event) {
   return cachedPromise.then(cachedResponse => cachedResponse || refreshPromise);
 }
 
-async function precacheVendorAsset(assetUrl, cache) {
-  const request = new Request(assetUrl, { mode: 'cors' });
-  const response = await fetch(request, { cache: 'no-store' });
-  if (!response.ok) return;
-  await cache.put(request, response.clone());
-
-  if (assetUrl.startsWith('https://fonts.googleapis.com/')) {
-    const cssText = await response.clone().text();
-    const fontUrls = [...new Set(cssText.split('url(').slice(1)
-      .map(part => part.split(')')[0].trim().replace(/^["']|["']$/g, ''))
-      .filter(url => url.startsWith('https://fonts.gstatic.com/')))];
-    await Promise.allSettled(fontUrls.map(async fontUrl => {
-      const fontRequest = new Request(fontUrl, { mode: 'cors' });
-      const fontResponse = await fetch(fontRequest, { cache: 'no-store' });
-      if (fontResponse.ok) await cache.put(fontRequest, fontResponse.clone());
-    }));
-  }
-}
 
 function getAppRelativePath(requestUrl) {
   const url = new URL(requestUrl);
