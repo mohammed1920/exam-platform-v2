@@ -1079,3 +1079,33 @@ html[data-theme="light"] .lawyer-directory-admin-detail{background:var(--mizan-b
 /* Cursor pagination controls shared by the admin lists and Mizan Forum. */
 .firebase-admin-load-more{grid-column:1/-1;justify-content:center;margin-top:var(--mizan-space-2)}
 .firebase-admin-load-more button{min-width:min(100%,15rem)}
+
+/* Temporary, mobile-safe admin diagnostics; removed after root-cause verification. */
+.firebase-admin-diagnostic{
+  margin:var(--mizan-space-3) 0;
+  padding:var(--mizan-space-3);
+  border:1px solid var(--mizan-border);
+  border-radius:var(--mizan-radius-lg,16px);
+  background:var(--mizan-surface);
+  color:var(--mizan-text);
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+}
+.firebase-admin-diagnostic summary{
+  cursor:pointer;
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
+.firebase-admin-diagnostic pre{
+  margin:var(--mizan-space-2) 0 0;
+  max-width:100%;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  direction:rtl;
+  text-align:right;
+  font:inherit;
+  font-size:var(--mizan-font-size-sm,14px);
+  line-height:1.7;
+}
