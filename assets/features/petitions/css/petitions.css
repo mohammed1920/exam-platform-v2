@@ -1,4 +1,4 @@
-@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
 /* Mizan — عرائض وطلبات */
 .petitions-shell{
   max-width:var(--mizan-petitions-shell-max-width);
@@ -447,6 +447,10 @@ html[data-theme="light"] .petition-template-card p{
   font-size:8.5px;
   color:var(--mizan-muted-light);
   line-height:1.4;
+}
+.petition-head-right strong,
+.petition-head-right strong *{
+  font-family:"AMoshref Thulth",Tahoma,serif;
 }
 .petition-head-right strong{
   display:block;
