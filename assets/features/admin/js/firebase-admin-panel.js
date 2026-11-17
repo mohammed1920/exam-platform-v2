@@ -87,9 +87,21 @@
         <form id="fa-lawyer-edit-form">
           <input type="hidden" name="id">
           <div class="lawyer-admin-form-grid">
-            <label>الاسم<input name="name" required></label><label>المحافظة<input name="governorate" required></label><label>القضاء/المنطقة<input name="district"></label><label>الهاتف<input name="phone"></label><label>المكتب<input name="office"></label><label>العنوان<input name="address"></label><label>الاختصاصات<input name="specializations"></label><label>ساعات العمل<input name="workingHours"></label><label class="full">الوصف<textarea name="description"></textarea></label><label class="full">رابط شعار المحامي<input name="logoUrl" placeholder="https://.../logo.png"></label>
+            <label class="lawyer-admin-field"><span>اسم المحامي</span><input name="name" required autocomplete="name"></label>
+            <label class="lawyer-admin-field"><span>المحافظة</span><input name="governorate" required></label>
+            <label class="lawyer-admin-field"><span>القضاء / المنطقة</span><input name="district"></label>
+            <label class="lawyer-admin-field"><span>رقم الهاتف</span><input name="phone" inputmode="tel" autocomplete="tel"></label>
+            <label class="lawyer-admin-field"><span>اسم المكتب</span><input name="office"></label>
+            <label class="lawyer-admin-field"><span>عنوان المكتب</span><input name="address" autocomplete="street-address"></label>
+            <label class="lawyer-admin-field"><span>الاختصاصات</span><input name="specializations"></label>
+            <label class="lawyer-admin-field"><span>ساعات العمل</span><input name="workingHours"></label>
+            <label class="lawyer-admin-field full"><span>الوصف</span><textarea name="description" rows="4"></textarea></label>
+            <label class="lawyer-admin-field full"><span>رابط شعار المحامي</span><input name="logoUrl" type="url" inputmode="url" placeholder="https://.../logo.png"></label>
           </div>
-          <div class="lawyer-admin-form-actions"><button type="submit" class="approve">حفظ</button><button id="fa-lawyer-edit-cancel" type="button">إلغاء</button></div>
+          <div class="lawyer-admin-form-actions">
+             <button type="submit" class="lawyer-admin-save">حفظ التعديلات</button>
+             <button id="fa-lawyer-edit-cancel" type="button" class="lawyer-admin-cancel">إلغاء</button>
+           </div>
         </form>
       </div>
       <p class="lawyer-admin-note"><i class="fas fa-shield-halved"></i> هوية النقابة لا تُخزّن داخل المنصة. يرسلها المتقدم مباشرة للأدمن عبر واتساب أو تلغرام، ثم تتم مطابقة الهوية مع الطلب قبل النشر.</p>
