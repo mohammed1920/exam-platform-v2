@@ -102,7 +102,7 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 
 - `scripts/build-pages-bundle.sh` هو المصدر الوحيد لقائمة ملفات GitHub Pages: ينسخ ملفات HTML وJavaScript وCSS في الجذر ومجلدات `engine/` و`icons/` و`data/` و`assets/`، ويتحقق من الملفات الأساسية قبل النشر. يستخدمه كل من `.github/workflows/update.yml` وCI؛ عند إضافة أصل تشغيل جديد، حدّث هذا السكربت واختبارات الحزمة فقط. يسمح السكربت بمخرجات `dist/` داخل المستودع أو مجلد مؤقت مخصص يبدأ اسمه بـ `mizan-pages-bundle` فقط، حمايةً من حذف مسار عشوائي.
 
-**آخر تحديث:** 9 أكتوبر 2026
+**آخر تحديث:** 17 نوفمبر 2026
 
 ## نشر تحديثات ملف الطالب وقواعد Firestore
 
