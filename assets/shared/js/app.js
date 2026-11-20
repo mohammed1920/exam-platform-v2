@@ -1139,6 +1139,10 @@ class ExamApp {
           parentState.petitionLevel = 'categories';
           parentState.categoryId = null;
         }
+        if (viewId === 'petitions' && params.petitionLevel === 'legal-table-editor') {
+          parentState.petitionLevel = 'legal-tables';
+          parentState.legalTableId = null;
+        }
         if (viewId === 'procedures' && params.proceduresLevel === 'detail') {
           // Keep the previous history entry inside Procedures at its direct category.
           parentState.view = 'procedures';
