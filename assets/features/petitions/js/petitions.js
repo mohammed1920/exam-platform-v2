@@ -132,18 +132,93 @@
     if(pushHistory)window.app.navigateTo('petitions',{parentView:'petitions',petitionLevel:'legal-tables'});
     renderHome();renderLegalTables();
   }
+  const LEGAL_TABLES_STORAGE_KEY='mizan.legalTables.v1';
+  let activeLegalTable=null;
+  const legalTableTemplates={
+    'marital-furniture':{title:'قائمة أثاث الزوجية',columns:['ت','وصف الأثاث والموجودات','العدد','القيمة (د.ع)','ملاحظات'],rows:6},
+    'materials-prices':{title:'جدول المواد والأسعار',columns:['ت','نوع المادة','الكمية','السعر (د.ع)','الإجمالي (د.ع)'],rows:6}
+  };
+  function readLegalTables(){
+    try{const value=JSON.parse(localStorage.getItem(LEGAL_TABLES_STORAGE_KEY)||'[]');return Array.isArray(value)?value.filter(item=>item&&typeof item.id==='string'&&Array.isArray(item.columns)&&Array.isArray(item.rows)):[];}
+    catch(error){console.warn('تعذر قراءة الجداول المحفوظة:',error);return[];}
+  }
+  function writeLegalTables(items){
+    try{localStorage.setItem(LEGAL_TABLES_STORAGE_KEY,JSON.stringify(items));return true;}
+    catch(error){console.error('تعذر حفظ الجداول القانونية:',error);window.app?.showHomeNotice?.('تعذر الحفظ','مساحة التخزين المحلية غير كافية أو غير متاحة.');return false;}
+  }
+  function createLegalTable(type){
+    const template=legalTableTemplates[type];if(!template)return;
+    return {id:'lt-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7),type,title:template.title,columns:[...template.columns],rows:Array.from({length:template.rows},()=>template.columns.map(()=>'')),updatedAt:new Date().toISOString()};
+  }
+  function legalTableTotal(table){
+    const index=table.columns.findIndex(name=>/القيمة|الإجمالي|السعر/i.test(name));
+    if(index<0)return 0;
+    return table.rows.reduce((sum,row)=>sum+(Number(String(row[index]||'').replace(/[٬,\s]/g,''))||0),0);
+  }
   function renderLegalTables(){
     const root=document.getElementById('petition-browse');if(!root)return;
     const cards=[
-      {id:'marital-furniture',icon:'fas fa-couch',title:'قائمة أثاث الزوجية',description:'إعداد قائمة منظمة للأثاث والموجودات مع الكميات والقيم والملاحظات.',tag:'قالب جاهز'},
-      {id:'materials-prices',icon:'fas fa-calculator',title:'جدول المواد والأسعار',description:'تنظيم المواد والكميات والأسعار مع مساحة لحساب الإجمالي.',tag:'قالب جاهز'}
+      {id:'marital-furniture',icon:'fas fa-couch',title:'قائمة أثاث الزوجية',description:'قائمة تفصيلية للموجودات والأثاث والكميات والقيم والملاحظات.',tag:'قالب جاهز'},
+      {id:'materials-prices',icon:'fas fa-calculator',title:'جدول المواد والأسعار',description:'تنظيم المواد والكميات والأسعار مع احتساب الإجماليات.',tag:'قالب جاهز'}
     ];
-    root.innerHTML='<div class="legal-tables-page"><button type="button" class="back-btn legal-tables-back" id="legal-tables-back"><i class="fas fa-arrow-right"></i> العودة إلى العرائض والطلبات</button><section class="legal-tables-hero mizan-section-hero"><div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon"><i class="fas fa-table-cells-large"></i></span><h2>قسم الجداول القانونية</h2></div><p>أنشئ القوائم والجداول القانونية ونظّم بياناتها، مع إمكانية معاينتها وتجهيزها للطباعة.</p></section><div class="legal-tables-section-heading"><div><span>القوالب المتاحة</span><h3>اختر نوع الجدول</h3></div><small>يمكن إضافة قوالب أخرى لاحقاً</small></div><div class="legal-tables-grid">'+cards.map(item=>'<button type="button" class="legal-table-card" data-legal-table="'+item.id+'"><span class="legal-table-card-icon"><i class="'+item.icon+'" aria-hidden="true"></i></span><span class="legal-table-card-tag">'+item.tag+'</span><strong>'+item.title+'</strong><small>'+item.description+'</small><span class="legal-table-card-action">فتح القالب <i class="fas fa-arrow-left" aria-hidden="true"></i></span></button>').join('')+'</div><section class="legal-tables-empty-state"><span><i class="fas fa-folder-open" aria-hidden="true"></i></span><div><strong>الجداول المحفوظة</strong><p>ستظهر هنا الجداول التي تنشئها وتحفظها للعودة إليها وتعديلها لاحقاً.</p></div><small>لا توجد جداول محفوظة حالياً</small></section></div>';
+    const saved=readLegalTables();
+    root.innerHTML='<div class="legal-tables-page"><button type="button" class="back-btn legal-tables-back" id="legal-tables-back"><i class="fas fa-arrow-right"></i> العودة إلى العرائض والطلبات</button><section class="legal-tables-hero mizan-section-hero"><div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon"><i class="fas fa-table-cells-large"></i></span><h2>قسم الجداول القانونية</h2></div><p>أنشئ الجداول وعدّل خلاياها وأعمدتها وصفوفها، ثم احفظها واطبعها عند الحاجة.</p></section><div class="legal-tables-section-heading"><div><span>قوالب جاهزة</span><h3>إنشاء جدول جديد</h3></div><small>اختر القالب المناسب وابدأ التعديل</small></div><div class="legal-tables-grid">'+cards.map(item=>'<button type="button" class="legal-table-card" data-legal-table="'+item.id+'"><span class="legal-table-card-icon"><i class="'+item.icon+'" aria-hidden="true"></i></span><span class="legal-table-card-tag">'+item.tag+'</span><strong>'+item.title+'</strong><small>'+item.description+'</small><span class="legal-table-card-action">إنشاء جدول <i class="fas fa-arrow-left" aria-hidden="true"></i></span></button>').join('')+'</div><section class="legal-tables-saved"><div class="legal-tables-section-heading"><div><span>مساحة العمل</span><h3>الجداول المحفوظة</h3></div><small>'+saved.length.toLocaleString('ar-IQ')+' جدول</small></div><div class="legal-tables-saved-list">'+(saved.length?saved.map(item=>'<article class="legal-tables-saved-card"><span class="legal-table-card-icon"><i class="fas fa-table" aria-hidden="true"></i></span><div><strong>'+esc(item.title||'جدول قانوني')+'</strong><small>آخر تعديل: '+esc(item.updatedAt?new Date(item.updatedAt).toLocaleDateString('ar-IQ'):'—')+'</small></div><button type="button" data-open-saved-table="'+esc(item.id)+'">فتح وتعديل</button><button type="button" class="legal-tables-delete" data-delete-saved-table="'+esc(item.id)+'" aria-label="حذف الجدول"><i class="fas fa-trash"></i></button></article>').join(''):'<div class="legal-tables-empty-state"><span><i class="fas fa-folder-open" aria-hidden="true"></i></span><div><strong>لا توجد جداول محفوظة بعد</strong><p>أنشئ جدولاً من أحد القوالب أعلاه، وبعد حفظه سيظهر هنا ويمكنك فتحه وتعديله لاحقاً.</p></div></div>')+'</div></section></div>';
     document.getElementById('legal-tables-back')?.addEventListener('click',()=>navigateBack('categories'));
-    root.querySelectorAll('[data-legal-table]').forEach(button=>button.addEventListener('click',()=>{
-      const label=button.dataset.legalTable==='marital-furniture'?'قائمة أثاث الزوجية':'جدول المواد والأسعار';
-      window.app?.showHomeNotice?.(label,'سيتم تجهيز محرر هذا القالب في المرحلة التالية.');
+    root.querySelectorAll('[data-legal-table]').forEach(button=>button.addEventListener('click',()=>openLegalTableEditor(button.dataset.legalTable)));
+    root.querySelectorAll('[data-open-saved-table]').forEach(button=>button.addEventListener('click',()=>openLegalTableEditor(null,button.dataset.openSavedTable)));
+    root.querySelectorAll('[data-delete-saved-table]').forEach(button=>button.addEventListener('click',()=>{
+      const item= saved.find(entry=>entry.id===button.dataset.deleteSavedTable);if(!item)return;
+      if(!window.confirm('هل تريد حذف الجدول «'+(item.title||'جدول قانوني')+'» نهائياً من هذا الجهاز؟'))return;
+      writeLegalTables(saved.filter(entry=>entry.id!==item.id));renderLegalTables();
     }));
+  }
+  function openLegalTableEditor(type,savedId=null,pushHistory=true){
+    const table=savedId?readLegalTables().find(item=>item.id===savedId):createLegalTable(type);
+    if(!table)return;
+    activeLegalTable=JSON.parse(JSON.stringify(table));
+    if(pushHistory)window.app?.navigateTo('petitions',{parentView:'petitions',petitionLevel:'legal-table-editor',legalTableId:activeLegalTable.id});
+    renderLegalTableEditor();
+  }
+  function renderLegalTableEditor(){
+    const root=document.getElementById('petition-browse');const table=activeLegalTable;if(!root||!table)return;
+    const total=legalTableTotal(table);
+    root.innerHTML='<div class="legal-table-editor"><div class="legal-table-editor-top"><button type="button" class="back-btn" id="legal-table-editor-back"><i class="fas fa-arrow-right"></i> الجداول القانونية</button><span class="legal-table-editor-status"><i class="fas fa-shield-halved"></i> حفظ محلي على هذا الجهاز</span></div><section class="legal-table-editor-heading"><span>محرر الجداول القانونية</span><label for="legal-table-title">عنوان الجدول</label><input id="legal-table-title" maxlength="140" value="'+esc(table.title)+'" placeholder="اكتب عنوان الجدول"></section><div class="legal-table-toolbar"><button type="button" class="primary" id="legal-table-add-row"><i class="fas fa-plus"></i> إضافة صف</button><button type="button" id="legal-table-add-column"><i class="fas fa-columns"></i> إضافة عمود</button><button type="button" id="legal-table-save"><i class="fas fa-floppy-disk"></i> حفظ الجدول</button><button type="button" id="legal-table-print"><i class="fas fa-print"></i> طباعة</button></div><div class="legal-table-editor-hint"><i class="fas fa-circle-info"></i> اضغط داخل أي خلية لتعديلها. يمكنك تعديل أسماء الأعمدة، وإضافة أو حذف الصفوف والأعمدة.</div><div class="legal-table-scroll"><table class="legal-table-grid" aria-label="'+esc(table.title)+'"><thead><tr><th class="legal-table-index">#</th>'+table.columns.map((column,index)=>'<th><input class="legal-table-column-name" data-column-name="'+index+'" aria-label="اسم العمود '+(index+1)+'" value="'+esc(column)+'"><button type="button" class="legal-table-remove-column" data-remove-column="'+index+'" aria-label="حذف العمود"><i class="fas fa-xmark"></i></button></th>').join('')+'<th class="legal-table-actions-heading">إجراء</th></tr></thead><tbody>'+table.rows.map((row,rowIndex)=>'<tr><th class="legal-table-row-number">'+(rowIndex+1).toLocaleString('ar-IQ')+'</th>'+table.columns.map((column,columnIndex)=>'<td><input class="legal-table-cell" data-row="'+rowIndex+'" data-column="'+columnIndex+'" aria-label="الصف '+(rowIndex+1)+'، '+esc(column)+'" value="'+esc(row[columnIndex]||'')+'" placeholder="—" '+(/^(ت|التسلسل|#)$/.test(column.trim())?'readonly':'')+'></td>').join('')+'<td class="legal-table-row-actions"><button type="button" data-remove-row="'+rowIndex+'" aria-label="حذف الصف '+(rowIndex+1)+'"><i class="fas fa-trash"></i></button></td></tr>').join('')+'</tbody></table></div><div class="legal-table-editor-footer"><div><span>عدد الصفوف</span><strong>'+table.rows.length.toLocaleString('ar-IQ')+'</strong></div><div><span>عدد الأعمدة</span><strong>'+table.columns.length.toLocaleString('ar-IQ')+'</strong></div><div><span>مجموع القيم المدخلة</span><strong>'+total.toLocaleString('en-US')+' د.ع</strong></div></div><p class="legal-table-editor-note">الحفظ يتم محلياً في متصفح هذا الجهاز، ولا يستهلك رصيد قاعدة بيانات المنصة. احتفظ بنسخة مطبوعة عند الحاجة إلى نقل الجدول لجهاز آخر.</p></div>';
+    document.getElementById('legal-table-editor-back')?.addEventListener('click',()=>navigateBack('legal-tables'));
+    document.getElementById('legal-table-title')?.addEventListener('input',event=>{table.title=event.target.value;});
+    root.querySelectorAll('[data-column-name]').forEach(input=>input.addEventListener('input',event=>{table.columns[Number(event.target.dataset.columnName)]=event.target.value;}));
+    root.querySelectorAll('[data-row][data-column]').forEach(input=>input.addEventListener('input',event=>{
+      const row=Number(event.target.dataset.row),column=Number(event.target.dataset.column);table.rows[row][column]=event.target.value;
+      if(/القيمة|الإجمالي/i.test(table.columns[column])){const footer=root.querySelector('.legal-table-editor-footer div:last-child strong');if(footer)footer.textContent=legalTableTotal(table).toLocaleString('en-US')+' د.ع';}
+    }));
+    document.getElementById('legal-table-add-row')?.addEventListener('click',()=>{table.rows.push(table.columns.map(()=>''));renderLegalTableEditor();});
+    document.getElementById('legal-table-add-column')?.addEventListener('click',()=>{
+      const name='عمود جديد';table.columns.push(name);table.rows.forEach(row=>row.push(''));renderLegalTableEditor();
+      const inputs=root.querySelectorAll('.legal-table-column-name');inputs[inputs.length-1]?.focus();inputs[inputs.length-1]?.select();
+    });
+    root.querySelectorAll('[data-remove-column]').forEach(button=>button.addEventListener('click',()=>{
+      if(table.columns.length<=1){window.app?.showHomeNotice?.('تنبيه','يجب أن يحتوي الجدول على عمود واحد على الأقل.');return;}
+      const index=Number(button.dataset.removeColumn);if(!window.confirm('حذف العمود «'+table.columns[index]+'» وجميع خلاياه؟'))return;
+      table.columns.splice(index,1);table.rows.forEach(row=>row.splice(index,1));renderLegalTableEditor();
+    }));
+    root.querySelectorAll('[data-remove-row]').forEach(button=>button.addEventListener('click',()=>{
+      if(table.rows.length<=1){window.app?.showHomeNotice?.('تنبيه','يجب أن يحتوي الجدول على صف واحد على الأقل.');return;}
+      const index=Number(button.dataset.removeRow);table.rows.splice(index,1);renderLegalTableEditor();
+    }));
+    document.getElementById('legal-table-save')?.addEventListener('click',()=>{
+      table.title=String(document.getElementById('legal-table-title')?.value||'').trim()||'جدول قانوني';
+      table.updatedAt=new Date().toISOString();
+      const saved=readLegalTables();const index=saved.findIndex(item=>item.id===table.id);
+      if(index>=0)saved[index]=table;else saved.unshift(table);
+      if(writeLegalTables(saved))window.app?.showHomeNotice?.('تم الحفظ','تم حفظ الجدول على هذا الجهاز بنجاح.');
+    });
+    document.getElementById('legal-table-print')?.addEventListener('click',()=>printLegalTable(table));
+  }
+  function printLegalTable(table){
+    const popup=window.open('','_blank');if(!popup){window.app?.showHomeNotice?.('تعذر فتح الطباعة','اسمح بالنوافذ المنبثقة لهذا الموقع ثم حاول مجدداً.');return;}
+    const headers=table.columns.map(name=>'<th>'+esc(name)+'</th>').join('');
+    const rows=table.rows.map(row=>'<tr>'+table.columns.map((column,index)=>'<td>'+esc(row[index]||'')+'</td>').join('')+'</tr>').join('');
+    popup.document.write('<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>'+esc(table.title)+'</title><style>body{font-family:Arial,sans-serif;color:#172b46;padding:24px}h1{text-align:center;font-size:22px;margin:0 0 24px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #8a96a8;padding:10px;text-align:right;vertical-align:middle}th{background:#e9eef5;font-weight:700}tr{break-inside:avoid}@page{size:A4 landscape;margin:14mm}@media print{body{padding:0}}</style></head><body><h1>'+esc(table.title)+'</h1><table><thead><tr>'+headers+'</tr></thead><tbody>'+rows+'</tbody></table><script>window.onload=()=>window.print();<\/script></body></html>');
+    popup.document.close();
   }
   function renderCategories(){
     const root=document.getElementById('petition-browse');if(!root)return;
@@ -792,6 +867,7 @@
       const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
       if(!access.enabled){renderHome();renderAccessGate(access);return;}
       if(level==='legal-tables'){state.template=null;state.categoryId=null;renderHome();renderLegalTables();return;}
+      if(level==='legal-table-editor'&&historyState.legalTableId){const table=readLegalTables().find(item=>item.id===historyState.legalTableId);if(table){state.template=null;state.categoryId=null;renderHome();openLegalTableEditor(null,table.id,false);return;}state.template=null;state.categoryId=null;renderHome();renderLegalTables();return;}
       if(level==='document'&&historyState.categoryId&&historyState.templateUid){
         state.categoryId=historyState.categoryId;
         await loadTemplates(state.categoryId);
