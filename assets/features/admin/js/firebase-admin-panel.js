@@ -165,7 +165,7 @@
 <button type="button" class="firebase-admin-content-action is-active" data-procedures-panel="access" aria-pressed="true"><span class="firebase-admin-content-action-icon"><i class="fas fa-user-shield"></i></span><span class="firebase-admin-content-action-copy"><strong>طلبات الوصول</strong><small>مراجعة طلبات الصلاحيات</small></span><span class="firebase-admin-content-action-count" id="fa-procedures-access-card-count" hidden>0</span></button>
 <button type="button" class="firebase-admin-content-action" data-procedures-panel="add" aria-pressed="false"><span class="firebase-admin-content-action-icon"><i class="fas fa-file-circle-plus"></i></span><span class="firebase-admin-content-action-copy"><strong>إضافة إجراء</strong><small>إنشاء إجراء جديد أو تعديل إجراء</small></span></button>
 <button type="button" class="firebase-admin-content-action" data-procedures-panel="library" aria-pressed="false"><span class="firebase-admin-content-action-icon"><i class="fas fa-folder-open"></i></span><span class="firebase-admin-content-action-copy"><strong>مكتبة الإجراءات</strong><small>التصنيفات والإجراءات المنشورة والمسودات</small></span><span class="firebase-admin-content-action-count" id="fa-procedures-total-count">0</span></button></div>
-<section class="firebase-admin-content-panel" id="fa-procedures-panel-access"><div class="firebase-admin-card lawyer-admin-card"><div class="firebase-admin-card-head"><h3>طلبات الوصول إلى إجراءات الدعاوى <span class="firebase-admin-inline-count" id="fa-procedures-access-count" hidden>0</span></h3><span>الموافقة اليدوية وإدارة الصلاحيات</span></div><p class="lawyer-admin-note">لا يحصل المستخدم على الوصول إلا بعد منح الصلاحية. سحب الصلاحية يمنع قراءة محتوى الإجراءات المحمي في Firestore.</p><div id="fa-procedures-requests-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر هذا القسم لتحميل الطلبات.</p></div></div></section>
+<section class="firebase-admin-content-panel" id="fa-procedures-panel-access"><div class="firebase-admin-card lawyer-admin-card"><div class="firebase-admin-card-head"><h3>طلبات الوصول إلى إجراءات الدعاوى <span class="firebase-admin-inline-count" id="fa-procedures-access-count" hidden>0</span></h3><span>الموافقة اليدوية وإدارة الصلاحيات</span></div><p class="lawyer-admin-note">تابع الطلبات المعلقة، والصلاحيات المسحوبة، والمستخدمين الذين ما زالت صلاحياتهم مفعّلة.</p><div class="lawyer-admin-tabs" role="group" aria-label="تصنيف صلاحيات إجراءات الدعاوى"><button type="button" class="lawyer-admin-tab active" data-procedure-access-view="pending">الطلبات المعلقة <span id="fa-procedures-pending-count">0</span></button><button type="button" class="lawyer-admin-tab" data-procedure-access-view="revoked">الصلاحيات المسحوبة <span id="fa-procedures-revoked-count">0</span></button><button type="button" class="lawyer-admin-tab" data-procedure-access-view="active">الصلاحيات المفعّلة <span id="fa-procedures-enabled-count">0</span></button></div><div id="fa-procedures-requests-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر هذا القسم لتحميل الطلبات.</p></div></div></section>
 <section class="firebase-admin-content-panel" id="fa-procedures-panel-add" hidden><div class="firebase-admin-card lawyer-admin-card procedures-admin-management"><div class="firebase-admin-card-head"><h3 id="fa-procedure-form-title">إضافة إجراء جديد</h3><span>التفاصيل والفهرس في Firebase</span></div><form id="fa-procedure-form" class="procedures-admin-form"><input type="hidden" name="id"><label>عنوان الإجراء *<input name="title" required maxlength="180"></label><label>تصنيف الدعوى *<select name="category" required><option value="">اختر تصنيف الدعوى</option><option value="civil">الدعاوى المدنية</option><option value="criminal">الدعاوى الجزائية</option><option value="administrative">الدعاوى الإدارية</option><option value="personal">دعاوى الأحوال الشخصية</option></select></label><label>نبذة عن الإجراء<textarea name="summary" rows="2" maxlength="2000"></textarea></label><label>الشروط والاختصاص<textarea name="requirements" rows="3"></textarea></label><label>المستندات المطلوبة<textarea name="documents" rows="3"></textarea></label><label>خطوات الإجراء<textarea name="steps" rows="5"></textarea></label><label>السند القانوني<textarea name="legalBasis" rows="3"></textarea></label><label>الرسوم<input name="fees" maxlength="500"></label><label>المدد القانونية أو المتوقعة<input name="duration" maxlength="500"></label><label><input type="checkbox" name="published" checked> نشر الإجراء وإظهاره في الفهرس</label><div class="lawyer-admin-actions"><button class="approve" type="submit">حفظ الإجراء</button><button type="button" id="fa-procedure-reset">جديد / إلغاء التعديل</button></div><p class="lawyer-admin-note">تُحدّث قائمة العناوين المنشورة تلقائياً في Firebase عند حفظ الإجراء أو نشره أو إخفائه أو حذفه، ولا تُحمّل تفاصيل الإجراءات إلا عند فتحها.</p></form></div></section>
 <section class="firebase-admin-content-panel" id="fa-procedures-panel-library" hidden><div class="firebase-admin-card lawyer-admin-card"><div class="firebase-admin-card-head"><h3>مكتبة إجراءات الدعاوى</h3><span id="fa-procedures-library-summary">التصنيفات الأربعة</span></div><div id="fa-procedures-categories" class="firebase-admin-content-categories"><p class="firebase-admin-list-state">اختر المكتبة لتحميل الإجراءات.</p></div><div id="fa-procedures-category-view" class="firebase-admin-content-category-view" hidden><button type="button" class="firebase-admin-content-back" data-procedures-categories>← جميع التصنيفات</button><div class="firebase-admin-content-category-heading"><h4 id="fa-procedures-category-title"></h4><span id="fa-procedures-category-total"></span></div><div class="firebase-admin-content-status-tabs" role="tablist" aria-label="حالة الإجراءات"><button type="button" class="is-active" data-procedure-admin-status="published" role="tab" aria-selected="true">الإجراءات المنشورة <span id="fa-procedures-published-count">0</span></button><button type="button" data-procedure-admin-status="unpublished" role="tab" aria-selected="false">الإجراءات غير المنشورة <span id="fa-procedures-unpublished-count">0</span></button></div><div id="fa-procedures-category-items" class="firebase-admin-content-items"></div></div></div></section>
 </div></section>    <section id="fa-admin-view-petitions" class="firebase-admin-subview">
@@ -194,7 +194,8 @@
         <section class="firebase-admin-petitions-panel" id="fa-petitions-panel-access">
           <div class="firebase-admin-card lawyer-admin-card">
             <div class="firebase-admin-card-head"><h3>طلبات الوصول إلى العرائض <span class="firebase-admin-inline-count" id="fa-petitions-access-count" hidden>0</span></h3><span>موافقة دائمة قابلة للسحب</span></div>
-            <p class="lawyer-admin-note">لا يستطيع المستخدم قراءة النصوص إلا بعد موافقة الإدارة. تبقى الصلاحية سارية حتى سحبها.</p>
+            <p class="lawyer-admin-note">تابع الطلبات المعلقة، والصلاحيات المسحوبة، والمستخدمين الذين ما زالت صلاحياتهم مفعّلة.</p>
+            <div class="lawyer-admin-tabs" role="group" aria-label="تصنيف صلاحيات العرائض"><button type="button" class="lawyer-admin-tab active" data-petition-access-view="pending">الطلبات المعلقة <span id="fa-petitions-pending-count">0</span></button><button type="button" class="lawyer-admin-tab" data-petition-access-view="revoked">الصلاحيات المسحوبة <span id="fa-petitions-revoked-count">0</span></button><button type="button" class="lawyer-admin-tab" data-petition-access-view="active">الصلاحيات المفعّلة <span id="fa-petitions-enabled-count">0</span></button></div>
             <div id="fa-petitions-requests-body" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر هذا القسم لتحميل الطلبات.</p></div>
           </div>
         </section>
@@ -521,6 +522,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   function openProcedureEditor(item){if(!item||!els.procedureForm)return;const form=els.procedureForm;['id','title','category','summary','requirements','documents','steps','legalBasis','fees','duration'].forEach(key=>form.elements[key].value=item[key]||'');form.elements.published.checked=item.published===true;els.procedureFormTitle.textContent='تعديل الإجراء';setProcedureAdminPanel('add');form.scrollIntoView({behavior:'smooth',block:'start'});}
   function handleProcedureHubClick(event){
+    const accessView=event.target.closest('[data-procedure-access-view]');if(accessView){activeProcedureAccessView=accessView.dataset.procedureAccessView;els.proceduresHub.querySelectorAll('[data-procedure-access-view]').forEach(button=>button.classList.toggle('active',button===accessView));loadProcedureAccessRequests(true);return;}
     const panel=event.target.closest('[data-procedures-panel]');if(panel){setProcedureAdminPanel(panel.dataset.proceduresPanel);return;}
     const category=event.target.closest('[data-procedure-admin-category]');if(category){activeProcedureAdminCategory=category.dataset.procedureAdminCategory;activeProcedureAdminStatus='published';renderProcedureAdminLibrary();return;}
     if(event.target.closest('[data-procedures-categories]')){activeProcedureAdminCategory='';renderProcedureAdminLibrary();return;}
@@ -663,6 +665,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(els.petitionFormTitle)els.petitionFormTitle.textContent='إضافة عريضة جديدة';
   }
   function handlePetitionHubClick(event){
+    const accessView=event.target.closest('[data-petition-access-view]');if(accessView){activePetitionAccessView=accessView.dataset.petitionAccessView;els.petitionsHub.querySelectorAll('[data-petition-access-view]').forEach(button=>button.classList.toggle('active',button===accessView));loadPetitionAccessRequests(true);return;}
     const panelButton=event.target.closest('[data-petitions-panel]');
     if(panelButton){setPetitionPanel(panelButton.dataset.petitionsPanel);return;}
     const categoryButton=event.target.closest('[data-petition-category]');
@@ -751,41 +754,46 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(error){console.error('Petition save failed:',error);setStatus('تعذر حفظ العريضة في Firestore. '+String(error.message||''),true);}
   }
 
-  async function loadPetitionAccessRequests(reset=true){
-    if(!isAdmin||!window.publicAuth?.firestore||!els.petitionsRequestsBody)return;
-    const db=window.publicAuth.firestore,body=els.petitionsRequestsBody,key='petition-access-requests';
+  let activePetitionAccessView='pending';
+  let activeProcedureAccessView='pending';
+  async function loadAccessDirectory(type,view,reset=true){
+    const isPetition=type==='petition',db=window.publicAuth?.firestore;
+    const body=isPetition?els.petitionsRequestsBody:els.proceduresRequestsBody;
+    if(!isAdmin||!db||!body)return;
+    const requestCollection=isPetition?'petitionAccessRequests':'procedureAccessRequests';
+    const accessCollection=isPetition?'petitionAccess':'procedureAccess';
+    const cache=isPetition?petitionGrantCache:procedureGrantCache,key=type+'-access-'+view;
+    const countIds=isPetition?{pending:'fa-petitions-pending-count',revoked:'fa-petitions-revoked-count',active:'fa-petitions-enabled-count'}:{pending:'fa-procedures-pending-count',revoked:'fa-procedures-revoked-count',active:'fa-procedures-enabled-count'};
     try{
-      const query=()=>db.collection('petitionAccessRequests');
-      const [page,pendingCount]=await Promise.all([
-        fetchAdminPage(key,query,reset),
-        reset?safeQueryCount('petitionAccessRequests',[['status','==','pending']]):Promise.resolve(null)
-      ]);
-      if(reset)petitionGrantCache.clear();
-      const grants=await Promise.all(page.docs.map(async doc=>{
-        const uid=String(doc.data()?.uid||doc.id);
-        const snap=await db.collection('petitionAccess').doc(uid).get();
-        const grant=snap.exists?{id:snap.id,...snap.data()}:null;
-        if(grant)petitionGrantCache.set(uid,grant);
-        return [uid,grant];
+      const query=()=>view==='active'?db.collection(accessCollection).where('enabled','==',true):db.collection(requestCollection).where('status','==',view);
+      const [page,counts]=await Promise.all([fetchAdminPage(key,query,reset),reset?Promise.all([safeQueryCount(requestCollection,[['status','==','pending']]),safeQueryCount(requestCollection,[['status','==','revoked']]),safeQueryCount(accessCollection,[['enabled','==',true]])]):Promise.resolve(null)]);
+      if(reset)cache.clear();
+      if(counts){['pending','revoked','active'].forEach((name,index)=>{const node=document.getElementById(countIds[name]);if(node)node.textContent=counts[index]===null?'—':String(counts[index]);});if(isPetition)setPendingCount('petitions',counts[0]);else setPendingCount('procedures',counts[0]);}
+      const rows=await Promise.all(page.docs.map(async doc=>{
+        if(view!=='active'){const request={id:doc.id,...(doc.data()||{})},uid=String(request.uid||request.id),snap=await db.collection(accessCollection).doc(uid).get(),grant=snap.exists?{id:snap.id,...snap.data()}:null;if(grant)cache.set(uid,grant);return {request,uid,grant};}
+        const grant={id:doc.id,...(doc.data()||{})},uid=String(grant.uid||grant.id);cache.set(uid,grant);
+        const snap=await db.collection(requestCollection).doc(uid).get();if(!snap.exists)return null;
+        return {request:{id:snap.id,...(snap.data()||{})},uid,grant};
       }));
-      grants.forEach(([uid,grant])=>{if(grant)petitionGrantCache.set(uid,grant);});
-      if(pendingCount!==null)setPendingCount('petitions',pendingCount);
-      const html=page.docs.map(doc=>{
-        const request={id:doc.id,...doc.data()},uid=request.uid||request.id,grant=petitionGrantCache.get(uid),enabled=grant?.enabled===true;
-        const status=enabled?'الصلاحية مفعّلة':request.status==='pending'?'قيد المراجعة':request.status==='rejected'?'مرفوض':request.status==='revoked'?'تم سحب الصلاحية':esc(request.status||'غير محدد');
-        const actions=enabled?'<button class="reject" data-petition-revoke="'+esc(uid)+'">سحب الصلاحية</button>':'<button class="approve" data-petition-approve="'+esc(uid)+'">'+(request.status==='pending'?'✓ موافقة':'إعادة منح الوصول')+'</button>'+(request.status==='pending'?'<button class="reject" data-petition-reject="'+esc(uid)+'">✕ رفض</button>':'');
-        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مستخدم ميزان</span><h4>'+esc(request.displayName||'مستخدم ميزان')+'</h4><span class="firebase-admin-record-sub">'+esc(request.email||'البريد غير متوفر')+'</span></div><span class="lawyer-admin-status '+(enabled?'is-live':request.status==='pending'?'is-off':'')+'">'+status+'</span></div><div class="firebase-admin-record-field"><span>سبب الطلب</span><p>'+esc(request.reason||'لم يذكر سبباً')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(request.createdAt))+'</div><div class="lawyer-admin-actions">'+actions+'</div></article>';
+      const validRows=rows.filter(Boolean);
+      const html=validRows.map(({request,uid,grant})=>{
+        const enabled=grant?.enabled===true,status=view==='active'?'الصلاحية مفعّلة':view==='pending'?'طلب معلق':'تم سحب الصلاحية';
+        let actions='';
+        if(view==='active')actions='<button class="reject" data-'+type+'-revoke="'+esc(uid)+'">سحب الصلاحية</button>';
+        else if(view==='pending')actions='<button class="approve" data-'+type+'-approve="'+esc(uid)+'">✓ موافقة</button><button class="reject" data-'+type+'-reject="'+esc(uid)+'">✕ رفض</button>';
+        else actions='<button class="approve" data-'+type+'-approve="'+esc(uid)+'">إعادة منح الوصول</button>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مستخدم ميزان</span><h4>'+esc(request.displayName||'مستخدم ميزان')+'</h4><span class="firebase-admin-record-sub">'+esc(request.email||'البريد غير متوفر')+'</span></div><span class="lawyer-admin-status '+(enabled?'is-live':'is-off')+'">'+status+'</span></div><div class="firebase-admin-record-field"><span>سبب الطلب</span><p>'+esc(request.reason||'لم يذكر سبباً')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(request.createdAt||request.updatedAt))+'</div><div class="lawyer-admin-actions">'+actions+'</div></article>';
       }).join('');
-      if(reset)body.innerHTML='';
-      if(html)body.insertAdjacentHTML('beforeend',html);
-      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد طلبات وصول حتى الآن.</p>';
-      const requests=page.items.map(doc=>({id:doc.id,...doc.data()}));
-      body.querySelectorAll('[data-petition-approve]').forEach(button=>button.onclick=()=>approvePetitionAccess(requests.find(request=>(request.uid||request.id)===button.dataset.petitionApprove)));
-      body.querySelectorAll('[data-petition-reject]').forEach(button=>button.onclick=()=>rejectPetitionAccess(requests.find(request=>(request.uid||request.id)===button.dataset.petitionReject)));
-      body.querySelectorAll('[data-petition-revoke]').forEach(button=>button.onclick=()=>{const request=requests.find(item=>(item.uid||item.id)===button.dataset.petitionRevoke);revokePetitionAccess(request,petitionGrantCache.get(button.dataset.petitionRevoke));});
-      setAdminLoadMore(body,key,loadPetitionAccessRequests);
-    }catch(error){console.error('Petition access requests load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الطلبات. تحقق من قواعد Firestore المنشورة.</p>';}
+      if(reset)body.innerHTML='';if(html)body.insertAdjacentHTML('beforeend',html);
+      if(reset&&!validRows.length)body.innerHTML='<p class="firebase-admin-list-state">'+(view==='pending'?'لا توجد طلبات معلقة.':view==='revoked'?'لا توجد صلاحيات مسحوبة.':'لا توجد صلاحيات مفعّلة حالياً.')+'</p>';
+      const requests=page.items.map(doc=>({id:doc.id,...(doc.data()||{})}));
+      body.querySelectorAll('[data-'+type+'-approve]').forEach(button=>button.onclick=()=>{const uid=button.getAttribute('data-'+type+'-approve'),request=view==='active'?{uid}:requests.find(item=>(item.uid||item.id)===uid);if(isPetition)approvePetitionAccess(request);else approveProcedureAccess(request);});
+      body.querySelectorAll('[data-'+type+'-reject]').forEach(button=>button.onclick=()=>{const uid=button.getAttribute('data-'+type+'-reject'),request=requests.find(item=>(item.uid||item.id)===uid);if(isPetition)rejectPetitionAccess(request);else rejectProcedureAccess(request);});
+      body.querySelectorAll('[data-'+type+'-revoke]').forEach(button=>button.onclick=()=>{const uid=button.getAttribute('data-'+type+'-revoke'),row=validRows.find(item=>item.uid===uid);if(isPetition)revokePetitionAccess(row?.request,cache.get(uid));else revokeProcedureAccess(row?.request,cache.get(uid));});
+      setAdminLoadMore(body,key,loadAccessDirectory.bind(null,type,view));
+    }catch(error){console.error(type+' access directory load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل قائمة الصلاحيات. تحقق من قواعد Firestore.</p>';}
   }
+  async function loadPetitionAccessRequests(reset=true){return loadAccessDirectory('petition',activePetitionAccessView,reset);}
   async function approvePetitionAccess(r){
     if(!isAdmin||!r||!confirm('منح هذا المستخدم صلاحية دائمة للوصول إلى العرائض؟'))return;
     try{const db=window.publicAuth.firestore,uid=r.uid||r.id,rr=db.collection('petitionAccessRequests').doc(uid),ar=db.collection('petitionAccess').doc(uid);await db.runTransaction(async tx=>{const s=await tx.get(rr);if(!s.exists)throw Error('طلب الوصول غير موجود.');const fresh=s.data()||{};if(fresh.uid!==uid||!['pending','rejected','revoked'].includes(fresh.status))throw Error('الطلب غير صالح أو تمت مراجعته.');tx.set(ar,{uid,enabled:true,grantedBy:window.publicAuth.user.uid,grantedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});tx.update(rr,{status:'approved',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});});await loadPetitionAccessRequests();setStatus('تمت الموافقة ومنح صلاحية دائمة للوصول إلى العرائض.',false);}
@@ -835,44 +843,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(error){console.error('Legal procedure save failed:',error);setStatus('تعذر حفظ الإجراء في Firebase. '+String(error.message||''),true);}
   }
 
-  async function loadProcedureAccessRequests(reset=true){
-    if(!isAdmin||!window.publicAuth?.firestore||!els.proceduresRequestsBody)return;
-    const db=window.publicAuth.firestore,body=els.proceduresRequestsBody,key='procedure-access-requests';
-    try{
-      const query=()=>db.collection('procedureAccessRequests');
-      const [page,pendingCount]=await Promise.all([
-        fetchAdminPage(key,query,reset),
-        reset?safeQueryCount('procedureAccessRequests',[['status','==','pending']]):Promise.resolve(null)
-      ]);
-      if(reset)procedureGrantCache.clear();
-      const grants=await Promise.all(page.docs.map(async doc=>{
-        const uid=String(doc.data()?.uid||doc.id);
-        const snap=await db.collection('procedureAccess').doc(uid).get();
-        const grant=snap.exists?{id:snap.id,...snap.data()}:null;
-        if(grant)procedureGrantCache.set(uid,grant);
-        return [uid,grant];
-      }));
-      grants.forEach(([uid,grant])=>{if(grant)procedureGrantCache.set(uid,grant);});
-      if(pendingCount!==null)setPendingCount('procedures',pendingCount);
-      const html=page.docs.map(doc=>{
-        const request={id:doc.id,...doc.data()},uid=request.uid||request.id,grant=procedureGrantCache.get(uid),enabled=grant?.enabled===true;
-        const status=enabled?'الصلاحية مفعّلة':request.status==='pending'?'قيد المراجعة':request.status==='rejected'?'مرفوض':request.status==='revoked'?'تم سحب الصلاحية':esc(request.status||'غير محدد');
-        let actions='';
-        if(enabled)actions='<button class="reject" data-procedure-revoke="'+esc(uid)+'">سحب الصلاحية</button>';
-        else{actions='<button class="approve" data-procedure-approve="'+esc(uid)+'">'+(request.status==='pending'?'✓ موافقة':'إعادة منح الوصول')+'</button>';if(request.status==='pending')actions+='<button class="reject" data-procedure-reject="'+esc(uid)+'">✕ رفض</button>';}
-        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">مستخدم ميزان</span><h4>'+esc(request.displayName||'مستخدم ميزان')+'</h4><span class="firebase-admin-record-sub">'+esc(request.email||'البريد غير متوفر')+'</span></div><span class="lawyer-admin-status '+(enabled?'is-live':request.status==='pending'?'is-off':'')+'">'+status+'</span></div><div class="firebase-admin-record-field"><span>سبب الطلب</span><p>'+esc(request.reason||'لم يذكر سبباً')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(request.createdAt))+'</div><div class="lawyer-admin-actions">'+actions+'</div></article>';
-      }).join('');
-      if(reset)body.innerHTML='';
-      if(html)body.insertAdjacentHTML('beforeend',html);
-      if(reset&&!page.docs.length)body.innerHTML='<p class="firebase-admin-list-state">لا توجد طلبات وصول حتى الآن.</p>';
-      const requests=page.items.map(doc=>({id:doc.id,...doc.data()}));
-      body.querySelectorAll('[data-procedure-approve]').forEach(button=>button.onclick=()=>approveProcedureAccess(requests.find(item=>(item.uid||item.id)===button.dataset.procedureApprove)));
-      body.querySelectorAll('[data-procedure-reject]').forEach(button=>button.onclick=()=>rejectProcedureAccess(requests.find(item=>(item.uid||item.id)===button.dataset.procedureReject)));
-      body.querySelectorAll('[data-procedure-revoke]').forEach(button=>button.onclick=()=>{const request=requests.find(item=>(item.uid||item.id)===button.dataset.procedureRevoke);revokeProcedureAccess(request,procedureGrantCache.get(button.dataset.procedureRevoke));});
-      setAdminLoadMore(body,key,loadProcedureAccessRequests);
-    }catch(error){console.error('Procedure access requests load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل الطلبات. تحقق من قواعد Firestore المنشورة.</p>';}
-  }
-
+  async function loadProcedureAccessRequests(reset=true){return loadAccessDirectory('procedure',activeProcedureAccessView,reset);}
   async function approveProcedureAccess(request){
     if(!isAdmin||!request||!confirm('منح هذا المستخدم صلاحية الدخول إلى إجراءات الدعاوى؟'))return;
     try{
