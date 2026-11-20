@@ -136,11 +136,11 @@
   const LEGAL_TABLES_STORAGE_KEY='mizan.legalTables.v1';
   let activeLegalTable=null;
   const legalTableTemplates={
-    'marital-furniture':{title:'قائمة أثاث الزوجية',columns:['ت','وصف الأثاث والموجودات','العدد','القيمة (د.ع)','ملاحظات'],rows:6},
+    'marital-furniture':{title:'قائمة أثاث الزوجية',columns:['ت','وصف الأثاث والموجودات','العدد','القيمة (د.ع)','مصدر التملك','ملاحظات'],rows:6},
     'materials-prices':{title:'جدول المواد والأسعار',columns:['ت','نوع المادة','الكمية','السعر (د.ع)','الإجمالي (د.ع)'],rows:6}
   };
   function readLegalTables(){
-    try{const value=JSON.parse(localStorage.getItem(LEGAL_TABLES_STORAGE_KEY)||'[]');return Array.isArray(value)?value.filter(item=>item&&typeof item.id==='string'&&Array.isArray(item.columns)&&Array.isArray(item.rows)):[];}
+    try{const value=JSON.parse(localStorage.getItem(LEGAL_TABLES_STORAGE_KEY)||'[]');if(!Array.isArray(value))return[];return value.filter(item=>item&&typeof item.id==='string'&&Array.isArray(item.columns)&&Array.isArray(item.rows)).map(item=>{if(item.type==='marital-furniture'&&!item.columns.includes('مصدر التملك')){const noteIndex=item.columns.findIndex(name=>String(name).trim()==='ملاحظات');const insertAt=noteIndex>=0?noteIndex:item.columns.length;item.columns.splice(insertAt,0,'مصدر التملك');item.rows.forEach(row=>row.splice(insertAt,0,''));}return item;});}
     catch(error){console.warn('تعذر قراءة الجداول المحفوظة:',error);return[];}
   }
   function writeLegalTables(items){
@@ -151,10 +151,26 @@
     const template=legalTableTemplates[type];if(!template)return;
     return {id:'lt-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7),type,title:template.title,columns:[...template.columns],rows:Array.from({length:template.rows},()=>template.columns.map(()=>'')),updatedAt:new Date().toISOString()};
   }
+  function parseLegalAmount(value){
+    const normalized=String(value??'')
+      .replace(/[٠-٩]/g,d=>String(d.charCodeAt(0)-0x0660))
+      .replace(/[۰-۹]/g,d=>String(d.charCodeAt(0)-0x06F0))
+      .replace(/[٬,\\s]/g,'')
+      .replace(/٫/g,'.')
+      .replace(/[^0-9.+-]/g,'');
+    if(!normalized||normalized==='.'||normalized==='+'||normalized==='-')return null;
+    const number=Number(normalized);
+    return Number.isFinite(number)?number:null;
+  }
   function legalTableTotal(table){
-    const index=table.columns.findIndex(name=>/الإجمالي/i.test(name))>=0?table.columns.findIndex(name=>/الإجمالي/i.test(name)):table.columns.findIndex(name=>/القيمة|السعر/i.test(name));
-    if(index<0)return 0;
-    return table.rows.reduce((sum,row)=>sum+(Number(String(row[index]||'').replace(/[٬,\s]/g,''))||0),0);
+    const totalIndex=table.columns.findIndex(name=>/الإجمالي|المجموع/i.test(String(name)));
+    const amountIndex=table.columns.findIndex(name=>/القيمة|السعر|المبلغ/i.test(String(name)));
+    if(totalIndex<0&&amountIndex<0)return 0;
+    return table.rows.reduce((sum,row)=>{
+      const totalValue=totalIndex>=0?parseLegalAmount(row[totalIndex]):null;
+      const amountValue=amountIndex>=0?parseLegalAmount(row[amountIndex]):null;
+      return sum+(totalValue!==null?totalValue:(amountValue!==null?amountValue:0));
+    },0);
   }
   function renderLegalTables(){
     const root=document.getElementById('petition-browse');if(!root)return;
@@ -189,7 +205,7 @@
     root.querySelectorAll('[data-column-name]').forEach(input=>input.addEventListener('input',event=>{table.columns[Number(event.target.dataset.columnName)]=event.target.value;}));
     root.querySelectorAll('[data-row][data-column]').forEach(input=>input.addEventListener('input',event=>{
       const row=Number(event.target.dataset.row),column=Number(event.target.dataset.column);table.rows[row][column]=event.target.value;
-      if(/القيمة|الإجمالي/i.test(table.columns[column])){const footer=root.querySelector('.legal-table-editor-footer div:last-child strong');if(footer)footer.textContent=legalTableTotal(table).toLocaleString('en-US')+' د.ع';}
+      if(/القيمة|السعر|المبلغ|الإجمالي|المجموع/i.test(table.columns[column])){const footer=root.querySelector('.legal-table-editor-footer div:last-child strong');if(footer)footer.textContent=legalTableTotal(table).toLocaleString('en-US')+' د.ع';}
     }));
     document.getElementById('legal-table-add-row')?.addEventListener('click',()=>{table.rows.push(table.columns.map(()=>''));renderLegalTableEditor();});
     document.getElementById('legal-table-add-column')?.addEventListener('click',()=>{
