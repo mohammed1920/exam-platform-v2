@@ -1236,7 +1236,7 @@ html[data-theme="light"] .petition-access-request textarea{
 .legal-tables-saved-card>div strong{color:var(--mizan-heading);font-weight:900;overflow-wrap:anywhere;}
 .legal-tables-saved-card>div small{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);}
 .legal-tables-saved-card>button{min-height:38px;padding:7px 12px;border:1px solid var(--mizan-primary-500-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface);color:var(--mizan-primary-700);font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:800;cursor:pointer;}
-.legal-tables-saved-card>button.legal-tables-delete{width:38px;padding:0;border-color:var(--mizan-danger-300);color:var(--mizan-danger-700);}
+.legal-tables-saved-card>button.legal-tables-delete{width:38px;padding:0;border-color:var(--mizan-danger-200);color:var(--mizan-danger-700);}
 .legal-table-editor{display:grid;gap:var(--mizan-space-4);padding-bottom:30px;}
 .legal-table-editor-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
 .legal-table-editor-status{display:inline-flex;align-items:center;gap:7px;color:var(--mizan-success-700);font-size:var(--mizan-font-size-2xs);font-weight:800;}
@@ -1265,7 +1265,7 @@ html[data-theme="light"] .petition-access-request textarea{
 .legal-table-grid .legal-table-remove-column{position:absolute;top:5px;left:5px;display:grid;place-items:center;width:24px;height:24px;border:0;border-radius:7px;background:color-mix(in srgb,var(--mizan-white) 14%,transparent);color:var(--mizan-white);cursor:pointer;}
 .legal-table-grid .legal-table-actions-heading{min-width:68px;text-align:center;}
 .legal-table-grid .legal-table-row-actions{min-width:68px;text-align:center;}
-.legal-table-grid .legal-table-row-actions button{width:35px;height:35px;border:1px solid var(--mizan-danger-300);border-radius:9px;background:var(--mizan-surface);color:var(--mizan-danger-700);cursor:pointer;}
+.legal-table-grid .legal-table-row-actions button{width:35px;height:35px;border:1px solid var(--mizan-danger-200);border-radius:9px;background:var(--mizan-surface);color:var(--mizan-danger-700);cursor:pointer;}
 .legal-table-editor-footer{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;}
 .legal-table-editor-footer>div{display:grid;gap:5px;min-width:130px;flex:1;padding:13px 15px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface);}
 .legal-table-editor-footer span{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);}
