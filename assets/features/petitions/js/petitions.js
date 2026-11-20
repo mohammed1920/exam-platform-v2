@@ -79,6 +79,13 @@
       renderCategories();
       return;
     }
+    if(target==='legal-tables'){
+      state.template=null;
+      state.categoryId=null;
+      renderHome();
+      renderLegalTables();
+      return;
+    }
     if(target==='category'){
       // Prefer the selected category's cached manifest, and never depend on
       // the document-loading promise to finish before restoring the list UI.
@@ -120,9 +127,28 @@
 
   }
   function renderLoadError(message){const root=document.getElementById('petition-browse');if(root)root.innerHTML='<div class="petition-empty">'+esc(message)+' <button type="button" id="petition-retry">إعادة المحاولة</button></div>';const b=document.getElementById('petition-retry');if(b)b.onclick=()=>open();}
+  function openLegalTables(pushHistory=true){
+    state.template=null;state.categoryId=null;
+    if(pushHistory)window.app.navigateTo('petitions',{parentView:'petitions',petitionLevel:'legal-tables'});
+    renderHome();renderLegalTables();
+  }
+  function renderLegalTables(){
+    const root=document.getElementById('petition-browse');if(!root)return;
+    const cards=[
+      {id:'marital-furniture',icon:'fas fa-couch',title:'قائمة أثاث الزوجية',description:'إعداد قائمة منظمة للأثاث والموجودات مع الكميات والقيم والملاحظات.',tag:'قالب جاهز'},
+      {id:'materials-prices',icon:'fas fa-calculator',title:'جدول المواد والأسعار',description:'تنظيم المواد والكميات والأسعار مع مساحة لحساب الإجمالي.',tag:'قالب جاهز'}
+    ];
+    root.innerHTML='<div class="legal-tables-page"><button type="button" class="back-btn legal-tables-back" id="legal-tables-back"><i class="fas fa-arrow-right"></i> العودة إلى العرائض والطلبات</button><section class="legal-tables-hero mizan-section-hero"><div class="mizan-section-hero-heading"><span class="mizan-section-hero-icon"><i class="fas fa-table-cells-large"></i></span><h2>قسم الجداول القانونية</h2></div><p>أنشئ القوائم والجداول القانونية ونظّم بياناتها، مع إمكانية معاينتها وتجهيزها للطباعة.</p></section><div class="legal-tables-section-heading"><div><span>القوالب المتاحة</span><h3>اختر نوع الجدول</h3></div><small>يمكن إضافة قوالب أخرى لاحقاً</small></div><div class="legal-tables-grid">'+cards.map(item=>'<button type="button" class="legal-table-card" data-legal-table="'+item.id+'"><span class="legal-table-card-icon"><i class="'+item.icon+'" aria-hidden="true"></i></span><span class="legal-table-card-tag">'+item.tag+'</span><strong>'+item.title+'</strong><small>'+item.description+'</small><span class="legal-table-card-action">فتح القالب <i class="fas fa-arrow-left" aria-hidden="true"></i></span></button>').join('')+'</div><section class="legal-tables-empty-state"><span><i class="fas fa-folder-open" aria-hidden="true"></i></span><div><strong>الجداول المحفوظة</strong><p>ستظهر هنا الجداول التي تنشئها وتحفظها للعودة إليها وتعديلها لاحقاً.</p></div><small>لا توجد جداول محفوظة حالياً</small></section></div>';
+    document.getElementById('legal-tables-back')?.addEventListener('click',()=>navigateBack('categories'));
+    root.querySelectorAll('[data-legal-table]').forEach(button=>button.addEventListener('click',()=>{
+      const label=button.dataset.legalTable==='marital-furniture'?'قائمة أثاث الزوجية':'جدول المواد والأسعار';
+      window.app?.showHomeNotice?.(label,'سيتم تجهيز محرر هذا القالب في المرحلة التالية.');
+    }));
+  }
   function renderCategories(){
     const root=document.getElementById('petition-browse');if(!root)return;
-    root.innerHTML='<div class="petition-category-grid">'+state.categories.map(c=>{const count=state.petitionIndex.filter(item=>item.categoryId===c.id).length;return '<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'، '+count+' نموذج"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small></span><span class="petition-category-count"><b>'+count.toLocaleString('ar-IQ')+'</b><span>نموذج</span></span></button>';}).join('')+'</div>';
+    root.innerHTML='<button type="button" class="legal-tables-entry-card" id="open-legal-tables"><span class="legal-tables-entry-icon"><i class="fas fa-table-cells-large" aria-hidden="true"></i></span><span><strong>قسم الجداول القانونية</strong><small>إنشاء قوائم الأثاث والجداول القانونية وتنظيمها</small></span><b>فتح القسم <i class="fas fa-arrow-left"></i></b></button><div class="petition-category-grid">'+state.categories.map(c=>{const count=state.petitionIndex.filter(item=>item.categoryId===c.id).length;return '<button class="petition-category-card" data-category="'+esc(c.id)+'" aria-label="فتح قسم '+esc(c.name)+'، '+count+' نموذج"><span class="petition-category-icon"><i class="'+esc(c.icon)+'" aria-hidden="true"></i></span><span class="petition-category-copy"><strong>'+esc(c.name)+'</strong><small>'+esc(c.description)+'</small></span><span class="petition-category-count"><b>'+count.toLocaleString('ar-IQ')+'</b><span>نموذج</span></span></button>';}).join('')+'</div>';
+    root.querySelector('#open-legal-tables')?.addEventListener('click',()=>openLegalTables());
     root.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>openCategory(b.dataset.category));
   }
   async function openCategory(categoryId,pushHistory=true){
@@ -765,6 +791,7 @@
       await auth.whenFirestoreReady?.();
       const [access]=await Promise.all([loadPetitionAccess(),loadCategories()]);
       if(!access.enabled){renderHome();renderAccessGate(access);return;}
+      if(level==='legal-tables'){state.template=null;state.categoryId=null;renderHome();renderLegalTables();return;}
       if(level==='document'&&historyState.categoryId&&historyState.templateUid){
         state.categoryId=historyState.categoryId;
         await loadTemplates(state.categoryId);
