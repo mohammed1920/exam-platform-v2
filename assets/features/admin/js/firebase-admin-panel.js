@@ -363,7 +363,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!isAdmin||!db||!body)return;
     const key='students';
     try{
-      const page=await fetchAdminPage(key,()=>db.collection('students'),reset);
+      const page=await fetchAdminPage(key,()=>db.collection('students').orderBy('createdAt','desc'),reset);
       const html=page.docs.map(doc=>{
         const student=doc.data()||{};
         return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">طالب مسجل</span><h4>'+esc(student.displayName||'بدون اسم')+'</h4></div></div><div class="firebase-admin-record-field"><span>البريد الإلكتروني</span><strong>'+esc(student.email||'غير متوفر')+'</strong></div><div class="firebase-admin-record-meta">تاريخ التسجيل: '+esc(dateValue(student.createdAt))+'</div></article>';
