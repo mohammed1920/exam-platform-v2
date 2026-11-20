@@ -20,7 +20,6 @@
 
   function notice(action){
     const names={
-      judicial:'اختبارات المعهد القضائي',
       laws:'القوانين العراقية',
       procedures:'إجراءات الدعاوى',
       petitions:'عرائض وطلبات',
@@ -29,7 +28,6 @@
       help:'المساعدة'
     };
     const text={
-      judicial:'سيتم ربط هذا القسم بالمحتوى الخاص بالمعهد القضائي لاحقاً.',
       laws:'سيتم إنشاء مكتبة القوانين العراقية كقسم مستقل عن الاختبارات.',
       procedures:'سيتم تنظيم الإجراءات القضائية في قسم مستقل وقابل للتوسعة.',
       petitions:'سيتم إضافة نماذج العرائض والطلبات ضمن قسم مستقل.',
@@ -45,6 +43,11 @@
     if(action==='home'){ if(window.app) window.app.navigateTo('home'); return; }
     if(action==='books'){ if(window.app) window.app.navigateTo('books'); return; }
     if(action==='random'){ if(window.app) window.app.showCustomExamSetup(); return; }
+    if(action==='judicial'){
+      if(typeof window.judicialInstitute?.open === 'function') window.judicialInstitute.open();
+      else window.app?.showHomeNotice?.('اختبارات المعهد القضائي','تعذر تهيئة القسم. حدّث الصفحة ثم أعد المحاولة.');
+      return;
+    }
     if(action==='dashboard'){
       if(window.studentDashboard) window.studentDashboard.open('exam-dashboard');
       return;
