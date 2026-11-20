@@ -1287,7 +1287,7 @@ html[data-theme="light"] .petition-access-request textarea{
 .legal-table-meta-heading strong{color:var(--mizan-heading);font-size:var(--mizan-font-size-compact-strong);font-weight:900;}
 .legal-table-meta-heading button{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:7px 12px;border:1px solid var(--mizan-primary-500-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface);color:var(--mizan-primary-700);font:inherit;font-size:var(--mizan-font-size-2xs);font-weight:900;cursor:pointer;}
 .legal-table-meta-fields{display:grid;gap:9px;}
-.legal-table-meta-field{display:grid;grid-template-columns:minmax(95px,.65fr) minmax(0,1fr) 38px;align-items:center;gap:8px;padding:10px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface-2);}
+.legal-table-meta-field{display:grid;grid-template-columns:minmax(0,1fr) 38px;align-items:center;gap:8px;padding:10px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-control);background:var(--mizan-surface-2);}
 .legal-table-meta-field label{color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);font-weight:800;}
 .legal-table-meta-field input{width:100%;min-width:0;min-height:40px;padding:8px 10px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-sm);background:var(--mizan-bg-light);color:var(--mizan-text);font:inherit;outline:none;}
 .legal-table-meta-field input:focus{border-color:var(--mizan-primary-500);box-shadow:var(--mizan-focus-ring);}
