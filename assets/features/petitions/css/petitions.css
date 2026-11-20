@@ -1293,7 +1293,7 @@ html[data-theme="light"] .petition-access-request textarea{
 .legal-table-meta-field input:focus{border-color:var(--mizan-primary-500);box-shadow:var(--mizan-focus-ring);}
 .legal-table-meta-field button{width:36px;height:36px;border:1px solid var(--mizan-danger-200);border-radius:9px;background:var(--mizan-surface);color:var(--mizan-danger-700);cursor:pointer;}
 .legal-table-meta-empty{margin:0;color:var(--mizan-muted);font-size:var(--mizan-font-size-2xs);line-height:1.8;}
-.legal-table-toolbar-bottom{position:sticky;bottom:calc(94px + env(safe-area-inset-bottom));z-index:20;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:var(--mizan-space-3);padding:12px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:var(--mizan-shadow-lg,0 8px 24px rgba(0,0,0,.22));}
+.legal-table-toolbar-bottom{position:sticky;bottom:calc(94px + env(safe-area-inset-bottom));z-index:20;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:var(--mizan-space-3);padding:12px;border:1px solid var(--mizan-border);border-radius:var(--mizan-radius-xl);background:var(--mizan-surface);box-shadow:0 8px 24px rgba(0,0,0,.22);}
 .legal-table-toolbar-bottom button{min-height:48px;}
 .legal-table-toolbar-bottom #legal-table-print{border-color:var(--mizan-accent-tile-border);background:var(--mizan-accent-tile-bg);color:var(--mizan-accent-tile-fg);}
 .legal-table-editor{padding-bottom:calc(120px + env(safe-area-inset-bottom));}
