@@ -182,7 +182,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'assets/features/petitions/js/petitions.js?v=3.1';
+      script.src = 'assets/features/petitions/js/petitions.js?v=3.2';
       script.dataset.petitionsLoader = '1';
       script.onload = () => resolve(window.petitions);
       script.onerror = () => reject(new Error('تعذر تحميل قسم العرائض والطلبات'));
