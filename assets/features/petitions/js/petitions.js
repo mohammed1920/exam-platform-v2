@@ -155,7 +155,7 @@
     const normalized=String(value??'')
       .replace(/[٠-٩]/g,d=>String(d.charCodeAt(0)-0x0660))
       .replace(/[۰-۹]/g,d=>String(d.charCodeAt(0)-0x06F0))
-      .replace(/[٬,\\s]/g,'')
+      .replace(/[٬,\s]/g,'')
       .replace(/٫/g,'.')
       .replace(/[^0-9.+-]/g,'');
     if(!normalized||normalized==='.'||normalized==='+'||normalized==='-')return null;
