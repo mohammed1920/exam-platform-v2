@@ -1,6 +1,11 @@
 name: AI Spelling Check
 
 on:
+  push:
+    paths:
+      - 'spellcheck_ai.py'
+      - 'requirements.txt'
+      - '.github/workflows/ai-spellcheck.yml'
   schedule:
     # الفحص الدوري اليومي الساعة 12 ظهراً بتوقيت بغداد (09:00 UTC)
     - cron: '0 9 * * *'
