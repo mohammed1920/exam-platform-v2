@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # تشترك جميع المهام التي تحفظ تقارير إلى main في مجموعة واحدة لمنع تداخل rebase/push.
+  # تشترك مهام صيانة المحتوى في مجموعة واحدة لمنع تداخل حفظ التقارير.
   group: content-maintenance
   cancel-in-progress: false
 
@@ -17,6 +17,7 @@ permissions:
 jobs:
   spellcheck:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,6 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          set -euo pipefail
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -35,17 +37,23 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python3 spellcheck_ai.py --repo-root .
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.8-flash' }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL || 'openai/gpt-oss-120b' }}
+        run: |
+          set -euo pipefail
+          python3 spellcheck_ai.py --repo-root .
 
       - name: Commit and push report
+        if: success()
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git rebase origin/main
           git add reports/spelling_report.json reports/scan_state.json
           if git diff --cached --quiet; then
-            echo "لا يوجد أخطاء جديدة للحفظ"
+            echo "لا توجد تغييرات جديدة في تقرير التدقيق أو حالة الفحص."
           else
             git commit -m "تحديث تقرير الفحص الإملائي وحالة الفحص"
             git push origin HEAD:main
