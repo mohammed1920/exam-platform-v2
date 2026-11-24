@@ -48,18 +48,8 @@ fi
 
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 
-# Give every deployment a distinct Service Worker script/cache version.
-# Vercel and GitHub Actions provide their commit SHA; local builds use "local".
-BUILD_ID="${VERCEL_GIT_COMMIT_SHA:-${GITHUB_SHA:-local}}"
-if [[ ! "$BUILD_ID" =~ ^[A-Za-z0-9._-]+$ ]]; then
-  BUILD_ID="local"
-fi
-if ! grep -qF '__MIZAN_BUILD_ID__' "$ROOT/service-worker.js"; then
-  echo "Service Worker build placeholder is missing: __MIZAN_BUILD_ID__" >&2
-  exit 1
-fi
-sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
-mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
+# Generate deployment-only petition indexes without modifying source data.
+node "$ROOT/scripts/build-petition-index.mjs" "$OUTPUT_DIR/data/petitions"
 
 # Generate deterministic SHA-256 versions for question chapters on every build.
 # Only hashes are published; question JSON files remain online-only.
@@ -68,6 +58,16 @@ node "$ROOT/scripts/build-question-content-manifest.mjs" "$OUTPUT_DIR/data"
 # Pre-cache only the public entry page's direct assets and their CSS dependencies.
 # Feature modules loaded on demand and administration-only assets remain lazy.
 node "$ROOT/scripts/build-precache-manifest.mjs" "$OUTPUT_DIR"
+
+# Version the Service Worker from the actual published bundle, not the Git commit.
+# Report-only commits and other unpublished repository changes keep the same cache version.
+if ! grep -qF '__MIZAN_BUILD_ID__' "$ROOT/service-worker.js"; then
+  echo "Service Worker build placeholder is missing: __MIZAN_BUILD_ID__" >&2
+  exit 1
+fi
+BUILD_ID="$(cd "$OUTPUT_DIR" && find . -type f ! -name 'service-worker.js' ! -name '.nojekyll' -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d ' ' -f 1)"
+sed "s/__MIZAN_BUILD_ID__/$BUILD_ID/g" "$OUTPUT_DIR/service-worker.js" > "$OUTPUT_DIR/service-worker.js.tmp"
+mv "$OUTPUT_DIR/service-worker.js.tmp" "$OUTPUT_DIR/service-worker.js"
 
 required_files=(
   index.html
