@@ -143,7 +143,7 @@
       });
       activeRegistration = registration;
       if (!registration.waiting) {
-        try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
+        try { localStorage.removeItem(dismissedKey); } catch (_) {}
       }
 
       if (registration.waiting && navigator.serviceWorker.controller) {
