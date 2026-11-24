@@ -252,8 +252,8 @@
         </div>
         <section class="procedures-admin-form" style="margin:16px 0" aria-labelledby="fa-judicial-import-title">
           <h4 id="fa-judicial-import-title">استيراد جماعي من ملف JSON</h4>
-          <p class="lawyer-admin-note">ارفع ملفاً يحتوي على مجموعة أسئلة. يمكنك تحديد مادة افتراضية أو وضع subjectId لكل سؤال. تتم مراجعة الملف قبل الحفظ، وتُضاف الأسئلة كمسودات افتراضياً.</p>
-          <label>المادة الافتراضية للملف <select id="fa-judicial-import-subject"><option value="">اعتماد المادة الموجودة داخل كل سؤال</option></select></label>
+          <p class="lawyer-admin-note">اختر المادة القانونية مرة واحدة، ثم ارفع ملف JSON يحتوي على السؤال والإجابة فقط. سيربط النظام جميع السجلات بالمادة المختارة ويولّد معرّفاً تلقائياً مستقلاً لكل سؤال.</p>
+          <label>اختر المادة التي ستُضاف إليها جميع الأسئلة * <select id="fa-judicial-import-subject" required><option value="">اختر المادة القانونية</option></select></label>
           <label>ملف الأسئلة بصيغة JSON <input id="fa-judicial-import-file" type="file" accept=".json,application/json"></label>
           <div class="lawyer-admin-actions"><button type="button" class="approve" id="fa-judicial-import-preview">فحص الملف ومعاينة الأسئلة</button><button type="button" id="fa-judicial-import-sample">تنزيل نموذج JSON</button></div>
           <div id="fa-judicial-import-preview-area" aria-live="polite"></div>
@@ -593,7 +593,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function renderJudicialImportSubjectOptions(){
     const select=els.judicialImportSubject;if(!select)return;
     const current=select.value;
-    select.innerHTML='<option value="">اعتماد المادة الموجودة داخل كل سؤال</option>'+judicialSubjectItems.filter(item=>item.active!==false).map(item=>'<option value="'+esc(item.id)+'">'+esc(item.name)+'</option>').join('');
+    select.innerHTML='<option value="">اختر المادة القانونية</option>'+judicialSubjectItems.filter(item=>item.active!==false).map(item=>'<option value="'+esc(item.id)+'">'+esc(item.name)+'</option>').join('');
     if(judicialSubjectItems.some(item=>item.id===current&&item.active!==false))select.value=current;
   }
   function renderJudicialSubjectOptions(selectedId=''){
@@ -629,7 +629,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   function resetJudicialAnswer(){const form=els.judicialAnswerForm;if(!form)return;form.reset();form.elements.id.value='';form.elements.published.checked=false;form.querySelector('button[type="submit"]').textContent='حفظ السؤال والإجابة';renderJudicialSubjectOptions();}
   let judicialImportRows=[];
   function downloadJudicialImportSample(){
-    const sample=[{subjectId:"ضع_معرف_المادة_هنا",type:"theoretical",question:"اكتب نص السؤال هنا",answer:"اكتب الإجابة أو الحل هنا",source:"اسم المصدر ورقم الصفحة",published:false},{subjectId:"ضع_معرف_المادة_هنا",type:"practical",question:"اكتب الواقعة العملية هنا",answer:"اكتب الحل القانوني هنا",source:"",published:false}];
+    const sample=[{question:"اكتب نص السؤال هنا",answer:"اكتب الإجابة أو الحل هنا"},{question:"اكتب السؤال الثاني هنا",answer:"اكتب الإجابة الثانية هنا"}];
     const blob=new Blob([JSON.stringify(sample,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
     link.href=url;link.download='mizan-judicial-answers-template.json';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
   }
@@ -641,13 +641,15 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       try{
         const parsed=JSON.parse(String(reader.result||'')),rows=Array.isArray(parsed)?parsed:parsed?.questions;
         if(!Array.isArray(rows)||!rows.length)throw new Error('يجب أن يحتوي الملف على مصفوفة أسئلة أو خاصية questions.');
+        const defaultSubject=els.judicialImportSubject?.value||'';
+        if(!defaultSubject)throw new Error('اختر المادة القانونية أولاً، ثم أعد معاينة الملف.');
         if(rows.length>2000)throw new Error('الحد الأعلى للملف الواحد هو 2000 سؤال.');
-        const defaultSubject=els.judicialImportSubject?.value||'',activeSubjects=new Set(judicialSubjectItems.filter(item=>item.active!==false).map(item=>item.id));
+        const activeSubjects=new Set(judicialSubjectItems.filter(item=>item.active!==false).map(item=>item.id));
         const existingKeys=new Set(judicialAnswerItems.map(item=>[item.subjectId||'',String(item.question||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('ar')].join('::')));
         const seen=new Set(),errors=[];
         judicialImportRows=rows.map((row,index)=>{
           const line=index+1,question=typeof row?.question==='string'?row.question.trim():'',answer=typeof row?.answer==='string'?row.answer.trim():'';
-          const subjectId=String(row?.subjectId||defaultSubject||'').trim(),type=['theoretical','practical','topic'].includes(row?.type)?row.type:'theoretical';
+          const subjectId=defaultSubject,type=['theoretical','practical','topic'].includes(row?.type)?row.type:'theoretical';
           const key=[subjectId,question.replace(/\s+/g,' ').toLocaleLowerCase('ar')].join('::');
           const rowErrors=[];
           if(!row||typeof row!=='object'||Array.isArray(row))rowErrors.push('صيغة العنصر غير صحيحة');
