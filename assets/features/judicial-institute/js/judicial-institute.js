@@ -66,6 +66,12 @@
         '</span>'+
         '<i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i>'+
       '</button>'+
+      '<button type="button" class="ji-bank-card ji-answers-entry" data-ji-action="answers">'+
+        '<span class="ji-entry-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span>'+
+        '<span class="ji-entry-copy"><strong>أسئلة وأجوبة المعهد القضائي</strong><small>أسئلة نظرية ووقائع عملية مع الإجابات والحلول القانونية.</small></span>'+
+        '<span class="ji-entry-stats"><span><strong>Q&amp;A</strong><small>موسوعة مستقلة</small></span></span>'+
+        '<i class="fas fa-arrow-left ji-entry-arrow" aria-hidden="true"></i>'+
+      '</button>'+
       '<button type="button" class="ji-entry-card ji-saved-entry" data-ji-action="saved">'+
         '<span class="ji-entry-icon"><i class="fas fa-bookmark" aria-hidden="true"></i></span>'+
         '<span class="ji-entry-copy"><strong>المحفوظات</strong><small>الأسئلة التي حفظتها للرجوع إليها لاحقاً.</small></span>'+
@@ -112,7 +118,7 @@
     const notes=q.verification&&q.verification.notes?'<p class="ji-question-note">ملاحظة التحقق: '+esc(q.verification.notes)+'</p>':'';
     const answerText=hasAnswer&&typeof answer==='number'&&Array.isArray(q.options)?(q.options[answer]===undefined?String(answer):typeof q.options[answer]==='string'?q.options[answer]:q.options[answer].text):answer;
     return '<article class="ji-question-card"><div class="ji-question-meta"><span>السؤال '+esc(number)+'</span><span>'+esc(q.year||state.year||'')+'</span><span>'+esc(q.type||'سؤال')+'</span></div>'+(String(text).trim()?'<h3>'+esc(text)+'</h3>':'')+parts+options+source+notes+
-      '<div class="ji-question-bottom">'+(hasAnswer?'<details class="ji-answer"><summary><i class="fas fa-lightbulb" aria-hidden="true"></i> عرض الإجابة</summary><div>'+esc(answerText)+'</div></details>':'<span class="ji-answer-pending"><i class="fas fa-hourglass-half" aria-hidden="true"></i> الإجابة غير مضافة بعد</span>')+
+      '<div class="ji-question-bottom"><span class="ji-answer-pending"><i class="fas fa-book-open" aria-hidden="true"></i> بنك القبول: أسئلة دون إجابات</span>'+
       '<button type="button" class="ji-save-question '+(saved?'is-saved':'')+'" data-ji-action="save" data-uid="'+esc(uid)+'" '+(uid?'':'disabled')+'><i class="fas fa-bookmark" aria-hidden="true"></i>'+(saved?'إزالة من المحفوظات':'حفظ السؤال')+'</button></div></article>';
   }
   function emptyState(title,message){
@@ -151,6 +157,24 @@
     results.filter(result=>result.status==='rejected').forEach(result=>console.warn('تعذر تحميل ملف من المحفوظات القديمة:',result.reason));
     try{localStorage.setItem(SAVED_DATA_KEY,JSON.stringify(records));}catch(_){notice('تعذر استرجاع المحفوظات','مساحة التخزين المحلي غير متاحة حالياً.');}
   }
+  let judicialAnswersCache=null,judicialAnswersPromise=null;
+  async function loadJudicialAnswers(){
+    if(judicialAnswersCache)return judicialAnswersCache;
+    if(!window.publicAuth?.firestore)throw new Error('Firebase غير جاهز حالياً');
+    if(!judicialAnswersPromise)judicialAnswersPromise=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',true).orderBy('createdAt','desc').limit(100).get().then(snap=>{
+      judicialAnswersCache=snap.docs.map(doc=>({id:doc.id,...doc.data()}));return judicialAnswersCache;
+    }).catch(error=>{judicialAnswersPromise=null;throw error;});
+    return judicialAnswersPromise;
+  }
+  function renderAnswers(){
+    const rows=judicialAnswersCache||[],subjects=Array.from(new Set(rows.map(row=>String(row.subject||'').trim()).filter(Boolean)));
+    const selected=state.answerSubject||'all',query=String(state.query||'').trim().toLocaleLowerCase('ar');
+    const filtered=rows.filter(row=>(selected==='all'||row.subject===selected)&&[row.subject,row.question,row.answer,row.source].filter(Boolean).join(' ').toLocaleLowerCase('ar').includes(query));
+    return shell('<section class="ji-breadcrumb"><button type="button" data-ji-action="home">المعهد القضائي</button><i class="fas fa-chevron-left"></i><span>أسئلة وأجوبة المعهد القضائي</span></section>'+
+      '<section class="ji-panel"><div class="ji-question-toolbar"><div><span class="ji-kicker">موسوعة مستقلة</span><h2>الأسئلة والحلول</h2><span class="ji-count">'+filtered.length+' سؤال وجواب</span></div><label class="ji-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" data-ji-answer-search placeholder="ابحث في الأسئلة والإجابات..." value="'+esc(state.query)+'"></label></div>'+
+      '<div class="ji-year-filters"><label>المادة القانونية<select data-ji-answer-subject><option value="all">جميع المواد</option>'+subjects.map(s=>'<option value="'+esc(s)+'" '+(selected===s?'selected':'')+'>'+esc(s)+'</option>').join('')+'</select></label></div>'+
+      (filtered.length?'<div class="ji-question-list">'+filtered.map((row,index)=>'<article class="ji-question-card ji-answer-library-card"><div class="ji-question-meta"><span>'+esc(row.subject)+'</span><span>'+esc(row.type==='practical'?'واقعة عملية':row.type==='topic'?'موضوع قانوني':'سؤال نظري')+'</span></div><h3>'+esc(row.question)+'</h3><details class="ji-answer" open><summary><i class="fas fa-lightbulb" aria-hidden="true"></i> الإجابة والحل</summary><div class="ji-answer-content">'+esc(row.answer).replace(/\n/g,'<br>')+'</div></details>'+(row.source?'<div class="ji-question-source">'+esc(row.source)+'</div>':'')+'</article>').join('')+'</div>':emptyState(rows.length?'لا توجد نتائج مطابقة':'لم تُنشر أسئلة وأجوبة بعد',rows.length?'جرّب كلمات بحث أخرى أو اختر مادة مختلفة.':'ستظهر الأسئلة والحلول هنا بعد إضافتها واعتماد نشرها من الإدارة.'))+'</section>');
+  }
   function renderSaved(){
     const ids=savedIds(), records=readSavedRecords(), byId=new Map(records.map(item=>[String(item.uid),item]));
     Array.from(questionCache.values()).flat().forEach(q=>{
@@ -169,6 +193,7 @@
     if(state.level==='home')el.innerHTML=renderLanding();
     else if(state.level==='subjects')el.innerHTML=renderSubjects();
     else if(state.level==='questions')el.innerHTML=renderQuestions();
+    else if(state.level==='answers')el.innerHTML=renderAnswers();
     else if(state.level==='saved')el.innerHTML=renderSaved();
     else el.innerHTML=renderYears();
     bind();
@@ -203,6 +228,8 @@
       if(action==='years')return pushLevel('years',{year:null,subjectId:null});
       if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
+      if(action==='home')return pushLevel('home',{year:null,subjectId:null});
+      if(action==='answers'){state.answerSubject='all';state.query='';button.disabled=true;button.setAttribute('aria-busy','true');el.innerHTML=shell('<div class="ji-loading"><span class="ji-spinner"></span><p>جارٍ تحميل الأسئلة والإجابات...</p></div>');loadJudicialAnswers().then(()=>pushLevel('answers',{year:null,subjectId:null})).catch(error=>{console.error('تعذر تحميل أسئلة وأجوبة المعهد القضائي:',error);notice('تعذر تحميل المحتوى','تحقق من الاتصال ثم أعد المحاولة.');pushLevel('answers',{year:null,subjectId:null});}).finally(()=>{button.disabled=false;button.removeAttribute('aria-busy');});return;}
       if(action==='saved'){button.disabled=true;loadSavedQuestions().then(()=>pushLevel('saved',{year:null,subjectId:null})).catch(error=>{console.error('تعذر استرجاع الأسئلة المحفوظة:',error);notice('تعذر استرجاع المحفوظات','تعذر تحميل بعض ملفات الأرشيف.');pushLevel('saved',{year:null,subjectId:null});}).finally(()=>{button.disabled=false;});return;}
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
       if(action==='subject'){const id=button.dataset.subject,year=state.year;button.disabled=true;button.setAttribute('aria-busy','true');loadYearSubject(year,id).then(()=>pushLevel('questions',{year,subjectId:id})).catch(error=>{console.error('تعذر تحميل ملف أسئلة المادة:',error);notice('تعذر تحميل الأسئلة','تحقق من ملف المادة ثم أعد المحاولة.');button.disabled=false;button.removeAttribute('aria-busy');});return;}
@@ -211,6 +238,10 @@
     el.querySelectorAll('[data-ji-filter]').forEach(select=>select.addEventListener('change',()=>{
       state[select.dataset.jiFilter==='from'?'fromYear':'toYear']=Number(select.value);render();
     }));
+    const answerSearch=el.querySelector('[data-ji-answer-search]');
+    if(answerSearch)answerSearch.addEventListener('input',()=>{state.query=answerSearch.value;render();const next=root().querySelector('[data-ji-answer-search]');if(next){next.focus();next.setSelectionRange(next.value.length,next.value.length);}});
+    const answerSubject=el.querySelector('[data-ji-answer-subject]');
+    if(answerSubject)answerSubject.addEventListener('change',()=>{state.answerSubject=answerSubject.value;render();});
     const search=el.querySelector('[data-ji-search]');
     if(search)search.addEventListener('input',()=>{
       state.query=search.value;
