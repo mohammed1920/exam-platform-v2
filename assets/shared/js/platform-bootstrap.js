@@ -15,12 +15,12 @@
   let isApplyingUpdate = false;
 
   function wasDismissed() {
-    try { return sessionStorage.getItem(dismissedKey) === '1'; }
+    try { return localStorage.getItem(dismissedKey) === '1'; }
     catch (_) { return false; }
   }
 
   function dismissUpdate() {
-    try { sessionStorage.setItem(dismissedKey, '1'); } catch (_) {}
+    try { localStorage.setItem(dismissedKey, '1'); } catch (_) {}
     if (updateBanner) updateBanner.hidden = true;
   }
 
@@ -118,7 +118,7 @@
     if (isReloading) return;
     isReloading = true;
     if (isApplyingUpdate) {
-      try { sessionStorage.removeItem(dismissedKey); } catch (_) {}
+      try { localStorage.removeItem(dismissedKey); } catch (_) {}
     }
     window.location.reload();
   });
