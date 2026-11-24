@@ -161,7 +161,7 @@
   async function loadJudicialAnswers(){
     if(judicialAnswersCache)return judicialAnswersCache;
     if(!window.publicAuth?.firestore)throw new Error('Firebase غير جاهز حالياً');
-    if(!judicialAnswersPromise)judicialAnswersPromise=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',true).orderBy('createdAt','desc').limit(100).get().then(snap=>{
+    if(!judicialAnswersPromise)judicialAnswersPromise=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',true).limit(100).get().then(snap=>{
       judicialAnswersCache=snap.docs.map(doc=>({id:doc.id,...doc.data()}));return judicialAnswersCache;
     }).catch(error=>{judicialAnswersPromise=null;throw error;});
     return judicialAnswersPromise;
