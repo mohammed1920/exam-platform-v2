@@ -247,7 +247,47 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-    // Judicial institute Q&A: public read is limited to published records; writes are admin-only.\n    match /judicialInstituteAnswers/{answerId} {\n      allow read: if isAdmin() || resource.data.published == true;\n      allow create: if isAdmin() && request.resource.data.subject is string && request.resource.data.question is string && request.resource.data.answer is string && request.resource.data.published is bool;\n      allow update, delete: if isAdmin();\n    }\n\n    match /{document=**} {
+    // Judicial institute Q&A access requests and grants are independent from other protected sections.
+    match /judicialInstituteAccessRequests/{userId} {
+      allow create: if signedIn() && request.auth.uid == userId
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() >= 10
+        && request.resource.data.reason.size() <= 1000
+        && request.resource.data.displayName is string
+        && request.resource.data.email is string
+        && request.resource.data.keys().hasOnly(['uid','displayName','email','reason','status','createdAt','updatedAt']);
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow update: if isAdmin() || (
+        signedIn() && request.auth.uid == userId
+        && resource.data.uid == request.auth.uid
+        && resource.data.status in ['rejected', 'revoked']
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() >= 10
+        && request.resource.data.reason.size() <= 1000
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','email','reason','status','updatedAt'])
+      );
+      allow delete: if isAdmin();
+    }
+    match /judicialInstituteAccess/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create, update, delete: if isAdmin();
+    }
+    match /judicialInstituteAnswers/{answerId} {
+      allow read: if isAdmin() || (
+        signedIn()
+        && resource.data.published == true
+        && exists(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid))
+        && get(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid)).data.enabled == true
+      );
+      allow create: if isAdmin() && request.resource.data.subject is string && request.resource.data.question is string && request.resource.data.answer is string && request.resource.data.published is bool;
+      allow update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
       allow read, write: if false;
     }
   }
