@@ -277,7 +277,7 @@
 els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCancel?.addEventListener('click',closeLawyerEdit);els.lawyerEditForm?.addEventListener('submit',saveLawyerEdit);
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
      els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.petitionForm?.addEventListener('submit',savePetition);els.petitionReset?.addEventListener('click',()=>{resetPetition();setPetitionPanel('add');});
-     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialSubjectForm?.addEventListener('submit',saveJudicialSubject);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);els.judicialAccessRequests?.addEventListener('click',handleJudicialAccessAction);els.section.querySelectorAll('[data-judicial-access-view]').forEach(button=>button.addEventListener('click',()=>{activeJudicialAccessView=button.dataset.judicialAccessView;els.section.querySelectorAll('[data-judicial-access-view]').forEach(item=>item.classList.toggle('active',item===button));loadJudicialAccessRequests();}));
+     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialSubjectForm?.addEventListener('submit',saveJudicialSubject);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);els.judicialSubjectsList?.addEventListener('click',handleJudicialAnswerAction);els.judicialAccessRequests?.addEventListener('click',handleJudicialAccessAction);els.section.querySelectorAll('[data-judicial-access-view]').forEach(button=>button.addEventListener('click',()=>{activeJudicialAccessView=button.dataset.judicialAccessView;els.section.querySelectorAll('[data-judicial-access-view]').forEach(item=>item.classList.toggle('active',item===button));loadJudicialAccessRequests();}));
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
@@ -593,7 +593,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   async function loadJudicialSubjects(){
     if(!isAdmin||!window.publicAuth?.firestore)return;
-    try{const snap=await window.publicAuth.firestore.collection('judicialInstituteSubjects').orderBy('name').limit(100).get();judicialSubjectItems=snap.docs.map(doc=>({id:doc.id,...doc.data()}));renderJudicialSubjects();}
+    try{const snap=await window.publicAuth.firestore.collection('judicialInstituteSubjects').orderBy('name').limit(100).get();judicialSubjectItems=snap.docs.map(doc=>({id:doc.id,...doc.data()}));renderJudicialSubjects();renderJudicialAnswers();}
     catch(error){console.error('Judicial subjects load failed:',error);if(els.judicialSubjectsList)els.judicialSubjectsList.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المواد. تحقق من صلاحيات Firestore.</p>';}
   }
   async function saveJudicialSubject(event){
