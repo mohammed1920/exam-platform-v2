@@ -276,6 +276,26 @@ service cloud.firestore {
       allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
       allow create, update, delete: if isAdmin();
     }
+    match /judicialInstituteSubjects/{subjectId} {
+      allow read: if isAdmin() || (
+        signedIn()
+        && exists(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid))
+        && get(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid)).data.enabled == true
+        && resource.data.active == true
+      );
+      allow create: if isAdmin()
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 160
+        && request.resource.data.active == true;
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','active','updatedAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 160;
+      allow delete: if isAdmin();
+    }
+
     match /judicialInstituteAnswers/{answerId} {
       allow read: if isAdmin() || (
         signedIn()
@@ -283,7 +303,7 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid))
         && get(/databases/$(database)/documents/judicialInstituteAccess/$(request.auth.uid)).data.enabled == true
       );
-      allow create: if isAdmin() && request.resource.data.subject is string && request.resource.data.question is string && request.resource.data.answer is string && request.resource.data.published is bool;
+      allow create: if isAdmin() && request.resource.data.subjectId is string && exists(/databases/$(database)/documents/judicialInstituteSubjects/$(request.resource.data.subjectId)) && request.resource.data.question is string && request.resource.data.answer is string && request.resource.data.published is bool;
       allow update, delete: if isAdmin();
     }
 
