@@ -91,7 +91,7 @@
 <button type="button" class="firebase-admin-nav-item" data-admin-view="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i><span>دليل المحامين</span><span class="firebase-admin-nav-count" id="fa-nav-lawyers-count" hidden>0</span></button>
 <button type="button" class="firebase-admin-nav-item" data-admin-view="procedures"><i class="fas fa-file-signature" aria-hidden="true"></i><span>إجراءات الدعاوى</span><span class="firebase-admin-nav-count" id="fa-nav-procedures-count" hidden>0</span></button>
 <button type="button" class="firebase-admin-nav-item" data-admin-view="petitions"><i class="fas fa-file-alt" aria-hidden="true"></i><span>العرائض والطلبات</span><span class="firebase-admin-nav-count" id="fa-nav-petitions-count" hidden>0</span></button>
-<button type="button" class="firebase-admin-nav-item" data-admin-view="judicial-answers"><i class="fas fa-book-open" aria-hidden="true"></i><span>أسئلة وأجوبة المعهد القضائي</span></button>
+<button type="button" class="firebase-admin-nav-item" data-admin-view="judicial-answers"><i class="fas fa-book-open" aria-hidden="true"></i><span>أسئلة وأجوبة المعهد القضائي</span><span class="firebase-admin-nav-count" id="fa-nav-judicial-answers-count" hidden>0</span></button>
 </nav>
 <button id="firebase-admin-back" class="firebase-admin-exit" type="button"><i class="fas fa-arrow-right-from-bracket" aria-hidden="true"></i><span>العودة إلى المنصة</span></button>
 </aside>
@@ -237,6 +237,11 @@
     <section id="fa-admin-view-judicial-answers" class="firebase-admin-subview" hidden>
       <button type="button" class="firebase-admin-subview-back" data-admin-home>← العودة لأقسام الإدارة</button>
       <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>طلبات الوصول إلى الموسوعة</h3><span id="fa-judicial-access-count">0 طلب معلق</span></div>
+        <div class="firebase-admin-access-tabs"><button type="button" data-judicial-access-view="pending" class="active">المعلقة</button><button type="button" data-judicial-access-view="active">الصلاحيات المفعّلة</button><button type="button" data-judicial-access-view="revoked">المرفوضة / المسحوبة</button></div>
+        <div id="fa-judicial-access-requests" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر القسم لتحميل الطلبات.</p></div>
+      </div>
+      <div class="firebase-admin-card lawyer-admin-card" style="margin-top:16px">
         <div class="firebase-admin-card-head"><h3>إدارة أسئلة وأجوبة المعهد القضائي</h3><span>المحتوى المنشور يظهر للطلاب فقط</span></div>
         <form id="fa-judicial-answer-form" class="procedures-admin-form">
           <input type="hidden" name="id">
@@ -257,7 +262,7 @@
     </section></div>
     </div></div>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),judicialAnswerForm:section.querySelector('#fa-judicial-answer-form'),judicialAnswerReset:section.querySelector('#fa-judicial-answer-reset'),judicialAnswersList:section.querySelector('#fa-judicial-answers-list'),judicialAnswersCount:section.querySelector('#fa-judicial-answers-count'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),judicialAnswerForm:section.querySelector('#fa-judicial-answer-form'),judicialAnswerReset:section.querySelector('#fa-judicial-answer-reset'),judicialAnswersList:section.querySelector('#fa-judicial-answers-list'),judicialAnswersCount:section.querySelector('#fa-judicial-answers-count'),judicialAccessRequests:section.querySelector('#fa-judicial-access-requests'),judicialAccessCount:section.querySelector('#fa-judicial-access-count'),navJudicialAnswersCount:section.querySelector('#fa-nav-judicial-answers-count'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
 
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);els.navToggle?.addEventListener('click',()=>toggleMobileSidebar());els.sidebarBackdrop?.addEventListener('click',()=>toggleMobileSidebar(false));els.section.querySelector('#fa-admin-navigation')?.addEventListener('click',event=>{if(event.target.closest('.firebase-admin-nav-item'))toggleMobileSidebar(false);});document.addEventListener('keydown',event=>{if(event.key==='Escape')toggleMobileSidebar(false);});
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
@@ -265,7 +270,7 @@
 els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCancel?.addEventListener('click',closeLawyerEdit);els.lawyerEditForm?.addEventListener('submit',saveLawyerEdit);
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
      els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.petitionForm?.addEventListener('submit',savePetition);els.petitionReset?.addEventListener('click',()=>{resetPetition();setPetitionPanel('add');});
-     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);
+     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);els.judicialAccessRequests?.addEventListener('click',handleJudicialAccessAction);els.section.querySelectorAll('[data-judicial-access-view]').forEach(button=>button.addEventListener('click',()=>{activeJudicialAccessView=button.dataset.judicialAccessView;els.section.querySelectorAll('[data-judicial-access-view]').forEach(item=>item.classList.toggle('active',item===button));loadJudicialAccessRequests();}));
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
@@ -306,7 +311,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
       panel.classList.toggle('active',active);
     });
     if(view!=='lawyers'&&els.lawyerEdit)closeLawyerEdit();
-    if(view==='procedures'){loadProcedureAccessRequests();loadLegalProcedures();}if(view==='petitions'){loadPetitionAccessRequests();loadPetitions();}if(view==='judicial-answers')loadJudicialAnswers();
+    if(view==='procedures'){loadProcedureAccessRequests();loadLegalProcedures();}if(view==='petitions'){loadPetitionAccessRequests();loadPetitions();}if(view==='judicial-answers'){loadJudicialAccessRequests();loadJudicialAnswers();}
   }
   function setPendingCount(key,count){
     const value=count===null?'—':String(Math.max(0,Number(count)||0));
@@ -502,6 +507,71 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     }catch(error){console.error('Lawyer profiles load failed:',error);if(reset)body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل ملفات المحامين. تحقق من قواعد Firestore.</p>';}
   }
 
+
+  let activeJudicialAccessView='pending';
+  async function loadJudicialAccessRequests(){
+    const db=window.publicAuth?.firestore,body=els.judicialAccessRequests,view=activeJudicialAccessView;
+    if(!isAdmin||!db||!body)return;
+    body.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل طلبات الوصول...</p>';
+    try{
+      const requests=view==='active'
+        ?await db.collection('judicialInstituteAccess').where('enabled','==',true).limit(100).get()
+        :await db.collection('judicialInstituteAccessRequests').where('status','==',view==='pending'?'pending':view==='revoked'?'revoked':'rejected').limit(100).get();
+      const rows=await Promise.all(requests.docs.map(async doc=>{
+        const request={id:doc.id,...doc.data()},uid=String(request.uid||request.id);
+        const grantSnap=await db.collection('judicialInstituteAccess').doc(uid).get();
+        return {request,uid,grant:grantSnap.exists?grantSnap.data():null};
+      }));
+      const pendingCount=await safeQueryCount('judicialInstituteAccessRequests',[['status','==','pending']]);
+      const count=pendingCount===null?'—':String(pendingCount);
+      if(els.judicialAccessCount)els.judicialAccessCount.textContent=count+' طلب معلق';
+      if(els.navJudicialAnswersCount){els.navJudicialAnswersCount.textContent=count;els.navJudicialAnswersCount.hidden=count==='0';}
+      body.innerHTML=rows.length?rows.map(({request,uid,grant})=>{
+        const enabled=grant?.enabled===true;
+        const actions=view==='pending'
+          ?'<button class="approve" data-judicial-access-approve="'+esc(uid)+'">✓ موافقة</button><button class="reject" data-judicial-access-reject="'+esc(uid)+'">✕ رفض</button>'
+          :view==='active'?'<button class="reject" data-judicial-access-revoke="'+esc(uid)+'">سحب الصلاحية</button>':'<button class="approve" data-judicial-access-reapprove="'+esc(uid)+'">إعادة منح الوصول</button>';
+        return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+(enabled?'صلاحية مفعّلة':'طلب وصول')+'</span><h4>'+esc(request.displayName||'مستخدم ميزان')+'</h4><span class="firebase-admin-record-sub">'+esc(request.email||'البريد غير متوفر')+'</span></div></div><div class="firebase-admin-record-field"><span>سبب الطلب</span><p>'+esc(request.reason||'—')+'</p></div><div class="firebase-admin-record-meta">تاريخ الطلب: '+esc(dateValue(request.createdAt||request.updatedAt))+'</div><div class="lawyer-admin-actions">'+actions+'</div></article>';
+      }).join(''):'<p class="firebase-admin-list-state">'+(view==='pending'?'لا توجد طلبات معلقة.':view==='active'?'لا توجد صلاحيات مفعّلة.':'لا توجد طلبات مرفوضة أو مسحوبة.')+'</p>';
+    }catch(error){console.error('Judicial access requests load failed:',error);body.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل طلبات الوصول. تحقق من قواعد Firestore.</p>';}
+  }
+  async function handleJudicialAccessAction(event){
+    const button=event.target.closest('[data-judicial-access-approve],[data-judicial-access-reject],[data-judicial-access-revoke],[data-judicial-access-reapprove]');
+    if(!button)return;
+    const uid=button.dataset.judicialAccessApprove||button.dataset.judicialAccessReject||button.dataset.judicialAccessRevoke||button.dataset.judicialAccessReapprove;
+    const db=window.publicAuth?.firestore;if(!isAdmin||!uid||!db)return;
+    button.disabled=true;
+    try{
+      const requestRef=db.collection('judicialInstituteAccessRequests').doc(uid),grantRef=db.collection('judicialInstituteAccess').doc(uid);
+      if(button.hasAttribute('data-judicial-access-approve')||button.hasAttribute('data-judicial-access-reapprove')){
+        if(!confirm('منح هذا المستخدم صلاحية الاطلاع على أسئلة وأجوبة المعهد القضائي؟'))return;
+        await db.runTransaction(async tx=>{
+          const snap=await tx.get(requestRef);
+          if(!snap.exists)throw new Error('طلب الوصول غير موجود.');
+          const request=snap.data()||{};
+          if(request.uid!==uid||!['pending','rejected','revoked'].includes(request.status))throw new Error('حالة الطلب لا تسمح بمنح الصلاحية.');
+          tx.set(grantRef,{uid,enabled:true,grantedBy:window.publicAuth.user.uid,grantedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+          tx.update(requestRef,{status:'approved',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        });
+        setStatus('تمت الموافقة ومنح صلاحية الاطلاع.',false);
+      }else if(button.hasAttribute('data-judicial-access-reject')){
+        if(!confirm('رفض طلب الوصول إلى موسوعة المعهد القضائي؟'))return;
+        await requestRef.update({status:'rejected',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        setStatus('تم رفض طلب الوصول.',false);
+      }else{
+        if(!confirm('سحب صلاحية الاطلاع؟ لن يتمكن المستخدم من قراءة المحتوى بعد ذلك.'))return;
+        await db.runTransaction(async tx=>{
+          const [requestSnap,grantSnap]=await Promise.all([tx.get(requestRef),tx.get(grantRef)]);
+          if(!grantSnap.exists||grantSnap.data()?.enabled!==true)throw new Error('لا توجد صلاحية مفعّلة لهذا المستخدم.');
+          tx.update(grantRef,{enabled:false,revokedBy:window.publicAuth.user.uid,revokedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+          if(requestSnap.exists)tx.update(requestRef,{status:'revoked',reviewedBy:window.publicAuth.user.uid,reviewedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        });
+        setStatus('تم سحب صلاحية الوصول.',false);
+      }
+      await loadJudicialAccessRequests();
+    }catch(error){console.error('Judicial access action failed:',error);setStatus('تعذر تحديث صلاحية الوصول. تحقق من قواعد Firestore.',true);}
+    finally{button.disabled=false;}
+  }
 
   let judicialAnswerItems=[];
   function resetJudicialAnswer(){const form=els.judicialAnswerForm;if(!form)return;form.reset();form.elements.id.value='';form.elements.published.checked=false;form.querySelector('button[type="submit"]').textContent='حفظ السؤال والإجابة';}
