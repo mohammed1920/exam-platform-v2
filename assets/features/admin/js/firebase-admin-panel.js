@@ -580,13 +580,43 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     finally{button.disabled=false;}
   }
 
-  let judicialAnswerItems=[];
-  function resetJudicialAnswer(){const form=els.judicialAnswerForm;if(!form)return;form.reset();form.elements.id.value='';form.elements.published.checked=false;form.querySelector('button[type="submit"]').textContent='حفظ السؤال والإجابة';}
+  let judicialAnswerItems=[],judicialSubjectItems=[];
+  function renderJudicialSubjectOptions(selectedId=''){
+    const select=els.judicialAnswerForm?.elements.subjectId;if(!select)return;
+    select.innerHTML='<option value="">اختر المادة القانونية</option>'+judicialSubjectItems.filter(item=>item.active!==false).map(item=>'<option value="'+esc(item.id)+'" '+(item.id===selectedId?'selected':'')+'>'+esc(item.name)+'</option>').join('');
+  }
+  function renderJudicialSubjects(){
+    if(!els.judicialSubjectsList)return;
+    if(!judicialSubjectItems.length){els.judicialSubjectsList.innerHTML='<p class="firebase-admin-list-state">لم تُضف مواد بعد. أضف المادة أولاً ثم اربط الأسئلة بها.</p>';renderJudicialSubjectOptions();return;}
+    els.judicialSubjectsList.innerHTML=judicialSubjectItems.map(item=>'<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><h4>'+esc(item.name)+'</h4><span class="firebase-admin-record-eyebrow">'+(item.active===false?'موقوفة':'مفعّلة')+'</span></div><button type="button" data-judicial-subject-rename="'+esc(item.id)+'">تعديل الاسم</button></div></article>').join('');
+    renderJudicialSubjectOptions(els.judicialAnswerForm?.elements.subjectId?.value||'');
+  }
+  async function loadJudicialSubjects(){
+    if(!isAdmin||!window.publicAuth?.firestore)return;
+    try{const snap=await window.publicAuth.firestore.collection('judicialInstituteSubjects').orderBy('name').limit(100).get();judicialSubjectItems=snap.docs.map(doc=>({id:doc.id,...doc.data()}));renderJudicialSubjects();}
+    catch(error){console.error('Judicial subjects load failed:',error);if(els.judicialSubjectsList)els.judicialSubjectsList.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المواد. تحقق من صلاحيات Firestore.</p>';}
+  }
+  async function saveJudicialSubject(event){
+    event.preventDefault();const form=els.judicialSubjectForm,name=form?.elements.name.value.trim(),db=window.publicAuth?.firestore;
+    if(!isAdmin||!name||!db)return;
+    if(judicialSubjectItems.some(item=>item.name.toLocaleLowerCase('ar')===name.toLocaleLowerCase('ar'))){setStatus('هذه المادة مضافة مسبقاً.',true);return;}
+    try{await db.collection('judicialInstituteSubjects').add({name,active:true,createdAt:firebase.firestore.FieldValue.serverTimestamp(),updatedAt:firebase.firestore.FieldValue.serverTimestamp(),createdBy:window.publicAuth.user.uid});form.reset();await loadJudicialSubjects();setStatus('تمت إضافة المادة. يمكنك الآن اختيارها عند إضافة الأسئلة.');}
+    catch(error){console.error('Judicial subject save failed:',error);setStatus('تعذرت إضافة المادة. تحقق من صلاحيات Firestore.',true);}
+  }
+  async function renameJudicialSubject(id){
+    const item=judicialSubjectItems.find(row=>row.id===id);if(!item)return;
+    const name=prompt('اسم المادة القانونية:',item.name);if(name===null)return;
+    const value=name.trim();if(!value){setStatus('اسم المادة مطلوب.',true);return;}
+    if(judicialSubjectItems.some(row=>row.id!==id&&row.name.toLocaleLowerCase('ar')===value.toLocaleLowerCase('ar'))){setStatus('توجد مادة أخرى بالاسم نفسه.',true);return;}
+    try{await window.publicAuth.firestore.collection('judicialInstituteSubjects').doc(id).update({name:value,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});await loadJudicialSubjects();await loadJudicialAnswers();setStatus('تم تحديث اسم المادة.');}
+    catch(error){console.error(error);setStatus('تعذر تعديل المادة.',true);}
+  }
+  function resetJudicialAnswer(){const form=els.judicialAnswerForm;if(!form)return;form.reset();form.elements.id.value='';form.elements.published.checked=false;form.querySelector('button[type="submit"]').textContent='حفظ السؤال والإجابة';renderJudicialSubjectOptions();}
   function renderJudicialAnswers(){
     if(!els.judicialAnswersList)return;
     if(els.judicialAnswersCount)els.judicialAnswersCount.textContent=judicialAnswerItems.length+' سؤال';
     if(!judicialAnswerItems.length){els.judicialAnswersList.innerHTML='<p class="firebase-admin-list-state">لا توجد أسئلة مضافة حتى الآن.</p>';return;}
-    els.judicialAnswersList.innerHTML=judicialAnswerItems.map(item=>'<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+(item.published?'منشور':'مسودة')+' · '+esc(item.subject||'')+'</span><h4>'+esc(item.question||'')+'</h4></div></div><div class="firebase-admin-record-meta">'+esc(item.type==='practical'?'واقعة عملية':item.type==='topic'?'موضوع قانوني':'سؤال نظري')+(item.source?' · '+esc(item.source):'')+'</div><div class="lawyer-admin-actions"><button type="button" data-judicial-answer-edit="'+esc(item.id)+'">تعديل</button><button type="button" data-judicial-answer-toggle="'+esc(item.id)+'">'+(item.published?'إلغاء النشر':'نشر')+'</button><button type="button" data-judicial-answer-delete="'+esc(item.id)+'">حذف</button></div></article>').join('');
+    els.judicialAnswersList.innerHTML=judicialAnswerItems.map(item=>{const subject=judicialSubjectItems.find(row=>row.id===item.subjectId);return '<article class="firebase-admin-record-card"><div class="firebase-admin-record-heading"><div><span class="firebase-admin-record-eyebrow">'+(item.published?'منشور':'مسودة')+' · '+esc(subject?.name||item.subject||'مادة غير محددة')+'</span><h4>'+esc(item.question||'')+'</h4></div></div><div class="firebase-admin-record-meta">'+esc(item.type==='practical'?'واقعة عملية':item.type==='topic'?'موضوع قانوني':'سؤال نظري')+(item.source?' · '+esc(item.source):'')+'</div><div class="lawyer-admin-actions"><button type="button" data-judicial-answer-edit="'+esc(item.id)+'">تعديل</button><button type="button" data-judicial-answer-toggle="'+esc(item.id)+'">'+(item.published?'إلغاء النشر':'نشر')+'</button><button type="button" data-judicial-answer-delete="'+esc(item.id)+'">حذف</button></div></article>';}).join('');
   }
   async function loadJudicialAnswers(){
     if(!isAdmin||!window.publicAuth?.firestore||!els.judicialAnswersList)return;
@@ -596,14 +626,15 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   async function saveJudicialAnswer(event){
     event.preventDefault();const form=els.judicialAnswerForm;if(!form||!isAdmin)return;
-    const data={subject:form.elements.subject.value.trim(),type:form.elements.type.value,question:form.elements.question.value.trim(),answer:form.elements.answer.value.trim(),source:form.elements.source.value.trim(),published:form.elements.published.checked,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
-    if(!data.subject||!data.question||!data.answer){setStatus('أكمل المادة والسؤال والإجابة قبل الحفظ.',true);return;}
-    try{const db=window.publicAuth.firestore,id=form.elements.id.value;if(id)await db.collection('judicialInstituteAnswers').doc(id).update(data);else await db.collection('judicialInstituteAnswers').add({...data,createdAt:firebase.firestore.FieldValue.serverTimestamp(),createdBy:window.publicAuth.user.uid});resetJudicialAnswer();await loadJudicialAnswers();setStatus('تم حفظ السؤال والإجابة بنجاح.');}
+    const data={subjectId:form.elements.subjectId.value,type:form.elements.type.value,question:form.elements.question.value.trim(),answer:form.elements.answer.value.trim(),source:form.elements.source.value.trim(),published:form.elements.published.checked,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+    if(!data.subjectId||!data.question||!data.answer){setStatus('اختر المادة وأكمل السؤال والإجابة قبل الحفظ.',true);return;}
+    try{const db=window.publicAuth.firestore,id=form.elements.id.value;if(id)await db.collection('judicialInstituteAnswers').doc(id).update(data);else await db.collection('judicialInstituteAnswers').add({...data,createdAt:firebase.firestore.FieldValue.serverTimestamp(),createdBy:window.publicAuth.user.uid});resetJudicialAnswer();await loadJudicialAnswers();setStatus('تم حفظ السؤال والإجابة وربطهما بالمادة المختارة.');}
     catch(error){console.error('Judicial answer save failed:',error);setStatus('تعذر حفظ السؤال والإجابة. تحقق من صلاحيات Firestore.',true);}
   }
   function handleJudicialAnswerAction(event){
-    const edit=event.target.closest('[data-judicial-answer-edit]'),toggle=event.target.closest('[data-judicial-answer-toggle]'),remove=event.target.closest('[data-judicial-answer-delete]');
-    if(edit){const item=judicialAnswerItems.find(row=>row.id===edit.dataset.judicialAnswerEdit);if(!item)return;const f=els.judicialAnswerForm;f.elements.id.value=item.id;f.elements.subject.value=item.subject||'';f.elements.type.value=item.type||'theoretical';f.elements.question.value=item.question||'';f.elements.answer.value=item.answer||'';f.elements.source.value=item.source||'';f.elements.published.checked=item.published===true;f.querySelector('button[type="submit"]').textContent='حفظ التعديلات';f.scrollIntoView({behavior:'smooth',block:'start'});return;}
+    const edit=event.target.closest('[data-judicial-answer-edit]'),toggle=event.target.closest('[data-judicial-answer-toggle]'),remove=event.target.closest('[data-judicial-answer-delete]'),rename=event.target.closest('[data-judicial-subject-rename]');
+    if(rename){renameJudicialSubject(rename.dataset.judicialSubjectRename);return;}
+    if(edit){const item=judicialAnswerItems.find(row=>row.id===edit.dataset.judicialAnswerEdit);if(!item)return;const f=els.judicialAnswerForm;f.elements.id.value=item.id;renderJudicialSubjectOptions(item.subjectId||'');f.elements.type.value=item.type||'theoretical';f.elements.question.value=item.question||'';f.elements.answer.value=item.answer||'';f.elements.source.value=item.source||'';f.elements.published.checked=item.published===true;f.querySelector('button[type="submit"]').textContent='حفظ التعديلات';f.scrollIntoView({behavior:'smooth',block:'start'});return;}
     if(toggle){const item=judicialAnswerItems.find(row=>row.id===toggle.dataset.judicialAnswerToggle);if(!item)return;window.publicAuth.firestore.collection('judicialInstituteAnswers').doc(item.id).update({published:item.published!==true,updatedAt:firebase.firestore.FieldValue.serverTimestamp()}).then(loadJudicialAnswers).then(()=>setStatus('تم تحديث حالة النشر.')).catch(error=>{console.error(error);setStatus('تعذر تحديث حالة النشر.',true);});return;}
     if(remove){const item=judicialAnswerItems.find(row=>row.id===remove.dataset.judicialAnswerDelete);if(!item||!confirm('حذف السؤال والإجابة نهائياً؟'))return;window.publicAuth.firestore.collection('judicialInstituteAnswers').doc(item.id).delete().then(loadJudicialAnswers).then(()=>setStatus('تم حذف السؤال والإجابة.')).catch(error=>{console.error(error);setStatus('تعذر حذف المحتوى.',true);});}
   }
