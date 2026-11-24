@@ -161,10 +161,47 @@
   async function loadJudicialAnswers(){
     if(judicialAnswersCache)return judicialAnswersCache;
     if(!window.publicAuth?.firestore)throw new Error('Firebase غير جاهز حالياً');
-    if(!judicialAnswersPromise)judicialAnswersPromise=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',true).limit(100).get().then(snap=>{
+    const user=window.publicAuth.user;
+    if(!user)throw new Error('سجّل الدخول أولاً لتقديم طلب الوصول.');
+    const db=window.publicAuth.firestore,uid=user.uid;
+    const grant=await db.collection('judicialInstituteAccess').doc(uid).get();
+    if(!grant.exists||grant.data()?.enabled!==true)throw new Error('ACCESS_REQUIRED');
+    if(!judicialAnswersPromise)judicialAnswersPromise=db.collection('judicialInstituteAnswers').where('published','==',true).limit(100).get().then(snap=>{
       judicialAnswersCache=snap.docs.map(doc=>({id:doc.id,...doc.data()}));return judicialAnswersCache;
     }).catch(error=>{judicialAnswersPromise=null;throw error;});
     return judicialAnswersPromise;
+  }
+  async function renderJudicialAccessGate(){
+    const el=root(),user=window.publicAuth?.user,db=window.publicAuth?.firestore;
+    if(!user){el.innerHTML=shell(emptyState('تسجيل الدخول مطلوب','سجّل الدخول إلى حسابك في ميزان أولاً، ثم قدّم طلب الوصول إلى موسوعة الأسئلة والأجوبة.'));return;}
+    if(!db){el.innerHTML=shell(emptyState('الخدمة غير متاحة حالياً','تعذر الاتصال بخدمة الحسابات. حاول مرة أخرى لاحقاً.'));return;}
+    try{
+      const uid=user.uid,[grantSnap,requestSnap]=await Promise.all([
+        db.collection('judicialInstituteAccess').doc(uid).get(),
+        db.collection('judicialInstituteAccessRequests').doc(uid).get()
+      ]);
+      if(grantSnap.exists&&grantSnap.data()?.enabled===true){judicialAnswersCache=null;judicialAnswersPromise=null;await loadJudicialAnswers();state.level='answers';render();return;}
+      const request=requestSnap.exists?requestSnap.data():null;
+      const pending=request?.status==='pending';
+      const status=request?.status==='rejected'?'سبق رفض طلبك. يمكنك تقديم طلب جديد بعد توضيح السبب.':request?.status==='revoked'?'تم سحب صلاحية الوصول السابقة. يمكنك تقديم طلب جديد.':'';
+      el.innerHTML=shell('<section class="ji-panel ji-access-panel"><div class="ji-section-heading"><div><span class="ji-kicker">محتوى محمي</span><h2>طلب الوصول إلى أسئلة وأجوبة المعهد القضائي</h2></div></div><p>للاطلاع على الأسئلة والإجابات والحلول القانونية، يرجى تقديم طلب إلى إدارة ميزان. ستتمكن من فتح المحتوى بعد الموافقة.</p>'+
+        (pending?'<div class="ji-access-status"><strong>طلبك قيد المراجعة</strong><p>تم استلام طلبك، وسيظهر المحتوى بعد موافقة الإدارة.</p></div>':
+        '<form data-ji-access-form class="ji-access-form"><label>سبب طلب الوصول<textarea name="reason" rows="4" minlength="10" maxlength="1000" required placeholder="اكتب سبب رغبتك بالاطلاع على الموسوعة..."></textarea></label><button class="ji-primary-button" type="submit">إرسال طلب الوصول</button></form>')+
+        (status?'<p class="ji-note">'+esc(status)+'</p>':'')+'</section>');
+      const form=el.querySelector('[data-ji-access-form]');
+      form?.addEventListener('submit',async event=>{
+        event.preventDefault();const reason=String(new FormData(form).get('reason')||'').trim();
+        if(reason.length<10)return notice('سبب الطلب قصير','يرجى كتابة سبب لا يقل عن 10 أحرف.');
+        const button=form.querySelector('button');button.disabled=true;button.textContent='جارٍ إرسال الطلب...';
+        try{
+          const payload={uid,displayName:user.displayName||'مستخدم ميزان',email:user.email||'',reason,status:'pending',updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+          if(request?.createdAt)payload.createdAt=request.createdAt;else payload.createdAt=firebase.firestore.FieldValue.serverTimestamp();
+          await db.collection('judicialInstituteAccessRequests').doc(uid).set(payload);
+          notice('تم إرسال الطلب','سيصبح المحتوى متاحاً بعد موافقة الإدارة.');
+          await renderJudicialAccessGate();
+        }catch(error){console.error('Judicial institute access request failed:',error);notice('تعذر إرسال الطلب','تحقق من الاتصال ثم أعد المحاولة.');button.disabled=false;button.textContent='إرسال طلب الوصول';}
+      });
+    }catch(error){console.error('Judicial institute access check failed:',error);el.innerHTML=shell(emptyState('تعذر التحقق من صلاحية الوصول','حاول تحديث الصفحة أو إعادة فتح القسم.'));}
   }
   function renderAnswers(){
     const rows=judicialAnswersCache||[],subjects=Array.from(new Set(rows.map(row=>String(row.subject||'').trim()).filter(Boolean)));
@@ -229,7 +266,7 @@
       if(action==='archive')return pushLevel('years',{year:null,subjectId:null});
       if(action==='subjects')return pushLevel('subjects',{year:state.year,subjectId:null});
       if(action==='home')return pushLevel('home',{year:null,subjectId:null});
-      if(action==='answers'){state.answerSubject='all';state.query='';button.disabled=true;button.setAttribute('aria-busy','true');el.innerHTML=shell('<div class="ji-loading"><span class="ji-spinner"></span><p>جارٍ تحميل الأسئلة والإجابات...</p></div>');loadJudicialAnswers().then(()=>pushLevel('answers',{year:null,subjectId:null})).catch(error=>{console.error('تعذر تحميل أسئلة وأجوبة المعهد القضائي:',error);notice('تعذر تحميل المحتوى','تحقق من الاتصال ثم أعد المحاولة.');pushLevel('answers',{year:null,subjectId:null});}).finally(()=>{button.disabled=false;button.removeAttribute('aria-busy');});return;}
+      if(action==='answers'){state.answerSubject='all';state.query='';button.disabled=true;button.setAttribute('aria-busy','true');el.innerHTML=shell('<div class="ji-loading"><span class="ji-spinner"></span><p>جارٍ التحقق من صلاحية الوصول...</p></div>');const user=window.publicAuth?.user,db=window.publicAuth?.firestore;if(!user){button.disabled=false;button.removeAttribute('aria-busy');return notice('تسجيل الدخول مطلوب','سجّل الدخول أولاً لتقديم طلب الوصول.');}if(!db){button.disabled=false;button.removeAttribute('aria-busy');return notice('الخدمة غير متاحة','تعذر الاتصال بخدمة الحسابات.');}db.collection('judicialInstituteAccess').doc(user.uid).get().then(snap=>{if(snap.exists&&snap.data()?.enabled===true){return loadJudicialAnswers().then(()=>pushLevel('answers',{year:null,subjectId:null}));}return renderJudicialAccessGate();}).catch(error=>{console.error('Judicial institute access check failed:',error);return renderJudicialAccessGate();}).finally(()=>{button.disabled=false;button.removeAttribute('aria-busy');});return;}
       if(action==='saved'){button.disabled=true;loadSavedQuestions().then(()=>pushLevel('saved',{year:null,subjectId:null})).catch(error=>{console.error('تعذر استرجاع الأسئلة المحفوظة:',error);notice('تعذر استرجاع المحفوظات','تعذر تحميل بعض ملفات الأرشيف.');pushLevel('saved',{year:null,subjectId:null});}).finally(()=>{button.disabled=false;});return;}
       if(action==='year')return pushLevel('subjects',{year:Number(button.dataset.year),subjectId:null});
       if(action==='subject'){const id=button.dataset.subject,year=state.year;button.disabled=true;button.setAttribute('aria-busy','true');loadYearSubject(year,id).then(()=>pushLevel('questions',{year,subjectId:id})).catch(error=>{console.error('تعذر تحميل ملف أسئلة المادة:',error);notice('تعذر تحميل الأسئلة','تحقق من ملف المادة ثم أعد المحاولة.');button.disabled=false;button.removeAttribute('aria-busy');});return;}
