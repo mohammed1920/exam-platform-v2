@@ -247,7 +247,7 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-    match /{document=**} {
+    // Judicial institute Q&A: public read is limited to published records; writes are admin-only.\n    match /judicialInstituteAnswers/{answerId} {\n      allow read: if isAdmin() || resource.data.published == true;\n      allow create: if isAdmin() && request.resource.data.subject is string && request.resource.data.question is string && request.resource.data.answer is string && request.resource.data.published is bool;\n      allow update, delete: if isAdmin();\n    }\n\n    match /{document=**} {
       allow read, write: if false;
     }
   }
