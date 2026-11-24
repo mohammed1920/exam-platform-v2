@@ -250,6 +250,15 @@
           </form>
           <div id="fa-judicial-subjects-list" class="firebase-admin-record-list"><p class="firebase-admin-list-state">جارٍ تحميل المواد...</p></div>
         </div>
+        <section class="procedures-admin-form" style="margin:16px 0" aria-labelledby="fa-judicial-import-title">
+          <h4 id="fa-judicial-import-title">استيراد جماعي من ملف JSON</h4>
+          <p class="lawyer-admin-note">ارفع ملفاً يحتوي على مجموعة أسئلة. يمكنك تحديد مادة افتراضية أو وضع subjectId لكل سؤال. تتم مراجعة الملف قبل الحفظ، وتُضاف الأسئلة كمسودات افتراضياً.</p>
+          <label>المادة الافتراضية للملف <select id="fa-judicial-import-subject"><option value="">اعتماد المادة الموجودة داخل كل سؤال</option></select></label>
+          <label>ملف الأسئلة بصيغة JSON <input id="fa-judicial-import-file" type="file" accept=".json,application/json"></label>
+          <div class="lawyer-admin-actions"><button type="button" class="approve" id="fa-judicial-import-preview">فحص الملف ومعاينة الأسئلة</button><button type="button" id="fa-judicial-import-sample">تنزيل نموذج JSON</button></div>
+          <div id="fa-judicial-import-preview-area" aria-live="polite"></div>
+          <div class="lawyer-admin-actions"><button type="button" class="approve" id="fa-judicial-import-confirm" disabled>استيراد الأسئلة المعاينة</button></div>
+        </section>
         <form id="fa-judicial-answer-form" class="procedures-admin-form">
           <input type="hidden" name="id">
           <label>المادة القانونية *<select name="subjectId" required><option value="">اختر المادة القانونية</option></select></label>
@@ -269,7 +278,7 @@
     </section></div>
     </div></div>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
-    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),judicialSubjectForm:section.querySelector('#fa-judicial-subject-form'),judicialSubjectsList:section.querySelector('#fa-judicial-subjects-list'),judicialAnswerForm:section.querySelector('#fa-judicial-answer-form'),judicialAnswerReset:section.querySelector('#fa-judicial-answer-reset'),judicialAnswersList:section.querySelector('#fa-judicial-answers-list'),judicialAnswersCount:section.querySelector('#fa-judicial-answers-count'),judicialAccessRequests:section.querySelector('#fa-judicial-access-requests'),judicialAccessCount:section.querySelector('#fa-judicial-access-count'),navJudicialAnswersCount:section.querySelector('#fa-nav-judicial-answers-count'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
+    els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),judicialSubjectForm:section.querySelector('#fa-judicial-subject-form'),judicialSubjectsList:section.querySelector('#fa-judicial-subjects-list'),judicialImportSubject:section.querySelector('#fa-judicial-import-subject'),judicialImportFile:section.querySelector('#fa-judicial-import-file'),judicialImportPreview:section.querySelector('#fa-judicial-import-preview'),judicialImportSample:section.querySelector('#fa-judicial-import-sample'),judicialImportPreviewArea:section.querySelector('#fa-judicial-import-preview-area'),judicialImportConfirm:section.querySelector('#fa-judicial-import-confirm'),judicialAnswerForm:section.querySelector('#fa-judicial-answer-form'),judicialAnswerReset:section.querySelector('#fa-judicial-answer-reset'),judicialAnswersList:section.querySelector('#fa-judicial-answers-list'),judicialAnswersCount:section.querySelector('#fa-judicial-answers-count'),judicialAccessRequests:section.querySelector('#fa-judicial-access-requests'),judicialAccessCount:section.querySelector('#fa-judicial-access-count'),navJudicialAnswersCount:section.querySelector('#fa-nav-judicial-answers-count'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
 
     els.refresh?.addEventListener('click',loadDashboard);els.back?.addEventListener('click',closePanel);els.navToggle?.addEventListener('click',()=>toggleMobileSidebar());els.sidebarBackdrop?.addEventListener('click',()=>toggleMobileSidebar(false));els.section.querySelector('#fa-admin-navigation')?.addEventListener('click',event=>{if(event.target.closest('.firebase-admin-nav-item'))toggleMobileSidebar(false);});document.addEventListener('keydown',event=>{if(event.key==='Escape')toggleMobileSidebar(false);});
     els.section.querySelectorAll('[data-admin-view]').forEach(btn=>btn.addEventListener('click',()=>switchAdminView(btn.dataset.adminView)));
@@ -277,7 +286,7 @@
 els.lawyerEditClose?.addEventListener('click',closeLawyerEdit);els.lawyerEditCancel?.addEventListener('click',closeLawyerEdit);els.lawyerEditForm?.addEventListener('submit',saveLawyerEdit);
 els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventListener('click',()=>switchLawyerView(btn.dataset.lawyerView)));
      els.procedureForm?.addEventListener('submit',saveLegalProcedure);els.procedureReset?.addEventListener('click',resetLegalProcedure);els.petitionForm?.addEventListener('submit',savePetition);els.petitionReset?.addEventListener('click',()=>{resetPetition();setPetitionPanel('add');});
-     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialSubjectForm?.addEventListener('submit',saveJudicialSubject);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);els.judicialSubjectsList?.addEventListener('click',handleJudicialAnswerAction);els.judicialAccessRequests?.addEventListener('click',handleJudicialAccessAction);els.section.querySelectorAll('[data-judicial-access-view]').forEach(button=>button.addEventListener('click',()=>{activeJudicialAccessView=button.dataset.judicialAccessView;els.section.querySelectorAll('[data-judicial-access-view]').forEach(item=>item.classList.toggle('active',item===button));loadJudicialAccessRequests();}));
+     els.petitionsHub?.addEventListener('click',handlePetitionHubClick);els.proceduresHub?.addEventListener('click',handleProcedureHubClick);els.judicialSubjectForm?.addEventListener('submit',saveJudicialSubject);els.judicialImportPreview?.addEventListener('click',previewJudicialImport);els.judicialImportConfirm?.addEventListener('click',confirmJudicialImport);els.judicialImportSample?.addEventListener('click',downloadJudicialImportSample);els.judicialAnswerForm?.addEventListener('submit',saveJudicialAnswer);els.judicialAnswerReset?.addEventListener('click',resetJudicialAnswer);els.judicialAnswersList?.addEventListener('click',handleJudicialAnswerAction);els.judicialSubjectsList?.addEventListener('click',handleJudicialAnswerAction);els.judicialAccessRequests?.addEventListener('click',handleJudicialAccessAction);els.section.querySelectorAll('[data-judicial-access-view]').forEach(button=>button.addEventListener('click',()=>{activeJudicialAccessView=button.dataset.judicialAccessView;els.section.querySelectorAll('[data-judicial-access-view]').forEach(item=>item.classList.toggle('active',item===button));loadJudicialAccessRequests();}));
   }
   function setStatus(text,error){if(!els.status)return;els.status.textContent=text||'';els.status.hidden=!text;els.status.classList.toggle('error',Boolean(error));}
   function switchLawyerView(view){
@@ -581,6 +590,12 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
 
   let judicialAnswerItems=[],judicialSubjectItems=[];
+  function renderJudicialImportSubjectOptions(){
+    const select=els.judicialImportSubject;if(!select)return;
+    const current=select.value;
+    select.innerHTML='<option value="">اعتماد المادة الموجودة داخل كل سؤال</option>'+judicialSubjectItems.filter(item=>item.active!==false).map(item=>'<option value="'+esc(item.id)+'">'+esc(item.name)+'</option>').join('');
+    if(judicialSubjectItems.some(item=>item.id===current&&item.active!==false))select.value=current;
+  }
   function renderJudicialSubjectOptions(selectedId=''){
     const select=els.judicialAnswerForm?.elements.subjectId;if(!select)return;
     select.innerHTML='<option value="">اختر المادة القانونية</option>'+judicialSubjectItems.filter(item=>item.active!==false).map(item=>'<option value="'+esc(item.id)+'" '+(item.id===selectedId?'selected':'')+'>'+esc(item.name)+'</option>').join('');
@@ -593,7 +608,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
   }
   async function loadJudicialSubjects(){
     if(!isAdmin||!window.publicAuth?.firestore)return;
-    try{const snap=await window.publicAuth.firestore.collection('judicialInstituteSubjects').orderBy('name').limit(100).get();judicialSubjectItems=snap.docs.map(doc=>({id:doc.id,...doc.data()}));renderJudicialSubjects();renderJudicialAnswers();}
+    try{const snap=await window.publicAuth.firestore.collection('judicialInstituteSubjects').orderBy('name').limit(100).get();judicialSubjectItems=snap.docs.map(doc=>({id:doc.id,...doc.data()}));renderJudicialSubjects();renderJudicialImportSubjectOptions();renderJudicialAnswers();}
     catch(error){console.error('Judicial subjects load failed:',error);if(els.judicialSubjectsList)els.judicialSubjectsList.innerHTML='<p class="firebase-admin-list-state">تعذر تحميل المواد. تحقق من صلاحيات Firestore.</p>';}
   }
   async function saveJudicialSubject(event){
@@ -612,6 +627,69 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     catch(error){console.error(error);setStatus('تعذر تعديل المادة.',true);}
   }
   function resetJudicialAnswer(){const form=els.judicialAnswerForm;if(!form)return;form.reset();form.elements.id.value='';form.elements.published.checked=false;form.querySelector('button[type="submit"]').textContent='حفظ السؤال والإجابة';renderJudicialSubjectOptions();}
+  let judicialImportRows=[];
+  function downloadJudicialImportSample(){
+    const sample=[{subjectId:"ضع_معرف_المادة_هنا",type:"theoretical",question:"اكتب نص السؤال هنا",answer:"اكتب الإجابة أو الحل هنا",source:"اسم المصدر ورقم الصفحة",published:false},{subjectId:"ضع_معرف_المادة_هنا",type:"practical",question:"اكتب الواقعة العملية هنا",answer:"اكتب الحل القانوني هنا",source:"",published:false}];
+    const blob=new Blob([JSON.stringify(sample,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+    link.href=url;link.download='mizan-judicial-answers-template.json';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+  }
+  function previewJudicialImport(){
+    const file=els.judicialImportFile?.files?.[0];if(!file){setStatus('اختر ملف JSON أولاً.',true);return;}
+    if(file.size>5*1024*1024){setStatus('حجم الملف يتجاوز الحد المسموح (5 MB).',true);return;}
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const parsed=JSON.parse(String(reader.result||'')),rows=Array.isArray(parsed)?parsed:parsed?.questions;
+        if(!Array.isArray(rows)||!rows.length)throw new Error('يجب أن يحتوي الملف على مصفوفة أسئلة أو خاصية questions.');
+        if(rows.length>2000)throw new Error('الحد الأعلى للملف الواحد هو 2000 سؤال.');
+        const defaultSubject=els.judicialImportSubject?.value||'',activeSubjects=new Set(judicialSubjectItems.filter(item=>item.active!==false).map(item=>item.id));
+        const existingKeys=new Set(judicialAnswerItems.map(item=>[item.subjectId||'',String(item.question||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('ar')].join('::')));
+        const seen=new Set(),errors=[];
+        judicialImportRows=rows.map((row,index)=>{
+          const line=index+1,question=typeof row?.question==='string'?row.question.trim():'',answer=typeof row?.answer==='string'?row.answer.trim():'';
+          const subjectId=String(row?.subjectId||defaultSubject||'').trim(),type=['theoretical','practical','topic'].includes(row?.type)?row.type:'theoretical';
+          const key=[subjectId,question.replace(/\s+/g,' ').toLocaleLowerCase('ar')].join('::');
+          const rowErrors=[];
+          if(!row||typeof row!=='object'||Array.isArray(row))rowErrors.push('صيغة العنصر غير صحيحة');
+          if(!subjectId||!activeSubjects.has(subjectId))rowErrors.push('المادة غير محددة أو غير مفعّلة');
+          if(!question)rowErrors.push('نص السؤال مطلوب');else if(question.length>12000)rowErrors.push('السؤال يتجاوز 12000 حرف');
+          if(!answer)rowErrors.push('الإجابة مطلوبة');else if(answer.length>24000)rowErrors.push('الإجابة تتجاوز 24000 حرف');
+          if(key.endsWith('::')===false&&seen.has(key))rowErrors.push('مكرر داخل الملف');else if(question)seen.add(key);
+          if(question&&existingKeys.has(key))rowErrors.push('موجود مسبقاً في الأسئلة المحمّلة');
+          const source=typeof row?.source==='string'?row.source.trim():'';
+          if(source.length>500)rowErrors.push('المصدر يتجاوز 500 حرف');
+          if(rowErrors.length)errors.push({line,reason:rowErrors.join('، ')});
+          return {subjectId,type,question,answer,source,published:row?.published===true,valid:rowErrors.length===0};
+        });
+        const valid=judicialImportRows.filter(row=>row.valid).length;
+        els.judicialImportConfirm.disabled=valid===0;
+        const preview=judicialImportRows.slice(0,12).map((row,index)=>'<tr><td>'+(index+1)+'</td><td>'+esc(judicialSubjectItems.find(item=>item.id===row.subjectId)?.name||'—')+'</td><td>'+esc(row.question.slice(0,150))+'</td><td>'+(row.valid?'صالح':'مراجعة')+'</td></tr>').join('');
+        els.judicialImportPreviewArea.innerHTML='<p><strong>'+rows.length+'</strong> سؤال · <strong>'+valid+'</strong> صالح للاستيراد · <strong>'+errors.length+'</strong> يحتاج تصحيحاً. '+(errors.length?'سيتم استيراد الأسئلة الصالحة فقط.':'الملف جاهز.')+'</p><div style="overflow-x:auto"><table><thead><tr><th>#</th><th>المادة</th><th>السؤال</th><th>الحالة</th></tr></thead><tbody>'+preview+'</tbody></table></div>'+(errors.length?'<details><summary>تفاصيل الأخطاء ('+errors.length+')</summary><ul>'+errors.slice(0,30).map(error=>'<li>السطر '+error.line+': '+esc(error.reason)+'</li>').join('')+'</ul></details>':'');
+        setStatus('اكتملت معاينة الملف. لم تُحفظ أي بيانات بعد.');
+      }catch(error){judicialImportRows=[];els.judicialImportConfirm.disabled=true;els.judicialImportPreviewArea.textContent='تعذر قراءة الملف: '+error.message;setStatus('ملف JSON غير صالح أو لا يطابق النموذج.',true);}
+    };
+    reader.onerror=()=>setStatus('تعذرت قراءة الملف.',true);
+    reader.readAsText(file,'UTF-8');
+  }
+  async function confirmJudicialImport(){
+    const rows=judicialImportRows.filter(row=>row.valid);if(!isAdmin||!rows.length||!window.publicAuth?.firestore)return;
+    if(!confirm('سيتم استيراد '+rows.length+' سؤال. الأسئلة المنشورة في الملف فقط ستظهر للطلاب. هل تريد المتابعة؟'))return;
+    const button=els.judicialImportConfirm;button.disabled=true;button.textContent='جارٍ الاستيراد...';
+    try{
+      const db=window.publicAuth.firestore,uid=window.publicAuth.user.uid,stamp=firebase.firestore.FieldValue.serverTimestamp();
+      for(let offset=0;offset<rows.length;offset+=450){
+        const batch=db.batch();
+        rows.slice(offset,offset+450).forEach(row=>{
+          const ref=db.collection('judicialInstituteAnswers').doc();
+          batch.set(ref,{subjectId:row.subjectId,type:row.type,question:row.question,answer:row.answer,source:row.source,published:row.published,createdAt:stamp,updatedAt:stamp,createdBy:uid});
+        });
+        await batch.commit();
+      }
+      judicialImportRows=[];if(els.judicialImportFile)els.judicialImportFile.value='';if(els.judicialImportPreviewArea)els.judicialImportPreviewArea.innerHTML='';await loadJudicialAnswers();
+      setStatus('تم استيراد '+rows.length+' سؤال بنجاح.'); 
+    }catch(error){console.error('Judicial bulk import failed:',error);setStatus('توقف الاستيراد بسبب خطأ. قد تكون بعض الدفعات السابقة حُفظت؛ راجع قائمة الأسئلة قبل إعادة المحاولة.',true);await loadJudicialAnswers();}
+    finally{button.textContent='استيراد الأسئلة المعاينة';button.disabled=!judicialImportRows.some(row=>row.valid);}
+  }
   function renderJudicialAnswers(){
     if(!els.judicialAnswersList)return;
     if(els.judicialAnswersCount)els.judicialAnswersCount.textContent=judicialAnswerItems.length+' سؤال';
