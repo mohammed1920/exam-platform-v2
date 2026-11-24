@@ -111,3 +111,10 @@
 }
 @media(prefers-reduced-motion:reduce){.ji-year-card,.ji-subject-card,.ji-back,.ji-saved-toggle{transition:none}.ji-spinner{animation:none}}
 
+
+/* Judicial Q&A library */
+.ji-answers-entry .ji-entry-stats strong{font-size:1rem;letter-spacing:.02em}
+.ji-answer-library-card .ji-answer{margin-top:1rem}
+.ji-answer-library-card .ji-answer-content{padding:1rem;line-height:1.9;white-space:normal;color:var(--ji-text,inherit);background:var(--ji-soft-surface,rgba(148,163,184,.08));border-radius:12px}
+.ji-answer-library-card .ji-question-meta{flex-wrap:wrap}
+.ji-answer-library-card .ji-question-source{margin-top:.8rem}
