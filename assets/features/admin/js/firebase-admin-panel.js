@@ -726,7 +726,7 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
     if(!loadMore){judicialAnswersCursor=null;judicialAnswersHasMore=false;judicialAnswerItems=[];els.judicialAnswersList.innerHTML='<p class="firebase-admin-list-state">جارٍ تحميل الأسئلة...</p>';}
     if(els.judicialAnswersLoadMore){els.judicialAnswersLoadMore.disabled=true;els.judicialAnswersLoadMore.textContent='جارٍ تحميل المزيد...';}
     try{
-      let query=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',judicialAnswersStatus==='published').orderBy('updatedAt','desc').limit(50);
+      let query=window.publicAuth.firestore.collection('judicialInstituteAnswers').where('published','==',judicialAnswersStatus==='published').limit(50);
       if(loadMore&&judicialAnswersCursor)query=query.startAfter(judicialAnswersCursor);
       const snap=await query.get();
       if(!loadMore)judicialAnswerItems=[];
