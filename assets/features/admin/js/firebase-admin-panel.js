@@ -241,24 +241,30 @@
         <div class="firebase-admin-access-tabs"><button type="button" data-judicial-access-view="pending" class="active">المعلقة</button><button type="button" data-judicial-access-view="active">الصلاحيات المفعّلة</button><button type="button" data-judicial-access-view="revoked">المرفوضة / المسحوبة</button></div>
         <div id="fa-judicial-access-requests" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر القسم لتحميل الطلبات.</p></div>
       </div>
-      <div class="firebase-admin-card lawyer-admin-card" style="margin-top:16px">
-        <div class="firebase-admin-card-head"><h3>إدارة أسئلة وأجوبة المعهد القضائي</h3><span>المحتوى المنشور يظهر للطلاب فقط</span></div>
-        <div class="procedures-admin-form" style="margin-bottom:16px">
+      <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>المواد القانونية</h3><span>إضافة المواد وتنظيمها</span></div>
+        <div class="procedures-admin-form">
           <form id="fa-judicial-subject-form">
             <label>إضافة مادة قانونية جديدة *<input name="name" required maxlength="160" placeholder="اكتب اسم المادة القانونية"></label>
             <div class="lawyer-admin-actions"><button class="approve" type="submit">إضافة المادة</button></div>
           </form>
           <div id="fa-judicial-subjects-list" class="firebase-admin-record-list"><p class="firebase-admin-list-state">جارٍ تحميل المواد...</p></div>
         </div>
-        <section class="procedures-admin-form" style="margin:16px 0" aria-labelledby="fa-judicial-import-title">
-          <h4 id="fa-judicial-import-title">استيراد جماعي من ملف JSON</h4>
-          <p class="lawyer-admin-note">اختر المادة القانونية مرة واحدة، ثم ارفع ملف JSON يحتوي على السؤال والإجابة فقط. سيربط النظام جميع السجلات بالمادة المختارة ويولّد معرّفاً تلقائياً مستقلاً لكل سؤال.</p>
-          <label>اختر المادة التي ستُضاف إليها جميع الأسئلة * <select id="fa-judicial-import-subject" required><option value="">اختر المادة القانونية</option></select></label>
+      </div>
+      <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>استيراد الأسئلة والأجوبة</h3><span>استيراد جماعي</span></div>
+        <section class="procedures-admin-form" aria-labelledby="fa-judicial-import-title">
+          <h4 id="fa-judicial-import-title">استيراد من ملف JSON</h4>
+          <p class="lawyer-admin-note">اختر المادة القانونية ثم ارفع ملفاً يحتوي على السؤال والإجابة فقط. ينشئ النظام معرفاً مستقلاً لكل سجل ويربطه بالمادة المختارة.</p>
+          <label>المادة القانونية * <select id="fa-judicial-import-subject" required><option value="">اختر المادة القانونية</option></select></label>
           <label>ملف الأسئلة بصيغة JSON <input id="fa-judicial-import-file" type="file" accept=".json,application/json"></label>
           <div class="lawyer-admin-actions"><button type="button" class="approve" id="fa-judicial-import-preview">فحص الملف ومعاينة الأسئلة</button><button type="button" id="fa-judicial-import-sample">تنزيل نموذج JSON</button></div>
           <div id="fa-judicial-import-preview-area" aria-live="polite"></div>
           <div class="lawyer-admin-actions"><button type="button" class="approve" id="fa-judicial-import-confirm" disabled>استيراد الأسئلة المعاينة</button></div>
         </section>
+      </div>
+      <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>إضافة سؤال وإجابة</h3><span>إضافة يدوية</span></div>
         <form id="fa-judicial-answer-form" class="procedures-admin-form">
           <input type="hidden" name="id">
           <label>المادة القانونية *<select name="subjectId" required><option value="">اختر المادة القانونية</option></select></label>
@@ -268,11 +274,11 @@
           <label>المصدر أو رقم الصفحة<input name="source" maxlength="500" placeholder="اسم الملف ورقم الصفحة إن وجد"></label>
           <label><input type="checkbox" name="published"> نشر السؤال والإجابة للطلاب</label>
           <div class="lawyer-admin-actions"><button class="approve" type="submit">حفظ السؤال والإجابة</button><button type="button" id="fa-judicial-answer-reset">إلغاء / سؤال جديد</button></div>
-          <p class="lawyer-admin-note">لا تُضاف هذه الأسئلة إلى بنك أسئلة امتحان القبول. تبقى ضمن موسوعة الأسئلة والأجوبة المستقلة.</p>
+          <p class="lawyer-admin-note">تبقى هذه الموسوعة مستقلة عن بنك أسئلة امتحان القبول.</p>
         </form>
       </div>
-      <div class="firebase-admin-card lawyer-admin-card" style="margin-top:16px">
-        <div class="firebase-admin-card-head"><h3>إدارة الأسئلة والأجوبة</h3><span id="fa-judicial-answers-count">اختر قسماً</span></div>
+      <div class="firebase-admin-card lawyer-admin-card">
+        <div class="firebase-admin-card-head"><h3>مكتبة الأسئلة والأجوبة</h3><span id="fa-judicial-answers-count">اختر قسماً</span></div>
         <div class="lawyer-admin-actions" style="margin:12px 0">
           <button type="button" data-judicial-answers-status="draft" class="active" aria-selected="true">الأسئلة غير المنشورة</button>
           <button type="button" data-judicial-answers-status="published" aria-selected="false">الأسئلة المنشورة</button>
@@ -281,8 +287,6 @@
         <div id="fa-judicial-answers-list" class="firebase-admin-record-list"><p class="firebase-admin-list-state">اختر القسم لتحميل الأسئلة.</p></div>
         <div class="lawyer-admin-actions" style="justify-content:center;margin-top:12px"><button type="button" id="fa-judicial-answers-load-more" hidden>تحميل المزيد من الأسئلة</button></div>
       </div>
-    </section></div>
-    </div></div>`
     const footer=document.querySelector('footer');if(footer&&footer.parentNode)footer.parentNode.insertBefore(section,footer);else document.body.appendChild(section);
     els={tab,section,status:section.querySelector('#firebase-admin-status'),welcome:section.querySelector('#firebase-admin-welcome'),refresh:section.querySelector('#firebase-admin-refresh'),back:section.querySelector('#firebase-admin-back'),studentsCount:section.querySelector('#fa-students-count'),studentsUpdated:section.querySelector('#fa-students-updated'),studentsBody:section.querySelector('#fa-students-body'),proceduresRequestsBody:section.querySelector('#fa-procedures-requests-body'),procedureForm:section.querySelector('#fa-procedure-form'),procedureReset:section.querySelector('#fa-procedure-reset'),proceduresHub:section.querySelector('#fa-admin-view-procedures .firebase-admin-content-hub'),proceduresAccessCardCount:section.querySelector('#fa-procedures-access-card-count'),proceduresTotalCount:section.querySelector('#fa-procedures-total-count'),proceduresCategories:section.querySelector('#fa-procedures-categories'),proceduresCategoryView:section.querySelector('#fa-procedures-category-view'),proceduresCategoryTitle:section.querySelector('#fa-procedures-category-title'),proceduresCategoryTotal:section.querySelector('#fa-procedures-category-total'),proceduresCategoryItems:section.querySelector('#fa-procedures-category-items'),proceduresLibrarySummary:section.querySelector('#fa-procedures-library-summary'),procedureFormTitle:section.querySelector('#fa-procedure-form-title'),petitionsRequestsBody:section.querySelector('#fa-petitions-requests-body'),petitionForm:section.querySelector('#fa-petition-form'),petitionReset:section.querySelector('#fa-petition-reset'),petitionsHub:section.querySelector('#fa-admin-view-petitions .firebase-admin-content-hub'),petitionsAccessCardCount:section.querySelector('#fa-petitions-access-card-count'),petitionsTotalCount:section.querySelector('#fa-petitions-total-count'),petitionsCategories:section.querySelector('#fa-petitions-categories'),petitionsCategoryView:section.querySelector('#fa-petitions-category-view'),petitionsCategoryTitle:section.querySelector('#fa-petitions-category-title'),petitionsCategoryTotal:section.querySelector('#fa-petitions-category-total'),petitionsCategoryItems:section.querySelector('#fa-petitions-category-items'),petitionsLibrarySummary:section.querySelector('#fa-petitions-library-summary'),petitionFormTitle:section.querySelector('#fa-petition-form-title'),judicialSubjectForm:section.querySelector('#fa-judicial-subject-form'),judicialSubjectsList:section.querySelector('#fa-judicial-subjects-list'),judicialImportSubject:section.querySelector('#fa-judicial-import-subject'),judicialImportFile:section.querySelector('#fa-judicial-import-file'),judicialImportPreview:section.querySelector('#fa-judicial-import-preview'),judicialImportSample:section.querySelector('#fa-judicial-import-sample'),judicialImportPreviewArea:section.querySelector('#fa-judicial-import-preview-area'),judicialImportConfirm:section.querySelector('#fa-judicial-import-confirm'),judicialAnswerForm:section.querySelector('#fa-judicial-answer-form'),judicialAnswerReset:section.querySelector('#fa-judicial-answer-reset'),judicialAnswersList:section.querySelector('#fa-judicial-answers-list'),judicialAnswersCount:section.querySelector('#fa-judicial-answers-count'),judicialAnswersLoadMore:section.querySelector('#fa-judicial-answers-load-more'),judicialAnswersSubjectFilter:section.querySelector('#fa-judicial-answers-subject-filter'),judicialAccessRequests:section.querySelector('#fa-judicial-access-requests'),judicialAccessCount:section.querySelector('#fa-judicial-access-count'),navJudicialAnswersCount:section.querySelector('#fa-nav-judicial-answers-count'),lawyersBody:section.querySelector('#fa-lawyers-body'),lawyersPublishedBody:section.querySelector('#fa-lawyers-published-body'),lawyersPendingCount:section.querySelector('#fa-lawyers-pending-count'),lawyersPublishedCount:section.querySelector('#fa-lawyers-published-count'),lawyerEditRequestsBody:section.querySelector('#fa-lawyer-edit-requests-body'),lawyerEditRequestsCount:section.querySelector('#fa-lawyer-edit-requests-count'),lawyerEdit:section.querySelector('#fa-lawyer-edit'),lawyerEditForm:section.querySelector('#fa-lawyer-edit-form'),lawyerEditTitle:section.querySelector('#fa-lawyer-edit-title'),lawyerEditClose:section.querySelector('#fa-lawyer-edit-close'),lawyerEditCancel:section.querySelector('#fa-lawyer-edit-cancel'),dashboardStudentsCount:section.querySelector('#fa-dashboard-students-count'),dashboardLawyerPending:section.querySelector('#fa-dashboard-lawyer-pending'),dashboardLawyerPublished:section.querySelector('#fa-dashboard-lawyer-published'),dashboardLawyerEdits:section.querySelector('#fa-dashboard-lawyer-edits'),navLawyersCount:section.querySelector('#fa-nav-lawyers-count'),navProceduresCount:section.querySelector('#fa-nav-procedures-count'),navPetitionsCount:section.querySelector('#fa-nav-petitions-count'),proceduresAccessCount:section.querySelector('#fa-procedures-access-count'),petitionsAccessCount:section.querySelector('#fa-petitions-access-count'),navToggle:section.querySelector('#firebase-admin-nav-toggle'),sidebarBackdrop:section.querySelector('#firebase-admin-sidebar-backdrop')};
 
