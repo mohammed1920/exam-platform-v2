@@ -540,9 +540,15 @@ els.section.querySelectorAll('[data-lawyer-view]').forEach(btn=>btn.addEventList
         ?await db.collection('judicialInstituteAccess').where('enabled','==',true).limit(100).get()
         :await db.collection('judicialInstituteAccessRequests').where('status','==',view==='pending'?'pending':view==='revoked'?'revoked':'rejected').limit(100).get();
       const rows=await Promise.all(requests.docs.map(async doc=>{
-        const request={id:doc.id,...doc.data()},uid=String(request.uid||request.id);
-        const grantSnap=await db.collection('judicialInstituteAccess').doc(uid).get();
-        return {request,uid,grant:grantSnap.exists?grantSnap.data():null};
+        const accessData={id:doc.id,...doc.data()},uid=String(accessData.uid||accessData.id);
+        const [requestSnap,studentSnap]=await Promise.all([
+          view==='active'?db.collection('judicialInstituteAccessRequests').doc(uid).get():Promise.resolve(null),
+          db.collection('students').doc(uid).get()
+        ]);
+        const requestData=requestSnap?.exists?requestSnap.data():accessData;
+        const student=studentSnap.exists?studentSnap.data():{};
+        const request={...requestData,id:uid,uid,displayName:requestData.displayName||student.displayName||'',email:requestData.email||student.email||''};
+        return {request,uid,grant:view==='active'?accessData:null};
       }));
       const pendingCount=await safeQueryCount('judicialInstituteAccessRequests',[['status','==','pending']]);
       const count=pendingCount===null?'—':String(pendingCount);
