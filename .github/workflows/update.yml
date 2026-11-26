@@ -30,9 +30,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Prepare pinned local OpenCV.js runtime
-        run: bash scripts/prepare-opencv-vendor.sh
-
       - name: Check JavaScript syntax before deployment
         shell: bash
         run: |
@@ -41,7 +38,6 @@ jobs:
             -not -path './.git/*' \
             -not -path './node_modules/*' \
             -not -path './dist/*' \
-            -not -path './assets/vendor/opencv/opencv.js' \
             -print0 | xargs -0 -r -n1 node --check
 
       - name: Validate project before deployment
