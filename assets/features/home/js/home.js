@@ -44,8 +44,8 @@
       if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('books');
       return;
     }
-    if (action === 'random') {
-      if (window.app && typeof window.app.showCustomExamSetup === 'function') window.app.showCustomExamSetup();
+    if (action === 'documents') {
+      if (window.app && typeof window.app.navigateTo === 'function') window.app.navigateTo('documents');
       return;
     }
     if (action === 'dashboard') {
