@@ -202,19 +202,22 @@
     <section id="petitions-section" class="view-section"></section>
     <section id="laws-section" class="view-section laws-section" aria-label="القوانين العراقية"></section>
     <section id="documents-section" class="view-section documents-section" aria-label="مستمسكاتي">
-<header class="documents-heading">
-  <button type="button" class="alt" id="documents-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى ميزان</button>
-  <div><h2>مستمسكاتي</h2><p>رتّب مستمسكاتك واحفظها محلياً أو جهّزها للطباعة على ورق A4.</p></div>
+<button type="button" class="alt documents-back" id="documents-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى ميزان</button>
+<header class="documents-heading mizan-section-hero">
+  <div class="mizan-section-hero-heading">
+    <span class="mizan-section-hero-icon" aria-hidden="true"><i class="fas fa-id-card"></i></span>
+    <h2>مستمسكاتي</h2>
+  </div>
+  <p>رتّب مستمسكاتك واحفظها محلياً أو جهّزها للطباعة على ورق A4.</p>
 </header>
 
-
-<div class="btns" style="margin-top:0"><button class="main" id="cam">📷 التقاط بالكاميرا</button><button class="alt" id="add">🖼 من المعرض</button></div>
+<div class="btns documents-action-row documents-import-actions"><button class="main" id="cam">📷 التقاط بالكاميرا</button><button class="alt" id="add">🖼 من المعرض</button></div>
 <input type="file" accept="image/*" multiple id="inp" style="display:none">
 <input type="file" accept="image/*" capture="environment" id="camin" style="display:none">
-<div class="btns" style="margin-top:12px"><button class="alt" id="arr">ترتيب تلقائي</button><button class="alt" id="grid">الشبكة: ظاهرة</button></div>
-<div style="font-size:13px;opacity:.75;margin-top:6px">اسحب أي نسخة لتغيير مكانها، واضغطها لتظهر أزرار التدوير، والسحب من أي مكان فارغ يحرك الصفحة. الشبكة (كل 1 سم) للتوجيه فقط، ولا تظهر بالطباعة أو الحفظ.</div>
-<div id="warn" style="color:#b3261e;font-size:14px;margin-top:6px"></div>
-<div id="pgbar" class="btns" style="display:none;align-items:center"><button class="alt" id="pp">السابقة</button><b id="pn" style="flex:1;text-align:center"></b><button class="alt" id="np">التالية</button></div>
+<div class="btns documents-action-row"><button class="alt" id="arr">ترتيب تلقائي</button><button class="alt" id="grid">الشبكة: ظاهرة</button></div>
+<p class="documents-help">اسحب أي نسخة لتغيير مكانها، واضغطها لتظهر أزرار التدوير، والسحب من أي مكان فارغ يحرك الصفحة. الشبكة (كل 1 سم) للتوجيه فقط، ولا تظهر بالطباعة أو الحفظ.</p>
+<div id="warn" class="documents-warning" role="status" aria-live="polite"></div>
+<div id="pgbar" class="btns documents-page-bar" style="display:none"><button class="alt" id="pp">السابقة</button><b id="pn" style="flex:1;text-align:center"></b><button class="alt" id="np">التالية</button></div>
 <div id="sw"><canvas id="prev" width="900" height="1273"></canvas>
 <div id="tb"><button id="rl" title="تدوير لليسار">⟲</button><button id="rr" title="تدوير لليمين">⟳</button></div></div>
 
