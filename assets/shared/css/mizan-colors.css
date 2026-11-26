@@ -695,6 +695,8 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-home-card-judicial-bg:linear-gradient(115deg,color-mix(in srgb,#0B2443 90%,transparent),color-mix(in srgb,#1D5A9B 84%,transparent));
   --mizan-home-card-laws-bg:linear-gradient(115deg,color-mix(in srgb,#102D54 90%,transparent),color-mix(in srgb,#2563EB 78%,transparent));
   --mizan-home-card-procedures-bg:linear-gradient(115deg,color-mix(in srgb,#172E4A 90%,transparent),color-mix(in srgb,#35517A 84%,transparent));
+  --mizan-home-card-documents-image:none;
+  --mizan-home-card-documents-bg:linear-gradient(115deg,color-mix(in srgb,#102B50 90%,transparent),color-mix(in srgb,#0F766E 82%,transparent));
   --mizan-home-card-fg:var(--mizan-heading-dark);
   --mizan-home-card-muted:var(--mizan-muted-dark);
   --mizan-home-card-border:color-mix(in srgb,var(--mizan-white) 12%,transparent);
@@ -712,6 +714,7 @@ html:is([data-theme="light"],[data-admin-theme="light"]){
   --mizan-home-card-judicial-bg:linear-gradient(115deg,color-mix(in srgb,#E0ECFF 92%,transparent),color-mix(in srgb,#BDD5F8 90%,transparent));
   --mizan-home-card-laws-bg:linear-gradient(115deg,color-mix(in srgb,#E5EFFF 92%,transparent),color-mix(in srgb,#C9DDFB 90%,transparent));
   --mizan-home-card-procedures-bg:linear-gradient(115deg,color-mix(in srgb,#E8F0FF 92%,transparent),color-mix(in srgb,#CFDFFC 90%,transparent));
+  --mizan-home-card-documents-bg:linear-gradient(115deg,color-mix(in srgb,#E0F2FE 92%,transparent),color-mix(in srgb,#CCFBF1 90%,transparent));
   --mizan-home-card-fg:var(--mizan-heading-light);
   --mizan-home-card-muted:var(--mizan-heading-light);
   --mizan-home-card-border:color-mix(in srgb,var(--mizan-primary-900) 12%,transparent);
