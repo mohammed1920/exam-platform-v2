@@ -124,7 +124,7 @@ for (const manifestFile of manifestFiles) {
 // Validate statically declared assets loaded or navigated to from JavaScript.
 // Dynamic expressions are intentionally skipped because they cannot be resolved safely here.
 const jsReferencePattern = /\.\s*(?:src|href)\s*=\s*(["'])(.*?)\1/gi;
-const jsFiles = files.filter(file => /\.(?:js|mjs)$/i.test(file));
+const jsFiles = files.filter(file => /\.(?:js|mjs)$/i.test(file) && display(file) !== "assets/vendor/opencv/opencv.js");
 for (const jsFile of jsFiles) {
   const source = await readFile(jsFile, "utf8");
   for (const match of source.matchAll(jsReferencePattern)) {

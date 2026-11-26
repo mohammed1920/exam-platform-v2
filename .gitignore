@@ -7,3 +7,6 @@ node_modules/
 dist/
 .vercel/
 .next/
+
+# Pinned OpenCV.js runtime is fetched and SHA-256 verified during build.
+/assets/vendor/opencv/opencv.js

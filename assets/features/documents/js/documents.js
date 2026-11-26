@@ -16,12 +16,13 @@ function nextFile(){
   if(!queue.length){qTotal=qDone=0;return;}
   const file=queue.shift();qDone++;
   const im=new Image();
-  im.onload=()=>{
+  im.onload=async()=>{
     const m=Math.min(1,2000/Math.max(im.width,im.height));
     const c=document.createElement('canvas');
     c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);
     c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-    const a=autoPts(c);cur={id:++uid,src:c,pts:a.pts,w:8.6,h:5.4,out:null,note:'',copies:1};isNew=true;
+    $('hint').textContent='جاري تهيئة محرك الكشف عن المستمسكات...';
+    const a=await autoPts(c);cur={id:++uid,src:c,pts:a.pts,w:8.6,h:5.4,out:null,note:'',copies:1};isNew=true;
     openCrop();setHint(a.ok);$('cancel').textContent=queue.length?'تخطي':'إلغاء';
   };
   im.onerror=()=>nextFile();
@@ -34,164 +35,106 @@ function defPts(c){const w=c.width,h=c.height,a=.12;return[[w*a,h*a],[w*(1-a),h*
 function openCrop(){img=cur.src;pts=cur.pts.map(p=>p.slice());$('modal').classList.add('on');fit();draw();}
 function fit(){sc=Math.min((innerWidth-16)/img.width,(innerHeight*.68)/img.height);cv.width=Math.round(img.width*sc);cv.height=Math.round(img.height*sc);}
 
-/* ---------- automatic document detection (no libraries) ---------- */
-function segQ(d,w,h){
-  const bw=Math.max(2,Math.round(Math.min(w,h)*.04)),ring=[];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(x<bw||y<bw||x>=w-bw||y>=h-bw)ring.push(x,y);
-  // background = a tilted plane per colour channel fitted to the image border (handles lighting gradients)
-  const plane=ch=>{let n=0,sx=0,sy=0,sxx=0,sxy=0,syy=0,sc=0,sxc=0,syc=0;
-    for(let k=0;k<ring.length;k+=2){const x=ring[k]/w,y=ring[k+1]/h,v=d[(ring[k+1]*w+ring[k])*4+ch];
-      n++;sx+=x;sy+=y;sxx+=x*x;sxy+=x*y;syy+=y*y;sc+=v;sxc+=x*v;syc+=y*v;}
-    const M=[[n,sx,sy,sc],[sx,sxx,sxy,sxc],[sy,sxy,syy,syc]];
-    for(let i=0;i<3;i++){let p=i;for(let r=i+1;r<3;r++)if(Math.abs(M[r][i])>Math.abs(M[p][i]))p=r;[M[i],M[p]]=[M[p],M[i]];
-      if(Math.abs(M[i][i])<1e-9)return[sc/n,0,0];
-      for(let r=0;r<3;r++)if(r!==i){const f=M[r][i]/M[i][i];for(let k=i;k<4;k++)M[r][k]-=f*M[i][k];}}
-    return[M[0][3]/M[0][0],M[1][3]/M[1][1],M[2][3]/M[2][2]];};
-  const pl=[plane(0),plane(1),plane(2)],N=w*h,dist=new Uint8Array(N);
-  let rs=0;
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;let e=0;
-    for(let ch=0;ch<3;ch++)e+=Math.abs(d[i*4+ch]-(pl[ch][0]+pl[ch][1]*x/w+pl[ch][2]*y/h));
-    dist[i]=Math.min(255,e/3|0);}
-  for(let k=0;k<ring.length;k+=2)rs+=dist[ring[k+1]*w+ring[k]];
-  const thr=Math.max(14,Math.min(70,rs/(ring.length/2)*4+8));
-  let mask=new Uint8Array(N);for(let i=0;i<N;i++)mask[i]=dist[i]>thr?1:0;
-  return compQ(mask,w,h);
+/* ---------- OpenCV.js document detection ---------- */
+let cands=[],ci=0,cvLoadPromise=null,cvLoadError=false;
+function loadOpenCv(){
+  if(window.cv&&window.cv.Mat)return Promise.resolve(window.cv);
+  if(cvLoadPromise)return cvLoadPromise;
+  cvLoadPromise=new Promise((resolve,reject)=>{
+    const script=document.createElement('script');let settled=false,timer;
+    const fail=error=>{if(settled)return;settled=true;clearTimeout(timer);script.remove();cvLoadPromise=null;reject(error instanceof Error?error:new Error('تعذر تحميل OpenCV.js'));};
+    script.async=true;script.src='assets/vendor/opencv/opencv.js?v=4.13.0-build3';
+    script.onload=()=>{
+      const started=Date.now();
+      const check=()=>{
+        if(window.cv&&window.cv.Mat){if(settled)return;settled=true;clearTimeout(timer);resolve(window.cv);return;}
+        if(Date.now()-started>=90000){fail(new Error('انتهت مهلة تهيئة OpenCV.js'));return;}
+        timer=setTimeout(check,50);
+      };check();
+    };
+    script.onerror=()=>fail(new Error('تعذر تنزيل OpenCV.js. اتصل بالإنترنت للمرة الأولى ثم أعد المحاولة.'));
+    document.head.appendChild(script);
+  });
+  return cvLoadPromise;
 }
-function compQ(mask,w,h){
-  const N=w*h;
-  const box=(a,r,mx)=>{const o=new Uint8Array(N),q=new Uint8Array(N);
-    for(let y=0;y<h;y++)for(let x=0;x<w;x++){let v=mx?0:1;for(let k=-r;k<=r;k++){const xx=Math.min(w-1,Math.max(0,x+k)),u=a[y*w+xx];if(mx?u:!u){v=mx?1:0;break;}}q[y*w+x]=v;}
-    for(let y=0;y<h;y++)for(let x=0;x<w;x++){let v=mx?0:1;for(let k=-r;k<=r;k++){const yy=Math.min(h-1,Math.max(0,y+k)),u=q[yy*w+x];if(mx?u:!u){v=mx?1:0;break;}}o[y*w+x]=v;}
-    return o;};
-  mask=box(box(mask,3,true),3,false);
-  // fill holes: flood the outside, whatever is not reached is inside
-  const out=new Uint8Array(N),st=[];
-  const push=i=>{if(!mask[i]&&!out[i]){out[i]=1;st.push(i);}};
-  for(let x=0;x<w;x++){push(x);push((h-1)*w+x);}for(let y=0;y<h;y++){push(y*w);push(y*w+w-1);}
-  while(st.length){const i=st.pop(),x=i%w;if(x>0)push(i-1);if(x<w-1)push(i+1);if(i>=w)push(i-w);if(i<N-w)push(i+w);}
-  for(let i=0;i<N;i++)mask[i]=out[i]?0:1;
-  // biggest connected piece
-  const lab=new Int32Array(N);let bl=0,bs=0,L=0;
-  for(let i=0;i<N;i++){if(!mask[i]||lab[i])continue;L++;let n=0;st.push(i);lab[i]=L;
-    while(st.length){const j=st.pop();n++;const x=j%w,nb=[x>0?j-1:-1,x<w-1?j+1:-1,j>=w?j-w:-1,j<N-w?j+w:-1];
-      for(const q of nb)if(q>=0&&mask[q]&&!lab[q]){lab[q]=L;st.push(q);}}
-    if(n>bs){bs=n;bl=L;}}
-  if(!bs)return null;
-  const P=[[1e9,0,0],[-1e9,0,0],[-1e9,0,0],[1e9,0,0]];let ex=[[0,0],[0,0],[0,0],[0,0]];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(lab[y*w+x]===bl){const a=x+y,b=x-y;
-    if(a<P[0][0]){P[0][0]=a;ex[0]=[x,y];}if(b>P[1][0]){P[1][0]=b;ex[1]=[x,y];}
-    if(a>P[2][0]){P[2][0]=a;ex[2]=[x,y];}if(b<P[3][0]){P[3][0]=b;ex[3]=[x,y];}}
-  let qa=0;for(let i=0;i<4;i++){const p=ex[i],q=ex[(i+1)%4];qa+=p[0]*q[1]-q[0]*p[1];}qa=Math.abs(qa)/2;
-  if(qa/N<.04||bs/qa<.6)return null;
-  return ex;
+function orderDocumentCorners(points){
+  const center=points.reduce((sum,p)=>[sum[0]+p[0]/4,sum[1]+p[1]/4],[0,0]);
+  const ordered=points.slice().sort((a,b)=>Math.atan2(a[1]-center[1],a[0]-center[0])-Math.atan2(b[1]-center[1],b[0]-center[0]));
+  let area=0;for(let i=0;i<4;i++){const p=ordered[i],n=ordered[(i+1)%4];area+=p[0]*n[1]-n[0]*p[1];}
+  if(area<0)ordered.reverse();
+  let first=0;for(let i=1;i<4;i++)if(ordered[i][0]+ordered[i][1]<ordered[first][0]+ordered[first][1])first=i;
+  return ordered.slice(first).concat(ordered.slice(0,first));
 }
-
-/* edges + Hough lines: finds the document outline even when it fills the frame */
-function edgeData(d,w,h){
-  const N=w*h,mag=new Float32Array(N),gx=new Float32Array(N),gy=new Float32Array(N),hist=new Uint32Array(1024);let mx=0;
-  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;let bm=0,bx=0,by=0;
-    for(let ch=0;ch<3;ch++){const v=k=>d[k*4+ch];
-      const sx=(v(i-w+1)+2*v(i+1)+v(i+w+1))-(v(i-w-1)+2*v(i-1)+v(i+w-1)),sy=(v(i+w-1)+2*v(i+w)+v(i+w+1))-(v(i-w-1)+2*v(i-w)+v(i-w+1));
-      const m=Math.hypot(sx,sy);if(m>bm){bm=m;bx=sx;by=sy;}}   // strongest colour channel, so yellow-on-grey still counts
-    gx[i]=bx;gy[i]=by;mag[i]=bm;if(bm>mx)mx=bm;}
-  for(let i=0;i<N;i++)hist[Math.min(1023,mag[i]/(mx||1)*1023|0)]++;
-  let acc=0,cut=0;for(let i=0;i<1024;i++){acc+=hist[i];if(acc>N*.88){cut=i/1023*mx;break;}}
-  cut=Math.max(cut,mx*.08,20);
-  return{w,h,mag,gx,gy,cut};
+function detectAll(cv,canvas){
+  const scale=Math.min(1,960/Math.max(canvas.width,canvas.height));
+  const width=Math.max(1,Math.round(canvas.width*scale)),height=Math.max(1,Math.round(canvas.height*scale));
+  const source=cv.imread(canvas),image=new cv.Mat(),gray=new cv.Mat(),blurred=new cv.Mat();
+  const edges=new cv.Mat(),closed=new cv.Mat(),adaptive=new cv.Mat(),otsu=new cv.Mat();
+  const kernel=cv.getStructuringElement(cv.MORPH_RECT,new cv.Size(3,3)),candidates=[];
+  const collect=binary=>{
+    const contours=new cv.MatVector(),hierarchy=new cv.Mat();
+    try{
+      cv.findContours(binary,contours,hierarchy,cv.RETR_LIST,cv.CHAIN_APPROX_SIMPLE);
+      for(let i=0;i<contours.size();i++){
+        const contour=contours.get(i),approx=new cv.Mat();
+        try{
+          const perimeter=cv.arcLength(contour,true);
+          if(perimeter<Math.min(width,height)*.12)continue;
+          cv.approxPolyDP(contour,approx,Math.max(2,perimeter*.018),true);
+          if(approx.rows!==4||!cv.isContourConvex(approx))continue;
+          const area=Math.abs(cv.contourArea(approx)),fraction=area/(width*height);
+          if(fraction<.045||fraction>.985)continue;
+          const bounds=cv.boundingRect(approx);
+          if(Math.min(bounds.width,bounds.height)<Math.min(width,height)*.08)continue;
+          const raw=approx.data32S;if(!raw||raw.length<8)continue;
+          const points=[];for(let p=0;p<8;p+=2)points.push([raw[p],raw[p+1]]);
+          const ordered=orderDocumentCorners(points);
+          const rectangularity=Math.min(1,area/Math.max(1,bounds.width*bounds.height));
+          candidates.push({points:ordered,score:fraction*(.65+.35*rectangularity)});
+        }finally{approx.delete();contour.delete();}
+      }
+    }finally{contours.delete();hierarchy.delete();}
+  };
+  try{
+    cv.resize(source,image,new cv.Size(width,height),0,0,cv.INTER_AREA);
+    cv.cvtColor(image,gray,cv.COLOR_RGBA2GRAY);
+    cv.GaussianBlur(gray,blurred,new cv.Size(5,5),0,0,cv.BORDER_DEFAULT);
+    cv.Canny(blurred,edges,40,120,3,false);
+    cv.morphologyEx(edges,closed,cv.MORPH_CLOSE,kernel);
+    collect(closed);
+    cv.adaptiveThreshold(blurred,adaptive,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY_INV,31,12);
+    collect(adaptive);
+    cv.threshold(blurred,otsu,0,255,cv.THRESH_BINARY_INV|cv.THRESH_OTSU);
+    collect(otsu);
+  }finally{
+    source.delete();image.delete();gray.delete();blurred.delete();
+    edges.delete();closed.delete();adaptive.delete();otsu.delete();kernel.delete();
+  }
+  candidates.sort((x,y)=>y.score-x.score);
+  const unique=[];
+  for(const candidate of candidates){
+    const points=candidate.points.map(p=>[p[0]/scale,p[1]/scale]);
+    if(unique.some(item=>item.points.every((p,i)=>Math.hypot(p[0]-points[i][0],p[1]-points[i][1])<Math.max(canvas.width,canvas.height)*.045)))continue;
+    unique.push({points,score:candidate.score});if(unique.length===6)break;
+  }
+  return unique.map(item=>item.points);
 }
-function supportRaw(E,q){
-  const{w,h,mag,gx,gy,cut}=E;let tot=0,minS=1;
-  for(let s=0;s<4;s++){
-    const p=q[s],r=q[(s+1)%4],L=Math.hypot(r[0]-p[0],r[1]-p[1]);if(L<8)return{avg:0,min:0};
-    const nx=-(r[1]-p[1])/L,ny=(r[0]-p[0])/L,n=Math.max(12,L/3|0);let ins=0,hit=0;
-    for(let k=0;k<n;k++){const t=(k+.5)/n,x=Math.round(p[0]+(r[0]-p[0])*t),y=Math.round(p[1]+(r[1]-p[1])*t);
-      if(x<2||y<2||x>=w-2||y>=h-2)continue;ins++;let ok=0;
-      for(let dy=-2;dy<=2&&!ok;dy++)for(let dx=-2;dx<=2;dx++){const i=(y+dy)*w+x+dx;
-        if(mag[i]>cut&&Math.abs(gx[i]*nx+gy[i]*ny)/mag[i]>.75){ok=1;break;}}
-      hit+=ok;}
-    if(ins<n*.4)return{avg:0,min:0};const sp=hit/ins;minS=Math.min(minS,sp);tot+=sp;}
-  return{avg:tot/4,min:minS};
+async function autoPts(canvas){
+  cands=[];ci=0;cvLoadError=false;
+  try{cands=detectAll(await loadOpenCv(),canvas);}
+  catch(error){cvLoadError=true;console.error('Mizan OpenCV document detection failed:',error);}
+  return{pts:cands[0]||defPts(canvas),ok:!!cands.length};
 }
-function quadSupport(E,q){const r=supportRaw(E,q);return r.min<.35?0:r.avg;}
-// nudge each corner a few pixels so the sides sit exactly on real edges
-function refine(E,q){
-  const cl=p=>[Math.min(E.w-1,Math.max(0,p[0])),Math.min(E.h-1,Math.max(0,p[1]))];
-  const o=q.map(cl);let c=o.map(p=>p.slice()),b=supportRaw(E,c).avg;
-  const cap=Math.max(6,Math.min(E.w,E.h)*.05);
-  for(const st of[4,2,1])for(let it=0;it<12;it++){let imp=false;
-    for(let k=0;k<4;k++)for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){if(!dx&&!dy)continue;
-      const t=c.map(p=>p.slice());t[k]=[t[k][0]+dx*st,t[k][1]+dy*st];
-      if(Math.hypot(t[k][0]-o[k][0],t[k][1]-o[k][1])>cap)continue;
-      const v=supportRaw(E,t.map(cl)).avg;if(v>b+1e-6){b=v;c=t;imp=true;}}
-    if(!imp)break;}
-  return c.map(cl);
+function setHint(ok){
+  setHint0(ok);
+  if(qTotal>1)$('hint').textContent='صورة '+qDone+' من '+qTotal+' · '+$('hint').textContent;
 }
-function houghQ(E){
-  const{w,h,mag,gx,gy,cut}=E,RH=Math.ceil(Math.hypot(w,h)),RW=2*RH+1,acc=new Float32Array(180*RW),C=[],S=[];
-  for(let t=0;t<180;t++){C[t]=Math.cos(t*Math.PI/180);S[t]=Math.sin(t*Math.PI/180);}
-  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x;if(mag[i]<=cut)continue;
-    const dg=((Math.atan2(gy[i],gx[i])*180/Math.PI)%180+180)%180|0;
-    for(let dt=-5;dt<=5;dt++){const t=(dg+dt+180)%180;acc[t*RW+Math.round(x*C[t]+y*S[t])+RH]+=1;}}
-  let mv=0;for(let i=0;i<acc.length;i++)if(acc[i]>mv)mv=acc[i];
-  if(mv<12)return null;
-  const peaks=[],mn=Math.max(12,mv*.3);
-  for(let t=0;t<180;t++)for(let r=0;r<RW;r++){const v=acc[t*RW+r];if(v<mn)continue;let best=true;
-    for(let dt=-4;dt<=4&&best;dt++){const t2=(t+dt+180)%180,flip=(t+dt<0||t+dt>=180)?-1:1;
-      for(let dr=-6;dr<=6;dr++){if(!dt&&!dr)continue;const r2=flip<0?(RH-(r-RH)+dr):r+dr;
-        if(r2<0||r2>=RW)continue;if(acc[t2*RW+r2]>v||(acc[t2*RW+r2]===v&&(dt<0||(dt===0&&dr<0)))){best=false;break;}}}
-    if(best)peaks.push({t,rho:r-RH,v});}
-  peaks.sort((a,b)=>b.v-a.v);
-  const Hs=[],Vs=[];
-  for(const p of peaks){const L={t:p.t,rho:p.rho,a:C[p.t],b:S[p.t],v:p.v};(Math.abs(L.b)>.7071?Hs:Vs).push(L);}
-  const hs=Hs.slice(0,9),vs=Vs.slice(0,9),X=(l1,l2)=>{const D=l1.a*l2.b-l2.a*l1.b;if(Math.abs(D)<.25)return null;
-    return[(l1.rho*l2.b-l2.rho*l1.b)/D,(l1.a*l2.rho-l2.a*l1.rho)/D];};
-  const ang=(l1,l2)=>{let d=Math.abs(l1.t-l2.t);return Math.min(d,180-d);};
-  const res=[];
-  for(let i=0;i<hs.length;i++)for(let j=i+1;j<hs.length;j++)for(let k=0;k<vs.length;k++)for(let l=k+1;l<vs.length;l++){
-    const h1=hs[i],h2=hs[j],v1=vs[k],v2=vs[l];
-    if(ang(h1,h2)>25||ang(v1,v2)>25)continue;
-    const c=[X(h1,v1),X(h1,v2),X(h2,v2),X(h2,v1)];if(c.some(p=>!p))continue;
-    // order as TL TR BR BL
-    const cx=c.reduce((a,p)=>a+p[0],0)/4,cy=c.reduce((a,p)=>a+p[1],0)/4;
-    const q=[null,null,null,null];
-    for(const p of c){const i2=(p[1]<cy?0:3)+0;if(p[1]<cy){if(p[0]<cx)q[0]=p;else q[1]=p;}else{if(p[0]<cx)q[3]=p;else q[2]=p;}}
-    if(q.some(p=>!p))continue;
-    if(q.some(p=>p[0]<-w*.12||p[0]>w*1.12||p[1]<-h*.12||p[1]>h*1.12))continue;
-    let ar=0;for(let z=0;z<4;z++){const p=q[z],r=q[(z+1)%4];ar+=p[0]*r[1]-r[0]*p[1];}ar=Math.abs(ar)/2;
-    if(ar<w*h*.12)continue;
-    const cl=q.map(p=>[Math.min(w-1,Math.max(0,p[0])),Math.min(h-1,Math.max(0,p[1]))]);
-    const sp=quadSupport(E,cl);if(!sp)continue;const sc=sp*Math.sqrt(Math.min(1,ar/(w*h)));
-    res.push({q:cl,sc});}
-  return res;
+function setHint0(ok){
+  $('hint').textContent=ok
+    ?'تم الكشف بواسطة OpenCV ('+(ci+1)+' من '+cands.length+')'+(cands.length>1?'. اضغط «كشف تلقائي» لاقتراح آخر. ':'. ')+'عدّل الزوايا إذا تحتاج'
+    :cvLoadError?'تعذر تهيئة OpenCV.js. اتصل بالإنترنت لتحميله أول مرة، ثم أعد المحاولة أو حدد الزوايا يدوياً'
+    :'لم يعثر OpenCV على حدود واضحة للمستند. غيّر الخلفية أو حدد الزوايا يدوياً';
 }
-function satQ(d,w,h){
-  const N=w*h,mask=new Uint8Array(N);
-  for(let i=0;i<N;i++){const r=d[i*4],g=d[i*4+1],b=d[i*4+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b);mask[i]=(mx>60&&(mx-mn)/mx>.38)?1:0;}
-  return compQ(mask,w,h);
-}
-function sameQ(a,b,t){return a.every((p,i)=>Math.hypot(p[0]-b[i][0],p[1]-b[i][1])<t);}
-function detectAll(c){
-  const m=Math.min(1,320/Math.max(c.width,c.height)),w=Math.round(c.width*m),h=Math.round(c.height*m);
-  const t=document.createElement('canvas');t.width=w;t.height=h;const tg=t.getContext('2d');
-  tg.imageSmoothingQuality='high';tg.drawImage(c,0,0,w,h);const d=tg.getImageData(0,0,w,h).data;
-  const E=edgeData(d,w,h),raw=[];
-  try{const q=segQ(d,w,h);if(q)raw.push({q,sc:0});}catch(e){}
-  try{const q=satQ(d,w,h);if(q)raw.push({q,sc:0});}catch(e){}
-  try{raw.push(...houghQ(E).sort((a,b)=>b.sc-a.sc).slice(0,12));}catch(e){}
-  const out=[];
-  for(const r of raw){
-    const q=refine(E,r.q),sp=quadSupport(E,q);if(!sp)continue;
-    let ar=0;for(let z=0;z<4;z++){const p=q[z],n=q[(z+1)%4];ar+=p[0]*n[1]-n[0]*p[1];}ar=Math.abs(ar)/2/(w*h);
-    const sc=sp*Math.sqrt(Math.min(1,ar));if(sc<.3)continue;
-    if(out.some(o=>sameQ(o.q,q,Math.max(w,h)*.05)))continue;
-    out.push({q,sc});}
-  out.sort((a,b)=>b.sc-a.sc);
-  return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
-}
-let cands=[],ci=0;
-function autoPts(c){cands=[];ci=0;try{cands=detectAll(c);}catch(e){console.error(e);}return{pts:cands[0]||defPts(c),ok:!!cands.length};}
-function setHint(ok){setHint0(ok);if(qTotal>1)$('hint').textContent='صورة '+qDone+' من '+qTotal+' · '+$('hint').textContent;}
-function setHint0(ok){$('hint').textContent=ok?'تم الكشف تلقائياً ('+(ci+1)+' من '+cands.length+')'+(cands.length>1?'. اضغط «كشف تلقائي» لاقتراح آخر. ':'. ')+'عدّل الزوايا إذا تحتاج':'ما قدرت أكشف الحواف تلقائياً (جرب خلفية بلون مختلف). حدد الزوايا يدوياً';}
 
 /* ---------- corner editor ---------- */
 function draw(){
@@ -207,12 +150,12 @@ cv.onpointerdown=e=>{const[x,y]=pos(e);let best=45;drag=-1;
 cv.onpointermove=e=>{if(drag<0)return;const[x,y]=pos(e);
   pts[drag]=[Math.min(img.width,Math.max(0,x/sc)),Math.min(img.height,Math.max(0,y/sc))];draw();};
 cv.onpointerup=()=>drag=-1;
-$('rot').onclick=()=>{
+$('rot').onclick=async()=>{
   const c=document.createElement('canvas');c.width=img.height;c.height=img.width;
   const g=c.getContext('2d');g.translate(c.width,0);g.rotate(Math.PI/2);g.drawImage(img,0,0);
-  cur.src=c;img=c;const a=autoPts(c);pts=a.pts;setHint(a.ok);fit();draw();
+  cur.src=c;img=c;$('hint').textContent='جاري إعادة الكشف بواسطة OpenCV...';const a=await autoPts(c);pts=a.pts;setHint(a.ok);fit();draw();
 };
-$('auto').onclick=()=>{if(cands.length>1){ci=(ci+1)%cands.length;pts=cands[ci].map(p=>p.slice());setHint(true);}else{const a=autoPts(img);pts=a.pts;setHint(a.ok);}draw();};
+$('auto').onclick=async()=>{if(cands.length>1){ci=(ci+1)%cands.length;pts=cands[ci].map(p=>p.slice());setHint(true);}else{$('hint').textContent='جاري الكشف بواسطة OpenCV...';const a=await autoPts(img);pts=a.pts;setHint(a.ok);}draw();};
 $('cancel').onclick=()=>{$('modal').classList.remove('on');isNew=false;nextFile();};
 
 /* ---------- auto size from the shape the user outlined ---------- */

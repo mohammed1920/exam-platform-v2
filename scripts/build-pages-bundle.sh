@@ -46,6 +46,8 @@ if [[ -f "$ROOT/robots.txt" ]]; then
   cp "$ROOT/robots.txt" "$OUTPUT_DIR/robots.txt"
 fi
 
+bash "$ROOT/scripts/prepare-opencv-vendor.sh"
+
 cp -r "$ROOT/engine" "$ROOT/icons" "$ROOT/data" "$ROOT/assets" "$OUTPUT_DIR/"
 
 # Generate deployment-only petition indexes without modifying source data.
@@ -86,6 +88,7 @@ required_files=(
   assets/features/admin/js/admin.js
   assets/features/home/js/home.js
   assets/features/documents/js/documents.js
+  assets/vendor/opencv/opencv.js
   assets/features/documents/css/documents.css
   assets/features/judicial-institute/js/judicial-institute.js
   assets/features/judicial-institute/css/judicial-institute.css
