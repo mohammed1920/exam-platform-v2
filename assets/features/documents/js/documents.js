@@ -218,7 +218,6 @@ function detectAll(c){
     if(out.some(o=>sameQ(o.q,q,Math.max(w,h)*.05)))continue;
     out.push({q,sc});}
   out.sort((a,b)=>b.sc-a.sc);
-  if(out.length)return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
 
   // A4 sheets sometimes fill the camera frame, leaving no outer background
   // for segmentation. In that case detect a near-A4 portrait paper frame.
@@ -235,10 +234,12 @@ function detectAll(c){
       Array.from({length:12},(_,i)=>brightPaper(Math.min(w-2,Math.round(w*.992)),Math.round(h*(.04+i*.92/11))))
     ];
     if(sides.every(side=>side.filter(Boolean).length>=7)){
-      const insetX=c.width*.012,insetY=c.height*.012;
-      return[[insetX,insetY],[c.width-insetX,insetY],[c.width-insetX,c.height-insetY],[insetX,c.height-insetY]];
+      autoUsedFullFrame=true;
+      return[[0,0],[c.width-1,0],[c.width-1,c.height-1],[0,c.height-1]];
     }
   }
+
+  if(out.length)return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
   return [];
 }
 let cands=[],ci=0,autoUsedFullFrame=false;
