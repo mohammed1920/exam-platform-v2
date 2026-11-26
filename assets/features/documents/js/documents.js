@@ -32,7 +32,7 @@ $('inp').onchange=$('camin').onchange=onPick;
 
 function defPts(c){const w=c.width,h=c.height,a=.12;return[[w*a,h*a],[w*(1-a),h*a],[w*(1-a),h*(1-a)],[w*a,h*(1-a)]];}
 function openCrop(){img=cur.src;pts=cur.pts.map(p=>p.slice());$('modal').classList.add('on');fit();draw();}
-function fit(){sc=Math.min((innerWidth-16)/img.width,(innerHeight*.68)/img.height);cv.width=Math.round(img.width*sc);cv.height=Math.round(img.height*sc);}
+function fit(){sc=Math.min((innerWidth-16)/img.width,(innerHeight*.52)/img.height);cv.width=Math.round(img.width*sc);cv.height=Math.round(img.height*sc);}
 
 /* ---------- automatic document detection (no libraries) ---------- */
 function segQ(d,w,h){
