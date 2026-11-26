@@ -241,10 +241,25 @@ function detectAll(c){
   }
   return [];
 }
-let cands=[],ci=0;
-function autoPts(c){cands=[];ci=0;try{cands=detectAll(c);}catch(e){console.error(e);}return{pts:cands[0]||defPts(c),ok:!!cands.length};}
+let cands=[],ci=0,autoUsedFullFrame=false;
+function autoPts(c){
+  cands=[];ci=0;autoUsedFullFrame=false;
+  try{cands=detectAll(c);}catch(e){console.error('Mizan document edge detection failed:',e);}
+  // No reliable document boundary found: use the entire selected photo as the crop.
+  // This prevents large, edge-to-edge A4 scans from being left with the inset default box.
+  if(!cands.length){
+    autoUsedFullFrame=true;
+    cands=[[[0,0],[c.width-1,0],[c.width-1,c.height-1],[0,c.height-1]]];
+  }
+  return{pts:cands[0].map(p=>p.slice()),ok:!autoUsedFullFrame,fullFrame:autoUsedFullFrame};
+}
 function setHint(ok){setHint0(ok);if(qTotal>1)$('hint').textContent='صورة '+qDone+' من '+qTotal+' · '+$('hint').textContent;}
-function setHint0(ok){$('hint').textContent=ok?'تم الكشف تلقائياً ('+(ci+1)+' من '+cands.length+')'+(cands.length>1?'. اضغط «كشف تلقائي» لاقتراح آخر. ':'. ')+'عدّل الزوايا إذا تحتاج':'ما قدرت أكشف الحواف تلقائياً (جرب خلفية بلون مختلف). حدد الزوايا يدوياً';}
+function setHint0(ok){
+  $('hint').textContent=autoUsedFullFrame
+    ?'لم يُعثر على إطار واضح؛ تم تحديد الصورة كاملة تلقائياً. عدّل الزوايا إذا لزم ثم اضغط «قص وإضافة».'
+    :ok?'تم الكشف تلقائياً ('+(ci+1)+' من '+cands.length+')'+(cands.length>1?'. اضغط «كشف تلقائي» لاقتراح آخر. ':'. ')+'عدّل الزوايا إذا تحتاج'
+    :'ما قدرت أكشف الحواف تلقائياً. حدد الزوايا يدوياً';
+}
 
 /* ---------- corner editor ---------- */
 function draw(){
