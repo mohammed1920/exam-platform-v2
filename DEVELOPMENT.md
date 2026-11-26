@@ -130,12 +130,3 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 ### سلوك فشل حفظ ملف الطالب
 
 `saveStudentProfile` تعيد `false` عند فشل الحفظ. مستمع `onAuthStateChanged` ينتظر انتهاء المحاولة ثم يواصل تدفق المصادقة ويطلق حدث حالة المستخدم؛ لا يستخدم قيمة `false` لإلغاء تسجيل الدخول أو تسجيل الخروج. مع ذلك يجب اختبار هذا السلوك مع حساب قديم وحساب جديد بعد نشر القاعدة.
-
-
-### محرك كشف مستمسكاتي (OpenCV.js)
-- النسخة المثبتة: OpenCV.js 4.13.0 build #3، بناء single-file WebAssembly دون طلب ملف WASM منفصل.
-- المصدر: [TechStark/opencv-js release](https://github.com/TechStark/opencv-js/releases/tag/opencv-js-4.13.0-build3)، SHA-256: `f73f3a20958f3a05529cb513805a7311adce0bf05323887c5a9feb3c63c3953e`.
-- يُنزّل المحرك أثناء البناء إلى `assets/vendor/opencv/opencv.js` ويتحقق من SHA-256. لا يوجد CDN وقت الاستخدام؛ يُحمّل محلياً عند أول استعمال ويُخزّن Service Worker الملف بعد أول تحميل ناجح.
-- للفحص المحلي شغّل `bash scripts/prepare-opencv-vendor.sh`.
-- الكشف يستخدم grayscale وGaussian blur وCanny وmorphological close وadaptive/Otsu threshold وcontours وapproxPolyDP، مع حتى ستة اقتراحات رباعية وإزالة التكرار. لا عودة إلى خوارزمية الكشف القديمة؛ عند تعذر المحرك يمكن تحديد الزوايا يدوياً.
-- الترخيص Apache-2.0 محفوظ في `assets/vendor/opencv/LICENSE` وبيان المصدر في `assets/vendor/opencv/README.md`.
