@@ -186,7 +186,28 @@ function detectAll(c){
     if(out.some(o=>sameQ(o.q,q,Math.max(w,h)*.05)))continue;
     out.push({q,sc});}
   out.sort((a,b)=>b.sc-a.sc);
-  return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
+  if(out.length)return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
+
+  // A4 sheets sometimes fill the camera frame, leaving no outer background
+  // for segmentation. In that case detect a near-A4 portrait paper frame.
+  const aspect=Math.min(w,h)/Math.max(w,h);
+  if(aspect>=.66&&aspect<=.78){
+    const brightPaper=(x,y)=>{
+      const i=(y*w+x)*4,r=d[i],g=d[i+1],b=d[i+2];
+      return (r*.299+g*.587+b*.114)>150&&Math.max(r,g,b)-Math.min(r,g,b)<75;
+    };
+    const sides=[
+      Array.from({length:12},(_,i)=>brightPaper(Math.round(w*(.04+i*.92/11)),Math.max(1,Math.round(h*.008)))),
+      Array.from({length:12},(_,i)=>brightPaper(Math.round(w*(.04+i*.92/11)),Math.min(h-2,Math.round(h*.992)))),
+      Array.from({length:12},(_,i)=>brightPaper(Math.max(1,Math.round(w*.008)),Math.round(h*(.04+i*.92/11)))),
+      Array.from({length:12},(_,i)=>brightPaper(Math.min(w-2,Math.round(w*.992)),Math.round(h*(.04+i*.92/11))))
+    ];
+    if(sides.every(side=>side.filter(Boolean).length>=7)){
+      const insetX=c.width*.012,insetY=c.height*.012;
+      return[[insetX,insetY],[c.width-insetX,insetY],[c.width-insetX,c.height-insetY],[insetX,c.height-insetY]];
+    }
+  }
+  return [];
 }
 let cands=[],ci=0;
 function autoPts(c){cands=[];ci=0;try{cands=detectAll(c);}catch(e){console.error(e);}return{pts:cands[0]||defPts(c),ok:!!cands.length};}
