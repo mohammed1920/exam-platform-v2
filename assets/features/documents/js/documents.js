@@ -32,13 +32,7 @@ function nextFile(){
       openCrop();
       $('hint').textContent='تم فتح الصورة. انتظر الكشف التلقائي أو عدّل الزوايا ثم اضغط «قص وإضافة».';
       $('cancel').textContent=queue.length?'تخطي':'إلغاء';
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        if(cur?.src!==c||!$('modal').classList.contains('on'))return;
-        const a=autoPts(c);
-        if(cur?.src!==c||!$('modal').classList.contains('on'))return;
-        if(!cropEdited){cur.pts=a.pts.map(p=>p.slice());pts=cur.pts.map(p=>p.slice());draw();}
-        setHint(a.ok);
-      }));
+      $('hint').textContent='تم فتح الصورة كاملة من الزاوية إلى الزاوية. اضغط «كشف تلقائي» فقط إذا أردت البحث عن حدود داخل الصورة، أو عدّل الزوايا يدوياً.';
     }catch(error){
       console.error('Mizan image import failed:',error);
       $('warn').textContent='تعذر تجهيز الصورة المحددة. جرّب حفظها بصيغة JPG أو PNG ثم أعد اختيارها.';
@@ -62,7 +56,7 @@ const onPick=e=>{
 };
 $('inp').onchange=$('camin').onchange=onPick;
 
-function defPts(c){const w=c.width,h=c.height,a=.12;return[[w*a,h*a],[w*(1-a),h*a],[w*(1-a),h*(1-a)],[w*a,h*(1-a)]];}
+function defPts(c){const w=c.width,h=c.height;return[[0,0],[w-1,0],[w-1,h-1],[0,h-1]];}
 function openCrop(){img=cur.src;pts=cur.pts.map(p=>p.slice());$('modal').classList.add('on');fit();draw();}
 function fit(){sc=Math.min((innerWidth-16)/img.width,(innerHeight*.52)/img.height);cv.width=Math.round(img.width*sc);cv.height=Math.round(img.height*sc);}
 
@@ -250,8 +244,20 @@ let cands=[],ci=0,autoUsedFullFrame=false;
 function autoPts(c){
   cands=[];ci=0;autoUsedFullFrame=false;
   try{cands=detectAll(c);}catch(e){console.error('Mizan document edge detection failed:',e);}
-  // No reliable document boundary found: use the entire selected photo as the crop.
-  // This prevents large, edge-to-edge A4 scans from being left with the inset default box.
+  // For a portrait A4-like scan, reject inner text/content contours as false page edges.
+  // If the candidate is inset on all four sides, preserve the whole original photo.
+  const aspect=Math.min(c.width,c.height)/Math.max(c.width,c.height);
+  if(cands.length&&aspect>=.66&&aspect<=.78){
+    const q=cands[0],xs=q.map(p=>p[0]),ys=q.map(p=>p[1]);
+    const margins=[
+      Math.min(...xs)/c.width,
+      Math.min(...ys)/c.height,
+      (c.width-1-Math.max(...xs))/c.width,
+      (c.height-1-Math.max(...ys))/c.height
+    ];
+    if(margins.every(v=>v>.05))cands=[];
+  }
+  // No confident outer paper boundary: keep the complete selected photo.
   if(!cands.length){
     autoUsedFullFrame=true;
     cands=[[[0,0],[c.width-1,0],[c.width-1,c.height-1],[0,c.height-1]]];
