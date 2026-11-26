@@ -38,6 +38,7 @@
 
   <!-- Layer 3: page and component styles. Keep these before the late UI-fix layer. -->
   <link rel="stylesheet" href="assets/features/home/css/home.css?v=5.20">
+  <link rel="stylesheet" href="assets/features/documents/css/documents.css?v=1.0">
   <link rel="stylesheet" href="assets/features/procedures/css/procedures.css?v=2.10">
   <link rel="stylesheet" href="assets/features/laws/css/laws.css?v=1.19">
   <link rel="stylesheet" href="assets/features/judicial-institute/css/judicial-institute.css?v=2.9">
@@ -111,7 +112,7 @@
         <button type="button" class="home-category-card" data-home-action="petitions" data-mizan-card-action="petitions"><i class="fas fa-file-lines" aria-hidden="true"></i><strong>عرائض وطلبات</strong><small>نماذج قانونية قابلة للتطوير</small></button>
         <button type="button" class="home-category-card" data-home-action="lawyers" data-mizan-card-action="lawyers"><i class="fas fa-user-tie" aria-hidden="true"></i><strong>دليل المحامين</strong><small>بيانات المحامين وخدمات الدليل</small></button>
         <button type="button" class="home-category-card" data-home-action="mizan-pulpit" data-mizan-card-action="mizan-pulpit"><i class="fas fa-feather-pointed" aria-hidden="true"></i><strong>منبر ميزان</strong><small>مقالات وأبحاث وأفكار أهل الاختصاص</small></button>
-        <button type="button" class="home-category-card" data-home-action="random" data-mizan-card-action="random"><i class="fas fa-shuffle" aria-hidden="true"></i><strong>اختبار عشوائي</strong><small>اختر الكتب وعدد الأسئلة وابدأ اختباراً مخصصاً.</small></button>
+        <button type="button" class="home-category-card" data-home-action="documents" data-mizan-card-action="documents"><i class="fas fa-id-card" aria-hidden="true"></i><strong>مستمسكاتي</strong><small>امسح مستمسكاتك ورتّبها واحفظها واطبعها محلياً.</small></button>
         <button type="button" class="home-category-card" data-home-action="laws" data-mizan-card-action="laws" aria-label="فتح القوانين العراقية"><i class="fas fa-scale-balanced" aria-hidden="true"></i><strong>القوانين العراقية</strong><small>تصفح القوانين والمواد القانونية</small></button>
         <button type="button" class="home-category-card" data-home-action="procedures" data-mizan-card-action="procedures" aria-label="فتح إجراءات الدعاوى"><i class="fas fa-file-signature" aria-hidden="true"></i><strong>إجراءات الدعاوى</strong><small>خطوات الدعوى وإجراءاتها القانونية</small></button>
         <button type="button" class="home-category-card" data-home-action="judicial" data-mizan-card-action="judicial" aria-label="فتح قسم المعهد القضائي"><i class="fas fa-landmark" aria-hidden="true"></i><strong>اختبارات المعهد القضائي</strong><small>أرشيف السنوات وبنك الأسئلة حسب المواد</small></button>
@@ -200,6 +201,50 @@
     <section id="judicial-institute-section" class="view-section judicial-institute-section" aria-label="المعهد القضائي"></section>
     <section id="petitions-section" class="view-section"></section>
     <section id="laws-section" class="view-section laws-section" aria-label="القوانين العراقية"></section>
+    <section id="documents-section" class="view-section documents-section" aria-label="مستمسكاتي">
+<header class="documents-heading">
+  <button type="button" class="alt" id="documents-back"><i class="fas fa-arrow-right" aria-hidden="true"></i> العودة إلى ميزان</button>
+  <div><h2>مستمسكاتي</h2><p>رتّب مستمسكاتك واحفظها محلياً أو جهّزها للطباعة على ورق A4.</p></div>
+</header>
+
+
+<div class="btns" style="margin-top:0"><button class="main" id="cam">📷 التقاط بالكاميرا</button><button class="alt" id="add">🖼 من المعرض</button></div>
+<input type="file" accept="image/*" multiple id="inp" style="display:none">
+<input type="file" accept="image/*" capture="environment" id="camin" style="display:none">
+<div class="btns" style="margin-top:12px"><button class="alt" id="arr">ترتيب تلقائي</button><button class="alt" id="grid">الشبكة: ظاهرة</button></div>
+<div style="font-size:13px;opacity:.75;margin-top:6px">اسحب أي نسخة لتغيير مكانها، واضغطها لتظهر أزرار التدوير، والسحب من أي مكان فارغ يحرك الصفحة. الشبكة (كل 1 سم) للتوجيه فقط، ولا تظهر بالطباعة أو الحفظ.</div>
+<div id="warn" style="color:#b3261e;font-size:14px;margin-top:6px"></div>
+<div id="pgbar" class="btns" style="display:none;align-items:center"><button class="alt" id="pp">السابقة</button><b id="pn" style="flex:1;text-align:center"></b><button class="alt" id="np">التالية</button></div>
+<div id="sw"><canvas id="prev" width="900" height="1273"></canvas>
+<div id="tb"><button id="rl" title="تدوير لليسار">⟲</button><button id="rr" title="تدوير لليمين">⟳</button></div></div>
+
+<div class="btns">
+  <button class="main" id="saveLocal">حفظ المجموعة محلياً</button>
+  <button class="main" id="pdf">حفظ PDF</button>
+  <button class="alt" id="jpg">حفظ صورة JPG</button>
+  <button class="alt" id="shr">مشاركة</button>
+  <button class="main" id="prt">🖨 طباعة مباشرة</button>
+</div>
+
+<div id="list"></div>
+<div class="panel" id="saved-projects-panel"><h3>مجموعاتي المحفوظة على هذا الجهاز</h3><div id="savedProjects"><p class="documents-empty">لا توجد مجموعات محفوظة بعد.</p></div></div>
+
+<div class="panel">
+  <div class="row"><label>المسافة بين المستمسكات (سم)</label><input type="number" id="g" value="1" step="0.5" min="0" max="10"></div>
+</div>
+
+<div id="modal">
+  <p id="hint">اسحب الزوايا الأربع حتى تنطبق على حواف المستمسك</p>
+  <canvas id="cv"></canvas>
+  <div class="btns" style="width:100%;max-width:420px">
+    <button class="alt" id="rot">تدوير</button>
+    <button class="alt" id="auto">كشف تلقائي</button>
+    <button class="alt" id="cancel">إلغاء</button>
+    <button class="main" id="ok">قص وإضافة</button>
+  </div>
+</div>
+
+<div id="pa"></div></section>
     <section id="books-section" class="view-section"><button class="custom-exam-entry-btn" id="custom-exam-entry-btn">🎲 اختبار عشوائي شامل</button><div class="books-grid" id="books-container"></div></section>
     <section id="custom-exam-setup-section" class="view-section"><button class="back-btn" id="custom-exam-back-btn"><i class="fas fa-arrow-right"></i> العودة للكتب</button><h2 class="custom-exam-title">🎲 اختبار عشوائي شامل</h2><p class="custom-exam-desc">اختر الكتب اللي تريد تختبر نفسك فيها، وحدد عدد الأسئلة.</p><div id="custom-exam-books-list" class="custom-exam-books-list"></div><div class="custom-exam-count-row"><label for="custom-exam-count">عدد الأسئلة</label><input type="number" id="custom-exam-count" min="1" value="20"></div><button class="custom-exam-start-btn" id="custom-exam-start-btn">🚀 ابدأ الاختبار</button></section>
     <section id="chapters-section" class="view-section"><button class="back-btn" id="back-to-books"><i class="fas fa-arrow-right"></i> العودة للكتب</button><div id="chapters-header" class="chapters-header"></div><div class="chapters-list" id="chapters-container"></div></section>
@@ -237,6 +282,7 @@
   <script src="assets/shared/js/app.js?v=4.1"></script>
   <script src="assets/shared/js/global-search.js?v=1.2"></script>
   <script src="assets/features/home/js/home.js?v=5.0"></script>
+  <script src="assets/features/documents/js/documents.js?v=1.0"></script>
   <script src="assets/shared/js/mizan-card-actions.js?v=1.0"></script>
   <script src="assets/features/judicial-institute/js/judicial-institute.js?v=2.9"></script>
   <script src="assets/shared/js/platform-sidebar.js?v=2.0"></script>
