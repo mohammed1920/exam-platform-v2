@@ -10,25 +10,46 @@ const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 /* ---------- import ---------- */
 $('add').onclick=()=>$('inp').click();
 $('cam').onclick=()=>$('camin').click();
-let queue=[],qTotal=0,qDone=0;
+let queue=[],qTotal=0,qDone=0,cropEdited=false;
 function nextFile(){
   if($('modal').classList.contains('on'))return;
   if(!queue.length){qTotal=qDone=0;return;}
   const file=queue.shift();qDone++;
-  const im=new Image();
-  im.onload=async()=>{
-    const m=Math.min(1,2000/Math.max(im.width,im.height));
-    const c=document.createElement('canvas');
-    c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);
-    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-    $('hint').textContent='جاري تهيئة محرك الكشف عن المستمسكات...';
-    const a=await autoPts(c);cur={id:++uid,src:c,pts:a.pts,w:8.6,h:5.4,out:null,note:'',copies:1};isNew=true;
-    openCrop();setHint(a.ok);$('cancel').textContent=queue.length?'تخطي':'إلغاء';
+  const im=new Image(),objectUrl=URL.createObjectURL(file);
+  im.onload=()=>{
+    URL.revokeObjectURL(objectUrl);
+    try{
+      const m=Math.min(1,2000/Math.max(im.width,im.height));
+      const c=document.createElement('canvas');
+      c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);
+      const context=c.getContext('2d');
+      if(!context)throw new Error('تعذر تجهيز الصورة');
+      context.drawImage(im,0,0,c.width,c.height);
+      const item={id:++uid,src:c,pts:defPts(c),w:8.6,h:5.4,out:null,note:'',copies:1};
+      cur=item;isNew=true;cropEdited=false;cands=[];ci=0;cvLoadError=false;
+      openCrop();
+      $('hint').textContent='الصورة جاهزة. يجري الكشف التلقائي ويمكنك تحديد الزوايا الآن.';
+      $('cancel').textContent=queue.length?'تخطي':'إلغاء';
+      autoPts(c).then(a=>{
+        if(cur!==item||!$('modal').classList.contains('on'))return;
+        if(!cropEdited){item.pts=a.pts.map(p=>p.slice());pts=item.pts.map(p=>p.slice());draw();}
+        setHint(a.ok);
+      });
+    }catch(error){
+      console.error('Mizan image import failed:',error);
+      $('hint').textContent='تعذر فتح الصورة المحددة. جرّب صورة بصيغة JPG أو PNG.';
+      nextFile();
+    }
   };
-  im.onerror=()=>nextFile();
-  im.src=URL.createObjectURL(file);
+  im.onerror=()=>{
+    URL.revokeObjectURL(objectUrl);
+    console.warn('Mizan could not decode selected image:',file.name);
+    $('hint').textContent='تعذر قراءة إحدى الصور، يجري الانتقال إلى الصورة التالية.';
+    nextFile();
+  };
+  im.src=objectUrl;
 }
-const onPick=e=>{const fs=[...e.target.files];e.target.value='';if(!fs.length)return;queue.push(...fs);qTotal+=fs.length;nextFile();};
+const onPick=e=>{const fs=Array.from(e.target.files||[]);e.target.value='';if(!fs.length)return;queue.push(...fs);qTotal+=fs.length;nextFile();};
 $('inp').onchange=$('camin').onchange=onPick;
 
 function defPts(c){const w=c.width,h=c.height,a=.12;return[[w*a,h*a],[w*(1-a),h*a],[w*(1-a),h*(1-a)],[w*a,h*(1-a)]];}
@@ -148,7 +169,7 @@ cv.onpointerdown=e=>{const[x,y]=pos(e);let best=45;drag=-1;
   pts.forEach((p,i)=>{const d=Math.hypot(p[0]*sc-x,p[1]*sc-y);if(d<best){best=d;drag=i;}});
   if(drag>=0)cv.setPointerCapture(e.pointerId);};
 cv.onpointermove=e=>{if(drag<0)return;const[x,y]=pos(e);
-  pts[drag]=[Math.min(img.width,Math.max(0,x/sc)),Math.min(img.height,Math.max(0,y/sc))];draw();};
+  cropEdited=true;pts[drag]=[Math.min(img.width,Math.max(0,x/sc)),Math.min(img.height,Math.max(0,y/sc))];draw();};
 cv.onpointerup=()=>drag=-1;
 $('rot').onclick=async()=>{
   const c=document.createElement('canvas');c.width=img.height;c.height=img.width;
