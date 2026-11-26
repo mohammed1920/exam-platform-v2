@@ -747,6 +747,10 @@ footer{
   --card-artwork:var(--mizan-home-card-procedures-image);
   --card-gradient:var(--mizan-home-card-procedures-bg);
 }
+.home-category-card[data-home-action="documents"]{
+  --card-artwork:var(--mizan-home-card-documents-image);
+  --card-gradient:var(--mizan-home-card-documents-bg);
+}
 .home-category-card[data-home-action]:focus-visible{
   outline:var(--mizan-focus-ring-width) solid var(--mizan-focus-ring);
   outline-offset:var(--mizan-focus-ring-offset);
