@@ -219,26 +219,30 @@ function detectAll(c){
     out.push({q,sc});}
   out.sort((a,b)=>b.sc-a.sc);
 
-  // A4 sheets sometimes fill the camera frame, leaving no outer background
-  // for segmentation. In that case detect a near-A4 portrait paper frame.
+  // Borderless A4-like scans: if no outer paper boundary is found,
+  // or the detected rectangle is suspiciously inset on every side,
+  // use the complete selected image instead of cropping inner text/content.
   const aspect=Math.min(w,h)/Math.max(w,h);
   if(aspect>=.66&&aspect<=.78){
-    const brightPaper=(x,y)=>{
-      const i=(y*w+x)*4,r=d[i],g=d[i+1],b=d[i+2];
-      return (r*.299+g*.587+b*.114)>150&&Math.max(r,g,b)-Math.min(r,g,b)<75;
-    };
-    const sides=[
-      Array.from({length:12},(_,i)=>brightPaper(Math.round(w*(.04+i*.92/11)),Math.max(1,Math.round(h*.008)))),
-      Array.from({length:12},(_,i)=>brightPaper(Math.round(w*(.04+i*.92/11)),Math.min(h-2,Math.round(h*.992)))),
-      Array.from({length:12},(_,i)=>brightPaper(Math.max(1,Math.round(w*.008)),Math.round(h*(.04+i*.92/11)))),
-      Array.from({length:12},(_,i)=>brightPaper(Math.min(w-2,Math.round(w*.992)),Math.round(h*(.04+i*.92/11))))
+    const q=out.length?out[0].q:null;
+    if(!q){
+      autoUsedFullFrame=true;
+      return[[0,0],[c.width-1,0],[c.width-1,c.height-1],[0,c.height-1]];
+    }
+    const xs=q.map(p=>p[0]),ys=q.map(p=>p[1]);
+    const margins=[
+      Math.min(...xs)/w,
+      Math.min(...ys)/h,
+      (w-1-Math.max(...xs))/w,
+      (h-1-Math.max(...ys))/h
     ];
-    if(sides.every(side=>side.filter(Boolean).length>=7)){
+    // A valid page boundary should occupy most of an edge-to-edge scan.
+    // Four substantial margins usually indicate a false inner contour.
+    if(margins.every(v=>v>.06)){
       autoUsedFullFrame=true;
       return[[0,0],[c.width-1,0],[c.width-1,c.height-1],[0,c.height-1]];
     }
   }
-
   if(out.length)return out.slice(0,5).map(o=>o.q.map(p=>[Math.min(c.width,Math.max(0,p[0]/m)),Math.min(c.height,Math.max(0,p[1]/m))]));
   return [];
 }
