@@ -10,24 +10,56 @@ const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 /* ---------- import ---------- */
 $('add').onclick=()=>$('inp').click();
 $('cam').onclick=()=>$('camin').click();
-let queue=[],qTotal=0,qDone=0;
+let queue=[],qTotal=0,qDone=0,cropEdited=false;
 function nextFile(){
   if($('modal').classList.contains('on'))return;
   if(!queue.length){qTotal=qDone=0;return;}
   const file=queue.shift();qDone++;
-  const im=new Image();
+  const im=new Image(),url=URL.createObjectURL(file);
   im.onload=()=>{
-    const m=Math.min(1,2000/Math.max(im.width,im.height));
-    const c=document.createElement('canvas');
-    c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);
-    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-    const a=autoPts(c);cur={id:++uid,src:c,pts:a.pts,w:8.6,h:5.4,out:null,note:'',copies:1};isNew=true;
-    openCrop();setHint(a.ok);$('cancel').textContent=queue.length?'تخطي':'إلغاء';
+    URL.revokeObjectURL(url);
+    try{
+      if(!im.naturalWidth||!im.naturalHeight)throw new Error('الصورة بلا أبعاد صالحة');
+      const m=Math.min(1,2000/Math.max(im.naturalWidth,im.naturalHeight));
+      const c=document.createElement('canvas');
+      c.width=Math.max(1,Math.round(im.naturalWidth*m));
+      c.height=Math.max(1,Math.round(im.naturalHeight*m));
+      const context=c.getContext('2d');
+      if(!context)throw new Error('تعذر تجهيز مساحة الصورة');
+      context.drawImage(im,0,0,c.width,c.height);
+      cur={id:++uid,src:c,pts:defPts(c),w:8.6,h:5.4,out:null,note:'',copies:1};
+      isNew=true;cropEdited=false;cands=[];ci=0;
+      openCrop();
+      $('hint').textContent='تم فتح الصورة. انتظر الكشف التلقائي أو عدّل الزوايا ثم اضغط «قص وإضافة».';
+      $('cancel').textContent=queue.length?'تخطي':'إلغاء';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        if(cur?.src!==c||!$('modal').classList.contains('on'))return;
+        const a=autoPts(c);
+        if(cur?.src!==c||!$('modal').classList.contains('on'))return;
+        if(!cropEdited){cur.pts=a.pts.map(p=>p.slice());pts=cur.pts.map(p=>p.slice());draw();}
+        setHint(a.ok);
+      }));
+    }catch(error){
+      console.error('Mizan image import failed:',error);
+      $('warn').textContent='تعذر تجهيز الصورة المحددة. جرّب حفظها بصيغة JPG أو PNG ثم أعد اختيارها.';
+      nextFile();
+    }
   };
-  im.onerror=()=>nextFile();
-  im.src=URL.createObjectURL(file);
+  im.onerror=()=>{
+    URL.revokeObjectURL(url);
+    console.error('Mizan could not decode selected image:',file.name,file.type);
+    $('warn').textContent='لم يستطع المتصفح قراءة هذه الصورة. جرّب تحويلها إلى JPG أو PNG.';
+    nextFile();
+  };
+  im.src=url;
 }
-const onPick=e=>{const fs=[...e.target.files];e.target.value='';if(!fs.length)return;queue.push(...fs);qTotal+=fs.length;nextFile();};
+const onPick=e=>{
+  const fs=Array.from(e.target.files||[]);
+  e.target.value='';
+  if(!fs.length)return;
+  $('warn').textContent='';
+  queue.push(...fs);qTotal+=fs.length;nextFile();
+};
 $('inp').onchange=$('camin').onchange=onPick;
 
 function defPts(c){const w=c.width,h=c.height,a=.12;return[[w*a,h*a],[w*(1-a),h*a],[w*(1-a),h*(1-a)],[w*a,h*(1-a)]];}
@@ -225,7 +257,7 @@ function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*cv.
 cv.onpointerdown=e=>{const[x,y]=pos(e);let best=45;drag=-1;
   pts.forEach((p,i)=>{const d=Math.hypot(p[0]*sc-x,p[1]*sc-y);if(d<best){best=d;drag=i;}});
   if(drag>=0)cv.setPointerCapture(e.pointerId);};
-cv.onpointermove=e=>{if(drag<0)return;const[x,y]=pos(e);
+cv.onpointermove=e=>{if(drag<0)return;cropEdited=true;const[x,y]=pos(e);
   pts[drag]=[Math.min(img.width,Math.max(0,x/sc)),Math.min(img.height,Math.max(0,y/sc))];draw();};
 cv.onpointerup=()=>drag=-1;
 $('rot').onclick=()=>{
@@ -267,10 +299,19 @@ function warp(it){
   t.getContext('2d').drawImage(out,0,0,t.width,t.height);it.thumb=t.toDataURL('image/jpeg',.7);
 }
 $('ok').onclick=()=>{
-  cur.pts=pts.map(p=>p.slice());
-  if(isNew){autoSize(cur);items.push(cur);isNew=false;}
-  else if(Math.abs((cur.w/cur.h)-(dist(pts[0],pts[1])+dist(pts[3],pts[2]))/(dist(pts[0],pts[3])+dist(pts[1],pts[2])))>.25)autoSize(cur);
-  warp(cur);$('modal').classList.remove('on');list();render();nextFile();
+  if(!cur||!img||pts.length!==4){$('hint').textContent='تعذر تجهيز الصورة. أعد اختيارها من المعرض.';return;}
+  try{
+    cur.pts=pts.map(p=>p.slice());
+    if(isNew)autoSize(cur);
+    else if(Math.abs((cur.w/cur.h)-(dist(pts[0],pts[1])+dist(pts[3],pts[2]))/(dist(pts[0],pts[3])+dist(pts[1],pts[2])))>.25)autoSize(cur);
+    warp(cur);
+    if(isNew){items.push(cur);isNew=false;}
+  }catch(error){
+    console.error('Mizan crop/add failed:',error);
+    $('hint').textContent='تعذرت إضافة الصورة بسبب خطأ في تجهيز القص. عدّل الزوايا أو اختر صورة JPG/PNG أخرى.';
+    return;
+  }
+  $('modal').classList.remove('on');list();render();nextFile();
 };
 
 /* ---------- item list ---------- */
