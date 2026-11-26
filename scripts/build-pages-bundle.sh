@@ -85,6 +85,8 @@ required_files=(
   assets/shared/js/platform-header-fix.js
   assets/features/admin/js/admin.js
   assets/features/home/js/home.js
+  assets/features/documents/js/documents.js
+  assets/features/documents/css/documents.css
   assets/features/judicial-institute/js/judicial-institute.js
   assets/features/judicial-institute/css/judicial-institute.css
   data/judicial-institute/manifest.json
