@@ -82,6 +82,10 @@ class ExamApp {
       // بدل ما نرجعه دايمًا لقائمة الكتب تلقائيًا
       const savedState = history.state;
       let restored = false;
+      if (savedState && savedState.view === 'documents') {
+        this.navigateTo('documents', {}, false);
+        restored = true;
+      }
       if (savedState && savedState.view === 'student-dashboard' && window.publicAuth.user) {
         if (window.studentDashboard && typeof window.studentDashboard.restore === 'function') {
           window.studentDashboard.restore(savedState.dashboardTarget || 'profile', false);
@@ -1061,6 +1065,7 @@ class ExamApp {
       disclaimer: 'home',
       faq: 'home',
       'judicial-institute': 'home',
+      documents: 'home',
       'mizan-pulpit': 'home',
       'mizan-article': 'mizan-pulpit',
       'firebase-admin': 'home'
@@ -1078,6 +1083,7 @@ class ExamApp {
       'petitions',
       'laws',
       'judicial-institute',
+      'documents',
       'contact',
       'about',
       'terms',
