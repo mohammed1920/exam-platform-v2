@@ -53,6 +53,14 @@ bash scripts/build-pages-bundle.sh /tmp/mizan-pages-bundle
 - `theme.js`: محرك الثيم المشترك؛ لا يوجد ملف `admin-theme.js` منفصل.
 - `firebase-auth.js` و`firebase-admin-panel.js`: المصادقة وتكامل لوحة Firebase.
 
+### قسم مستمسكاتي
+- `index.html`: بطاقة الصفحة الرئيسية وقسم `#documents-section` ومسارات تحميل ملفات القسم.
+- `assets/features/documents/js/documents.js`: ماسح المستندات وترتيب A4 والتصدير والطباعة وحفظ مجموعات المستمسكات محلياً.
+- `assets/features/documents/css/documents.css`: تنسيقات القسم، مرتبطة برموز الألوان المركزية.
+- الحفظ يتم حصراً في IndexedDB داخل متصفح الجهاز تحت قاعدة `mizan-documents-local`؛ لا يستخدم Firebase أو Firestore أو أي تخزين سحابي.
+- ملفا JavaScript وCSS محمّلان مباشرة من `index.html` حتى يدخلا ضمن قائمة PWA precache التي يبنيها `scripts/build-precache-manifest.mjs`. عند تغييرهما يجب تحديث رقم الإصدار في `index.html`.
+- لا تستبدل خوارزمية كشف الحواف الحالية بمكتبة خارجية أو CDN؛ أي محرك كشف جديد يجب أن يكون مضمّناً محلياً ومختبراً دون اتصال قبل اعتماده.
+
 ### التصميم
 - `mizan-colors.css`: مصدر الألوان المركزي.
 - `mizan-design-tokens.css`: رموز الحواف والمسافات والعرض والحركة.
