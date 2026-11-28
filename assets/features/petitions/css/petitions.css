@@ -454,14 +454,18 @@ html[data-theme="light"] .petition-template-card p{
 }
 .petition-head-right{
   display:block;
+  width:100%;
   max-width:100%;
+  text-align:right;
+  direction:rtl;
+  unicode-bidi:plaintext;
   font-family:"AMoshref Thulth",Tahoma,serif;
   font-size:var(--mizan-petitions-lawyer-name-size);
   line-height:1.3;
   color:var(--mizan-primary-800);
   font-weight:400;
   font-synthesis:weight;
-  white-space:nowrap;
+  white-space:normal;
   overflow:visible;
 }
 .petition-head-right *{
