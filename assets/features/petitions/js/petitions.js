@@ -398,9 +398,9 @@
     const association=associationHtml===undefined?'<strong>جمهورية العراق</strong><b>نقابة المحامين العراقيين</b>':sanitizeLetterheadCellHtml(associationHtml);
     const lawyerCss=sanitizeLetterheadStyle(lawyerStyle),associationCss=sanitizeLetterheadStyle(associationStyle);
     return '<header class="petition-letterhead">'+
-      '<div class="petition-head-cell petition-head-lawyer petition-head-right" dir="rtl" contenteditable="true"'+(lawyerCss?' style="'+esc(lawyerCss)+'"':'')+'>'+lawyer+'</div>'+
-      '<div class="petition-head-cell petition-head-logo petition-bar-logo" contenteditable="false"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div>'+
       '<div class="petition-head-cell petition-head-association petition-head-left" dir="rtl" contenteditable="true"'+(associationCss?' style="'+esc(associationCss)+'"':'')+'>'+association+'</div>'+
+      '<div class="petition-head-cell petition-head-logo petition-bar-logo" contenteditable="false"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div>'+
+      '<div class="petition-head-cell petition-head-lawyer petition-head-right" dir="rtl" contenteditable="true"'+(lawyerCss?' style="'+esc(lawyerCss)+'"':'')+'>'+lawyer+'</div>'+
       '</header>';
   }
   function normalizeLetterheadHtml(source){
