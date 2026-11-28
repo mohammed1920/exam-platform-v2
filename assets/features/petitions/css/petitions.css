@@ -1339,14 +1339,14 @@ html[data-theme="light"] .petition-access-request textarea{
   margin:0;
 }
 .petition-editor-pages .petition-rich-editor .petition-doc-body{
-  height:242mm;
+  height:234mm;
   min-height:0;
-  max-height:242mm;
+  max-height:234mm;
   overflow:hidden;
 }
 .petition-editor-pages .petition-rich-editor:not(.is-branded) .petition-doc-body{
-  height:257mm;
-  max-height:257mm;
+  height:254mm;
+  max-height:254mm;
 }
 .petition-editor-pages .petition-rich-editor:not(.is-branded) .petition-doc-body{
   height:257mm;
@@ -1356,4 +1356,9 @@ html[data-theme="light"] .petition-access-request textarea{
   display:block;
   width:100%;
   border:0;
+}
+
+.petition-editor-pages .petition-rich-editor[data-petition-page]:not([data-petition-page="1"]) .petition-doc-body{
+  height:265mm;
+  max-height:265mm;
 }
