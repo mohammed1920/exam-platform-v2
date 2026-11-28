@@ -326,7 +326,7 @@
     const parsed=document.createElement('span');
     parsed.setAttribute('style',String(styleText||''));
     const safe=[];
-    const length=/^-?\\d+(?:\\.\\d+)?(?:px|pt|em|rem|mm|cm|%)$/;
+    const length=/^-?\d+(?:\.\d+)?(?:px|pt|em|rem|mm|cm|%)$/;
     const align=parsed.style.textAlign;
     const direction=parsed.style.direction;
     const bidi=parsed.style.unicodeBidi;
@@ -347,7 +347,7 @@
       const value=parsed.style[prop];
       if(length.test(value))safe.push(prop.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+':'+value);
     });
-    if(/^(?:\\d+(?:\\.\\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
+    if(/^(?:\d+(?:\.\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
     if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
     if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
     if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
