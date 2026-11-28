@@ -472,13 +472,9 @@
     if(editor&&editorPageWrap){paginatePetitionEditor(editor);fitPetitionEditorPage(editor,editorPageWrap);}
     if(editor){
       editor.addEventListener('input',()=>{
-        const selection=window.getSelection();
-        const range=selection&&selection.rangeCount?selection.getRangeAt(0).cloneRange():null;
-        paginatePetitionEditor(editor);
-        if(range&&editor.contains(range.startContainer)){
-          selection.removeAllRanges();selection.addRange(range);
-        }
+        paginatePetitionEditorPreservingCaret(editor);
         fitPetitionEditorPage(editor,editorPageWrap);
+        syncEditorContent(editor);
       });
       // Keep Enter inside the lawyer-name grid cell. Native contenteditable
       // paragraph splitting creates a new grid item and moves it to the left.
@@ -948,6 +944,33 @@
     while(block.firstChild)remainder.appendChild(block.firstChild);
     return {first,remainder};
   }
+  function paginatePetitionEditorPreservingCaret(editor){
+    const selection=window.getSelection();
+    let marker=null;
+    if(selection&&selection.rangeCount&&editor.contains(selection.anchorNode)){
+      const range=selection.getRangeAt(0).cloneRange();
+      marker=document.createElement('span');
+      marker.setAttribute('data-petition-caret','');
+      marker.textContent='\u200b';
+      range.deleteContents();
+      range.insertNode(marker);
+    }
+    paginatePetitionEditor(editor);
+    if(marker){
+      const liveMarker=editor.querySelector('[data-petition-caret]');
+      if(liveMarker){
+        const caret=document.createRange();
+        caret.setStartBefore(liveMarker);
+        caret.collapse(true);
+        liveMarker.remove();
+        if(selection){
+          selection.removeAllRanges();
+          selection.addRange(caret);
+        }
+        savedEditorRange=caret.cloneRange();
+      }
+    }
+  }
   function paginatePetitionEditor(editor){
     if(!editor)return;
     const existing=Array.from(editor.querySelectorAll('[data-petition-page]'));
@@ -989,7 +1012,7 @@
           body.appendChild(block);
           break;
         }
-        const next=makePage(++pageNumber);page=next.page;body=next.body;
+        const next=makePage(++pageNumber);body=next.body;
       }
     }
     if(header&&first.firstChild!==header)first.insertBefore(header,first.firstChild);
