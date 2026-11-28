@@ -401,103 +401,27 @@ html[data-theme="light"] .petition-template-card p{
 }
  .petition-a4 .petition-letterhead{
   display:grid;
-  grid-template-columns:var(--mizan-petitions-letterhead-columns);
+  grid-template-columns:minmax(0,1fr) var(--mizan-petitions-logo-width) minmax(0,1fr);
   align-items:center;
   gap:var(--mizan-petitions-letterhead-gap);
   padding:var(--mizan-petitions-letterhead-padding);
   margin:var(--mizan-petitions-letterhead-margin);
   border:0;
-}
-.petition-a4 .petition-letterhead{
   direction:ltr;
 }
-.petition-letterhead:after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:.7mm;
-  background:var(--mizan-petition-letterhead-rule);
-}
-.petition-head-side{
-  text-align:center;
-  color:var(--mizan-primary-800);
-  line-height:1.25;
-  direction:rtl;
-  unicode-bidi:plaintext;
-}
-.petition-head-side strong,
-.petition-head-side b{
-  direction:rtl;
-  unicode-bidi:plaintext;
-}
-.petition-head-left strong{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:var(--mizan-font-size-md);
-  line-height:1.3;
-}
-.petition-head-left b{
-  display:block;
-  margin-top:1.5mm;
-  font-size:var(--mizan-font-size-xs);
-}
-.petition-head-side small{
-  display:block;
-  font-size:8.5px;
-  color:var(--mizan-muted-light);
-  line-height:1.4;
-}
-.petition-head-right strong,
-.petition-head-right strong *{
-  font-family:"AMoshref Thulth",Tahoma,serif;
-}
-.petition-head-right{
-  display:block;
-  width:100%;
-  max-width:100%;
-  text-align:right;
-  direction:rtl;
-  unicode-bidi:plaintext;
-  font-family:"AMoshref Thulth",Tahoma,serif;
-  font-size:var(--mizan-petitions-lawyer-name-size);
-  line-height:1.3;
-  color:var(--mizan-primary-800);
-  font-weight:400;
-  font-synthesis:weight;
-  white-space:normal;
-  overflow:visible;
-}
-.petition-head-right *{
-  font-family:"AMoshref Thulth",Tahoma,serif !important;
-  font-synthesis:weight;
-}
-.petition-bar-logo{
-  width:var(--mizan-petitions-logo-width);
-  height:var(--mizan-petitions-logo-height);
-  margin:auto;
-  padding:0;
-  border:0;
-  background:transparent;
-  box-shadow:none;
-  clip-path:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:visible;
-}
-.petition-bar-logo img{
-  display:block;
-  width:100%;
-  height:100%;
-  max-width:none;
-  max-height:none;
-  object-fit:contain;
-  object-position:center;
-}
-.petition-rich-editor .petition-bar-logo img{
-  cursor:pointer;
-}
+.petition-letterhead:after{content:"";position:absolute;left:0;right:0;bottom:0;height:.7mm;background:var(--mizan-petition-letterhead-rule);}
+.petition-head-side{min-width:0;text-align:center;color:var(--mizan-primary-800);line-height:1.25;direction:rtl;unicode-bidi:plaintext;}
+.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext;}
+.petition-head-side small{display:block;font-size:8.5px;color:var(--mizan-muted-light);line-height:1.4;}
+.petition-head-cell{box-sizing:border-box;min-width:0;min-height:var(--mizan-petitions-logo-height);display:flex;flex-direction:column;justify-content:center;overflow:visible;direction:rtl;unicode-bidi:plaintext;}
+.petition-head-lawyer{text-align:right;font-family:"AMoshref Thulth",Tahoma,serif;font-size:var(--mizan-petitions-lawyer-name-size);line-height:1.3;color:var(--mizan-primary-800);font-weight:400;font-synthesis:weight;white-space:normal;}
+.petition-head-lawyer *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight;}
+.petition-head-association{text-align:center;color:var(--mizan-primary-800);line-height:1.25;}
+.petition-head-association strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:var(--mizan-font-size-md);}
+.petition-head-association b{display:block;margin-top:1.5mm;font-size:var(--mizan-font-size-xs);}
+.petition-head-logo{width:var(--mizan-petitions-logo-width);height:var(--mizan-petitions-logo-height);min-height:0;margin:auto;display:flex;align-items:center;justify-content:center;}
+.petition-head-logo img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;object-position:center;}
+.petition-rich-editor .petition-head-logo img{cursor:pointer;}
 .petition-doc-body{
   font-size:var(--mizan-font-size-xl);
   line-height:1;
@@ -907,35 +831,17 @@ html:not([data-theme="light"]) .petition-template-card p{color:var(--mizan-muted
   box-shadow:none;
 }
 .petition-rich-editor .petition-letterhead{
-  position:relative;
-  z-index:1;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);
-  align-items:center;
-  gap:3mm;
-  padding:1mm 1mm 4mm;
-  margin:0 0 4mm;
-  border:0;
-  border-bottom:.7mm solid #172b45;
-  direction:ltr;
+  position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);
+  align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border:0;border-bottom:.7mm solid #172b45;direction:ltr;
 }
-.petition-rich-editor .petition-head-side{
-  min-width:0;
-  text-align:center;
-  color:#172b45;
-  line-height:1.25;
-  direction:rtl;
-  unicode-bidi:plaintext;
-}
-.petition-rich-editor .petition-head-side strong,
-.petition-rich-editor .petition-head-side b{direction:rtl;unicode-bidi:plaintext;}
-.petition-rich-editor .petition-head-side strong{display:block;font-size:16px;}
-.petition-rich-editor .petition-head-side b{display:block;margin-top:1.5mm;font-size:12px;}
-.petition-rich-editor .petition-head-right,
-.petition-rich-editor .petition-head-right *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight;}
-.petition-rich-editor .petition-head-right{font-size:17px;font-weight:400;white-space:normal;overflow:visible;text-align:right;}
-.petition-rich-editor .petition-bar-logo{width:17mm;height:22mm;margin:auto;}
-.petition-rich-editor .petition-bar-logo img{width:100%;height:100%;object-fit:contain;}
+.petition-rich-editor .petition-head-cell{min-width:0;min-height:22mm;display:flex;flex-direction:column;justify-content:center;overflow:visible;direction:rtl;unicode-bidi:plaintext;}
+.petition-rich-editor .petition-head-lawyer{text-align:right;font-family:"AMoshref Thulth",Tahoma,serif;font-size:17px;line-height:1.3;color:#172b45;}
+.petition-rich-editor .petition-head-lawyer *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight;}
+.petition-rich-editor .petition-head-association{text-align:center;color:#172b45;line-height:1.25;}
+.petition-rich-editor .petition-head-association strong{display:block;font-size:16px;}
+.petition-rich-editor .petition-head-association b{display:block;margin-top:1.5mm;font-size:12px;}
+.petition-rich-editor .petition-head-logo{width:17mm;height:22mm;min-height:0;margin:auto;display:flex;align-items:center;justify-content:center;}
+.petition-rich-editor .petition-head-logo img{width:100%;height:100%;object-fit:contain;}
 .petition-rich-editor .petition-doc-body{
   position:relative;
   z-index:1;
@@ -1409,86 +1315,4 @@ html[data-theme="light"] .petition-access-request textarea{
   .legal-table-toolbar button{width:100%;padding:var(--mizan-space-2) var(--mizan-space-2);}
   .legal-table-editor-footer>div{min-width:var(--mizan-legal-table-footer-mobile-min-width);}
   .legal-table-toolbar-bottom{bottom:var(--mizan-legal-table-toolbar-dock-bottom-mobile);padding:var(--mizan-legal-table-toolbar-dock-padding-mobile);gap:var(--mizan-space-2);}
-}
-
-
-/* Fixed three-cell petition letterhead: each editable cell owns its text layout. */
-.petition-a4 .petition-letterhead{
-  grid-template-columns:minmax(0,1fr) var(--mizan-petitions-logo-width) minmax(0,1fr);
-  direction:ltr;
-  align-items:center;
-}
-.petition-head-cell{
-  box-sizing:border-box;
-  min-width:0;
-  min-height:var(--mizan-petitions-logo-height);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  overflow:visible;
-  direction:rtl;
-  unicode-bidi:plaintext;
-}
-.petition-head-lawyer{
-  text-align:right;
-  font-family:"AMoshref Thulth",Tahoma,serif;
-  font-size:var(--mizan-petitions-lawyer-name-size);
-  line-height:1.3;
-}
-.petition-head-lawyer *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight;}
-.petition-head-association{
-  text-align:center;
-  color:var(--mizan-primary-800);
-  line-height:1.25;
-}
-.petition-head-association strong{
-  display:block;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:var(--mizan-font-size-md);
-}
-.petition-head-association b{
-  display:block;
-  margin-top:1.5mm;
-  font-size:var(--mizan-font-size-xs);
-}
-.petition-head-logo{
-  width:var(--mizan-petitions-logo-width);
-  height:var(--mizan-petitions-logo-height);
-  min-height:0;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.petition-rich-editor .petition-letterhead{
-  grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);
-  direction:ltr;
-  align-items:center;
-}
-.petition-rich-editor .petition-head-cell{
-  min-height:22mm;
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  overflow:visible;
-  direction:rtl;
-  unicode-bidi:plaintext;
-}
-.petition-rich-editor .petition-head-lawyer{
-  text-align:right;
-  font-family:"AMoshref Thulth",Tahoma,serif;
-  font-size:17px;
-  line-height:1.3;
-}
-.petition-rich-editor .petition-head-lawyer *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight;}
-.petition-rich-editor .petition-head-association{text-align:center;color:#172b45;line-height:1.25;}
-.petition-rich-editor .petition-head-association strong{display:block;font-size:16px;}
-.petition-rich-editor .petition-head-association b{display:block;margin-top:1.5mm;font-size:12px;}
-.petition-rich-editor .petition-head-logo{width:17mm;height:22mm;min-height:0;margin:auto;display:flex;align-items:center;justify-content:center;}
-.petition-rich-editor .petition-head-logo img{width:100%;height:100%;object-fit:contain;}
-@media(max-width:600px){
-  .petition-a4 .petition-head-cell{min-height:var(--mizan-petitions-logo-height-mobile);}
-  .petition-a4 .petition-head-logo{width:var(--mizan-petitions-logo-width-mobile);height:var(--mizan-petitions-logo-height-mobile);}
-  .petition-rich-editor .petition-head-cell{min-height:22mm;}
 }
