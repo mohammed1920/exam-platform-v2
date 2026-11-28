@@ -1001,20 +1001,31 @@
       if(!editor.isConnected||!container.isConnected)return;
       const pageWidth=210*96/25.4;
       const pageHeight=pageWidth*(297/210);
-      const viewportWidth=document.documentElement.clientWidth||window.innerWidth||pageWidth;
-      const parentWidth=container.parentElement?.getBoundingClientRect().width||viewportWidth;
-      const availableWidth=Math.max(1,Math.min(viewportWidth,parentWidth)-2);
+      const viewportWidth=window.visualViewport?.width||document.documentElement.clientWidth||window.innerWidth||pageWidth;
+      const availableWidth=Math.max(1,Math.min(viewportWidth,container.clientWidth||viewportWidth)-24);
       const scale=Math.min(1,availableWidth/pageWidth);
       const pages=Array.from(editor.querySelectorAll('[data-petition-page]'));
+      editor.style.display='flex';
+      editor.style.flexDirection='column';
+      editor.style.alignItems='center';
+      editor.style.justifyContent='flex-start';
+      editor.style.boxSizing='border-box';
       editor.style.width='100%';
       editor.style.minWidth='0';
       editor.style.maxWidth='100%';
       pages.forEach(page=>{
-        page.style.transformOrigin='top left';
+        page.style.boxSizing='border-box';
+        page.style.width='210mm';
+        page.style.minWidth='210mm';
+        page.style.maxWidth='210mm';
+        page.style.flex='0 0 auto';
+        page.style.transformOrigin='top center';
         page.style.transform='scale('+scale+')';
-        page.style.marginLeft=Math.max(0,(availableWidth-pageWidth*scale)/2)+'px';
-        page.style.marginRight='0';
+        page.style.margin='0 0 '+(8*scale)+'mm';
+        page.style.position='relative';
       });
+      if(pages.length)pages[pages.length-1].style.marginBottom='0';
+      container.style.boxSizing='border-box';
       container.style.width='100%';
       container.style.maxWidth='100%';
       container.style.minWidth='0';
@@ -1026,9 +1037,11 @@
       if('ResizeObserver' in window){
         const observer=new ResizeObserver(applyScale);
         observer.observe(container);
+        if(container.parentElement)observer.observe(container.parentElement);
         container._petitionResizeObserver=observer;
       }
       window.addEventListener('resize',applyScale,{passive:true});
+      window.visualViewport?.addEventListener('resize',applyScale,{passive:true});
       container.dataset.fitBound='true';
     }
   }
