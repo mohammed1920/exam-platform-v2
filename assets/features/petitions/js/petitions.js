@@ -1020,19 +1020,20 @@
   }
   function fitPetitionEditorPage(editor,container){
     if(!editor||!container)return;
-    const applyScale=(force=false)=>{
+    const applyScale=()=>{
       if(!editor.isConnected||!container.isConnected)return;
       const layoutWidth=container.clientWidth;
       if(!layoutWidth)return;
       const previousWidth=Number(editor.dataset.petitionFitWidth||0);
-      // Pinch zoom changes visualViewport, not the editor's layout width.
-      // Keep the page's CSS zoom stable while the user is editing; only
-      // recalculate when the actual editor column changes (e.g. rotation).
-      if(!force&&previousWidth&&Math.abs(previousWidth-layoutWidth)<2)return;
       const pageWidth=210*96/25.4;
       const pageHeight=pageWidth*(297/210);
-      const scale=Math.min(1,Math.max(1,layoutWidth-24)/pageWidth);
       const pages=Array.from(editor.querySelectorAll('[data-petition-page]'));
+      // Preserve the user's current page scale across pinch zoom and keyboard
+      // changes. Recalculate it only when the actual layout column changes.
+      const currentScale=pages.length?parseFloat(pages[0].style.zoom)||1:1;
+      const scale=previousWidth&&Math.abs(previousWidth-layoutWidth)<2
+        ?currentScale
+        :Math.min(1,Math.max(1,layoutWidth-24)/pageWidth);
       editor.style.display='flex';
       editor.style.flexDirection='column';
       editor.style.alignItems='center';
