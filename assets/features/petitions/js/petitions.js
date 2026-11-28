@@ -949,6 +949,7 @@
     let marker=null;
     if(selection&&selection.rangeCount&&editor.contains(selection.anchorNode)){
       const range=selection.getRangeAt(0).cloneRange();
+      range.collapse(false);
       marker=document.createElement('span');
       marker.setAttribute('data-petition-caret','');
       marker.textContent='\u200b';
@@ -967,7 +968,6 @@
           selection.removeAllRanges();
           selection.addRange(caret);
         }
-        savedEditorRange=caret.cloneRange();
       }
     }
   }
@@ -1042,9 +1042,9 @@
         page.style.minWidth='210mm';
         page.style.maxWidth='210mm';
         page.style.flex='0 0 auto';
-        page.style.transformOrigin='top center';
-        page.style.transform='scale('+scale+')';
-        page.style.margin='0 0 '+(8*scale)+'mm';
+        page.style.zoom=String(scale);
+        page.style.transform='none';
+        page.style.margin='0 0 8mm';
         page.style.position='relative';
       });
       if(pages.length)pages[pages.length-1].style.marginBottom='0';
