@@ -322,37 +322,56 @@
   function documentBodyHtml(){
     return plainTextToEditor(state.editedBody??'');
   }
-  function letterheadHtml(nameOverride,logoOverride,nameHtmlOverride){
+  function sanitizeLetterheadStyle(styleText){
+    const parsed=document.createElement('span');
+    parsed.setAttribute('style',String(styleText||''));
+    const safe=[];
+    const length=/^-?\\d+(?:\\.\\d+)?(?:px|pt|em|rem|mm|cm|%)$/;
+    const align=parsed.style.textAlign;
+    const direction=parsed.style.direction;
+    const bidi=parsed.style.unicodeBidi;
+    const indent=parsed.style.textIndent;
+    const whiteSpace=parsed.style.whiteSpace;
+    const display=parsed.style.display;
+    const size=parsed.style.fontSize;
+    const weight=parsed.style.fontWeight;
+    const fontStyle=parsed.style.fontStyle;
+    const decoration=parsed.style.textDecoration;
+    if(/^(left|right|center|justify|start|end)$/.test(align))safe.push('text-align:'+align);
+    if(/^(rtl|ltr)$/.test(direction))safe.push('direction:'+direction);
+    if(/^(normal|embed|bidi-override|isolate|isolate-override|plaintext)$/.test(bidi))safe.push('unicode-bidi:'+bidi);
+    if(length.test(indent))safe.push('text-indent:'+indent);
+    if(/^(normal|nowrap|pre|pre-wrap|pre-line)$/.test(whiteSpace))safe.push('white-space:'+whiteSpace);
+    if(/^(block|inline|inline-block)$/.test(display))safe.push('display:'+display);
+    ['marginLeft','marginRight','paddingLeft','paddingRight'].forEach(prop=>{
+      const value=parsed.style[prop];
+      if(length.test(value))safe.push(prop.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+':'+value);
+    });
+    if(/^(?:\\d+(?:\\.\\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
+    if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
+    if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
+    if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
+    return safe.join(';');
+  }
+  function letterheadHtml(nameOverride,logoOverride,nameHtmlOverride,nameStyleOverride){
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
     const name=nameOverride??'اسم المحامي';
     const lawyerName=nameHtmlOverride===undefined?esc(name):sanitizeLetterheadNameHtml(nameHtmlOverride);
-    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl">'+lawyerName+'</div></header>';
+    const nameStyle=sanitizeLetterheadStyle(nameStyleOverride);
+    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl"'+(nameStyle?' style="'+esc(nameStyle)+'"':'')+'>'+lawyerName+'</div></header>';
   }
   function sanitizeLetterheadNameHtml(source){
     const doc=new DOMParser().parseFromString(String(source??''),'text/html');
-    const allowed=new Set(['SPAN','B','STRONG','EM','I','U','BR']);
+    const allowed=new Set(['SPAN','DIV','P','B','STRONG','EM','I','U','BR']);
     Array.from(doc.body.querySelectorAll('*')).reverse().forEach(node=>{
       if(!allowed.has(node.tagName)){
         node.replaceWith(...Array.from(node.childNodes));
         return;
       }
-      const style=node.getAttribute('style')||'';
+      const style=sanitizeLetterheadStyle(node.getAttribute('style')||'');
       Array.from(node.attributes).forEach(attr=>node.removeAttribute(attr.name));
-      if(node.tagName==='SPAN'&&style){
-        const parsed=document.createElement('span');
-        parsed.setAttribute('style',style);
-        const safe=[];
-        const size=parsed.style.fontSize;
-        const weight=parsed.style.fontWeight;
-        const fontStyle=parsed.style.fontStyle;
-        const decoration=parsed.style.textDecoration;
-        if(/^(?:\d+(?:\.\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
-        if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
-        if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
-        if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
-        if(safe.length)node.setAttribute('style',safe.join(';'));
-      }
+      if(style)node.setAttribute('style',style);
     });
     return doc.body.innerHTML;
   }
@@ -365,8 +384,9 @@
       const nameContainer=header.querySelector('.petition-head-right');
       const nameHtml=nameContainer?.innerHTML??'';
       const name=nameContainer?.textContent??'';
+      const nameStyle=nameContainer?.getAttribute('style')||'';
       const logo=header.querySelector('.petition-bar-logo img')?.getAttribute('src')||'';
-      return letterheadHtml(name,logo||undefined,nameHtml);
+      return letterheadHtml(name,logo||undefined,nameHtml,nameStyle);
     }catch(e){return '';}
   }
   function brandingToggleHtml(){
