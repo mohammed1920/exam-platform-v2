@@ -1027,15 +1027,14 @@
       const availableWidth=Math.max(1,container.clientWidth);
       const scale=Math.min(1,availableWidth/pageWidth);
       const pageHeight=pageWidth*(297/210);
-      frame.style.display='block';
-      frame.style.width='100%';
-      frame.style.height=(pageHeight*scale)+'px';
-      frame.style.border='0';
-      frame.style.margin='0';
       const doc=frame.contentDocument;
       if(!doc)return;
-      const page=doc.querySelector('.petition-a4');
-      if(!page)return;
+      const pages=Array.from(doc.querySelectorAll('.petition-a4'));
+      frame.style.display='block';
+      frame.style.width='100%';
+      frame.style.height=(Math.max(1,pages.length)*pageHeight*scale)+'px';
+      frame.style.border='0';
+      frame.style.margin='0';
       doc.documentElement.style.width='210mm';
       doc.documentElement.style.minWidth='210mm';
       doc.documentElement.style.direction='ltr';
@@ -1047,22 +1046,25 @@
       doc.body.style.direction='ltr';
       doc.body.style.margin='0';
       doc.body.style.padding='0';
-      doc.body.style.overflow='hidden';
-      page.style.width='210mm';
-      page.style.minHeight='297mm';
-      page.style.margin='0';
-      page.style.direction='rtl';
-      page.style.transformOrigin='top left';
-      page.style.transform='scale('+scale+')';
+      doc.body.style.overflow='visible';
+      pages.forEach((page,index)=>{
+        page.style.width='210mm';
+        page.style.height='297mm';
+        page.style.minHeight='297mm';
+        page.style.maxHeight='297mm';
+        page.style.margin='0';
+        page.style.direction='rtl';
+        page.style.transformOrigin='top left';
+        page.style.transform='scale('+scale+')';
+        page.style.marginBottom=index===pages.length-1?'0':(8*scale)+'mm';
+      });
     };
     if(refresh||!frame.srcdoc){
       const html=buildPrintHtml();
       if(!html)return;
       frame.onload=applyPageScale;
       frame.srcdoc=html;
-    }else{
-      applyPageScale();
-    }
+    }else applyPageScale();
     if(!container.dataset.fitBound){
       window.addEventListener('resize',applyPageScale,{passive:true});
       container.dataset.fitBound='true';
