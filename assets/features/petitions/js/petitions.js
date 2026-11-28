@@ -1061,7 +1061,7 @@
       container.style.height=(pages.length*pageHeight*scale+(Math.max(0,pages.length-1)*8*96/25.4*scale))+'px';
       editor.dataset.petitionFitWidth=String(layoutWidth);
     };
-    applyScale(true);
+    applyScale();
     if(!container.dataset.fitBound){
       if('ResizeObserver' in window){
         const observer=new ResizeObserver(entries=>{
