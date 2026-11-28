@@ -353,17 +353,33 @@
     if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
     return safe.join(';');
   }
-  function letterheadHtml(nameOverride,logoOverride,nameHtmlOverride,nameStyleOverride){
-    const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
-    const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
-    const name=nameOverride??'اسم المحامي';
-    const lawyerName=nameHtmlOverride===undefined?esc(name):sanitizeLetterheadNameHtml(nameHtmlOverride);
-    const nameStyle=sanitizeLetterheadStyle(nameStyleOverride);
-    return '<header class="petition-letterhead"><div class="petition-head-side petition-head-left" dir="rtl"><strong dir="rtl">جمهورية العراق</strong><b dir="rtl">نقابة المحامين العراقيين</b></div><div class="petition-bar-logo"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div><div class="petition-head-side petition-head-right" dir="rtl"'+(nameStyle?' style="'+esc(nameStyle)+'"':'')+'>'+lawyerName+'</div></header>';
+  function sanitizeLetterheadStyle(styleText){
+    const parsed=document.createElement('span');
+    parsed.setAttribute('style',String(styleText||''));
+    const safe=[];
+    const length=/^-?\d+(?:\.\d+)?(?:px|pt|em|rem|mm|cm|%)$/;
+    const align=parsed.style.textAlign,direction=parsed.style.direction,bidi=parsed.style.unicodeBidi;
+    const indent=parsed.style.textIndent,whiteSpace=parsed.style.whiteSpace,display=parsed.style.display;
+    if(/^(left|right|center|justify|start|end)$/.test(align))safe.push('text-align:'+align);
+    if(/^(rtl|ltr)$/.test(direction))safe.push('direction:'+direction);
+    if(/^(normal|embed|bidi-override|isolate|isolate-override|plaintext)$/.test(bidi))safe.push('unicode-bidi:'+bidi);
+    if(length.test(indent))safe.push('text-indent:'+indent);
+    if(/^(normal|nowrap|pre|pre-wrap|pre-line)$/.test(whiteSpace))safe.push('white-space:'+whiteSpace);
+    if(/^(block|inline|inline-block|flex|grid)$/.test(display))safe.push('display:'+display);
+    ['marginLeft','marginRight','paddingLeft','paddingRight'].forEach(prop=>{
+      const value=parsed.style[prop];
+      if(length.test(value))safe.push(prop.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+':'+value);
+    });
+    const size=parsed.style.fontSize,weight=parsed.style.fontWeight,fontStyle=parsed.style.fontStyle,decoration=parsed.style.textDecoration;
+    if(/^(?:\d+(?:\.\d+)?)(?:px|pt|em|rem|%)$/.test(size))safe.push('font-size:'+size);
+    if(/^(?:normal|bold|[1-9]00)$/.test(weight))safe.push('font-weight:'+weight);
+    if(/^(?:normal|italic|oblique)$/.test(fontStyle))safe.push('font-style:'+fontStyle);
+    if(/^(?:none|underline|line-through|overline)$/.test(decoration))safe.push('text-decoration:'+decoration);
+    return safe.join(';');
   }
-  function sanitizeLetterheadNameHtml(source){
+  function sanitizeLetterheadCellHtml(source){
     const doc=new DOMParser().parseFromString(String(source??''),'text/html');
-    const allowed=new Set(['SPAN','DIV','P','B','STRONG','EM','I','U','BR']);
+    const allowed=new Set(['SPAN','DIV','P','B','STRONG','EM','I','U','BR','SMALL']);
     Array.from(doc.body.querySelectorAll('*')).reverse().forEach(node=>{
       if(!allowed.has(node.tagName)){
         node.replaceWith(...Array.from(node.childNodes));
@@ -375,18 +391,34 @@
     });
     return doc.body.innerHTML;
   }
+  function letterheadHtml(lawyerHtml,logoOverride,associationHtml,lawyerStyle,associationStyle){
+    const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
+    const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
+    const lawyer=lawyerHtml===undefined?'اسم المحامي':sanitizeLetterheadCellHtml(lawyerHtml);
+    const association=associationHtml===undefined?'<strong>جمهورية العراق</strong><b>نقابة المحامين العراقيين</b>':sanitizeLetterheadCellHtml(associationHtml);
+    const lawyerCss=sanitizeLetterheadStyle(lawyerStyle),associationCss=sanitizeLetterheadStyle(associationStyle);
+    return '<header class="petition-letterhead">'+
+      '<div class="petition-head-cell petition-head-lawyer petition-head-right" dir="rtl" contenteditable="true"'+(lawyerCss?' style="'+esc(lawyerCss)+'"':'')+'>'+lawyer+'</div>'+
+      '<div class="petition-head-cell petition-head-logo petition-bar-logo" contenteditable="false"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div>'+
+      '<div class="petition-head-cell petition-head-association petition-head-left" dir="rtl" contenteditable="true"'+(associationCss?' style="'+esc(associationCss)+'"':'')+'>'+association+'</div>'+
+      '</header>';
+  }
   function normalizeLetterheadHtml(source){
     if(!source)return '';
     try{
       const doc=new DOMParser().parseFromString(String(source),'text/html');
       const header=doc.body.querySelector('.petition-letterhead');
       if(!header)return '';
-      const nameContainer=header.querySelector('.petition-head-right');
-      const nameHtml=nameContainer?.innerHTML??'';
-      const name=nameContainer?.textContent??'';
-      const nameStyle=nameContainer?.getAttribute('style')||'';
+      const lawyer=header.querySelector('.petition-head-lawyer,.petition-head-right');
+      const association=header.querySelector('.petition-head-association,.petition-head-left');
       const logo=header.querySelector('.petition-bar-logo img')?.getAttribute('src')||'';
-      return letterheadHtml(name,logo||undefined,nameHtml,nameStyle);
+      return letterheadHtml(
+        lawyer?.innerHTML??'اسم المحامي',
+        logo||undefined,
+        association?.innerHTML??undefined,
+        lawyer?.getAttribute('style')||'',
+        association?.getAttribute('style')||''
+      );
     }catch(e){return '';}
   }
   function brandingToggleHtml(){
