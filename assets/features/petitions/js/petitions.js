@@ -906,7 +906,7 @@
     const header=branded?normalizeLetterheadHtml(state.editedLetterhead||letterheadHtml(),false):'';
     const pageMarkup=bodyPages.map((part,index)=>'<article class="petition-a4 '+(branded?'is-branded':'')+'" data-petition-page="'+(index+1)+'">'+(index===0?header:'')+'<div class="petition-doc-body">'+part+'</div></article>').join('');
     const css='@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts@415c96ea2ee5bd29f46691460f944c0cc9676e1b/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;height:297mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:hidden;break-after:auto;page-break-after:auto}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);grid-template-rows:22mm;align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0;direction:rtl;unicode-bidi:plaintext}.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right,.petition-head-right *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight}.petition-head-cell{box-sizing:border-box;min-width:0;min-height:22mm;display:flex;flex-direction:column;justify-content:center;overflow:visible;direction:rtl;unicode-bidi:plaintext}.petition-head-right{display:flex;min-height:22mm;flex-direction:column;justify-content:center;text-align:right;font-size:17px;font-weight:400;white-space:normal;overflow:visible}.petition-head-left{min-height:22mm;display:flex;flex-direction:column;justify-content:center;text-align:center}.petition-head-logo{width:17mm;height:22mm;min-height:0;margin:auto;display:flex;align-items:center;justify-content:center}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:20px;line-height:1.5;text-align:justify;overflow-wrap:break-word;word-spacing:0;height:242mm;max-height:242mm;min-height:0;overflow:hidden}.petition-a4:not(.is-branded) .petition-doc-body{height:257mm;max-height:257mm}.petition-doc-body p{margin:0;line-height:1.5;orphans:2;widows:2;white-space:pre-wrap}.petition-doc-body li{line-height:1.5}.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:21px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
-    return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'.petition-a4{height:297mm;min-height:297mm;max-height:297mm;overflow:hidden;break-after:page;page-break-after:always}.petition-a4:last-child{break-after:auto;page-break-after:auto}.petition-doc-body{height:100%;min-height:0;overflow:hidden}</style></head><body>'+pageMarkup+'</body></html>';
+    return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'.petition-a4{height:297mm;min-height:297mm;max-height:297mm;overflow:hidden;break-after:page;page-break-after:always}.petition-a4:last-child{break-after:auto;page-break-after:auto} .petition-doc-body{min-height:0;overflow:hidden}</style></head><body>'+pageMarkup+'</body></html>';
   }
   function splitPetitionBlock(block,targetBody){
     if(!block||!/^P$/.test(block.tagName)||!block.textContent||block.textContent.length<2)return null;
@@ -932,7 +932,6 @@
       if(fits(mid)){best=mid;low=mid+1;}else high=mid-1;
     }
     if(!best)return null;
-    const boundary=locate(best);
     while(best>0){
       const previous=block.textContent.slice(0,best);
       if(/\\s$/.test(previous))break;
@@ -1005,7 +1004,7 @@
       pages.forEach((page,index)=>{
         page.style.transformOrigin='top left';
         page.style.transform='scale('+scale+')';
-        page.style.marginBottom=index===pages.length-1?'0':'8mm';
+        
       });
       container.style.height=(pages.length*pageHeight*scale+(Math.max(0,pages.length-1)*8*96/25.4*scale))+'px';
     };
@@ -1047,16 +1046,17 @@
       doc.body.style.margin='0';
       doc.body.style.padding='0';
       doc.body.style.overflow='visible';
-      pages.forEach((page,index)=>{
+      doc.body.style.transformOrigin='top left';
+      doc.body.style.transform='scale('+scale+')';
+      doc.body.style.height=(pages.length*297)+'mm';
+      pages.forEach(page=>{
         page.style.width='210mm';
         page.style.height='297mm';
         page.style.minHeight='297mm';
         page.style.maxHeight='297mm';
         page.style.margin='0';
         page.style.direction='rtl';
-        page.style.transformOrigin='top left';
-        page.style.transform='scale('+scale+')';
-        page.style.marginBottom=index===pages.length-1?'0':(8*scale)+'mm';
+        page.style.transform='none';
       });
     };
     if(refresh||!frame.srcdoc){
