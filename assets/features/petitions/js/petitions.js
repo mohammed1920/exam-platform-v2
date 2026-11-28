@@ -1001,13 +1001,24 @@
       if(!editor.isConnected||!container.isConnected)return;
       const pageWidth=210*96/25.4;
       const pageHeight=pageWidth*(297/210);
-      const scale=Math.min(1,Math.max(1,container.clientWidth)/pageWidth);
+      const viewportWidth=document.documentElement.clientWidth||window.innerWidth||pageWidth;
+      const parentWidth=container.parentElement?.getBoundingClientRect().width||viewportWidth;
+      const availableWidth=Math.max(1,Math.min(viewportWidth,parentWidth)-2);
+      const scale=Math.min(1,availableWidth/pageWidth);
       const pages=Array.from(editor.querySelectorAll('[data-petition-page]'));
-      pages.forEach((page,index)=>{
+      editor.style.width='100%';
+      editor.style.minWidth='0';
+      editor.style.maxWidth='100%';
+      pages.forEach(page=>{
         page.style.transformOrigin='top left';
         page.style.transform='scale('+scale+')';
-        
+        page.style.marginLeft=Math.max(0,(availableWidth-pageWidth*scale)/2)+'px';
+        page.style.marginRight='0';
       });
+      container.style.width='100%';
+      container.style.maxWidth='100%';
+      container.style.minWidth='0';
+      container.style.overflow='hidden';
       container.style.height=(pages.length*pageHeight*scale+(Math.max(0,pages.length-1)*8*96/25.4*scale))+'px';
     };
     applyScale();
