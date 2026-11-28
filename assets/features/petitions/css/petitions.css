@@ -1318,3 +1318,38 @@ html[data-theme="light"] .petition-access-request textarea{
   .legal-table-editor-footer>div{min-width:var(--mizan-legal-table-footer-mobile-min-width);}
   .legal-table-toolbar-bottom{bottom:var(--mizan-legal-table-toolbar-dock-bottom-mobile);padding:var(--mizan-legal-table-toolbar-dock-padding-mobile);gap:var(--mizan-space-2);}
 }
+
+
+/* Multi-sheet A4 editor: fixed paper dimensions, content paginates between sheets. */
+.petition-editor-pages{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8mm;
+  width:100%;
+  direction:ltr;
+  overflow:visible;
+}
+.petition-editor-pages .petition-rich-editor{
+  flex:0 0 auto;
+  height:297mm;
+  min-height:297mm;
+  max-height:297mm;
+  overflow:hidden;
+  margin:0;
+}
+.petition-editor-pages .petition-rich-editor .petition-doc-body{
+  height:242mm;
+  min-height:0;
+  max-height:242mm;
+  overflow:hidden;
+}
+.petition-editor-pages .petition-rich-editor:not(.is-branded) .petition-doc-body{
+  height:257mm;
+  max-height:257mm;
+}
+.petition-live-preview .petition-a4-preview-frame{
+  display:block;
+  width:100%;
+  border:0;
+}
