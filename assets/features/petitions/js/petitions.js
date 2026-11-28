@@ -391,19 +391,20 @@
     });
     return doc.body.innerHTML;
   }
-  function letterheadHtml(lawyerHtml,logoOverride,associationHtml,lawyerStyle,associationStyle){
+  function letterheadHtml(lawyerHtml,logoOverride,associationHtml,lawyerStyle,associationStyle,editable=false){
     const logoBase=location.pathname.includes('/exam-platform-v2')?'/exam-platform-v2/':'/';
     const imgUrl=logoOverride||(logoBase+'assets/iraqi-bar-association-modern.svg');
     const lawyer=lawyerHtml===undefined?'اسم المحامي':sanitizeLetterheadCellHtml(lawyerHtml);
     const association=associationHtml===undefined?'<strong>جمهورية العراق</strong><b>نقابة المحامين العراقيين</b>':sanitizeLetterheadCellHtml(associationHtml);
     const lawyerCss=sanitizeLetterheadStyle(lawyerStyle),associationCss=sanitizeLetterheadStyle(associationStyle);
+    const editAttr=editable?' contenteditable="true" spellcheck="false"':'';
     return '<header class="petition-letterhead">'+
-      '<div class="petition-head-cell petition-head-association petition-head-left" dir="rtl" contenteditable="true"'+(associationCss?' style="'+esc(associationCss)+'"':'')+'>'+association+'</div>'+
+      '<div class="petition-head-cell petition-head-association petition-head-left" dir="rtl"'+editAttr+(associationCss?' style="'+esc(associationCss)+'"':'')+'>'+association+'</div>'+
       '<div class="petition-head-cell petition-head-logo petition-bar-logo" contenteditable="false"><img src="'+esc(imgUrl)+'" alt="شعار نقابة المحامين العراقيين"></div>'+
-      '<div class="petition-head-cell petition-head-lawyer petition-head-right" dir="rtl" contenteditable="true"'+(lawyerCss?' style="'+esc(lawyerCss)+'"':'')+'>'+lawyer+'</div>'+
+      '<div class="petition-head-cell petition-head-lawyer petition-head-right" dir="rtl"'+editAttr+(lawyerCss?' style="'+esc(lawyerCss)+'"':'')+'>'+lawyer+'</div>'+
       '</header>';
   }
-  function normalizeLetterheadHtml(source){
+  function normalizeLetterheadHtml(source,editable=false){
     if(!source)return '';
     try{
       const doc=new DOMParser().parseFromString(String(source),'text/html');
@@ -417,7 +418,8 @@
         logo||undefined,
         association?.innerHTML??undefined,
         lawyer?.getAttribute('style')||'',
-        association?.getAttribute('style')||''
+        association?.getAttribute('style')||'',
+        editable
       );
     }catch(e){return '';}
   }
@@ -458,7 +460,7 @@
       '<button type="button" data-command="insertOrderedList" title="قائمة مرقمة">١. قائمة</button>'+
       '<button type="button" data-command="undo" aria-label="تراجع" title="تراجع"><i class="fas fa-rotate-left"></i></button>'+
       '<button type="button" data-command="redo" aria-label="إعادة" title="إعادة"><i class="fas fa-rotate-right"></i></button>'+
-      '</div><div class="petition-editor-page-wrap" id="petition-editor-page-wrap"><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?(state.editedLetterhead||letterheadHtml()):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div></div>'+
+      '</div><div class="petition-editor-page-wrap" id="petition-editor-page-wrap"><article class="petition-a4 petition-rich-editor '+(state.branded?'is-branded':'')+'" id="petition-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="تحرير العريضة كاملة" dir="rtl">'+(state.branded?normalizeLetterheadHtml(state.editedLetterhead||letterheadHtml(),true):'')+'<div class="petition-doc-body">'+plainTextToEditor(state.editedBody)+'</div></article></div></div>'+
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
@@ -887,7 +889,7 @@
     const t=state.template;if(!t)return '';
     const body=plainTextToEditor(state.editedBody??t.body);
     const branded=state.branded;
-    const header=branded?(state.editedLetterhead||letterheadHtml()):'';
+    const header=branded?normalizeLetterheadHtml(state.editedLetterhead||letterheadHtml(),false):'';
     const css='@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts@415c96ea2ee5bd29f46691460f944c0cc9676e1b/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;height:297mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:hidden;break-after:auto;page-break-after:auto}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);grid-template-rows:22mm;align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0;direction:rtl;unicode-bidi:plaintext}.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right,.petition-head-right *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight}.petition-head-cell{box-sizing:border-box;min-width:0;min-height:22mm;display:flex;flex-direction:column;justify-content:center;overflow:visible;direction:rtl;unicode-bidi:plaintext}.petition-head-right{display:flex;min-height:22mm;flex-direction:column;justify-content:center;text-align:right;font-size:17px;font-weight:400;white-space:normal;overflow:visible}.petition-head-left{min-height:22mm;display:flex;flex-direction:column;justify-content:center;text-align:center}.petition-head-logo{width:17mm;height:22mm;min-height:0;margin:auto;display:flex;align-items:center;justify-content:center}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:20px;line-height:1.5;text-align:justify;overflow-wrap:break-word;word-spacing:0}.petition-doc-body p{margin:0;line-height:1.5;orphans:2;widows:2;white-space:pre-wrap}.petition-doc-body li{line-height:1.5}.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:21px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
   }
