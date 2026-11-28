@@ -1348,6 +1348,10 @@ html[data-theme="light"] .petition-access-request textarea{
   height:257mm;
   max-height:257mm;
 }
+.petition-editor-pages .petition-rich-editor:not(.is-branded) .petition-doc-body{
+  height:257mm;
+  max-height:257mm;
+}
 .petition-live-preview .petition-a4-preview-frame{
   display:block;
   width:100%;
