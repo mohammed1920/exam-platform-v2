@@ -934,7 +934,7 @@
     if(!best)return null;
     while(best>0){
       const previous=block.textContent.slice(0,best);
-      if(/\\s$/.test(previous))break;
+      if(/\s$/.test(previous))break;
       best--;
     }
     if(!best)return null;
