@@ -410,6 +410,29 @@
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    if(editor){
+      // Keep Enter inside the lawyer-name grid cell. Native contenteditable
+      // paragraph splitting creates a new grid item and moves it to the left.
+      editor.addEventListener('keydown',event=>{
+        if(event.key!=='Enter'||event.isComposing)return;
+        const selection=window.getSelection();
+        if(!selection||!selection.rangeCount)return;
+        const range=selection.getRangeAt(0);
+        let node=range.startContainer;
+        if(node.nodeType===Node.TEXT_NODE)node=node.parentElement;
+        const lawyerName=node?.closest?.('.petition-head-right');
+        if(!lawyerName||!editor.contains(lawyerName))return;
+        event.preventDefault();
+        const lineBreak=document.createElement('br');
+        range.deleteContents();
+        range.insertNode(lineBreak);
+        const caret=document.createRange();
+        caret.setStartAfter(lineBreak);
+        caret.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(caret);
+      });
+    }
     let savedEditorHtml=editor?.innerHTML??'';
     state.editorSavedHtml=savedEditorHtml;
     const editorToolbar=root.querySelector('.petition-editor-toolbar');
