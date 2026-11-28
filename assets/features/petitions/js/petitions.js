@@ -410,6 +410,8 @@
       '<div class="petition-live-preview" id="petition-live-preview" aria-label="معاينة ورقة A4" hidden><iframe class="petition-a4-preview-frame" title="معاينة العريضة بحجم A4" tabindex="0"></iframe></div>'+
       '<div class="petition-document-actions petition-editor-actions" role="group" aria-label="إجراءات العريضة"><button type="button" class="petition-secondary" id="petition-editor-cancel">إلغاء التعديلات</button><button type="button" class="petition-secondary" id="petition-editor-save">حفظ نسخة العمل</button><button type="button" class="petition-secondary" id="petition-editor-restore"><i class="fas fa-rotate-left"></i> استعادة النص الأصلي</button><button type="button" class="petition-primary" id="petition-editor-preview"><i class="fas fa-eye"></i> معاينة</button><button type="button" class="petition-primary" id="petition-editor-print"><i class="fas fa-print"></i> طباعة / حفظ PDF</button><button type="button" class="petition-secondary" id="petition-editor-word">تصدير Word</button></div></div>';
     const editor=document.getElementById('petition-rich-editor');
+    const editorPageWrap=document.getElementById('petition-editor-page-wrap');
+    if(editor&&editorPageWrap)fitPetitionEditorPage(editor,editorPageWrap);
     if(editor){
       // Keep Enter inside the lawyer-name grid cell. Native contenteditable
       // paragraph splitting creates a new grid item and moves it to the left.
@@ -856,6 +858,28 @@
     const header=branded?(state.editedLetterhead||letterheadHtml()):'';
     const css='@font-face{font-family:"AMoshref Thulth";src:url("https://cdn.jsdelivr.net/gh/mokhtarbsaid/rare-arabic-fonts@415c96ea2ee5bd29f46691460f944c0cc9676e1b/amoshref-thulth/amoshref-thulth.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#fff;color:#20252b;font-family:Arial,Tahoma,sans-serif;direction:rtl}.petition-a4{position:relative;width:210mm;height:297mm;min-height:297mm;margin:0 auto;padding:'+(branded?'12mm 14mm 17mm':'20mm 17mm')+';background:#fffdf8;color:#20252b;direction:rtl;border:1.4mm solid #172b45;outline:.55mm solid #c59b4d;outline-offset:-3mm;overflow:hidden;break-after:auto;page-break-after:auto}.petition-a4:before{content:"";position:absolute;inset:4.5mm;border:.35mm solid #c59b4d;pointer-events:none}.petition-a4:after{content:"⚖";position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font-size:105mm;color:rgba(197,155,77,.045);pointer-events:none}.petition-letterhead{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 17mm minmax(0,1fr);align-items:center;gap:3mm;padding:1mm 1mm 4mm;margin:0 0 4mm;border-bottom:.7mm solid #172b45;direction:ltr}.petition-head-side{text-align:center;color:#172b45;line-height:1.25;min-width:0;direction:rtl;unicode-bidi:plaintext}.petition-head-side strong,.petition-head-side b{direction:rtl;unicode-bidi:plaintext}.petition-head-side strong{display:block;font-size:16px}.petition-head-side b{display:block;margin-top:1.5mm;font-size:12px}.petition-head-right,.petition-head-right *{font-family:"AMoshref Thulth",Tahoma,serif;font-synthesis:weight}.petition-head-right{font-size:17px;font-weight:400;white-space:nowrap;overflow:visible}.petition-bar-logo{width:17mm;height:22mm;margin:auto}.petition-bar-logo img{width:100%;height:100%;object-fit:contain}.petition-doc-body{position:relative;z-index:1;font-size:20px;line-height:1.5;text-align:justify;overflow-wrap:break-word;word-spacing:0}.petition-doc-body p{margin:0;line-height:1.5;orphans:2;widows:2;white-space:pre-wrap}.petition-doc-body li{line-height:1.5}.petition-doc-body u,.petition-doc-body [style*="text-decoration: underline"],.petition-doc-body [style*="text-decoration-line: underline"],.petition-doc-body [style*="underline"]{text-underline-offset:.35em!important;text-decoration-thickness:1px}.petition-doc-body ul,.petition-doc-body ol{padding-right:1.6em}.petition-document-title{font-size:21px;font-weight:bold}.petition-signature{margin-top:12mm;position:relative;z-index:1}';
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'</style></head><body><article class="petition-a4 '+(branded?'is-branded':'')+'">'+header+'<div class="petition-doc-body">'+body+'</div></article></body></html>';
+  }
+  function fitPetitionEditorPage(page,container){
+    if(!page||!container)return;
+    const applyScale=()=>{
+      if(!page.isConnected||!container.isConnected)return;
+      const pageWidth=210*96/25.4;
+      const pageHeight=pageWidth*(297/210);
+      const scale=Math.min(1,Math.max(1,container.clientWidth)/pageWidth);
+      page.style.transformOrigin='top left';
+      page.style.transform='scale('+scale+')';
+      container.style.height=(pageHeight*scale)+'px';
+    };
+    applyScale();
+    if(!container.dataset.fitBound){
+      if('ResizeObserver' in window){
+        const observer=new ResizeObserver(applyScale);
+        observer.observe(container);
+        container._petitionResizeObserver=observer;
+      }
+      window.addEventListener('resize',applyScale,{passive:true});
+      container.dataset.fitBound='true';
+    }
   }
   function fitPetitionPreview(frame,container,refresh=false){
     if(!frame||!container)return;
