@@ -743,6 +743,8 @@
         const span=document.createElement('span');span.style.fontSize=size+'px';
         try{span.appendChild(range.extractContents());range.insertNode(span);const next=document.createRange();next.selectNodeContents(span);selection.removeAllRanges();selection.addRange(next);savedEditorRange=next.cloneRange();}catch(e){return;}
       }
+      paginatePetitionEditor(editor);
+      fitPetitionEditorPage(editor,editorPageWrap);
       syncEditorContent(editor);
     };
     const fontSizeSelect=document.getElementById('petition-font-size');
@@ -809,6 +811,8 @@
       editor.focus();
       selection.removeAllRanges();selection.addRange(range);
       savedEditorRange=range.cloneRange();
+      paginatePetitionEditor(editor);
+      fitPetitionEditorPage(editor,editorPageWrap);
       syncEditorContent(editor);
     };
     root.querySelectorAll('[data-indent-step]').forEach(btn=>{
@@ -824,6 +828,8 @@
         if(!restoreEditorSelection())return;
         const applied=document.execCommand(btn.dataset.command,false,null);
         if(applied){
+          paginatePetitionEditor(editor);
+          fitPetitionEditorPage(editor,editorPageWrap);
           rememberEditorSelection();
           syncEditorContent(editor);
         }
