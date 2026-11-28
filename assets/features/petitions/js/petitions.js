@@ -900,10 +900,6 @@
       return true;
     }catch(e){alert('تعذر حفظ نسخة العمل على هذا الجهاز. انسخ النص أو صدّره إلى Word.');return false;}
   }
-  function syncPreview(){
-    const editor=document.getElementById('petition-rich-editor');
-    if(editor)state.editedBody=editor.innerHTML;
-  }
   function buildPrintHtml(){
     const t=state.template;if(!t)return '';
     const bodyHtml=plainTextToEditor(state.editedBody??t.body);
@@ -915,7 +911,7 @@
     return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(t.name)+'</title><style>'+css+'.petition-a4{height:297mm;min-height:297mm;max-height:297mm;overflow:hidden;break-after:page;page-break-after:always}.petition-a4:last-child{break-after:auto;page-break-after:auto} .petition-a4[data-petition-page]:not([data-petition-page="1"]) .petition-doc-body{height:265mm;max-height:265mm}.petition-doc-body{min-height:0;overflow:hidden}</style></head><body>'+pageMarkup+'</body></html>';
   }
   function splitPetitionBlock(block,targetBody){
-    if(!block||!/^P$/.test(block.tagName)||!block.textContent||block.textContent.length<2)return null;
+    if(!block||!['P','DIV','LI'].includes(block.tagName)||!block.textContent||block.textContent.length<2)return null;
     const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT);
     const nodes=[];let total=0,node;
     while((node=walker.nextNode())){nodes.push({node,start:total,end:total+node.nodeValue.length});total+=node.nodeValue.length;}
@@ -960,7 +956,7 @@
     const header=first.querySelector('.petition-letterhead');
     const allBlocks=existing.flatMap(page=>Array.from(page.querySelector('.petition-doc-body')?.children||[]));
     existing.slice(1).forEach(page=>page.remove());
-    let page=first,body=first.querySelector('.petition-doc-body');
+    let body=first.querySelector('.petition-doc-body');
     if(!body)return;
     body.replaceChildren();
     const makePage=number=>{
@@ -987,7 +983,7 @@
           if(split){
             body.appendChild(split.first);
             block=split.remainder;
-            const next=makePage(++pageNumber);page=next.page;body=next.body;
+            const next=makePage(++pageNumber);body=next.body;
             continue;
           }
           body.appendChild(block);
