@@ -525,26 +525,6 @@
       window.addEventListener('resize',updateMobileEditorToolbar,{passive:true});
       mobileEditorQuery.addEventListener?.('change',updateMobileEditorToolbar);
     }
-    const editorPageWrap=document.getElementById('petition-editor-page-wrap');
-    if(editor&&editorPageWrap){
-      const fitEditorPage=()=>{
-        const pageWidth=210*96/25.4;
-        const availableWidth=Math.max(1,editorPageWrap.clientWidth);
-        const scale=Math.min(1,availableWidth/pageWidth);
-        editor.style.width='210mm';
-        editor.style.minHeight='297mm';
-        editor.style.boxSizing='border-box';
-        editor.style.margin='0';
-        editor.style.transformOrigin='top left';
-        editor.style.transform='scale('+scale+')';
-        editorPageWrap.style.height=(Math.max(editor.scrollHeight,297*96/25.4)*scale)+'px';
-        editor.style.marginLeft=Math.max(0,(availableWidth-pageWidth*scale)/2)+'px';
-      };
-      fitEditorPage();
-      editor.addEventListener('input',fitEditorPage);
-      window.addEventListener('resize',fitEditorPage,{passive:true});
-      editorPageWrap.dataset.fitBound='true';
-    }
     const logoInput=document.getElementById('petition-logo-file');
     const logoImage=editor?.querySelector('.petition-bar-logo img');
     if(logoImage&&logoInput){
