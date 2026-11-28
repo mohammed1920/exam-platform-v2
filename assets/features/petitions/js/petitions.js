@@ -897,7 +897,7 @@
   function buildPrintHtml(){
     const t=state.template;if(!t)return '';
     const bodyHtml=plainTextToEditor(state.editedBody??t.body);
-    const bodyPages=bodyHtml.split(/<div data-petition-page-break="true"><\\/div>/i);
+    const bodyPages=bodyHtml.split(/<div data-petition-page-break="true"><\/div>/i);
     const branded=state.branded;
     const header=branded?normalizeLetterheadHtml(state.editedLetterhead||letterheadHtml(),false):'';
     const pageMarkup=bodyPages.map((part,index)=>'<article class="petition-a4 '+(branded?'is-branded':'')+'" data-petition-page="'+(index+1)+'">'+(index===0?header:'')+'<div class="petition-doc-body">'+part+'</div></article>').join('');
@@ -941,8 +941,7 @@
     first.appendChild(firstContent);
     const remainder=block.cloneNode(false);
     while(block.firstChild)remainder.appendChild(block.firstChild);
-    block.replaceWith(remainder);
-    return first;
+    return {first,remainder};
   }
   function paginatePetitionEditor(editor){
     if(!editor)return;
@@ -975,9 +974,10 @@
         if(body.scrollHeight<=body.clientHeight+1)break;
         body.removeChild(block);
         if(body.children.length===0){
-          const firstPart=splitPetitionBlock(block,body);
-          if(firstPart){
-            body.appendChild(firstPart);
+          const split=splitPetitionBlock(block,body);
+          if(split){
+            body.appendChild(split.first);
+            block=split.remainder;
             const next=makePage(++pageNumber);page=next.page;body=next.body;
             continue;
           }
