@@ -1052,7 +1052,8 @@
       container.style.width='100%';
       container.style.maxWidth='100%';
       container.style.minWidth='0';
-      container.style.overflow='hidden';
+      // Let the browser pan the enlarged A4 sheet after native pinch zoom.
+      container.style.overflow='visible';
       container.style.height=(pages.length*pageHeight*scale+(Math.max(0,pages.length-1)*8*96/25.4*scale))+'px';
     };
     applyScale();
@@ -1063,8 +1064,9 @@
         if(container.parentElement)observer.observe(container.parentElement);
         container._petitionResizeObserver=observer;
       }
+      // Do not refit on visualViewport resize: Android fires it during pinch zoom,
+      // which would counteract the user's magnification.
       window.addEventListener('resize',applyScale,{passive:true});
-      window.visualViewport?.addEventListener('resize',applyScale,{passive:true});
       container.dataset.fitBound='true';
     }
   }
