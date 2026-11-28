@@ -1,0 +1,19 @@
+{
+  "name": "mizan-platform",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:petition-editor": "node scripts/build-petition-editor.mjs"
+  },
+  "dependencies": {
+    "@tiptap/core": "2.11.5",
+    "@tiptap/extension-color": "2.11.5",
+    "@tiptap/extension-text-align": "2.11.5",
+    "@tiptap/extension-text-style": "2.11.5",
+    "@tiptap/extension-underline": "2.11.5",
+    "@tiptap/starter-kit": "2.11.5"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
+}
