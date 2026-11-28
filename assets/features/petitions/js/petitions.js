@@ -1020,13 +1020,18 @@
   }
   function fitPetitionEditorPage(editor,container){
     if(!editor||!container)return;
-    const applyScale=()=>{
+    const applyScale=(force=false)=>{
       if(!editor.isConnected||!container.isConnected)return;
+      const layoutWidth=container.clientWidth;
+      if(!layoutWidth)return;
+      const previousWidth=Number(editor.dataset.petitionFitWidth||0);
+      // Pinch zoom changes visualViewport, not the editor's layout width.
+      // Keep the page's CSS zoom stable while the user is editing; only
+      // recalculate when the actual editor column changes (e.g. rotation).
+      if(!force&&previousWidth&&Math.abs(previousWidth-layoutWidth)<2)return;
       const pageWidth=210*96/25.4;
       const pageHeight=pageWidth*(297/210);
-      const viewportWidth=window.visualViewport?.width||document.documentElement.clientWidth||window.innerWidth||pageWidth;
-      const availableWidth=Math.max(1,Math.min(viewportWidth,container.clientWidth||viewportWidth)-24);
-      const scale=Math.min(1,availableWidth/pageWidth);
+      const scale=Math.min(1,Math.max(1,layoutWidth-24)/pageWidth);
       const pages=Array.from(editor.querySelectorAll('[data-petition-page]'));
       editor.style.display='flex';
       editor.style.flexDirection='column';
@@ -1052,21 +1057,23 @@
       container.style.width='100%';
       container.style.maxWidth='100%';
       container.style.minWidth='0';
-      // Let the browser pan the enlarged A4 sheet after native pinch zoom.
       container.style.overflow='visible';
       container.style.height=(pages.length*pageHeight*scale+(Math.max(0,pages.length-1)*8*96/25.4*scale))+'px';
+      editor.dataset.petitionFitWidth=String(layoutWidth);
     };
-    applyScale();
+    applyScale(true);
     if(!container.dataset.fitBound){
       if('ResizeObserver' in window){
-        const observer=new ResizeObserver(applyScale);
+        const observer=new ResizeObserver(entries=>{
+          const entry=entries[0];
+          if(entry&&Math.abs(entry.contentRect.width-Number(editor.dataset.petitionFitWidth||0))>=2)applyScale();
+        });
         observer.observe(container);
-        if(container.parentElement)observer.observe(container.parentElement);
         container._petitionResizeObserver=observer;
       }
-      // Do not refit on visualViewport resize: Android fires it during pinch zoom,
-      // which would counteract the user's magnification.
-      window.addEventListener('resize',applyScale,{passive:true});
+      // Window resize is retained for orientation/layout changes. The width
+      // guard prevents keyboard appearance or pinch zoom from resetting scale.
+      window.addEventListener('resize',()=>applyScale(),{passive:true});
       container.dataset.fitBound='true';
     }
   }
